@@ -1,7 +1,7 @@
 # Osmose backend
 # Copyright (C) 2014
 # This file is distributed under the same license as the osmose-backend package.
-#
+# 
 # Translators:
 # frodrigo <fred.rodrigo@gmail.com>, 2018-2019
 # Kit Tak <misc.takashi@gmail.com>, 2020
@@ -19,10 +19,10 @@ msgstr ""
 "PO-Revision-Date: 2014-04-30 17:25+0000\n"
 "Last-Translator: tomoya muramoto <muramototomoya@gmail.com>, 2016\n"
 "Language-Team: Japanese (http://www.transifex.com/openstreetmap-france/osmose/language/ja/)\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../analysers/analyser_merge_college_FR.py:31
@@ -775,9 +775,7 @@ msgstr "学校の更新"
 #: ../plugins/Highway_Lanes.py:36
 msgid ""
 "Conflict between usage of *:lanes or *:lanes:(forward|backward|both_ways)"
-msgstr ""
-"*:lanes と *:lanes: が競合している:\n"
-"(forward|backward|both_ways)"
+msgstr "*:lanes と *:lanes: が競合している:\n(forward|backward|both_ways)"
 
 #: ../plugins/Highway_Lanes.py:41
 msgid "Conflict between lanes number"
@@ -1050,9 +1048,7 @@ msgid ""
 "addr:housenumber or addr:housename without addr:street, addr:district, "
 "addr:neighbourhood, addr:quarter, addr:suburb, addr:place or addr:hamlet "
 "must be in a associatedStreet relation"
-msgstr ""
-"addr:streetの無いaddr:housenumberまたはaddr:housename。\n"
-"addr:district、addr:neighbourhood、addr:quarter、addr:suburb、addr:placeまたはaddr:hamletは関連する街路リレーション内になければなりません"
+msgstr "addr:streetの無いaddr:housenumberまたはaddr:housename。\naddr:district、addr:neighbourhood、addr:quarter、addr:suburb、addr:placeまたはaddr:hamletは関連する街路リレーション内になければなりません"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:569
 msgid "The track of this route contains gaps"
@@ -1070,8 +1066,7 @@ msgstr "補間の接頭辞が無い"
 msgid ""
 "network, operator, ref, colour tag should be the same on route and "
 "route_master relations"
-msgstr ""
-"network, operator, ref, colourタグはroute 及びroute_master relations上と同じであるべきです"
+msgstr "network, operator, ref, colourタグはroute 及びroute_master relations上と同じであるべきです"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:600
 #, python-format, python-brace-format
@@ -1191,9 +1186,7 @@ msgstr "進行方向制限リレーション、\"from\" または\"to\"メンバ
 msgid ""
 "Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be "
 "removed from Cadastre name. Place should be integrated only once."
-msgstr ""
-"Hamlet や Localityのnameの接尾辞であるNord, Sud, Est, Ouest, CentreはCadastre "
-"nameから除去すべきです。Placeは一度だけ統合すべきです。"
+msgstr "Hamlet や Localityのnameの接尾辞であるNord, Sud, Est, Ouest, CentreはCadastre nameから除去すべきです。Placeは一度だけ統合すべきです。"
 
 #: ../plugins/Name_Punctuation.py:31
 msgid "Unexpected punctuation in name"
@@ -1416,8 +1409,7 @@ msgstr "lanes={0}は整数ではない"
 #, python-brace-format
 msgid ""
 "on oneway, (lanes={0}) != (lanes:forward={1}) - (non fullwidth forward={2})"
-msgstr ""
-"一方通行では、(lanes={0}) != (lanes:forward={1}) - (non fullwidth forward={2})"
+msgstr "一方通行では、(lanes={0}) != (lanes:forward={1}) - (non fullwidth forward={2})"
 
 #: ../plugins/Highway_Lanes.py:308
 #, python-brace-format
@@ -1425,33 +1417,27 @@ msgid ""
 "on two way, (lanes={0}) != (lanes:forward={1}) + (lanes:backward={2}) + "
 "(lanes:both_ways={3}) - (non fullwidth={4}) - (non fullwidth forward={5}) - "
 "(non fullwidth backward={6}) - (non fullwidth both_ways={7})"
-msgstr ""
-"双方向通行では、(lanes={0}) != (lanes:forward={1}) + (lanes:backward={2}) + "
-"(lanes:both_ways={3}) - (non fullwidth={4}) - (non fullwidth forward={5}) - "
-"(non fullwidth backward={6}) - (non fullwidth both_ways={7})"
+msgstr "双方向通行では、(lanes={0}) != (lanes:forward={1}) + (lanes:backward={2}) + (lanes:both_ways={3}) - (non fullwidth={4}) - (non fullwidth forward={5}) - (non fullwidth backward={6}) - (non fullwidth both_ways={7})"
 
 #: ../plugins/Highway_Lanes.py:310
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) <= (lanes:forward={1}) - (non fullwidth forward={2})"
-msgstr ""
-"双方向通行では、(lanes={0}) <= (lanes:forward={1}) - (non fullwidth forward={2})"
+msgstr "双方向通行では、(lanes={0}) <= (lanes:forward={1}) - (non fullwidth forward={2})"
 
 #: ../plugins/Highway_Lanes.py:312
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) <= (lanes:backward={1}) - (non fullwidth "
 "backward={2})"
-msgstr ""
-"双方向通行では、(lanes={0}) <= (lanes:backward={1}) - (non fullwidth backward={2})"
+msgstr "双方向通行では、(lanes={0}) <= (lanes:backward={1}) - (non fullwidth backward={2})"
 
 #: ../plugins/Highway_Lanes.py:314
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) < (lanes:both_ways={1}) - (non fullwidth "
 "both_ways={2})"
-msgstr ""
-"双方向通行では、(lanes={0}) < (lanes:both_ways={1}) - (non fullwidth both_ways={2})"
+msgstr "双方向通行では、(lanes={0}) < (lanes:both_ways={1}) - (non fullwidth both_ways={2})"
 
 #: ../plugins/Name_Quotation.py:56
 #, python-brace-format
@@ -1787,9 +1773,7 @@ msgstr "Carpool parking {0}"
 msgid ""
 "FANTOIR B to W type is for locality, hamlet, isolated_dwelling, islet or "
 "neighbourhood"
-msgstr ""
-"FANTOIR B から W type はlocality, hamlet, isolated_dwelling, islet または "
-"neighbourhood用です"
+msgstr "FANTOIR B から W type はlocality, hamlet, isolated_dwelling, islet または neighbourhood用です"
 
 #: ../analysers/analyser_osmosis_camp_pitch_out_of_camp_site.py:67
 msgid "Camp pitches outside a camp site"
@@ -1807,9 +1791,7 @@ msgstr "不正なキー接尾辞"
 msgid ""
 "[WikiProject_France/Repères_Géodésiques](https://wiki.openstreetmap.org/wiki/WikiProject_France/Rep%C3%A8res_G%C3%A9od%C3%A9siques)\n"
 "French survey point imported in OSM but not found."
-msgstr ""
-"[WikiProject_France/Repères_Géodésiques](https://wiki.openstreetmap.org/wiki/WikiProject_France/Rep%C3%A8res_G%C3%A9od%C3%A9siques)\n"
-"OSMにインポートされたフランスのサーベイ地点ですが、見つかりません。"
+msgstr "[WikiProject_France/Repères_Géodésiques](https://wiki.openstreetmap.org/wiki/WikiProject_France/Rep%C3%A8res_G%C3%A9od%C3%A9siques)\nOSMにインポートされたフランスのサーベイ地点ですが、見つかりません。"
 
 #: ../analysers/analyser_merge_geodesie.py:31
 msgid "Restore node or relation."
@@ -1820,8 +1802,7 @@ msgid ""
 "Offered fix reimport the missing sites as point, but if was a\n"
 "relation. Must be converted manually, keep the tags and put survey points\n"
 "in relation."
-msgstr ""
-"提案された修正は欠けているサイトをポイントとして再インポートするものですが、リレーションでした。手動で変換してタグを保持し、サーベイポイントをリレーション内に入れてください。"
+msgstr "提案された修正は欠けているサイトをポイントとして再インポートするものですが、リレーションでした。手動で変換してタグを保持し、サーベイポイントをリレーション内に入れてください。"
 
 #: ../analysers/analyser_merge_geodesie.py:44
 msgid "Moved survey point"
@@ -1837,17 +1818,13 @@ msgid ""
 "A historical monument is here but is not mapped. The list of monuments\n"
 "comes from the database \"Merimee Inventory of monuments\" in France by the\n"
 "Ministry of Culture."
-msgstr ""
-"ここに歴史的記念碑がありますがマッピングされていません。記念碑の一覧はフランス文科省の\"Merimee Inventory of "
-"monuments\" データベースによるものです。"
+msgstr "ここに歴史的記念碑がありますがマッピングされていません。記念碑の一覧はフランス文科省の\"Merimee Inventory of monuments\" データベースによるものです。"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:38
 msgid ""
 "See [heritage](https://wiki.openstreetmap.org/wiki/Key:heritage) on\n"
 "wiki. Add the proper tags if something already exists."
-msgstr ""
-"ウィキの [heritage](https://wiki.openstreetmap.org/wiki/Key:heritage) "
-"参照。ノードを追加するか、既に何かあればタグを統合します。"
+msgstr "ウィキの [heritage](https://wiki.openstreetmap.org/wiki/Key:heritage) 参照。ノードを追加するか、既に何かあればタグを統合します。"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:41
 msgid ""
@@ -1856,9 +1833,7 @@ msgid ""
 "low accuracy to the town. Carefully check the contents of the proposed\n"
 "tags, there can be curious or unsuitable values. Do not override tags of UNESCO\n"
 "World Heritage."
-msgstr ""
-"マーカーの位置は住所ジオコーディングで作成されています。位置がずれているかもしれません。マーカーは町に対して低精度で、粗い位置にある可能性があります。提案されたタグは不適切な場合があるので内容を注意深くチェックしてください。"
-" UNESCO世界遺産のタグを上書きしないでください。"
+msgstr "マーカーの位置は住所ジオコーディングで作成されています。位置がずれているかもしれません。マーカーは町に対して低精度で、粗い位置にある可能性があります。提案されたタグは不適切な場合があるので内容を注意深くチェックしてください。 UNESCO世界遺産のタグを上書きしないでください。"
 
 #: ../analysers/analyser_merge_pitch_FR.py:49
 #, python-brace-format
@@ -1896,9 +1871,7 @@ msgstr "ラジオ塔({0})の更新"
 msgid ""
 "Check the location. Warning data from the Ministry may have several\n"
 "administrative schools for a single physical school."
-msgstr ""
-"位置を確認。省からの警告データには何らか単一の物理的な学校に対して\n"
-"行政上の学校がいくつか含まれるかもしれません。"
+msgstr "位置を確認。省からの警告データには何らか単一の物理的な学校に対して\n行政上の学校がいくつか含まれるかもしれません。"
 
 #: ../analysers/analyser_merge_service_public_FR.py:39
 msgid "The location can be quite rough."
@@ -1929,12 +1902,13 @@ msgstr "このエリアの領有を調べてください。"
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:146
 msgid ""
-"Unconnected boundary fragment, a way with a boundary tag not part of a\n"
-"boundary relation."
+"Unconnected boundary fragment, a way with a `boundary` tag not part of a\n"
+"`boundary` relation."
 msgstr "未接続の境界の断片。 boundaryタグの付いたウェイがboundaryリレーションの一部になっていない。"
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:149
-msgid "Delete the way, remove boundary tag or add to a relation."
+msgid ""
+"Delete the way, remove the `boundary` tag or add the way to a relation."
 msgstr "ウェイを削除、boundary を削除またはリレーションに追加。"
 
 #: ../analysers/analyser_osmosis_boundary_hole.py:68
@@ -1950,10 +1924,7 @@ msgid ""
 "![](https://wiki.openstreetmap.org/w/images/6/69/Osmose-eg-error-1060.png)\n"
 "\n"
 "Two definitions of the same border."
-msgstr ""
-"![](https://wiki.openstreetmap.org/w/images/6/69/Osmose-eg-error-1060.png)\n"
-"\n"
-"同じ境界に定義が2つ。"
+msgstr "![](https://wiki.openstreetmap.org/w/images/6/69/Osmose-eg-error-1060.png)\n\n同じ境界に定義が2つ。"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:124
 msgid "Missing `admin_centre` role"
@@ -1982,9 +1953,7 @@ msgid ""
 "shift in the source data (cadastre, orthophotographs), replace the\n"
 "layout of the building to correct this issue. Otherwise, the building must\n"
 "be drawn."
-msgstr ""
-"建物の専有領域がありますが、ソースデータ(cadastre, "
-"orthophotograhies)のシフトで誤配置されています。建物のレイアウトを置き換えて問題を修正してください。もしくは建物が描かれなければなりません。"
+msgstr "建物の専有領域がありますが、ソースデータ(cadastre, orthophotograhies)のシフトで誤配置されています。建物のレイアウトを置き換えて問題を修正してください。もしくは建物が描かれなければなりません。"
 
 #: ../analysers/analyser_osmosis_building_geodesie_FR.py:117
 msgid ""
@@ -1992,9 +1961,7 @@ msgid ""
 "[import of these geodetic\n"
 "markers](https://wiki.openstreetmap.org/wiki/France/Rep%C3%A8res_G%C3%A9od%C3%A9siques)).\n"
 "It could be that all the surrounding buildings are shifted."
-msgstr ""
-"参照なのでgeodeticのポイントを動かさないでください。 ([import of these geodetic markers](https://wiki.openstreetmap.org/wiki/France/Rep%C3%A8res_G%C3%A9od%C3%A9siques) を参照)。.\n"
-"周囲の建物は全てシフトされている可能性があります。"
+msgstr "参照なのでgeodeticのポイントを動かさないでください。 ([import of these geodetic markers](https://wiki.openstreetmap.org/wiki/France/Rep%C3%A8res_G%C3%A9od%C3%A9siques) を参照)。.\n周囲の建物は全てシフトされている可能性があります。"
 
 #: ../analysers/analyser_osmosis_cycleway_track.py:65
 msgid ""
@@ -2018,10 +1985,7 @@ msgid ""
 "![](https://wiki.openstreetmap.org/w/images/1/16/Osmose-eg-error-1180.png)\n"
 "\n"
 "Double mapping of the bike lane. "
-msgstr ""
-"![](https://wiki.openstreetmap.org/w/images/1/16/Osmose-eg-error-1180.png)\n"
-"\n"
-"自転車レーンの二重マッピング。"
+msgstr "![](https://wiki.openstreetmap.org/w/images/1/16/Osmose-eg-error-1180.png)\n\n自転車レーンの二重マッピング。"
 
 #: ../analysers/analyser_osmosis_double_tagging.py:102
 msgid ""
@@ -2032,8 +1996,7 @@ msgstr "エンティティの出現は1回のみでなければなりません�
 #: ../analysers/analyser_osmosis_double_tagging.py:105
 msgid ""
 "![](https://wiki.openstreetmap.org/w/images/0/08/Osmose-eg-error-4080.png)"
-msgstr ""
-"![](https://wiki.openstreetmap.org/w/images/0/08/Osmose-eg-error-4080.png)"
+msgstr "![](https://wiki.openstreetmap.org/w/images/0/08/Osmose-eg-error-4080.png)"
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:286
 msgid "Delete one of the two objects."
@@ -2052,19 +2015,14 @@ msgid ""
 "highway should normally be consistent along the entire path. For example\n"
 "a `highway=tertiary` should remain `highway=tertiary` until it intersects\n"
 "with a road of higher classification."
-msgstr ""
-"highway種別の連続性を確認してください。 通常、highwayの分類は経路全体を通じて一貫しているべきです。例えば "
-"`highway=tertiary` は他の高次の分類と交差するまでは`highway=tertiary` のままであるべきです。"
+msgstr "highway種別の連続性を確認してください。 通常、highwayの分類は経路全体を通じて一貫しているべきです。例えば `highway=tertiary` は他の高次の分類と交差するまでは`highway=tertiary` のままであるべきです。"
 
 #: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:117
 msgid ""
 "![](https://wiki.openstreetmap.org/w/images/e/e8/Osmose-eg-error-1120.png)\n"
 "\n"
 "`highway=secondary` should not become a residential."
-msgstr ""
-"![](https://wiki.openstreetmap.org/w/images/e/e8/Osmose-eg-error-1120.png)\n"
-"\n"
-"`highway=secondary` はresidentialになるべきではありません。"
+msgstr "![](https://wiki.openstreetmap.org/w/images/e/e8/Osmose-eg-error-1120.png)\n\n`highway=secondary` はresidentialになるべきではありません。"
 
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:65
 msgid ""
@@ -2077,10 +2035,7 @@ msgid ""
 "![](https://wiki.openstreetmap.org/w/images/b/be/Osmose-eg-error-1090.png)\n"
 "\n"
 "Secondary connecting directly to a residential."
-msgstr ""
-"![](https://wiki.openstreetmap.org/w/images/b/be/Osmose-eg-error-1090.png)\n"
-"\n"
-"secondaryがresidentialに直接つながっています。"
+msgstr "![](https://wiki.openstreetmap.org/w/images/b/be/Osmose-eg-error-1090.png)\n\nsecondaryがresidentialに直接つながっています。"
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:252
 #: ../analysers/analyser_osmosis_highway_floating_islands.py:130
@@ -2097,9 +2052,7 @@ msgstr "小さな仮の経路であっても`cycleway`を道路に接続しま�
 msgid ""
 "Highway from `motorway` to `tertiary` are important ways. They should\n"
 "lead to somewhere and in particular to a network of minor roads."
-msgstr ""
-"highwayのうち`motorway` から `tertiary` "
-"は重要なウェイです。これらはどこかに、とりわけ主要道路以外のネットワークにつながっているべきです。"
+msgstr "highwayのうち`motorway` から `tertiary` は重要なウェイです。これらはどこかに、とりわけ主要道路以外のネットワークにつながっているべきです。"
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:267
 msgid "Review the classification of road or draw the local road network."
@@ -2117,8 +2070,7 @@ msgstr "ノードは鉄道か道路と共通でなければなりません。"
 msgid ""
 "Check the consistency of highway type for\n"
 "`highway=trunk_link|primary_link|secondary_link`."
-msgstr ""
-"`highway=trunk_link|primary_link|secondary_link`に対する道路種別の一貫性を確認してください。"
+msgstr "`highway=trunk_link|primary_link|secondary_link`に対する道路種別の一貫性を確認してください。"
 
 #: ../analysers/analyser_osmosis_highway_link.py:137
 msgid ""
@@ -2131,17 +2083,13 @@ msgid ""
 "![](https://wiki.openstreetmap.org/w/images/b/b5/Osmose-eg-error-1110.png)\n"
 "\n"
 "`highway=trunk_link` linking `highway=primary`."
-msgstr ""
-"![](https://wiki.openstreetmap.org/w/images/b/b5/Osmose-eg-error-1110.png)\n"
-"\n"
-"`highway=primary`にリンクしている`highway=trunk_link`"
+msgstr "![](https://wiki.openstreetmap.org/w/images/b/b5/Osmose-eg-error-1110.png)\n\n`highway=primary`にリンクしている`highway=trunk_link`"
 
 #: ../analysers/analyser_osmosis_highway_link.py:146
 msgid ""
 "Check if the highway is a `*_link`, else remove `*_link`. Be sure to check "
 "both ends of the way."
-msgstr ""
-"highwayが is a `*_link`かどうか確認し、そうでなければ`*_link`を削除します。ウェイの両端を忘れずにチェックしてください。"
+msgstr "highwayが is a `*_link`かどうか確認し、そうでなければ`*_link`を削除します。ウェイの両端を忘れずにチェックしてください。"
 
 #: ../analysers/analyser_osmosis_highway_noexit.py:90
 msgid "Noexit on node with exit"
@@ -2156,9 +2104,7 @@ msgid ""
 "It is very likely that the traffic signals on the junction are\n"
 "inconsistent with each other, see also\n"
 "[highway=traffic_signals](https://wiki.openstreetmap.org/wiki/Tag:highway%3Dtraffic_signals)."
-msgstr ""
-"交差点の信号が相互に首尾一貫していない可能性が高いです。\n"
-"[highway=traffic_signals](https://wiki.openstreetmap.org/wiki/Tag:highway%3Dtraffic_signals) も参照。"
+msgstr "交差点の信号が相互に首尾一貫していない可能性が高いです。\n[highway=traffic_signals](https://wiki.openstreetmap.org/wiki/Tag:highway%3Dtraffic_signals) も参照。"
 
 #: ../analysers/analyser_osmosis_highway_tunnel_bridge.py:111
 msgid ""
@@ -2170,18 +2116,14 @@ msgstr "この長さの橋には`bridge=yes`よりもふさわしい詳細なタ
 msgid ""
 "See the possible [types of\n"
 "bridges](https://wiki.openstreetmap.org/wiki/Key:bridge)."
-msgstr ""
-"タグ付け可能な[橋の種類](https://wiki.openstreetmap.org/wiki/JA:Key:bridge)を確認してください。"
+msgstr "タグ付け可能な[橋の種類](https://wiki.openstreetmap.org/wiki/JA:Key:bridge)を確認してください。"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:365
 msgid ""
 "![](https://wiki.openstreetmap.org/w/images/d/dc/Osmose-eg-error-1070.png)\n"
 "\n"
 "Intersection lane / building."
-msgstr ""
-"![](https://wiki.openstreetmap.org/w/images/d/dc/Osmose-eg-error-1070.png)\n"
-"\n"
-"レーン / 建物の交差。"
+msgstr "![](https://wiki.openstreetmap.org/w/images/d/dc/Osmose-eg-error-1070.png)\n\nレーン / 建物の交差。"
 
 #: ../analysers/analyser_osmosis_natural_swimming-pool.py:87
 msgid ""
@@ -2194,10 +2136,7 @@ msgid ""
 "![](https://wiki.openstreetmap.org/w/images/a/a1/Osmose-eg-error-3080.png)\n"
 "\n"
 "Wrong tag for private swimming pool."
-msgstr ""
-"![](https://wiki.openstreetmap.org/w/images/a/a1/Osmose-eg-error-3080.png)\n"
-"\n"
-"プライベートなプールに対してタグが間違っています。"
+msgstr "![](https://wiki.openstreetmap.org/w/images/a/a1/Osmose-eg-error-3080.png)\n\nプライベートなプールに対してタグが間違っています。"
 
 #: ../analysers/analyser_osmosis_node_like_way.py:82
 msgid ""
@@ -2214,10 +2153,7 @@ msgid ""
 "![](https://wiki.openstreetmap.org/w/images/0/0c/Osmose-eg-error-1080.png)\n"
 "\n"
 "Group of orphan nodes."
-msgstr ""
-"![](https://wiki.openstreetmap.org/w/images/0/0c/Osmose-eg-error-1080.png)\n"
-"\n"
-"親のないノードのグループ。"
+msgstr "![](https://wiki.openstreetmap.org/w/images/0/0c/Osmose-eg-error-1080.png)\n\n親のないノードのグループ。"
 
 #: ../analysers/analyser_osmosis_polygon_overlaps.py:86
 #, python-brace-format
@@ -2246,8 +2182,7 @@ msgid ""
 "correct geometry for a single loop (a '0') or by removing nodes or\n"
 "changing the order of these nodes, by adding new nodes or by creating\n"
 "multiple polygons."
-msgstr ""
-"ポリゴンが(8の字のように)自己交差しているところを探して、単一のループ(0の字のように)にしたり、ノードを取り除いたり、これらのノードの順序を入れ替えたり、新しいノードを追加したり、複数のポリゴンを作成したりして幾何形状を修正してください。"
+msgstr "ポリゴンが(8の字のように)自己交差しているところを探して、単一のループ(0の字のように)にしたり、ノードを取り除いたり、これらのノードの順序を入れ替えたり、新しいノードを追加したり、複数のポリゴンを作成したりして幾何形状を修正してください。"
 
 #: ../analysers/analyser_osmosis_polygon.py:91
 msgid "Make sure the nodes to move do not belong to other way."
@@ -2256,8 +2191,7 @@ msgstr "動かすノードが別のウェイに属していないことを確認
 #: ../analysers/analyser_osmosis_polygon.py:93
 msgid ""
 "![](https://wiki.openstreetmap.org/w/images/9/9a/Osmose-eg-error-1040.png)"
-msgstr ""
-"![](https://wiki.openstreetmap.org/w/images/9/9a/Osmose-eg-error-1040.png)"
+msgstr "![](https://wiki.openstreetmap.org/w/images/9/9a/Osmose-eg-error-1040.png)"
 
 #: ../analysers/analyser_osmosis_powerline.py:352
 msgid "This tower should probably be connected to a power line."
@@ -2299,15 +2233,13 @@ msgstr "メンバーが近くにあるべきリレーションが地理的に離
 msgid ""
 "[The relationships are not\n"
 "classes](https://wiki.openstreetmap.org/wiki/Relations/Relations_are_not_Categories)."
-msgstr ""
-"[リレーションがクラスでない](https://wiki.openstreetmap.org/wiki/Relations/Relations_are_not_Categories)."
+msgstr "[リレーションがクラスでない](https://wiki.openstreetmap.org/wiki/Relations/Relations_are_not_Categories)."
 
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:202
 msgid ""
 "The geometry of the inner of the multipolygon is duplicated. One in\n"
 "relation without tag and another with tags not part of the relation."
-msgstr ""
-"マルチポリゴンのinnerの幾何形状が重複しています。ひとつはリレーション内にタグなしであり、もうひとつはタグ付きでリレーションの一部になっていません。"
+msgstr "マルチポリゴンのinnerの幾何形状が重複しています。ひとつはリレーション内にタグなしであり、もうひとつはタグ付きでリレーションの一部になっていません。"
 
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:205
 msgid ""
@@ -2371,19 +2303,15 @@ msgstr "ロータリーの`highway=*` タグを調整します。"
 msgid ""
 "![](https://wiki.openstreetmap.org/w/images/3/3a/Osmose-eg-error-3010.png)\n"
 "\n"
-"Highway level should be secondary."
-msgstr ""
-"![](https://wiki.openstreetmap.org/w/images/3/3a/Osmose-eg-error-3010.png)\n"
-"\n"
-"Highwayのレベルはsecondaryであるべきです。"
+"Highway level should be `secondary`."
+msgstr "![](https://wiki.openstreetmap.org/w/images/3/3a/Osmose-eg-error-3010.png)\n\nHighwayのレベルはsecondaryであるべきです。"
 
 #: ../analysers/analyser_osmosis_roundabout_level.py:275
 msgid ""
 "Short ways are connected to roundabout and join together. It is often\n"
 "a sign of roundabout insertion way. These segments are often\n"
 "one-way."
-msgstr ""
-"短いウェイがロータリーに接続され、相互に結合されています。これはたいていロータリーの交差ウェイのサインです。これらのセグメントはたいてい一方通行です。"
+msgstr "短いウェイがロータリーに接続され、相互に結合されています。これはたいていロータリーの交差ウェイのサインです。これらのセグメントはたいてい一方通行です。"
 
 #: ../analysers/analyser_osmosis_roundabout_level.py:279
 msgid ""
@@ -2397,9 +2325,7 @@ msgid ""
 "before putting the tag oneway.\n"
 "* Two roundabouts close to each other can be connected by a small lane in both\n"
 "directions."
-msgstr ""
-"* ウェイが2番目のセグメントにジョインした後に延びている場合は、onewayタグを付加する前にウェイをカットします。\n"
-"* 2つのロータリーが近くにある場合は、双方向にある小さなレーンと接続できます。"
+msgstr "* ウェイが2番目のセグメントにジョインした後に延びている場合は、onewayタグを付加する前にウェイをカットします。\n* 2つのロータリーが近くにある場合は、双方向にある小さなレーンと接続できます。"
 
 #: ../analysers/analyser_osmosis_roundabout_level.py:290
 msgid ""
@@ -2429,18 +2355,14 @@ msgid ""
 "This looks like a roundabout, but the tag `junction=roundabout` is not\n"
 "present. See [Roundabout](https://wiki.openstreetmap.org/wiki/Roundabout)\n"
 "for more info."
-msgstr ""
-"これはロータリーのようですが、`junction=roundabout` タグが見当たりません。詳細は "
-"[Roundabout](https://wiki.openstreetmap.org/wiki/Roundabout) を参照。"
+msgstr "これはロータリーのようですが、`junction=roundabout` タグが見当たりません。詳細は [Roundabout](https://wiki.openstreetmap.org/wiki/Roundabout) を参照。"
 
 #: ../analysers/analyser_osmosis_roundabout.py:98
 msgid ""
 "If it is really a roundabout, add the tag `junction=roundabout`,\n"
 "verify that the way direction is counter-clockwise when the driving side is\n"
 "on the right, and remove the tag `oneway=yes` if present."
-msgstr ""
-"これが本当にロータリーであれば、 "
-"`junction=roundabout`タグを追加して、車両が右側通行の場合は経路が反時計回りかどうか検証し、`oneway=yes`タグがあれば削除してください。（訳注：日本は左側通行なので時計回りにウェイを引く）"
+msgstr "これが本当にロータリーであれば、 `junction=roundabout`タグを追加して、車両が右側通行の場合は経路が反時計回りかどうか検証し、`oneway=yes`タグがあれば削除してください。（訳注：日本は左側通行なので時計回りにウェイを引く）"
 
 #: ../analysers/analyser_osmosis_roundabout.py:102
 msgid ""
@@ -2448,10 +2370,7 @@ msgid ""
 "survey.\n"
 "\n"
 "Ensure the traffic on the roundabout has right of way. If not, use `junction=circular` instead."
-msgstr ""
-"衛星画像や現地調査で本当にラウンドアバウトか確認してください。\n"
-"\n"
-"ラウンドアバウト上の交通が右側通行かどうか確認してください。（訳注：日本は左側通行）そう（訳注：左側通行）でない場合は代わりに `junction=circular` を使います。"
+msgstr "衛星画像や現地調査で本当にラウンドアバウトか確認してください。\n\nラウンドアバウト上の交通が右側通行かどうか確認してください。（訳注：日本は左側通行）そう（訳注：左側通行）でない場合は代わりに `junction=circular` を使います。"
 
 #: ../analysers/analyser_osmosis_roundabout_reverse.py:51
 #: ../plugins/TagFix_MultipleTag.py:77
@@ -2459,17 +2378,14 @@ msgid ""
 "The circulation of the roundabout is drawn clockwise, but in countries\n"
 "where they drive on the right, the circulation of roundabouts is\n"
 "counterclockwise, and vice versa for other countries."
-msgstr ""
-"ロータリーの循環方向が時計回りですが、車両が右側通行の国ではロータリーは反時計回りという感覚で運転し、それ以外の国ではその反対です。（訳注：日本は左側通行なので時計回りが正しい）"
+msgstr "ロータリーの循環方向が時計回りですが、車両が右側通行の国ではロータリーは反時計回りという感覚で運転し、それ以外の国ではその反対です。（訳注：日本は左側通行なので時計回りが正しい）"
 
 #: ../analysers/analyser_osmosis_roundabout_reverse.py:55
 msgid ""
 "For roundabout `junction=roundabout`: change the direction by\n"
 "reversing the order of nodes in the path. In JOSM, select the roundabout\n"
 "and use the tool reverse path (shortcut: 'R')."
-msgstr ""
-"ロータリー `junction=roundabout`用: "
-"経路内のノードの順序を反転して方向を変えます。JOSMでは、ロータリーを選んで経路反転ツール(ショートカット: 'R')を使います。"
+msgstr "ロータリー `junction=roundabout`用: 経路内のノードの順序を反転して方向を変えます。JOSMでは、ロータリーを選んで経路反転ツール(ショートカット: 'R')を使います。"
 
 #: ../analysers/analyser_osmosis_roundabout_reverse.py:59
 #: ../plugins/TagFix_MultipleTag.py:86
@@ -2477,8 +2393,7 @@ msgid ""
 "Make sure that it is a roundabout (for example, not a side way in\n"
 "opposite direction around a square or a central roundabout, or a driveway\n"
 "separated by traffic islands at an intersection without cross)."
-msgstr ""
-"これがロータリーであることを確認してください(例えば、広場の周囲で反対方向に側道が無いとか、クロスしていない交差点にある交通島で分離されているなど)。"
+msgstr "これがロータリーであることを確認してください(例えば、広場の周囲で反対方向に側道が無いとか、クロスしていない交差点にある交通島で分離されているなど)。"
 
 #: ../analysers/analyser_osmosis_roundabout_reverse.py:63
 #: ../plugins/TagFix_MultipleTag.py:90
@@ -2486,10 +2401,7 @@ msgid ""
 "![](https://wiki.openstreetmap.org/w/images/6/68/Osmose-eg-error-1050.png)\n"
 "\n"
 "Clockwise rotation."
-msgstr ""
-"![](https://wiki.openstreetmap.org/w/images/6/68/Osmose-eg-error-1050.png)\n"
-"\n"
-"時計回りの回転。"
+msgstr "![](https://wiki.openstreetmap.org/w/images/6/68/Osmose-eg-error-1050.png)\n\n時計回りの回転。"
 
 #: ../analysers/analyser_osmosis_soundex.py:238
 msgid ""
@@ -2509,21 +2421,14 @@ msgid ""
 "his name not need be transformed into \"Jean Monnet\",\n"
 "* The \"Rond-Point des Allées\" is perhaps not the \"Rond-Point des Alliés\",\n"
 "* The \"Rue de Ballevue\" may be the right name for this street."
-msgstr ""
-"* \"Rue des Jardins\"で提案されていますが、\"Rue Desjardins\" はそのように呼ぶこともできます\n"
-"* 同音異義語に注意。地域で著名な人物はBeware of homonyms, a local glorious man can be called \"Jean Monet\"と呼ぶこともあります。彼の名前を\"Jean Monnet\"に変換する必要はありません\n"
-"* \"Rond-Point des Allées\" はおそらく\"Rond-Point des Alliés\"ではありません\n"
-"* \"Rue de Ballevue\" がこの通りの正しい名前かもしれません"
+msgstr "* \"Rue des Jardins\"で提案されていますが、\"Rue Desjardins\" はそのように呼ぶこともできます\n* 同音異義語に注意。地域で著名な人物はBeware of homonyms, a local glorious man can be called \"Jean Monet\"と呼ぶこともあります。彼の名前を\"Jean Monnet\"に変換する必要はありません\n* \"Rond-Point des Allées\" はおそらく\"Rond-Point des Alliés\"ではありません\n* \"Rue de Ballevue\" がこの通りの正しい名前かもしれません"
 
 #: ../analysers/analyser_osmosis_soundex.py:250
 msgid ""
 "* Rue Piere Curie ==> Rue Pierre Curie\n"
 "* Rue du Général de Gaules ==> Rue du Général de Gaulle\n"
 "* Mac Donald ==> McDonald's"
-msgstr ""
-"* Rue Piere Curie ==> Rue Pierre Curie\n"
-"* Rue du Général de Gaules ==> Rue du Général de Gaulle\n"
-"* Mac Donald ==> McDonald's"
+msgstr "* Rue Piere Curie ==> Rue Pierre Curie\n* Rue du Général de Gaules ==> Rue du Général de Gaulle\n* Mac Donald ==> McDonald's"
 
 #: ../analysers/analyser_osmosis_tag_typo.py:136
 msgid "The tag is misspelled. Detection is based on statistics."
@@ -2545,9 +2450,7 @@ msgstr "オブジェクトは重複している場合があります。"
 msgid ""
 "A `waterway=river` or a `waterway=stream` is an oriented way. The\n"
 "water must flow into another waterway or meet a `natural=coastline`."
-msgstr ""
-"`waterway=river` や `waterway=stream` は方向のあるウェイです。水路は別の水路に流れ込むか、 "
-"`natural=coastline`に出会わなければなりません。"
+msgstr "`waterway=river` や `waterway=stream` は方向のあるウェイです。水路は別の水路に流れ込むか、 `natural=coastline`に出会わなければなりません。"
 
 #: ../analysers/analyser_osmosis_waterway.py:166
 msgid "Link the waterway or invert its flow direction."
@@ -2564,10 +2467,7 @@ msgid ""
 "![](https://wiki.openstreetmap.org/w/images/9/9d/Osmose-eg-error-1190.png)\n"
 "\n"
 "`railway=rail` crudely drawn."
-msgstr ""
-"![](https://wiki.openstreetmap.org/w/images/9/9d/Osmose-eg-error-1190.png)\n"
-"\n"
-"`railway=rail` が現在描かれています。"
+msgstr "![](https://wiki.openstreetmap.org/w/images/9/9d/Osmose-eg-error-1190.png)\n\n`railway=rail` が現在描かれています。"
 
 #: ../plugins/Administrative_INSEE_Name.py:35
 msgid ""
@@ -2588,18 +2488,13 @@ msgid ""
 "[`place`](https://wiki.openstreetmap.org/wiki/Key:place). It should not\n"
 "be associated with tags such as `amenity`, `highway`. When the case, the\n"
 "tag `place=*` should be removed."
-msgstr ""
-"`place=*`タグはしばしば誤用されています。[`place`](https://wiki.openstreetmap.org/wiki/Key:place)"
-" を参照。`amenity`, `highway`といったタグと関連して使うべきではありません。そのような場合には`place=*` "
-"タグを削除すべきです。"
+msgstr "`place=*`タグはしばしば誤用されています。[`place`](https://wiki.openstreetmap.org/wiki/Key:place) を参照。`amenity`, `highway`といったタグと関連して使うべきではありません。そのような場合には`place=*` タグを削除すべきです。"
 
 #: ../plugins/Administrative_INSEE_Name.py:48
 msgid ""
 "Check of tags `ref:INSEE` and `name` are consistent with the [COG\n"
 "database](https://www.insee.fr/fr/information/2560452)."
-msgstr ""
-"`ref:INSEE` 及び `name` タグが [COG\n"
-"database](https://www.insee.fr/fr/information/2560452) と一致しているかどうかチェックします。"
+msgstr "`ref:INSEE` 及び `name` タグが [COG\ndatabase](https://www.insee.fr/fr/information/2560452) と一致しているかどうかチェックします。"
 
 #: ../plugins/Administrative_INSEE_Name.py:51
 msgid "Correct INSEE the value or the name as appropriate."
@@ -2611,9 +2506,7 @@ msgid ""
 "for merged city. It also happens in several occasions that local\n"
 "authorities are at odds with INSEE. In this case, that's always been a\n"
 "priority for the field on OSM."
-msgstr ""
-"INSEEのCOGによる `place=*` "
-"の名前が、特にマージされた都市で違っているかもしれません。INSEEでは地域の当局が奇妙であることもあります。この場合には、これは常にOSM上でのこの欄の優先されるものです。"
+msgstr "INSEEのCOGによる `place=*` の名前が、特にマージされた都市で違っているかもしれません。INSEEでは地域の当局が奇妙であることもあります。この場合には、これは常にOSM上でのこの欄の優先されるものです。"
 
 #: ../plugins/Administrative_TooManyWays.py:33
 msgid "In a relation, a way should be present only once."
@@ -2626,11 +2519,7 @@ msgid ""
 "Caution: in a route, a path can be taken several times. The multiple\n"
 "presence of this path in the relation `type=route` is not then an issue.\n"
 "Then ensure the roles `forward` and `backward`."
-msgstr ""
-"削除する前に、リレーション内のウェイのroleをダブルチェックしてください。\n"
-"\n"
-"警告: routeにおいて、経路は複数回取ることができます。そのためリレーション種別`type=route` 内に複数経路があることは問題ではありません。\n"
-"role `forward` 及び `backward`を確認してください。"
+msgstr "削除する前に、リレーション内のウェイのroleをダブルチェックしてください。\n\n警告: routeにおいて、経路は複数回取ることができます。そのためリレーション種別`type=route` 内に複数経路があることは問題ではありません。\nrole `forward` 及び `backward`を確認してください。"
 
 #: ../plugins/Ele_MontainPass_Peak.py:37
 msgid "Complete the tag ele=* missing."
@@ -2644,9 +2533,7 @@ msgstr "数値でない、`lanes=*` は整数値"
 msgid ""
 "You can not simultaneously set a tag and the variants with\n"
 "`forward`, `backward` or `both_ways` prefixes."
-msgstr ""
-"この接頭辞`forward`, `backward`, `both_ways`をタグとバリアントに\n"
-"同時にセットすることはできません。"
+msgstr "この接頭辞`forward`, `backward`, `both_ways`をタグとバリアントに\n同時にセットすることはできません。"
 
 #: ../plugins/Highway_Lanes.py:45
 msgid "You can not set opposite lanes data on a one way."
@@ -2673,9 +2560,7 @@ msgid ""
 "The `merge_to_right` or `merge_to_left` lane must be on the same way\n"
 "as the destination lane and the `merge_to_right` must be on the *left\n"
 "side* and `the merge_to_left` on the *right side*."
-msgstr ""
-"`merge_to_right` または `merge_to_left` レーンは同じウェイ上になければなりません。\n"
-"行き先レーン及び `merge_to_right`は *左側 にあってかつ `merge_to_left`は on the *右側*になければならないため。"
+msgstr "`merge_to_right` または `merge_to_left` レーンは同じウェイ上になければなりません。\n行き先レーン及び `merge_to_right`は *左側 にあってかつ `merge_to_left`は on the *右側*になければならないため。"
 
 #: ../plugins/Highway_Parking_Lane.py:54
 msgid "A parking condition is present but without parking kind."
@@ -2690,9 +2575,7 @@ msgid ""
 "Some streets do not have the same name on both sides, especially if\n"
 "the houses on one side are in a different city. In this case, you can use\n"
 "the tag `name:left=*` and `name:right=*`."
-msgstr ""
-"街路によっては通行する側によって名前が違うことがあります。特に両側の家が別の都市にある場合。このケースでは`name:left=*` "
-"及び`name:right=*`タグを使えます。"
+msgstr "街路によっては通行する側によって名前が違うことがあります。特に両側の家が別の都市にある場合。このケースでは`name:left=*` 及び`name:right=*`タグを使えます。"
 
 #: ../plugins/Name_Quotation.py:31
 msgid "Unbalanced quotation mark or bracket in name"
@@ -2717,10 +2600,7 @@ msgid ""
 "![](https://wiki.openstreetmap.org/w/images/0/08/Osmose-eg-error-3033.png)\n"
 "\n"
 "Name should be the \"Saint-Esprit\"."
-msgstr ""
-"![](https://wiki.openstreetmap.org/w/images/0/08/Osmose-eg-error-3033.png)\n"
-"\n"
-"Name は\"Saint-Esprit\"であるべきです。"
+msgstr "![](https://wiki.openstreetmap.org/w/images/0/08/Osmose-eg-error-3033.png)\n\nName は\"Saint-Esprit\"であるべきです。"
 
 #: ../plugins/Name_Script.py:39
 msgid ""
@@ -2735,10 +2615,7 @@ msgid ""
 "`name:ar=Salaam` should be either `name:en=Salaam` (if known by\n"
 "untranslated name) or `name:en=Peace` (translated) or `name:ar=سلام`\n"
 "(original)."
-msgstr ""
-"たいてい、誤った言語が選ばれています。しばしば言葉が翻字されており、オリジナルのアルファベットに戻す必要があります。\n"
-"`name:ar=Salaam` は`name:en=Salaam` (未翻訳名が知られている場合) または `name:en=Peace` (翻訳済) または `name:ar=سلام`\n"
-"(オリジナル) であるべきです。"
+msgstr "たいてい、誤った言語が選ばれています。しばしば言葉が翻字されており、オリジナルのアルファベットに戻す必要があります。\n`name:ar=Salaam` は`name:en=Salaam` (未翻訳名が知られている場合) または `name:en=Peace` (翻訳済) または `name:ar=سلام`\n(オリジナル) であるべきです。"
 
 #: ../plugins/Name_Script.py:50
 msgid ""
@@ -2811,13 +2688,7 @@ msgid ""
 "There are certainly many other cases. In general, it is better to make\n"
 "several roads / areas than a single complex one so that tools working\n"
 "with OSM data can function properly."
-msgstr ""
-"いくつかの種別の問題があります:\n"
-"\n"
-"* ひとつ以上のループを作るウェイ。ウェイはいくつかのセクションに分割しなければなりません。\n"
-"* 自身に戻っている経路(しばしば終端に)。経路は間違ったセクションを切って孤立させ、後から正しく再作成しなければなりません。\n"
-"\n"
-"おそらく多くの他のケースがあります。一般的に、ツールがOSMデータに対して正しく機能するためには、単一の複雑なものよりいくつかの道路/エリアに分けた方がベターです。"
+msgstr "いくつかの種別の問題があります:\n\n* ひとつ以上のループを作るウェイ。ウェイはいくつかのセクションに分割しなければなりません。\n* 自身に戻っている経路(しばしば終端に)。経路は間違ったセクションを切って孤立させ、後から正しく再作成しなければなりません。\n\nおそらく多くの他のケースがあります。一般的に、ツールがOSMデータに対して正しく機能するためには、単一の複雑なものよりいくつかの道路/エリアに分けた方がベターです。"
 
 #: ../plugins/Structural_DuplicateNodes.py:49
 msgid ""
@@ -2830,10 +2701,7 @@ msgid ""
 "![](https://wiki.openstreetmap.org/w/images/5/5a/Osmose-eg-error-1010.png)\n"
 "\n"
 "Double polygon connected by a string to remove."
-msgstr ""
-"![](https://wiki.openstreetmap.org/w/images/5/5a/Osmose-eg-error-1010.png)\n"
-"\n"
-"削除すべき線で接続された二重のポリゴン。"
+msgstr "![](https://wiki.openstreetmap.org/w/images/5/5a/Osmose-eg-error-1010.png)\n\n削除すべき線で接続された二重のポリゴン。"
 
 #: ../plugins/Structural_Multipolygon.py:33
 msgid "Possible roles are `outer`, `inner` or nothing (not recommended)."
@@ -2868,8 +2736,7 @@ msgstr "オブジェクトが表面でない場合、`area=yes`タグを削除�
 #: ../plugins/Structural_UnclosedArea.py:37
 msgid ""
 "![](https://wiki.openstreetmap.org/w/images/c/cc/Osmose-eg-error-1100.png)"
-msgstr ""
-"![](https://wiki.openstreetmap.org/w/images/c/cc/Osmose-eg-error-1100.png)"
+msgstr "![](https://wiki.openstreetmap.org/w/images/c/cc/Osmose-eg-error-1100.png)"
 
 #: ../plugins/Structural_Useless_Relation.py:33
 msgid "The relation only contains one member."
@@ -2880,8 +2747,7 @@ msgid ""
 "Check if no member is missing, check the history, check if there is\n"
 "another similar relation with more members. A one-member relation may\n"
 "sometimes be justified."
-msgstr ""
-"メンバーが欠けていないかチェックし、履歴をチェックし、より多くのメンバーを持つ別のリレーションが存在しないかチェックします。メンバーがひとつのリレーションはたいてい正しいです。"
+msgstr "メンバーが欠けていないかチェックし、履歴をチェックし、より多くのメンバーを持つ別のリレーションが存在しないかチェックします。メンバーがひとつのリレーションはたいてい正しいです。"
 
 #: ../plugins/Structural_Useless_Relation.py:39
 msgid "Do not remove a relation without understanding why it is there."
@@ -2901,9 +2767,7 @@ msgid ""
 "composed of alphanumeric characters: 0-9, a-z (preferably lower case),\n"
 "separator '_' or ':'. See\n"
 "[Any_tags_you_like#Syntactic_conventions_for_new_tags](https://wiki.openstreetmap.org/wiki/Any_tags_you_like#Syntactic_conventions_for_new_tags)."
-msgstr ""
-"キーまたはタグに非推奨の文字が含まれています。キーは英数字: 0-9, a-z (小文字が望ましい)と区切り文字'_' または ':'で構成されます。\n"
-"[Any_tags_you_like#Syntactic_conventions_for_new_tags](https://wiki.openstreetmap.org/wiki/Any_tags_you_like#Syntactic_conventions_for_new_tags)参照。"
+msgstr "キーまたはタグに非推奨の文字が含まれています。キーは英数字: 0-9, a-z (小文字が望ましい)と区切り文字'_' または ':'で構成されます。\n[Any_tags_you_like#Syntactic_conventions_for_new_tags](https://wiki.openstreetmap.org/wiki/Any_tags_you_like#Syntactic_conventions_for_new_tags)参照。"
 
 #: ../plugins/TagFix_BadKey.py:38
 msgid "Check the key tag, and correct."
@@ -2918,9 +2782,7 @@ msgid ""
 "The tag or combination key/value is no longer used. List of deprecated\n"
 "features comes from [Deprecated\n"
 "features](https://wiki.openstreetmap.org/wiki/Deprecated_features)"
-msgstr ""
-"このタグまたはキー/値の組合せは今では使われていません。非推奨の地物の一覧は  [Deprecated\n"
-"features](https://wiki.openstreetmap.org/wiki/Deprecated_features)を参照しています"
+msgstr "このタグまたはキー/値の組合せは今では使われていません。非推奨の地物の一覧は  [Deprecated\nfeatures](https://wiki.openstreetmap.org/wiki/Deprecated_features)を参照しています"
 
 #: ../plugins/TagFix_DuplicateValue.py:35
 msgid ""
@@ -2947,11 +2809,7 @@ msgid ""
 "`all`, `alphabetic` and Number.\n"
 "* Tag `addr:inclusion=*` is only valid with values: `actual`, `estimate`\n"
 "and `potential`."
-msgstr ""
-"* `addr:interpolation=*` タグは次の値だけが有効: `even`, `odd`,\n"
-"`all`, `alphabetic` 及び数字。\n"
-"* `addr:inclusion=*` タグは次の値だけが有効: `actual`, `estimate`\n"
-"及び `potential`。"
+msgstr "* `addr:interpolation=*` タグは次の値だけが有効: `even`, `odd`,\n`all`, `alphabetic` 及び数字。\n* `addr:inclusion=*` タグは次の値だけが有効: `actual`, `estimate`\n及び `potential`。"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:38
 msgid ""
@@ -2983,9 +2841,7 @@ msgid ""
 "`direction=*` indicates the direction, in countries driven on the right,\n"
 "the default is `direction=anticlockwise`, in this case it is useless as\n"
 "tag."
-msgstr ""
-"ミニロータリー`highway=mini_roundabout`に対して、 "
-"`direction=*`タグは方向を示します。車両が右側通行の国ではデフォルトは`direction=anticlockwise`（反時計回り）です。この場合、タグとして無意味です。（訳注：日本は左側通行なので時計回り）"
+msgstr "ミニロータリー`highway=mini_roundabout`に対して、 `direction=*`タグは方向を示します。車両が右側通行の国ではデフォルトは`direction=anticlockwise`（反時計回り）です。この場合、タグとして無意味です。（訳注：日本は左側通行なので時計回り）"
 
 #: ../plugins/TagFix_MultipleValue.py:66
 msgid "The tag contains multiple values."
@@ -3005,9 +2861,7 @@ msgstr "`note=*` タグをフランス語及び英語で分析します。"
 msgid ""
 "Use a more appropriate tag as `description=*`, `opening_hours=*` or\n"
 "`fixme=*` so it can be found more easily."
-msgstr ""
-"簡単に探せるように`description=*`, `opening_hours=*` あるいは`fixme=*` "
-"といったより適切なタグを使ってください。"
+msgstr "簡単に探せるように`description=*`, `opening_hours=*` あるいは`fixme=*` といったより適切なタグを使ってください。"
 
 #: ../plugins/TagFix_Note_Lang_fr.py:45
 msgid "The analysis can provide crazy result."
@@ -3017,8 +2871,7 @@ msgstr "分析は時として馬鹿げた結果になることがあります。
 msgid ""
 "Check the postcode format as described on\n"
 "[Wikipedia](https://en.wikipedia.org/wiki/List_of_postal_codes)"
-msgstr ""
-"郵便番号を[Wikipedia](https://en.wikipedia.org/wiki/List_of_postal_codes)で記述されている通りにチェックします。"
+msgstr "郵便番号を[Wikipedia](https://en.wikipedia.org/wiki/List_of_postal_codes)で記述されている通りにチェックします。"
 
 #: ../plugins/TagFix_Role.py:34
 msgid "The role is not a keyword as expected."
@@ -3058,9 +2911,7 @@ msgid ""
 "English, the language codes supported are those editions of Wikipedia. In\n"
 "some cases they are different from the standard language codes BCP47 used\n"
 "as suffixes in other keys such as \"name:[LANG]=*\")."
-msgstr ""
-"誤った値をウィキペディア記事の先頭に表示されているものと置き換えます。その前には言語コードと区切り文字 ':'を付けます\n"
-"(言語コードが無い場合は、デフォルトで英語版ウィキペディアが検索されますが、この場合は明示的に言語コード\"en\"を示したほうが良いでしょう。もし記事が英語で記述されていたらサポートされる言語コードは、他のOSMキーで\"name:[LANG]=*\"として使われる接尾辞の標準的な言語コードBCP47とは異なる場合があります)。"
+msgstr "誤った値をウィキペディア記事の先頭に表示されているものと置き換えます。その前には言語コードと区切り文字 ':'を付けます\n(言語コードが無い場合は、デフォルトで英語版ウィキペディアが検索されますが、この場合は明示的に言語コード\"en\"を示したほうが良いでしょう。もし記事が英語で記述されていたらサポートされる言語コードは、他のOSMキーで\"name:[LANG]=*\"として使われる接尾辞の標準的な言語コードBCP47とは異なる場合があります)。"
 
 #: ../plugins/TagFix_Wikipedia.py:51
 msgid ""
@@ -3072,8 +2923,7 @@ msgstr "`wikipedia=*`タグに含まれるべきは記述されている記事�
 msgid ""
 "The title must be preceded by the language code \"en:\", when the article is on\n"
 "the English Wikipedia, or the respective language code if the article is in a different language."
-msgstr ""
-"記事が英語版Wikipedia、またはWikipediaサイトの言語コードに関するものである場合は、タイトルは\"en:\"という記述の前になければなりません。"
+msgstr "記事が英語版Wikipedia、またはWikipediaサイトの言語コードに関するものである場合は、タイトルは\"en:\"という記述の前になければなりません。"
 
 #: ../plugins/TagFix_Wikipedia.py:65
 msgid ""
@@ -3135,16 +2985,13 @@ msgid ""
 "The tags `oneway=*` and `ref=*` are not necessary on the roundabouts.\n"
 "The tag `name=*` must be present if this is the name of the roundabout\n"
 "and not a road connected, same thing for `ref=*`."
-msgstr ""
-"`oneway=*` と `ref=*`タグはロータリーでは不要です。\n"
-"`name=*`はそれがロータリーの名前である場合には必要で、接続している道路名ではありません。  `ref=*`も同じです。"
+msgstr "`oneway=*` と `ref=*`タグはロータリーでは不要です。\n`name=*`はそれがロータリーの名前である場合には必要で、接続している道路名ではありません。  `ref=*`も同じです。"
 
 #: ../plugins/TagWatchFrViPofm.py:71
 msgid ""
 "Simple and frequent errors, the list is available\n"
 "[here](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)."
-msgstr ""
-"単純でよくある誤り。一覧は[こちら](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)にあります。"
+msgstr "単純でよくある誤り。一覧は[こちら](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)にあります。"
 
 #: ../analysers/analyser_merge_street_objects.py:48
 #: ../analysers/analyser_merge_traffic_signs.py:84
@@ -3187,9 +3034,7 @@ msgid ""
 "`covered=*`. If a road or railway intersects a building, consider adding the\n"
 "`layer=*` tag to it. Warning: information sources can be contradictory in\n"
 "time or with spatial offset."
-msgstr ""
-"道路や鉄道が建物の構造に侵入している場合に、建物の地物に例えば `tunnel=*`, `bridge=*`,`covered=*, `layer=*`"
-" といったタグが抜けている場合があります。警告：場合によっては背景画像などの情報源どうしが矛盾していたり、空間的なズレがある場合があります。"
+msgstr "道路や鉄道が建物の構造に侵入している場合に、建物の地物に例えば `tunnel=*`, `bridge=*`,`covered=*, `layer=*` といったタグが抜けている場合があります。警告：場合によっては背景画像などの情報源どうしが矛盾していたり、空間的なズレがある場合があります。"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:375
 msgid "Highway intersecting highway"
@@ -3205,8 +3050,8 @@ msgstr "切り離された速度カメラ"
 
 #: ../analysers/analyser_osmosis_relation_enforcement.py:60
 msgid ""
-"Speed camera should be mapped as a node on the highway or use an enforcement"
-" relation."
+"Speed camera should be mapped as a node on the highway or use an "
+"`enforcement` relation."
 msgstr "速度カメラはhighway上のノードとしてマッピングされているか、enforcement リレーションを使用しなければなりません。"
 
 #: ../plugins/Name_Script.py:55
@@ -3239,17 +3084,14 @@ msgid ""
 "charging stations comes from a database published by Etalab. This database\n"
 "brings together information published by the various local authorities and\n"
 "networks in France."
-msgstr ""
-"ここに充電ステーションがあるようですが、マッピングされていません。充電ステーションの一覧はEtalabが公開しているデータベースに由来します。このデータベースは様々な地域当局やフランスのネットワークが公開した情報も一緒にもたらします。"
+msgstr "ここに充電ステーションがあるようですが、マッピングされていません。充電ステーションの一覧はEtalabが公開しているデータベースに由来します。このデータベースは様々な地域当局やフランスのネットワークが公開した情報も一緒にもたらします。"
 
 #: ../analysers/analyser_merge_charging_station_FR.py:37
 msgid ""
 "See [the\n"
 "mapping](https://wiki.openstreetmap.org/wiki/France/data.gouv.fr/Bornes_de_Recharge_pour_V%C3%A9hicules_%C3%89lectriques)\n"
 "on the  wiki. Add a node or add tags if already existing."
-msgstr ""
-"Wikiの [the mapping](https://wiki.openstreetmap.org/wiki/France/data.gouv.fr/Bornes_de_Recharge_pour_V%C3%A9hicules_%C3%89lectriques) を参照\n"
-"既に存在する場合はノードかタグを追加します。"
+msgstr "Wikiの [the mapping](https://wiki.openstreetmap.org/wiki/France/data.gouv.fr/Bornes_de_Recharge_pour_V%C3%A9hicules_%C3%89lectriques) を参照\n既に存在する場合はノードかタグを追加します。"
 
 #: ../analysers/analyser_merge_charging_station_FR.py:45
 msgid "Car charging station not integrated"
@@ -3272,9 +3114,7 @@ msgid ""
 "See [possible\n"
 "roles](https://wiki.openstreetmap.org/wiki/Relation:boundary) on boundary\n"
 "relations."
-msgstr ""
-"境界リレーションについては [ありえる "
-"roles](https://wiki.openstreetmap.org/wiki/Relation:boundary) を参照。"
+msgstr "境界リレーションについては [ありえる roles](https://wiki.openstreetmap.org/wiki/Relation:boundary) を参照。"
 
 #: ../analysers/analyser_osmosis_building_shapes.py:67
 msgid ""
@@ -3294,9 +3134,7 @@ msgstr "正しい経路探索を行うにはこの駐車施設に至る`highway`
 msgid ""
 "It's possible that disused power features could be disconnected from the network.\n"
 "In which case make use of the `disused:` [lifecycle prefix](https://wiki.openstreetmap.org/wiki/Lifecycle_prefix)."
-msgstr ""
-"廃止された電力の地物がネットワークから切り離されることはありえます。\n"
-"その場合は`disused:` [lifecycle prefix](https://wiki.openstreetmap.org/wiki/Lifecycle_prefix)を使います。"
+msgstr "廃止された電力の地物がネットワークから切り離されることはありえます。\nその場合は`disused:` [lifecycle prefix](https://wiki.openstreetmap.org/wiki/Lifecycle_prefix)を使います。"
 
 #: ../analysers/analyser_osmosis_powerline.py:359
 #: ../analysers/analyser_osmosis_powerline.py:368
@@ -3304,9 +3142,7 @@ msgid ""
 "The line ends in a vacuum, and should be connected to another line or\n"
 "a transformer (`power=transformer`), a generator (`power=generator`)\n"
 "or marked as transitioning into ground (`location:transition=yes`)."
-msgstr ""
-"このラインは途中で終わっていて、別のラインまたは変圧器 (`power=transformer`) "
-"または発電機(`power=generator`)に接続されるべきです。もしくは接地しているとマーク(`location:transition=yes`)すべきです。"
+msgstr "このラインは途中で終わっていて、別のラインまたは変圧器 (`power=transformer`) または発電機(`power=generator`)に接続されるべきです。もしくは接地しているとマーク(`location:transition=yes`)すべきです。"
 
 #: ../analysers/analyser_osmosis_powerline.py:376
 msgid ""
@@ -3318,8 +3154,7 @@ msgstr "2つの電力線がこのポイントで出会っていますが、電�
 msgid ""
 "Power lines can only form a straight line between supports and therefore shouldn't\n"
 "have additional nodes that aren't tagged as a `power` feature."
-msgstr ""
-"電力線は支柱間にあって初めて正しいラインを形成できるので、`power`の地物としてタグ付けされていない付加的なノードを付けるべきではありません。"
+msgstr "電力線は支柱間にあって初めて正しいラインを形成できるので、`power`の地物としてタグ付けされていない付加的なノードを付けるべきではありません。"
 
 #: ../analysers/analyser_osmosis_powerline.py:386
 msgid ""
@@ -3346,8 +3181,7 @@ msgstr "タグがないエリアオブジェクト "
 msgid ""
 "The object is missing any tag which defines what kind of feature it is. This"
 " is unexpected for something tagged with `area=yes`."
-msgstr ""
-"このオブジェクトには地物の種類を示すものがありません。`area=yes` タグがある場合には何かしらの種類を示すタグがあることが想定されます。"
+msgstr "このオブジェクトには地物の種類を示すものがありません。`area=yes` タグがある場合には何かしらの種類を示すタグがあることが想定されます。"
 
 #: ../plugins/TagFix_Area.py:36
 msgid ""
@@ -3379,9 +3213,7 @@ msgstr "このオブジェクトには地物の種類を示すものがありま
 msgid ""
 "Add a top level tag to state what this feature is. Considered top level tags"
 " are (with derived `disused:`, `abandoned:` and `historic:` variants):"
-msgstr ""
-"トップレベルのタグを追加してこの地物を記述します。考えられる受け入れ可能な`area=yes`の地物は以下の通り (派生する`disused:`, "
-"`abandoned:`そして`historic:`バリアント付き):"
+msgstr "トップレベルのタグを追加してこの地物を記述します。考えられる受け入れ可能な`area=yes`の地物は以下の通り (派生する`disused:`, `abandoned:`そして`historic:`バリアント付き):"
 
 #: ../plugins/TagFix_MultipleTag.py:72
 msgid "The relation is missing a `type` tag to define what it represents."
@@ -3410,8 +3242,7 @@ msgid ""
 "The initial information corresponds to recharging pools and devices and not to\n"
 "stations, so some values are worth checking in the field. For instance, an open data point\n"
 "with `capacity=6` can sometimes match to 3 charging station with `capacity=2`"
-msgstr ""
-"初期情報は充電プールとその装置に対応しており、ステーションに対してではありません。このため現地で値をチェックした方が良い場合があります。例えば、`capacity=6`となっているオープンデータのポイントがある場合には、`capacity=2`のステーション3つに対応していることがあります。"
+msgstr "初期情報は充電プールとその装置に対応しており、ステーションに対してではありません。このため現地で値をチェックした方が良い場合があります。例えば、`capacity=6`となっているオープンデータのポイントがある場合には、`capacity=2`のステーション3つに対応していることがあります。"
 
 #: ../analysers/analyser_merge_recycling_FR_bm.py:31
 #: ../analysers/analyser_merge_recycling_FR_nm_glass.py:31
@@ -3446,9 +3277,7 @@ msgstr "{1}の交通標識がMapillaryにより検出されましたが、以下
 msgid ""
 "The date entered is not in the expected format described at\n"
 "[Key:start_date](https://wiki.openstreetmap.org/wiki/Key:start_date)"
-msgstr ""
-"入力されている日付は下記に記述された形式に合っていない\n"
-"[Key:start_date](https://wiki.openstreetmap.org/wiki/Key:start_date)"
+msgstr "入力されている日付は下記に記述された形式に合っていない\n[Key:start_date](https://wiki.openstreetmap.org/wiki/Key:start_date)"
 
 #: ../plugins/Date.py:91 ../plugins/Date.py:93
 #: ../plugins/Name_ShouldBeHousenumber.py:63 ../plugins/Name_UpperCase.py:92
@@ -3479,9 +3308,7 @@ msgstr "この地物は全て大文字でnameがタグ付けされています�
 msgid ""
 "While uncommon, it is possible for a name to have uppercase words.\n"
 " This is particularly the case for corporate/branded locations as well as acronyms."
-msgstr ""
-"一般的ではありませんが、nameに大文字が使われることがあります。\n"
-" これはとりわけ頭文字と同様に企業/ブランドの位置に使われます。（訳注：日本では看板などにアルファベット大文字が表記されることは一般的です）"
+msgstr "一般的ではありませんが、nameに大文字が使われることがあります。\n これはとりわけ頭文字と同様に企業/ブランドの位置に使われます。（訳注：日本では看板などにアルファベット大文字が表記されることは一般的です）"
 
 #: ../plugins/Number.py:110
 #, python-format, python-brace-format
@@ -3492,8 +3319,7 @@ msgstr "`height={0}` はかなり高いです。`ele=*`への変更を検討し�
 msgid ""
 "This feature is tagged with a value which does not match the typical format used for tags with distinct values\n"
 " (lowercase alphanumeric characters with no spaces). It's most likely not an expected tagging."
-msgstr ""
-"この地物がタグ付けされている値は厳密な値(スペース無しのアルファベット小文字)に使われる典型的な形式と一致していません。想定されているタグ付けではないようです。"
+msgstr "この地物がタグ付けされている値は厳密な値(スペース無しのアルファベット小文字)に使われる典型的な形式と一致していません。想定されているタグ付けではないようです。"
 
 #: ../plugins/TagFix_BadValue.py:37
 msgid ""
@@ -3505,8 +3331,7 @@ msgstr "疑問のあるタグの値をチェックして、この地物が何な
 msgid ""
 "It's possible a mapper was trying to map a feature with no existing agreed upon tagging.\n"
 "However, this should probably still conform to the typical format used for values of the given tag."
-msgstr ""
-"マッパーは同意の無いタグであっても地物をマッピングすることができます。しかしながら、タグに与える値はおそらく典型的なフォーマットに従うべきです。"
+msgstr "マッパーは同意の無いタグであっても地物をマッピングすることができます。しかしながら、タグに与える値はおそらく典型的なフォーマットに従うべきです。"
 
 #: ../analysers/analyser_merge_fuel_IT.py:49
 msgid "Gas station without tag `ref:mise` or invalid"
@@ -3568,9 +3393,7 @@ msgid ""
 "The tag expects a numeric value with decimals using a period character\n"
 "and not a comma. \\ For guidelines on numeric values with units see [the\n"
 "wiki](https://wiki.openstreetmap.org/wiki/Map_Features/Units)."
-msgstr ""
-"このタグは10進数を想定しており小数点はピリオドであってカンマではありません。\\ 単位付きの数値に関するガイドラインは[the "
-"wiki](https://wiki.openstreetmap.org/wiki/Map_Features/Units)参照。"
+msgstr "このタグは10進数を想定しており小数点はピリオドであってカンマではありません。\\ 単位付きの数値に関するガイドラインは[the wiki](https://wiki.openstreetmap.org/wiki/Map_Features/Units)参照。"
 
 #: ../plugins/Number.py:37
 msgid ""
@@ -3634,10 +3457,7 @@ msgid ""
 " all transport modes. This is almost never the case and more specific tags "
 "should be used instead. For further detail, see [the "
 "wiki](https://wiki.openstreetmap.org/wiki/Key:access#Transport_mode_restrictions)."
-msgstr ""
-"`access=yes`及び `access=permissive`タグは地物がtransport "
-"modesに広く開かれていることをマークします。これはほぼありえないケースで、代わりにより詳細なタグを使うべきです。詳細は[the "
-"wiki](https://wiki.openstreetmap.org/wiki/Key:access#Transport_mode_restrictions)参照。"
+msgstr "`access=yes`及び `access=permissive`タグは地物がtransport modesに広く開かれていることをマークします。これはほぼありえないケースで、代わりにより詳細なタグを使うべきです。詳細は[the wiki](https://wiki.openstreetmap.org/wiki/Key:access#Transport_mode_restrictions)参照。"
 
 #: ../analysers/analyser_merge_parapharmacy_IT.py:32
 #: ../analysers/analyser_merge_pharmacy_IT.py:32
@@ -3706,9 +3526,7 @@ msgstr "できるだけ詳細な`material=*`でタグ付けします。"
 msgid ""
 "The tag `historic=wayside_cross` is sometimes misused. Please cross-check\n"
 "if `historic=wayside_shrine` or `summit:cross=yes` is more appropriate."
-msgstr ""
-"`historic=wayside_cross` タグはよく誤用されます。 `historic=wayside_shrine` または "
-"`summit:cross=yes` のほうが適切ではないか、相互チェックしてください。"
+msgstr "`historic=wayside_cross` タグはよく誤用されます。 `historic=wayside_shrine` または `summit:cross=yes` のほうが適切ではないか、相互チェックしてください。"
 
 #: ../plugins/TagFix_Destination.py:16
 msgid ""
@@ -3729,8 +3547,7 @@ msgstr "この国では全ての薬局が処方箋に基づいて薬を配布"
 msgid ""
 "All pharmacies in the country sell on prescription by a doctor. It requires a\n"
 "tag `dispensing=yes` in addition to `amenity=pharmacy`."
-msgstr ""
-"この国の全ての薬局は医師による処方箋に基づいて販売します。`amenity=pharmacy`に加えて`dispensing=yes` タグが必要です。"
+msgstr "この国の全ての薬局は医師による処方箋に基づいて販売します。`amenity=pharmacy`に加えて`dispensing=yes` タグが必要です。"
 
 #: ../plugins/TagFix_Pharmacy.py:40
 msgid ""
@@ -3742,8 +3559,7 @@ msgstr "化粧品店 (フランス語で\"parapharmacie\") はこの分類には
 msgid ""
 "The side was not recognized, see\n"
 "[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane)."
-msgstr ""
-"どちら側か認識できませんでした。[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane)参照。"
+msgstr "どちら側か認識できませんでした。[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane)参照。"
 
 #: ../analysers/analyser_merge_parking_FR_BNLS.py:32
 msgid ""
@@ -3751,10 +3567,7 @@ msgid ""
 "\n"
 "See [the mapping](https://wiki.openstreetmap.org/wiki/France/data.gouv.fr/Base_nationale_des_lieux_de_stationnement)\n"
 "on the wiki. Add a node or add tags if already existing."
-msgstr ""
-"この駐車場はフランスの地域当局が管理しているカーパークのデータベースによれば、通りから離れていることになっています。\n"
-"\n"
-"ウィキ上の [the mapping](https://wiki.openstreetmap.org/wiki/France/data.gouv.fr/Base_nationale_des_lieux_de_stationnement)を参照してください。既に存在するようであればノードを追加したり、タグを追加してください。"
+msgstr "この駐車場はフランスの地域当局が管理しているカーパークのデータベースによれば、通りから離れていることになっています。\n\nウィキ上の [the mapping](https://wiki.openstreetmap.org/wiki/France/data.gouv.fr/Base_nationale_des_lieux_de_stationnement)を参照してください。既に存在するようであればノードを追加したり、タグを追加してください。"
 
 #: ../analysers/analyser_merge_parking_FR_BNLS.py:44
 msgid ""
@@ -3800,8 +3613,7 @@ msgid ""
 "It is from an open data source, but that is not enough to ensure the quality\n"
 "of the data. Review it before integrating the data. You must not do blind imports\n"
 "into OSM, you must do critical review of data integration."
-msgstr ""
-"これはオープンデータに由来するものですが、データの品質は十分に検証されていません。取り込む前に十分レビューしてください。やみくもにOSMに取り込んではいけません。データの取り込みは吟味しながら行う必要があります。"
+msgstr "これはオープンデータに由来するものですが、データの品質は十分に検証されていません。取り込む前に十分レビューしてください。やみくもにOSMに取り込んではいけません。データの取り込みは吟味しながら行う必要があります。"
 
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:164
 msgid "A nearby node already has the `highway=traffic_signals` tag."
@@ -3816,17 +3628,13 @@ msgid ""
 "Some elements, including the peak (natural=peak) and mountain_pass\n"
 "(mountain_pass=yes), has an elevation. This is shown in OSM with tag\n"
 "ele=* in meters."
-msgstr ""
-"山頂 (natural=peak) や 峠(mountain_pass=yes) "
-"を含むエレメントの中には高度を含むものがあります。これはOSM内にele=* タグを使ってメートル単位で表示されています。"
+msgstr "山頂 (natural=peak) や 峠(mountain_pass=yes) を含むエレメントの中には高度を含むものがあります。これはOSM内にele=* タグを使ってメートル単位で表示されています。"
 
 #: ../plugins/TagFix_Brand.py:38
 msgid ""
 "If this is indeed a brand, add `brand` and `brand:wikidata` tags.\n"
 "If not, see if you can improve the [name-suggestion-index project](https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md) which is used to link frequent names to brands and their tags."
-msgstr ""
-"これが本当にbrandであれば、`brand` 及び `brand:wikidata` タグを追加します。\n"
-"そうでない場合は、brandとそのタグ付によく使われるnameに使用されている [name-suggestion-index project](https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md)を改善することができます。"
+msgstr "これが本当にbrandであれば、`brand` 及び `brand:wikidata` タグを追加します。\nそうでない場合は、brandとそのタグ付によく使われるnameに使用されている [name-suggestion-index project](https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md)を改善することができます。"
 
 #: ../analysers/analyser_merge_hydrants_FR.py:32
 msgid "Fire hydrant not integrated"
@@ -3846,10 +3654,7 @@ msgid ""
 "`construction:date`, `temporary:date_on`, `date_on` and the object has\n"
 "been in construction for more than two years or opening data is\n"
 "exceeded."
-msgstr ""
-"`opening_date`, `check_date`, `open_date`,`construction:date`, "
-"`temporary:date_on`, `date_on` "
-"のいずれもありませんが、このオブジェクトは2年以上建設中であるか、または開始日付が過ぎています。"
+msgstr "`opening_date`, `check_date`, `open_date`,`construction:date`, `temporary:date_on`, `date_on` のいずれもありませんが、このオブジェクトは2年以上建設中であるか、または開始日付が過ぎています。"
 
 #: ../plugins/Covid19.py:16 ../plugins/Covid19.py:93 ../plugins/Covid19.py:184
 #: ../plugins/Covid19.py:262
@@ -3885,8 +3690,7 @@ msgstr "このnameはとても一般的です。この店舗はブランドの�
 msgid ""
 "This object has a very common name that probably corresponds to a brand "
 "name. All objects of the same brand should be tagged the same way."
-msgstr ""
-"このオブジェクトにはとても一般的なnameが付いていて、おそらくブランド名と対応しています。同じブランドのオブジェクトは全て同様にタグ付けされるべきです。"
+msgstr "このオブジェクトにはとても一般的なnameが付いていて、おそらくブランド名と対応しています。同じブランドのオブジェクトは全て同様にタグ付けされるべきです。"
 
 #: ../analysers/analyser_merge_milestone_FR_metropole.py:31
 msgid "The list of milestone comes from the CEREMA's database \"RIU\" in France."
@@ -3906,14 +3710,9 @@ msgstr "マイルストンの更新"
 
 #: ../analysers/analyser_merge_milestone_FR_metropole.py:33
 msgid ""
-"Those milestones can't be on way * _link. The position of the marker may be "
-"a little different than what is visible on the road. Sometimes, a small "
-"white line perpendicular to the road on the emergency stop strip or the left"
-" flared strip can be seen on satellite images or Mapillary's photos."
-msgstr ""
-"これらのマイルストーンは* _link "
-"のウェイにはできません。マーカーの位置が道路上で見えるものと少し違うかもしれません。衛星画像やMapillary写真では、緊急停止表示板上の道路に対して垂直な小さい白線であったり、左に広がるキレ様の表示であったりします。"
-" "
+"Those milestones can't be on `*_link` ways. The position of the marker may be a little different than what is visible on the road.\n"
+"Sometimes, a small white line perpendicular to the road on the emergency stop strip or the left flared strip can be seen on satellite images or Mapillary's photos."
+msgstr "これらのマイルストーンは* _link のウェイにはできません。マーカーの位置が道路上で見えるものと少し違うかもしれません。衛星画像やMapillary写真では、緊急停止表示板上の道路に対して垂直な小さい白線であったり、左に広がるキレ様の表示であったりします。 "
 
 #: ../analysers/analyser_merge_emergency_points_LU.py:31
 msgid "Emergency point not integrated"
@@ -3950,8 +3749,7 @@ msgstr "stop がウェイの一部ではない"
 msgid ""
 "Change the role in the relation to platform or add the stop to the way and "
 "turn it to a public_transport=stop_position"
-msgstr ""
-"platformに対するリレーション内のroleを変更するか、stopをウェイに追加してpublic_transport=stop_positionに変更するかしてください"
+msgstr "platformに対するリレーション内のroleを変更するか、stopをウェイに追加してpublic_transport=stop_positionに変更するかしてください"
 
 #: ../analysers/analyser_osmosis_way_approximate.py:167
 #, python-brace-format
@@ -4183,19 +3981,14 @@ msgstr "ピクニック場"
 msgid ""
 "Fix geometry so that buildings don't overlap, but share nodes if physically joined.\n"
 "If geometry is correct and there's some vertical difference then make use of the `layer` tag to indicate this."
-msgstr ""
-"建物がオーバーラップしないように幾何形状を修正しますが、物理的につながっていればノードを共有します。\n"
-"幾何形状が正しく、垂直方向での違いがあれば、それを示すには`layer`タグを使用してください。"
+msgstr "建物がオーバーラップしないように幾何形状を修正しますが、物理的につながっていればノードを共有します。\n幾何形状が正しく、垂直方向での違いがあれば、それを示すには`layer`タグを使用してください。"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:177
 msgid ""
 "- Correct the geometry if inaccurately mapped.\n"
 "- Correct the tagging if this isn't a building.\n"
 "- Delete the feature if it's invalid."
-msgstr ""
-"- マッピングが不正確なら幾何形状を修正。\n"
-"- 建物でなければタグ付を修正。\n"
-"- 無効な地物なら削除。"
+msgstr "- マッピングが不正確なら幾何形状を修正。\n- 建物でなければタグ付を修正。\n- 無効な地物なら削除。"
 
 #: ../analysers/analyser_osmosis_natural_swimming-pool.py:90
 msgid ""
@@ -4203,11 +3996,7 @@ msgid ""
 "private then tag it also with `access=private`. If it is actually not a\n"
 "swimming pool then you can use e.g. `natural=water` +\n"
 "`water=pond`/`water=basin`."
-msgstr ""
-"`leisure=swimming_pool`にある`natural=water`タグを変更します。プライベートなものであれば`access=private`もタグ付けします。実際はプールでない場合には、例えば \n"
-"`natural=water` +\n"
-"`water=pond`/`water=basin`\n"
-"といったタグを使えます。"
+msgstr "`leisure=swimming_pool`にある`natural=water`タグを変更します。プライベートなものであれば`access=private`もタグ付けします。実際はプールでない場合には、例えば \n`natural=water` +\n`water=pond`/`water=basin`\nといったタグを使えます。"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:676
 #, python-brace-format
@@ -4266,9 +4055,7 @@ msgstr "platform も bus stopも無いのにStop positionだけがある"
 msgid ""
 "A bus `public_transport=stop_position` without close "
 "`public_transport=platform` nor `highway=bus_stop`."
-msgstr ""
-"近くに`public_transport=platform` も "
-"`highway=bus_stop`も無いのに`public_transport=stop_position`だけがある。"
+msgstr "近くに`public_transport=platform` も `highway=bus_stop`も無いのに`public_transport=stop_position`だけがある。"
 
 #: tmp.json:53
 msgid "cycling infrastructure"
@@ -4310,8 +4097,7 @@ msgid ""
 "Most often, this is a user issue that added several times the same way.\n"
 "The editor JOSM can easily visualize the relationships and see duplicates\n"
 "(in colour)."
-msgstr ""
-"たいてい、これは同じウェイを何回も追加してしまったユーザー側の問題です。JOSMエディタではその関係を簡単に(色で)視覚化して重複を見分けられます。"
+msgstr "たいてい、これは同じウェイを何回も追加してしまったユーザー側の問題です。JOSMエディタではその関係を簡単に(色で)視覚化して重複を見分けられます。"
 
 #: ../plugins/Cuisine_Guess.py:36
 msgid "Possible mistake or lack of precision of `cuisine` value"
@@ -4330,9 +4116,7 @@ msgstr "ありそうな推測: {0}"
 msgid ""
 "The end of a `highway=cycleway` must be connected to the rest of the\n"
 "road network to ensure continuity, especially for routes planner."
-msgstr ""
-"`highway=cycleway`の終端は道路ネットワークの残りに接続され、連続性を確保していなければなりません。特に routes "
-"planner向けに。"
+msgstr "`highway=cycleway`の終端は道路ネットワークの残りに接続され、連続性を確保していなければなりません。特に routes planner向けに。"
 
 #: ../analysers/analyser_merge_cemetery_FR.py:31
 msgid "Cemetery not integrated"
@@ -4474,9 +4258,7 @@ msgid ""
 "A parking condition is set for a parking:lane:[side] value that indicates\n"
 "that the parking area is mapped separately. Any parking conditions should\n"
 "be tagged on that object instead."
-msgstr ""
-"駐車の条件が parking:lane:[side] "
-"の値としてセットされ、駐車エリアが個々にマッピングされているということを示しています。そうではなくて、あらゆる駐車の条件はオブジェクト上にマッピングされるべきです。"
+msgstr "駐車の条件が parking:lane:[side] の値としてセットされ、駐車エリアが個々にマッピングされているということを示しています。そうではなくて、あらゆる駐車の条件はオブジェクト上にマッピングされるべきです。"
 
 #: tmp.json:32
 msgid "one-directional roads"
@@ -4490,11 +4272,7 @@ msgid ""
 "then add appropriate tags.\n"
 "\n"
 "See [parking](https://wiki.openstreetmap.org/wiki/Key:parking) tag on the wiki."
-msgstr ""
-"正しく経路案内するために、この駐車施設に至る`highway`の地物があるべきです。道路を追加するか、`parking=*` 自体が正しいか確認してください。\n"
-"道路脇の駐車場 (`parking=street_side`)やレーンの場合は適切なタグを付けてください、\n"
-"\n"
-"ウィキの[parking](https://wiki.openstreetmap.org/wiki/Key:parking)`タグを参照。"
+msgstr "正しく経路案内するために、この駐車施設に至る`highway`の地物があるべきです。道路を追加するか、`parking=*` 自体が正しいか確認してください。\n道路脇の駐車場 (`parking=street_side`)やレーンの場合は適切なタグを付けてください、\n\nウィキの[parking](https://wiki.openstreetmap.org/wiki/Key:parking)`タグを参照。"
 
 #: ../analysers/analyser_merge_cycle_parking_FR_bm.py:32
 msgid "Bordeaux Metropole bicycle parking not integrated"
@@ -4523,17 +4301,13 @@ msgid ""
 "The name of the operator on this object is generally associated with "
 "additional tags, especially operator:wikidata. All objects with the same "
 "operator should be tagged the same way."
-msgstr ""
-"このオブジェクトのオペレータ名は通常付加タグ、特に operator:wikidata "
-"と連携しています。同じオペレータのオブジェクトは全て同様にタグ付けされるべきです。"
+msgstr "このオブジェクトのオペレータ名は通常付加タグ、特に operator:wikidata と連携しています。同じオペレータのオブジェクトは全て同様にタグ付けされるべきです。"
 
 #: ../plugins/TagFix_Brand.py:47
 msgid ""
 "If this is indeed the operator in question, add `operator:wikidata`.\n"
 "If not, see if you can improve the [name-suggestion-index project](https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md) which is used to register common operators."
-msgstr ""
-"これが本当にoperatorであれば、`operator:wikidata` タグを追加します。\n"
-"そうでない場合は、operatorの登録によく使われる [name-suggestion-index project](https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md)を改善することができます。"
+msgstr "これが本当にoperatorであれば、`operator:wikidata` タグを追加します。\nそうでない場合は、operatorの登録によく使われる [name-suggestion-index project](https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md)を改善することができます。"
 
 #: ../analysers/analyser_merge_defibrillators_FR.py:64
 msgid "Defibrillator integration suggestion"
@@ -4552,10 +4326,7 @@ msgid ""
 "The way or the group of the ways must be connected to an entry point:\n"
 "* road: `route=ferry`, `man_made=pier`, `aeroway=taxiway|runway|apron`, `railway=platform` or `highway=motorway|motorway_link|trunk|trunk_link|primary|primary_link`,\n"
 "* bicycle: `railway=platform`, `public_transport=platform` or `highway=pedestrian`."
-msgstr ""
-"ウェイやそのグループは入り口のポイントに接続していなければなりません:\n"
-"* road: `route=ferry`, `man_made=pier`, `aeroway=taxiway|runway|apron`, `railway=platform` または `highway=motorway|motorway_link|trunk|trunk_link|primary|primary_link`,\n"
-"* bicycle: `railway=platform`, `public_transport=platform` または `highway=pedestrian`。"
+msgstr "ウェイやそのグループは入り口のポイントに接続していなければなりません:\n* road: `route=ferry`, `man_made=pier`, `aeroway=taxiway|runway|apron`, `railway=platform` または `highway=motorway|motorway_link|trunk|trunk_link|primary|primary_link`,\n* bicycle: `railway=platform`, `public_transport=platform` または `highway=pedestrian`。"
 
 #: ../analysers/analyser_merge_natural_FR.py:84
 msgid "Peak not integrated"
@@ -4610,9 +4381,7 @@ msgstr "川がないのに川岸がある"
 msgid ""
 "There is one `natural=water` + `water=river` (or `waterway=riverbank`)\n"
 "but there is no `waterway=river|canal|stream` inside it."
-msgstr ""
-"`natural=water` + `water=river` (または `waterway=riverbank`)がひとつありますが\n"
-"その中に`waterway=river|canal|stream`がありません。"
+msgstr "`natural=water` + `water=river` (または `waterway=riverbank`)がひとつありますが\nその中に`waterway=river|canal|stream`がありません。"
 
 #: ../analysers/analyser_osmosis_waterway.py:160
 msgid ""
@@ -5138,7 +4907,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_indoor.py:195
 msgid ""
-"Find out where are the entrances of the room and add them (with a door=* "
+"Find out where the entrances of the room are and add them (with a `door=*` "
 "tag) so we can actually enter this indoor room."
 msgstr ""
 
@@ -5148,8 +4917,8 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_indoor.py:199
 msgid ""
-"Each indoor feature should be connected to an another indoor feature or to "
-"some footpath so people can actually go to them."
+"Each indoor feature should be connected to another indoor feature or to some"
+" footpath so people can actually go to them."
 msgstr ""
 
 #: ../analysers/analyser_osmosis_powerline.py:378

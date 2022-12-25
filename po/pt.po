@@ -1,7 +1,7 @@
 # Osmose backend
 # Copyright (C) 2014
 # This file is distributed under the same license as the osmose-backend package.
-#
+# 
 # Translators:
 # frodrigo <fred.rodrigo@gmail.com>, 2014
 # frodrigo <fred.rodrigo@gmail.com>, 2014
@@ -19,10 +19,10 @@ msgstr ""
 "PO-Revision-Date: 2014-04-30 17:25+0000\n"
 "Last-Translator: Rui <xymarior@yandex.com>, 2016-2019\n"
 "Language-Team: Portuguese (http://www.transifex.com/openstreetmap-france/osmose/language/pt/)\n"
-"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: pt\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: ../analysers/analyser_merge_college_FR.py:31
@@ -1902,12 +1902,13 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:146
 msgid ""
-"Unconnected boundary fragment, a way with a boundary tag not part of a\n"
-"boundary relation."
+"Unconnected boundary fragment, a way with a `boundary` tag not part of a\n"
+"`boundary` relation."
 msgstr ""
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:149
-msgid "Delete the way, remove boundary tag or add to a relation."
+msgid ""
+"Delete the way, remove the `boundary` tag or add the way to a relation."
 msgstr ""
 
 #: ../analysers/analyser_osmosis_boundary_hole.py:68
@@ -2302,7 +2303,7 @@ msgstr ""
 msgid ""
 "![](https://wiki.openstreetmap.org/w/images/3/3a/Osmose-eg-error-3010.png)\n"
 "\n"
-"Highway level should be secondary."
+"Highway level should be `secondary`."
 msgstr ""
 
 #: ../analysers/analyser_osmosis_roundabout_level.py:275
@@ -3049,8 +3050,8 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_enforcement.py:60
 msgid ""
-"Speed camera should be mapped as a node on the highway or use an enforcement"
-" relation."
+"Speed camera should be mapped as a node on the highway or use an "
+"`enforcement` relation."
 msgstr ""
 
 #: ../plugins/Name_Script.py:55
@@ -3709,10 +3710,8 @@ msgstr ""
 
 #: ../analysers/analyser_merge_milestone_FR_metropole.py:33
 msgid ""
-"Those milestones can't be on way * _link. The position of the marker may be "
-"a little different than what is visible on the road. Sometimes, a small "
-"white line perpendicular to the road on the emergency stop strip or the left"
-" flared strip can be seen on satellite images or Mapillary's photos."
+"Those milestones can't be on `*_link` ways. The position of the marker may be a little different than what is visible on the road.\n"
+"Sometimes, a small white line perpendicular to the road on the emergency stop strip or the left flared strip can be seen on satellite images or Mapillary's photos."
 msgstr ""
 
 #: ../analysers/analyser_merge_emergency_points_LU.py:31
@@ -4908,7 +4907,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_indoor.py:195
 msgid ""
-"Find out where are the entrances of the room and add them (with a door=* "
+"Find out where the entrances of the room are and add them (with a `door=*` "
 "tag) so we can actually enter this indoor room."
 msgstr ""
 
@@ -4918,8 +4917,8 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_indoor.py:199
 msgid ""
-"Each indoor feature should be connected to an another indoor feature or to "
-"some footpath so people can actually go to them."
+"Each indoor feature should be connected to another indoor feature or to some"
+" footpath so people can actually go to them."
 msgstr ""
 
 #: ../analysers/analyser_osmosis_powerline.py:378

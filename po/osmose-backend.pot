@@ -1894,12 +1894,12 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:146
 msgid ""
-"Unconnected boundary fragment, a way with a boundary tag not part of a\n"
-"boundary relation."
+"Unconnected boundary fragment, a way with a `boundary` tag not part of a\n"
+"`boundary` relation."
 msgstr ""
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:149
-msgid "Delete the way, remove boundary tag or add to a relation."
+msgid "Delete the way, remove the `boundary` tag or add the way to a relation."
 msgstr ""
 
 #: ../analysers/analyser_osmosis_boundary_hole.py:68
@@ -2299,7 +2299,7 @@ msgstr ""
 msgid ""
 "![](https://wiki.openstreetmap.org/w/images/3/3a/Osmose-eg-error-3010.png)\n"
 "\n"
-"Highway level should be secondary."
+"Highway level should be `secondary`."
 msgstr ""
 
 #: ../analysers/analyser_osmosis_roundabout_level.py:275
@@ -3054,8 +3054,8 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_enforcement.py:60
 msgid ""
-"Speed camera should be mapped as a node on the highway or use an enforcement "
-"relation."
+"Speed camera should be mapped as a node on the highway or use an "
+"`enforcement` relation."
 msgstr ""
 
 #: ../plugins/Name_Script.py:55
@@ -3599,35 +3599,35 @@ msgstr ""
 msgid "{0} parking  update"
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1140
+#: ../analysers/Analyser_Merge.py:1151
 msgid ""
 "If after review you are sure that it is new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1143
+#: ../analysers/Analyser_Merge.py:1154
 msgid "Be sure that it does not already exist in another place."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1148
+#: ../analysers/Analyser_Merge.py:1159
 msgid ""
 "This is reported from an open data source, without any prior individual\n"
 "verification of this data."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1304
+#: ../analysers/Analyser_Merge.py:1316
 msgid ""
 "This is a integration suggestion, mixing open data source and\n"
 "OpenStreetMap."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1317
+#: ../analysers/Analyser_Merge.py:1329
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "open data and OSM."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1136
+#: ../analysers/Analyser_Merge.py:1147
 msgid ""
 "It is from an open data source, but that is not enough to ensure the "
 "quality\n"
@@ -3717,24 +3717,25 @@ msgid ""
 "The list of milestone comes from the CEREMA's database \"RIU\" in France."
 msgstr ""
 
-#: ../analysers/analyser_merge_milestone_FR_metropole.py:36
+#: ../analysers/analyser_merge_milestone_FR_metropole.py:37
 msgid "Milestone not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_milestone_FR_metropole.py:38
+#: ../analysers/analyser_merge_milestone_FR_metropole.py:39
 msgid "Milestone integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_milestone_FR_metropole.py:40
+#: ../analysers/analyser_merge_milestone_FR_metropole.py:41
 msgid "Milestone update"
 msgstr ""
 
 #: ../analysers/analyser_merge_milestone_FR_metropole.py:33
 msgid ""
-"Those milestones can't be on way * _link. The position of the marker may be "
-"a little different than what is visible on the road. Sometimes, a small "
-"white line perpendicular to the road on the emergency stop strip or the left "
-"flared strip can be seen on satellite images or Mapillary's photos."
+"Those milestones can't be on `*_link` ways. The position of the marker may "
+"be a little different than what is visible on the road.\n"
+"Sometimes, a small white line perpendicular to the road on the emergency "
+"stop strip or the left flared strip can be seen on satellite images or "
+"Mapillary's photos."
 msgstr ""
 
 #: ../analysers/analyser_merge_emergency_points_LU.py:31
@@ -4953,7 +4954,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_indoor.py:195
 msgid ""
-"Find out where are the entrances of the room and add them (with a door=* "
+"Find out where the entrances of the room are and add them (with a `door=*` "
 "tag) so we can actually enter this indoor room."
 msgstr ""
 
@@ -4963,8 +4964,8 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_indoor.py:199
 msgid ""
-"Each indoor feature should be connected to an another indoor feature or to "
-"some footpath so people can actually go to them."
+"Each indoor feature should be connected to another indoor feature or to some "
+"footpath so people can actually go to them."
 msgstr ""
 
 #: ../analysers/analyser_osmosis_powerline.py:378
@@ -5057,4 +5058,13 @@ msgstr ""
 #: ../plugins/notprefix.py:128 ../plugins/notprefix.py:183
 #, python-brace-format
 msgid "`{0}` together with `{1}` and equal values"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_cyclic.py:74
+msgid "Cyclic relation"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_cyclic.py:76
+msgid ""
+"A relation whose members (eventually) refer back to itself is rarely correct."
 msgstr ""

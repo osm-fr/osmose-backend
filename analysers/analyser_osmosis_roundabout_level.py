@@ -268,7 +268,7 @@ and `trunk`.'''),
             example = T_(
 '''![](https://wiki.openstreetmap.org/w/images/3/3a/Osmose-eg-error-3010.png)
 
-Highway level should be secondary.'''))
+Highway level should be `secondary`.'''))
         self.classs[2] = self.def_class(item = 2030, level = 2, tags = ['highway', 'roundabout', 'fix:chair'],
             title = T_('Missing oneway'),
             detail = T_(
