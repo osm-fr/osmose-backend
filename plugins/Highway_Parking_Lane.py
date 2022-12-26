@@ -39,33 +39,43 @@ class Highway_Parking_Lane(Plugin):
 '''The side was not recognized, see
 [`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane).'''),
             fix = T_(
-'''Use `parking:lane:left`, `parking:lane:right` or `parking:lane:both`.'''))
+'''Consider switching to the new [street parking tagging scheme]("https://wiki.openstreetmap.org/wiki/Street_parking).'''))
         self.errors[31614] = self.def_class(item = 3161, level = 3, tags = ['highway', 'parking', 'fix:imagery'],
             title = T_('Too many parking:lane:[side]'),
             detail = T_(
 '''The key `parking:lane:both` was used together with `parking:lane:left` and/or `parking:lane:right`.
-However, `both` already covers both sides of a street, so the latter are redundant.'''))
+However, `both` already covers both sides of a street, so the latter are redundant.'''),
+            fix = T_(
+'''Consider switching to the new [street parking tagging scheme]("https://wiki.openstreetmap.org/wiki/Street_parking).'''))
         self.errors[31615] = self.def_class(item = 3161, level = 3, tags = ['highway', 'parking', 'fix:chair'],
             title = T_('Bad parking:lane:[side] value'),
-            fix = T_('''Use any of the following values: `{0}`.''', "`, `".join(self.parkingLaneValues)),
+            fix = T_(
+'''Consider switching to the new [street parking tagging scheme]("https://wiki.openstreetmap.org/wiki/Street_parking).'''),
             resource = "https://wiki.openstreetmap.org/wiki/Key:parking:lane")
         self.errors[31616] = self.def_class(item = 3161, level = 3, tags = ['highway', 'parking', 'fix:survey'],
             title = T_('parking:condition:[side] without parking:lane:[side] value'),
             detail = T_(
-'''A parking condition is present but without parking kind.'''))
+'''A parking condition is present but without parking kind.'''),
+            fix = T_(
+'''Consider switching to the new [street parking tagging scheme]("https://wiki.openstreetmap.org/wiki/Street_parking).'''))
         self.errors[31617] = self.def_class(item = 3161, level = 3, tags = ['highway', 'parking', 'fix:survey'],
             title = T_('parking:condition:[side] not applicable'),
             detail = T_(
-'''A parking condition is set for a parking:lane:[side] value that forbids parking.'''))
+'''A parking condition is set for a parking:lane:[side] value that forbids parking.'''),
+            fix = T_(
+'''Consider switching to the new [street parking tagging scheme]("https://wiki.openstreetmap.org/wiki/Street_parking).'''))
         self.errors[31618] = self.def_class(item = 3161, level = 3, tags = ['highway', 'parking', 'fix:survey'],
             title = T_('parking:condition:[side] should be mapped on separately mapped parking area'),
             detail = T_(
 '''A parking condition is set for a parking:lane:[side] value that indicates
 that the parking area is mapped separately. Any parking conditions should
-be tagged on that object instead.'''))
+be tagged on that object instead.'''),
+            fix = T_(
+'''Consider switching to the new [street parking tagging scheme]("https://wiki.openstreetmap.org/wiki/Street_parking).'''))
         self.errors[31619] = self.def_class(item = 3161, level = 3, tags = ['highway', 'parking', 'fix:survey'],
             title = T_('Bad parking:condition:[side] value'),
-            fix = T_('''Use any of the following values: `{0}`.''', ", ".join(self.parkingConditionValues)),
+            fix = T_(
+'''Consider switching to the new [street parking tagging scheme]("https://wiki.openstreetmap.org/wiki/Street_parking).'''),
             resource = "https://wiki.openstreetmap.org/wiki/Key:parking:condition")
 
 
