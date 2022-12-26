@@ -90,7 +90,7 @@ be tagged on that object instead.'''),
         self.errors[31621] = self.def_class(item = 3161, level = 2, tags = ['highway', 'parking', 'fix:imagery'],
             title = T_('Bad parking:[side]'),
             detail = T_(
-'''The side was not recognized, expected was either of `left`, `right` or `both`.'''),
+'''The side was not recognized, expected was either `left`, `right` or `both`.'''),
             fix = T_(
 '''Use `parking:left`, `parking:right` or `parking:both`.'''),
             resource = "https://wiki.openstreetmap.org/wiki/Street_parking")
@@ -117,7 +117,7 @@ However, `parking:both` already covers both sides of a street, so the latter are
             title = T_('Property of parking should be mapped on separately mapped parking area'),
             detail = T_(
 '''A parking property is set for a `parking:[side]` value that indicates that the parking area is mapped separately.
-Any parking conditions should be tagged on that object instead.'''),
+Any parking details should be tagged on that object instead.'''),
             resource = "https://wiki.openstreetmap.org/wiki/Street_parking")
         self.errors[31627] = self.def_class(item = 3161, level = 3, tags = ['highway', 'parking', 'fix:survey'],
             title = T_('Bad parking:[side]:{0} value', 'orientation'),
@@ -233,7 +233,7 @@ Any parking conditions should be tagged on that object instead.'''),
                 for s in {side, side.replace("left", "both", 1).replace("right", "both", 1)}:
                     for k in parking_keys:
                         if ((k == s + ":restriction" and (tags[k][0:3] != "no_" or tags[side] == 'separate')) or
-                          (k.startswith(s + ":") and k != s + ":restriction" and (not ":reason" in k or tags[side] == 'separate'))):
+                          (k.startswith(s + ":") and k != s + ":restriction" and ((not ":reason" in k and tags[k] != 'no') or tags[side] == 'separate'))):
                             err.append({
                                 "class": 31625 if tags[side] == 'no' else 31626,
                                 "subclass": stablehash64(s + k),
@@ -327,6 +327,7 @@ class Test(TestPluginCommon):
                   {"highway": "road", "parking:right": "no", "parking:right:restriction:reason": "fire_lane", "parking:right:restriction": "no_stopping"},
                   {"highway": "road", "parking:right:restriction": "no_stopping"},
                   {"highway": "road", "parking:right:restriction": "no_parking", "parking:right:restriction:reason": "fire_lane"},
+                  {"highway": "road", "parking:right:restriction": "no_parking", "parking:right:access": "no", "parking:right": "no"},
                   {"highway": "road", "parking:right": "separate"},
                   {"highway": "road", "parking:right": "street_side", "parking:both": "no"}, # Checked by Highway_Sides plugin
                   {"highway": "road", "parking:right:access": "private", "parking:left:access": "private", "parking:both": "on_kerb"},
