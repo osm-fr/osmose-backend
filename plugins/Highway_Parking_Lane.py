@@ -112,25 +112,25 @@ However, `parking:both` already covers both sides of a street, so the latter are
             title = T_('parking:[side]:* not applicable'),
             detail = T_(
 '''A parking key is set for a `parking:[side]` value that forbids parking.'''),
-            resource = "https://wiki.openstreetmap.org/wiki/Key:parking:condition")
+            resource = "https://wiki.openstreetmap.org/wiki/Street_parking")
         self.errors[31626] = self.def_class(item = 3161, level = 3, tags = ['highway', 'parking', 'fix:survey'],
             title = T_('Property of parking should be mapped on separately mapped parking area'),
             detail = T_(
 '''A parking property is set for a `parking:[side]` value that indicates that the parking area is mapped separately.
 Any parking conditions should be tagged on that object instead.'''),
-            resource = "https://wiki.openstreetmap.org/wiki/Key:parking:condition")
+            resource = "https://wiki.openstreetmap.org/wiki/Street_parking")
         self.errors[31627] = self.def_class(item = 3161, level = 3, tags = ['highway', 'parking', 'fix:survey'],
             title = T_('Bad parking:[side]:{0} value', 'orientation'),
             fix = T_('''Use any of the following values: `{0}`.''', ", ".join(self.orientationValues)),
-            resource = "https://wiki.openstreetmap.org/wiki/Key:parking:condition")
+            resource = "https://wiki.openstreetmap.org/wiki/Street_parking")
         self.errors[31628] = self.def_class(item = 3161, level = 3, tags = ['highway', 'parking', 'fix:survey'],
             title = T_('Bad parking:[side]:{0} value', 'restriction'),
             fix = T_('''Use any of the following values: `{0}`.''', ", ".join(self.restrictionValues)),
-            resource = "https://wiki.openstreetmap.org/wiki/Key:parking:condition")
+            resource = "https://wiki.openstreetmap.org/wiki/Street_parking")
         self.errors[31629] = self.def_class(item = 3161, level = 3, tags = ['highway', 'parking', 'fix:survey'],
             title = T_('Bad parking:[side]:{0} value', 'direction'),
             fix = T_('''Use any of the following values: `{0}`.''', ", ".join(self.directionValues)),
-            resource = "https://wiki.openstreetmap.org/wiki/Key:parking:condition")
+            resource = "https://wiki.openstreetmap.org/wiki/Street_parking")
 
     def way(self, data, tags, nds):
         if not "highway" in tags:
