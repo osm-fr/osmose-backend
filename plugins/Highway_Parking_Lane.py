@@ -139,8 +139,10 @@ Any parking details should be tagged on that object instead.'''),
         err = []
 
         parking_keys = list(filter(lambda tag: tag.startswith("parking:"), tags))
-        sides = list(map(lambda tag: tag[len("parking:"):].split(":")[0], parking_keys))
+        if len(parking_keys) == 0:
+            return err
 
+        sides = list(map(lambda tag: tag[len("parking:"):].split(":")[0], parking_keys))
         if ("condition" in sides or "lane" in sides) and not ("right" in sides or "left" in sides or "both" in sides):
             # Deprecated scheme (as of Dec 8, 2022) but currently (Dec 2022) still more common
             # Warned for by TagFix_Deprecated
