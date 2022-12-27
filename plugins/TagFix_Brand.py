@@ -102,7 +102,8 @@ If not, see if you can improve the [name-suggestion-index project](https://githu
                         for tag in brands_tags:
                             if not tags.get(tag):
                                 tags_to_add[tag] = brands_tags[tag]
-                        if tags_to_add:
+                        if (tags_to_add and
+                          (not "brand:wikidata" in brands_tags or not "not:brand:wikidata" in tags or brands_tags["brand:wikidata"] != tags["not:brand:wikidata"])):
                             return {"class": 31301, "subclass": 0, "fix": {"+": tags_to_add}}
 
         if "operator" in tags and not "operator:wikidata" in tags:
@@ -115,7 +116,8 @@ If not, see if you can improve the [name-suggestion-index project](https://githu
                         for tag in operators_tags:
                             if not tags.get(tag):
                                 tags_to_add[tag] = operators_tags[tag]
-                        if tags_to_add:
+                        if (tags_to_add and
+                          (not "operator:wikidata" in operators_tags or not "not:operator:wikidata" in tags or operators_tags["operator:wikidata"] != tags["not:operator:wikidata"])):
                             return {"class": 31302, "subclass": 0, "fix": {"+": tags_to_add}}
 
     def way(self, data, tags, nds):
@@ -141,12 +143,17 @@ class Test(TestPluginCommon):
         # Brands
         assert a.node(None, {"name": "Kiabi", "shop": "clothes"})
         assert a.node(None, {"name": "Kiabi", "shop": "clothes", "brand": "Kiabi"})
+        assert a.node(None, {"name": "Kiabi", "shop": "clothes", "brand": "Kiabi", "not:brand:wikidata": "Q1234567"})
         assert not a.node(None, {"brand": "Kiabi", "shop": "clothes", "name": "Kiabi","brand:wikidata": "Q3196299"})
+        assert not a.node(None, {"brand": "Kiabi", "shop": "clothes", "name": "Kiabi","not:brand:wikidata": "Q3196299"})
+        assert not a.node(None, {"shop": "clothes", "name": "Kiabi","not:brand:wikidata": "Q3196299"})
+        assert not a.node(None, {"shop": "clothes", "name": "Kiabi","not:brand:wikidata": "Q3196299", "brand:wikidata": "Q1234567"})
         assert not a.node(None, {"name": "National Bank", "amenity": "bank", "atm": "yes"})
 
         # Operators
         assert a.node(None, {"name": "Beautify fire station", "amenity": "fire_station", "operator": "Bataillon de marins-pompiers de Marseille"})
         assert not a.node(None, {"name": "Beautify fire station", "amenity": "fire_station", "operator": "Bataillon de marins-pompiers de Marseille", "operator:wikidata": "Q2891011"})
+        assert not a.node(None, {"name": "Beautify fire station", "amenity": "fire_station", "not:operator:wikidata": "Q2891011"})
         assert not a.node(None, {"name": "Beautify fire station", "amenity": "fire_station", "operator": "Unknown firestation"})
 
 
