@@ -1168,7 +1168,7 @@ south_africa_province("western_cape", 80501)
 
 default_country("africa", "south_sudan", 1656678, {"country": "SS", "language": "en", "proj": 32635}, download_repo=OSMFR)
 default_country("africa", "sudan", 192789, {"country": "SD", "language": ["ar", "en"], "proj": 32636}, download_repo=OSMFR)
-default_country("africa", "bir_tawil", 3335661, {"country": None, "language": ["ar"], "proj": 32636}, download_repo=OSMFR)
+default_country("africa", "bir_tawil", 3335661, {"language": ["ar"], "proj": 32636}, download_repo=OSMFR)  # "country": None
 default_country("africa", "swaziland", 88210, {"country": "SZ", "language": "en", "driving_side": "left", "proj": 32736}, download_repo=OSMFR)
 
 tanzania_zone = gen_country('africa', 'tanzania', proj=32736, country_code='TZ', language='en', driving_side="left", download_repo=OSMFR)
