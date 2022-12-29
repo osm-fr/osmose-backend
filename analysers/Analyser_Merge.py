@@ -738,7 +738,10 @@ class GDAL(Parser):
             if self.layer:
                 source_layer.append(f"'{self.layer}'")
 
-            s_src = re.search('EPSG:([0-9]+)', subprocess.run(["gdalsrsinfo", "-e", *source_layer], stdout=subprocess.PIPE).stdout.decode('utf-8')).group(1)
+            match = re.search('EPSG:([0-9]+)', subprocess.run(["gdalsrsinfo", "-e", source_layer[0]], stdout=subprocess.PIPE).stdout.decode('utf-8'))
+            if not match and len(source_layer) >= 2:
+                match = re.search('EPSG:([0-9]+)', subprocess.run(["gdalsrsinfo", "-e", *source_layer], stdout=subprocess.PIPE).stdout.decode('utf-8'))
+            s_src = match.group(1)
             wkt = PointInPolygon.PointInPolygon(self.polygon_id).polygon.as_simplified_wkt(s_src, self.srid()) if self.polygon_id else None
 
             select = "-select '{}'".format(','.join(self.fields)) if self.fields else ''
@@ -823,7 +826,12 @@ class Load(object):
                 header = self.parser.header()
                 if header:
                     if header is not True:
-                        self.create = ",".join(map(lambda c: "\"{0}\" VARCHAR".format(DictCursorUnicode.identifier(c)), header))
+                        header_without_duplicate = []
+                        for i, v in enumerate(header):
+                            totalcount = header.count(v)
+                            count = header[:i].count(v)
+                            header_without_duplicate.append(v + str(count + 1) if totalcount > 1 and count > 0 else v)
+                        self.create = ",".join(map(lambda c: "\"{0}\" VARCHAR".format(DictCursorUnicode.identifier(c)), header_without_duplicate))
                 else:
                     raise AssertionError("No table schema provided")
 
