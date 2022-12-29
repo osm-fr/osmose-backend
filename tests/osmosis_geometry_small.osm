@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='1' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.80075945438' lon='5.75112800546' />
+  <node id='2' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.80076191627' lon='5.75118299057' />
+  <node id='3' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.80073375472' lon='5.75118628776' />
+  <node id='4' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.80073129283' lon='5.75113130265' />
+  <node id='5' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.80091206833' lon='5.75106982891' />
+  <node id='6' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.80085598998' lon='5.74981982866' />
+  <node id='7' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.80045350538' lon='5.74986704567' />
+  <node id='8' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.80050958423' lon='5.75111704591' />
+  <way id='100' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='1' />
+    <nd ref='2' />
+    <nd ref='3' />
+    <nd ref='4' />
+    <nd ref='1' />
+    <tag k='natural' v='wood' />
+    <tag k='note' v='area: 11.93m2' />
+  </way>
+  <way id='101' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='5' />
+    <nd ref='6' />
+    <nd ref='7' />
+    <nd ref='8' />
+    <nd ref='5' />
+    <tag k='natural' v='wood' />
+    <tag k='note' v='area: 3875.70m2' />
+  </way>
+</osm>
