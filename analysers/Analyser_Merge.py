@@ -826,7 +826,12 @@ class Load(object):
                 header = self.parser.header()
                 if header:
                     if header is not True:
-                        self.create = ",".join(map(lambda c: "\"{0}\" VARCHAR".format(DictCursorUnicode.identifier(c)), header))
+                        header_without_duplicate = []
+                        for i, v in enumerate(header):
+                            totalcount = header.count(v)
+                            count = header[:i].count(v)
+                            header_without_duplicate.append(v + str(count + 1) if totalcount > 1 and count > 0 else v)
+                        self.create = ",".join(map(lambda c: "\"{0}\" VARCHAR".format(DictCursorUnicode.identifier(c)), header_without_duplicate))
                 else:
                     raise AssertionError("No table schema provided")
 
