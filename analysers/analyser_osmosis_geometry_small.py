@@ -26,7 +26,8 @@ from .Analyser_Osmosis import Analyser_Osmosis
 sql10 = """
 SELECT
   id,
-  ST_AsText(way_locate(ways.linestring))
+  ST_AsText(way_locate(ways.linestring)),
+  ST_Area(ST_MakePolygon(ST_Transform(ways.linestring, {proj})))
 FROM
   {touched}ways AS ways
 WHERE
@@ -47,21 +48,26 @@ class Analyser_Osmosis_Geometry_Small(Analyser_Osmosis):
         else:
             return
 
+        trapmsg = T_('''
+Sometimes very small areas of this type may exist. In this case, please mark this issue as a false positive.''')
+
         self.classs_change[1] = self.def_class(item = 1310, level = 3, tags = ['natural', 'fix:chair'],
-            title = T_('Natural area too small'),
+            title = T_('Natural area very small'),
             detail = T_(
 '''A natural object of this type is typically larger than the current object.'''),
             example = T_(
-'''A single tree should be tagged as `natural=tree` rather than `natural=wood`.'''))
+'''A single tree should be tagged as `natural=tree` rather than `landuse=forest` or `natural=wood`.'''),
+            trap = trapmsg)
         self.classs_change[2] = self.def_class(item = 1310, level = 3, tags = ['landuse', 'fix:chair'],
-            title = T_('Natural area too small'),
+            title = T_('Landuse very small'),
             detail = T_(
 '''Landuses of this type are typically larger than the current object.'''),
             example = T_(
-'''A single tree should be tagged as `natural=tree` rather than `landuse=forest`.'''))
+'''A single tree should be tagged as `natural=tree` rather than `landuse=forest` or `natural=wood`.'''),
+            trap = trapmsg)
 
         self.checks = [
-            # Objects to be checked. Requires: key, val(ue) of tag, min(imum)area (in m2) of the object, and class nr
+            # Objects to be checked. Requires: key, val(ue) of tag, min(imum)area (in m2) of the object, and class
             {'key': 'natural', 'val': 'wood', 'minarea': 20, 'class': 1}, # 20m2 is roughly 1 big tree of 5m diameter
             {'key': 'landuse', 'val': 'forest', 'minarea': 20, 'class': 2}, # 20m2 is roughly 1 big tree of 5m diameter
         ]
@@ -70,14 +76,16 @@ class Analyser_Osmosis_Geometry_Small(Analyser_Osmosis):
         for item in self.checks:
             self.run(sql10.format(key=item["key"], val=item["val"], minarea=item["minarea"], proj=self.proj, touched=""), lambda res: {
                 "class": item["class"],
-                "data": [self.way_full, self.positionAsText]
+                "data": [self.way_full, self.positionAsText],
+                "text": T_("{0} with an area of {1} m2", "`{0}={1}`".format(item["key"], item["val"]), round(res[2]))
             })
 
     def analyser_osmosis_diff(self):
         for item in self.checks:
             self.run(sql10.format(key=item["key"], val=item["val"], minarea=item["minarea"], proj=self.proj, touched='touched_'), lambda res: {
                 "class": item["class"],
-                "data": [self.way_full, self.positionAsText]
+                "data": [self.way_full, self.positionAsText],
+                "text": T_("{0} with an area of {1} m2", "`{0}={1}`".format(item["key"], item["val"]), round(res[2]))
             })
 
 from .Analyser_Osmosis import TestAnalyserOsmosis
