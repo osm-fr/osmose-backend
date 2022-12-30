@@ -65,11 +65,32 @@ Sometimes very small areas of this type may exist. In this case, please mark thi
             example = T_(
 '''A single tree should be tagged as `natural=tree` rather than `landuse=forest` or `natural=wood`.'''),
             trap = trapmsg)
+        self.classs_change[3] = self.def_class(item = 1310, level = 3, tags = ['landuse', 'fix:chair'],
+            title = T_('Small farm'),
+            detail = T_(
+'''Landuses of this type are typically larger than the current object.'''),
+            example = T_(
+'''Agricultural land that is used for barns, greenhouses, for cattle to graze, etcetera, should not be tagged as `landuse=farmland`.
+The tag `landuse=farmland` is meant for land where i.e. crops are grown.
+Other landuses could be tagged with:
+- `{0}`
+- etcetera.''', '`,\n- `'.join(('building=farm_auxiliary', 'building=farm', 'landuse=farmyard', 'landuse=allotments', 'building=barn', 'building=sty', 'building=cowshed', 'building=stable', 'building=greenhouse', 'landuse=greenhouse_horticulture', 'landuse=meadow'))),
+            trap = trapmsg)
+        self.classs_change[4] = self.def_class(item = 1310, level = 3, tags = ['landuse', 'fix:chair'],
+            title = T_('Landuse very small'),
+            detail = T_(
+'''Landuses of this type are typically larger than the current object.'''),
+            example = T_(
+'''Small patches of maintained vegetation should be tagged as any of `{0}`, (etcetera) rather than `landuse=village_green`.''',
+'`, `'.join(('natural=shrubbery', 'landuse=grass', 'natural=scrub', 'leisure=garden', 'landuse=flowerbed'))),
+            trap = trapmsg)
 
         self.checks = [
             # Objects to be checked. Requires: key, val(ue) of tag, min(imum)area (in m2) of the object, and class
             {'key': 'natural', 'val': 'wood', 'minarea': 20, 'class': 1}, # 20m2 is roughly 1 big tree of 5m diameter
             {'key': 'landuse', 'val': 'forest', 'minarea': 20, 'class': 2}, # 20m2 is roughly 1 big tree of 5m diameter
+            {'key': 'landuse', 'val': 'farmland', 'minarea': 120, 'class': 3},
+            {'key': 'landuse', 'val': 'village_green`', 'minarea': 100, 'class': 4},
         ]
 
     def analyser_osmosis_full(self):
