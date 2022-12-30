@@ -39,7 +39,7 @@ WHERE
 """
 
 
-class Analyser_Osmosis_Geometry_Small(Analyser_Osmosis):
+class Analyser_Osmosis_Polygon_Small(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
@@ -116,12 +116,12 @@ class Test(TestAnalyserOsmosis):
     def setup_class(cls):
         from modules import config
         TestAnalyserOsmosis.setup_class()
-        cls.analyser_conf = cls.load_osm("tests/osmosis_geometry_small.osm",
-                                         config.dir_tmp + "/tests/osmosis_geometry_small.test.xml",
+        cls.analyser_conf = cls.load_osm("tests/osmosis_polygon_small.osm",
+                                         config.dir_tmp + "/tests/osmosis_polygon_small.test.xml",
                                          {"proj": 23032})
 
     def test_classes(self):
-        with Analyser_Osmosis_Geometry_Small(self.analyser_conf, self.logger) as a:
+        with Analyser_Osmosis_Polygon_Small(self.analyser_conf, self.logger) as a:
             a.analyser()
 
         self.root_err = self.load_errors()
