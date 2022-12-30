@@ -26,9 +26,9 @@ from .Analyser_Osmosis import Analyser_Osmosis
 sql10 = """
 SELECT
   id,
-  ST_AsText(ST_Centroid(ways.linestring))
+  ST_AsText(way_locate(ways.linestring))
 FROM
-  ways
+  {touched}ways AS ways
 WHERE
   ways.is_polygon AND
   ways.tags != ''::hstore AND
@@ -47,13 +47,13 @@ class Analyser_Osmosis_Geometry_Small(Analyser_Osmosis):
         else:
             return
 
-        self.classs[1] = self.def_class(item = 1310, level = 3, tags = ['natural', 'fix:chair'],
+        self.classs_change[1] = self.def_class(item = 1310, level = 3, tags = ['natural', 'fix:chair'],
             title = T_('Natural area too small'),
             detail = T_(
 '''A natural object of this type is typically larger than the current object.'''),
             example = T_(
 '''A single tree should be tagged as `natural=tree` rather than `natural=wood`.'''))
-        self.classs[2] = self.def_class(item = 1310, level = 3, tags = ['landuse', 'fix:chair'],
+        self.classs_change[2] = self.def_class(item = 1310, level = 3, tags = ['landuse', 'fix:chair'],
             title = T_('Natural area too small'),
             detail = T_(
 '''Landuses of this type are typically larger than the current object.'''),
@@ -66,9 +66,16 @@ class Analyser_Osmosis_Geometry_Small(Analyser_Osmosis):
             {'key': 'landuse', 'val': 'forest', 'minarea': 20, 'class': 2}, # 20m2 is roughly 1 big tree of 5m diameter
         ]
 
-    def analyser_osmosis_common(self):
+    def analyser_osmosis_full(self):
         for item in self.checks:
-            self.run(sql10.format(key=item["key"], val=item["val"], minarea=item["minarea"], proj=self.proj), lambda res: {
+            self.run(sql10.format(key=item["key"], val=item["val"], minarea=item["minarea"], proj=self.proj, touched=""), lambda res: {
+                "class": item["class"],
+                "data": [self.way_full, self.positionAsText]
+            })
+
+    def analyser_osmosis_diff(self):
+        for item in self.checks:
+            self.run(sql10.format(key=item["key"], val=item["val"], minarea=item["minarea"], proj=self.proj, touched='touched_'), lambda res: {
                 "class": item["class"],
                 "data": [self.way_full, self.positionAsText]
             })
