@@ -89,7 +89,7 @@ Other landuses could be tagged with:
             # Objects to be checked. Requires: key, val(ue) of tag, min(imum)area (in m2) of the object, and class
             {'key': 'natural', 'val': 'wood', 'minarea': 20, 'class': 1}, # 20m2 is roughly 1 big tree of 5m diameter
             {'key': 'landuse', 'val': 'forest', 'minarea': 20, 'class': 2}, # 20m2 is roughly 1 big tree of 5m diameter
-            {'key': 'landuse', 'val': 'farmland', 'minarea': 120, 'class': 3},
+            {'key': 'landuse', 'val': 'farmland', 'minarea': 100, 'class': 3},
             {'key': 'landuse', 'val': 'village_green`', 'minarea': 100, 'class': 4},
         ]
 
