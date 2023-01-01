@@ -25,24 +25,26 @@ from .Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
 SELECT
+  DISTINCT ON (ways.id)
   ways.id,
   buildings.id,
   -- Use the building location to point out the error, even though the landuse should be changed
   ST_AsText(way_locate(buildings.linestring)),
-  buildings.tags->'building'
+  buildings.tags->'building',
+  ways.tags->'landuse'
 FROM
   buildings
   JOIN ways ON
     ways.is_polygon AND
     ways.tags != ''::hstore AND
     ways.tags?'landuse' AND
-    ways.tags->'landuse' = 'farmland' AND
+    ways.tags->'landuse' IN ('farmland', 'vineyard', 'orchard') AND
+    ways.linestring && buildings.linestring AND
     ST_Contains(ST_Transform(ST_MakePolygon(ways.linestring), {proj}), buildings.polygon_proj)
 WHERE
   -- ignore e.g. small utility buildings that happen to be on the farmland or are fully surrounded by farmland
   buildings.area > 36 AND
-  (NOT buildings.tags?'location' OR buildings.tags->'location' != 'underground') AND
-  buildings.tags->'building' != 'greenhouse' -- unsure whether allowed or not, lets permit
+  (NOT buildings.tags?'location' OR buildings.tags->'location' != 'underground')
 """
 
 
@@ -60,7 +62,9 @@ class Analyser_Osmosis_Building_In_Polygon(Analyser_Osmosis):
 not on the farmland where the crops grow.'''),
             fix = T_(
 '''Change or split the landuse way such that the farm buildings are on an area with `landuse=farmyard`
-and the area where crops grow are within `landuse=farmland`.'''))
+and the area where crops grow are within `landuse=farmland`.
+
+For areas dedicated to greenhouse horticulture, use `landuse=greenhouse_horticulture`.'''))
 
     requires_tables_common = ['buildings']
 
@@ -68,7 +72,7 @@ and the area where crops grow are within `landuse=farmland`.'''))
         self.run(sql10.format(proj=self.config.options["proj"]), lambda res: {
             "class": 1,
             "data": [self.way_full, self.way, self.positionAsText],
-            "text": T_("`{0}` inside `{1}`", "building=" + res[3], 'landuse=farmland')
+            "text": T_("`{0}` inside `{1}`", "building=" + res[3], 'landuse=' + res[4])
         })
 
 from .Analyser_Osmosis import TestAnalyserOsmosis
