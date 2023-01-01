@@ -51,21 +51,21 @@ class Analyser_Osmosis_Polygon_Small(Analyser_Osmosis):
         trapmsg = T_('''
 Sometimes very small areas of this type may exist. In this case, please mark this issue as a false positive.''')
 
-        self.classs_change[1] = self.def_class(item = 1310, level = 3, tags = ['natural', 'fix:chair'],
+        self.classs_change[1] = self.def_class(item = 3100, level = 3, tags = ['natural', 'fix:chair'],
             title = T_('Natural area very small'),
             detail = T_(
 '''A natural object of this type is typically larger than the current object.'''),
             example = T_(
 '''A single tree should be tagged as `natural=tree` rather than `landuse=forest` or `natural=wood`.'''),
             trap = trapmsg)
-        self.classs_change[2] = self.def_class(item = 1310, level = 3, tags = ['landuse', 'fix:chair'],
+        self.classs_change[2] = self.def_class(item = 3100, level = 3, tags = ['landuse', 'fix:chair'],
             title = T_('Landuse very small'),
             detail = T_(
 '''Landuses of this type are typically larger than the current object.'''),
             example = T_(
 '''A single tree should be tagged as `natural=tree` rather than `landuse=forest` or `natural=wood`.'''),
             trap = trapmsg)
-        self.classs_change[3] = self.def_class(item = 1310, level = 3, tags = ['landuse', 'fix:chair'],
+        self.classs_change[3] = self.def_class(item = 3100, level = 3, tags = ['landuse', 'fix:chair'],
             title = T_('Small farm'),
             detail = T_(
 '''Landuses of this type are typically larger than the current object.'''),
@@ -76,7 +76,7 @@ Other landuses could be tagged with:
 - `{0}`
 - etcetera.''', '`,\n- `'.join(('building=farm_auxiliary', 'building=farm', 'landuse=farmyard', 'landuse=allotments', 'building=barn', 'building=sty', 'building=cowshed', 'building=stable', 'building=greenhouse', 'landuse=greenhouse_horticulture', 'landuse=meadow'))),
             trap = trapmsg)
-        self.classs_change[4] = self.def_class(item = 1310, level = 3, tags = ['landuse', 'fix:chair'],
+        self.classs_change[4] = self.def_class(item = 3100, level = 3, tags = ['landuse', 'fix:chair'],
             title = T_('Landuse very small'),
             detail = T_(
 '''Landuses of this type are typically larger than the current object.'''),
