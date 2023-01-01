@@ -159,6 +159,7 @@ class default_simple(template_config):
         self.analyser["osmosis_node_like_way"] = "xxx"
         self.analyser["osmosis_boundary_administrative"] = "xxx"
         self.analyser["osmosis_tag_typo"] = "xxx"
+        self.analyser["osmosis_building_in_polygon"] = "xxx"
         self.analyser["osmosis_cycleway_track"] = "xxx"
         self.analyser["osmosis_highway_features"] = "xxx"
         self.analyser["osmosis_building_shapes"] = "xxx"
