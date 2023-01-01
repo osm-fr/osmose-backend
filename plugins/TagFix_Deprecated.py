@@ -75,12 +75,11 @@ class TagFix_Deprecated(Plugin):
 
                 k, v = param.split('=', 1)
                 # k will always start with the param because we removed whitespace around | earlier
-                # We don't use == because there could be space before the = character
-                if (k.startswith('dkey')):
+                if (k.rstrip() == 'dkey'):
                     src_key = v
-                elif (k.startswith('dvalue')):
+                elif (k.rstrip() == 'dvalue'):
                     src_val = v
-                elif (k.startswith('suggestion')):
+                elif (k.rstrip() == 'suggestion'):
                     dest = v
 
             # Sanity check in case formatting changes or something
