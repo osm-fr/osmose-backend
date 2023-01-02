@@ -101,6 +101,10 @@ FROM
     {0}buildings AS buildings
     JOIN {1}bnodes AS bnodes ON
         buildings.id > bnodes.id AND
+        -- Help planner to use index, both ST_Expand to let planner choose
+        ST_Expand(buildings.polygon_proj, 0.01) && bnodes.point_proj AND
+        ST_Expand(bnodes.point_proj, 0.01) && buildings.polygon_proj AND
+        ST_Expand(bnodes.point_proj, 0.01) && buildings.polygon_proj AND
         ST_DWithin(buildings.polygon_proj, bnodes.point_proj, 0.01) AND
         ST_Disjoint(buildings.polygon_proj, bnodes.point_proj)
 WHERE
