@@ -95,8 +95,8 @@ be tagged on that object instead.'''),
 '''Use `parking:left`, `parking:right` or `parking:both`.'''),
             resource = "https://wiki.openstreetmap.org/wiki/Street_parking",
             example = T_(
-'''To specify that you can only park for 2 hours in the street, you should use
-`parking:both:maxstay=2 hours`, and not `parking:maxstay=2 hours`.'''))
+'''To specify that you can only park for 2 hours in the street (on both sides),
+you should use `parking:both:maxstay=2 hours`, and not `parking:maxstay=2 hours`.'''))
         self.errors[31622] = self.def_class(item = 3161, level = 3, tags = ['highway', 'parking', 'fix:survey'],
             title = T_('parking:[side]:* without parking:[side] value'),
             detail = T_(
