@@ -38,7 +38,7 @@ FROM
     ways.is_polygon AND
     ways.tags != ''::hstore AND
     ways.tags?'landuse' AND
-    ways.tags->'landuse' IN ('farmland', 'vineyard', 'orchard') AND
+    ways.tags->'landuse' IN ('farmland', 'vineyard', 'orchard', 'plant_nursery') AND
     ways.linestring && buildings.linestring AND
     ST_Contains(ST_Transform(ST_MakePolygon(ways.linestring), {proj}), buildings.polygon_proj)
 WHERE
@@ -61,10 +61,12 @@ class Analyser_Osmosis_Building_In_Polygon(Analyser_Osmosis):
 '''Buildings of a farm (houses, sheds, stables, barns, ...) are usually located on the farmyard,
 not on the farmland where the crops grow.'''),
             fix = T_(
-'''Change or split the landuse way such that the farm buildings are on an area with `landuse=farmyard`
-and the area where crops grow are within `landuse=farmland`.
+'''Change or split the landuse such that the farm buildings are on an area with `landuse=farmyard`
+and the area where crops grow are within `landuse=farmland` (or more dedicated types of farmland,
+such as `landuse=vineyard` or `landuse=orchard`).
 
-For areas dedicated to greenhouse horticulture, use `landuse=greenhouse_horticulture`.'''))
+For areas dedicated to greenhouse horticulture, use `landuse=greenhouse_horticulture`.'''),
+            resource = "https://wiki.openstreetmap.org/wiki/Tag:landuse%3Dfarmland")
 
     requires_tables_common = ['buildings']
 
