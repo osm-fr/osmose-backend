@@ -794,7 +794,7 @@ ua_oblasts('zhytomyr_oblast', 71245, 'UA-18')
 
 no_county = gen_country('europe', 'norway', download_repo=OSMFR, language='no', proj=32632)
 
-no_county('nordland', 408105, 'NO-18')
+no_county('nordland', (408105,409035), 'NO-18') # 409035 is an old municipality which was in previous nordland boundary
 no_county('troms', 407717, 'NO-19')
 no_county('finnmark', 406389, 'NO-20')
 no_county('troendelag', 406567, 'NO-23')
