@@ -1171,7 +1171,15 @@ mozambique_province("zambezia", 2997943)
 
 default_country("africa", "namibia", 195266, {"country": "NA", "language": "en", "driving_side": "left", "proj": 32733}, download_repo=OSMFR)
 default_country("africa", "niger", 192786,    {"country": "NE", "language": "fr", "proj": 32632}, download_repo=OSMFR)
-default_country("africa", "nigeria", 192787,  {"country": "NG", "language": "en", "proj": 32633})
+
+nigeria_zones = gen_country('africa', 'nigeria', proj=32633, country_code='NG', language='en', download_repo=OSMFR)
+nigeria_zones("north_central", (3716076,3717259,3717971,3718090,3718384,3720495,3720611))
+nigeria_zones("north_east", (3698564,3720358,3720422,3720850,3721167,3722233))
+nigeria_zones("north_west", (3703236,3706956,3707368,3707933,3709353,3710302,3711481))
+nigeria_zones("south_east", (3713501,3715505,3717071,3717212,3717825))
+nigeria_zones("south_south", (3715359,3715844,3716250,3716950,3717119,3720743))
+nigeria_zones("south_west", (3717154,3718182,3718463,3718605,3718720,3720554))
+
 default_country("africa", "norway_bouvet_island", 2425963, {"country": "BV", "language": "no", "proj": 32729}, download_repo=OSMFR, download_country="bouvet_island")
 default_country("africa", "rwanda", 171496, {"country": "RW", "language": ["en", "fr"], "proj": 32735}, download_repo=OSMFR)
 default_country("africa", "sao_tome_and_principe", 535880, {"country": "ST", "language": "pt", "proj": 32632}, download_repo=OSMFR)
