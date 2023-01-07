@@ -41,11 +41,14 @@ class Name_UpperCase(Plugin):
             detail = T_(
 '''This feature is tagged with a name which contains a fully uppercase word (or words).
  This is not expected for the majority of named features.'''),
+            fix = T_(
+'''acronyms must be set in `short_name` tag.'''),
             trap = T_(
 '''While uncommon, it is possible for a name to have uppercase words.
  This is particularly the case for corporate/branded locations as well as acronyms.''')
         )
-        self.UpperTitleCase = re.compile(r".*[\p{Lu}\p{Lt}]{5,}")
+        self.Letter = re.compile(r"^\p{Letter}{5,}$")
+        self.UpperTitleCase = re.compile(r".*[\p{Uppercase_Letter}\p{Titlecase_Letter}]{5,}")
         self.RomanNumber = re.compile(r".*[IVXCDLM]{5,}")
 
         if "country" in self.father.config.options:
@@ -76,11 +79,11 @@ class Name_UpperCase(Plugin):
                             continue
                     if "name" in preset["tags"]:
                         for name in preset["tags"]["name"].split():
-                            if self.UpperTitleCase.match(name) and not self.RomanNumber.match(name):
-                                whitelist.add(name)
+                            if self.Letter.match(name) and not self.RomanNumber.match(name):
+                                whitelist.add(name.upper())
                     for name in preset["displayName"].split():
-                        if self.UpperTitleCase.match(name) and not self.RomanNumber.match(name):
-                            whitelist.add(name)
+                        if self.Letter.match(name) and not self.RomanNumber.match(name):
+                            whitelist.add(name.upper())
         return whitelist
 
     def node(self, data, tags):
@@ -105,7 +108,7 @@ class Name_UpperCase(Plugin):
 from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
-    def test(self):
+    def test_FR(self):
         a = Name_UpperCase(None)
         class _config:
             options = {"country": "FR"}
@@ -123,5 +126,19 @@ class Test(TestPluginCommon):
         for t in [{u"name": u"Col des Champs XIIVVVIM"},
                   {u"name": u"EHPAD La Madelon"},
                   {u"name": u"ƻאᎯᚦ京"},
+                 ]:
+            assert not a.node(None, t), t
+
+    def test_ES(self):
+        a = Name_UpperCase(None)
+        class _config:
+            options = {"country": "ES-GC"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+
+        for t in [{"name": "FREMAP"},
+                  {"name": "CEPSA"},
                  ]:
             assert not a.node(None, t), t
