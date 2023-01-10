@@ -5,7 +5,8 @@
 # Translators:
 # frodrigo <fred.rodrigo@gmail.com>, 2018-2019
 # Kit Tak <misc.takashi@gmail.com>, 2020
-# Masahiro FUJIMOTO <mfujimot@gmail.com>, 2014-2015
+# Lratz sc, 2023
+# 藤本 理弘 <mfujimot@gmail.com>, 2014-2015
 # Satoshi IIDA <nyampire@gmail.com>, 2014,2016
 # Satoshi IIDA <nyampire@gmail.com>, 2014,2016
 # Shu Higashi, 2020-2021
@@ -17,7 +18,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
 "PO-Revision-Date: 2014-04-30 17:25+0000\n"
-"Last-Translator: tomoya muramoto <muramototomoya@gmail.com>, 2016\n"
+"Last-Translator: Lratz sc, 2023\n"
 "Language-Team: Japanese (http://www.transifex.com/openstreetmap-france/osmose/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3291,7 +3292,7 @@ msgstr "入力されている日付は下記に記述された形式に合って
 #: ../plugins/TagFix_MultipleValue.py:99
 #, python-brace-format
 msgid "Concerns tag: `{0}`"
-msgstr "気になるタグ: `{0}`"
+msgstr "懸念されるタグ: `{0}`"
 
 #: ../plugins/Name_Punctuation.py:39
 #, python-brace-format
@@ -3580,35 +3581,35 @@ msgstr "これは道路脇の駐車場ではなく、閉じられているだけ
 msgid "{0} parking  update"
 msgstr "{0} parkingの更新"
 
-#: ../analysers/Analyser_Merge.py:1140
+#: ../analysers/Analyser_Merge.py:1151
 msgid ""
 "If after review you are sure that it is new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr "レビューした結果、新しいデータでOpenStreetMapに登録すべきデータである場合には、追加してください。"
 
-#: ../analysers/Analyser_Merge.py:1143
+#: ../analysers/Analyser_Merge.py:1154
 msgid "Be sure that it does not already exist in another place."
 msgstr "付近の別の場所に既に存在していないことを十分確認してください。"
 
-#: ../analysers/Analyser_Merge.py:1148
+#: ../analysers/Analyser_Merge.py:1159
 msgid ""
 "This is reported from an open data source, without any prior individual\n"
 "verification of this data."
 msgstr "これはオープンデータの情報源に報告されているもので、このデータに関する検証は行われていません。"
 
-#: ../analysers/Analyser_Merge.py:1304
+#: ../analysers/Analyser_Merge.py:1316
 msgid ""
 "This is a integration suggestion, mixing open data source and\n"
 "OpenStreetMap."
 msgstr "これは統合の提案で、オープンデータのソースとOpenStreetMapを混合します。"
 
-#: ../analysers/Analyser_Merge.py:1317
+#: ../analysers/Analyser_Merge.py:1329
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "open data and OSM."
 msgstr "オープンデータとOSMの双方に同じrefが見つかったので更新した方が良いかもしれません。"
 
-#: ../analysers/Analyser_Merge.py:1136
+#: ../analysers/Analyser_Merge.py:1147
 msgid ""
 "It is from an open data source, but that is not enough to ensure the quality\n"
 "of the data. Review it before integrating the data. You must not do blind imports\n"
@@ -3696,15 +3697,15 @@ msgstr "このオブジェクトにはとても一般的なnameが付いてい�
 msgid "The list of milestone comes from the CEREMA's database \"RIU\" in France."
 msgstr "マイルストンの一覧はフランスのCEREMAのデータベース\"RIU\"に由来します。"
 
-#: ../analysers/analyser_merge_milestone_FR_metropole.py:36
+#: ../analysers/analyser_merge_milestone_FR_metropole.py:37
 msgid "Milestone not integrated"
 msgstr "未統合のマイルストン"
 
-#: ../analysers/analyser_merge_milestone_FR_metropole.py:38
+#: ../analysers/analyser_merge_milestone_FR_metropole.py:39
 msgid "Milestone integration suggestion"
 msgstr "マイルストンの統合の提案"
 
-#: ../analysers/analyser_merge_milestone_FR_metropole.py:40
+#: ../analysers/analyser_merge_milestone_FR_metropole.py:41
 msgid "Milestone update"
 msgstr "マイルストンの更新"
 
@@ -5009,4 +5010,14 @@ msgstr ""
 #: ../plugins/notprefix.py:128 ../plugins/notprefix.py:183
 #, python-brace-format
 msgid "`{0}` together with `{1}` and equal values"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_cyclic.py:74
+msgid "Cyclic relation"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_cyclic.py:76
+msgid ""
+"A relation whose members (eventually) refer back to itself is rarely "
+"correct."
 msgstr ""
