@@ -50,7 +50,7 @@ class Capacity(Plugin):
                 or tags["capacity"] == ""):
             return []
         # capacity (non-round number in cubic meters or liters) is also for volumes: storage_tank, reservoir_covered, water_tower
-        if "man_made" in tags:
+        if "man_made" in tags or ("amenity" in tags and tags["amenity"] == "waste_disposal"):
             return []
         try:
             total_capacity = int(tags["capacity"])
@@ -129,7 +129,7 @@ class Test(TestPluginCommon):
             {"class": 30912, "subclass": 5},
         )
         self.check_err(
-            a.node(None, {"capacity": "1", "capacity:disabled": "a"}),
+            a.node(None, {"capacity": "1", "capacity:disabled": "a", "amenity": "parking"}),
             {"class": 30912, "subclass": 5},
         )
         self.check_err(
@@ -149,3 +149,4 @@ class Test(TestPluginCommon):
         assert not a.node(None, {"capacity:wheelchair": "1"})
 
         assert not a.node(None, {"capacity": "123.45 m³", "man_made": "water_tower"})
+        assert not a.node(None, {"capacity": "123.45", "amenity": "waste_disposal"})
