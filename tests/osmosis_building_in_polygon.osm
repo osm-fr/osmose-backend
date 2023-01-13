@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='1' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85224298904' lon='5.83779408421' />
+  <node id='2' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85168093805' lon='5.83777845818' />
+  <node id='3' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85166804789' lon='5.83899361924' />
+  <node id='4' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85223009903' lon='5.83900924528' />
+  <node id='5' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85208946427' lon='5.83797330682' />
+  <node id='6' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85186414962' lon='5.83801416069' />
+  <node id='7' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85188746687' lon='5.83835120281' />
+  <node id='8' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85211278141' lon='5.83831034894' />
+  <node id='9' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85233291317' lon='5.83787681481' />
+  <node id='10' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85224004611' lon='5.83787571028' />
+  <node id='11' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85223953646' lon='5.83798801918' />
+  <node id='12' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85233240352' lon='5.83798912371' />
+  <node id='13' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.8522372582' lon='5.83780505157' />
+  <node id='14' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.8522356869' lon='5.83780502734' />
+  <node id='15' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85223564768' lon='5.83781169476' />
+  <node id='16' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85223721898' lon='5.83781171898' />
+  <node id='17' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85232824638' lon='5.83801693599' />
+  <node id='18' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85227362937' lon='5.83801632619' />
+  <node id='19' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85227335578' lon='5.83808054832' />
+  <node id='20' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.8523279728' lon='5.83808115812' />
+  <way id='100' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='1' />
+    <nd ref='2' />
+    <nd ref='3' />
+    <nd ref='4' />
+    <nd ref='1' />
+    <tag k='landuse' v='farmland' />
+  </way>
+  <way id='101' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='5' />
+    <nd ref='6' />
+    <nd ref='7' />
+    <nd ref='8' />
+    <nd ref='5' />
+    <tag k='building' v='barn' />
+  </way>
+  <way id='102' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='9' />
+    <nd ref='10' />
+    <nd ref='11' />
+    <nd ref='12' />
+    <nd ref='9' />
+    <tag k='building' v='house' />
+    <tag k='note' v='Lets not trigger on minor overlap' />
+  </way>
+  <way id='103' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='13' />
+    <nd ref='14' />
+    <nd ref='15' />
+    <nd ref='16' />
+    <nd ref='13' />
+    <tag k='building' v='yes' />
+    <tag k='note' v='Tiny mini building, e.g. keeping a shovel, or a utility cabinet' />
+  </way>
+  <way id='104' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='17' />
+    <nd ref='18' />
+    <nd ref='19' />
+    <nd ref='20' />
+    <nd ref='17' />
+    <tag k='building' v='stable' />
+  </way>
+</osm>
