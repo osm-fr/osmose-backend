@@ -54,8 +54,8 @@ class TagWatchFrViPofm(Plugin):
 
         reline = re.compile(r"^\|([^|]*)\|\|([^|]*)\|\|([^|]*)\|\|([^|]*).*")
 
-        # récupération des infos depuis https://wiki.openstreetmap.org/index.php?title=User:FrViPofm/TagwatchCleaner
-        data = urlread(u"https://wiki.openstreetmap.org/index.php?title=User:FrViPofm/TagwatchCleaner&action=raw", 1)
+        # Obtain the info from https://wiki.openstreetmap.org/index.php?title=Tagging_Mistakes
+        data = urlread(u"https://wiki.openstreetmap.org/index.php?title=Tagging_Mistakes&action=raw", 1)
         data = data.split("\n")
         for line in data:
             for res in reline.findall(line):
@@ -68,8 +68,8 @@ class TagWatchFrViPofm(Plugin):
                     self.errors[c] = self.def_class(item = 3030, level = 2, tags = tags,
                         title = {'en': c0},
                         detail = T_(
-'''Simple and frequent errors, the list is available
-[here](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner).'''))
+'''Simple and frequent errors, can be updated by anyone on the wiki.'''),
+                        resource = 'https://wiki.openstreetmap.org/wiki/Tagging_Mistakes')
                     if u"=" in res[0]:
                         k = res[0].split(u"=")[0].strip()
                         v = res[0].split(u"=")[1].strip()
