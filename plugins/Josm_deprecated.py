@@ -21,6 +21,7 @@ class Josm_deprecated(PluginMapCSS):
         self.errors[9002005] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('Wrong usage of {0} tag. Remove {1}, because it is clear that the name is missing even without an additional tag.', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{0.tag}')))
         self.errors[9002006] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('{0} is unspecific. Instead use the key fixme with the information what exactly should be fixed in the value of fixme.', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
         self.errors[9002007] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('{0}={1} is unspecific. Please replace \'\'{1}\'\' by a specific value.', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{0.value}')))
+        self.errors[9002008] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('{0} should be replaced with {1}', mapcss._tag_uncapture(capture_tags, '{1.key}'), 'archaeological_site'))
         self.errors[9002011] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('key with uncommon character'))
         self.errors[9002012] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('uncommon short key'))
         self.errors[9002014] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('questionable key (ending with a number)'))
@@ -4163,6 +4164,25 @@ class Josm_deprecated(PluginMapCSS):
                     mapcss._tag_uncapture(capture_tags, '{0.key}')])
                 }})
 
+        # *[historic=archaeological_site][site_type]
+        if ('historic' in keys and 'site_type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'historic') == mapcss._value_capture(capture_tags, 0, 'archaeological_site')) and (mapcss._tag_capture(capture_tags, 1, tags, 'site_type')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("{0} should be replaced with {1}","{1.key}","archaeological_site")
+                # fixChangeKey:"site_type => archaeological_site"
+                # assertNoMatch:"node historic=archaeological_site site_type2=fortification"
+                # assertMatch:"node historic=archaeological_site site_type=fortification"
+                err.append({'class': 9002008, 'subclass': 595008939, 'text': mapcss.tr('{0} should be replaced with {1}', mapcss._tag_uncapture(capture_tags, '{1.key}'), 'archaeological_site'), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['archaeological_site', mapcss.tag(tags, 'site_type')]]),
+                    '-': ([
+                    'site_type'])
+                }})
+
         return err
 
     def way(self, data, tags, nds):
@@ -8221,6 +8241,23 @@ class Josm_deprecated(PluginMapCSS):
                     mapcss._tag_uncapture(capture_tags, '{0.key}')])
                 }})
 
+        # *[historic=archaeological_site][site_type]
+        if ('historic' in keys and 'site_type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'historic') == mapcss._value_capture(capture_tags, 0, 'archaeological_site')) and (mapcss._tag_capture(capture_tags, 1, tags, 'site_type')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("{0} should be replaced with {1}","{1.key}","archaeological_site")
+                # fixChangeKey:"site_type => archaeological_site"
+                err.append({'class': 9002008, 'subclass': 595008939, 'text': mapcss.tr('{0} should be replaced with {1}', mapcss._tag_uncapture(capture_tags, '{1.key}'), 'archaeological_site'), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['archaeological_site', mapcss.tag(tags, 'site_type')]]),
+                    '-': ([
+                    'site_type'])
+                }})
+
         return err
 
     def relation(self, data, tags, members):
@@ -11675,6 +11712,23 @@ class Josm_deprecated(PluginMapCSS):
                     mapcss._tag_uncapture(capture_tags, '{0.key}')])
                 }})
 
+        # *[historic=archaeological_site][site_type]
+        if ('historic' in keys and 'site_type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'historic') == mapcss._value_capture(capture_tags, 0, 'archaeological_site')) and (mapcss._tag_capture(capture_tags, 1, tags, 'site_type')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("{0} should be replaced with {1}","{1.key}","archaeological_site")
+                # fixChangeKey:"site_type => archaeological_site"
+                err.append({'class': 9002008, 'subclass': 595008939, 'text': mapcss.tr('{0} should be replaced with {1}', mapcss._tag_uncapture(capture_tags, '{1.key}'), 'archaeological_site'), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['archaeological_site', mapcss.tag(tags, 'site_type')]]),
+                    '-': ([
+                    'site_type'])
+                }})
+
         return err
 
 
@@ -11713,6 +11767,8 @@ class Test(TestPluginMapcss):
         self.check_not_err(n.node(data, {'image': 'https://commons.wikimedia.org/wiki/File:2015-05-13_Basteibr%C3%BCcke-.jpg'}), expected={'class': 9002023, 'subclass': 2042174729})
         self.check_not_err(n.node(data, {'image': 'https://web.archive.org/web/20220623215400/https://westnordost.de/p/97331.jpg'}), expected={'class': 9002023, 'subclass': 2042174729})
         self.check_err(n.node(data, {'image': 'https://westnordost.de/p/17484.jpg'}), expected={'class': 9002023, 'subclass': 2042174729})
+        self.check_not_err(n.node(data, {'historic': 'archaeological_site', 'site_type2': 'fortification'}), expected={'class': 9002008, 'subclass': 595008939})
+        self.check_err(n.node(data, {'historic': 'archaeological_site', 'site_type': 'fortification'}), expected={'class': 9002008, 'subclass': 595008939})
         self.check_not_err(n.way(data, {'barrier': 'fence'}, [0]), expected={'class': 9002001, 'subclass': 1107799632})
         self.check_err(n.way(data, {'barrier': 'wire_fence'}, [0]), expected={'class': 9002001, 'subclass': 1107799632})
         self.check_err(n.way(data, {'access': 'designated'}, [0]), expected={'class': 9002002, 'subclass': 2057594338})
