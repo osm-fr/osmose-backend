@@ -207,7 +207,6 @@ item_map = \
                           '{0} is not recommended. Use the Reverse Ways function from the Tools menu.': 9002016,
                           '{0} is unspecific': 9002024,
                           '{0} is unspecific. Instead use the key fixme with the information what exactly should be fixed in the value of fixme.': 9002006,
-                          '{0} should be replaced with {1}': 9002025,
                           '{0} with a temporary URL which may be outdated very soon': 9002023,
                           "{0}={1} is unspecific. Instead of ''{1}'' please give more information about what exactly should be fixed.": 9002004,
                           "{0}={1} is unspecific. Please replace ''{1}'' by a specific value.": 9002007},
