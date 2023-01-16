@@ -121,17 +121,19 @@ class str_value_(str):
         if self.none:
             return False
         elif o.__class__ == int:
-            return self.to_n() == o
-        else:
-            return super(str_value_, self).__eq__(o)
+            try:
+                return self.to_n() == o
+            except RuleAbort: pass # Couldn't convert to numeric
+        return super(str_value_, self).__eq__(o)
 
     def __ne__(self, o):
         if self.none:
             return True
         elif o.__class__ == int:
-            return self.to_n() != o
-        else:
-            return super(str_value_, self).__ne__(o)
+            try:
+                return self.to_n() != o
+            except RuleAbort: pass # Couldn't convert to numeric
+        return super(str_value_, self).__ne__(o)
 
     def __gt__(self, o):
         if self.none:
