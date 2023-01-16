@@ -47,6 +47,7 @@ class Josm_DutchSpecific(PluginMapCSS):
         self.re_1d0c9a01 = re.compile(r'^NL:zone[36]0$')
         self.re_1d478f9e = re.compile(r'\bNL:C0?2\b')
         self.re_1d614d5c = re.compile(r'^maxspeed(:forward|:backward|:both_ways)?$')
+        self.re_1e0ec701 = re.compile(r'\b(Adm|Burg|Dr|Drs|Ds|Gen|Ing|Ir|Mgr|Mr|Past|Prof|St|Weth)\.? [A-Za-z]')
         self.re_1faa7e13 = re.compile(r'^hgv(:forward|:both_ways)?(:conditional)?$')
         self.re_21dc697e = re.compile(r'^maxaxleload(:backward|:both_ways)?(:conditional)?$')
         self.re_2441139b = re.compile(r'(?i)\b(aansl|empl|goed|ind|inhaalsp|opstel|overloopw|racc|rang|terr)\b')
@@ -56,7 +57,6 @@ class Josm_DutchSpecific(PluginMapCSS):
         self.re_293c2706 = re.compile(r'^[A-Z][a-z]{1,4}\. ')
         self.re_2cd26805 = re.compile(r'^maxlength(:forward|:both_ways)?(:conditional)?$')
         self.re_2e9c161c = re.compile(r'[0-9]{4} ?[A-Z]{2}')
-        self.re_3082f445 = re.compile(r'\b(Adm|Burg|Dr|Drs|Ds|Gen|Ing|Ir|Mr|Past|Prof|St|Weth)\.? [A-Za-z]')
         self.re_30fdb33a = re.compile(r'(?i)^(lift)$')
         self.re_31154585 = re.compile(r'^motorcycle(:forward|:both_ways)?(:conditional)?$')
         self.re_3254c1c6 = re.compile(r'(?i)(parkeren$|parkeerplaats$|^toegang(sweg)?\s|^richting\s|drive.thro?u(gh)?)')
@@ -68,6 +68,7 @@ class Josm_DutchSpecific(PluginMapCSS):
         self.re_367126ed = re.compile(r'^(yes|1)$')
         self.re_3894ceb2 = re.compile(r'^oneway:')
         self.re_389e57a2 = re.compile(r'(^|;)NL:C18\b')
+        self.re_39064d44 = re.compile(r'^(motorway(_link)?|trunk(_link)?|cycleway|service|busway|construction|proposed|raceway)$')
         self.re_3b2cb1d7 = re.compile(r'(?i)(uit?laa[dt]|honden.*wandel|los.?loop)')
         self.re_3bd9d067 = re.compile(r'^(yes|-?1)$')
         self.re_3c163648 = re.compile(r'(?i)ball?(veld(je)?)?$')
@@ -95,6 +96,7 @@ class Josm_DutchSpecific(PluginMapCSS):
         self.re_5ed5036a = re.compile(r'(?i)^speeltuin$')
         self.re_5f5aa10b = re.compile(r'^footway(:left|:right|:both)?:')
         self.re_6211f625 = re.compile(r'(?i)(voormalige?)')
+        self.re_62e192cf = re.compile(r'^(motorway(_link)?|construction|proposed)$')
         self.re_63f5f8f1 = re.compile(r'^maxheight(:forward|:both_ways)?(:conditional)?$')
         self.re_640dd184 = re.compile(r'^trailer(:backward|:both_ways)?(:conditional)?$')
         self.re_65dfbf19 = re.compile(r'^(motor_)?vehicle(:forward|:both_ways)?(:conditional)?$')
@@ -228,6 +230,19 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # group:tr("NL addresses and contacts")
                 # throwWarning:tr("Invalid tag {0}: expected 4 digits followed by 2 letters","{0.tag}")
                 err.append({'class': 1, 'subclass': 1560886491, 'text': mapcss.tr('Invalid tag {0}: expected 4 digits followed by 2 letters', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # *[addr:interpolation][inside("NL")]
+        if ('addr:interpolation' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'addr:interpolation')) and (mapcss.inside(self.father.config.options, 'NL')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("NL deprecated features")
+                # throwWarning:tr("Adressen ({0}) worden in Nederland individueel geïmporteerd uit de BAG","{0.key}")
+                # suggestAlternative:"meerdere addr:housenumber via een BAG importverzoek"
+                err.append({'class': 2, 'subclass': 864819394, 'text': mapcss.tr('Adressen ({0}) worden in Nederland individueel geïmporteerd uit de BAG', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # *[is_in=NL]
         # *[is_in:country][inside("NL")]
@@ -382,13 +397,13 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # suggestAlternative:"old_name=*"
                 err.append({'class': 3, 'subclass': 538711457, 'text': mapcss.tr('descriptive name')})
 
-        # *[name][place][name=~/\b(Adm|Burg|Dr|Drs|Ds|Gen|Ing|Ir|Mr|Past|Prof|St|Weth)\.? [A-Za-z]/][inside("NL")]!.abbrname
+        # *[name][place][name=~/\b(Adm|Burg|Dr|Drs|Ds|Gen|Ing|Ir|Mgr|Mr|Past|Prof|St|Weth)\.? [A-Za-z]/][inside("NL")]!.abbrname
         # *[name][place][name=~/^[A-Z][a-z]{1,4}\. /][inside("NL")]!.abbrname
         if ('name' in keys and 'place' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((not set_abbrname) and (mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss._tag_capture(capture_tags, 1, tags, 'place')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_3082f445), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'NL')))
+                try: match = ((not set_abbrname) and (mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss._tag_capture(capture_tags, 1, tags, 'place')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_1e0ec701), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'NL')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -399,7 +414,7 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # group:tr("NL nomenclature")
                 # throwWarning:tr("Gebiedsnaam met afkorting")
                 set_abbrname = True
-                err.append({'class': 3, 'subclass': 1829114630, 'text': mapcss.tr('Gebiedsnaam met afkorting')})
+                err.append({'class': 3, 'subclass': 1737008469, 'text': mapcss.tr('Gebiedsnaam met afkorting')})
 
         # *[railway][name][name=~/(?i)(aansl|empl|goed|ind|inhaalsp|opstel|overloopw|racc|rang|terr)\./][inside("NL")]!.abbrname
         # *[railway][name][name=~/(?i)\b(aansl|empl|goed|ind|inhaalsp|opstel|overloopw|racc|rang|terr)\b/][inside("NL")]!.abbrname
@@ -1331,7 +1346,31 @@ class Josm_DutchSpecific(PluginMapCSS):
         # way[parking:condition:left!=no_stopping][traffic_sign:left~="NL:E02"][highway][parking:lane:left=no][parking:condition:both!=no_stopping]
         # way[parking:condition:left!=no_stopping][traffic_sign:left~="NL:E2"][highway][parking:lane:both=no][parking:condition:both!=no_stopping]
         # way[parking:condition:left!=no_stopping][traffic_sign:left~="NL:E2"][highway][parking:lane:left=no][parking:condition:both!=no_stopping]
-        if ('highway' in keys and 'parking:lane:both' in keys and 'traffic_sign' in keys) or ('highway' in keys and 'parking:lane:both' in keys and 'traffic_sign:left' in keys) or ('highway' in keys and 'parking:lane:both' in keys and 'traffic_sign:right' in keys) or ('highway' in keys and 'parking:lane:left' in keys and 'parking:lane:right' in keys and 'traffic_sign' in keys) or ('highway' in keys and 'parking:lane:left' in keys and 'traffic_sign:left' in keys) or ('highway' in keys and 'parking:lane:right' in keys and 'traffic_sign:right' in keys):
+        # way[parking:both:restriction!=no_parking][traffic_sign~="NL:E01"][highway][parking:both=no][parking:right:restriction!=no_parking][parking:left:restriction!=no_parking]
+        # way[parking:both:restriction!=no_parking][traffic_sign~="NL:E01"][highway][parking:left=no][parking:lane:right=no][parking:right:restriction!=no_parking][parking:left:restriction!=no_parking]
+        # way[parking:both:restriction!=no_parking][traffic_sign~="NL:E1"][highway][parking:both=no][parking:right:restriction!=no_parking][parking:left:restriction!=no_parking]
+        # way[parking:both:restriction!=no_parking][traffic_sign~="NL:E1"][highway][parking:left=no][parking:lane:right=no][parking:right:restriction!=no_parking][parking:left:restriction!=no_parking]
+        # way[parking:right:restriction!=no_parking][traffic_sign:right~="NL:E01"][highway][parking:both=no][parking:both:restriction!=no_parking]
+        # way[parking:right:restriction!=no_parking][traffic_sign:right~="NL:E01"][highway][parking:right=no][parking:both:restriction!=no_parking]
+        # way[parking:right:restriction!=no_parking][traffic_sign:right~="NL:E1"][highway][parking:both=no][parking:both:restriction!=no_parking]
+        # way[parking:right:restriction!=no_parking][traffic_sign:right~="NL:E1"][highway][parking:right=no][parking:both:restriction!=no_parking]
+        # way[parking:left:restriction!=no_parking][traffic_sign:left~="NL:E01"][highway][parking:both=no][parking:both:restriction!=no_parking]
+        # way[parking:left:restriction!=no_parking][traffic_sign:left~="NL:E01"][highway][parking:left=no][parking:both:restriction!=no_parking]
+        # way[parking:left:restriction!=no_parking][traffic_sign:left~="NL:E1"][highway][parking:both=no][parking:both:restriction!=no_parking]
+        # way[parking:left:restriction!=no_parking][traffic_sign:left~="NL:E1"][highway][parking:left=no][parking:both:restriction!=no_parking]
+        # way[parking:both:restriction!=no_stopping][traffic_sign~="NL:E02"][highway][parking:both=no][parking:right:restriction!=no_stopping][parking:left:restriction!=no_stopping]
+        # way[parking:both:restriction!=no_stopping][traffic_sign~="NL:E02"][highway][parking:left=no][parking:right=no][parking:right:restriction!=no_stopping][parking:left:restriction!=no_stopping]
+        # way[parking:both:restriction!=no_stopping][traffic_sign~="NL:E2"][highway][parking:both=no][parking:right:restriction!=no_stopping][parking:left:restriction!=no_stopping]
+        # way[parking:both:restriction!=no_stopping][traffic_sign~="NL:E2"][highway][parking:left=no][parking:right=no][parking:right:restriction!=no_stopping][parking:left:restriction!=no_stopping]
+        # way[parking:right:restriction!=no_stopping][traffic_sign:right~="NL:E02"][highway][parking:both=no][parking:both:restriction!=no_stopping]
+        # way[parking:right:restriction!=no_stopping][traffic_sign:right~="NL:E02"][highway][parking:right=no][parking:both:restriction!=no_stopping]
+        # way[parking:right:restriction!=no_stopping][traffic_sign:right~="NL:E2"][highway][parking:both=no][parking:both:restriction!=no_stopping]
+        # way[parking:right:restriction!=no_stopping][traffic_sign:right~="NL:E2"][highway][parking:right=no][parking:both:restriction!=no_stopping]
+        # way[parking:left:restriction!=no_stopping][traffic_sign:left~="NL:E02"][highway][parking:both=no][parking:both:restriction!=no_stopping]
+        # way[parking:left:restriction!=no_stopping][traffic_sign:left~="NL:E02"][highway][parking:left=no][parking:both:restriction!=no_stopping]
+        # way[parking:left:restriction!=no_stopping][traffic_sign:left~="NL:E2"][highway][parking:both=no][parking:both:restriction!=no_stopping]
+        # way[parking:left:restriction!=no_stopping][traffic_sign:left~="NL:E2"][highway][parking:left=no][parking:both:restriction!=no_stopping]
+        if ('highway' in keys and 'parking:both' in keys and 'traffic_sign' in keys) or ('highway' in keys and 'parking:both' in keys and 'traffic_sign:left' in keys) or ('highway' in keys and 'parking:both' in keys and 'traffic_sign:right' in keys) or ('highway' in keys and 'parking:lane:both' in keys and 'traffic_sign' in keys) or ('highway' in keys and 'parking:lane:both' in keys and 'traffic_sign:left' in keys) or ('highway' in keys and 'parking:lane:both' in keys and 'traffic_sign:right' in keys) or ('highway' in keys and 'parking:lane:left' in keys and 'parking:lane:right' in keys and 'traffic_sign' in keys) or ('highway' in keys and 'parking:lane:left' in keys and 'traffic_sign:left' in keys) or ('highway' in keys and 'parking:lane:right' in keys and 'parking:left' in keys and 'traffic_sign' in keys) or ('highway' in keys and 'parking:lane:right' in keys and 'traffic_sign:right' in keys) or ('highway' in keys and 'parking:left' in keys and 'parking:right' in keys and 'traffic_sign' in keys) or ('highway' in keys and 'parking:left' in keys and 'traffic_sign:left' in keys) or ('highway' in keys and 'parking:right' in keys and 'traffic_sign:right' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -1429,15 +1468,116 @@ class Josm_DutchSpecific(PluginMapCSS):
                 capture_tags = {}
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'parking:condition:left') != mapcss._value_const_capture(capture_tags, 0, 'no_stopping', 'no_stopping')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:left'), mapcss._value_capture(capture_tags, 1, 'NL:E2'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 3, tags, 'parking:lane:left') == mapcss._value_capture(capture_tags, 3, 'no')) and (mapcss._tag_capture(capture_tags, 4, tags, 'parking:condition:both') != mapcss._value_const_capture(capture_tags, 4, 'no_stopping', 'no_stopping')))
                 except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'parking:both:restriction') != mapcss._value_const_capture(capture_tags, 0, 'no_parking', 'no_parking')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign'), mapcss._value_capture(capture_tags, 1, 'NL:E01'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 3, tags, 'parking:both') == mapcss._value_capture(capture_tags, 3, 'no')) and (mapcss._tag_capture(capture_tags, 4, tags, 'parking:right:restriction') != mapcss._value_const_capture(capture_tags, 4, 'no_parking', 'no_parking')) and (mapcss._tag_capture(capture_tags, 5, tags, 'parking:left:restriction') != mapcss._value_const_capture(capture_tags, 5, 'no_parking', 'no_parking')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'parking:both:restriction') != mapcss._value_const_capture(capture_tags, 0, 'no_parking', 'no_parking')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign'), mapcss._value_capture(capture_tags, 1, 'NL:E01'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 3, tags, 'parking:left') == mapcss._value_capture(capture_tags, 3, 'no')) and (mapcss._tag_capture(capture_tags, 4, tags, 'parking:lane:right') == mapcss._value_capture(capture_tags, 4, 'no')) and (mapcss._tag_capture(capture_tags, 5, tags, 'parking:right:restriction') != mapcss._value_const_capture(capture_tags, 5, 'no_parking', 'no_parking')) and (mapcss._tag_capture(capture_tags, 6, tags, 'parking:left:restriction') != mapcss._value_const_capture(capture_tags, 6, 'no_parking', 'no_parking')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'parking:both:restriction') != mapcss._value_const_capture(capture_tags, 0, 'no_parking', 'no_parking')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign'), mapcss._value_capture(capture_tags, 1, 'NL:E1'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 3, tags, 'parking:both') == mapcss._value_capture(capture_tags, 3, 'no')) and (mapcss._tag_capture(capture_tags, 4, tags, 'parking:right:restriction') != mapcss._value_const_capture(capture_tags, 4, 'no_parking', 'no_parking')) and (mapcss._tag_capture(capture_tags, 5, tags, 'parking:left:restriction') != mapcss._value_const_capture(capture_tags, 5, 'no_parking', 'no_parking')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'parking:both:restriction') != mapcss._value_const_capture(capture_tags, 0, 'no_parking', 'no_parking')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign'), mapcss._value_capture(capture_tags, 1, 'NL:E1'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 3, tags, 'parking:left') == mapcss._value_capture(capture_tags, 3, 'no')) and (mapcss._tag_capture(capture_tags, 4, tags, 'parking:lane:right') == mapcss._value_capture(capture_tags, 4, 'no')) and (mapcss._tag_capture(capture_tags, 5, tags, 'parking:right:restriction') != mapcss._value_const_capture(capture_tags, 5, 'no_parking', 'no_parking')) and (mapcss._tag_capture(capture_tags, 6, tags, 'parking:left:restriction') != mapcss._value_const_capture(capture_tags, 6, 'no_parking', 'no_parking')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'parking:right:restriction') != mapcss._value_const_capture(capture_tags, 0, 'no_parking', 'no_parking')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:right'), mapcss._value_capture(capture_tags, 1, 'NL:E01'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 3, tags, 'parking:both') == mapcss._value_capture(capture_tags, 3, 'no')) and (mapcss._tag_capture(capture_tags, 4, tags, 'parking:both:restriction') != mapcss._value_const_capture(capture_tags, 4, 'no_parking', 'no_parking')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'parking:right:restriction') != mapcss._value_const_capture(capture_tags, 0, 'no_parking', 'no_parking')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:right'), mapcss._value_capture(capture_tags, 1, 'NL:E01'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 3, tags, 'parking:right') == mapcss._value_capture(capture_tags, 3, 'no')) and (mapcss._tag_capture(capture_tags, 4, tags, 'parking:both:restriction') != mapcss._value_const_capture(capture_tags, 4, 'no_parking', 'no_parking')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'parking:right:restriction') != mapcss._value_const_capture(capture_tags, 0, 'no_parking', 'no_parking')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:right'), mapcss._value_capture(capture_tags, 1, 'NL:E1'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 3, tags, 'parking:both') == mapcss._value_capture(capture_tags, 3, 'no')) and (mapcss._tag_capture(capture_tags, 4, tags, 'parking:both:restriction') != mapcss._value_const_capture(capture_tags, 4, 'no_parking', 'no_parking')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'parking:right:restriction') != mapcss._value_const_capture(capture_tags, 0, 'no_parking', 'no_parking')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:right'), mapcss._value_capture(capture_tags, 1, 'NL:E1'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 3, tags, 'parking:right') == mapcss._value_capture(capture_tags, 3, 'no')) and (mapcss._tag_capture(capture_tags, 4, tags, 'parking:both:restriction') != mapcss._value_const_capture(capture_tags, 4, 'no_parking', 'no_parking')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'parking:left:restriction') != mapcss._value_const_capture(capture_tags, 0, 'no_parking', 'no_parking')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:left'), mapcss._value_capture(capture_tags, 1, 'NL:E01'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 3, tags, 'parking:both') == mapcss._value_capture(capture_tags, 3, 'no')) and (mapcss._tag_capture(capture_tags, 4, tags, 'parking:both:restriction') != mapcss._value_const_capture(capture_tags, 4, 'no_parking', 'no_parking')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'parking:left:restriction') != mapcss._value_const_capture(capture_tags, 0, 'no_parking', 'no_parking')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:left'), mapcss._value_capture(capture_tags, 1, 'NL:E01'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 3, tags, 'parking:left') == mapcss._value_capture(capture_tags, 3, 'no')) and (mapcss._tag_capture(capture_tags, 4, tags, 'parking:both:restriction') != mapcss._value_const_capture(capture_tags, 4, 'no_parking', 'no_parking')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'parking:left:restriction') != mapcss._value_const_capture(capture_tags, 0, 'no_parking', 'no_parking')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:left'), mapcss._value_capture(capture_tags, 1, 'NL:E1'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 3, tags, 'parking:both') == mapcss._value_capture(capture_tags, 3, 'no')) and (mapcss._tag_capture(capture_tags, 4, tags, 'parking:both:restriction') != mapcss._value_const_capture(capture_tags, 4, 'no_parking', 'no_parking')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'parking:left:restriction') != mapcss._value_const_capture(capture_tags, 0, 'no_parking', 'no_parking')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:left'), mapcss._value_capture(capture_tags, 1, 'NL:E1'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 3, tags, 'parking:left') == mapcss._value_capture(capture_tags, 3, 'no')) and (mapcss._tag_capture(capture_tags, 4, tags, 'parking:both:restriction') != mapcss._value_const_capture(capture_tags, 4, 'no_parking', 'no_parking')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'parking:both:restriction') != mapcss._value_const_capture(capture_tags, 0, 'no_stopping', 'no_stopping')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign'), mapcss._value_capture(capture_tags, 1, 'NL:E02'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 3, tags, 'parking:both') == mapcss._value_capture(capture_tags, 3, 'no')) and (mapcss._tag_capture(capture_tags, 4, tags, 'parking:right:restriction') != mapcss._value_const_capture(capture_tags, 4, 'no_stopping', 'no_stopping')) and (mapcss._tag_capture(capture_tags, 5, tags, 'parking:left:restriction') != mapcss._value_const_capture(capture_tags, 5, 'no_stopping', 'no_stopping')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'parking:both:restriction') != mapcss._value_const_capture(capture_tags, 0, 'no_stopping', 'no_stopping')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign'), mapcss._value_capture(capture_tags, 1, 'NL:E02'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 3, tags, 'parking:left') == mapcss._value_capture(capture_tags, 3, 'no')) and (mapcss._tag_capture(capture_tags, 4, tags, 'parking:right') == mapcss._value_capture(capture_tags, 4, 'no')) and (mapcss._tag_capture(capture_tags, 5, tags, 'parking:right:restriction') != mapcss._value_const_capture(capture_tags, 5, 'no_stopping', 'no_stopping')) and (mapcss._tag_capture(capture_tags, 6, tags, 'parking:left:restriction') != mapcss._value_const_capture(capture_tags, 6, 'no_stopping', 'no_stopping')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'parking:both:restriction') != mapcss._value_const_capture(capture_tags, 0, 'no_stopping', 'no_stopping')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign'), mapcss._value_capture(capture_tags, 1, 'NL:E2'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 3, tags, 'parking:both') == mapcss._value_capture(capture_tags, 3, 'no')) and (mapcss._tag_capture(capture_tags, 4, tags, 'parking:right:restriction') != mapcss._value_const_capture(capture_tags, 4, 'no_stopping', 'no_stopping')) and (mapcss._tag_capture(capture_tags, 5, tags, 'parking:left:restriction') != mapcss._value_const_capture(capture_tags, 5, 'no_stopping', 'no_stopping')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'parking:both:restriction') != mapcss._value_const_capture(capture_tags, 0, 'no_stopping', 'no_stopping')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign'), mapcss._value_capture(capture_tags, 1, 'NL:E2'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 3, tags, 'parking:left') == mapcss._value_capture(capture_tags, 3, 'no')) and (mapcss._tag_capture(capture_tags, 4, tags, 'parking:right') == mapcss._value_capture(capture_tags, 4, 'no')) and (mapcss._tag_capture(capture_tags, 5, tags, 'parking:right:restriction') != mapcss._value_const_capture(capture_tags, 5, 'no_stopping', 'no_stopping')) and (mapcss._tag_capture(capture_tags, 6, tags, 'parking:left:restriction') != mapcss._value_const_capture(capture_tags, 6, 'no_stopping', 'no_stopping')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'parking:right:restriction') != mapcss._value_const_capture(capture_tags, 0, 'no_stopping', 'no_stopping')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:right'), mapcss._value_capture(capture_tags, 1, 'NL:E02'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 3, tags, 'parking:both') == mapcss._value_capture(capture_tags, 3, 'no')) and (mapcss._tag_capture(capture_tags, 4, tags, 'parking:both:restriction') != mapcss._value_const_capture(capture_tags, 4, 'no_stopping', 'no_stopping')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'parking:right:restriction') != mapcss._value_const_capture(capture_tags, 0, 'no_stopping', 'no_stopping')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:right'), mapcss._value_capture(capture_tags, 1, 'NL:E02'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 3, tags, 'parking:right') == mapcss._value_capture(capture_tags, 3, 'no')) and (mapcss._tag_capture(capture_tags, 4, tags, 'parking:both:restriction') != mapcss._value_const_capture(capture_tags, 4, 'no_stopping', 'no_stopping')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'parking:right:restriction') != mapcss._value_const_capture(capture_tags, 0, 'no_stopping', 'no_stopping')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:right'), mapcss._value_capture(capture_tags, 1, 'NL:E2'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 3, tags, 'parking:both') == mapcss._value_capture(capture_tags, 3, 'no')) and (mapcss._tag_capture(capture_tags, 4, tags, 'parking:both:restriction') != mapcss._value_const_capture(capture_tags, 4, 'no_stopping', 'no_stopping')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'parking:right:restriction') != mapcss._value_const_capture(capture_tags, 0, 'no_stopping', 'no_stopping')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:right'), mapcss._value_capture(capture_tags, 1, 'NL:E2'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 3, tags, 'parking:right') == mapcss._value_capture(capture_tags, 3, 'no')) and (mapcss._tag_capture(capture_tags, 4, tags, 'parking:both:restriction') != mapcss._value_const_capture(capture_tags, 4, 'no_stopping', 'no_stopping')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'parking:left:restriction') != mapcss._value_const_capture(capture_tags, 0, 'no_stopping', 'no_stopping')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:left'), mapcss._value_capture(capture_tags, 1, 'NL:E02'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 3, tags, 'parking:both') == mapcss._value_capture(capture_tags, 3, 'no')) and (mapcss._tag_capture(capture_tags, 4, tags, 'parking:both:restriction') != mapcss._value_const_capture(capture_tags, 4, 'no_stopping', 'no_stopping')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'parking:left:restriction') != mapcss._value_const_capture(capture_tags, 0, 'no_stopping', 'no_stopping')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:left'), mapcss._value_capture(capture_tags, 1, 'NL:E02'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 3, tags, 'parking:left') == mapcss._value_capture(capture_tags, 3, 'no')) and (mapcss._tag_capture(capture_tags, 4, tags, 'parking:both:restriction') != mapcss._value_const_capture(capture_tags, 4, 'no_stopping', 'no_stopping')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'parking:left:restriction') != mapcss._value_const_capture(capture_tags, 0, 'no_stopping', 'no_stopping')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:left'), mapcss._value_capture(capture_tags, 1, 'NL:E2'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 3, tags, 'parking:both') == mapcss._value_capture(capture_tags, 3, 'no')) and (mapcss._tag_capture(capture_tags, 4, tags, 'parking:both:restriction') != mapcss._value_const_capture(capture_tags, 4, 'no_stopping', 'no_stopping')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'parking:left:restriction') != mapcss._value_const_capture(capture_tags, 0, 'no_stopping', 'no_stopping')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:left'), mapcss._value_capture(capture_tags, 1, 'NL:E2'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 3, tags, 'parking:left') == mapcss._value_capture(capture_tags, 3, 'no')) and (mapcss._tag_capture(capture_tags, 4, tags, 'parking:both:restriction') != mapcss._value_const_capture(capture_tags, 4, 'no_stopping', 'no_stopping')))
+                except mapcss.RuleAbort: pass
             if match:
                 # group:tr("NL traffic signs")
                 # throwWarning:tr("{0} without {1}","{1.tag}","{0.tag}")
                 # fixAdd:"{0.tag}"
+                # assertMatch:"way highway=residential traffic_sign:left=NL:E02 parking:both=no"
                 # assertMatch:"way highway=residential traffic_sign:left=NL:E02 parking:lane:both=no"
                 # assertMatch:"way highway=residential traffic_sign:left=NL:E02 parking:lane:left=no"
                 # assertNoMatch:"way highway=residential traffic_sign:left=NL:E02 parking:lane:left=parallel"
+                # assertMatch:"way highway=residential traffic_sign:left=NL:E02 parking:left=no"
+                # assertNoMatch:"way highway=residential traffic_sign:left=NL:E02 parking:left=parallel"
+                # assertNoMatch:"way highway=residential traffic_sign:left=NL:E02 traffic_sign:right=NL:E02 parking:both=no parking:both:restriction=no_stopping"
                 # assertNoMatch:"way highway=residential traffic_sign:left=NL:E02 traffic_sign:right=NL:E02 parking:lane:both=no parking:condition:both=no_stopping"
-                err.append({'class': 5, 'subclass': 1501968560, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                # assertNoMatch:"way highway=residential traffic_sign=NL:E01 parking:both=no parking:left:restriction=no_parking parking:right:restriction=no_parking"
+                err.append({'class': 5, 'subclass': 1906957495, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     (mapcss._tag_uncapture(capture_tags, '{0.tag}')).split('=', 1)])
                 }})
@@ -1646,6 +1786,19 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # suggestAlternative:"building=house via een BAG importverzoek voor huizen"
                 err.append({'class': 2, 'subclass': 239999292, 'text': mapcss.tr('Rijtjeshuizen ({0}) worden in Nederland individueel geïmporteerd uit de BAG', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
+        # *[addr:interpolation][inside("NL")]
+        if ('addr:interpolation' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'addr:interpolation')) and (mapcss.inside(self.father.config.options, 'NL')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("NL deprecated features")
+                # throwWarning:tr("Adressen ({0}) worden in Nederland individueel geïmporteerd uit de BAG","{0.key}")
+                # suggestAlternative:"meerdere addr:housenumber via een BAG importverzoek"
+                err.append({'class': 2, 'subclass': 864819394, 'text': mapcss.tr('Adressen ({0}) worden in Nederland individueel geïmporteerd uit de BAG', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+
         # *[is_in=NL]
         # *[is_in:country][inside("NL")]
         # *[is_in:city][inside("NL")]
@@ -1744,6 +1897,21 @@ class Josm_DutchSpecific(PluginMapCSS):
                     mapcss._tag_uncapture(capture_tags, '{0.key}')])
                 }})
 
+        # way[bicycle_road?][inside("NL")]
+        if ('bicycle_road' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'bicycle_road') in ('yes', 'true', '1')) and (mapcss.inside(self.father.config.options, 'NL')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("NL deprecated features")
+                # throwWarning:tr("Het concept {0} bestaat niet in Nederland","{0.key}")
+                # suggestAlternative:"highway=* + cyclestreet=yes (fietsstraat)"
+                # suggestAlternative:"highway=* + cycleway=* (fietsstrook)"
+                # suggestAlternative:"highway=cycleway (fietspad)"
+                err.append({'class': 2, 'subclass': 1111134078, 'text': mapcss.tr('Het concept {0} bestaat niet in Nederland', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+
         # way[name][highway=service][name=~/(?i)(parkeren$|parkeerplaats$|^toegang(sweg)?\s|^richting\s|drive.thro?u(gh)?)/]
         # way[name][highway][name=~/(?i)(^|\sen\s)((on)?verplicht\s)?(\(?brom\)?)?fietspad$/]
         # way[name][highway][name=~/(?i)^roltrap(pen)?$/]
@@ -1826,13 +1994,13 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # suggestAlternative:"old_name=*"
                 err.append({'class': 3, 'subclass': 538711457, 'text': mapcss.tr('descriptive name')})
 
-        # way[name][highway][name=~/\b(Adm|Burg|Dr|Drs|Ds|Gen|Ing|Ir|Mr|Past|Prof|St|Weth)\.? [A-Za-z]/][inside("NL")]!.abbrname
+        # way[name][highway][name=~/\b(Adm|Burg|Dr|Drs|Ds|Gen|Ing|Ir|Mgr|Mr|Past|Prof|St|Weth)\.? [A-Za-z]/][inside("NL")]!.abbrname
         # way[name][highway][name=~/^[A-Z][a-z]{1,4}\. /][inside("NL")]!.abbrname
         if ('highway' in keys and 'name' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((not set_abbrname) and (mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss._tag_capture(capture_tags, 1, tags, 'highway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_3082f445), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'NL')))
+                try: match = ((not set_abbrname) and (mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss._tag_capture(capture_tags, 1, tags, 'highway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_1e0ec701), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'NL')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -1845,15 +2013,15 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # assertNoMatch:"way highway=residential name=\"De Visserstraat\""
                 # assertNoMatch:"way highway=residential name=\"J.T. de Visserstraat\""
                 set_abbrname = True
-                err.append({'class': 3, 'subclass': 275992542, 'text': mapcss.tr('Straatnaam met afkorting')})
+                err.append({'class': 3, 'subclass': 34991053, 'text': mapcss.tr('Straatnaam met afkorting')})
 
-        # *[name][place][name=~/\b(Adm|Burg|Dr|Drs|Ds|Gen|Ing|Ir|Mr|Past|Prof|St|Weth)\.? [A-Za-z]/][inside("NL")]!.abbrname
+        # *[name][place][name=~/\b(Adm|Burg|Dr|Drs|Ds|Gen|Ing|Ir|Mgr|Mr|Past|Prof|St|Weth)\.? [A-Za-z]/][inside("NL")]!.abbrname
         # *[name][place][name=~/^[A-Z][a-z]{1,4}\. /][inside("NL")]!.abbrname
         if ('name' in keys and 'place' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((not set_abbrname) and (mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss._tag_capture(capture_tags, 1, tags, 'place')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_3082f445), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'NL')))
+                try: match = ((not set_abbrname) and (mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss._tag_capture(capture_tags, 1, tags, 'place')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_1e0ec701), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'NL')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -1864,7 +2032,7 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # group:tr("NL nomenclature")
                 # throwWarning:tr("Gebiedsnaam met afkorting")
                 set_abbrname = True
-                err.append({'class': 3, 'subclass': 1829114630, 'text': mapcss.tr('Gebiedsnaam met afkorting')})
+                err.append({'class': 3, 'subclass': 1737008469, 'text': mapcss.tr('Gebiedsnaam met afkorting')})
 
         # *[railway][name][name=~/(?i)(aansl|empl|goed|ind|inhaalsp|opstel|overloopw|racc|rang|terr)\./][inside("NL")]!.abbrname
         # *[railway][name][name=~/(?i)\b(aansl|empl|goed|ind|inhaalsp|opstel|overloopw|racc|rang|terr)\b/][inside("NL")]!.abbrname
@@ -2057,9 +2225,39 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # throwWarning:tr("Agreed upon was to use 100 as the maximum speed and {0} as the conditional maximum speed","{1.value}")
                 err.append({'class': 7, 'subclass': 640790005, 'text': mapcss.tr('Agreed upon was to use 100 as the maximum speed and {0} as the conditional maximum speed', mapcss._tag_uncapture(capture_tags, '{1.value}'))})
 
+        # way[highway=motorway][maxspeed][maxspeed>130][inside("NL")]
+        # way[highway=motorway_link][maxspeed][maxspeed>130][inside("NL")]
+        # way[highway=trunk][maxspeed][maxspeed>100][inside("NL")]
+        # way[highway=trunk_link][maxspeed][maxspeed>100][inside("NL")]
+        # way[motorroad=yes][maxspeed][maxspeed>100][inside("NL")][highway!~/^(motorway(_link)?|construction|proposed)$/]
+        # way[highway][maxspeed][maxspeed>80][highway!~/^(motorway(_link)?|trunk(_link)?|cycleway|service|busway|construction|proposed|raceway)$/][motorroad!=yes][inside("NL")]
         # way[highway=cycleway][maxspeed][maxspeed>40][!motor_vehicle][!vehicle][!access][inside("NL")]
-        if ('highway' in keys and 'maxspeed' in keys):
+        if ('highway' in keys and 'maxspeed' in keys) or ('maxspeed' in keys and 'motorroad' in keys):
             match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'motorway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'maxspeed')) and (mapcss._tag_capture(capture_tags, 2, tags, 'maxspeed') > mapcss._value_capture(capture_tags, 2, 130)) and (mapcss.inside(self.father.config.options, 'NL')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'motorway_link')) and (mapcss._tag_capture(capture_tags, 1, tags, 'maxspeed')) and (mapcss._tag_capture(capture_tags, 2, tags, 'maxspeed') > mapcss._value_capture(capture_tags, 2, 130)) and (mapcss.inside(self.father.config.options, 'NL')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'trunk')) and (mapcss._tag_capture(capture_tags, 1, tags, 'maxspeed')) and (mapcss._tag_capture(capture_tags, 2, tags, 'maxspeed') > mapcss._value_capture(capture_tags, 2, 100)) and (mapcss.inside(self.father.config.options, 'NL')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'trunk_link')) and (mapcss._tag_capture(capture_tags, 1, tags, 'maxspeed')) and (mapcss._tag_capture(capture_tags, 2, tags, 'maxspeed') > mapcss._value_capture(capture_tags, 2, 100)) and (mapcss.inside(self.father.config.options, 'NL')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'motorroad') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'maxspeed')) and (mapcss._tag_capture(capture_tags, 2, tags, 'maxspeed') > mapcss._value_capture(capture_tags, 2, 100)) and (mapcss.inside(self.father.config.options, 'NL')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 4, self.re_62e192cf, '^(motorway(_link)?|construction|proposed)$'), mapcss._tag_capture(capture_tags, 4, tags, 'highway'))))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'maxspeed')) and (mapcss._tag_capture(capture_tags, 2, tags, 'maxspeed') > mapcss._value_capture(capture_tags, 2, 80)) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_39064d44, '^(motorway(_link)?|trunk(_link)?|cycleway|service|busway|construction|proposed|raceway)$'), mapcss._tag_capture(capture_tags, 3, tags, 'highway'))) and (mapcss._tag_capture(capture_tags, 4, tags, 'motorroad') != mapcss._value_const_capture(capture_tags, 4, 'yes', 'yes')) and (mapcss.inside(self.father.config.options, 'NL')))
+                except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'cycleway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'maxspeed')) and (mapcss._tag_capture(capture_tags, 2, tags, 'maxspeed') > mapcss._value_capture(capture_tags, 2, 40)) and (not mapcss._tag_capture(capture_tags, 3, tags, 'motor_vehicle')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'vehicle')) and (not mapcss._tag_capture(capture_tags, 5, tags, 'access')) and (mapcss.inside(self.father.config.options, 'NL')))
@@ -2067,7 +2265,46 @@ class Josm_DutchSpecific(PluginMapCSS):
             if match:
                 # group:tr("NL speed limits")
                 # throwWarning:tr("{0} together with {1}","{0.tag}","{1.tag}")
-                err.append({'class': 7, 'subclass': 244962748, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+                # assertNoMatch:"way highway=motorway maxspeed=120"
+                # assertNoMatch:"way highway=motorway_link motorroad=yes maxspeed=130"
+                # assertNoMatch:"way highway=tertiary motorroad=yes maxspeed=100"
+                # assertNoMatch:"way highway=trunk maxspeed=90"
+                # assertNoMatch:"way highway=trunk_link maxspeed=100"
+                # assertNoMatch:"way highway=unclassified maxspeed=80"
+                err.append({'class': 7, 'subclass': 286842004, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+
+        # way[maxspeed:mofa][maxspeed:mofa>25][inside("NL")]
+        # way[maxspeed:moped][maxspeed:moped>45][inside("NL")]
+        # way[maxspeed:bus][maxspeed:bus>100][inside("NL")]
+        # way[maxspeed:trailer][maxspeed:trailer>90][inside("NL")]
+        # way[maxspeed:hgv][maxspeed:hgv>80][inside("NL")]
+        if ('maxspeed:bus' in keys) or ('maxspeed:hgv' in keys) or ('maxspeed:mofa' in keys) or ('maxspeed:moped' in keys) or ('maxspeed:trailer' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxspeed:mofa')) and (mapcss._tag_capture(capture_tags, 1, tags, 'maxspeed:mofa') > mapcss._value_capture(capture_tags, 1, 25)) and (mapcss.inside(self.father.config.options, 'NL')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxspeed:moped')) and (mapcss._tag_capture(capture_tags, 1, tags, 'maxspeed:moped') > mapcss._value_capture(capture_tags, 1, 45)) and (mapcss.inside(self.father.config.options, 'NL')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxspeed:bus')) and (mapcss._tag_capture(capture_tags, 1, tags, 'maxspeed:bus') > mapcss._value_capture(capture_tags, 1, 100)) and (mapcss.inside(self.father.config.options, 'NL')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxspeed:trailer')) and (mapcss._tag_capture(capture_tags, 1, tags, 'maxspeed:trailer') > mapcss._value_capture(capture_tags, 1, 90)) and (mapcss.inside(self.father.config.options, 'NL')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxspeed:hgv')) and (mapcss._tag_capture(capture_tags, 1, tags, 'maxspeed:hgv') > mapcss._value_capture(capture_tags, 1, 80)) and (mapcss.inside(self.father.config.options, 'NL')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("NL speed limits")
+                # throwWarning:tr("{0} overschrijdt de maximumsnelheid van RVV art. 22","{0.tag}")
+                # assertNoMatch:"way highway=unclassified maxspeed:moped=45"
+                err.append({'class': 7, 'subclass': 790150725, 'text': mapcss.tr('{0} overschrijdt de maximumsnelheid van RVV art. 22', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # way[oneway:bicycle?!][!oneway:mofa][oneway?][inside("NL")]
         if ('oneway' in keys and 'oneway:bicycle' in keys):
@@ -2145,6 +2382,19 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # suggestAlternative:"geen relatie"
                 # suggestAlternative:"type=street"
                 err.append({'class': 2, 'subclass': 1207029826, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # *[addr:interpolation][inside("NL")]
+        if ('addr:interpolation' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'addr:interpolation')) and (mapcss.inside(self.father.config.options, 'NL')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("NL deprecated features")
+                # throwWarning:tr("Adressen ({0}) worden in Nederland individueel geïmporteerd uit de BAG","{0.key}")
+                # suggestAlternative:"meerdere addr:housenumber via een BAG importverzoek"
+                err.append({'class': 2, 'subclass': 864819394, 'text': mapcss.tr('Adressen ({0}) worden in Nederland individueel geïmporteerd uit de BAG', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # *[is_in=NL]
         # *[is_in:country][inside("NL")]
@@ -2265,13 +2515,13 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # suggestAlternative:"old_name=*"
                 err.append({'class': 3, 'subclass': 538711457, 'text': mapcss.tr('descriptive name')})
 
-        # *[name][place][name=~/\b(Adm|Burg|Dr|Drs|Ds|Gen|Ing|Ir|Mr|Past|Prof|St|Weth)\.? [A-Za-z]/][inside("NL")]!.abbrname
+        # *[name][place][name=~/\b(Adm|Burg|Dr|Drs|Ds|Gen|Ing|Ir|Mgr|Mr|Past|Prof|St|Weth)\.? [A-Za-z]/][inside("NL")]!.abbrname
         # *[name][place][name=~/^[A-Z][a-z]{1,4}\. /][inside("NL")]!.abbrname
         if ('name' in keys and 'place' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((not set_abbrname) and (mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss._tag_capture(capture_tags, 1, tags, 'place')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_3082f445), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'NL')))
+                try: match = ((not set_abbrname) and (mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss._tag_capture(capture_tags, 1, tags, 'place')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_1e0ec701), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'NL')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -2282,7 +2532,7 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # group:tr("NL nomenclature")
                 # throwWarning:tr("Gebiedsnaam met afkorting")
                 set_abbrname = True
-                err.append({'class': 3, 'subclass': 1829114630, 'text': mapcss.tr('Gebiedsnaam met afkorting')})
+                err.append({'class': 3, 'subclass': 1737008469, 'text': mapcss.tr('Gebiedsnaam met afkorting')})
 
         # *[railway][name][name=~/(?i)(aansl|empl|goed|ind|inhaalsp|opstel|overloopw|racc|rang|terr)\./][inside("NL")]!.abbrname
         # *[railway][name][name=~/(?i)\b(aansl|empl|goed|ind|inhaalsp|opstel|overloopw|racc|rang|terr)\b/][inside("NL")]!.abbrname
@@ -2460,12 +2710,17 @@ class Test(TestPluginMapcss):
         self.check_not_err(n.way(data, {'highway': 'residential', 'junction': 'circular', 'oneway': 'yes', 'traffic_sign': 'NL:D1'}, [0]), expected={'class': 5, 'subclass': 1998584294})
         self.check_err(n.way(data, {'highway': 'residential', 'junction': 'circular', 'traffic_sign': 'NL:D1'}, [0]), expected={'class': 5, 'subclass': 1998584294})
         self.check_err(n.way(data, {'highway': 'residential', 'junction': 'circular', 'oneway': 'no', 'traffic_sign': 'NL:D1'}, [0]), expected={'class': 5, 'subclass': 1998584294})
-        self.check_err(n.way(data, {'highway': 'residential', 'parking:lane:both': 'no', 'traffic_sign:left': 'NL:E02'}, [0]), expected={'class': 5, 'subclass': 1501968560})
-        self.check_err(n.way(data, {'highway': 'residential', 'parking:lane:left': 'no', 'traffic_sign:left': 'NL:E02'}, [0]), expected={'class': 5, 'subclass': 1501968560})
-        self.check_not_err(n.way(data, {'highway': 'residential', 'parking:lane:left': 'parallel', 'traffic_sign:left': 'NL:E02'}, [0]), expected={'class': 5, 'subclass': 1501968560})
-        self.check_not_err(n.way(data, {'highway': 'residential', 'parking:condition:both': 'no_stopping', 'parking:lane:both': 'no', 'traffic_sign:left': 'NL:E02', 'traffic_sign:right': 'NL:E02'}, [0]), expected={'class': 5, 'subclass': 1501968560})
-        self.check_not_err(n.way(data, {'highway': 'residential', 'name': 'De Visserstraat'}, [0]), expected={'class': 3, 'subclass': 275992542})
-        self.check_not_err(n.way(data, {'highway': 'residential', 'name': 'J.T. de Visserstraat'}, [0]), expected={'class': 3, 'subclass': 275992542})
+        self.check_err(n.way(data, {'highway': 'residential', 'parking:both': 'no', 'traffic_sign:left': 'NL:E02'}, [0]), expected={'class': 5, 'subclass': 1906957495})
+        self.check_err(n.way(data, {'highway': 'residential', 'parking:lane:both': 'no', 'traffic_sign:left': 'NL:E02'}, [0]), expected={'class': 5, 'subclass': 1906957495})
+        self.check_err(n.way(data, {'highway': 'residential', 'parking:lane:left': 'no', 'traffic_sign:left': 'NL:E02'}, [0]), expected={'class': 5, 'subclass': 1906957495})
+        self.check_not_err(n.way(data, {'highway': 'residential', 'parking:lane:left': 'parallel', 'traffic_sign:left': 'NL:E02'}, [0]), expected={'class': 5, 'subclass': 1906957495})
+        self.check_err(n.way(data, {'highway': 'residential', 'parking:left': 'no', 'traffic_sign:left': 'NL:E02'}, [0]), expected={'class': 5, 'subclass': 1906957495})
+        self.check_not_err(n.way(data, {'highway': 'residential', 'parking:left': 'parallel', 'traffic_sign:left': 'NL:E02'}, [0]), expected={'class': 5, 'subclass': 1906957495})
+        self.check_not_err(n.way(data, {'highway': 'residential', 'parking:both': 'no', 'parking:both:restriction': 'no_stopping', 'traffic_sign:left': 'NL:E02', 'traffic_sign:right': 'NL:E02'}, [0]), expected={'class': 5, 'subclass': 1906957495})
+        self.check_not_err(n.way(data, {'highway': 'residential', 'parking:condition:both': 'no_stopping', 'parking:lane:both': 'no', 'traffic_sign:left': 'NL:E02', 'traffic_sign:right': 'NL:E02'}, [0]), expected={'class': 5, 'subclass': 1906957495})
+        self.check_not_err(n.way(data, {'highway': 'residential', 'parking:both': 'no', 'parking:left:restriction': 'no_parking', 'parking:right:restriction': 'no_parking', 'traffic_sign': 'NL:E01'}, [0]), expected={'class': 5, 'subclass': 1906957495})
+        self.check_not_err(n.way(data, {'highway': 'residential', 'name': 'De Visserstraat'}, [0]), expected={'class': 3, 'subclass': 34991053})
+        self.check_not_err(n.way(data, {'highway': 'residential', 'name': 'J.T. de Visserstraat'}, [0]), expected={'class': 3, 'subclass': 34991053})
         self.check_not_err(n.way(data, {'highway': 'residential', 'maxspeed:forward': '30', 'traffic_sign:forward': 'NL:A1-30'}, [0]), expected={'class': 7, 'subclass': 678880168})
         self.check_err(n.way(data, {'highway': 'residential', 'traffic_sign:forward': 'NL:A1-30'}, [0]), expected={'class': 7, 'subclass': 678880168})
         self.check_not_err(n.way(data, {'highway': 'residential', 'maxspeed': '30', 'traffic_sign': 'NL:A01-30'}, [0]), expected={'class': 7, 'subclass': 678880168})
@@ -2474,3 +2729,10 @@ class Test(TestPluginMapcss):
         self.check_err(n.way(data, {'highway': 'residential', 'traffic_sign': 'NL:A4'}, [0]), expected={'class': 7, 'subclass': 678880168})
         self.check_not_err(n.way(data, {'highway': 'residential', 'maxspeed:advisory:both_ways': '50', 'traffic_sign': 'NL:A4[50]'}, [0]), expected={'class': 7, 'subclass': 678880168})
         self.check_err(n.way(data, {'highway': 'residential', 'traffic_sign': 'NL:A4[60]'}, [0]), expected={'class': 7, 'subclass': 678880168})
+        self.check_not_err(n.way(data, {'highway': 'motorway', 'maxspeed': '120'}, [0]), expected={'class': 7, 'subclass': 286842004})
+        self.check_not_err(n.way(data, {'highway': 'motorway_link', 'maxspeed': '130', 'motorroad': 'yes'}, [0]), expected={'class': 7, 'subclass': 286842004})
+        self.check_not_err(n.way(data, {'highway': 'tertiary', 'maxspeed': '100', 'motorroad': 'yes'}, [0]), expected={'class': 7, 'subclass': 286842004})
+        self.check_not_err(n.way(data, {'highway': 'trunk', 'maxspeed': '90'}, [0]), expected={'class': 7, 'subclass': 286842004})
+        self.check_not_err(n.way(data, {'highway': 'trunk_link', 'maxspeed': '100'}, [0]), expected={'class': 7, 'subclass': 286842004})
+        self.check_not_err(n.way(data, {'highway': 'unclassified', 'maxspeed': '80'}, [0]), expected={'class': 7, 'subclass': 286842004})
+        self.check_not_err(n.way(data, {'highway': 'unclassified', 'maxspeed:moped': '45'}, [0]), expected={'class': 7, 'subclass': 790150725})

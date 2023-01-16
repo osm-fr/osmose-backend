@@ -4163,6 +4163,9 @@ class Josm_deprecated(PluginMapCSS):
                     mapcss._tag_uncapture(capture_tags, '{0.key}')])
                 }})
 
+        # *[historic=archaeological_site][site_type]
+        # Rule Blacklisted (id: 595008939)
+
         return err
 
     def way(self, data, tags, nds):
@@ -8221,6 +8224,9 @@ class Josm_deprecated(PluginMapCSS):
                     mapcss._tag_uncapture(capture_tags, '{0.key}')])
                 }})
 
+        # *[historic=archaeological_site][site_type]
+        # Rule Blacklisted (id: 595008939)
+
         return err
 
     def relation(self, data, tags, members):
@@ -11674,6 +11680,9 @@ class Josm_deprecated(PluginMapCSS):
                     '-': ([
                     mapcss._tag_uncapture(capture_tags, '{0.key}')])
                 }})
+
+        # *[historic=archaeological_site][site_type]
+        # Rule Blacklisted (id: 595008939)
 
         return err
 

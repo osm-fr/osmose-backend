@@ -76,7 +76,7 @@ class Analyser_Merge_Road_FR(Analyser_Merge_Network):
                     types = ['ways'],
                     tags = {'highway': None}),
                 conflationDistance = 15,
-                minLength = 200,
+                minLength = 50,
                 mapping = Mapping(
                     static1 = {'highway': 'road'},
                     static2 = {'source': self.source},
