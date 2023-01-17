@@ -277,11 +277,14 @@ france_departement = gen_country('europe', 'france', download_repo=OSMFR, langua
     'merge_road_FR',
 ], **{'addr:city-admin_level': '8,9'})
 
-france_departement("alsace/bas_rhin", 7415, "FR-67")
+france_departement("alsace/bas_rhin", 7415, "FR-67"), include=[
+    # Strasbourg
+    'merge_bicycle_parking_FR_strasbourg',
+])
 france_departement("alsace/haut_rhin", 7403, "FR-68")
 
 include_aquitaine = [
-    # Aquitiane
+    # Aquitaine
     'merge_tourism_FR_aquitaine_camp_caravan',
     'merge_tourism_FR_aquitaine_museum',
     'merge_sport_FR_aquitaine_equestrian',
