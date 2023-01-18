@@ -26,6 +26,12 @@ def main(mapcsss):
                 print(traceback.format_exc())
                 print(e)
 
+    # Regenerate all local files too
+    files = list(Path('plugins').rglob('*.mapcss'))
+    for file in files:
+        importlib.reload(mapcss2osmose)
+        print(file)
+        mapcss2osmose.mapcss2osmose(mapcss = file, output_path = str(file.parent))
 
 if __name__ == '__main__':
     main(sys.argv[1:])

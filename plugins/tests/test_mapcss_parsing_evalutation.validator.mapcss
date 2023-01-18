@@ -1,0 +1,162 @@
+/* Disclaimer: 
+This document only serves to contain test cases to evaluate
+the parsing and evaluation of mapcss files, and is therefore
+not supposed to be used in JOSM for validation of OSM data */
+
+
+node[x=0] {
+  throwWarning: "test #1740";
+  assertMatch: "node x=0";
+  assertNoMatch: "node x=1";
+  assertNoMatch: "node x=1.0";
+  assertNoMatch: "node x=Osmose";
+  -osmoseTags: list("fix:survey");
+  -osmoseItemClassLevel: "4030/40301:0/2";
+}
+node[x!=0] {
+  throwWarning: "test #1740";
+  assertMatch: "node x=1";
+  assertMatch: "node x=1.0";
+  assertMatch: "node x=Osmose";
+  assertNoMatch: "node x=0";
+}
+
+
+way[x~=C1] {
+  throwWarning: "test #1610";
+  assertMatch: "way x=C1";
+  assertMatch: "way x=C00;C1;C22";
+  assertNoMatch: "way x=C12";
+}
+
+
+way:righthandtraffic[x=y][z?] {
+  throwWarning: tr("test #1603 - {0}{1}", "{1.tag}", "{2.tag}");
+  -osmoseAssertMatchWithContext:list("way x=y z=yes", "inside=NL");
+}
+way[x=y][z?]:righthandtraffic {
+  throwWarning: tr("test #1603 - {0}{1}", "{0.tag}", "{1.tag}");
+  -osmoseAssertMatchWithContext:list("way x=y z=yes", "inside=NL");
+}
+
+
+*[parking][amenity!~/^(parking|motorcycle_parking)$/] {
+  throwWarning: tr("test #994 - {0}{1}", "{0.key}", "{1.tag}");
+  assertMatch: "node parking=yes amenity=osmose";
+  assertNoMatch: "node parking=yes amenity=parking";
+}
+
+
+*[a][!c],
+*[b][!/d/] {
+  throwWarning: tr("test #328 - {0}{1}", "{0.key}", "{1.key}");
+  assertMatch: "way a=b";
+  assertMatch: "way b=c";
+  assertNoMatch: "way a=b c=d";
+  assertNoMatch: "way b=a d=c";
+}
+
+
+*[/abc/=~/def/] {
+  assertMatch: "relation xabcx=xdefx";
+  assertMatch: "relation abc=def";
+  assertNoMatch: "relation abc=ghi";
+  assertNoMatch: "relation ABC=DEF";
+  throwWarning: "test commit 373d1ff9bacf8126508bbf3e37467df2bdf17fbd"
+}
+
+
+*[addr:street =~ /(?i).*Straße.*/][inside("LI,CH")] {
+  -osmoseAssertMatchWithContext:list("node addr:street=Neuestraßebahn", "inside=LI");
+  -osmoseAssertNoMatchWithContext:list("node addr:street=Neuestraßebahn", "inside=FR");
+  throwWarning: tr("test #327");
+}
+
+
+way:righthandtraffic {
+  throwWarning: tr("test righthandtraffic");
+  -osmoseAssertMatchWithContext:list("way", "driving_side=right");
+  -osmoseAssertNoMatchWithContext:list("way", "driving_side=left");
+}
+way!:righthandtraffic {
+  throwWarning: tr("test lefthandtraffic");
+  -osmoseAssertMatchWithContext:list("way", "driving_side=left");
+  -osmoseAssertNoMatchWithContext:list("way", "driving_side=right");
+}
+
+
+way[count(uniq_list(tag_regex("abc"))) == 2] {
+  throwWarning: "test";
+  assertMatch: "way abc=def abcdef=ghi abcd=ghi";
+  assertMatch: "way abc=def abcdef=ghi";
+  assertNoMatch: "way abc=def def=def";
+  assertNoMatch: "way abc=def abcdef=def";
+}
+way[count(uniq_list(tag_regex("abc"))) == 2.0] {
+  throwWarning: "test";
+  assertMatch: "way abc=def abcdef=ghi abcd=ghi";
+  assertMatch: "way abc=def abcdef=ghi";
+  assertNoMatch: "way abc=def def=def";
+  assertNoMatch: "way abc=def abcdef=def";
+}
+
+
+way[oneway?] {
+  throwWarning: tr("test {0}", "{0.tag}");
+  assertMatch: "way oneway=1";
+  assertMatch: "way oneway=yes";
+  assertNoMatch: "way oneway=no";
+  assertNoMatch: "way oneway=4.0";
+  assertNoMatch: "way x=y";
+}
+way[oneway?!] {
+  throwWarning: tr("test {0}", "{0.tag}");
+  assertMatch: "way oneway=0";
+  assertMatch: "way oneway=no";
+  assertNoMatch: "way oneway=yes";
+  assertNoMatch: "way x=y";
+}
+
+/*
+way[name*=Trigger][tag("building")=="chapel"||tag("amenity")=="place_of_worship"][x] {
+  assertMatch: "way amenity=place_of_worship name=OsmoseRuleTrigger x=yes";
+  assertMatch: "way building=chapel name=OsmoseRuleTrigger x=yes";
+  assertMatch: "way amenity=place_of_worship building=chapel name=OsmoseRuleTrigger x=yes";
+  assertNoMatch: "way amenity=place_of_worship name=Westminster x=yes";
+  throwWarning: tr("test #1303, #1742 {0}", "{2.key}");
+}*/
+way[name*=Trigger][tag("building")=="chapel"&&tag("amenity")=="place_of_worship"][x] {
+  assertMatch: "way amenity=place_of_worship building=chapel name=OsmoseRuleTrigger x=yes";
+  assertNoMatch: "way amenity=place_of_worship building=chapel name=Westminster x=yes";
+  assertNoMatch: "way amenity=place_of_worship name=OsmoseRuleTrigger x=yes";
+  assertNoMatch: "way building=chapel name=OsmoseRuleTrigger x=yes";
+  throwWarning: tr("test #1303 {0}", "{2.key}");
+}
+
+
+*[a][a=*b] {
+  throwError: "test";
+  assertMatch: "node a=x b=x";
+  assertNoMatch: "node a=x b=y";
+  assertNoMatch: "node a=x";
+}
+
+
+node[lit][eval(number_of_tags()) = 1] {
+  throwWarning: "test";
+  assertMatch: "node lit=yes";
+  assertNoMatch: "node abc=def lit=yes";
+}
+node[lit][number_of_tags() == 1] {
+  throwWarning: "test";
+  assertMatch: "node lit=yes";
+  assertNoMatch: "node abc=def lit=yes";
+}
+
+way[maxspeed > 5000] {
+  throwWarning: tr("test {0}{1}", "text", "{0.key}");
+  assertMatch: "way maxspeed=10000";
+  assertNoMatch: "way maxspeed=5000";
+  assertNoMatch: "way maxspeed=default";
+  assertNoMatch: "way";
+}
