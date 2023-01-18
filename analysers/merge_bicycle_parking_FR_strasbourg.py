@@ -23,12 +23,6 @@
 from modules.OsmoseTranslation import T_
 from .Analyser_Merge import Analyser_Merge_Point, SourceOpenDataSoft, CSV, Load_XY, Conflate, Select, Mapping
 
-STANDS_TYPES = {
-    "Arceau autre": "stands",
-    "Arceau St-Germain": "wide_stands",
-    "Epingle vélo": "stands",
-    "Sans": "floor",
-}
 tag_mapping = {
     "ref": (
         lambda res["id_local"]
