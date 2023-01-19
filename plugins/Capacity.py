@@ -50,7 +50,7 @@ class Capacity(Plugin):
                 or tags["capacity"] == ""):
             return []
         # capacity (non-round number in cubic meters or liters) is also for volumes: storage_tank, reservoir_covered, water_tower
-        if "man_made" in tags or ("amenity" in tags and tags["amenity"] == "waste_disposal"):
+        if "man_made" in tags or ("amenity" in tags and tags["amenity"] in ("waste_disposal", "recycling")):
             return []
         try:
             total_capacity = int(tags["capacity"])
