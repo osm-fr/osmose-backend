@@ -1315,7 +1315,7 @@ class Josm_combinations(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'voltage:primary')) and (mapcss._tag_capture(capture_tags, 1, tags, 'voltage:secondary')) and (mapcss._tag_capture(capture_tags, 2, tags, 'transformer') == mapcss._value_capture(capture_tags, 2, 'generator')) and (mapcss._tag_capture(capture_tags, 3, tags, 'voltage:secondary') < mapcss._value_capture(capture_tags, 3, mapcss.tag(tags, 'voltage:primary'))))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'voltage:primary')) and (mapcss._tag_capture(capture_tags, 1, tags, 'voltage:secondary')) and (mapcss._tag_capture(capture_tags, 2, tags, 'transformer') == mapcss._value_capture(capture_tags, 2, 'generator')) and (mapcss.tag(tags, 'voltage:secondary') < mapcss.tag(tags, 'voltage:primary')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
@@ -2873,31 +2873,31 @@ class Josm_combinations(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((set_MotorwayTrunk) and (mapcss._tag_capture(capture_tags, 1, tags, 'lanes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'turn:lanes')) and (mapcss._tag_capture(capture_tags, 3, tags, 'lanes') != mapcss._value_capture(capture_tags, 3, mapcss.count(mapcss.split('|', mapcss.tag(tags, 'turn:lanes'))))))
+                try: match = ((set_MotorwayTrunk) and (mapcss._tag_capture(capture_tags, 1, tags, 'lanes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'turn:lanes')) and (mapcss.tag(tags, 'lanes') != mapcss.count(mapcss.split('|', mapcss.tag(tags, 'turn:lanes')))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((set_MotorwayTrunk) and (mapcss._tag_capture(capture_tags, 1, tags, 'lanes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'change:lanes')) and (mapcss._tag_capture(capture_tags, 3, tags, 'lanes') != mapcss._value_capture(capture_tags, 3, mapcss.count(mapcss.split('|', mapcss.tag(tags, 'change:lanes'))))))
+                try: match = ((set_MotorwayTrunk) and (mapcss._tag_capture(capture_tags, 1, tags, 'lanes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'change:lanes')) and (mapcss.tag(tags, 'lanes') != mapcss.count(mapcss.split('|', mapcss.tag(tags, 'change:lanes')))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((set_MotorwayTrunk) and (mapcss._tag_capture(capture_tags, 1, tags, 'lanes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'maxspeed:lanes')) and (mapcss._tag_capture(capture_tags, 3, tags, 'lanes') != mapcss._value_capture(capture_tags, 3, mapcss.count(mapcss.split('|', mapcss.tag(tags, 'maxspeed:lanes'))))))
+                try: match = ((set_MotorwayTrunk) and (mapcss._tag_capture(capture_tags, 1, tags, 'lanes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'maxspeed:lanes')) and (mapcss.tag(tags, 'lanes') != mapcss.count(mapcss.split('|', mapcss.tag(tags, 'maxspeed:lanes')))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((set_MotorwayTrunk) and (mapcss._tag_capture(capture_tags, 1, tags, 'lanes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'minspeed:lanes')) and (mapcss._tag_capture(capture_tags, 3, tags, 'lanes') != mapcss._value_capture(capture_tags, 3, mapcss.count(mapcss.split('|', mapcss.tag(tags, 'minspeed:lanes'))))))
+                try: match = ((set_MotorwayTrunk) and (mapcss._tag_capture(capture_tags, 1, tags, 'lanes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'minspeed:lanes')) and (mapcss.tag(tags, 'lanes') != mapcss.count(mapcss.split('|', mapcss.tag(tags, 'minspeed:lanes')))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((set_MotorwayTrunk) and (mapcss._tag_capture(capture_tags, 1, tags, 'lanes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'destination:lanes')) and (mapcss._tag_capture(capture_tags, 3, tags, 'lanes') != mapcss._value_capture(capture_tags, 3, mapcss.count(mapcss.split('|', mapcss.tag(tags, 'destination:lanes'))))))
+                try: match = ((set_MotorwayTrunk) and (mapcss._tag_capture(capture_tags, 1, tags, 'lanes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'destination:lanes')) and (mapcss.tag(tags, 'lanes') != mapcss.count(mapcss.split('|', mapcss.tag(tags, 'destination:lanes')))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((set_MotorwayTrunk) and (mapcss._tag_capture(capture_tags, 1, tags, 'lanes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'destination:ref:lanes')) and (mapcss._tag_capture(capture_tags, 3, tags, 'lanes') != mapcss._value_capture(capture_tags, 3, mapcss.count(mapcss.split('|', mapcss.tag(tags, 'destination:ref:lanes'))))))
+                try: match = ((set_MotorwayTrunk) and (mapcss._tag_capture(capture_tags, 1, tags, 'lanes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'destination:ref:lanes')) and (mapcss.tag(tags, 'lanes') != mapcss.count(mapcss.split('|', mapcss.tag(tags, 'destination:ref:lanes')))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((set_MotorwayTrunk) and (mapcss._tag_capture(capture_tags, 1, tags, 'lanes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'destination:symbol:lanes')) and (mapcss._tag_capture(capture_tags, 3, tags, 'lanes') != mapcss._value_capture(capture_tags, 3, mapcss.count(mapcss.split('|', mapcss.tag(tags, 'destination:symbol:lanes'))))))
+                try: match = ((set_MotorwayTrunk) and (mapcss._tag_capture(capture_tags, 1, tags, 'lanes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'destination:symbol:lanes')) and (mapcss.tag(tags, 'lanes') != mapcss.count(mapcss.split('|', mapcss.tag(tags, 'destination:symbol:lanes')))))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
@@ -3438,7 +3438,7 @@ class Josm_combinations(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'voltage:primary')) and (mapcss._tag_capture(capture_tags, 1, tags, 'voltage:secondary')) and (mapcss._tag_capture(capture_tags, 2, tags, 'transformer') == mapcss._value_capture(capture_tags, 2, 'generator')) and (mapcss._tag_capture(capture_tags, 3, tags, 'voltage:secondary') < mapcss._value_capture(capture_tags, 3, mapcss.tag(tags, 'voltage:primary'))))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'voltage:primary')) and (mapcss._tag_capture(capture_tags, 1, tags, 'voltage:secondary')) and (mapcss._tag_capture(capture_tags, 2, tags, 'transformer') == mapcss._value_capture(capture_tags, 2, 'generator')) and (mapcss.tag(tags, 'voltage:secondary') < mapcss.tag(tags, 'voltage:primary')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
@@ -4458,7 +4458,7 @@ class Josm_combinations(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'voltage:primary')) and (mapcss._tag_capture(capture_tags, 1, tags, 'voltage:secondary')) and (mapcss._tag_capture(capture_tags, 2, tags, 'transformer') == mapcss._value_capture(capture_tags, 2, 'generator')) and (mapcss._tag_capture(capture_tags, 3, tags, 'voltage:secondary') < mapcss._value_capture(capture_tags, 3, mapcss.tag(tags, 'voltage:primary'))))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'voltage:primary')) and (mapcss._tag_capture(capture_tags, 1, tags, 'voltage:secondary')) and (mapcss._tag_capture(capture_tags, 2, tags, 'transformer') == mapcss._value_capture(capture_tags, 2, 'generator')) and (mapcss.tag(tags, 'voltage:secondary') < mapcss.tag(tags, 'voltage:primary')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
