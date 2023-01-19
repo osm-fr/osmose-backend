@@ -129,7 +129,7 @@ def booleanExpression_dereference_first_operand(t, c):
     Replace first operand by the value of the tag
     """
     if len(t['operands']) >= 1 and t['operands'][0]['type'] in ('osmtag', 'quoted'):
-        t['operands'][0] = {'type': 'functionExpression', 'name': 'tag', 'params': [t['operands'][0]]}
+        t['operands'][0] = {'type': 'functionExpression', 'name': 'maintag', 'params': [t['operands'][0]]}
     return t
 
 def booleanExpression_capture_first_operand(t, c):
@@ -137,7 +137,7 @@ def booleanExpression_capture_first_operand(t, c):
     type = booleanExpression
     Capture first operand tag
     """
-    if len(t['operands']) >= 1 and t['operands'][0]['type'] == 'functionExpression' and t['operands'][0]['name'] == 'tag':
+    if len(t['operands']) >= 1 and t['operands'][0]['type'] == 'functionExpression' and t['operands'][0]['name'] == 'maintag':
         if not t['operator'] in ('!', '!=', '!~'):
             c['selector_capture'].append(t['operands'][0]['params'][0])
         t['operands'][0] = {'type': 'functionExpression', 'name': '_tag_capture', 'params': ['capture_tags', str(t['selector_index']), 'tags', t['operands'][0]['params'][0]]}
@@ -245,7 +245,7 @@ def rule_declarations_order(t, c):
     type = rule
     Order the declarations in order attended by the code generator
     """
-    t['declarations'] = sorted(t['declarations'], key = lambda d: (d.get('property') and [rule_declarations_order_map.get(d['property']) or print("W: Unknow property: " + d['property']) and -1, str(d['value'])]) or [-1, -1])
+    t['declarations'] = sorted(t['declarations'], key = lambda d: (d.get('property') and [rule_declarations_order_map.get(d['property']) or print("W: Unknown property: " + d['property']) and -1, str(d['value'])]) or [-1, -1])
     return t
 
 def selector_before_capture(t, c):
@@ -350,7 +350,7 @@ def quoted_uncapture(t, c):
 def functionExpression_runtime(t, c):
     """
     type = functionExpression
-    Add runtime pyhton paramter and function name
+    Add runtime python parameter and function name
     """
     if t['name'] == 'osm_id':
         return "dada['id']"
