@@ -117,20 +117,26 @@ way[oneway?!] {
   assertNoMatch: "way x=y";
 }
 
-/*
+
 way[name*=Trigger][tag("building")=="chapel"||tag("amenity")=="place_of_worship"][x] {
   assertMatch: "way amenity=place_of_worship name=OsmoseRuleTrigger x=yes";
   assertMatch: "way building=chapel name=OsmoseRuleTrigger x=yes";
   assertMatch: "way amenity=place_of_worship building=chapel name=OsmoseRuleTrigger x=yes";
   assertNoMatch: "way amenity=place_of_worship name=Westminster x=yes";
   throwWarning: tr("test #1303, #1742 {0}", "{2.key}");
-}*/
+}
 way[name*=Trigger][tag("building")=="chapel"&&tag("amenity")=="place_of_worship"][x] {
   assertMatch: "way amenity=place_of_worship building=chapel name=OsmoseRuleTrigger x=yes";
   assertNoMatch: "way amenity=place_of_worship building=chapel name=Westminster x=yes";
   assertNoMatch: "way amenity=place_of_worship name=OsmoseRuleTrigger x=yes";
   assertNoMatch: "way building=chapel name=OsmoseRuleTrigger x=yes";
   throwWarning: tr("test #1303 {0}", "{2.key}");
+}
+
+
+way[inside(FR)][x] {
+  throwWarning: tr("test #1742 - {0}", "{1.tag}");
+  -osmoseAssertMatchWithContext:list("way x=y", "inside=FR");
 }
 
 
@@ -159,4 +165,12 @@ way[maxspeed > 5000] {
   assertNoMatch: "way maxspeed=5000";
   assertNoMatch: "way maxspeed=default";
   assertNoMatch: "way";
+}
+way[tag(a) > tag(b)] {
+  throwWarning: "test";
+  assertMatch: "way a=1 b=0";
+  assertMatch: "way a=1.5 b=0";
+  assertNoMatch: "way a=0 b=1";
+  assertNoMatch: "way a=0 b=yes";
+  assertNoMatch: "way a=no b=yes";
 }
