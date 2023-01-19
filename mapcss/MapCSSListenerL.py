@@ -107,7 +107,6 @@ class MapCSSListenerL(MapCSSListener):
             'question_mark': not (not (ctx.QUESTION_MARK())),
             'question_mark_negated': not (not (ctx.QUESTION_MARK_NEGATED())),
             'selector_index': self.selector_index}
-        self.selector_index += 1
 
 
 #    # Enter a parse tree produced by MapCSSParser#class_selector.
@@ -198,6 +197,9 @@ class MapCSSListenerL(MapCSSListener):
                 [],
             'selector_index': self.selector_index
         })
+
+    # Exit a parse tree produced by MapCSSParser#attribute_selector.
+    def exitAttribute_selector(self, ctx:MapCSSParser.Attribute_selectorContext):
         self.selector_index += 1
 
 
