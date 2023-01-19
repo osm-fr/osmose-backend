@@ -354,11 +354,11 @@ class Josm_unnecessary(PluginMapCSS):
         # *[name][name=~/^(?i)(school|école|Школа)$/][amenity!=school]
         # *[name][name=~/^(?i)(house|rumah|vivienda)$/][building][building!=house][building!=no]
         # *[name][name=~/^(?i)(casa)$/][building][building!=house][building!=no][outside("FR")]
-        if ('amenity' in keys and 'building' in keys and 'name' in keys) or ('building' in keys and 'name' in keys) or ('name' in keys):
+        if ('building' in keys and 'name' in keys) or ('name' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7c3e64db), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'building') == mapcss._value_capture(capture_tags, 2, 'chapel') or mapcss._tag_capture(capture_tags, 3, tags, 'amenity') == mapcss._value_capture(capture_tags, 3, 'place_of_worship')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7c3e64db), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.tag(tags, 'building') == 'chapel' or mapcss.tag(tags, 'amenity') == 'place_of_worship'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -805,11 +805,11 @@ class Josm_unnecessary(PluginMapCSS):
         # *[name][name=~/^(?i)(school|école|Школа)$/][amenity!=school]
         # *[name][name=~/^(?i)(house|rumah|vivienda)$/][building][building!=house][building!=no]
         # *[name][name=~/^(?i)(casa)$/][building][building!=house][building!=no][outside("FR")]
-        if ('amenity' in keys and 'building' in keys and 'name' in keys) or ('building' in keys and 'name' in keys) or ('name' in keys):
+        if ('building' in keys and 'name' in keys) or ('name' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7c3e64db), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'building') == mapcss._value_capture(capture_tags, 2, 'chapel') or mapcss._tag_capture(capture_tags, 3, tags, 'amenity') == mapcss._value_capture(capture_tags, 3, 'place_of_worship')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7c3e64db), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.tag(tags, 'building') == 'chapel' or mapcss.tag(tags, 'amenity') == 'place_of_worship'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -1145,11 +1145,11 @@ class Josm_unnecessary(PluginMapCSS):
         # *[name][name=~/^(?i)(school|école|Школа)$/][amenity!=school]
         # *[name][name=~/^(?i)(house|rumah|vivienda)$/][building][building!=house][building!=no]
         # *[name][name=~/^(?i)(casa)$/][building][building!=house][building!=no][outside("FR")]
-        if ('amenity' in keys and 'building' in keys and 'name' in keys) or ('building' in keys and 'name' in keys) or ('name' in keys):
+        if ('building' in keys and 'name' in keys) or ('name' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7c3e64db), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'building') == mapcss._value_capture(capture_tags, 2, 'chapel') or mapcss._tag_capture(capture_tags, 3, tags, 'amenity') == mapcss._value_capture(capture_tags, 3, 'place_of_worship')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7c3e64db), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.tag(tags, 'building') == 'chapel' or mapcss.tag(tags, 'amenity') == 'place_of_worship'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}

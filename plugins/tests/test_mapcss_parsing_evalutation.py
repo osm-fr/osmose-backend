@@ -24,8 +24,10 @@ class test_mapcss_parsing_evalutation(PluginMapCSS):
         self.errors[9] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test righthandtraffic'))
         self.errors[10] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test lefthandtraffic'))
         self.errors[11] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
-        self.errors[12] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test #1303 {0}', mapcss._tag_uncapture(capture_tags, '{2.key}')))
-        self.errors[13] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test {0}{1}', 'text', mapcss._tag_uncapture(capture_tags, '{0.key}')))
+        self.errors[12] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test #1303, #1742 {0}', mapcss._tag_uncapture(capture_tags, '{2.key}')))
+        self.errors[13] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test #1303 {0}', mapcss._tag_uncapture(capture_tags, '{2.key}')))
+        self.errors[14] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test #1742 - {0}', mapcss._tag_uncapture(capture_tags, '{1.tag}')))
+        self.errors[15] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test {0}{1}', 'text', mapcss._tag_uncapture(capture_tags, '{0.key}')))
         self.errors[40301] = self.def_class(item = 4030, level = 2, tags = mapcss.list_('fix:survey'), title = {'en': 'test #1740'})
 
         self.re_3d3faeb5 = re.compile(r'(?i).*Straße.*')
@@ -352,12 +354,27 @@ class test_mapcss_parsing_evalutation(PluginMapCSS):
                 # assertNoMatch:"way x=y"
                 err.append({'class': 11, 'subclass': 722694187, 'text': mapcss.tr('test {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
-        # way[name*=Trigger][tag("building")=="chapel"&&tag("amenity")=="place_of_worship"][x]
-        if ('amenity' in keys and 'building' in keys and 'name' in keys and 'x' in keys):
+        # way[name*=Trigger][tag("building")=="chapel"||tag("amenity")=="place_of_worship"][x]
+        if ('name' in keys and 'x' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss.string_contains(mapcss._tag_capture(capture_tags, 0, tags, 'name'), mapcss._value_capture(capture_tags, 0, 'Trigger'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'building') == mapcss._value_capture(capture_tags, 1, 'chapel') and mapcss._tag_capture(capture_tags, 2, tags, 'amenity') == mapcss._value_capture(capture_tags, 2, 'place_of_worship')) and (mapcss._tag_capture(capture_tags, 4, tags, 'x')))
+                try: match = ((mapcss.string_contains(mapcss._tag_capture(capture_tags, 0, tags, 'name'), mapcss._value_capture(capture_tags, 0, 'Trigger'))) and (mapcss.tag(tags, 'building') == 'chapel' or mapcss.tag(tags, 'amenity') == 'place_of_worship') and (mapcss._tag_capture(capture_tags, 2, tags, 'x')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("test #1303, #1742 {0}","{2.key}")
+                # assertMatch:"way amenity=place_of_worship building=chapel name=OsmoseRuleTrigger x=yes"
+                # assertMatch:"way amenity=place_of_worship name=OsmoseRuleTrigger x=yes"
+                # assertNoMatch:"way amenity=place_of_worship name=Westminster x=yes"
+                # assertMatch:"way building=chapel name=OsmoseRuleTrigger x=yes"
+                err.append({'class': 12, 'subclass': 1095325051, 'text': mapcss.tr('test #1303, #1742 {0}', mapcss._tag_uncapture(capture_tags, '{2.key}'))})
+
+        # way[name*=Trigger][tag("building")=="chapel"&&tag("amenity")=="place_of_worship"][x]
+        if ('name' in keys and 'x' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss.string_contains(mapcss._tag_capture(capture_tags, 0, tags, 'name'), mapcss._value_capture(capture_tags, 0, 'Trigger'))) and (mapcss.tag(tags, 'building') == 'chapel' and mapcss.tag(tags, 'amenity') == 'place_of_worship') and (mapcss._tag_capture(capture_tags, 2, tags, 'x')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("test #1303 {0}","{2.key}")
@@ -365,7 +382,19 @@ class test_mapcss_parsing_evalutation(PluginMapCSS):
                 # assertNoMatch:"way amenity=place_of_worship building=chapel name=Westminster x=yes"
                 # assertNoMatch:"way amenity=place_of_worship name=OsmoseRuleTrigger x=yes"
                 # assertNoMatch:"way building=chapel name=OsmoseRuleTrigger x=yes"
-                err.append({'class': 12, 'subclass': 1140742172, 'text': mapcss.tr('test #1303 {0}', mapcss._tag_uncapture(capture_tags, '{2.key}'))})
+                err.append({'class': 13, 'subclass': 1140742172, 'text': mapcss.tr('test #1303 {0}', mapcss._tag_uncapture(capture_tags, '{2.key}'))})
+
+        # way[inside(FR)][x]
+        if ('x' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss.inside(self.father.config.options, 'FR')) and (mapcss._tag_capture(capture_tags, 1, tags, 'x')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("test #1742 - {0}","{1.tag}")
+                # -osmoseAssertMatchWithContext:list("way x=y","inside=FR")
+                err.append({'class': 14, 'subclass': 1132689531, 'text': mapcss.tr('test #1742 - {0}', mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
         # *[a][a=*b]
         if ('a' in keys):
@@ -391,7 +420,23 @@ class test_mapcss_parsing_evalutation(PluginMapCSS):
                 # assertNoMatch:"way maxspeed=5000"
                 # assertNoMatch:"way maxspeed=default"
                 # assertNoMatch:"way"
-                err.append({'class': 13, 'subclass': 2063115534, 'text': mapcss.tr('test {0}{1}', 'text', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                err.append({'class': 15, 'subclass': 2063115534, 'text': mapcss.tr('test {0}{1}', 'text', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+
+        # way[tag(a)>tag(b)]
+        if True:
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss.tag(tags, 'a') > mapcss.tag(tags, 'b')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:"test"
+                # assertNoMatch:"way a=0 b=1"
+                # assertNoMatch:"way a=0 b=yes"
+                # assertMatch:"way a=1 b=0"
+                # assertMatch:"way a=1.5 b=0"
+                # assertNoMatch:"way a=no b=yes"
+                err.append({'class': 6, 'subclass': 384294833, 'text': {'en': 'test'}})
 
         return err
 
@@ -539,14 +584,25 @@ class Test(TestPluginMapcss):
         self.check_err(n.way(data, {'oneway': 'no'}, [0]), expected={'class': 11, 'subclass': 722694187})
         self.check_not_err(n.way(data, {'oneway': 'yes'}, [0]), expected={'class': 11, 'subclass': 722694187})
         self.check_not_err(n.way(data, {'x': 'y'}, [0]), expected={'class': 11, 'subclass': 722694187})
-        self.check_err(n.way(data, {'amenity': 'place_of_worship', 'building': 'chapel', 'name': 'OsmoseRuleTrigger', 'x': 'yes'}, [0]), expected={'class': 12, 'subclass': 1140742172})
-        self.check_not_err(n.way(data, {'amenity': 'place_of_worship', 'building': 'chapel', 'name': 'Westminster', 'x': 'yes'}, [0]), expected={'class': 12, 'subclass': 1140742172})
-        self.check_not_err(n.way(data, {'amenity': 'place_of_worship', 'name': 'OsmoseRuleTrigger', 'x': 'yes'}, [0]), expected={'class': 12, 'subclass': 1140742172})
-        self.check_not_err(n.way(data, {'building': 'chapel', 'name': 'OsmoseRuleTrigger', 'x': 'yes'}, [0]), expected={'class': 12, 'subclass': 1140742172})
-        self.check_err(n.way(data, {'maxspeed': '10000'}, [0]), expected={'class': 13, 'subclass': 2063115534})
-        self.check_not_err(n.way(data, {'maxspeed': '5000'}, [0]), expected={'class': 13, 'subclass': 2063115534})
-        self.check_not_err(n.way(data, {'maxspeed': 'default'}, [0]), expected={'class': 13, 'subclass': 2063115534})
-        self.check_not_err(n.way(data, {}, [0]), expected={'class': 13, 'subclass': 2063115534})
+        self.check_err(n.way(data, {'amenity': 'place_of_worship', 'building': 'chapel', 'name': 'OsmoseRuleTrigger', 'x': 'yes'}, [0]), expected={'class': 12, 'subclass': 1095325051})
+        self.check_err(n.way(data, {'amenity': 'place_of_worship', 'name': 'OsmoseRuleTrigger', 'x': 'yes'}, [0]), expected={'class': 12, 'subclass': 1095325051})
+        self.check_not_err(n.way(data, {'amenity': 'place_of_worship', 'name': 'Westminster', 'x': 'yes'}, [0]), expected={'class': 12, 'subclass': 1095325051})
+        self.check_err(n.way(data, {'building': 'chapel', 'name': 'OsmoseRuleTrigger', 'x': 'yes'}, [0]), expected={'class': 12, 'subclass': 1095325051})
+        self.check_err(n.way(data, {'amenity': 'place_of_worship', 'building': 'chapel', 'name': 'OsmoseRuleTrigger', 'x': 'yes'}, [0]), expected={'class': 13, 'subclass': 1140742172})
+        self.check_not_err(n.way(data, {'amenity': 'place_of_worship', 'building': 'chapel', 'name': 'Westminster', 'x': 'yes'}, [0]), expected={'class': 13, 'subclass': 1140742172})
+        self.check_not_err(n.way(data, {'amenity': 'place_of_worship', 'name': 'OsmoseRuleTrigger', 'x': 'yes'}, [0]), expected={'class': 13, 'subclass': 1140742172})
+        self.check_not_err(n.way(data, {'building': 'chapel', 'name': 'OsmoseRuleTrigger', 'x': 'yes'}, [0]), expected={'class': 13, 'subclass': 1140742172})
+        with with_options(n, {'country': 'FR'}):
+            self.check_err(n.way(data, {'x': 'y'}, [0]), expected={'class': 14, 'subclass': 1132689531})
+        self.check_err(n.way(data, {'maxspeed': '10000'}, [0]), expected={'class': 15, 'subclass': 2063115534})
+        self.check_not_err(n.way(data, {'maxspeed': '5000'}, [0]), expected={'class': 15, 'subclass': 2063115534})
+        self.check_not_err(n.way(data, {'maxspeed': 'default'}, [0]), expected={'class': 15, 'subclass': 2063115534})
+        self.check_not_err(n.way(data, {}, [0]), expected={'class': 15, 'subclass': 2063115534})
+        self.check_not_err(n.way(data, {'a': '0', 'b': '1'}, [0]), expected={'class': 6, 'subclass': 384294833})
+        self.check_not_err(n.way(data, {'a': '0', 'b': 'yes'}, [0]), expected={'class': 6, 'subclass': 384294833})
+        self.check_err(n.way(data, {'a': '1', 'b': '0'}, [0]), expected={'class': 6, 'subclass': 384294833})
+        self.check_err(n.way(data, {'a': '1.5', 'b': '0'}, [0]), expected={'class': 6, 'subclass': 384294833})
+        self.check_not_err(n.way(data, {'a': 'no', 'b': 'yes'}, [0]), expected={'class': 6, 'subclass': 384294833})
         self.check_not_err(n.relation(data, {'ABC': 'DEF'}, []), expected={'class': 4, 'subclass': 1371556921})
         self.check_err(n.relation(data, {'abc': 'def'}, []), expected={'class': 4, 'subclass': 1371556921})
         self.check_not_err(n.relation(data, {'abc': 'ghi'}, []), expected={'class': 4, 'subclass': 1371556921})
