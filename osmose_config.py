@@ -818,7 +818,7 @@ no_county('jan_mayen', 1337126, 'SJ')
 
 #########################################################################
 
-antartica = default_country_simple("", "antarctica",  None, {"proj": 3031}, download_repo=GEOFABRIK)
+antartica = default_country_simple("", "antarctica", 2186646, {"proj": 3031}, download_repo=GEOFABRIK)
 
 #########################################################################
 
