@@ -164,20 +164,37 @@ or right (for `only_left`) side of the lane to which changing is possible.'''),
                             .replace(";", "").split("|")
 
                         # Empty equals a 'none', otherwise sort values within a single lane (as left;right equals right;left)
-                        t = ''.join(map(lambda e: "N" if len(e) == 0 else e[0] if len(e) == 1 else ''.join(sorted(e)), t))
+                        t = list(map(lambda e: "N" if len(e) == 0 else e[0] if len(e) == 1 else ''.join(sorted(e)), t))
 
-                        t = t.replace('-', '') # Ignored values
+                        # Find transitions between normal lanes and "special" lanes. Each can have its own turn lanes.
+                        # Use the hash sign (#) as a temporary indicator of these positions, for splitting later.
+                        for k in ["access", "vehicle", "motor_vehicle", "bus", "bicycle", "psv"]:
+                            tag = tl.replace("turn", k, 1)
+                            if tag in tags:
+                                tagsplit = tags[tag].split("|")
+                                changeindices = [i for i in range(1, len(tagsplit)) if tagsplit[i] != tagsplit[i-1] and (tagsplit[i] == "no" or tagsplit[i-1] == "no")]
+                                for i in changeindices:
+                                    if i < len(t) and not "#" in t[i]:
+                                        t[i] = "#" + t[i]
 
-                        # Ignore single none on the outside lanes: it could be a bus lane
-                        # Treat all other nones as throughs (multiple bus lanes or a dedicated lane in between two turns is unlikely)
-                        if t[0:1] == "N":
-                            t = t[1:]
-                        if t[-1:] == "N":
-                            t = t[0:-1]
-                        t = t.replace('N', throughvalue)
+                        # Replace ignored values; split by access condition sections of the way
+                        t = ''.join(t).replace('-', '').split("#")
 
-                        if t != ''.join(sorted(t)):
-                            err.append({"class": 31607, "subclass": 1 + stablehash64(tl), "text": T_("Bad turn lanes order in \"{0}\"", tl)})
+                        if len(t) == 1:
+                            # No lane access restrictions were present.
+                            # Ignore single none on the outside lanes: it could be a bus lane.
+                            # (It is much less likely that there are traffic-crossing bus lanes in the middle of the road)
+                            if t[0][0] == "N":
+                                t[0] = t[0][1:]
+                            if t[0][-1:] == "N":
+                                t[0] = t[0][0:-1]
+
+                        for k in range(len(t)):
+                            tk = t[k].replace('N', throughvalue) # Treat remaining none as through
+
+                            if tk != ''.join(sorted(tk)):
+                                err.append({"class": 31607, "subclass": 1 + stablehash64(tl), "text": T_("Bad turn lanes order in \"{0}\"", tl)})
+                                break
 
         # Check change:lanes values
         for tag_cl in ["change:lanes", "change:lanes:forward", "change:lanes:backward", "change:lanes:both_ways"]:
@@ -348,6 +365,7 @@ class Test(TestPluginCommon):
                   {"highway": "motorway", "turn:lanes": "none|none|merge_to_left", "destination:lanes": "A|B"},
                   {"highway": "residential", "lanes": "2", "lanes:backward": "2"},
                   {"highway": "residential", "lanes": "3", "lanes:backward": "2", "lanes:forward": "2"},
+                  {"highway": "another", "oneway": "yes", "vehicle:lanes": "yes|yes|yes|no|no|no|no", "bicycle:lanes": "designated|designated", "turn:lanes": "||||"},
                  ]:
             self.check_err(a.way(None, t, None), t)
 
@@ -389,6 +407,10 @@ class Test(TestPluginCommon):
                   {"highway": "another", "turn:lanes": "reverse|left|left;through||"},
                   {"highway": "another", "lanes": "3", "source:lanes": "usgs_imagery_2007;survey;image", "source_ref:lanes": "AM909_DSCS7435"},
                   {"highway": "another", "lanes": "1", "lanes:both_ways": "1"},
+                  {"highway": "another", "oneway": "yes", "lanes": "3", "vehicle:lanes": "no|yes|yes|no", "bicycle:lanes": "no|no|no|designated", "bus:lanes": "designated|yes|yes|no", "turn:lanes": "|left;through|right|through;right"},
+                  {"highway": "another", "vehicle:lanes:forward": "no|yes|yes|no", "bicycle:lanes:forward": "no|no|no|designated", "bus:lanes:forward": "designated|yes|yes|no", "turn:lanes:forward": "|left;through|right|through;right"},
+                  {"highway": "another", "oneway": "yes", "lanes": "3", "vehicle:lanes": "yes|yes|yes|no|no", "bicycle:lanes": "no|no|no|designated|designated", "turn:lanes": "left|through|right|left|through;right"},
+                  {"highway": "another", "oneway": "yes", "lanes": "3", "vehicle:lanes": "||no|", "bicycle:lanes": "no|no|designated|", "turn:lanes": "left|through|through;left|right"},
                  ]:
             assert not a.way(None, t, None), a.way(None, t, None)
 
@@ -405,6 +427,8 @@ class Test(TestPluginCommon):
                   {"highway": "another", "turn:lanes": "through|right;left|through"},
                   {"highway": "another", "turn:lanes": "left;right|left;right"},
                   {"highway": "another", "turn:lanes": "left|sharp_left|through"},
+                  {"highway": "another", "oneway": "yes", "lanes": "3", "vehicle:lanes": "yes|yes|yes|no|no", "bicycle:lanes": "no|no|no|designated|designated", "turn:lanes": "left|through|left|left|through;right"},
+                  {"highway": "another", "oneway": "yes", "lanes": "3", "vehicle:lanes": "yes|yes|yes|no|no", "bicycle:lanes": "no|no|no|designated|designated", "turn:lanes": "left|through|right|left;right|through"},
                  ]:
             assert a.way(None, t, None), a.way(None, t, None)
 
