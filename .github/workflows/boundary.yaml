@@ -27,7 +27,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install requests shapely
+        pip install pyproj requests shapely
 
     - name: Compare polygons and relations
       run: |
