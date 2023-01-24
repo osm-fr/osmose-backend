@@ -64,9 +64,7 @@ tag_mapping1 = {
 }
 
 tag_mapping2 = {
-    "ref": (
-        lambda res["id_local"]
-    ),
+    "ref": "id_local",
 #    "access": (
 #        acces      
 #    ),
@@ -82,19 +80,11 @@ tag_mapping2 = {
     "lit": (
         lambda res: "yes" if res["lumiere"] == "vrai" else None
     ),
-    "website": (
-        lambda res["url_info"]
-    ),
-    "start_date": (
-        lambda res["d_service"]
-    ),
-    "owner": (
-        lambda res["proprietaire"]
-    ),
+    "website": "url_info",
+    "start_date": "d_service",
+    "owner": "proprietaire",
     "operator": (
         lambda res: "Eurométropole de Strasbourg" if res["gestionnaire"] == "eurometropole" else None
     ),
-    "note": (
-        lambda res["commentaires"]
-    )
+    "note": "commentaires"
 }
