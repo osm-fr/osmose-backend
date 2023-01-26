@@ -137,8 +137,8 @@ class Test(TestPluginCommon):
                          "12/21/1993",
                          "22/01/2012",
                         ]
-        not_correct_dates = ["22/01/2023",
-                             "2042-10-01",
+        not_correct_dates = ["22/01/2123",
+                             "2142-10-01",
                              "monday",
                              "yes",
                              "2018-11-11--2018-12-31",
