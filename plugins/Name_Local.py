@@ -26,7 +26,7 @@ import re
 
 class Name_Local(Plugin):
 
-    not_for = ["JP"]
+    not_for = ["JP", "US"]
 
     def init(self, logger):
         Plugin.init(self, logger)
