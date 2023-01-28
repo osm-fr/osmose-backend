@@ -23,9 +23,13 @@
 # PAYS   : http://fr.wikipedia.org/wiki/ISO_3166-1
 
 import os
-from collections import OrderedDict
-import modules.config
+import unittest
+from collections import Counter, OrderedDict
+from functools import reduce
+from operator import concat
 from typing import Dict, Optional
+
+import modules.config
 
 ###########################################################################
 
@@ -2008,6 +2012,15 @@ import osmose_config_password
 osmose_config_password.set_password(config)
 
 ###########################################################################
+
+
+class TestPluginCommon(unittest.TestCase):
+    def test_availableMethodes(self):
+        c = config.values()
+        polygon_ids = list(map(lambda cc: cc.polygon_id if type(cc.polygon_id) is tuple else (cc.polygon_id,), c))
+        polygon_ids = reduce(concat, polygon_ids)
+        duplicate_polygon_ids = list(map(lambda a: a[0], filter(lambda c: c[1] >= 2, Counter(polygon_ids).items())))
+        assert len(duplicate_polygon_ids) == 0, "Duplicate relation IDs: {}".format(sorted(duplicate_polygon_ids))
 
 if __name__ == "__main__":
 
