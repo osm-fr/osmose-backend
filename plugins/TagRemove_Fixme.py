@@ -21,6 +21,7 @@
 
 from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
+from datetime import date
 
 
 class TagRemove_Fixme(Plugin):
@@ -34,10 +35,15 @@ class TagRemove_Fixme(Plugin):
             detail = T_(
 '''`highway=road` has been used, choose a correct value, such as
 `highway=unclassified`.'''))
+        self.currentYear = date.today().year
 
     def node(self, data, tags):
         if "fixme" in tags or "FIXME" in tags:
-            return [{"class": 40610, "subclass": 1, "text": {"en": tags['fixme'] if 'fixme' in tags else tags['FIXME']}}]
+            return [{
+                "class": 40610,
+                "subclass": self.currentYear, # Reset false positives every year
+                "text": {"en": tags['fixme'] if 'fixme' in tags else tags['FIXME']}
+            }]
         else:
             return []
 
@@ -45,7 +51,7 @@ class TagRemove_Fixme(Plugin):
         ret = self.node(data, tags)
 
         if tags.get("highway") == "road":
-            ret.append({"class": 40611, "subclass": 1})
+            ret.append({"class": 40611, "subclass": self.currentYear})
 
         return ret
 
