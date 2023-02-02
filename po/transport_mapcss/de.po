@@ -4,11 +4,11 @@
 # Christian Ostermann, 2019
 # ToniE <osm-ToniE@web.de>, 2020
 # Manfred Brandl <manfred@brandl.net>, 2021
-# kjon kjon <kjon@gmx.de>, 2021
+# kjon kjon <kjon@gmx.de>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: kjon kjon <kjon@gmx.de>, 2021\n"
+"Last-Translator: kjon kjon <kjon@gmx.de>, 2023\n"
 "Language-Team: German (https://www.transifex.com/openstreetmap-france/teams/17462/de/)\n"
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -113,7 +113,7 @@ msgstr ""
 
 #: ../transport.validator.mapcss:244 ../transport.validator.mapcss:251
 msgid "Missing legacy tag on a public transport stop"
-msgstr "Eine notwendige Eigenschaft für die Haltestelle fehlt"
+msgstr "Notwendiges Tag für die Haltestelle fehlt"
 
 #: ../transport.validator.mapcss:137
 msgid ""
@@ -162,8 +162,8 @@ msgstr "Der Farbcode sollte mit '#' starten, gefolgt von 3 oder 6 Ziffern."
 #: ../transport.validator.mapcss:178
 msgid "The color of the public transport line should be in a colour tag"
 msgstr ""
-"Die Farbe der Linie des öffentlichen Verkehrs soll in der Eigenschaft "
-"\"Colour\" enthalten sein"
+"Die Farbe der Linie des öffentlichen Verkehrs soll im Tag \"colour\" "
+"enthalten sein"
 
 #: ../transport.validator.mapcss:204
 msgid "A bus stop is supposed to be a node"
@@ -179,11 +179,11 @@ msgstr "Die Dauer ist ungültig (Nimm die Anzahl der Minuten)"
 
 #: ../transport.validator.mapcss:345
 msgid "Missing interval tag to specify the main interval"
-msgstr "Eigenschaft interval zur Angabe des Hauptintervalls fehlt"
+msgstr "Fehlendes interval Tag zur Angabe des Hauptintervalls"
 
 #: ../transport.validator.mapcss:351
 msgid "Missing opening_hours tag"
-msgstr "Fehlende Eigenschaft \"opening_hours\""
+msgstr "Fehlendes Tag \"opening_hours\""
 
 #: ../transport.validator.mapcss:303 ../transport.validator.mapcss:309
 msgid "Missing name on a public transport stop"
@@ -193,14 +193,12 @@ msgstr "Haltestelle ohne Namen"
 msgid ""
 "Check the operator tag : this operator does not exist, it may be a typo"
 msgstr ""
-"Prüfe die Eigenschaft operator: dieser existiert nicht, vielleicht ein "
-"Tippfehler"
+"Prüfe das operator Tag: Dieses existiert nicht, vielleicht ein Tippfehler"
 
 #: ../transport.validator.mapcss:198
 msgid "Check the network tag : this network does not exist, it may be a typo"
 msgstr ""
-"Prüfe die Eigenschaft network: dieses existiert nicht, vielleicht ein "
-"Tippfehler"
+"Prüfe das network Tag: Dieses existiert nicht, vielleicht ein Tippfehler"
 
 #: ../transport.validator.mapcss:215
 msgid ""

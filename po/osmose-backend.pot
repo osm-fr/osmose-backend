@@ -1252,11 +1252,11 @@ msgstr ""
 msgid "Probably only for bottles, not any type of glass"
 msgstr ""
 
-#: ../plugins/TagRemove_Fixme.py:31
+#: ../plugins/TagRemove_Fixme.py:32
 msgid "Object needs review"
 msgstr ""
 
-#: ../plugins/TagRemove_Fixme.py:33
+#: ../plugins/TagRemove_Fixme.py:34
 msgid "Highway classification needs review"
 msgstr ""
 
@@ -1390,18 +1390,18 @@ msgstr ""
 msgid "Unknown turn lanes value \"{0}\""
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:247
+#: ../plugins/Highway_Lanes.py:264
 #, python-brace-format
 msgid "lanes={0} is not an integer"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:303
+#: ../plugins/Highway_Lanes.py:320
 #, python-brace-format
 msgid ""
 "on oneway, (lanes={0}) != (lanes:forward={1}) - (non fullwidth forward={2})"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:308
+#: ../plugins/Highway_Lanes.py:325
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) != (lanes:forward={1}) + (lanes:backward={2}) + "
@@ -1409,20 +1409,20 @@ msgid ""
 "(non fullwidth backward={6}) - (non fullwidth both_ways={7})"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:310
+#: ../plugins/Highway_Lanes.py:327
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) <= (lanes:forward={1}) - (non fullwidth forward={2})"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:312
+#: ../plugins/Highway_Lanes.py:329
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) <= (lanes:backward={1}) - (non fullwidth "
 "backward={2})"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:314
+#: ../plugins/Highway_Lanes.py:331
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) < (lanes:both_ways={1}) - (non fullwidth "
@@ -2940,7 +2940,7 @@ msgid ""
 "`wikipedia:LANG=*`."
 msgstr ""
 
-#: ../plugins/TagRemove_Fixme.py:35
+#: ../plugins/TagRemove_Fixme.py:36
 msgid ""
 "`highway=road` has been used, choose a correct value, such as\n"
 "`highway=unclassified`."
@@ -2988,12 +2988,6 @@ msgid ""
 "The tags `oneway=*` and `ref=*` are not necessary on the roundabouts.\n"
 "The tag `name=*` must be present if this is the name of the roundabout\n"
 "and not a road connected, same thing for `ref=*`."
-msgstr ""
-
-#: ../plugins/TagWatchFrViPofm.py:71
-msgid ""
-"Simple and frequent errors, the list is available\n"
-"[here](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)."
 msgstr ""
 
 #: ../analysers/analyser_merge_street_objects.py:48
@@ -4452,7 +4446,7 @@ msgstr ""
 msgid "Merge together with another turn lane: \"{0}\""
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:180
+#: ../plugins/Highway_Lanes.py:196
 #, python-brace-format
 msgid "Bad turn lanes order in \"{0}\""
 msgstr ""
@@ -4604,6 +4598,7 @@ msgid ""
 msgstr ""
 
 #: ../analysers/analyser_merge_bicycle_parking_ES_madrid.py:31
+#: ../analysers/analyser_merge_bicycle_parking_FR_strasbourg.py:30
 msgid "Bicycle parking not integrated"
 msgstr ""
 
@@ -4725,12 +4720,12 @@ msgid ""
 "or right (for `only_left`) side of the lane to which changing is possible."
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:189
+#: ../plugins/Highway_Lanes.py:206
 #, python-brace-format
 msgid "Unknown {0} value \"{1}\""
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:194
+#: ../plugins/Highway_Lanes.py:211
 #, python-brace-format
 msgid "Impossible lane change in tag \"{0}\""
 msgstr ""
@@ -5244,4 +5239,8 @@ msgstr ""
 #: ../plugins/Highway_Parking_Lane.py:134
 #, python-brace-format
 msgid "Bad parking:[side]:{0} value"
+msgstr ""
+
+#: ../plugins/TagWatchFrViPofm.py:71
+msgid "Simple and frequent errors, can be updated by anyone on the wiki."
 msgstr ""
