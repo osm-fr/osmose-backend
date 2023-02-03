@@ -101,7 +101,7 @@ if __name__ == "__main__":
   buildbot_root = u"https://buildbot.osmose.openstreetmap.fr"
   buildbot_api = buildbot_root + "/api/v2/"
 
-  builders_json: Dict[str, Any] = json.loads(requests.get(buildbot_api + "builders").text)
+  builders_json: Dict[str, Any] = json.loads(requests.get(buildbot_api + "builders?masterids__contains=1").text)
   builders = {}
   for b in builders_json["builders"]:
     builders[b["name"]] = b["builderid"]
