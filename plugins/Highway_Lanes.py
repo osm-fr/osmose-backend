@@ -180,7 +180,7 @@ or right (for `only_left`) side of the lane to which changing is possible.'''),
                         # Replace ignored values; split by access condition sections of the way
                         t = ''.join(t).replace('-', '').split("#")
 
-                        if len(t) == 1:
+                        if len(t) == 1 and len(t[0]) > 1:
                             # No lane access restrictions were present.
                             # Ignore single none on the outside lanes: it could be a bus lane.
                             # (It is much less likely that there are traffic-crossing bus lanes in the middle of the road)
@@ -405,6 +405,8 @@ class Test(TestPluginCommon):
                   {"highway": "another", "turn:lanes": "merge_to_right|none"},
                   {"highway": "another", "turn:lanes": "through|merge_to_right|through"},
                   {"highway": "another", "turn:lanes": "reverse|left|left;through||"},
+                  {"highway": "another", "lanes:forward": "2", "lanes:backward": "1", "turn:lanes:forward": "reverse|reverse", "turn:lanes:backward": "reverse"},
+                  {"highway": "another", "lanes": "2", "turn:lanes": "reverse|none", "bus:lanes": "|designated", "vehicle:lanes": "designated|no"},
                   {"highway": "another", "lanes": "3", "source:lanes": "usgs_imagery_2007;survey;image", "source_ref:lanes": "AM909_DSCS7435"},
                   {"highway": "another", "lanes": "1", "lanes:both_ways": "1"},
                   {"highway": "another", "oneway": "yes", "lanes": "3", "vehicle:lanes": "no|yes|yes|no", "bicycle:lanes": "no|no|no|designated", "bus:lanes": "designated|yes|yes|no", "turn:lanes": "|left;through|right|through;right"},
