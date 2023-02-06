@@ -87,7 +87,7 @@ class TagFix_Postcode(Plugin):
 
         self.Country = None
         if self.father.config.options.get("country"):
-            self.Country = self.father.config.options.get("country")
+            self.Country = self.father.config.options.get("country").split("-")[0]
         self.CountryPostcodeArea = None
         self.CountryPostcodeStreet = None
         if not self.Country or self.Country == 'GB': # Specific plugin for GB
@@ -150,7 +150,7 @@ class Test(TestPluginCommon):
     def test_NL(self):
         a = TagFix_Postcode(None)
         class _config:
-            options = {"country": "NL", "project": "openstreetmap"}
+            options = {"country": "NL-GR", "project": "openstreetmap"}
         class father:
             config = _config()
         a.father = father()
