@@ -982,6 +982,38 @@ class Josm_deprecated(PluginMapCSS):
                 # throwWarning:tr("Unusual key {0}, maybe {1} or {2} is meant","{0.key}","level","building:levels")
                 err.append({'class': 9002021, 'subclass': 1172699526, 'text': mapcss.tr('Unusual key {0}, maybe {1} or {2} is meant', mapcss._tag_uncapture(capture_tags, '{0.key}'), 'level', 'building:levels')})
 
+        # *[building:level][!building:levels]
+        if ('building:level' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building:level')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'building:levels')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
+                # suggestAlternative:"building:levels"
+                # fixChangeKey:"building:level => building:levels"
+                err.append({'class': 9002001, 'subclass': 232847277, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['building:levels', mapcss.tag(tags, 'building:level')]]),
+                    '-': ([
+                    'building:level'])
+                }})
+
+        # *[building:level][building:levels]
+        if ('building:level' in keys and 'building:levels' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building:level')) and (mapcss._tag_capture(capture_tags, 1, tags, 'building:levels')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
+                # suggestAlternative:"building:levels"
+                err.append({'class': 9002001, 'subclass': 902689123, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+
         # *[protected_class]
         if ('protected_class' in keys):
             match = False
@@ -3449,8 +3481,8 @@ class Josm_deprecated(PluginMapCSS):
                     'building:min_height'])
                 }})
 
-        # *[car][amenity=charging_station]
-        # Rule Blacklisted (id: 1165117414)
+        # *[car]
+        # Rule Blacklisted (id: 297159061)
 
         # *[navigationaid=approach_light]
         # *[navigationaid="ALS (Approach lighting system)"]
@@ -5108,6 +5140,38 @@ class Josm_deprecated(PluginMapCSS):
             if match:
                 # throwWarning:tr("Unusual key {0}, maybe {1} or {2} is meant","{0.key}","level","building:levels")
                 err.append({'class': 9002021, 'subclass': 1172699526, 'text': mapcss.tr('Unusual key {0}, maybe {1} or {2} is meant', mapcss._tag_uncapture(capture_tags, '{0.key}'), 'level', 'building:levels')})
+
+        # *[building:level][!building:levels]
+        if ('building:level' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building:level')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'building:levels')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
+                # suggestAlternative:"building:levels"
+                # fixChangeKey:"building:level => building:levels"
+                err.append({'class': 9002001, 'subclass': 232847277, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['building:levels', mapcss.tag(tags, 'building:level')]]),
+                    '-': ([
+                    'building:level'])
+                }})
+
+        # *[building:level][building:levels]
+        if ('building:level' in keys and 'building:levels' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building:level')) and (mapcss._tag_capture(capture_tags, 1, tags, 'building:levels')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
+                # suggestAlternative:"building:levels"
+                err.append({'class': 9002001, 'subclass': 902689123, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # *[protected_class]
         if ('protected_class' in keys):
@@ -7498,8 +7562,8 @@ class Josm_deprecated(PluginMapCSS):
                 # suggestAlternative:"construction=minor"
                 err.append({'class': 9002001, 'subclass': 585996498, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
-        # *[car][amenity=charging_station]
-        # Rule Blacklisted (id: 1165117414)
+        # *[car]
+        # Rule Blacklisted (id: 297159061)
 
         # *[navigationaid=approach_light]
         # *[navigationaid="ALS (Approach lighting system)"]
@@ -9128,6 +9192,38 @@ class Josm_deprecated(PluginMapCSS):
             if match:
                 # throwWarning:tr("Unusual key {0}, maybe {1} or {2} is meant","{0.key}","level","building:levels")
                 err.append({'class': 9002021, 'subclass': 1172699526, 'text': mapcss.tr('Unusual key {0}, maybe {1} or {2} is meant', mapcss._tag_uncapture(capture_tags, '{0.key}'), 'level', 'building:levels')})
+
+        # *[building:level][!building:levels]
+        if ('building:level' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building:level')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'building:levels')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
+                # suggestAlternative:"building:levels"
+                # fixChangeKey:"building:level => building:levels"
+                err.append({'class': 9002001, 'subclass': 232847277, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['building:levels', mapcss.tag(tags, 'building:level')]]),
+                    '-': ([
+                    'building:level'])
+                }})
+
+        # *[building:level][building:levels]
+        if ('building:level' in keys and 'building:levels' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building:level')) and (mapcss._tag_capture(capture_tags, 1, tags, 'building:levels')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
+                # suggestAlternative:"building:levels"
+                err.append({'class': 9002001, 'subclass': 902689123, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # *[protected_class]
         if ('protected_class' in keys):
@@ -11066,8 +11162,8 @@ class Josm_deprecated(PluginMapCSS):
                     'building:min_height'])
                 }})
 
-        # *[car][amenity=charging_station]
-        # Rule Blacklisted (id: 1165117414)
+        # *[car]
+        # Rule Blacklisted (id: 297159061)
 
         # *[navigationaid=approach_light]
         # *[navigationaid="ALS (Approach lighting system)"]

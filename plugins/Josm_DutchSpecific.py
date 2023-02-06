@@ -30,6 +30,7 @@ class Josm_DutchSpecific(PluginMapCSS):
         self.re_033b234a = re.compile(r'^bicycle(:forward|:both_ways)?(:conditional)?$')
         self.re_0660931d = re.compile(r'(?i)(oplaad|laadpunt|laadpaal)')
         self.re_06bae8ee = re.compile(r'^maxspeed:advisory(:forward|:backward|:both_ways)?(:conditional)?$')
+        self.re_06ddeafa = re.compile(r'\bbouwweg')
         self.re_076895f4 = re.compile(r'payment:O[vV][-_]?[cC]hipkaart')
         self.re_088b0835 = re.compile(r'^addr:')
         self.re_08935e4d = re.compile(r'^maxspeed:advisory(:forward|:both_ways)?(:conditional)?$')
@@ -56,7 +57,6 @@ class Josm_DutchSpecific(PluginMapCSS):
         self.re_2823d45d = re.compile(r'^maxlength(:forward|:backward|:both_ways)?(:conditional)?$')
         self.re_293c2706 = re.compile(r'^[A-Z][a-z]{1,4}\. ')
         self.re_2cd26805 = re.compile(r'^maxlength(:forward|:both_ways)?(:conditional)?$')
-        self.re_2e9c161c = re.compile(r'[0-9]{4} ?[A-Z]{2}')
         self.re_30fdb33a = re.compile(r'(?i)^(lift)$')
         self.re_31154585 = re.compile(r'^motorcycle(:forward|:both_ways)?(:conditional)?$')
         self.re_3254c1c6 = re.compile(r'(?i)(parkeren$|parkeerplaats$|^toegang(sweg)?\s|^richting\s|drive.thro?u(gh)?)')
@@ -221,16 +221,7 @@ class Josm_DutchSpecific(PluginMapCSS):
                 err.append({'class': 1, 'subclass': 1429902606, 'text': mapcss.tr('Invalid tag {0}: too many digits (or foreign number, if so: ignore)', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # node["addr:postcode"]["addr:postcode"!~/[0-9]{4} ?[A-Z]{2}/][inside("NL")]
-        if ('addr:postcode' in keys):
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'addr:postcode')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_2e9c161c, '[0-9]{4} ?[A-Z]{2}'), mapcss._tag_capture(capture_tags, 1, tags, 'addr:postcode'))) and (mapcss.inside(self.father.config.options, 'NL')))
-                except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("NL addresses and contacts")
-                # throwWarning:tr("Invalid tag {0}: expected 4 digits followed by 2 letters","{0.tag}")
-                err.append({'class': 1, 'subclass': 1560886491, 'text': mapcss.tr('Invalid tag {0}: expected 4 digits followed by 2 letters', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+        # Rule Blacklisted (id: 1560886491)
 
         # *[addr:interpolation][inside("NL")]
         if ('addr:interpolation' in keys):
@@ -1921,6 +1912,7 @@ class Josm_DutchSpecific(PluginMapCSS):
         # way[name][highway][name=~/(?i)(rolstoel|invaliden)/]
         # way[name][highway][name=~/(?i)(uit?laa[dt]|honden.*wandel|los.?loop)/]
         # way[name][highway][name=~/(?i)bus\s?(baan|strook)/][highway!=busway][highway!=service][highway!=construction]
+        # way[name][highway][name=~/\bbouwweg/]
         # *[name][amenity^=parking][name=~/(?i)(parkeren|parkeerplaats|parkeergarage|^garage)$/]
         # *[name][name=~/(?i)^gratis\s|gratis\)/]
         # *[name][name=~/(?i)(klanten|bezoek(ers)?|medewerkers)\b/][!route]
@@ -1955,6 +1947,10 @@ class Josm_DutchSpecific(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss._tag_capture(capture_tags, 1, tags, 'highway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_06ddeafa), mapcss._tag_capture(capture_tags, 2, tags, 'name'))))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss.startswith(mapcss._tag_capture(capture_tags, 1, tags, 'amenity'), mapcss._value_capture(capture_tags, 1, 'parking'))) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_467ce1ba), mapcss._tag_capture(capture_tags, 2, tags, 'name'))))
                 except mapcss.RuleAbort: pass
             if not match:
@@ -1980,7 +1976,8 @@ class Josm_DutchSpecific(PluginMapCSS):
             if match:
                 # group:tr("NL nomenclature")
                 # throwWarning:tr("descriptive name")
-                err.append({'class': 3, 'subclass': 563821884, 'text': mapcss.tr('descriptive name')})
+                # assertNoMatch:"way highway=unclassified name=Landbouwweg"
+                err.append({'class': 3, 'subclass': 1948766236, 'text': mapcss.tr('descriptive name')})
 
         # *[name][name=~/(?i)(voormalige?)/][!historic][tourism!=information][!landuse][!highway][!boundary][!waterway]
         if ('name' in keys):
@@ -2724,6 +2721,7 @@ class Test(TestPluginMapcss):
         self.check_not_err(n.way(data, {'highway': 'residential', 'parking:both': 'no', 'parking:both:restriction': 'no_stopping', 'traffic_sign:left': 'NL:E02', 'traffic_sign:right': 'NL:E02'}, [0]), expected={'class': 5, 'subclass': 1906957495})
         self.check_not_err(n.way(data, {'highway': 'residential', 'parking:condition:both': 'no_stopping', 'parking:lane:both': 'no', 'traffic_sign:left': 'NL:E02', 'traffic_sign:right': 'NL:E02'}, [0]), expected={'class': 5, 'subclass': 1906957495})
         self.check_not_err(n.way(data, {'highway': 'residential', 'parking:both': 'no', 'parking:left:restriction': 'no_parking', 'parking:right:restriction': 'no_parking', 'traffic_sign': 'NL:E01'}, [0]), expected={'class': 5, 'subclass': 1906957495})
+        self.check_not_err(n.way(data, {'highway': 'unclassified', 'name': 'Landbouwweg'}, [0]), expected={'class': 3, 'subclass': 1948766236})
         self.check_not_err(n.way(data, {'highway': 'residential', 'name': 'De Visserstraat'}, [0]), expected={'class': 3, 'subclass': 34991053})
         self.check_not_err(n.way(data, {'highway': 'residential', 'name': 'J.T. de Visserstraat'}, [0]), expected={'class': 3, 'subclass': 34991053})
         self.check_not_err(n.way(data, {'highway': 'residential', 'maxspeed:forward': '30', 'traffic_sign:forward': 'NL:A1-30'}, [0]), expected={'class': 7, 'subclass': 678880168})
