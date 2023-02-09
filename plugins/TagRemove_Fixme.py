@@ -38,14 +38,15 @@ class TagRemove_Fixme(Plugin):
         self.currentYear = date.today().year
 
     def node(self, data, tags):
-        if "fixme" in tags or "FIXME" in tags:
-            return [{
-                "class": 40610,
-                "subclass": self.currentYear, # Reset false positives every year
-                "text": {"en": tags['fixme'] if 'fixme' in tags else tags['FIXME']}
-            }]
-        else:
-            return []
+        err = []
+        for t in tags:
+            if t.lower().startswith("fixme") or t.lower().endswith(":fixme"):
+                err.append({
+                    "class": 40610,
+                    "subclass": self.currentYear, # Reset false positives every year
+                    "text": {"en": tags[t]}
+                })
+        return err
 
     def way(self, data, tags, nds):
         ret = self.node(data, tags)
@@ -68,5 +69,9 @@ class Test(TestPluginCommon):
         assert not a.way(None, {"highway": "trunk"}, None)
         self.check_err(a.way(None, {"highway": "road"}, None))
         self.check_err(a.way(None, {"fixme": "plop"}, None))
+        self.check_err(a.way(None, {"fixme2": "plop"}, None))
+        self.check_err(a.way(None, {"fixme:name": "plop"}, None))
+        self.check_err(a.way(None, {"name:fixme": "plop"}, None))
+        self.check_err(a.way(None, {"FIXME:name": "plop"}, None))
         self.check_err(a.way(None, {"FIXME": "plop"}, None))
         self.check_err(a.way(None, {"fixme": ""}, None))
