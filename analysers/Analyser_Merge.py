@@ -310,7 +310,7 @@ FROM
         {joinClause}
 WHERE
     official.tags1
-        - (SELECT coalesce(array_agg(key), array[]::text[]) FROM jsonb_each(official.tags1) WHERE NOT osm_item.tags?key AND value::text = '""" + GENERATE_DELETE_TAG + """')
+        - (SELECT coalesce(array_agg(key), array[]::text[]) FROM jsonb_each(official.tags1) WHERE NOT osm_item.tags?key OR value::text = '""" + GENERATE_DELETE_TAG + """')
         - (SELECT array_agg(key) FROM jsonb_object_keys(osm_item.tags) AS t(key))
         - 'source'::text
         != '{{}}'::jsonb
