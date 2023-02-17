@@ -92,8 +92,6 @@ separated by traffic islands at an intersection without cross).'''),
 Clockwise rotation.'''))
         self.errors[40201] = self.def_class(item = 4020, level = 1, tags = ['highway', 'roundabout'],
             title = T_('Roundabout as area'))
-        self.errors[21201] = self.def_class(item = 2120, level = 3, tags = ['indoor'],
-            title = T_('Level or repeat_on tag missing'))
         self.errors[21202] = self.def_class(item = 2120, level = 3, tags = ['indoor'],
             title = T_('Indoor or building:part tag missing'))
         self.errors[20802] = self.def_class(item = 2080, level = 2, tags = ['highway'],
@@ -143,9 +141,6 @@ For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:acces
         err = []
         if tags.get("name") and len(key_set & self.name_parent) == 0 and tags.get("naptan:verified") != "no":
             err.append({"class": 21101, "subclass": 1})
-
-        if tags.get("indoor") not in [None, "yes", "no"] and not tags.get("level") and not tags.get("repeat_on"):
-            err.append({"class": 21201, "subclass": 1})
 
         if tags.get("room") and not tags.get("indoor") and not tags.get("buildingpart"):
             err.append({"class": 21202, "subclass": 2, "fix":[{"+": {"indoor": "room"}}, {"+": {"buildingpart": "room"}}]})
@@ -272,8 +267,6 @@ class Test(TestPluginCommon):
         self.check_err(a.way(None, {"waterway": "stream", "level": "-1"}, None))
 
         assert a.way(None, {"area": "yes", "highway": "secondary", "junction": "roundabout"}, None)
-
-        assert a.node(None, {"indoor": "room"})
 
         assert a.node(None, {"room": "office"})
 
