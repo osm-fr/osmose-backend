@@ -42,3 +42,14 @@ meta[lang=en] { /* lang=en, unused, only to use tr() to catch string for transla
     -osmoseItemClassLevel: "2080/20802:1/2";
     -osmoseTags: list("highway");
 }
+
+
+*[amenity=recycling][recycling_type!=centre][recycling:glass=yes][outside("CZ")] {
+    throwWarning: tr("Probably only for bottles, not any type of glass");
+    fixAdd: "recycling:glass_bottles=yes";
+    fixRemove: "recycling:glass";
+    -osmoseItemClassLevel: "3230/32301/2";
+    -osmoseTags: list("fix:chair");
+    -osmoseAssertMatchWithContext: list("node amenity=recycling recycling_type=container recycling:glass=yes", "inside=FR");
+    -osmoseAssertNoMatchWithContext: list("node amenity=recycling recycling_type=container recycling:glass=yes", "inside=CZ");
+}

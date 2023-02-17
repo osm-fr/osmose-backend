@@ -107,9 +107,6 @@ For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:acces
 This is almost never the case and more specific tags should be used instead. \
 For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:access#Transport_mode_restrictions).'''))
 
-        if not self.country or not self.country.startswith("CZ"):
-            self.errors[32301] = self.def_class(item = 3230, level = 2, tags = ['highway', 'fix:chair'],
-                title = T_('Probably only for bottles, not any type of glass'))
         self.errors[32302] = self.def_class(item = 3230, level = 2, tags = ['highway', 'fix:chair'],
             title = T_('Suspicious name for a container'))
 
@@ -137,10 +134,6 @@ For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:acces
         err = []
         if tags.get("name") and len(key_set & self.name_parent) == 0 and tags.get("naptan:verified") != "no":
             err.append({"class": 21101, "subclass": 1})
-
-        if not self.country or not self.country.startswith("CZ"):
-            if tags.get("amenity") == "recycling" and tags.get("recycling_type") != "centre" and tags.get("recycling:glass") == "yes":
-                err.append({"class": 32301, "fix": {"-": ["recycling:glass"], "+": {"recycling:glass_bottles": "yes"}}})
         if tags.get("amenity") == "recycling" and tags.get("recycling_type") != "centre" and tags.get("name"):
             err.append({"class": 32302})
 
@@ -266,7 +259,6 @@ class Test(TestPluginCommon):
 
         assert a.relation(None, {}, None)
 
-        assert a.node(None, {"amenity": "recycling", "recycling_type": "container", "recycling:glass": "yes"})
         assert a.node(None, {"amenity": "recycling", "recycling_type": "container", "name": "My nice awesome container"})
 
         assert a.node(None, {"barrier": "fence", "material": "wood"})
