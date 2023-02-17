@@ -33,3 +33,19 @@ if [ "x$SCHEMA_OSMOSE" != "x" ]; then
     fi
   done
 fi
+
+# Remove old extracts not associated to a running job
+FILE="$(find /data/work/osmose/extracts/ -type f -mtime +5)"
+if [ ! -z "${FILE}" ]; then
+  echo "found extracts to remove"
+  for i in $FILE; do
+    if [[ "$RUNNING" == *"$(basename $i | cut -d "." -f1)"* ]]; then
+      echo "$i (still running, so not removed)"
+    else
+      echo "$i is old and not currently running, removing"
+      rm -f $i
+    fi
+  done
+else
+  echo "no extract to remove"
+fi
