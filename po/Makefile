@@ -18,7 +18,7 @@ osmose-backend.pot: $(PYFILES) tmp.json
           --output=$@ $(PYFILES) tmp.json
 
 %.po:
-	tx pull -a --minimum-perc=5
+	tx pull -a --minimum-perc=3
 	@sed -i.bak 's/^# 4004.*, 2017/# 4004, 2017/' ru.po  # redact email following request
 
 statistics:

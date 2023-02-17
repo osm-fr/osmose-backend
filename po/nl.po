@@ -1198,13 +1198,13 @@ msgstr "Onverwachte punctuatie in naam"
 
 #: ../plugins/Power.py:16 ../plugins/Power.py:75
 msgid "Power Transformers should always be on a node"
-msgstr "Elektriciteits Transformers moeten altijd op een node zijn"
+msgstr "Transformators moeten altijd op een node zijn"
 
 #: ../plugins/Power.py:17 ../plugins/Power.py:39
 msgid ""
 "On Power Transformers use voltage:primary=* and voltage:secondary=* in place"
 " of voltage"
-msgstr "Op Elektriciteits Transformers gebruik voltage:primary=* en voltage:secondary=* in plaats van voltage"
+msgstr "Gebruik `voltage:primary=*` en `voltage:secondary=*` op Transformators, in plaats van `voltage`"
 
 #: ../plugins/TagFix_Wikidata.py:33
 msgid ""
@@ -1276,7 +1276,7 @@ msgstr "Weg classificatie nazien"
 
 #: ../plugins/Power.py:18 ../plugins/Power.py:54
 msgid "Power Transformers should have a frequency tag"
-msgstr "Elektriciteits Transformers hebben een frequency tag"
+msgstr "Transformators zouden een `frequency` tag moeten hebben"
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:46
 msgid "Paris bicycle parking not integrated"
@@ -4443,7 +4443,7 @@ msgstr ""
 
 #: ../plugins/ConditionalRestrictions.py:64
 msgid "Expired conditional"
-msgstr ""
+msgstr "Verlopen voorwaardelijke conditie"
 
 #: ../plugins/ConditionalRestrictions.py:65
 msgid ""
@@ -4655,12 +4655,12 @@ msgstr ""
 #: ../plugins/ConditionalRestrictions.py:180
 #, python-brace-format
 msgid "Involves \"{0}\" in \"{1}\""
-msgstr ""
+msgstr "Betreft \"{0}\" in \"{1}\""
 
 #: ../plugins/ConditionalRestrictions.py:186
 #, python-brace-format
 msgid "Unexpected <, = or > in \"{0}\""
-msgstr ""
+msgstr "Onverwachte <, = of > in \"{0}\""
 
 #: ../plugins/Highway_Lanes.py:49
 msgid "[Valid values](https://wiki.openstreetmap.org/wiki/Key:turn#Values)"
@@ -4845,11 +4845,11 @@ msgstr ""
 #: ../plugins/Highway_Parking_Lane.py:233
 #, python-brace-format
 msgid "`{0}` is a value for key `{1}`"
-msgstr ""
+msgstr "`{0}` is een waarde voor sleutel `{1}`"
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:271
 msgid "Unconnected drive-through"
-msgstr ""
+msgstr "Niet-verbonden drive-through"
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:273
 msgid ""
@@ -4863,7 +4863,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_roundabout.py:107
 msgid "Roundabout without right of way"
-msgstr ""
+msgstr "Rotonde zonder voorrang"
 
 #: ../analysers/analyser_osmosis_roundabout.py:109
 msgid ""
@@ -5019,7 +5019,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_cyclic.py:74
 msgid "Cyclic relation"
-msgstr ""
+msgstr "Cyclische relatie"
 
 #: ../analysers/analyser_osmosis_relation_cyclic.py:76
 msgid ""
@@ -5029,7 +5029,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_building_in_polygon.py:59
 msgid "Building on agricultural land"
-msgstr ""
+msgstr "Gebouw op landbouwgrond"
 
 #: ../analysers/analyser_osmosis_building_in_polygon.py:61
 msgid ""

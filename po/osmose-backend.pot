@@ -5244,3 +5244,11 @@ msgstr ""
 #: ../plugins/TagWatchFrViPofm.py:71
 msgid "Simple and frequent errors, can be updated by anyone on the wiki."
 msgstr ""
+
+#: ../plugins/TagFix_MultipleTag2.py:16 ../plugins/TagFix_MultipleTag2.py:36
+#: ../plugins/TagFix_MultipleTag2.py:57 ../plugins/TagFix_MultipleTag2.py:77
+#, python-brace-format
+msgid ""
+"{0} together with {1}, usually {1} is located underneath the {2}. Tag the "
+"{3} as a separate object."
+msgstr ""
