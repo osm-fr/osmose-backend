@@ -105,9 +105,6 @@ For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:acces
 This is almost never the case and more specific tags should be used instead. \
 For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:access#Transport_mode_restrictions).'''))
 
-        self.errors[32302] = self.def_class(item = 3230, level = 2, tags = ['highway', 'fix:chair'],
-            title = T_('Suspicious name for a container'))
-
         self.driving_side_right = not (self.father.config.options.get("driving_side") == "left")
         self.driving_direction = "anticlockwise" if self.driving_side_right else "clockwise"
         name_parent = []
@@ -132,8 +129,6 @@ For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:acces
         err = []
         if tags.get("name") and len(key_set & self.name_parent) == 0 and tags.get("naptan:verified") != "no":
             err.append({"class": 21101, "subclass": 1})
-        if tags.get("amenity") == "recycling" and tags.get("recycling_type") != "centre" and tags.get("name"):
-            err.append({"class": 32302})
 
         if tags.get("barrier") == "fence" and "fence_type" not in tags and "material" in tags:
             err.append({"class": 303210})
@@ -243,7 +238,5 @@ class Test(TestPluginCommon):
         assert not a.way(None, {"tracktype": "foo", "leisure": "track"}, None)
 
         assert a.relation(None, {}, None)
-
-        assert a.node(None, {"amenity": "recycling", "recycling_type": "container", "name": "My nice awesome container"})
 
         assert a.node(None, {"barrier": "fence", "material": "wood"})

@@ -53,3 +53,12 @@ meta[lang=en] { /* lang=en, unused, only to use tr() to catch string for transla
     -osmoseAssertMatchWithContext: list("node amenity=recycling recycling_type=container recycling:glass=yes", "inside=FR");
     -osmoseAssertNoMatchWithContext: list("node amenity=recycling recycling_type=container recycling:glass=yes", "inside=CZ");
 }
+
+
+*[amenity=recycling][recycling_type!=centre][name] {
+    /* Note: duplicate of JOSM rule */
+    throwWarning: tr("Suspicious name for a container");
+    assertMatch: "node amenity=recycling recycling_type=container name=\"My nice awesome container\"";
+    -osmoseItemClassLevel: "3230/32302/2";
+    -osmoseTags: list("fix:chair");
+}
