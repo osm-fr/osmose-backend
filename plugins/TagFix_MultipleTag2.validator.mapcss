@@ -62,3 +62,13 @@ meta[lang=en] { /* lang=en, unused, only to use tr() to catch string for transla
     -osmoseItemClassLevel: "3230/32302/2";
     -osmoseTags: list("fix:chair");
 }
+
+
+way[highway][fee] {
+    throwWarning: tr("Use tag \"toll\" instead of \"fee\"");
+    group: tr("Watch multiple tags");
+    assertMatch: "way highway=primary fee=yes";
+    fixChangeKey: "fee=>toll";
+    -osmoseItemClassLevel: "3032/30320:1000/1";
+    -osmoseTags: list("fix:chair", "highway", "tag");
+}

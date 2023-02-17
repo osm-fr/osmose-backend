@@ -30,8 +30,6 @@ class TagFix_MultipleTag(Plugin):
         self.country = self.father.config.options.get("country")
         main_tags = ('type', 'aerialway', 'aeroway', 'amenity', 'barrier', 'boundary', 'building', "building:part", 'craft', 'entrance', 'emergency', 'geological', 'highway', 'historic', 'landuse', 'leisure', 'man_made', 'military', 'natural', 'office', 'place', 'power', 'public_transport', 'railway', 'route', 'shop', 'sport', 'tourism', 'waterway', 'mountain_pass', 'traffic_sign', 'golf', 'piste:type', 'junction', 'healthcare', 'health_facility:type', 'indoor', 'club', 'seamark:type', 'attraction', 'information', 'advertising', 'ford', 'cemetery', 'area:highway', 'checkpoint', 'telecom', 'airmark')
 
-        self.errors[30320] = self.def_class(item = 3032, level = 1, tags = ['tag', 'highway', 'fix:chair'],
-            title = T_('Watch multiple tags'))
         self.errors[30323] = self.def_class(item = 3032, level = 3, tags = ['tag', 'fix:chair'],
             title = T_('Watch multiple tags'))
         self.errors[30327] = self.def_class(item = 3032, level = 2, tags = ['tag', 'fix:chair'],
@@ -149,9 +147,6 @@ For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:acces
     def way(self, data, tags, nds):
         key_set = set(tags.keys())
         err = self.common(tags, key_set)
-        if "highway" in tags and "fee" in tags:
-            err.append({"class": 30320, "subclass": 1000, "text": T_(u"Use tag \"toll\" instead of \"fee\""),
-                        "fix": {"-": ["fee"], "+": {"toll": tags["fee"]}} })
 
         if tags.get("junction") not in (None, "yes") and u"highway" not in tags and "area:highway" not in tags:
             err.append({"class": 20800, "subclass": 0})
@@ -209,7 +204,6 @@ class Test(TestPluginCommon):
             self.check_err(a.node(None, t), t)
 
         for t in [{"highway":"primary", "tunnel": "yes"},
-                  {"highway":"primary", "fee": "yes"},
                   {"junction":"roundabout", "waterway": "river"},
                   {"oneway":"yes", "building": "yes"},
                  ]:
