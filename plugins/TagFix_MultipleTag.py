@@ -92,8 +92,6 @@ separated by traffic islands at an intersection without cross).'''),
 Clockwise rotation.'''))
         self.errors[40201] = self.def_class(item = 4020, level = 1, tags = ['highway', 'roundabout'],
             title = T_('Roundabout as area'))
-#        self.errors[70401] = self.def_class(item = 7040, level = 2, tags = ['tag', 'power', 'fix:chair'],
-#            title = T_('Bad power line kind'))
         self.errors[32200] = self.def_class(item = 3220, level = 2, tags = ['highway', 'fix:chair'],
             title = T_('Overly permissive access'),
             detail = T_(
@@ -150,9 +148,6 @@ For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:acces
             if (self.driving_side_right and clockwise) or (not self.driving_side_right and anticlockwise):
                 err.append({"class": 1050, "subclass": 1000, "text": T_("mini roundabout direction in this country is usually \"{0}\"", self.driving_direction),
                             "fix": {"-": ["direction"]}})
-#            if (self.driving_side_right and anticlockwise) or (not self.driving_side_right and clockwise):
-#                err.append({"class": 1050, "subclass": 1001, "text": T_("Mini roundabout direction in this country is \"{0}\" by default, useless direction tag", self.driving_direction),
-#                            "fix": {"-": ["direction"]}})
 
         return err
 
@@ -177,15 +172,6 @@ For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:acces
 
         if "highway" in tags and tags.get('junction') == 'roundabout' and tags.get('area') not in (None, 'no', 'false'):
             err.append({"class": 40201, "subclass": 0, "fix": [{"-": ["area"]}, {"-": ["junction"]}]})
-
-#        if tags.get("power") in ("line", "minor_line") and "voltage" in tags:
-#            voltage = map(int, filter(lambda x: x.isdigit(), map(lambda x: x.strip(), tags["voltage"].split(";"))))
-#            if voltage:
-#                voltage = max(voltage)
-#                if voltage > 45000 and tags["power"] == "minor_line":
-#                    err.append({"class": 70401, "subclass": 0, "fix": {"~": {"power": "line"}}})
-#                elif voltage <= 45000 and tags["power"] == "line":
-#                    err.append({"class": 70401, "subclass": 1, "fix": {"~": {"power": "minor_line"}}})
 
         if tags.get("access") in ("yes", "permissive"):
             if tags.get("highway") in ("motorway", "trunk"):
@@ -231,7 +217,6 @@ class Test(TestPluginCommon):
                   {"highway":"primary", "fee": "yes"},
                   {"junction":"roundabout", "waterway": "river"},
                   {"oneway":"yes", "building": "yes"},
-#                  {"power":"line", "voltage": "1"},
                  ]:
             self.check_err(a.way(None, t, None), t)
 
