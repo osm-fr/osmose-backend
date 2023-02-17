@@ -16,6 +16,8 @@ class indoor(PluginMapCSS):
         self.errors[50] = self.def_class(item = 1300, level = 3, tags = mapcss.list_('indoor', 'geom') + mapcss.list_('fix:survey'), title = mapcss.tr('This indoor feature should be a closed and valid polygon'))
         self.errors[51] = self.def_class(item = 1300, level = 3, tags = mapcss.list_('indoor', 'geom') + mapcss.list_('fix:survey'), title = mapcss.tr('This indoor feature should have a level'))
         self.errors[52] = self.def_class(item = 1300, level = 3, tags = mapcss.list_('indoor', 'geom') + mapcss.list_('fix:survey', 'shop'), title = mapcss.tr('This indoor shop should probably be inside a room'))
+        self.errors[21201] = self.def_class(item = 2120, level = 3, tags = mapcss.list_('indoor', 'geom'), title = mapcss.tr('`{0}` without `{1}` or `{2}`', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.key}')))
+        self.errors[21202] = self.def_class(item = 2120, level = 3, tags = mapcss.list_('indoor', 'geom'), title = mapcss.tr('`{0}` without `{1}`', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.key}')))
 
         self.re_2a047336 = re.compile(r'room|corridor|area|level')
 
@@ -45,6 +47,36 @@ class indoor(PluginMapCSS):
                 # -osmoseAssertMatchWithContext:list("node indoor=room","inside=FR")
                 # -osmoseAssertMatchWithContext:list("node room=shop","inside=DE")
                 err.append({'class': 50, 'subclass': 0, 'text': mapcss.tr('This indoor feature should be a closed and valid polygon')})
+
+        # *[indoor][!level][!repeat_on][indoor!=yes][indoor!=no]
+        if ('indoor' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'indoor')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'level')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'repeat_on')) and (mapcss._tag_capture(capture_tags, 3, tags, 'indoor') != mapcss._value_const_capture(capture_tags, 3, 'yes', 'yes')) and (mapcss._tag_capture(capture_tags, 4, tags, 'indoor') != mapcss._value_const_capture(capture_tags, 4, 'no', 'no')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseItemClassLevel:"2120/21201:1/3"
+                # throwWarning:tr("`{0}` without `{1}` or `{2}`","{0.tag}","{1.key}","{2.key}")
+                # assertMatch:"node indoor=room"
+                err.append({'class': 21201, 'subclass': 1, 'text': mapcss.tr('`{0}` without `{1}` or `{2}`', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.key}'))})
+
+        # *[room][!indoor][!buildingpart]
+        if ('room' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'room')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'indoor')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'buildingpart')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseItemClassLevel:"2120/21202:2/3"
+                # throwWarning:tr("`{0}` without `{1}`","{0.tag}","{1.key}")
+                # fixAdd:"indoor=room"
+                # assertMatch:"node room=office"
+                err.append({'class': 21202, 'subclass': 2, 'text': mapcss.tr('`{0}` without `{1}`', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['indoor','room']])
+                }})
 
         return err
 
@@ -112,6 +144,70 @@ class indoor(PluginMapCSS):
                     ['indoor','room']])
                 }})
 
+        # *[indoor][!level][!repeat_on][indoor!=yes][indoor!=no]
+        if ('indoor' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'indoor')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'level')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'repeat_on')) and (mapcss._tag_capture(capture_tags, 3, tags, 'indoor') != mapcss._value_const_capture(capture_tags, 3, 'yes', 'yes')) and (mapcss._tag_capture(capture_tags, 4, tags, 'indoor') != mapcss._value_const_capture(capture_tags, 4, 'no', 'no')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseItemClassLevel:"2120/21201:1/3"
+                # throwWarning:tr("`{0}` without `{1}` or `{2}`","{0.tag}","{1.key}","{2.key}")
+                err.append({'class': 21201, 'subclass': 1, 'text': mapcss.tr('`{0}` without `{1}` or `{2}`', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.key}'))})
+
+        # *[room][!indoor][!buildingpart]
+        if ('room' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'room')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'indoor')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'buildingpart')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseItemClassLevel:"2120/21202:2/3"
+                # throwWarning:tr("`{0}` without `{1}`","{0.tag}","{1.key}")
+                # fixAdd:"indoor=room"
+                err.append({'class': 21202, 'subclass': 2, 'text': mapcss.tr('`{0}` without `{1}`', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['indoor','room']])
+                }})
+
+        return err
+
+    def relation(self, data, tags, members):
+        capture_tags = {}
+        keys = tags.keys()
+        err = []
+
+
+        # *[indoor][!level][!repeat_on][indoor!=yes][indoor!=no]
+        if ('indoor' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'indoor')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'level')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'repeat_on')) and (mapcss._tag_capture(capture_tags, 3, tags, 'indoor') != mapcss._value_const_capture(capture_tags, 3, 'yes', 'yes')) and (mapcss._tag_capture(capture_tags, 4, tags, 'indoor') != mapcss._value_const_capture(capture_tags, 4, 'no', 'no')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseItemClassLevel:"2120/21201:1/3"
+                # throwWarning:tr("`{0}` without `{1}` or `{2}`","{0.tag}","{1.key}","{2.key}")
+                err.append({'class': 21201, 'subclass': 1, 'text': mapcss.tr('`{0}` without `{1}` or `{2}`', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.key}'))})
+
+        # *[room][!indoor][!buildingpart]
+        if ('room' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'room')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'indoor')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'buildingpart')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseItemClassLevel:"2120/21202:2/3"
+                # throwWarning:tr("`{0}` without `{1}`","{0.tag}","{1.key}")
+                # fixAdd:"indoor=room"
+                err.append({'class': 21202, 'subclass': 2, 'text': mapcss.tr('`{0}` without `{1}`', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['indoor','room']])
+                }})
+
         return err
 
 
@@ -133,6 +229,8 @@ class Test(TestPluginMapcss):
             self.check_err(n.node(data, {'indoor': 'room'}), expected={'class': 50, 'subclass': 0})
         with with_options(n, {'country': 'DE'}):
             self.check_err(n.node(data, {'room': 'shop'}), expected={'class': 50, 'subclass': 0})
+        self.check_err(n.node(data, {'indoor': 'room'}), expected={'class': 21201, 'subclass': 1})
+        self.check_err(n.node(data, {'room': 'office'}), expected={'class': 21202, 'subclass': 2})
         with with_options(n, {'country': 'DE'}):
             self.check_not_err(n.way(data, {'indoor': 'room', 'level': '-0.5'}, [0]), expected={'class': 51, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
