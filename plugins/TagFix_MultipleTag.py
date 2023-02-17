@@ -88,8 +88,6 @@ separated by traffic islands at an intersection without cross).'''),
 '''![](https://wiki.openstreetmap.org/w/images/6/68/Osmose-eg-error-1050.png)
 
 Clockwise rotation.'''))
-        self.errors[40201] = self.def_class(item = 4020, level = 1, tags = ['highway', 'roundabout'],
-            title = T_('Roundabout as area'))
         self.errors[32200] = self.def_class(item = 3220, level = 2, tags = ['highway', 'fix:chair'],
             title = T_('Overly permissive access'),
             detail = T_(
@@ -160,9 +158,6 @@ For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:acces
         if "waterway" in tags and "level" in tags:
             err.append({"class": 30327, "subclass": 0, "fix": [{"-": ["level"]}, {"-": ["level"], "+": {"layer": tags["level"]}}]})
 
-        if "highway" in tags and tags.get('junction') == 'roundabout' and tags.get('area') not in (None, 'no', 'false'):
-            err.append({"class": 40201, "subclass": 0, "fix": [{"-": ["area"]}, {"-": ["junction"]}]})
-
         if tags.get("access") in ("yes", "permissive"):
             if tags.get("highway") in ("motorway", "trunk"):
                 err.append({"class": 32200, "subclass": 0, "text": T_("Including ski, horse, moped, hazmat and so on, unless explicitly excluded")})
@@ -222,8 +217,6 @@ class Test(TestPluginCommon):
         assert not a.node(None, {"name": "foo", "traffic_sign:forward": "city_limit;DE:310", "traffic_sign:backward": "city_limit;DE:311"})
 
         self.check_err(a.way(None, {"waterway": "stream", "level": "-1"}, None))
-
-        assert a.way(None, {"area": "yes", "highway": "secondary", "junction": "roundabout"}, None)
 
         assert a.way(None, {"highway": "track", "access": "yes"}, None)
         assert a.way(None, {"highway": "trunk", "access": "yes"}, None)

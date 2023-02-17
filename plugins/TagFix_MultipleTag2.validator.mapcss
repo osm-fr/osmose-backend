@@ -72,3 +72,13 @@ way[highway][fee] {
     -osmoseItemClassLevel: "3032/30320:1000/1";
     -osmoseTags: list("fix:chair", "highway", "tag");
 }
+
+
+way[highway][junction=roundabout][area][area!=no] {
+    /* Note: partial duplicate of JOSM rule */
+    throwWarning: tr("Roundabout as area");
+    assertMatch: "way area=yes highway=secondary junction=roundabout";
+    fixRemove: "area";
+    -osmoseItemClassLevel: "4020/40201:0/1";
+    -osmoseTags: list("fix:chair", "highway", "roundabout");
+}
