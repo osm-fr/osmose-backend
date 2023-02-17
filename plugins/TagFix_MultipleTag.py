@@ -92,8 +92,6 @@ separated by traffic islands at an intersection without cross).'''),
 Clockwise rotation.'''))
         self.errors[40201] = self.def_class(item = 4020, level = 1, tags = ['highway', 'roundabout'],
             title = T_('Roundabout as area'))
-        self.errors[20802] = self.def_class(item = 2080, level = 2, tags = ['highway'],
-            title = T_('Missing tag ref for emergency access point'))
 #        self.errors[70401] = self.def_class(item = 7040, level = 2, tags = ['tag', 'power', 'fix:chair'],
 #            title = T_('Bad power line kind'))
         self.errors[32200] = self.def_class(item = 3220, level = 2, tags = ['highway', 'fix:chair'],
@@ -139,9 +137,6 @@ For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:acces
         err = []
         if tags.get("name") and len(key_set & self.name_parent) == 0 and tags.get("naptan:verified") != "no":
             err.append({"class": 21101, "subclass": 1})
-
-        if tags.get('highway') == 'emergency_access_point' and not tags.get('ref'):
-            err.append({"class": 20802, "subclass": 1})
 
         if not self.country or not self.country.startswith("CZ"):
             if tags.get("amenity") == "recycling" and tags.get("recycling_type") != "centre" and tags.get("recycling:glass") == "yes":

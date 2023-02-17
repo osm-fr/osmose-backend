@@ -31,7 +31,14 @@ meta[lang=en] { /* lang=en, unused, only to use tr() to catch string for transla
 
 /* Amenities are not typically not located on/in a roof, but underneath */
 *[building=roof][amenity][amenity!=shelter] {
-  throwWarning: tr("{0} together with {1}, usually {1} is located underneath the {2}. Tag the {3} as a separate object.", "{0.tag}", "{1.tag}", "{0.value}", "{1.key}");
-  assertMatch: "way building=roof amenity=fuel";
-  -osmoseItemClassLevel: "3032/30322/3";
+    throwWarning: tr("{0} together with {1}, usually {1} is located underneath the {2}. Tag the {3} as a separate object.", "{0.tag}", "{1.tag}", "{0.value}", "{1.key}");
+    assertMatch: "way building=roof amenity=fuel";
+    -osmoseItemClassLevel: "3032/30322/3";
+}
+
+
+*[highway=emergency_access_point][!ref] {
+    throwWarning: tr("Missing tag ref for emergency access point");
+    -osmoseItemClassLevel: "2080/20802:1/2";
+    -osmoseTags: list("highway");
 }
