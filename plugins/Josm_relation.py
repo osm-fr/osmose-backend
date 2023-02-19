@@ -15,7 +15,6 @@ class Josm_relation(PluginMapCSS):
         super().init(logger)
         tags = capture_tags = {} # noqa
         self.errors[9007001] = self.def_class(item = 9007, level = 3, tags = ["tag", "relation"], title = mapcss.tr('missing tag'))
-        self.errors[9007002] = self.def_class(item = 9007, level = 2, tags = ["tag", "relation"], title = mapcss.tr('relation without type'))
 
         self.re_67b11051 = re.compile(r'^restriction')
 
@@ -27,17 +26,7 @@ class Josm_relation(PluginMapCSS):
 
 
         # relation[!type]
-        if True:
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = ((not mapcss._tag_capture(capture_tags, 0, tags, 'type')))
-                except mapcss.RuleAbort: pass
-            if match:
-                # throwError:tr("relation without type")
-                # assertMatch:"relation name=Foo"
-                # assertNoMatch:"relation type=route name=Foo"
-                err.append({'class': 9007002, 'subclass': 1457279320, 'text': mapcss.tr('relation without type')})
+        # Rule Blacklisted (id: 1457279320)
 
         # relation[type=boundary][!boundary][!disused:boundary]
         # relation[type=destination_sign][!destination]
@@ -126,8 +115,6 @@ class Test(TestPluginMapcss):
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
-        self.check_err(n.relation(data, {'name': 'Foo'}, []), expected={'class': 9007002, 'subclass': 1457279320})
-        self.check_not_err(n.relation(data, {'name': 'Foo', 'type': 'route'}, []), expected={'class': 9007002, 'subclass': 1457279320})
         self.check_not_err(n.relation(data, {'boundary': 'administrative', 'type': 'boundary'}, []), expected={'class': 9007001, 'subclass': 93004660})
         self.check_err(n.relation(data, {'type': 'boundary'}, []), expected={'class': 9007001, 'subclass': 93004660})
         self.check_not_err(n.relation(data, {'enforcement': 'maxspeed', 'type': 'enforcement'}, []), expected={'class': 9007001, 'subclass': 93004660})
