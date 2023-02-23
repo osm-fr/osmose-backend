@@ -43,7 +43,7 @@ class Analyser_Merge_Power_Substation_FR(Analyser_Merge_Point):
                 url="https://opendata.reseaux-energies.fr/explore/dataset/postes-electriques-rte",
                 attribution="data.gouv.fr:RTE")),
             Load_XY("Longitude poste (DD)", "Latitude poste (DD)",
-                select = {"Fonction": "POSTE DE TRANSFORMATION"}),
+                select = {"FONCTION DU POSTE": "Poste de transformation"}),
             Conflate(
                 select = Select(
                     types = ["ways"],
