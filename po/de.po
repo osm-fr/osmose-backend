@@ -47,7 +47,7 @@ msgstr "Hochschule fehlt"
 
 #: ../analysers/analyser_merge_geodesie.py:41
 msgid "Missing survey point"
-msgstr "Fehlender Vermessungspunkt"
+msgstr "Vermessungspunkt fehlt"
 
 #: ../analysers/analyser_merge_geodesie.py:86
 msgid "Missing survey site"
@@ -104,7 +104,7 @@ msgstr "Einzelnes Grenzfragment"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:131
 msgid "Missing wikipedia tag"
-msgstr "Fehlendes WIkipedia-Tag"
+msgstr "Wikipedia-Tag fehlt"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:133
 msgid "Different population tag between relation and admin_centre"
@@ -112,7 +112,7 @@ msgstr "Einwohnerzahl in Relation und admin_centre unterschiedlich"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:138
 msgid "Invalid role"
-msgstr "Ungültige Rolle"
+msgstr "Rolle ungültig"
 
 #: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:110
 msgid "Broken highway level continuity"
@@ -189,7 +189,7 @@ msgstr "Baum kreuzt Gebäude"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:370
 msgid "Tree and highway too close"
-msgstr "Baum und Straße zu nah"
+msgstr "Baum zu nah an Straße"
 
 #: ../analysers/analyser_osmosis_natural_swimming-pool.py:85
 msgid "Swimming-pool, reservoir, pond as natural=water"
@@ -205,15 +205,15 @@ msgstr "Ansammlung verwaister Knoten"
 
 #: ../analysers/analyser_osmosis_polygon.py:94
 msgid "Invalid polygon"
-msgstr "Ungültiges Polygon"
+msgstr "Polygon ungültig"
 
 #: ../analysers/analyser_osmosis_powerline.py:350
 msgid "Lone power tower or pole"
-msgstr "Einzeln stehender, unverbundener Strommast"
+msgstr "Strommast verwaist"
 
 #: ../analysers/analyser_osmosis_powerline.py:375
 msgid "Connection between different voltages"
-msgstr "Verbindung zwischen verschiedenen Spannungen"
+msgstr "Verbindung verschiedener Spannungen"
 
 #: ../analysers/analyser_osmosis_powerline.py:381
 msgid "Non power node on power way"
@@ -221,7 +221,7 @@ msgstr "Knoten ohne power=* an Stromleitung"
 
 #: ../analysers/analyser_osmosis_powerline.py:389
 msgid "Missing power tower or pole"
-msgstr "Fehlender Strommast oder Pylon"
+msgstr "Strommast oder Trafoturm fehlt"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:622
 msgid "No street role"
@@ -233,11 +233,11 @@ msgstr "Rolle \"street\" ist keine Straße"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:630
 msgid "Roleless member"
-msgstr "Mitglied ohne 'role'"
+msgstr "Relationsmitglied ohne Rolle"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:638
 msgid "Number twice in the street"
-msgstr "Hausnummer doppelt in der Straße"
+msgstr "Hausnummer doppelt"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:640
 msgid "Many street names"
@@ -249,7 +249,7 @@ msgstr "Viele Relationen in einer Straße"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:644
 msgid "House too far away from street"
-msgstr "Haus zu weit von der Straße entfernt"
+msgstr "Haus zu weit von Straße entfernt"
 
 #: ../analysers/analyser_osmosis_relation_large.py:76
 msgid "Large relation"
@@ -257,7 +257,7 @@ msgstr "Große Relation"
 
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:200
 msgid "Double inner polygon"
-msgstr "Doppeltes inneres Polygon"
+msgstr "Inneres Polygon doppelt"
 
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:208
 msgid "Inconsistent multipolygon nature with members nature"
@@ -269,15 +269,15 @@ msgstr "Inkonsistente Mitglieder eines Mulitpolygon"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:366
 msgid "Restriction relation, wrong number of members"
-msgstr "Relation vom Typ 'restriction', falsche Anzahl Mitglieder"
+msgstr "restriction-Relation, Anzahl Mitglieder falsch"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:371
 msgid "Restriction relation, bad member type"
-msgstr "restriction Relation, Mitgliedstyp unpassend"
+msgstr "restriction-Relation, Mitgliedstyp unpassend"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:373
 msgid "Unconnected restriction relation ways"
-msgstr "Wege der restriction-Relation nicht verbunden"
+msgstr "restriction-Relation, Wege nicht verbunden"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:381
 msgid "Restriction doesn't match topology"
@@ -289,7 +289,7 @@ msgstr "Falsche Straße auf Kreisverkehr"
 
 #: ../analysers/analyser_osmosis_roundabout_level.py:273
 msgid "Missing oneway"
-msgstr "Fehlende Angabe 'oneway'"
+msgstr "Angabe Einbahnstraße fehlt"
 
 #: ../analysers/analyser_osmosis_roundabout_level.py:288
 msgid "Roundabout shortcut"
@@ -326,7 +326,7 @@ msgstr "Fehlendes Tag oder Rolle auf Weg"
 
 #: ../plugins/Administrative_INSEE_Name.py:33
 msgid "Place node without name tag"
-msgstr "Knoten place ohne Merkmal name"
+msgstr "Ort ohne Name"
 
 #: ../plugins/Administrative_INSEE_Name.py:59
 msgid "INSEE code cannot be found in INSEE database"
@@ -338,11 +338,11 @@ msgstr "Gemeindename stimmt mit dem INSEE-Code nicht überein"
 
 #: ../plugins/Administrative_TooManyWays.py:31
 msgid "Duplicated way in relation"
-msgstr "Doppelter Weg in Relation"
+msgstr "Weg in Relation doppelt"
 
 #: ../plugins/Construction.py:34
 msgid "Finished construction"
-msgstr "Beendete Baustelle"
+msgstr "Baustelle beendet"
 
 #: ../plugins/Date.py:33
 msgid "Bad date format"
@@ -350,7 +350,7 @@ msgstr "Datumsformat unpassend"
 
 #: ../plugins/Highway_Lanes.py:32
 msgid "Bad lanes value"
-msgstr "lanes Wert unpassend"
+msgstr "Spurzahl unpassend"
 
 #: ../plugins/Highway_Parking_Lane.py:37
 msgid "Bad parking:lane:[side]"
@@ -398,19 +398,19 @@ msgstr "Toponymie"
 
 #: ../plugins/Ele_MontainPass_Peak.py:31
 msgid "Missing altitude"
-msgstr "Fehlende Höhe"
+msgstr "Höhe fehlt"
 
 #: ../plugins/Source.py:36
 msgid "Illegal or incomplete source tag"
-msgstr "Illegale oder unvollständige Quellangabe"
+msgstr "Quellangabe Illegal oder unvollständig"
 
 #: ../plugins/Source.py:45
 msgid "Missing source tag"
-msgstr "Fehlendes Merkmal source"
+msgstr "Quellangabe fehlt"
 
 #: ../plugins/Structural_DuplicateNodes.py:34
 msgid "Duplicated nodes"
-msgstr "Duplizierte Knotenpunkte"
+msgstr "Knoten doppelt"
 
 #: ../plugins/Structural_Multipolygon.py:31
 msgid "Inadequate role for multipolygon"
@@ -430,15 +430,15 @@ msgstr "Dieses Multipolygon ist ein einfaches Polygon"
 
 #: ../plugins/Structural_UnclosedArea.py:30
 msgid "Unclosed area"
-msgstr "Nicht geschlossene Fläche"
+msgstr "Fläche nicht geschlossen"
 
 #: ../plugins/Structural_Useless_Relation.py:31
 msgid "1-member relation"
-msgstr "Relation mit nur einem Mitglied"
+msgstr "Nur ein Mitglied in Relation"
 
 #: ../plugins/Structural_Waterway.py:30
 msgid "Closed waterway"
-msgstr "Geschlossener Wasserweg"
+msgstr "Wasserweg geschlossen"
 
 #: ../plugins/Structural_WayOneNode.py:31
 msgid "Way with one node"
@@ -446,7 +446,7 @@ msgstr "Weg mit nur einem Knoten"
 
 #: ../plugins/TagFix_Deprecated.py:98
 msgid "Deprecated tag"
-msgstr "Veraltetes Merkmal"
+msgstr "Merkmal veraltet"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:34
 #: ../plugins/TagFix_MultipleTag_Lang_es.py:33
@@ -461,11 +461,11 @@ msgstr "Name aus Katasterdaten verbessern"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:43
 msgid "incoherent maxspeed"
-msgstr "Uneinheitliche Höchstgeschwindigkeit"
+msgstr "Höchstgeschwindigkeit inkonsitent"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:45
 msgid "Invalid reference"
-msgstr "Ungültige Referenz"
+msgstr "Referenz ungültig"
 
 #: ../plugins/TagFix_MultipleTag.py:44
 msgid "Tag highway missing on junction"
@@ -481,7 +481,7 @@ msgstr "cycleway=opposite ohne Einbahnstraße"
 
 #: ../plugins/TagFix_MultipleTag.py:58
 msgid "Missing maxheight tag"
-msgstr "Fehlendes Merkmal maxheight"
+msgstr "Maximalhöhe fehlt"
 
 #: ../plugins/TagFix_MultipleValue.py:64
 msgid "Multiple values"
@@ -493,11 +493,11 @@ msgstr "Mögliche Verbesserung für Merkmal note oder comment"
 
 #: ../plugins/TagFix_Postcode.py:82
 msgid "Invalid postcode"
-msgstr "Ungültige Postleitzahl"
+msgstr "Postleitzahl ungültig"
 
 #: ../plugins/TagFix_Role.py:32
 msgid "Inadequate role"
-msgstr "Unpassende Rolle"
+msgstr "Rolle unpassend"
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:68
 msgid "Tree tagging"
@@ -587,7 +587,7 @@ msgstr "Name endet mit einem Leerzeichen"
 
 #: ../plugins/Name_Spaces.py:41
 msgid "Name contains successive spaces"
-msgstr "Der Name enthält aufeinanderfolgende Leerzeichen."
+msgstr "Name mit doppelten Leerzeichen"
 
 #: ../plugins/TagRemove_Incompatibles.py:121
 #, python-format, python-brace-format
@@ -623,11 +623,11 @@ msgstr "Postleitzahl, Integrationsvorschlag"
 
 #: ../plugins/TagRemove_Layer.py:31
 msgid "Landuse feature not on ground"
-msgstr "Flächennutzungsmerkmal nicht auf Bodenlevel"
+msgstr "Flächennutzungsmerkmal unterirdisch"
 
 #: ../plugins/TagRemove_Layer.py:33
 msgid "Natural feature underground"
-msgstr "Naturmerkmal unter Bodenlevel"
+msgstr "Landschaftsmerkmal unterirdisch"
 
 #: ../plugins/Name_Local_JP.py:34 ../plugins/Name_Local.py:42
 msgid "Default and local language name not the same"
@@ -746,7 +746,7 @@ msgstr "Inklusive Autos, Pferde, Moped, Gefahrgut usw., sofern nicht ausdrückli
 #: ../analysers/analyser_osmosis_highway_area_access.py:105
 #: ../analysers/analyser_osmosis_highway_area_access.py:109
 msgid "Inconsistent Access"
-msgstr "Inkonsistenter Zugang"
+msgstr "Zugang inkonsistent"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:573
 msgid "Non route relation member in route_master relation"
@@ -762,15 +762,15 @@ msgstr "Naptan Import, Überprüfung nötig."
 
 #: ../analysers/analyser_osmosis_powerline.py:357
 msgid "Unfinished power major line"
-msgstr "Stromleitung ist nicht mit location:transition=yes oder transformer=* abgeschlossen."
+msgstr "Hauptstromleitung unvollständig"
 
 #: ../analysers/analyser_osmosis_powerline.py:366
 msgid "Unfinished power minor line"
-msgstr "Unvollständige Neben-Stromleitung"
+msgstr "Nebenstromleitung unvollständig"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:371
 msgid "Highway intersecting small water piece"
-msgstr "Straße kreuzt Wasserlauf"
+msgstr "Straße kreuzt kleine Wasserfläche"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:372
 msgid "Highway intersecting large water piece"
@@ -778,15 +778,15 @@ msgstr "Straße kreuzt große Wasserfläche"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:53
 msgid "Historical monument update"
-msgstr "Historisches Denkmal, Aktualisierung"
+msgstr "Historisches Denkmal aktualisieren"
 
 #: ../analysers/analyser_merge_poste_FR.py:40
 msgid "Post office update"
-msgstr "Postamtaktualisierung"
+msgstr "Postamt aktualisieren"
 
 #: ../analysers/analyser_merge_school_FR.py:66
 msgid "School update"
-msgstr "Schulaktualisierung"
+msgstr "Schule aktualisieren"
 
 #: ../plugins/Highway_Lanes.py:36
 msgid ""
@@ -803,7 +803,7 @@ msgstr "Ungültige Nutzung von *:lanes:(backward|both_ways) an Einbahnstraße"
 
 #: ../plugins/Highway_Lanes.py:47
 msgid "Unknown turn lanes value"
-msgstr "Unbekannter Abbiegespurenwert"
+msgstr "Anzahl der Abbiegespuren unbekannt"
 
 #: ../plugins/Highway_Lanes.py:51
 msgid "Bad turn lanes order"
@@ -5200,4 +5200,12 @@ msgstr "Wert parking:[side]:{0} unpassend"
 
 #: ../plugins/TagWatchFrViPofm.py:71
 msgid "Simple and frequent errors, can be updated by anyone on the wiki."
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag2.py:16 ../plugins/TagFix_MultipleTag2.py:36
+#: ../plugins/TagFix_MultipleTag2.py:57 ../plugins/TagFix_MultipleTag2.py:77
+#, python-brace-format
+msgid ""
+"{0} together with {1}, usually {1} is located underneath the {2}. Tag the "
+"{3} as a separate object."
 msgstr ""
