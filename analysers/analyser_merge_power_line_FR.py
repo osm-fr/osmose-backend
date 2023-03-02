@@ -32,10 +32,10 @@ class Analyser_Merge_Power_Line_FR(Analyser_Merge_Network):
             title = T_('Power line not integrated'))
 
         self.init(
-            'https://odre.opendatasoft.com/explore/dataset/lignes-aeriennes-rte/information',
+            'https://odre.opendatasoft.com/explore/dataset/lignes-aeriennes-rte-nv/information',
             'Lignes aériennes RTE',
             GDAL(SourceOpenDataSoft(
-                url='https://odre.opendatasoft.com/explore/dataset/lignes-aeriennes-rte/information',
+                url='https://odre.opendatasoft.com/explore/dataset/lignes-aeriennes-rte-nv/information',
                 attribution='RTE',
                 format='geojson'),
                 fields=['tension']),
