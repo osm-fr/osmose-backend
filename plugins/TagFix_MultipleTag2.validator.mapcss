@@ -64,10 +64,11 @@ meta[lang=en] { /* lang=en, unused, only to use tr() to catch string for transla
 }
 
 
-way[highway][fee] {
+way[highway][fee][!amenity][!leisure] {
     throwWarning: tr("Use tag \"toll\" instead of \"fee\"");
     group: tr("Watch multiple tags");
     assertMatch: "way highway=primary fee=yes";
+    assertNoMatch: "way highway=service fee=yes amenity=weighbridge";
     fixChangeKey: "fee=>toll";
     -osmoseItemClassLevel: "3032/30320:1000/1";
     -osmoseTags: list("fix:chair", "highway", "tag");
