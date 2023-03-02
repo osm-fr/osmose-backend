@@ -30,8 +30,6 @@ class TagFix_MultipleTag(Plugin):
         self.country = self.father.config.options.get("country")
         main_tags = ('type', 'aerialway', 'aeroway', 'amenity', 'barrier', 'boundary', 'building', "building:part", 'craft', 'entrance', 'emergency', 'geological', 'highway', 'historic', 'landuse', 'leisure', 'man_made', 'military', 'natural', 'office', 'place', 'power', 'public_transport', 'railway', 'route', 'shop', 'sport', 'tourism', 'waterway', 'mountain_pass', 'traffic_sign', 'golf', 'piste:type', 'junction', 'healthcare', 'health_facility:type', 'indoor', 'club', 'seamark:type', 'attraction', 'information', 'advertising', 'ford', 'cemetery', 'area:highway', 'checkpoint', 'telecom', 'airmark')
 
-        self.errors[30320] = self.def_class(item = 3032, level = 1, tags = ['tag', 'highway', 'fix:chair'],
-            title = T_('Watch multiple tags'))
         self.errors[30323] = self.def_class(item = 3032, level = 3, tags = ['tag', 'fix:chair'],
             title = T_('Watch multiple tags'))
         self.errors[30327] = self.def_class(item = 3032, level = 2, tags = ['tag', 'fix:chair'],
@@ -90,16 +88,6 @@ separated by traffic islands at an intersection without cross).'''),
 '''![](https://wiki.openstreetmap.org/w/images/6/68/Osmose-eg-error-1050.png)
 
 Clockwise rotation.'''))
-        self.errors[40201] = self.def_class(item = 4020, level = 1, tags = ['highway', 'roundabout'],
-            title = T_('Roundabout as area'))
-        self.errors[21201] = self.def_class(item = 2120, level = 3, tags = ['indoor'],
-            title = T_('Level or repeat_on tag missing'))
-        self.errors[21202] = self.def_class(item = 2120, level = 3, tags = ['indoor'],
-            title = T_('Indoor or building:part tag missing'))
-        self.errors[20802] = self.def_class(item = 2080, level = 2, tags = ['highway'],
-            title = T_('Missing tag ref for emergency access point'))
-#        self.errors[70401] = self.def_class(item = 7040, level = 2, tags = ['tag', 'power', 'fix:chair'],
-#            title = T_('Bad power line kind'))
         self.errors[32200] = self.def_class(item = 3220, level = 2, tags = ['highway', 'fix:chair'],
             title = T_('Overly permissive access'),
             detail = T_(
@@ -112,12 +100,6 @@ For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:acces
 '''The tags `access=yes` and `access=permissive` mark a feature as wide open to all transport modes. \
 This is almost never the case and more specific tags should be used instead. \
 For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:access#Transport_mode_restrictions).'''))
-
-        if not self.country or not self.country.startswith("CZ"):
-            self.errors[32301] = self.def_class(item = 3230, level = 2, tags = ['highway', 'fix:chair'],
-                title = T_('Probably only for bottles, not any type of glass'))
-        self.errors[32302] = self.def_class(item = 3230, level = 2, tags = ['highway', 'fix:chair'],
-            title = T_('Suspicious name for a container'))
 
         self.driving_side_right = not (self.father.config.options.get("driving_side") == "left")
         self.driving_direction = "anticlockwise" if self.driving_side_right else "clockwise"
@@ -144,21 +126,6 @@ For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:acces
         if tags.get("name") and len(key_set & self.name_parent) == 0 and tags.get("naptan:verified") != "no":
             err.append({"class": 21101, "subclass": 1})
 
-        if tags.get("indoor") not in [None, "yes", "no"] and not tags.get("level") and not tags.get("repeat_on"):
-            err.append({"class": 21201, "subclass": 1})
-
-        if tags.get("room") and not tags.get("indoor") and not tags.get("buildingpart"):
-            err.append({"class": 21202, "subclass": 2, "fix":[{"+": {"indoor": "room"}}, {"+": {"buildingpart": "room"}}]})
-
-        if tags.get('highway') == 'emergency_access_point' and not tags.get('ref'):
-            err.append({"class": 20802, "subclass": 1})
-
-        if not self.country or not self.country.startswith("CZ"):
-            if tags.get("amenity") == "recycling" and tags.get("recycling_type") != "centre" and tags.get("recycling:glass") == "yes":
-                err.append({"class": 32301, "fix": {"-": ["recycling:glass"], "+": {"recycling:glass_bottles": "yes"}}})
-        if tags.get("amenity") == "recycling" and tags.get("recycling_type") != "centre" and tags.get("name"):
-            err.append({"class": 32302})
-
         if tags.get("barrier") == "fence" and "fence_type" not in tags and "material" in tags:
             err.append({"class": 303210})
 
@@ -172,18 +139,12 @@ For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:acces
             if (self.driving_side_right and clockwise) or (not self.driving_side_right and anticlockwise):
                 err.append({"class": 1050, "subclass": 1000, "text": T_("mini roundabout direction in this country is usually \"{0}\"", self.driving_direction),
                             "fix": {"-": ["direction"]}})
-#            if (self.driving_side_right and anticlockwise) or (not self.driving_side_right and clockwise):
-#                err.append({"class": 1050, "subclass": 1001, "text": T_("Mini roundabout direction in this country is \"{0}\" by default, useless direction tag", self.driving_direction),
-#                            "fix": {"-": ["direction"]}})
 
         return err
 
     def way(self, data, tags, nds):
         key_set = set(tags.keys())
         err = self.common(tags, key_set)
-        if "highway" in tags and "fee" in tags:
-            err.append({"class": 30320, "subclass": 1000, "text": T_(u"Use tag \"toll\" instead of \"fee\""),
-                        "fix": {"-": ["fee"], "+": {"toll": tags["fee"]}} })
 
         if tags.get("junction") not in (None, "yes") and u"highway" not in tags and "area:highway" not in tags:
             err.append({"class": 20800, "subclass": 0})
@@ -196,18 +157,6 @@ For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:acces
 
         if "waterway" in tags and "level" in tags:
             err.append({"class": 30327, "subclass": 0, "fix": [{"-": ["level"]}, {"-": ["level"], "+": {"layer": tags["level"]}}]})
-
-        if "highway" in tags and tags.get('junction') == 'roundabout' and tags.get('area') not in (None, 'no', 'false'):
-            err.append({"class": 40201, "subclass": 0, "fix": [{"-": ["area"]}, {"-": ["junction"]}]})
-
-#        if tags.get("power") in ("line", "minor_line") and "voltage" in tags:
-#            voltage = map(int, filter(lambda x: x.isdigit(), map(lambda x: x.strip(), tags["voltage"].split(";"))))
-#            if voltage:
-#                voltage = max(voltage)
-#                if voltage > 45000 and tags["power"] == "minor_line":
-#                    err.append({"class": 70401, "subclass": 0, "fix": {"~": {"power": "line"}}})
-#                elif voltage <= 45000 and tags["power"] == "line":
-#                    err.append({"class": 70401, "subclass": 1, "fix": {"~": {"power": "minor_line"}}})
 
         if tags.get("access") in ("yes", "permissive"):
             if tags.get("highway") in ("motorway", "trunk"):
@@ -250,10 +199,8 @@ class Test(TestPluginCommon):
             self.check_err(a.node(None, t), t)
 
         for t in [{"highway":"primary", "tunnel": "yes"},
-                  {"highway":"primary", "fee": "yes"},
                   {"junction":"roundabout", "waterway": "river"},
                   {"oneway":"yes", "building": "yes"},
-#                  {"power":"line", "voltage": "1"},
                  ]:
             self.check_err(a.way(None, t, None), t)
 
@@ -271,12 +218,6 @@ class Test(TestPluginCommon):
 
         self.check_err(a.way(None, {"waterway": "stream", "level": "-1"}, None))
 
-        assert a.way(None, {"area": "yes", "highway": "secondary", "junction": "roundabout"}, None)
-
-        assert a.node(None, {"indoor": "room"})
-
-        assert a.node(None, {"room": "office"})
-
         assert a.way(None, {"highway": "track", "access": "yes"}, None)
         assert a.way(None, {"highway": "trunk", "access": "yes"}, None)
 
@@ -284,8 +225,5 @@ class Test(TestPluginCommon):
         assert not a.way(None, {"tracktype": "foo", "leisure": "track"}, None)
 
         assert a.relation(None, {}, None)
-
-        assert a.node(None, {"amenity": "recycling", "recycling_type": "container", "recycling:glass": "yes"})
-        assert a.node(None, {"amenity": "recycling", "recycling_type": "container", "name": "My nice awesome container"})
 
         assert a.node(None, {"barrier": "fence", "material": "wood"})

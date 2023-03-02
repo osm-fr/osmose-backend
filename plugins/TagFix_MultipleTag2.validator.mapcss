@@ -31,7 +31,54 @@ meta[lang=en] { /* lang=en, unused, only to use tr() to catch string for transla
 
 /* Amenities are not typically not located on/in a roof, but underneath */
 *[building=roof][amenity][amenity!=shelter] {
-  throwWarning: tr("{0} together with {1}, usually {1} is located underneath the {2}. Tag the {3} as a separate object.", "{0.tag}", "{1.tag}", "{0.value}", "{1.key}");
-  assertMatch: "way building=roof amenity=fuel";
-  -osmoseItemClassLevel: "3032/30322/3";
+    throwWarning: tr("{0} together with {1}, usually {1} is located underneath the {2}. Tag the {3} as a separate object.", "{0.tag}", "{1.tag}", "{0.value}", "{1.key}");
+    assertMatch: "way building=roof amenity=fuel";
+    -osmoseItemClassLevel: "3032/30322/3";
+}
+
+
+*[highway=emergency_access_point][!ref] {
+    throwWarning: tr("Missing tag ref for emergency access point");
+    -osmoseItemClassLevel: "2080/20802:1/2";
+    -osmoseTags: list("highway");
+}
+
+
+*[amenity=recycling][recycling_type!=centre][recycling:glass=yes][outside("CZ")] {
+    throwWarning: tr("Probably only for bottles, not any type of glass");
+    fixAdd: "recycling:glass_bottles=yes";
+    fixRemove: "recycling:glass";
+    -osmoseItemClassLevel: "3230/32301/2";
+    -osmoseTags: list("fix:chair");
+    -osmoseAssertMatchWithContext: list("node amenity=recycling recycling_type=container recycling:glass=yes", "inside=FR");
+    -osmoseAssertNoMatchWithContext: list("node amenity=recycling recycling_type=container recycling:glass=yes", "inside=CZ");
+}
+
+
+*[amenity=recycling][recycling_type!=centre][name] {
+    /* Note: duplicate of JOSM rule */
+    throwWarning: tr("Suspicious name for a container");
+    assertMatch: "node amenity=recycling recycling_type=container name=\"My nice awesome container\"";
+    -osmoseItemClassLevel: "3230/32302/2";
+    -osmoseTags: list("fix:chair");
+}
+
+
+way[highway][fee] {
+    throwWarning: tr("Use tag \"toll\" instead of \"fee\"");
+    group: tr("Watch multiple tags");
+    assertMatch: "way highway=primary fee=yes";
+    fixChangeKey: "fee=>toll";
+    -osmoseItemClassLevel: "3032/30320:1000/1";
+    -osmoseTags: list("fix:chair", "highway", "tag");
+}
+
+
+way[highway][junction=roundabout][area][area!=no] {
+    /* Note: partial duplicate of JOSM rule */
+    throwWarning: tr("Roundabout as area");
+    assertMatch: "way area=yes highway=secondary junction=roundabout";
+    fixRemove: "area";
+    -osmoseItemClassLevel: "4020/40201:0/1";
+    -osmoseTags: list("fix:chair", "highway", "roundabout");
 }
