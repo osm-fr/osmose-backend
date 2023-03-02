@@ -28,12 +28,12 @@ class TagFix_MultipleTag2(PluginMapCSS):
         err = []
 
 
-        # *[building=roof][amenity][amenity!=shelter]
+        # *[building=roof][amenity][amenity!=shelter][parking!=rooftop]
         if ('amenity' in keys and 'building' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building') == mapcss._value_capture(capture_tags, 0, 'roof')) and (mapcss._tag_capture(capture_tags, 1, tags, 'amenity')) and (mapcss._tag_capture(capture_tags, 2, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 2, 'shelter', 'shelter')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building') == mapcss._value_capture(capture_tags, 0, 'roof')) and (mapcss._tag_capture(capture_tags, 1, tags, 'amenity')) and (mapcss._tag_capture(capture_tags, 2, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 2, 'shelter', 'shelter')) and (mapcss._tag_capture(capture_tags, 3, tags, 'parking') != mapcss._value_const_capture(capture_tags, 3, 'rooftop', 'rooftop')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"3032/30322/3"
@@ -97,17 +97,18 @@ class TagFix_MultipleTag2(PluginMapCSS):
         err = []
 
 
-        # *[building=roof][amenity][amenity!=shelter]
+        # *[building=roof][amenity][amenity!=shelter][parking!=rooftop]
         if ('amenity' in keys and 'building' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building') == mapcss._value_capture(capture_tags, 0, 'roof')) and (mapcss._tag_capture(capture_tags, 1, tags, 'amenity')) and (mapcss._tag_capture(capture_tags, 2, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 2, 'shelter', 'shelter')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building') == mapcss._value_capture(capture_tags, 0, 'roof')) and (mapcss._tag_capture(capture_tags, 1, tags, 'amenity')) and (mapcss._tag_capture(capture_tags, 2, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 2, 'shelter', 'shelter')) and (mapcss._tag_capture(capture_tags, 3, tags, 'parking') != mapcss._value_const_capture(capture_tags, 3, 'rooftop', 'rooftop')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"3032/30322/3"
                 # throwWarning:tr("{0} together with {1}, usually {1} is located underneath the {2}. Tag the {3} as a separate object.","{0.tag}","{1.tag}","{0.value}","{1.key}")
                 # assertMatch:"way building=roof amenity=fuel"
+                # assertNoMatch:"way building=roof amenity=parking parking=rooftop"
                 err.append({'class': 30322, 'subclass': 0, 'text': mapcss.tr('{0} together with {1}, usually {1} is located underneath the {2}. Tag the {3} as a separate object.', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{0.value}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
         # *[highway=emergency_access_point][!ref]
@@ -203,12 +204,12 @@ class TagFix_MultipleTag2(PluginMapCSS):
         err = []
 
 
-        # *[building=roof][amenity][amenity!=shelter]
+        # *[building=roof][amenity][amenity!=shelter][parking!=rooftop]
         if ('amenity' in keys and 'building' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building') == mapcss._value_capture(capture_tags, 0, 'roof')) and (mapcss._tag_capture(capture_tags, 1, tags, 'amenity')) and (mapcss._tag_capture(capture_tags, 2, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 2, 'shelter', 'shelter')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building') == mapcss._value_capture(capture_tags, 0, 'roof')) and (mapcss._tag_capture(capture_tags, 1, tags, 'amenity')) and (mapcss._tag_capture(capture_tags, 2, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 2, 'shelter', 'shelter')) and (mapcss._tag_capture(capture_tags, 3, tags, 'parking') != mapcss._value_const_capture(capture_tags, 3, 'rooftop', 'rooftop')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"3032/30322/3"
@@ -284,5 +285,6 @@ class Test(TestPluginMapcss):
             self.check_err(n.node(data, {'amenity': 'recycling', 'recycling:glass': 'yes', 'recycling_type': 'container'}), expected={'class': 32301, 'subclass': 0})
         self.check_err(n.node(data, {'amenity': 'recycling', 'name': 'My nice awesome container', 'recycling_type': 'container'}), expected={'class': 32302, 'subclass': 0})
         self.check_err(n.way(data, {'amenity': 'fuel', 'building': 'roof'}, [0]), expected={'class': 30322, 'subclass': 0})
+        self.check_not_err(n.way(data, {'amenity': 'parking', 'building': 'roof', 'parking': 'rooftop'}, [0]), expected={'class': 30322, 'subclass': 0})
         self.check_err(n.way(data, {'fee': 'yes', 'highway': 'primary'}, [0]), expected={'class': 30320, 'subclass': 1000})
         self.check_err(n.way(data, {'area': 'yes', 'highway': 'secondary', 'junction': 'roundabout'}, [0]), expected={'class': 40201, 'subclass': 0})
