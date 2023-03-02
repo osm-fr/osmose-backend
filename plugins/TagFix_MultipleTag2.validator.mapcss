@@ -30,9 +30,10 @@ meta[lang=en] { /* lang=en, unused, only to use tr() to catch string for transla
 
 
 /* Amenities are not typically not located on/in a roof, but underneath */
-*[building=roof][amenity][amenity!=shelter] {
+*[building=roof][amenity][amenity!=shelter][parking!=rooftop] {
     throwWarning: tr("{0} together with {1}, usually {1} is located underneath the {2}. Tag the {3} as a separate object.", "{0.tag}", "{1.tag}", "{0.value}", "{1.key}");
     assertMatch: "way building=roof amenity=fuel";
+    assertNoMatch: "way building=roof amenity=parking parking=rooftop";
     -osmoseItemClassLevel: "3032/30322/3";
 }
 
