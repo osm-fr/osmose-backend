@@ -156,12 +156,12 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 # throwWarning:tr("Suspicious name for a container")
                 err.append({'class': 32302, 'subclass': 0, 'text': mapcss.tr('Suspicious name for a container')})
 
-        # way[highway][fee]
+        # way[highway][fee][!amenity][!leisure]
         if ('fee' in keys and 'highway' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'fee')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'fee')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'amenity')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'leisure')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Watch multiple tags")
@@ -170,6 +170,7 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 # throwWarning:tr("Use tag \"toll\" instead of \"fee\"")
                 # fixChangeKey:"fee=>toll"
                 # assertMatch:"way highway=primary fee=yes"
+                # assertNoMatch:"way highway=service fee=yes amenity=weighbridge"
                 err.append({'class': 30320, 'subclass': 1000, 'text': mapcss.tr('Use tag "toll" instead of "fee"'), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     ['toll', mapcss.tag(tags, 'fee')]]),
@@ -285,4 +286,5 @@ class Test(TestPluginMapcss):
         self.check_err(n.node(data, {'amenity': 'recycling', 'name': 'My nice awesome container', 'recycling_type': 'container'}), expected={'class': 32302, 'subclass': 0})
         self.check_err(n.way(data, {'amenity': 'fuel', 'building': 'roof'}, [0]), expected={'class': 30322, 'subclass': 0})
         self.check_err(n.way(data, {'fee': 'yes', 'highway': 'primary'}, [0]), expected={'class': 30320, 'subclass': 1000})
+        self.check_not_err(n.way(data, {'amenity': 'weighbridge', 'fee': 'yes', 'highway': 'service'}, [0]), expected={'class': 30320, 'subclass': 1000})
         self.check_err(n.way(data, {'area': 'yes', 'highway': 'secondary', 'junction': 'roundabout'}, [0]), expected={'class': 40201, 'subclass': 0})
