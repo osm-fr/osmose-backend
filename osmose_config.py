@@ -307,7 +307,10 @@ france_departement("aquitaine/gironde", 7405, "FR-33", include=include_aquitaine
     # Gironde
     'merge_public_transport_FR_transgironde',
 ])
-france_departement("aquitaine/landes", 7376, "FR-40", include=include_aquitaine)
+france_departement("aquitaine/landes", 7376, "FR-40", include=include_aquitaine + [
+    # Côte sud des Landes
+    "merge_recycling_FR_sitcom40"
+])
 france_departement("aquitaine/lot_et_garonne", 1284995, "FR-47", include=include_aquitaine)
 france_departement("aquitaine/pyrenees_atlantiques", 7450, "FR-64", include=include_aquitaine)
 
