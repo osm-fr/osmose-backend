@@ -174,3 +174,10 @@ way[tag(a) > tag(b)] {
   assertNoMatch: "way a=0 b=yes";
   assertNoMatch: "way a=no b=yes";
 }
+
+way[x] {
+  set a;
+  set b;
+  throwWarning: "test";
+  assertMatch: "way x=y";
+}
