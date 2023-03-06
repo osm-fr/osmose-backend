@@ -41,7 +41,7 @@ class test_mapcss_parsing_evalutation(PluginMapCSS):
         capture_tags = {}
         keys = tags.keys()
         err = []
-
+        set_a = set_b = False
 
         # node[x=0]
         if ('x' in keys):
@@ -174,7 +174,7 @@ class test_mapcss_parsing_evalutation(PluginMapCSS):
         capture_tags = {}
         keys = tags.keys()
         err = []
-
+        set_a = set_b = False
 
         # way[x~=C1]
         if ('x' in keys):
@@ -438,13 +438,29 @@ class test_mapcss_parsing_evalutation(PluginMapCSS):
                 # assertNoMatch:"way a=no b=yes"
                 err.append({'class': 6, 'subclass': 384294833, 'text': {'en': 'test'}})
 
+        # way[x]
+        if ('x' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'x')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # set a
+                # set b
+                # throwWarning:"test"
+                # assertMatch:"way x=y"
+                set_a = True
+                set_b = True
+                err.append({'class': 6, 'subclass': 1961315435, 'text': {'en': 'test'}})
+
         return err
 
     def relation(self, data, tags, members):
         capture_tags = {}
         keys = tags.keys()
         err = []
-
+        set_a = set_b = False
 
         # *[parking][amenity!~/^(parking|motorcycle_parking)$/]
         if ('parking' in keys):
@@ -603,6 +619,7 @@ class Test(TestPluginMapcss):
         self.check_err(n.way(data, {'a': '1', 'b': '0'}, [0]), expected={'class': 6, 'subclass': 384294833})
         self.check_err(n.way(data, {'a': '1.5', 'b': '0'}, [0]), expected={'class': 6, 'subclass': 384294833})
         self.check_not_err(n.way(data, {'a': 'no', 'b': 'yes'}, [0]), expected={'class': 6, 'subclass': 384294833})
+        self.check_err(n.way(data, {'x': 'y'}, [0]), expected={'class': 6, 'subclass': 1961315435})
         self.check_not_err(n.relation(data, {'ABC': 'DEF'}, []), expected={'class': 4, 'subclass': 1371556921})
         self.check_err(n.relation(data, {'abc': 'def'}, []), expected={'class': 4, 'subclass': 1371556921})
         self.check_not_err(n.relation(data, {'abc': 'ghi'}, []), expected={'class': 4, 'subclass': 1371556921})
