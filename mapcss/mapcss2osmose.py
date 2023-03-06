@@ -577,7 +577,7 @@ def to_p(t):
                 "".join(map(to_p, t['selectors'])) +
                 "    if match:\n" +
                 "        # " + "\n        # ".join(filter(lambda a: a, map(lambda d: d['text'], t['declarations']))) + "\n" +
-                (("        " + "\n    ".join(declarations_text) + "\n") if declarations_text else "") +
+                (("        " + "\n        ".join(declarations_text) + "\n") if declarations_text else "") +
                 (("        err.append({" +
                     "'class': " + str(class_id) + ", " +
                     "'subclass': " + str(subclass_id or 0) + ", " +
