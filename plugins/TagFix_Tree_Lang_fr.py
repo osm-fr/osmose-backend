@@ -99,7 +99,7 @@ class TagFix_Tree_Lang_fr(Plugin):
                 err.append({"class": 3120, "subclass": 3, "text": T_("Bad tag type=\"{0}\"", tags["type"])})
 
         if 'denotation' in tags:
-            if tags['denotation'] not in ('cluster', 'avenue', 'urban', 'natural_monument', 'park', 'landmark'):
+            if tags['denotation'] not in ('avenue', 'urban', 'natural_monument', 'landmark', 'agricultural'):
                 err.append({"class": 3120, "subclass": 4, "text": T_("Bad tag denotation=\"{0}\"", tags["denotation"])})
 
         return err
@@ -130,7 +130,7 @@ class Test(TestPluginCommon):
         for d in [u"anything", u"Pin Sylvestre", u"Frêne commun", u"Chêne vert"]:
             self.check_err(a.node(None, {"natural":"tree", "denotation":d}), ("denotation='{0}'".format(d)))
 
-        for d in [u"cluster", u"park"]:
+        for d in [u"landmark", u"agricultural"]:
             assert not a.node(None, {"natural":"tree", "denotation":d}), ("denotation='{0}'".format(d))
 
         for d in [u"anything", u"Pin Sylvestre", u"Frêne commun", u"Chêne vert"]:
