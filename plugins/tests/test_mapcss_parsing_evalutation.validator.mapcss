@@ -11,7 +11,7 @@ node[x=0] {
   assertNoMatch: "node x=1.0";
   assertNoMatch: "node x=Osmose";
   -osmoseTags: list("fix:survey");
-  -osmoseItemClassLevel: "4030/40301:0/2";
+  -osmoseItemClassLevel: "4030/98:0/2";
 }
 node[x!=0] {
   throwWarning: "test #1740";
@@ -145,6 +145,35 @@ way[inside(FR)][x] {
   assertMatch: "node a=x b=x";
   assertNoMatch: "node a=x b=y";
   assertNoMatch: "node a=x";
+}
+
+
+
+
+way[x] {
+  -osmoseItemClassLevel: "4/97:2/1";
+  -osmoseTags: list("osmose_rules");
+  -osmoseTrap: tr("Don't do this!");
+  -osmoseDetail: tr("More {0}.", "`info`");
+  -osmoseFix: "This may fix it.";
+  -osmoseResource: "https://wiki.openstreetmap.org/wiki/Useful_Page";
+  throwOther: tr("test");
+  group: tr("test");
+  assertMatch: "way x=yes";
+  assertNoMatch: "way y=yes";
+}
+/* same as above (except class) but inverted sequence */
+way[x] {
+  assertNoMatch: "way y=yes";
+  assertMatch: "way x=yes";
+  group: tr("test");
+  throwOther: tr("test");
+  -osmoseResource: "https://wiki.openstreetmap.org/wiki/Useful_Page";
+  -osmoseFix: "This may fix it.";
+  -osmoseDetail: tr("More {0}.", "`info`");
+  -osmoseTrap: tr("Don't do this!");
+  -osmoseTags: list("osmose_rules");
+  -osmoseItemClassLevel: "4/99:2/1";
 }
 
 
