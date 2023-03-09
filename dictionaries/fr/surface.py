@@ -7,6 +7,9 @@ SURFACE = {
         "Bois": "wood",
         "Terre battue": "clay",
         "Métal": "metal",
-        # 2967 Carrelage
-        # 4637 Parquet
+        "Stabilisé/cendrée": "compacted",
+        "Synthétique (hors gazon)": "tartan",
+        "Sciure/copeaux": "woodchips"
+        # 12900 Carrelage
+        # 16799 Parquet
 }
