@@ -223,6 +223,10 @@ rule_declarations_order_map = {
     # Osmose
     '-osmoseItemClassLevel': 2,
     '-osmoseTags': 2,
+    '-osmoseDetail': 2,
+    '-osmoseTrap': 2,
+    '-osmoseFix': 2,
+    '-osmoseResource': 2,
     # text
     'throwError': 3,
     'throwWarning': 3,
@@ -535,6 +539,7 @@ class_index = 0
 meta_tags = None
 item_default = None
 item = class_id = level = tags = group = group_class = text = text_class = fix = None
+class_info_text = {}
 subclass_id = 0
 class_ = {}
 tests = []
@@ -545,7 +550,7 @@ is_meta_rule = False
 
 def to_p(t):
     global item_default
-    global class_map, class_index, meta_tags, item, class_id, level, tags, subclass_id, group, group_class, text, text_class, fix
+    global class_map, class_index, meta_tags, item, class_id, level, tags, subclass_id, group, group_class, text, text_class, fix, class_info_text
     global tests, class_, regex_store, set_store
     global subclass_blacklist
     global is_meta_rule
@@ -555,7 +560,7 @@ def to_p(t):
     elif t['type'] == 'stylesheet':
         return "\n".join(filter(lambda s: s != "", map(to_p, t['rules'])))
     elif t['type'] == 'rule':
-        item = class_id = level = tags = group = group_class = text = text_class = None # For safty
+        item = class_id = level = tags = group = group_class = text = text_class = None # For safety
         is_meta_rule = t.get('_meta')
         selectors_text = "# " + "\n# ".join(map(lambda s: s['text'], t['selectors']))
         subclass_id = stablehash(selectors_text)
@@ -641,6 +646,15 @@ def to_p(t):
         elif t['property'] == '-osmoseItemClassLevel':
             item, class_id, level = t['value']['value']['value'].split('/')
             item, class_id, subclass_id, level = int(item), int(class_id.split(':')[0]), ':' in class_id and int(class_id.split(':')[1]), int(level)
+        elif t['property'] in ('-osmoseDetail', '-osmoseTrap', '-osmoseFix', '-osmoseResource'):
+            whichMsg = t['property'][7:].lower()
+            text = to_p(t['value'])
+            if t['value']['type'] == 'functionExpression' and t['value']['name'] == 'mapcss.tr':
+                class_info_text[whichMsg] = text
+            elif whichMsg == 'resource':
+                class_info_text[whichMsg] = text # hyperlink as string, no need for language
+            else:
+                class_info_text[whichMsg] = '{"en": "' + text + '"}'
         elif t['property'] in ('throwError', 'throwWarning', 'throwOther'):
             text = to_p(t['value'])
             text_class = t['value']['params'][0] if t['value']['type'] == 'functionExpression' and t['value']['name'] == 'mapcss.tr' else t['value']
@@ -651,10 +665,17 @@ def to_p(t):
                 else:
                     class_index += 1
                     class_id = class_map[group_class or text_class] = class_index
-            class_[class_id] = {'item': item or item_default, 'class': class_id, 'level': level or {'E': 2, 'W': 3, 'O': None}[t['property'][5]], 'tags': " + ".join(filter(lambda a: a, [meta_tags, tags])) or "[]", 'desc':
-                (group if group.startswith('mapcss.tr') else "{'en': " + group + "}") if group else
-                (text if text.startswith('mapcss.tr') else "{'en': " + text + "}")
+            class_[class_id] = {
+                'item': item or item_default,
+                'class': class_id,
+                'level': level or {'E': 2, 'W': 3, 'O': None}[t['property'][5]],
+                'tags': " + ".join(filter(lambda a: a, [meta_tags, tags])) or "[]",
+                'desc':
+                    (group if group.startswith('mapcss.tr') else "{'en': " + group + "}") if group else
+                    (text if text.startswith('mapcss.tr') else "{'en': " + text + "}"),
+                'info': class_info_text.copy()
             }
+            class_info_text = {}
         elif t['property'] == 'suggestAlternative':
             pass # Do nothing
         elif t['property'] == 'fixAdd':
@@ -733,7 +754,9 @@ def to_p(t):
 def build_items(class_):
     out = []
     for _, c in sorted(class_.items(), key = lambda a: a[0]):
-        out.append("self.errors[" + str(c['class']) + "] = self.def_class(item = " + str(c['item']) + ", level = " + str(c['level']) + ", tags = " + c['tags'] + ", title = " + c['desc'] + ")")
+        out.append("self.errors[" + str(c['class']) + "] = self.def_class(item = " + str(c['item']) +
+        ", level = " + str(c['level']) + ", tags = " + c['tags'] + ", title = " + c['desc'] +
+        "".join([', %s = %s' % (k,v) for k,v in c['info'].items()]) + ")")
     return "\n".join(out)
 
 context_map = {
