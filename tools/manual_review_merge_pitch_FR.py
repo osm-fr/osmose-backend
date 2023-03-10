@@ -2,7 +2,8 @@
  This file helps to review the data used to merge information
  1. download file from https://equipements-sgsocialgouv.opendatasoft.com/explore/dataset/data-es/information/
  2. store it ad data-es.csv in the current folder
- 3. run the file
+ 3. check SURFACE_MAP matches the analyser_merge_pitch_FR.py content
+ 4. run the file
 
 other helping file:
   https://equipements-sgsocialgouv.opendatasoft.com/explore/dataset/ref-atlas/information/
@@ -15,7 +16,6 @@ import os.path
 
 import pandas as pd
 
-import dictionaries.fr.surface
 
 logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
 log = logging.getLogger()
@@ -24,7 +24,22 @@ ES_SOURCE = "data-es.csv"
 EQUIPMENT_COL = "Type d'équipement sportif"
 SURFACE_COL = "Nature du sol"
 MERGE_MATRIX = os.path.join("..", "merge_data", "pitch_FR.mapping.csv")
-SURFACE_MAP = dictionaries.fr.surface.SURFACE
+SURFACE_MAP = {
+    "Sable": "sand",
+    "Gazon naturel": "grass",
+    "Bitume": "asphalt",
+    "Béton": "concrete",
+    "Gazon synthétique": "artificial_turf",
+    "Bois": "wood",
+    "Terre battue": "clay",
+    "Métal": "metal",
+    "Stabilisé/cendrée": "compacted",
+    "Synthétique (hors gazon)": "tartan",
+    "Sciure/copeaux": "woodchips"
+    # 12900 Carrelage
+    # 16799 Parquet
+}
+
 
 log.info("Jetzt geht's los")
 log.info("Loading source files")

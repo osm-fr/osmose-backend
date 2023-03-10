@@ -21,7 +21,6 @@
 ###########################################################################
 
 import csv
-import dictionaries.fr.surface
 from modules.OsmoseTranslation import T_
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
 from .Analyser_Merge import SourceOpenDataSoft, CSV, Load_XY, Conflate, Select, Mapping
@@ -45,7 +44,6 @@ class Analyser_Merge_Pitch_FR(Analyser_Merge_Dynamic):
 class SubAnalyser_Merge_Pitch_FR(SubAnalyser_Merge_Dynamic):
     def __init__(self, config, error_file, logger, classs, topic, osmTags, defaultTags):
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger)
-        self.SURFACE_MAP = dictionaries.fr.surface.SURFACE_MAP
         self.def_class_missing_official(item = 8170, id = classs, level = 3, tags = ['merge', 'leisure', 'fix:imagery', 'fix:survey'],
             title = T_('Pitch not integrated {0}', topic))
 
@@ -78,5 +76,18 @@ class SubAnalyser_Merge_Pitch_FR(SubAnalyser_Merge_Dynamic):
         else:
             return []
 
+    surfaceMap = {
+        "Sable": "sand",
+        "Gazon naturel": "grass",
+        "Bitume": "asphalt",
+        "Béton": "concrete",
+        "Gazon synthétique": "artificial_turf",
+        "Bois": "wood",
+        "Terre battue": "clay",
+        "Métal": "metal",
+        # 2967 Carrelage
+        # 4637 Parquet
+    }
+
     def surface(self, res):
-        return self.SURFACE_MAP.get(res["Nature du sol"])
+        return self.surfaceMap.get(res["Nature du sol"])
