@@ -97,7 +97,7 @@ The rules selectors can apply on OSM objects filtered by type or not. The common
 The wildcard selector is for all at once:
 * `*`
 
-Note: JOSM also have an `area` type. But it is not implemented in Osmose-QA, and such selector are ignored.
+Note: JOSM also have an `area` type. But it is not implemented in Osmose-QA, and such selectors are ignored.
 
 #### Condition on tags
 
@@ -206,22 +206,40 @@ A free text on how to fix can also be present:
 
 #### Osmose-QA Properties
 
-Osmose-QA have two optional extensions, ignored by JOSM.
+Osmose-QA has a few optional extensions, which are ignored by JOSM.
 
 ```css
     -osmoseTags: list("highway", "emergency");
 ```
-These Osmose-QA tags extent the ones define in the `meta` section.
+These Osmose-QA tags extend the ones defined in the `meta` section.
 
 ```css
     -osmoseItemClassLevel: "4030/40301/2";
 ```
-Set the Osmose-QA class definition fields: `item`, `class` id, and `level`. When defined, override the default level of `throw`.
+Set the Osmose-QA class definition fields: `item`, `class` id, and `level`. When defined, it overrides the default level of `throw*`.
 
-If required a sub class id can also be defined with `[class]:[subclass]`:
+If required, a sub class id can also be defined with `[class]:[subclass]`:
 ```css
     -osmoseItemClassLevel: "4030/40301:887554/2";
 ```
+
+Additionally, the following three properties can be used to give extra information regarding an issue:
+```css
+    -osmoseDetail: "message containing extra details about the issue";
+    -osmoseFix: "message containing a description of how to fix an issue";
+    -osmoseTrap: "message warning about potential mistakes";
+```
+These are purely textual and will not affect any auto-fix. They support translations, placeholders and simple mark-up. For example:
+```css
+    -osmoseFix: tr("Create two separate objects, one with `{0}` and one with `{1}`", "highway=*", "building=*");
+```
+
+Lastly, one can add a link to the OpenStreetMap wiki using the extension `-osmoseResource`:
+```css
+    -osmoseResource: "https://wiki.openstreetmap.org/wiki/Useful_Page";
+```
+
+Note that `-osmoseTags`, `-osmoseDetail`, `-osmoseFix`, `-osmoseTrap` and `-osmoseResource` apply to all rules with the same class.
 
 ### Set, define MapCSS class
 
