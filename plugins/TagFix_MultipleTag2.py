@@ -16,7 +16,7 @@ class TagFix_MultipleTag2(PluginMapCSS):
         self.errors[20802] = self.def_class(item = 2080, level = 2, tags = mapcss.list_('tag') + mapcss.list_('highway'), title = mapcss.tr('Missing tag ref for emergency access point'))
         self.errors[30320] = self.def_class(item = 3032, level = 1, tags = mapcss.list_('tag') + mapcss.list_('fix:chair', 'highway', 'tag'), title = mapcss.tr('Watch multiple tags'))
         self.errors[30322] = self.def_class(item = 3032, level = 3, tags = mapcss.list_('tag'), title = mapcss.tr('{0} together with {1}, usually {1} is located underneath the {2}. Tag the {3} as a separate object.', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{0.value}'), mapcss._tag_uncapture(capture_tags, '{1.key}')))
-        self.errors[32301] = self.def_class(item = 3230, level = 2, tags = mapcss.list_('tag') + mapcss.list_('fix:chair'), title = mapcss.tr('Probably only for bottles, not any type of glass'))
+        self.errors[32301] = self.def_class(item = 3230, level = 2, tags = mapcss.list_('tag') + mapcss.list_('fix:chair'), title = mapcss.tr('Probably only for bottles, not any type of glass'), detail = mapcss.tr('Most street-side glass containers only accept soda-lime glass (e.g. bottles and jars), but not glasses for high temperatures or window glass.'), resource = 'https://wiki.openstreetmap.org/wiki/Tag:amenity=recycling')
         self.errors[32302] = self.def_class(item = 3230, level = 2, tags = mapcss.list_('tag') + mapcss.list_('fix:chair'), title = mapcss.tr('Suspicious name for a container'))
         self.errors[40201] = self.def_class(item = 4020, level = 1, tags = mapcss.list_('tag') + mapcss.list_('fix:chair', 'highway', 'roundabout'), title = mapcss.tr('Roundabout as area'))
 
@@ -62,7 +62,9 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("fix:chair")
+                # -osmoseDetail:tr("Most street-side glass containers only accept soda-lime glass (e.g. bottles and jars), but not glasses for high temperatures or window glass.")
                 # -osmoseItemClassLevel:"3230/32301/2"
+                # -osmoseResource:"https://wiki.openstreetmap.org/wiki/Tag:amenity=recycling"
                 # throwWarning:tr("Probably only for bottles, not any type of glass")
                 # fixRemove:"recycling:glass"
                 # fixAdd:"recycling:glass_bottles=yes"
@@ -133,7 +135,9 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("fix:chair")
+                # -osmoseDetail:tr("Most street-side glass containers only accept soda-lime glass (e.g. bottles and jars), but not glasses for high temperatures or window glass.")
                 # -osmoseItemClassLevel:"3230/32301/2"
+                # -osmoseResource:"https://wiki.openstreetmap.org/wiki/Tag:amenity=recycling"
                 # throwWarning:tr("Probably only for bottles, not any type of glass")
                 # fixRemove:"recycling:glass"
                 # fixAdd:"recycling:glass_bottles=yes"
@@ -239,7 +243,9 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("fix:chair")
+                # -osmoseDetail:tr("Most street-side glass containers only accept soda-lime glass (e.g. bottles and jars), but not glasses for high temperatures or window glass.")
                 # -osmoseItemClassLevel:"3230/32301/2"
+                # -osmoseResource:"https://wiki.openstreetmap.org/wiki/Tag:amenity=recycling"
                 # throwWarning:tr("Probably only for bottles, not any type of glass")
                 # fixRemove:"recycling:glass"
                 # fixAdd:"recycling:glass_bottles=yes"
