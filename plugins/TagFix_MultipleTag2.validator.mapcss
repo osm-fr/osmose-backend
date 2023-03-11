@@ -53,6 +53,8 @@ meta[lang=en] { /* lang=en, unused, only to use tr() to catch string for transla
     -osmoseTags: list("fix:chair");
     -osmoseAssertMatchWithContext: list("node amenity=recycling recycling_type=container recycling:glass=yes", "inside=FR");
     -osmoseAssertNoMatchWithContext: list("node amenity=recycling recycling_type=container recycling:glass=yes", "inside=CZ");
+    -osmoseResource: "https://wiki.openstreetmap.org/wiki/Tag:amenity=recycling";
+    -osmoseDetail: tr("Most street-side glass containers only accept soda-lime glass (e.g. bottles and jars), but not glasses for high temperatures or window glass.");
 }
 
 
