@@ -28,7 +28,9 @@ class test_mapcss_parsing_evalutation(PluginMapCSS):
         self.errors[13] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test #1303 {0}', mapcss._tag_uncapture(capture_tags, '{2.key}')))
         self.errors[14] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test #1742 - {0}', mapcss._tag_uncapture(capture_tags, '{1.tag}')))
         self.errors[15] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test {0}{1}', 'text', mapcss._tag_uncapture(capture_tags, '{0.key}')))
-        self.errors[40301] = self.def_class(item = 4030, level = 2, tags = mapcss.list_('fix:survey'), title = {'en': 'test #1740'})
+        self.errors[97] = self.def_class(item = 4, level = 1, tags = mapcss.list_('osmose_rules'), title = mapcss.tr('test'), trap = mapcss.tr('Don\'t do this!'), detail = mapcss.tr('More {0}.', '`info`'), fix = {"en": "'This may fix it.'"}, resource = 'https://wiki.openstreetmap.org/wiki/Useful_Page')
+        self.errors[98] = self.def_class(item = 4030, level = 2, tags = mapcss.list_('fix:survey'), title = {'en': 'test #1740'})
+        self.errors[99] = self.def_class(item = 4, level = 1, tags = mapcss.list_('osmose_rules'), title = mapcss.tr('test'), trap = mapcss.tr('Don\'t do this!'), detail = mapcss.tr('More {0}.', '`info`'), fix = {"en": "'This may fix it.'"}, resource = 'https://wiki.openstreetmap.org/wiki/Useful_Page')
 
         self.re_3d3faeb5 = re.compile(r'(?i).*Straße.*')
         self.re_49048f80 = re.compile(r'd')
@@ -52,13 +54,13 @@ class test_mapcss_parsing_evalutation(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("fix:survey")
-                # -osmoseItemClassLevel:"4030/40301:0/2"
+                # -osmoseItemClassLevel:"4030/98:0/2"
                 # throwWarning:"test #1740"
                 # assertMatch:"node x=0"
                 # assertNoMatch:"node x=1"
                 # assertNoMatch:"node x=1.0"
                 # assertNoMatch:"node x=Osmose"
-                err.append({'class': 40301, 'subclass': 0, 'text': {'en': 'test #1740'}})
+                err.append({'class': 98, 'subclass': 0, 'text': {'en': 'test #1740'}})
 
         # node[x!=0]
         if True:
@@ -407,6 +409,46 @@ class test_mapcss_parsing_evalutation(PluginMapCSS):
                 # throwError:"test"
                 err.append({'class': 6, 'subclass': 1343056298, 'text': {'en': 'test'}})
 
+        # way[x]
+        if ('x' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'x')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("test")
+                # -osmoseTags:list("osmose_rules")
+                # -osmoseTrap:tr("Don't do this!")
+                # -osmoseDetail:tr("More {0}.","`info`")
+                # -osmoseItemClassLevel:"4/97:2/1"
+                # -osmoseFix:"This may fix it."
+                # -osmoseResource:"https://wiki.openstreetmap.org/wiki/Useful_Page"
+                # throwOther:tr("test")
+                # assertMatch:"way x=yes"
+                # assertNoMatch:"way y=yes"
+                err.append({'class': 97, 'subclass': 2, 'text': mapcss.tr('test')})
+
+        # way[x]
+        if ('x' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'x')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("test")
+                # -osmoseTags:list("osmose_rules")
+                # -osmoseTrap:tr("Don't do this!")
+                # -osmoseDetail:tr("More {0}.","`info`")
+                # -osmoseItemClassLevel:"4/99:2/1"
+                # -osmoseFix:"This may fix it."
+                # -osmoseResource:"https://wiki.openstreetmap.org/wiki/Useful_Page"
+                # throwOther:tr("test")
+                # assertMatch:"way x=yes"
+                # assertNoMatch:"way y=yes"
+                err.append({'class': 99, 'subclass': 2, 'text': mapcss.tr('test')})
+
         # way[maxspeed>5000]
         if ('maxspeed' in keys):
             match = False
@@ -543,10 +585,10 @@ class Test(TestPluginMapcss):
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
-        self.check_err(n.node(data, {'x': '0'}), expected={'class': 40301, 'subclass': 0})
-        self.check_not_err(n.node(data, {'x': '1'}), expected={'class': 40301, 'subclass': 0})
-        self.check_not_err(n.node(data, {'x': '1.0'}), expected={'class': 40301, 'subclass': 0})
-        self.check_not_err(n.node(data, {'x': 'Osmose'}), expected={'class': 40301, 'subclass': 0})
+        self.check_err(n.node(data, {'x': '0'}), expected={'class': 98, 'subclass': 0})
+        self.check_not_err(n.node(data, {'x': '1'}), expected={'class': 98, 'subclass': 0})
+        self.check_not_err(n.node(data, {'x': '1.0'}), expected={'class': 98, 'subclass': 0})
+        self.check_not_err(n.node(data, {'x': 'Osmose'}), expected={'class': 98, 'subclass': 0})
         self.check_not_err(n.node(data, {'x': '0'}), expected={'class': 1, 'subclass': 659546685})
         self.check_err(n.node(data, {'x': '1'}), expected={'class': 1, 'subclass': 659546685})
         self.check_err(n.node(data, {'x': '1.0'}), expected={'class': 1, 'subclass': 659546685})
@@ -610,6 +652,10 @@ class Test(TestPluginMapcss):
         self.check_not_err(n.way(data, {'building': 'chapel', 'name': 'OsmoseRuleTrigger', 'x': 'yes'}, [0]), expected={'class': 13, 'subclass': 1140742172})
         with with_options(n, {'country': 'FR'}):
             self.check_err(n.way(data, {'x': 'y'}, [0]), expected={'class': 14, 'subclass': 1132689531})
+        self.check_err(n.way(data, {'x': 'yes'}, [0]), expected={'class': 97, 'subclass': 2})
+        self.check_not_err(n.way(data, {'y': 'yes'}, [0]), expected={'class': 97, 'subclass': 2})
+        self.check_err(n.way(data, {'x': 'yes'}, [0]), expected={'class': 99, 'subclass': 2})
+        self.check_not_err(n.way(data, {'y': 'yes'}, [0]), expected={'class': 99, 'subclass': 2})
         self.check_err(n.way(data, {'maxspeed': '10000'}, [0]), expected={'class': 15, 'subclass': 2063115534})
         self.check_not_err(n.way(data, {'maxspeed': '5000'}, [0]), expected={'class': 15, 'subclass': 2063115534})
         self.check_not_err(n.way(data, {'maxspeed': 'default'}, [0]), expected={'class': 15, 'subclass': 2063115534})
