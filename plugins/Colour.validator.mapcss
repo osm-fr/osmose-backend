@@ -45,7 +45,7 @@ meta[lang=fr] {
 *[ref:colour][                                  ref:colour*="#"][                 ref:colour!~/^(#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})|[^#;]+)(; ?(#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})|[^#;]+))*$/] {
     group: tr("Colour code should start with '#' followed by 3 or 6 digits");
     -osmoseItemClassLevel: "3091/30911:0/2";
-    throwWarning: tr("{0} colour code should start with '#' followed by 3 or 6 digits","{0.tag}");
+    throwWarning: tr("{0} colour code should start with '#' followed by 3 or 6 hex digits","{0.tag}");
 
     assertMatch: "way building:colour=#1234";
     assertMatch: "way building:colour=#foobar9";
@@ -74,7 +74,7 @@ meta[lang=fr] {
 *[ref:colour][                                  ref:colour=~/^([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/] {
     group: tr("Colour code should start with '#' followed by 3 or 6 digits");
     -osmoseItemClassLevel: "3091/30911:1/2";
-    throwWarning: tr("{0} colour code should start with '#' followed by 3 or 6 digits","{0.tag}");
+    throwWarning: tr("{0} colour code should start with '#' followed by 3 or 6 hex digits","{0.tag}");
     fixAdd: "{0.key}=#{0.value}";
     set hexWithoutHash; /* Avoid duplicate warning for bad color code and unknown color name. The catch: no check if in the same tag */
 
@@ -99,6 +99,8 @@ meta[lang=fr] {
 *[ref:colour][                                  ref:colour!~/^(aliceblue|antiquewhite|aqua|aquamarine|azure|beige|bisque|black|blanchedalmond|blue|blueviolet|brown|burlywood|cadetblue|chartreuse|chocolate|coral|cornflowerblue|cornsilk|crimson|cyan|darkblue|darkcyan|darkgoldenrod|darkgray|darkgreen|darkgrey|darkkhaki|darkmagenta|darkolivegreen|darkorange|darkorchid|darkred|darksalmon|darkseagreen|darkslateblue|darkslategray|darkslategrey|darkturquoise|darkviolet|deeppink|deepskyblue|dimgray|dimgrey|dodgerblue|firebrick|floralwhite|forestgreen|fuchsia|gainsboro|ghostwhite|gold|goldenrod|gray|grey|green|greenyellow|honeydew|hotpink|indianred|indigo|ivory|khaki|lavender|lavenderblush|lawngreen|lemonchiffon|lightblue|lightcoral|lightcyan|lightgoldenrodyellow|lightgray|lightgreen|lightgrey|lightpink|lightsalmon|lightseagreen|lightskyblue|lightslategray|lightslategrey|lightsteelblue|lightyellow|lime|limegreen|linen|magenta|maroon|mediumaquamarine|mediumblue|mediumorchid|mediumpurple|mediumseagreen|mediumslateblue|mediumspringgreen|mediumturquoise|mediumvioletred|midnightblue|mintcream|mistyrose|moccasin|navajowhite|navy|oldlace|olive|olivedrab|orange|orangered|orchid|palegoldenrod|palegreen|paleturquoise|palevioletred|papayawhip|peachpuff|peru|pink|plum|powderblue|purple|red|rosybrown|royalblue|saddlebrown|salmon|sandybrown|seagreen|seashell|sienna|silver|skyblue|slateblue|slategray|slategrey|snow|springgreen|steelblue|tan|teal|thistle|tomato|turquoise|violet|wheat|white|whitesmoke|yellow|yellowgreen|#[^;]*)(; ?(aliceblue|antiquewhite|aqua|aquamarine|azure|beige|bisque|black|blanchedalmond|blue|blueviolet|brown|burlywood|cadetblue|chartreuse|chocolate|coral|cornflowerblue|cornsilk|crimson|cyan|darkblue|darkcyan|darkgoldenrod|darkgray|darkgreen|darkgrey|darkkhaki|darkmagenta|darkolivegreen|darkorange|darkorchid|darkred|darksalmon|darkseagreen|darkslateblue|darkslategray|darkslategrey|darkturquoise|darkviolet|deeppink|deepskyblue|dimgray|dimgrey|dodgerblue|firebrick|floralwhite|forestgreen|fuchsia|gainsboro|ghostwhite|gold|goldenrod|gray|grey|green|greenyellow|honeydew|hotpink|indianred|indigo|ivory|khaki|lavender|lavenderblush|lawngreen|lemonchiffon|lightblue|lightcoral|lightcyan|lightgoldenrodyellow|lightgray|lightgreen|lightgrey|lightpink|lightsalmon|lightseagreen|lightskyblue|lightslategray|lightslategrey|lightsteelblue|lightyellow|lime|limegreen|linen|magenta|maroon|mediumaquamarine|mediumblue|mediumorchid|mediumpurple|mediumseagreen|mediumslateblue|mediumspringgreen|mediumturquoise|mediumvioletred|midnightblue|mintcream|mistyrose|moccasin|navajowhite|navy|oldlace|olive|olivedrab|orange|orangered|orchid|palegoldenrod|palegreen|paleturquoise|palevioletred|papayawhip|peachpuff|peru|pink|plum|powderblue|purple|red|rosybrown|royalblue|saddlebrown|salmon|sandybrown|seagreen|seashell|sienna|silver|skyblue|slateblue|slategray|slategrey|snow|springgreen|steelblue|tan|teal|thistle|tomato|turquoise|violet|wheat|white|whitesmoke|yellow|yellowgreen|#[^;]*))*$/]!.hexWithoutHash {
     group: tr("Bad colour name");
     -osmoseItemClassLevel: "3091/30914:0/2";
+    -osmoseDetail: tr("Colour names should be one of those in the CSS specifications and should be spelled in lowercase letters and without dashes. Multiple colours can be separated by a semicolon.");
+    -osmoseResource: "https://www.w3.org/TR/css-color-3/#svg-color";
     throwWarning: tr("Unknown or invalid colour in tag ''{0}''", "{0.key}");
 
     assertMatch: "way building:colour=red-blue";
