@@ -38,7 +38,7 @@ class Polygon:
             url = polygon_url + "index.py?id="+str(id)
             downloader.urlread(url, cache_delay)
         url = polygon_url + "get_wkt.py?params=0&id=" + ",".join(map(str, polygon_id))
-        self.wkt = wkt = downloader.urlread(url, cache_delay)
+        wkt = downloader.urlread(url, cache_delay)
         if wkt.startswith("SRID="):
             wkt = wkt.split(";", 1)[1]
         self.polygon = loads(wkt)
