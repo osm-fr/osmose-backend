@@ -14,7 +14,7 @@ class Colour(PluginMapCSS):
         super().init(logger)
         tags = capture_tags = {} # noqa
         self.errors[30911] = self.def_class(item = 3091, level = 2, tags = mapcss.list_('tag'), title = mapcss.tr('Colour code should start with \'#\' followed by 3 or 6 digits'))
-        self.errors[30914] = self.def_class(item = 3091, level = 2, tags = mapcss.list_('tag'), title = mapcss.tr('Bad colour name'))
+        self.errors[30914] = self.def_class(item = 3091, level = 2, tags = mapcss.list_('tag'), title = mapcss.tr('Bad colour name'), detail = mapcss.tr('Colour names should be one of those in the CSS specifications and should be spelled in lowercase letters and without dashes. Multiple colours can be separated by a semicolon.'), resource = 'https://www.w3.org/TR/css-color-3/#svg-color')
 
         self.re_32723f56 = re.compile(r'^(aliceblue|antiquewhite|aqua|aquamarine|azure|beige|bisque|black|blanchedalmond|blue|blueviolet|brown|burlywood|cadetblue|chartreuse|chocolate|coral|cornflowerblue|cornsilk|crimson|cyan|darkblue|darkcyan|darkgoldenrod|darkgray|darkgreen|darkgrey|darkkhaki|darkmagenta|darkolivegreen|darkorange|darkorchid|darkred|darksalmon|darkseagreen|darkslateblue|darkslategray|darkslategrey|darkturquoise|darkviolet|deeppink|deepskyblue|dimgray|dimgrey|dodgerblue|firebrick|floralwhite|forestgreen|fuchsia|gainsboro|ghostwhite|gold|goldenrod|gray|grey|green|greenyellow|honeydew|hotpink|indianred|indigo|ivory|khaki|lavender|lavenderblush|lawngreen|lemonchiffon|lightblue|lightcoral|lightcyan|lightgoldenrodyellow|lightgray|lightgreen|lightgrey|lightpink|lightsalmon|lightseagreen|lightskyblue|lightslategray|lightslategrey|lightsteelblue|lightyellow|lime|limegreen|linen|magenta|maroon|mediumaquamarine|mediumblue|mediumorchid|mediumpurple|mediumseagreen|mediumslateblue|mediumspringgreen|mediumturquoise|mediumvioletred|midnightblue|mintcream|mistyrose|moccasin|navajowhite|navy|oldlace|olive|olivedrab|orange|orangered|orchid|palegoldenrod|palegreen|paleturquoise|palevioletred|papayawhip|peachpuff|peru|pink|plum|powderblue|purple|red|rosybrown|royalblue|saddlebrown|salmon|sandybrown|seagreen|seashell|sienna|silver|skyblue|slateblue|slategray|slategrey|snow|springgreen|steelblue|tan|teal|thistle|tomato|turquoise|violet|wheat|white|whitesmoke|yellow|yellowgreen|#[^;]*)(; ?(aliceblue|antiquewhite|aqua|aquamarine|azure|beige|bisque|black|blanchedalmond|blue|blueviolet|brown|burlywood|cadetblue|chartreuse|chocolate|coral|cornflowerblue|cornsilk|crimson|cyan|darkblue|darkcyan|darkgoldenrod|darkgray|darkgreen|darkgrey|darkkhaki|darkmagenta|darkolivegreen|darkorange|darkorchid|darkred|darksalmon|darkseagreen|darkslateblue|darkslategray|darkslategrey|darkturquoise|darkviolet|deeppink|deepskyblue|dimgray|dimgrey|dodgerblue|firebrick|floralwhite|forestgreen|fuchsia|gainsboro|ghostwhite|gold|goldenrod|gray|grey|green|greenyellow|honeydew|hotpink|indianred|indigo|ivory|khaki|lavender|lavenderblush|lawngreen|lemonchiffon|lightblue|lightcoral|lightcyan|lightgoldenrodyellow|lightgray|lightgreen|lightgrey|lightpink|lightsalmon|lightseagreen|lightskyblue|lightslategray|lightslategrey|lightsteelblue|lightyellow|lime|limegreen|linen|magenta|maroon|mediumaquamarine|mediumblue|mediumorchid|mediumpurple|mediumseagreen|mediumslateblue|mediumspringgreen|mediumturquoise|mediumvioletred|midnightblue|mintcream|mistyrose|moccasin|navajowhite|navy|oldlace|olive|olivedrab|orange|orangered|orchid|palegoldenrod|palegreen|paleturquoise|palevioletred|papayawhip|peachpuff|peru|pink|plum|powderblue|purple|red|rosybrown|royalblue|saddlebrown|salmon|sandybrown|seagreen|seashell|sienna|silver|skyblue|slateblue|slategray|slategrey|snow|springgreen|steelblue|tan|teal|thistle|tomato|turquoise|violet|wheat|white|whitesmoke|yellow|yellowgreen|#[^;]*))*$')
         self.re_43080bc2 = re.compile(r'^(#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})|[^#;]+)(; ?(#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})|[^#;]+))*$')
@@ -87,8 +87,8 @@ class Colour(PluginMapCSS):
             if match:
                 # group:tr("Colour code should start with '#' followed by 3 or 6 digits")
                 # -osmoseItemClassLevel:"3091/30911:0/2"
-                # throwWarning:tr("{0} colour code should start with '#' followed by 3 or 6 digits","{0.tag}")
-                err.append({'class': 30911, 'subclass': 0, 'text': mapcss.tr('{0} colour code should start with \'#\' followed by 3 or 6 digits', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                # throwWarning:tr("{0} colour code should start with '#' followed by 3 or 6 hex digits","{0.tag}")
+                err.append({'class': 30911, 'subclass': 0, 'text': mapcss.tr('{0} colour code should start with \'#\' followed by 3 or 6 hex digits', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # *[building:colour][building:colour=~/^([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/]
         # *[roof:colour][roof:colour=~/^([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/]
@@ -151,10 +151,10 @@ class Colour(PluginMapCSS):
                 # set hexWithoutHash
                 # group:tr("Colour code should start with '#' followed by 3 or 6 digits")
                 # -osmoseItemClassLevel:"3091/30911:1/2"
-                # throwWarning:tr("{0} colour code should start with '#' followed by 3 or 6 digits","{0.tag}")
+                # throwWarning:tr("{0} colour code should start with '#' followed by 3 or 6 hex digits","{0.tag}")
                 # fixAdd:"{0.key}=#{0.value}"
                 set_hexWithoutHash = True
-                err.append({'class': 30911, 'subclass': 1, 'text': mapcss.tr('{0} colour code should start with \'#\' followed by 3 or 6 digits', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 30911, 'subclass': 1, 'text': mapcss.tr('{0} colour code should start with \'#\' followed by 3 or 6 hex digits', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     (mapcss._tag_uncapture(capture_tags, '{0.key}=#{0.value}')).split('=', 1)])
                 }})
@@ -218,7 +218,9 @@ class Colour(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Bad colour name")
+                # -osmoseDetail:tr("Colour names should be one of those in the CSS specifications and should be spelled in lowercase letters and without dashes. Multiple colours can be separated by a semicolon.")
                 # -osmoseItemClassLevel:"3091/30914:0/2"
+                # -osmoseResource:"https://www.w3.org/TR/css-color-3/#svg-color"
                 # throwWarning:tr("Unknown or invalid colour in tag ''{0}''","{0.key}")
                 err.append({'class': 30914, 'subclass': 0, 'text': mapcss.tr('Unknown or invalid colour in tag \'\'{0}\'\'', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
@@ -290,7 +292,7 @@ class Colour(PluginMapCSS):
             if match:
                 # group:tr("Colour code should start with '#' followed by 3 or 6 digits")
                 # -osmoseItemClassLevel:"3091/30911:0/2"
-                # throwWarning:tr("{0} colour code should start with '#' followed by 3 or 6 digits","{0.tag}")
+                # throwWarning:tr("{0} colour code should start with '#' followed by 3 or 6 hex digits","{0.tag}")
                 # assertNoMatch:"way building:colour=#123"
                 # assertMatch:"way building:colour=#1234"
                 # assertNoMatch:"way building:colour=#abcdef"
@@ -302,7 +304,7 @@ class Colour(PluginMapCSS):
                 # assertNoMatch:"way building:colour=red;#abcdef"
                 # assertMatch:"way building:colour=red;#foobar9"
                 # assertNoMatch:"way roof:colour=#484443 building:colour=#8c6b57"
-                err.append({'class': 30911, 'subclass': 0, 'text': mapcss.tr('{0} colour code should start with \'#\' followed by 3 or 6 digits', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                err.append({'class': 30911, 'subclass': 0, 'text': mapcss.tr('{0} colour code should start with \'#\' followed by 3 or 6 hex digits', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # *[building:colour][building:colour=~/^([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/]
         # *[roof:colour][roof:colour=~/^([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/]
@@ -365,7 +367,7 @@ class Colour(PluginMapCSS):
                 # set hexWithoutHash
                 # group:tr("Colour code should start with '#' followed by 3 or 6 digits")
                 # -osmoseItemClassLevel:"3091/30911:1/2"
-                # throwWarning:tr("{0} colour code should start with '#' followed by 3 or 6 digits","{0.tag}")
+                # throwWarning:tr("{0} colour code should start with '#' followed by 3 or 6 hex digits","{0.tag}")
                 # fixAdd:"{0.key}=#{0.value}"
                 # assertNoMatch:"way building:colour=#123"
                 # assertMatch:"way building:colour=123"
@@ -373,7 +375,7 @@ class Colour(PluginMapCSS):
                 # assertNoMatch:"way building:colour=beige"
                 # assertNoMatch:"way roof:colour=#484443 building:colour=#8c6b57"
                 set_hexWithoutHash = True
-                err.append({'class': 30911, 'subclass': 1, 'text': mapcss.tr('{0} colour code should start with \'#\' followed by 3 or 6 digits', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 30911, 'subclass': 1, 'text': mapcss.tr('{0} colour code should start with \'#\' followed by 3 or 6 hex digits', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     (mapcss._tag_uncapture(capture_tags, '{0.key}=#{0.value}')).split('=', 1)])
                 }})
@@ -437,7 +439,9 @@ class Colour(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Bad colour name")
+                # -osmoseDetail:tr("Colour names should be one of those in the CSS specifications and should be spelled in lowercase letters and without dashes. Multiple colours can be separated by a semicolon.")
                 # -osmoseItemClassLevel:"3091/30914:0/2"
+                # -osmoseResource:"https://www.w3.org/TR/css-color-3/#svg-color"
                 # throwWarning:tr("Unknown or invalid colour in tag ''{0}''","{0.key}")
                 # assertNoMatch:"way building:colour=#FFFFFF"
                 # assertNoMatch:"way building:colour=#red"
@@ -519,8 +523,8 @@ class Colour(PluginMapCSS):
             if match:
                 # group:tr("Colour code should start with '#' followed by 3 or 6 digits")
                 # -osmoseItemClassLevel:"3091/30911:0/2"
-                # throwWarning:tr("{0} colour code should start with '#' followed by 3 or 6 digits","{0.tag}")
-                err.append({'class': 30911, 'subclass': 0, 'text': mapcss.tr('{0} colour code should start with \'#\' followed by 3 or 6 digits', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                # throwWarning:tr("{0} colour code should start with '#' followed by 3 or 6 hex digits","{0.tag}")
+                err.append({'class': 30911, 'subclass': 0, 'text': mapcss.tr('{0} colour code should start with \'#\' followed by 3 or 6 hex digits', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # *[building:colour][building:colour=~/^([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/]
         # *[roof:colour][roof:colour=~/^([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/]
@@ -583,10 +587,10 @@ class Colour(PluginMapCSS):
                 # set hexWithoutHash
                 # group:tr("Colour code should start with '#' followed by 3 or 6 digits")
                 # -osmoseItemClassLevel:"3091/30911:1/2"
-                # throwWarning:tr("{0} colour code should start with '#' followed by 3 or 6 digits","{0.tag}")
+                # throwWarning:tr("{0} colour code should start with '#' followed by 3 or 6 hex digits","{0.tag}")
                 # fixAdd:"{0.key}=#{0.value}"
                 set_hexWithoutHash = True
-                err.append({'class': 30911, 'subclass': 1, 'text': mapcss.tr('{0} colour code should start with \'#\' followed by 3 or 6 digits', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 30911, 'subclass': 1, 'text': mapcss.tr('{0} colour code should start with \'#\' followed by 3 or 6 hex digits', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     (mapcss._tag_uncapture(capture_tags, '{0.key}=#{0.value}')).split('=', 1)])
                 }})
@@ -650,7 +654,9 @@ class Colour(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Bad colour name")
+                # -osmoseDetail:tr("Colour names should be one of those in the CSS specifications and should be spelled in lowercase letters and without dashes. Multiple colours can be separated by a semicolon.")
                 # -osmoseItemClassLevel:"3091/30914:0/2"
+                # -osmoseResource:"https://www.w3.org/TR/css-color-3/#svg-color"
                 # throwWarning:tr("Unknown or invalid colour in tag ''{0}''","{0.key}")
                 err.append({'class': 30914, 'subclass': 0, 'text': mapcss.tr('Unknown or invalid colour in tag \'\'{0}\'\'', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
