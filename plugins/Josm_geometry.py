@@ -275,6 +275,7 @@ class Josm_geometry(PluginMapCSS):
         # node[natural=sand]
         # node[natural=scree]
         # node[natural=scrub]
+        # node[natural=shrubbery]
         # node[natural=water]
         # node[natural=wetland]
         # node[natural=wood]
@@ -356,6 +357,10 @@ class Josm_geometry(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'natural') == mapcss._value_capture(capture_tags, 0, 'shrubbery')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'natural') == mapcss._value_capture(capture_tags, 0, 'water')))
                 except mapcss.RuleAbort: pass
             if not match:
@@ -408,7 +413,7 @@ class Josm_geometry(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} on a node. Should be drawn as an area.","{0.tag}")
-                err.append({'class': 9003003, 'subclass': 628017354, 'text': mapcss.tr('{0} on a node. Should be drawn as an area.', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                err.append({'class': 9003003, 'subclass': 916650129, 'text': mapcss.tr('{0} on a node. Should be drawn as an area.', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # node[type=multipolygon]
         # node[interval]
