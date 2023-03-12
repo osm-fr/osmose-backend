@@ -226,6 +226,7 @@ rule_declarations_order_map = {
     '-osmoseDetail': 2,
     '-osmoseTrap': 2,
     '-osmoseFix': 2,
+    '-osmoseExample': 2,
     '-osmoseResource': 2,
     # text
     'throwError': 3,
@@ -646,7 +647,7 @@ def to_p(t):
         elif t['property'] == '-osmoseItemClassLevel':
             item, class_id, level = t['value']['value']['value'].split('/')
             item, class_id, subclass_id, level = int(item), int(class_id.split(':')[0]), ':' in class_id and int(class_id.split(':')[1]), int(level)
-        elif t['property'] in ('-osmoseDetail', '-osmoseTrap', '-osmoseFix', '-osmoseResource'):
+        elif t['property'] in ('-osmoseDetail', '-osmoseTrap', '-osmoseFix', '-osmoseResource', '-osmoseExample'):
             whichMsg = t['property'][7:].lower()
             text = to_p(t['value'])
             if t['value']['type'] == 'functionExpression' and t['value']['name'] == 'mapcss.tr':
@@ -654,7 +655,7 @@ def to_p(t):
             elif whichMsg == 'resource':
                 class_info_text[whichMsg] = text # hyperlink as string, no need for language
             else:
-                class_info_text[whichMsg] = '{"en": "' + text + '"}'
+                class_info_text[whichMsg] = '{"en": ' + text + '}'
         elif t['property'] in ('throwError', 'throwWarning', 'throwOther'):
             text = to_p(t['value'])
             text_class = t['value']['params'][0] if t['value']['type'] == 'functionExpression' and t['value']['name'] == 'mapcss.tr' else t['value']
