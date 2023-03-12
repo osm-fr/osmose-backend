@@ -223,15 +223,16 @@ If required, a sub class id can also be defined with `[class]:[subclass]`:
     -osmoseItemClassLevel: "4030/40301:887554/2";
 ```
 
-Additionally, the following three properties can be used to give extra information regarding an issue:
+Additionally, the following four properties can be used to give extra information regarding an issue:
 ```css
-    -osmoseDetail: "message containing extra details about the issue";
-    -osmoseFix: "message containing a description of how to fix an issue";
-    -osmoseTrap: "message warning about potential mistakes";
+    -osmoseDetail: "Message containing extra details about the issue.";
+    -osmoseExample: "Message containing an example related to the issue.";
+    -osmoseFix: "Message containing a description of how to fix an issue.";
+    -osmoseTrap: "Message warning about potential mistakes.";
 ```
 These are purely textual and will not affect any auto-fix. They support translations, placeholders and markdown formatting. For example:
 ```css
-    -osmoseFix: tr("Create two separate objects, one with `{0}` and one with `{1}`", "highway=*", "building=*");
+    -osmoseFix: tr("Create two separate objects, one with `{0}` and one with `{1}`.", "highway=*", "building=*");
 ```
 
 Lastly, one can add a link to a relevant webpage with additional resources (such as the wiki) using the extension `-osmoseResource`:
@@ -239,7 +240,7 @@ Lastly, one can add a link to a relevant webpage with additional resources (such
     -osmoseResource: "https://wiki.openstreetmap.org/wiki/Useful_Page";
 ```
 
-Note that `-osmoseTags`, `-osmoseDetail`, `-osmoseFix`, `-osmoseTrap` and `-osmoseResource` apply to all rules that share the same class.
+Note that `-osmoseTags`, `-osmoseDetail`, `-osmoseExample`, `-osmoseFix`, `-osmoseTrap` and `-osmoseResource` apply to all rules that share the same class.
 
 ### Set, define MapCSS class
 
