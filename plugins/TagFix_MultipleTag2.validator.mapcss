@@ -109,3 +109,14 @@ way[oneway][!highway][!railway][!aerialway][!waterway][!aeroway][!piste:type] {
     -osmoseDetail: tr("The way has a tag `oneway=*` but without `highway=*`.");
     -osmoseTrap: tr("Check if it is really a highway and it is not already mapped.");
 }
+
+
+way[waterway][level] {
+    throwWarning: tr("Waterway with level");
+    assertMatch: "way waterway=stream level=-1";
+    fixChangeKey: "level=>layer";
+    -osmoseItemClassLevel: "3032/30327:0/2";
+    -osmoseTags: list("tag", "fix:chair");
+    -osmoseDetail: tr("Level should be used for buildings, shops, amenities, etc.");
+    -osmoseTrap: tr("Remove level and check if layer is needed instead");
+}

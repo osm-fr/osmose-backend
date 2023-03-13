@@ -32,10 +32,6 @@ class TagFix_MultipleTag(Plugin):
 
         self.errors[30323] = self.def_class(item = 3032, level = 3, tags = ['tag', 'fix:chair'],
             title = T_('Watch multiple tags'))
-        self.errors[30327] = self.def_class(item = 3032, level = 2, tags = ['tag', 'fix:chair'],
-            title = T_('Waterway with level'),
-            detail = T_('Level should be used for buildings, shops, amenities, etc.'),
-            trap = T_('Remove level and check if layer is needed instead'))
         self.errors[303210] = self.def_class(item = 3032, level = 1, tags = ['tag', 'highway', 'fix:chair'],
             title = T_('Fence with material tag, better use fence_type tag'))
         self.errors[20803] = self.def_class(item = 2080, level = 2, tags = ['tag', 'highway', 'fix:chair'],
@@ -138,9 +134,6 @@ For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:acces
         if tags.get("highway") in ("motorway_link", "trunk_link", "primary", "primary_link", "secondary", "secondary_link") and not "maxheight" in tags and not "maxheight:physical" in tags and (("tunnel" in tags and tags["tunnel"] != "no") or tags.get("covered") not in (None, "no")):
             err.append({"class": 71301, "subclass": 0})
 
-        if "waterway" in tags and "level" in tags:
-            err.append({"class": 30327, "subclass": 0, "fix": [{"-": ["level"]}, {"-": ["level"], "+": {"layer": tags["level"]}}]})
-
         if tags.get("access") in ("yes", "permissive"):
             if tags.get("highway") in ("motorway", "trunk"):
                 err.append({"class": 32200, "subclass": 0, "text": T_("Including ski, horse, moped, hazmat and so on, unless explicitly excluded")})
@@ -191,8 +184,6 @@ class Test(TestPluginCommon):
         assert not a.node(None, {"name": "foo", "historic:railway": "station"})
         assert not a.node(None, {"name": "foo", "building:part": "yes"})
         assert not a.node(None, {"name": "foo", "traffic_sign:forward": "city_limit;DE:310", "traffic_sign:backward": "city_limit;DE:311"})
-
-        self.check_err(a.way(None, {"waterway": "stream", "level": "-1"}, None))
 
         assert a.way(None, {"highway": "track", "access": "yes"}, None)
         assert a.way(None, {"highway": "trunk", "access": "yes"}, None)
