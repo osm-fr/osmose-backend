@@ -36,11 +36,6 @@ class TagFix_MultipleTag(Plugin):
             title = T_('Fence with material tag, better use fence_type tag'))
         self.errors[20803] = self.def_class(item = 2080, level = 2, tags = ['tag', 'highway', 'fix:chair'],
             title = T_('Tag highway missing for tracktype or lanes'))
-        self.errors[71301] = self.def_class(item = 7130, level = 3, tags = ['tag', 'highway', 'maxheight', 'fix:survey'],
-            title = T_('Missing maxheight tag'),
-            detail = T_(
-'''Missing `maxheight=*` or `maxheight:*` for a tunnel or a way under a
-bridge.'''))
         self.errors[21101] = self.def_class(item = 2110, level = 2, tags = ['tag'],
             title = T_('Untagged named object'),
             detail = T_('The object is missing any tag which defines what kind of feature it is. This is unexpected for something with a `name` tag.'),
@@ -126,10 +121,6 @@ For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:acces
         key_set = set(tags.keys())
         err = self.common(tags, key_set)
 
-
-        if tags.get("highway") in ("motorway_link", "trunk_link", "primary", "primary_link", "secondary", "secondary_link") and not "maxheight" in tags and not "maxheight:physical" in tags and (("tunnel" in tags and tags["tunnel"] != "no") or tags.get("covered") not in (None, "no")):
-            err.append({"class": 71301, "subclass": 0})
-
         if tags.get("access") in ("yes", "permissive"):
             if tags.get("highway") in ("motorway", "trunk"):
                 err.append({"class": 32200, "subclass": 0, "text": T_("Including ski, horse, moped, hazmat and so on, unless explicitly excluded")})
@@ -166,10 +157,6 @@ class Test(TestPluginCommon):
         for d in ["clockwise"]:
             t = {"highway":"mini_roundabout", "direction":d}
             self.check_err(a.node(None, t), t)
-
-        for t in [{"highway":"primary", "tunnel": "yes"},
-                 ]:
-            self.check_err(a.way(None, t, None), t)
 
         assert a.node(None, {"name": "foo"})
         assert not a.node(None, {"name": "foo", "disused:highway": "bar"})

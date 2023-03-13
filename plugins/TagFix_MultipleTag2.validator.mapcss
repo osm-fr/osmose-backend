@@ -122,6 +122,19 @@ way[waterway][level] {
 }
 
 
+way[tunnel ][highway=~/^(motorway_link|trunk_link|primary|primary_link|secondary|secondary_link)$/][!maxheight][!maxheight:physical][tunnel!=no],
+way[covered][highway=~/^(motorway_link|trunk_link|primary|primary_link|secondary|secondary_link)$/][!maxheight][!maxheight:physical][covered!=no] {
+    throwWarning: tr("Missing maxheight tag");
+    assertMatch: "way highway=primary tunnel=yes";
+    assertMatch: "way highway=primary covered=yes";
+    assertNoMatch: "way highway=primary tunnel=yes maxheight=2.4";
+    assertNoMatch: "way highway=primary covered=no";
+    -osmoseItemClassLevel: "7130/71301:0/3";
+    -osmoseTags: list("tag", "highway", "maxheight", "fix:survey");
+    -osmoseDetail: tr("Missing `maxheight=*` or `maxheight:physical=*` for a tunnel or a way under a bridge.");
+}
+
+
 relation[!type] {
     throwWarning: tr("Missing relation type");
     assertMatch: "relation";
