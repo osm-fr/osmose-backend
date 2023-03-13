@@ -86,3 +86,15 @@ way[highway][junction=roundabout][area][area!=no] {
     -osmoseItemClassLevel: "4020/40201:0/1";
     -osmoseTags: list("fix:chair", "highway", "roundabout");
 }
+
+
+way[junction][junction!=yes][!highway][!area:highway] {
+    throwWarning: tr("Tag highway missing on junction");
+    assertMatch: "way junction=roundabout waterway=river";
+    assertNoMatch: "way junction=yes";
+    assertNoMatch: "way junction=roundabout highway=service";
+    -osmoseItemClassLevel: "2080/20800:0/1";
+    -osmoseTags: list("tag", "highway", "roundabout", "fix:chair");
+    -osmoseDetail: tr("The way has a tag `junction=*` but without `highway=*`.");
+    -osmoseTrap: tr("Check if it is really a highway and it is not already mapped.");
+}
