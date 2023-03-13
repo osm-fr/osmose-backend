@@ -154,9 +154,12 @@ way[x] {
   -osmoseItemClassLevel: "4/97:2/1";
   -osmoseTags: list("osmose_rules");
   -osmoseTrap: tr("Don't do this!");
+  -osmoseExample: "Look at me, I haven't lost my apostrophe";
   -osmoseDetail: tr("More {0}.", "`info`");
   -osmoseFix: "This may fix it.";
   -osmoseResource: "https://wiki.openstreetmap.org/wiki/Useful_Page";
+  fixAdd: "y=z";
+  fixRemove: "x";
   throwOther: tr("test");
   group: tr("test");
   assertMatch: "way x=yes";
@@ -168,9 +171,12 @@ way[x] {
   assertMatch: "way x=yes";
   group: tr("test");
   throwOther: tr("test");
+  fixRemove: "x";
+  fixAdd: "y=z";
   -osmoseResource: "https://wiki.openstreetmap.org/wiki/Useful_Page";
   -osmoseFix: "This may fix it.";
   -osmoseDetail: tr("More {0}.", "`info`");
+  -osmoseExample: "Look at me, I haven't lost my apostrophe";
   -osmoseTrap: tr("Don't do this!");
   -osmoseTags: list("osmose_rules");
   -osmoseItemClassLevel: "4/99:2/1";
