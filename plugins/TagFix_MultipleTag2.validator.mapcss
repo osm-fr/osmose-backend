@@ -98,3 +98,14 @@ way[junction][junction!=yes][!highway][!area:highway] {
     -osmoseDetail: tr("The way has a tag `junction=*` but without `highway=*`.");
     -osmoseTrap: tr("Check if it is really a highway and it is not already mapped.");
 }
+
+
+way[oneway][!highway][!railway][!aerialway][!waterway][!aeroway][!piste:type] {
+    throwWarning: tr("Tag highway missing on oneway");
+    assertMatch: "way oneway=yes building=yes";
+    assertNoMatch: "way highway=x cycleway=opposite oneway=yes";
+    -osmoseItemClassLevel: "2080/20801:0/1";
+    -osmoseTags: list("tag", "highway", "fix:chair");
+    -osmoseDetail: tr("The way has a tag `oneway=*` but without `highway=*`.");
+    -osmoseTrap: tr("Check if it is really a highway and it is not already mapped.");
+}

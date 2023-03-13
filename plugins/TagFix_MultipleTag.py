@@ -38,12 +38,6 @@ class TagFix_MultipleTag(Plugin):
             trap = T_('Remove level and check if layer is needed instead'))
         self.errors[303210] = self.def_class(item = 3032, level = 1, tags = ['tag', 'highway', 'fix:chair'],
             title = T_('Fence with material tag, better use fence_type tag'))
-        self.errors[20801] = self.def_class(item = 2080, level = 1, tags = ['tag', 'highway', 'fix:chair'],
-            title = T_('Tag highway missing on oneway'),
-            detail = T_(
-'''The way has a tag `oneway=*` but without `highway=*`.'''),
-            trap = T_(
-'''Check if it is really a highway and it is not already mapped.'''))
         self.errors[20803] = self.def_class(item = 2080, level = 2, tags = ['tag', 'highway', 'fix:chair'],
             title = T_('Tag highway missing for tracktype or lanes'))
         self.errors[71301] = self.def_class(item = 7130, level = 3, tags = ['tag', 'highway', 'maxheight', 'fix:survey'],
@@ -141,9 +135,6 @@ For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:acces
         err = self.common(tags, key_set)
 
 
-        if u"oneway" in tags and not (u"highway" in tags or u"railway" in tags or u"aerialway" in tags or u"waterway" in tags or u"aeroway" in tags or u"piste:type" in tags):
-            err.append({"class": 20801, "subclass": 0})
-
         if tags.get("highway") in ("motorway_link", "trunk_link", "primary", "primary_link", "secondary", "secondary_link") and not "maxheight" in tags and not "maxheight:physical" in tags and (("tunnel" in tags and tags["tunnel"] != "no") or tags.get("covered") not in (None, "no")):
             err.append({"class": 71301, "subclass": 0})
 
@@ -191,13 +182,8 @@ class Test(TestPluginCommon):
             self.check_err(a.node(None, t), t)
 
         for t in [{"highway":"primary", "tunnel": "yes"},
-                  {"oneway":"yes", "building": "yes"},
                  ]:
             self.check_err(a.way(None, t, None), t)
-
-        for t in [{"highway":"", "cycleway": "opposite", "oneway": "yes"},
-                 ]:
-            assert not a.way(None, t, None), t
 
         assert a.node(None, {"name": "foo"})
         assert not a.node(None, {"name": "foo", "disused:highway": "bar"})
