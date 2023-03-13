@@ -24,8 +24,7 @@ import json
 from datetime import datetime
 from modules.OsmoseTranslation import T_
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
-from .Analyser_Merge import CSV, Load_XY, Conflate, Select, Mapping
-from .Analyser_Merge_Mapillary import Source_Mapillary
+from .Analyser_Merge import CSV, Load_XY, Conflate, Select, Source, Mapping
 
 
 class Analyser_Merge_Street_Objects(Analyser_Merge_Dynamic):
@@ -53,8 +52,8 @@ class SubAnalyser_Merge_Street_Objects(SubAnalyser_Merge_Dynamic):
         self.init(
             "https://www.mapillary.com",
             u"Street Objects from Street-level imagery",
-            CSV(Source_Mapillary(attribution = u"Mapillary Street Objects", country = config.options['country'], polygon_id = config.polygon_id, logger = logger, mapping = mapping, source = source, layer = layer)),
-            Load_XY("X", "Y",
+            CSV(Source(attribution = "Mapillary Street Objects", fileUrl = f"http://proxy.osmose.openstreetmap.fr/mapillary/mapillary_objects-{config.osmosis_manager.db_schema}.csv.bz2", bz2 = True)),
+            Load_XY("lon", "lat",
                 select = {"value": object}),
             Conflate(
                 select = Select(
@@ -66,7 +65,7 @@ class SubAnalyser_Merge_Street_Objects(SubAnalyser_Merge_Dynamic):
                     static1 = dict(filter(lambda kv: kv[1], generateTags.items())),
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "survey:date": lambda res: str(datetime.fromtimestamp(int(res["last_seen_at"])))[0:10]},
+                        "survey:date": lambda res: str(datetime.fromtimestamp(int(res["last_seen_at"])/1000))[0:10]},
                     text = lambda tags, fields:
-                        T_('Observed between {0} and {1}', str(datetime.fromtimestamp(int(fields["first_seen_at"])))[0:10], str(datetime.fromtimestamp(int(fields["last_seen_at"])))[0:10]) if fields["first_seen_at"] != fields["last_seen_at"] else
-                        T_('Observed on {0}', str(datetime.fromtimestamp(int(fields["first_seen_at"])))[0:10]) )))
+                        T_('Observed between {0} and {1}', str(datetime.fromtimestamp(int(fields["first_seen_at"])/1000))[0:10], str(datetime.fromtimestamp(int(fields["last_seen_at"])/1000))[0:10]) if fields["first_seen_at"] != fields["last_seen_at"] else
+                        T_('Observed on {0}', str(datetime.fromtimestamp(int(fields["first_seen_at"])/1000))[0:10]) )))
