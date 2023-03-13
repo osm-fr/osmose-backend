@@ -49,10 +49,6 @@ bridge.'''))
                 {'en': ', '.join(map(lambda x: '`{}`'.format(x), sorted(main_tags)))} ),
             trap = T_('It may be more appropriate to remove the object completely if it isn\'t useful.')
         )
-        self.errors[21102] = self.def_class(item = 2110, level = 2, tags = ['tag'],
-            title = T_('Missing relation type'),
-            detail = T_('The relation is missing a `type` tag to define what it represents.')
-        )
         self.errors[1050] = self.def_class(item = 1050, level = 1, tags = ['highway', 'roundabout', 'fix:chair'],
             title = T_('Reverse roundabout'),
             detail = T_(
@@ -148,9 +144,6 @@ For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:acces
     def relation(self, data, tags, members):
         err = self.common(tags, set(tags.keys()))
 
-        if not "type" in tags:
-            err.append({"class": 21102})
-
         return err
 
 ###########################################################################
@@ -190,7 +183,5 @@ class Test(TestPluginCommon):
 
         assert a.way(None, {"tracktype": "foo"}, None)
         assert not a.way(None, {"tracktype": "foo", "leisure": "track"}, None)
-
-        assert a.relation(None, {}, None)
 
         assert a.node(None, {"barrier": "fence", "material": "wood"})

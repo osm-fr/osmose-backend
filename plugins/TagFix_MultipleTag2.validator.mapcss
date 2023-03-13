@@ -120,3 +120,12 @@ way[waterway][level] {
     -osmoseDetail: tr("Level should be used for buildings, shops, amenities, etc.");
     -osmoseTrap: tr("Remove level and check if layer is needed instead");
 }
+
+
+relation[!type] {
+    throwWarning: tr("Missing relation type");
+    assertMatch: "relation";
+    -osmoseItemClassLevel: "2110/21102/2";
+    -osmoseTags: list("tag");
+    -osmoseDetail: tr("The relation is missing a `type` tag to define what it represents.");
+}
