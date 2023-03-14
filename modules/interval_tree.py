@@ -116,7 +116,7 @@ class IntervalTree(object):
         return { 'intervals': self.intervals,
                     'left':   self.left,
                     'right':  self.right,
-                    'center': self.center }
+                    'center': getattr(self, 'center', None) }
 
     def __setstate__(self, state):
         for key,value in state.items():
