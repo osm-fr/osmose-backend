@@ -1,7 +1,7 @@
 """
  This file helps to review the data used to merge information
  1. download file from https://equipements-sgsocialgouv.opendatasoft.com/explore/dataset/data-es/information/
- 2. store it ad data-es.csv in the current folder
+ 2. store it as data-es.csv in the current folder
  3. check SURFACE_MAP matches the analyser_merge_pitch_FR.py content
  4. run the file
 
@@ -41,7 +41,7 @@ SURFACE_MAP = {
 }
 
 
-log.info("Jetzt geht's los")
+log.info("Starting")
 log.info("Loading source files")
 
 if os.path.exists(ES_SOURCE) is False:
@@ -99,4 +99,4 @@ for surface in surface_matrix:
 
 del surface_es, surface_matrix, es_surface_count
 
-log.info("Färtig !")
+log.info("Done!")
