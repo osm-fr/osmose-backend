@@ -76,61 +76,150 @@ WHERE
 """
 
 sql11 = """
+CREATE TEMP TABLE landusage AS
 SELECT
-  mobility_ways.id,
-  ways.id,
-  ST_AsText(ST_Centroid(ST_Intersection(ST_MakePolygon(ways.linestring), mobility_ways.linestring))),
-  mobility_ways.type,
-  CONCAT(mobility_ways.type, '=', mobility_ways.tags->mobility_ways.type),
+  id,
+  linestring,
+  ST_MakePolygon(linestring) AS poly,
   CASE
-    WHEN ways.tags?'landuse' THEN CONCAT('landuse=', ways.tags->'landuse')
-    WHEN ways.tags?'natural' THEN CONCAT('natural=', ways.tags->'natural')
-  END
+    WHEN tags?'landuse' THEN 'landuse'
+    WHEN tags?'natural' THEN 'natural'
+  END AS landusekey,
+  CASE
+    WHEN tags?'landuse' THEN tags->'landuse'
+    WHEN tags?'natural' THEN tags->'natural'
+  END AS landusevalue,
+  tags,
+  FALSE AS is_multipolygon
+FROM
+  ways
+WHERE
+  is_polygon AND
+  tags != ''::hstore AND
+  (tags?'natural' OR tags?'landuse') AND
+  -- Leave minipolygons for analyser osmosis_polygon_small
+  ST_Area(ST_MakePolygon(ST_Transform(linestring, {proj}))) >= 20
+UNION ALL
+SELECT
+  ways.id,
+  ways.linestring,
+  -- Better would be to parse inner and outer segments and create an SQL multipolygon
+  -- For now, just use a 0.0000000001m buffer zone around the linestring
+  ST_Buffer(ways.linestring, 0.0000000001, 'quad_segs=1 endcap=flat join=bevel') AS poly,
+  CASE
+    WHEN r.tags?'landuse' THEN 'landuse'
+    WHEN r.tags?'natural' THEN 'natural'
+  END AS landusekey,
+  CASE
+    WHEN r.tags?'landuse' THEN r.tags->'landuse'
+    WHEN r.tags?'natural' THEN r.tags->'natural'
+  END AS landusevalue,
+  r.tags,
+  TRUE AS is_multipolygon
+FROM
+  relation_members
+  LEFT JOIN relations AS r ON
+    relation_id = r.id
+  JOIN ways ON
+    member_role = 'outer' AND
+    member_id = ways.id AND
+    member_type = 'W'
+WHERE
+  r.tags->'type' = 'multipolygon' AND
+  (r.tags?'natural' OR r.tags?'landuse')
+"""
+
+sql12 = """
+CREATE INDEX idx_mobilityway_linestring ON mobility_ways USING GIST(linestring);
+CREATE INDEX idx_landusage_linestring ON landusage USING GIST(linestring);
+CREATE INDEX idx_landusage_poly ON landusage USING GIST(poly);
+"""
+
+sql13 = """
+CREATE TEMP TABLE intersections AS
+SELECT
+  mobility_ways.id AS mobility_way_id,
+  mobility_ways.linestring AS mobility_way_linestring,
+  mobility_ways.type AS mobility_way_type,
+  landusage.id AS landusage_way_id,
+  landusage.poly AS landusage_poly,
+  landusage.landusekey,
+  landusage.landusevalue,
+  CONCAT(mobility_ways.type, '=', mobility_ways.tags->mobility_ways.type) AS tag_way,
+  CONCAT(landusage.landusekey, '=', landusage.landusevalue) AS tag_polygon
 FROM
   mobility_ways
-  JOIN ways ON
-    ways.is_polygon AND
-    ways.tags != ''::hstore AND
+  JOIN landusage ON
     (
+      NOT landusage.tags?'layer' AND NOT mobility_ways.tags?'layer' OR
       (
-        --ways.tags?'landuse' (...) sometimes causes bad route
-        (
-          ways.tags?'landuse' AND
-          ways.tags->'landuse' NOT IN ('basin', 'civic_admin', 'commercial', 'construction', 'education', 'grass', 'harbour', 'industrial', 'military', 'port', 'proposed', 'railway', 'recreation_ground', 'religious', 'reservoir', 'residential', 'retail', 'salt_pond', 'winter_sports')
-        ) OR (
-          ways.tags->'landuse' = 'grass' AND
-          mobility_ways.type = 'waterway'
-        ) OR (
-          ways.tags->'landuse' IN ('basin', 'reservoir', 'recreation_ground', 'salt_pond') AND
-          mobility_ways.type != 'waterway'
-        )
-      ) OR (
-        --ways.tags?'natural' (...) sometimes causes bad route
-        ways.tags->'natural' IN ('cliff', 'scrub', 'shrubbery', 'sinkhole', 'tree_group', 'wood') OR
-        (
-          ways.tags->'natural' IN ('bay', 'water', 'wetland') AND
-          mobility_ways.type != 'waterway' AND
-          mobility_ways.type != 'highway' --Caught by item 1070 class 4/5
-        )
+        landusage.tags?'layer' AND mobility_ways.tags?'layer' AND
+        landusage.tags->'layer' = mobility_ways.tags->'layer'
       )
     ) AND
-    (
-      NOT ways.tags?'layer' AND NOT mobility_ways.tags?'layer' OR
-      (
-        ways.tags?'layer' AND mobility_ways.tags?'layer' AND
-        ways.tags->'layer' = mobility_ways.tags->'layer'
-      )
-    ) AND
-    ways.linestring && mobility_ways.linestring AND
+    landusage.linestring && mobility_ways.linestring AND
     -- Only find ways where the highway/railway/waterway/aeroway actually enters the
     -- polygon. Exclude cases where the polygon is tied to the way without going inside.
-    ST_Intersects(ST_MakePolygon(ways.linestring), mobility_ways.linestring) AND
-    NOT ST_Touches(ST_MakePolygon(ways.linestring), mobility_ways.linestring) AND
+    ST_Intersects(landusage.poly, mobility_ways.linestring) AND
+    NOT ST_Touches(landusage.poly, mobility_ways.linestring) AND
     (
       -- Ignore very minor overlaps. The distance between the center of the overlap and one of the ways must be at least 1m
-      ST_Distance(ST_Centroid(ST_Transform(ST_Intersection(ST_MakePolygon(ways.linestring), mobility_ways.linestring), {proj})), ST_Transform(mobility_ways.linestring, {proj})) > 1 OR
-      ST_Distance(ST_Centroid(ST_Transform(ST_Intersection(ST_MakePolygon(ways.linestring), mobility_ways.linestring), {proj})), ST_Transform(ways.linestring, {proj})) > 1
+      -- Can't do this for multipolygons (without parsing all inner/outer segments) hence disabling this simplification for those
+      landusage.is_multipolygon OR
+      ST_Distance(ST_Centroid(ST_Transform(ST_Intersection(landusage.poly, mobility_ways.linestring), {proj})), ST_Transform(mobility_ways.linestring, {proj})) > 1 OR
+      ST_Distance(ST_Centroid(ST_Transform(ST_Intersection(landusage.poly, mobility_ways.linestring), {proj})), ST_Transform(landusage.linestring, {proj})) > 1
     )
+"""
+
+sql14 = """
+SELECT
+  mobility_way_id,
+  landusage_way_id,
+  ST_AsText(ST_Centroid(ST_Intersection(landusage_poly, mobility_way_linestring))),
+  mobility_way_type,
+  tag_way,
+  tag_polygon
+FROM
+  intersections
+WHERE
+  mobility_way_type != 'waterway' AND
+  (
+    (
+      landusekey = 'landuse' AND
+      landusevalue NOT IN ('civic_admin', 'commercial', 'construction', 'education', 'grass', 'harbour', 'industrial', 'military', 'port', 'proposed', 'railway', 'religious', 'residential', 'retail', 'winter_sports')
+    ) OR (
+      landusekey = 'natural' AND
+      landusevalue IN ('bay', 'cliff', 'scrub', 'shrubbery', 'sinkhole', 'tree_group', 'wetland', 'wood') OR
+      (
+        -- Special case as highway=* vs. natural=water is already included in item 1070 class 4/5
+        landusevalue = 'water' AND
+        mobility_way_type != 'highway'
+      )
+    )
+  )
+"""
+
+sql15 = """
+SELECT
+  mobility_way_id,
+  landusage_way_id,
+  ST_AsText(ST_Centroid(ST_Intersection(landusage_poly, mobility_way_linestring))),
+  mobility_way_type,
+  tag_way,
+  tag_polygon
+FROM
+  intersections
+WHERE
+  mobility_way_type = 'waterway' AND
+  (
+    (
+      landusekey = 'landuse' AND
+      landusevalue NOT IN ('basin', 'civic_admin', 'commercial', 'construction', 'education', 'harbour', 'industrial', 'military', 'port', 'proposed', 'railway', 'recreation_ground', 'religious', 'reservoir', 'residential', 'retail', 'salt_pond', 'winter_sports')
+    ) OR (
+      landusekey = 'natural' AND
+      landusevalue IN ('bare_rock', 'cliff', 'dune', 'grassland', 'rock', 'sand', 'scree', 'scrub', 'shrubbery', 'sinkhole', 'tree_group', 'wood')
+    )
+  )
 """
 
 class Analyser_Osmosis_Polygon_Intersects(Analyser_Osmosis):
@@ -177,7 +266,15 @@ However, if the way for transportation is a tunnel or a bridge, add `tunnel=*` o
 
     def analyser_osmosis_common(self):
         self.run(sql10)
-        self.run(sql11.format(proj=self.config.options["proj"]), lambda res: {
+        self.run(sql11.format(proj=self.config.options["proj"]))
+        self.run(sql12)
+        self.run(sql13.format(proj=self.config.options["proj"]))
+        self.run(sql14, lambda res: {
+            "class": self.classIndex[res[3]],
+            "data": [self.way, self.way, self.positionAsText],
+            "text": T_("`{0}` intersects `{1}`", res[4], res[5])
+        })
+        self.run(sql15, lambda res: {
             "class": self.classIndex[res[3]],
             "data": [self.way, self.way, self.positionAsText],
             "text": T_("`{0}` intersects `{1}`", res[4], res[5])
@@ -212,4 +309,8 @@ class Test(TestAnalyserOsmosis):
         self.check_err(cl=str(a.classIndex["highway"]), elems=[("way", "1027"), ("way", "1023")])
         self.check_err(cl=str(a.classIndex["waterway"]), elems=[("way", "1028"), ("way", "1023")])
         self.check_err(cl=str(a.classIndex["highway"]), elems=[("way", "1036"), ("way", "1035")])
-        self.check_num_err(12)
+        self.check_err(cl=str(a.classIndex["highway"]), elems=[("way", "1049"), ("way", "1042")])
+        self.check_err(cl=str(a.classIndex["highway"]), elems=[("way", "1049"), ("way", "1043")])
+        self.check_err(cl=str(a.classIndex["railway"]), elems=[("way", "1050"), ("way", "1047")])
+        self.check_err(cl=str(a.classIndex["waterway"]), elems=[("way", "1051"), ("way", "1048")])
+        self.check_num_err(16)

@@ -20,7 +20,6 @@
   <node id='24' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84329159026' lon='5.87749715111' />
   <node id='25' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84762032093' lon='5.84830190437' />
   <node id='26' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85239254148' lon='5.83958824612' />
-  <node id='27' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84429056505' lon='5.88010226543' />
   <node id='28' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.8488407173' lon='5.88993529442' />
   <node id='29' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84434823974' lon='5.88652448736' />
   <node id='30' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84151603281' lon='5.89501782252' />
@@ -94,6 +93,31 @@
   <node id='113' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83743703653' lon='5.92321303075' />
   <node id='114' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.8411213414' lon='5.89360697052' />
   <node id='115' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84716028534' lon='5.89836231429' />
+  <node id='116' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82872463058' lon='5.91461238835' />
+  <node id='117' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82375614285' lon='5.91053105279' />
+  <node id='118' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82165996151' lon='5.9172109797' />
+  <node id='119' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82662868044' lon='5.92129231526' />
+  <node id='120' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83884825641' lon='5.93181932164' />
+  <node id='121' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83257464546' lon='5.92676282234' />
+  <node id='122' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82977539683' lon='5.9358578288' />
+  <node id='123' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.8357887713' lon='5.93084230356' />
+  <node id='124' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83320172303' lon='5.92856697664' />
+  <node id='125' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83183242297' lon='5.93306076452' />
+  <node id='126' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83414873452' lon='5.93074394091' />
+  <node id='127' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83300596353' lon='5.93134779408' />
+  <node id='128' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82679060687' lon='5.92600731029' />
+  <node id='129' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82051531604' lon='5.92095081099' />
+  <node id='130' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.81771531791' lon='5.93004581745' />
+  <node id='131' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.8239784455' lon='5.92656152491' />
+  <node id='132' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82139071877' lon='5.92428619799' />
+  <node id='133' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82046430609' lon='5.92704390799' />
+  <node id='134' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.8284579374' lon='5.9194216561' />
+  <node id='135' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82127341597' lon='5.9128547528' />
+  <node id='136' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82187094864' lon='5.9260593457' />
+  <node id='137' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.81795168778' lon='5.92228526335' />
+  <node id='138' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82161975426' lon='5.920818174' />
+  <node id='139' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82292372537' lon='5.92977335689' />
+  <node id='140' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82107421744' lon='5.91683567931' />
   <way id='1000' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='1' />
     <nd ref='2' />
@@ -312,4 +336,78 @@
     <nd ref='115' />
     <tag k='highway' v='track' />
   </way>
+  <way id='1042' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='116' />
+    <nd ref='117' />
+    <nd ref='118' />
+  </way>
+  <way id='1043' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='118' />
+    <nd ref='119' />
+    <nd ref='116' />
+  </way>
+  <way id='1044' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='120' />
+    <nd ref='121' />
+    <nd ref='122' />
+    <nd ref='120' />
+  </way>
+  <way id='1045' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='123' />
+    <nd ref='124' />
+    <nd ref='125' />
+    <nd ref='123' />
+    <tag k='landuse' v='grass' />
+  </way>
+  <way id='1046' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='126' />
+    <nd ref='127' />
+    <tag k='aeroway' v='runway' />
+  </way>
+  <way id='1047' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='128' />
+    <nd ref='129' />
+    <nd ref='130' />
+    <nd ref='128' />
+  </way>
+  <way id='1048' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='131' />
+    <nd ref='132' />
+    <nd ref='133' />
+    <nd ref='131' />
+    <tag k='landuse' v='grass' />
+  </way>
+  <way id='1049' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='134' />
+    <nd ref='135' />
+    <tag k='highway' v='primary' />
+  </way>
+  <way id='1050' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='136' />
+    <nd ref='137' />
+    <tag k='railway' v='tram' />
+  </way>
+  <way id='1051' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='138' />
+    <nd ref='139' />
+    <tag k='waterway' v='canal' />
+  </way>
+  <relation id='10000' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <member type='way' ref='1045' role='inner' />
+    <member type='way' ref='1044' role='outer' />
+    <tag k='landuse' v='forest' />
+    <tag k='type' v='multipolygon' />
+  </relation>
+  <relation id='10001' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <member type='way' ref='1048' role='inner' />
+    <member type='way' ref='1047' role='outer' />
+    <tag k='natural' v='water' />
+    <tag k='type' v='multipolygon' />
+  </relation>
+  <relation id='10002' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <member type='way' ref='1042' role='outer' />
+    <member type='way' ref='1043' role='outer' />
+    <tag k='landuse' v='forest' />
+    <tag k='type' v='multipolygon' />
+  </relation>
 </osm>
