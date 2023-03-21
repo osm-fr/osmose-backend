@@ -873,6 +873,9 @@
     ],
     "conflation": 300,
     "title": "road bump",
+    "not_for": [
+      "DE"
+    ],
     "object": [
       "information--road-bump--g1",
       "warning--road-bump--g1",
