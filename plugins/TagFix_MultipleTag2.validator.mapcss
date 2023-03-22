@@ -86,3 +86,59 @@ way[highway][junction=roundabout][area][area!=no] {
     -osmoseItemClassLevel: "4020/40201:0/1";
     -osmoseTags: list("fix:chair", "highway", "roundabout");
 }
+
+
+way[junction][junction!=yes][!highway][!area:highway] {
+    throwWarning: tr("Tag highway missing on junction");
+    assertMatch: "way junction=roundabout waterway=river";
+    assertNoMatch: "way junction=yes";
+    assertNoMatch: "way junction=roundabout highway=service";
+    -osmoseItemClassLevel: "2080/20800:0/1";
+    -osmoseTags: list("tag", "highway", "roundabout", "fix:chair");
+    -osmoseDetail: tr("The way has a tag `junction=*` but without `highway=*`.");
+    -osmoseTrap: tr("Check if it is really a highway and it is not already mapped.");
+}
+
+
+way[oneway][!highway][!railway][!aerialway][!waterway][!aeroway][!piste:type] {
+    throwWarning: tr("Tag highway missing on oneway");
+    assertMatch: "way oneway=yes building=yes";
+    assertNoMatch: "way highway=x cycleway=opposite oneway=yes";
+    -osmoseItemClassLevel: "2080/20801:0/1";
+    -osmoseTags: list("tag", "highway", "fix:chair");
+    -osmoseDetail: tr("The way has a tag `oneway=*` but without `highway=*`.");
+    -osmoseTrap: tr("Check if it is really a highway and it is not already mapped.");
+}
+
+
+way[waterway][level] {
+    throwWarning: tr("Waterway with level");
+    assertMatch: "way waterway=stream level=-1";
+    fixChangeKey: "level=>layer";
+    -osmoseItemClassLevel: "3032/30327:0/2";
+    -osmoseTags: list("tag", "fix:chair");
+    -osmoseDetail: tr("Level should be used for buildings, shops, amenities, etc.");
+    -osmoseTrap: tr("Remove level and check if layer is needed instead");
+}
+
+
+way[tunnel ][highway=~/^(motorway_link|trunk_link|primary|primary_link|secondary|secondary_link)$/][!maxheight][!maxheight:physical][tunnel!=no],
+way[covered][highway=~/^(motorway_link|trunk_link|primary|primary_link|secondary|secondary_link)$/][!maxheight][!maxheight:physical][covered!=no] {
+    throwWarning: tr("Missing maxheight tag");
+    assertMatch: "way highway=primary tunnel=yes";
+    assertMatch: "way highway=primary covered=yes";
+    assertNoMatch: "way highway=primary tunnel=yes maxheight=2.4";
+    assertNoMatch: "way highway=primary covered=no";
+    -osmoseItemClassLevel: "7130/71301:0/3";
+    -osmoseTags: list("tag", "highway", "maxheight", "fix:survey");
+    -osmoseDetail: tr("Missing `maxheight=*` or `maxheight:physical=*` for a tunnel or a way under a bridge.");
+}
+
+
+relation[!type] {
+    throwWarning: tr("Missing relation type");
+    assertMatch: "relation";
+    -osmoseItemClassLevel: "2110/21102/2";
+    -osmoseTags: list("tag");
+    -osmoseDetail: tr("The relation is missing a `type` tag to define what it represents.");
+}

@@ -32,31 +32,10 @@ class TagFix_MultipleTag(Plugin):
 
         self.errors[30323] = self.def_class(item = 3032, level = 3, tags = ['tag', 'fix:chair'],
             title = T_('Watch multiple tags'))
-        self.errors[30327] = self.def_class(item = 3032, level = 2, tags = ['tag', 'fix:chair'],
-            title = T_('Waterway with level'),
-            detail = T_('Level should be used for buildings, shops, amenities, etc.'),
-            trap = T_('Remove level and check if layer is needed instead'))
         self.errors[303210] = self.def_class(item = 3032, level = 1, tags = ['tag', 'highway', 'fix:chair'],
             title = T_('Fence with material tag, better use fence_type tag'))
-        self.errors[20800] = self.def_class(item = 2080, level = 1, tags = ['tag', 'highway', 'roundabout', 'fix:chair'],
-            title = T_('Tag highway missing on junction'),
-            detail = T_(
-'''The way has a tag `junction=*` but without `highway=*`.'''),
-            trap = T_(
-'''Check if it is really a highway and it is not already mapped.'''))
-        self.errors[20801] = self.def_class(item = 2080, level = 1, tags = ['tag', 'highway', 'fix:chair'],
-            title = T_('Tag highway missing on oneway'),
-            detail = T_(
-'''The way has a tag `oneway=*` but without `highway=*`.'''),
-            trap = T_(
-'''Check if it is really a highway and it is not already mapped.'''))
         self.errors[20803] = self.def_class(item = 2080, level = 2, tags = ['tag', 'highway', 'fix:chair'],
             title = T_('Tag highway missing for tracktype or lanes'))
-        self.errors[71301] = self.def_class(item = 7130, level = 3, tags = ['tag', 'highway', 'maxheight', 'fix:survey'],
-            title = T_('Missing maxheight tag'),
-            detail = T_(
-'''Missing `maxheight=*` or `maxheight:*` for a tunnel or a way under a
-bridge.'''))
         self.errors[21101] = self.def_class(item = 2110, level = 2, tags = ['tag'],
             title = T_('Untagged named object'),
             detail = T_('The object is missing any tag which defines what kind of feature it is. This is unexpected for something with a `name` tag.'),
@@ -64,10 +43,6 @@ bridge.'''))
                 T_('Add a top level tag to state what this feature is. Considered top level tags are (with derived `disused:`, `abandoned:` and `historic:` variants):'),
                 {'en': ', '.join(map(lambda x: '`{}`'.format(x), sorted(main_tags)))} ),
             trap = T_('It may be more appropriate to remove the object completely if it isn\'t useful.')
-        )
-        self.errors[21102] = self.def_class(item = 2110, level = 2, tags = ['tag'],
-            title = T_('Missing relation type'),
-            detail = T_('The relation is missing a `type` tag to define what it represents.')
         )
         self.errors[1050] = self.def_class(item = 1050, level = 1, tags = ['highway', 'roundabout', 'fix:chair'],
             title = T_('Reverse roundabout'),
@@ -146,18 +121,6 @@ For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:acces
         key_set = set(tags.keys())
         err = self.common(tags, key_set)
 
-        if tags.get("junction") not in (None, "yes") and u"highway" not in tags and "area:highway" not in tags:
-            err.append({"class": 20800, "subclass": 0})
-
-        if u"oneway" in tags and not (u"highway" in tags or u"railway" in tags or u"aerialway" in tags or u"waterway" in tags or u"aeroway" in tags or u"piste:type" in tags):
-            err.append({"class": 20801, "subclass": 0})
-
-        if tags.get("highway") in ("motorway_link", "trunk_link", "primary", "primary_link", "secondary", "secondary_link") and not "maxheight" in tags and not "maxheight:physical" in tags and (("tunnel" in tags and tags["tunnel"] != "no") or tags.get("covered") not in (None, "no")):
-            err.append({"class": 71301, "subclass": 0})
-
-        if "waterway" in tags and "level" in tags:
-            err.append({"class": 30327, "subclass": 0, "fix": [{"-": ["level"]}, {"-": ["level"], "+": {"layer": tags["level"]}}]})
-
         if tags.get("access") in ("yes", "permissive"):
             if tags.get("highway") in ("motorway", "trunk"):
                 err.append({"class": 32200, "subclass": 0, "text": T_("Including ski, horse, moped, hazmat and so on, unless explicitly excluded")})
@@ -171,9 +134,6 @@ For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:acces
 
     def relation(self, data, tags, members):
         err = self.common(tags, set(tags.keys()))
-
-        if not "type" in tags:
-            err.append({"class": 21102})
 
         return err
 
@@ -198,17 +158,6 @@ class Test(TestPluginCommon):
             t = {"highway":"mini_roundabout", "direction":d}
             self.check_err(a.node(None, t), t)
 
-        for t in [{"highway":"primary", "tunnel": "yes"},
-                  {"junction":"roundabout", "waterway": "river"},
-                  {"oneway":"yes", "building": "yes"},
-                 ]:
-            self.check_err(a.way(None, t, None), t)
-
-        for t in [{"highway":"", "cycleway": "opposite", "oneway": "yes"},
-                  {"junction": "yes"},
-                 ]:
-            assert not a.way(None, t, None), t
-
         assert a.node(None, {"name": "foo"})
         assert not a.node(None, {"name": "foo", "disused:highway": "bar"})
         assert not a.node(None, {"name": "foo", "abandoned:highway": "bar"})
@@ -216,14 +165,10 @@ class Test(TestPluginCommon):
         assert not a.node(None, {"name": "foo", "building:part": "yes"})
         assert not a.node(None, {"name": "foo", "traffic_sign:forward": "city_limit;DE:310", "traffic_sign:backward": "city_limit;DE:311"})
 
-        self.check_err(a.way(None, {"waterway": "stream", "level": "-1"}, None))
-
         assert a.way(None, {"highway": "track", "access": "yes"}, None)
         assert a.way(None, {"highway": "trunk", "access": "yes"}, None)
 
         assert a.way(None, {"tracktype": "foo"}, None)
         assert not a.way(None, {"tracktype": "foo", "leisure": "track"}, None)
-
-        assert a.relation(None, {}, None)
 
         assert a.node(None, {"barrier": "fence", "material": "wood"})
