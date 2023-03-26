@@ -91,6 +91,58 @@ WHERE
     NOT barrier.waytags->'{vehicle}' IN ('no', 'use_sidepath', 'unknown')
 """
 
+sql31 = """
+SELECT
+  highways.id,
+  barrier.id,
+  ST_AsText(barrier.geom)
+FROM
+  highways
+  JOIN nodes AS barrier ON
+    barrier.tags != ''::hstore AND
+    barrier.id = ANY(highways.nodes) AND
+    --barrier.tags?'barrier' AND -- commented to prevent slow route
+    barrier.tags->'barrier' NOT IN ('border_control', 'cattle_grid', 'entrance', 'height_restrictor', 'toll_booth') AND
+    NOT (barrier.tags?'access' OR barrier.tags?'access:conditional') AND
+    NOT (barrier.tags?'vehicle' OR barrier.tags?'vehicle:conditional') AND
+    NOT (barrier.tags?'motor_vehicle' OR barrier.tags?'motor_vehicle:conditional')
+WHERE
+  highways.level <= 3 AND
+  NOT (highways.tags?'access' OR highways.tags?'access:conditional') AND
+  NOT (highways.tags?'vehicle' OR highways.tags?'vehicle:conditional') AND
+  NOT (highways.tags?'motor_vehicle' OR highways.tags?'motor_vehicle:conditional')
+"""
+
+
+sql41 = """
+SELECT
+  ways.id,
+  barrier.id,
+  ST_AsText(barrier.geom)
+FROM
+  highways AS ways
+  JOIN way_nodes ON
+    way_nodes.way_id = ways.id
+  JOIN nodes AS barrier ON
+    barrier.tags != ''::hstore AND
+    barrier.id = way_nodes.node_id AND
+    --barrier.id = ANY(ways.nodes) will cause a very slow planning (focused on the X.tags?'Y') on some countries (e.g. japan_chubu)
+    barrier.tags?'barrier' AND
+    barrier.tags->'barrier' NOT IN ('bollard', 'border_control', 'cattle_grid', 'entrance', 'height_restrictor', 'toll_booth') AND
+    barrier.id != ways.nodes[1] AND barrier.id != ways.nodes[array_length(ways.nodes,1)] AND -- Barrier is not an end node
+    NOT (barrier.tags?'access' OR barrier.tags?'access:conditional') AND
+    NOT (barrier.tags?'vehicle' OR barrier.tags?'vehicle:conditional') AND
+    NOT (barrier.tags?'motor_vehicle' OR barrier.tags?'motor_vehicle:conditional')
+  JOIN highways AS minor_highway ON
+    barrier.id = ANY(minor_highway.nodes) AND
+    (minor_highway.level IS NULL OR minor_highway.level > 4)
+WHERE
+  ways.level = 4 AND
+  NOT (ways.tags?'access' OR ways.tags?'access:conditional') AND
+  NOT (ways.tags?'vehicle' OR ways.tags?'vehicle:conditional') AND
+  NOT (ways.tags?'motor_vehicle' OR ways.tags?'motor_vehicle:conditional')
+"""
+
 
 class Analyser_Osmosis_HighwayAreaAccess(Analyser_Osmosis):
 
@@ -113,6 +165,25 @@ class Analyser_Osmosis_HighwayAreaAccess(Analyser_Osmosis):
 '''Sometimes a barrier can exist on an (otherwise uninterrupted) highway to prevent vehicles from using it for purposes other than destination traffic.'''),
             fix = T_(
 '''Copy the appropriate access tag to the barrier node.'''))
+        self.classs[3] = self.def_class(item = 2130, level = 2, tags = ['highway', 'routing'],
+            title = T_('Barrier blocking major highway'),
+            detail = T_(
+'''A barrier is blocking a major highway. Typically, major highways (`tertiary` and above) are meant for passing traffic.'''),
+            fix = T_(
+'''Check if there is really a barrier on the highway itself (instead of for instance a connecting minor way only).
+If there is no such barrier, remove it, or move it to the appropriate connecting way.
+If there is a barrier, check if it has the appropriate (conditional) access keys.'''))
+        self.classs[4] = self.def_class(item = 2130, level = 3, tags = ['highway', 'routing'],
+            title = T_('Barrier blocking highway'),
+            detail = T_(
+'''A barrier is blocking a residential or unclassified way on a crossing with a minor highway.
+Likely the barrier was only supposed to be present on the minor road.'''),
+            trap = T_(
+'''Sometimes a barrier can exist on an (otherwise uninterrupted) highway to prevent vehicles from using it for purposes other than destination traffic.'''),
+            fix = T_(
+'''Check if there is really a barrier on the highway itself (instead of for instance a connecting minor way only).
+If there is no such barrier, remove it, or move it to the appropriate connecting way.
+If there is a barrier, check if it has the appropriate (conditional) access keys.'''))
         self.callback10 = lambda res: {"class":1, "data":[self.node_full, self.way_full, self.positionAsText],
             "text": T_("Inconsistent motor_vehicle values ('{0}'!='{1}')", res[3] if res[3] else '', res[4] if res[4] else '') }
 
@@ -127,6 +198,13 @@ class Analyser_Osmosis_HighwayAreaAccess(Analyser_Osmosis):
             self.run(sql21.format(barriertype='bus_trap', vehicle=vehicle), lambda res: {
                 "class":2, "data":[self.way_full, self.node_full, self.positionAsText],
                 "text": T_("Inconsistent {0} access: '{1}' on highway, not set on barrier", vehicle, res[3])})
+
+        self.run(sql31, lambda res: {
+            "class": 3, "data":[self.way, self.node_full, self.positionAsText]
+        })
+        self.run(sql41, lambda res: {
+            "class": 4, "data":[self.way, self.node_full, self.positionAsText]
+        })
 
     def analyser_osmosis_full(self):
         self.run(sql10.format("", ""), self.callback10)
@@ -160,4 +238,8 @@ class Test(TestAnalyserOsmosis):
         self.check_err(cl="1", elems=[("node", "30"), ("way", "110")])
         self.check_err(cl="2", elems=[("node", "20"), ("way", "107")])
         self.check_err(cl="2", elems=[("node", "37"), ("way", "107")])
-        self.check_num_err(5)
+        self.check_err(cl="3", elems=[("node", "46"), ("way", "116")])
+        self.check_err(cl="3", elems=[("node", "47"), ("way", "116")])
+        self.check_err(cl="4", elems=[("node", "55"), ("way", "118")])
+        self.check_err(cl="4", elems=[("node", "56"), ("way", "118")])
+        self.check_num_err(9)
