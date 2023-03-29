@@ -285,7 +285,7 @@ msgid "Roundabout crossing"
 msgstr "ラウンドアバウトの交差"
 
 #: ../analysers/analyser_osmosis_roundabout_reverse.py:49
-#: ../plugins/TagFix_MultipleTag.py:73
+#: ../plugins/TagFix_MultipleTag.py:48
 msgid "Reverse roundabout"
 msgstr "ラウンドアバウトの走行方向逆転"
 
@@ -433,7 +433,7 @@ msgstr "単一ノードだけのウェイ"
 msgid "Deprecated tag"
 msgstr "非推奨のタグ"
 
-#: ../plugins/TagFix_MultipleTag2.py:17 ../plugins/TagFix_MultipleTag_FR.py:34
+#: ../plugins/TagFix_MultipleTag2.py:20 ../plugins/TagFix_MultipleTag_FR.py:34
 #: ../plugins/TagFix_MultipleTag_Lang_es.py:33
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:33
 #: ../plugins/TagFix_MultipleTag.py:34
@@ -452,11 +452,11 @@ msgstr "一貫性の無い最高速度"
 msgid "Invalid reference"
 msgstr "無効なreference"
 
-#: ../plugins/TagFix_MultipleTag.py:42
+#: ../plugins/TagFix_MultipleTag2.py:16 ../plugins/TagFix_MultipleTag2.py:241
 msgid "Tag highway missing on junction"
 msgstr "交差点にhighwayタグがない"
 
-#: ../plugins/TagFix_MultipleTag.py:48
+#: ../plugins/TagFix_MultipleTag2.py:17 ../plugins/TagFix_MultipleTag2.py:258
 msgid "Tag highway missing on oneway"
 msgstr "一方通行にhighwayタグがない"
 
@@ -464,7 +464,7 @@ msgstr "一方通行にhighwayタグがない"
 msgid "Opposite cycleway without oneway"
 msgstr "onewayの無い反対側のcycleway"
 
-#: ../plugins/TagFix_MultipleTag.py:56
+#: ../plugins/TagFix_MultipleTag2.py:26 ../plugins/TagFix_MultipleTag2.py:303
 msgid "Missing maxheight tag"
 msgstr "maxheightタグがない"
 
@@ -583,12 +583,12 @@ msgstr "競合しているタグ: {0}"
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "'bridge'と'tunnel'タグが競合"
 
-#: ../plugins/TagFix_MultipleTag.py:140
+#: ../plugins/TagFix_MultipleTag.py:115
 #, python-format, python-brace-format
 msgid "mini roundabout direction in this country is usually \"{0}\""
 msgstr "この国でのミニ・ラウンドアバウトの方向は通常は \"{0}\""
 
-#: ../plugins/TagFix_MultipleTag2.py:179
+#: ../plugins/TagFix_MultipleTag2.py:200
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr "\"fee\"タグの代わりに\"toll\"タグを使用してください"
 
@@ -654,7 +654,7 @@ msgstr "bridgeタグがないのに地表より上にある道路"
 msgid "Long Highway above ground and no bridge"
 msgstr "bridgeタグがないのに地表より上にある長い道路"
 
-#: ../plugins/TagFix_MultipleTag.py:36
+#: ../plugins/TagFix_MultipleTag2.py:22 ../plugins/TagFix_MultipleTag2.py:275
 msgid "Waterway with level"
 msgstr "levelのある水路"
 
@@ -674,7 +674,7 @@ msgstr "郵便ポストの統合の提案"
 msgid "Bridge structure missing"
 msgstr "橋の構造がない"
 
-#: ../plugins/TagFix_MultipleTag2.py:21 ../plugins/TagFix_MultipleTag2.py:199
+#: ../plugins/TagFix_MultipleTag2.py:25 ../plugins/TagFix_MultipleTag2.py:220
 msgid "Roundabout as area"
 msgstr "エリアで描かれたラウンドアバウト"
 
@@ -688,8 +688,8 @@ msgstr "partsの中の建物"
 msgid "Indoor or building:part tag missing"
 msgstr "indoorタグまたはbuildingpartタグがない"
 
-#: ../plugins/TagFix_MultipleTag2.py:16 ../plugins/TagFix_MultipleTag2.py:54
-#: ../plugins/TagFix_MultipleTag2.py:127 ../plugins/TagFix_MultipleTag2.py:235
+#: ../plugins/TagFix_MultipleTag2.py:18 ../plugins/TagFix_MultipleTag2.py:61
+#: ../plugins/TagFix_MultipleTag2.py:148 ../plugins/TagFix_MultipleTag2.py:336
 msgid "Missing tag ref for emergency access point"
 msgstr "緊急アクセスポイントにrefタグが無い"
 
@@ -717,12 +717,12 @@ msgstr "無関係な道路と電力のオブジェクトの交差"
 msgid "Name with uppercase"
 msgstr "大文字の名前"
 
-#: ../plugins/TagFix_MultipleTag.py:163
+#: ../plugins/TagFix_MultipleTag.py:126
 msgid ""
 "Including ski, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "明示的に除外されていない限り、スキー、乗馬、原付、危険物積載車両等を含む"
 
-#: ../plugins/TagFix_MultipleTag.py:165
+#: ../plugins/TagFix_MultipleTag.py:128
 msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "明示的に除外されていない限り、車両、乗馬、原付、危険物積載車両等を含む"
@@ -983,11 +983,11 @@ msgstr "通行できない一方通行、もしくは駐車場か駐車場の入
 msgid "Motorway without ref, nat_ref, int_ref or noref tag"
 msgstr "ref, nat_ref, int_ref,norefタグがいずれも無い高速道路"
 
-#: ../plugins/TagFix_MultipleTag.py:54
+#: ../plugins/TagFix_MultipleTag.py:38
 msgid "Tag highway missing for tracktype or lanes"
 msgstr "tracktypeやlanesに対するhighwayタグが無い"
 
-#: ../plugins/TagFix_MultipleTag.py:69
+#: ../plugins/TagFix_MultipleTag2.py:19 ../plugins/TagFix_MultipleTag2.py:386
 msgid "Missing relation type"
 msgstr "リレーションのtypeが無い"
 
@@ -1001,8 +1001,8 @@ msgstr "traffic_signals:directionタグまたはcrossingタグが信号機に存
 msgid "Possible missing direction tag on stop or a give way"
 msgstr "directionタグが一時停止またはゆずれに存在する可能性"
 
-#: ../plugins/TagFix_MultipleTag2.py:20 ../plugins/TagFix_MultipleTag2.py:92
-#: ../plugins/TagFix_MultipleTag2.py:162 ../plugins/TagFix_MultipleTag2.py:270
+#: ../plugins/TagFix_MultipleTag2.py:24 ../plugins/TagFix_MultipleTag2.py:99
+#: ../plugins/TagFix_MultipleTag2.py:183 ../plugins/TagFix_MultipleTag2.py:371
 msgid "Suspicious name for a container"
 msgstr "コンテナには疑わしい名前"
 
@@ -1259,8 +1259,8 @@ msgstr "警察/\"Gendarmerie\"の更新"
 msgid "Missing access way to parking"
 msgstr "駐車場にアクセスする道路がない"
 
-#: ../plugins/TagFix_MultipleTag2.py:19 ../plugins/TagFix_MultipleTag2.py:73
-#: ../plugins/TagFix_MultipleTag2.py:144 ../plugins/TagFix_MultipleTag2.py:252
+#: ../plugins/TagFix_MultipleTag2.py:23 ../plugins/TagFix_MultipleTag2.py:80
+#: ../plugins/TagFix_MultipleTag2.py:165 ../plugins/TagFix_MultipleTag2.py:353
 msgid "Probably only for bottles, not any type of glass"
 msgstr "おそらくあらゆる種類のガラスではなくボトルのみ"
 
@@ -1305,12 +1305,6 @@ msgstr "ペルシャ語ではアラビア文字'{0}'を'{1}'で置き換えて�
 #: ../plugins/Colour.py:16
 msgid "Colour code should start with '#' followed by 3 or 6 digits"
 msgstr "カラーコードは'#'から始まり、続けて16進数の3または6桁であるべきです"
-
-#: ../plugins/Colour.py:91 ../plugins/Colour.py:157 ../plugins/Colour.py:305
-#: ../plugins/Colour.py:376 ../plugins/Colour.py:523 ../plugins/Colour.py:589
-#, python-brace-format
-msgid "{0} colour code should start with '#' followed by 3 or 6 digits"
-msgstr "{0}のカラーコードは'#'から始まり、続けて16進数の3または6桁であるべきです"
 
 #: ../plugins/Website.py:40
 msgid "The URL contains a space"
@@ -1560,7 +1554,7 @@ msgstr "タグキー: {0} => {1} (rule kr)"
 msgid "tag value: {0}={1} => {2} (rule kr_vs)"
 msgstr "タグ値: {0}={1} => {2} (rule kr_vs)"
 
-#: ../plugins/TagFix_MultipleTag.py:40
+#: ../plugins/TagFix_MultipleTag.py:36
 msgid "Fence with material tag, better use fence_type tag"
 msgstr "materialタグのあるフェンス、fence_typeタグがベター"
 
@@ -2376,7 +2370,7 @@ msgid ""
 msgstr "衛星画像や現地調査で本当にラウンドアバウトか確認してください。\n\nラウンドアバウト上の交通が右側通行かどうか確認してください。（訳注：日本は左側通行）そう（訳注：左側通行）でない場合は代わりに `junction=circular` を使います。"
 
 #: ../analysers/analyser_osmosis_roundabout_reverse.py:51
-#: ../plugins/TagFix_MultipleTag.py:75
+#: ../plugins/TagFix_MultipleTag.py:50
 msgid ""
 "The circulation of the roundabout is drawn clockwise, but in countries\n"
 "where they drive on the right, the circulation of roundabouts is\n"
@@ -2391,7 +2385,7 @@ msgid ""
 msgstr "ロータリー `junction=roundabout`用: 経路内のノードの順序を反転して方向を変えます。JOSMでは、ロータリーを選んで経路反転ツール(ショートカット: 'R')を使います。"
 
 #: ../analysers/analyser_osmosis_roundabout_reverse.py:59
-#: ../plugins/TagFix_MultipleTag.py:84
+#: ../plugins/TagFix_MultipleTag.py:59
 msgid ""
 "Make sure that it is a roundabout (for example, not a side way in\n"
 "opposite direction around a square or a central roundabout, or a driveway\n"
@@ -2399,7 +2393,7 @@ msgid ""
 msgstr "これがロータリーであることを確認してください(例えば、広場の周囲で反対方向に側道が無いとか、クロスしていない交差点にある交通島で分離されているなど)。"
 
 #: ../analysers/analyser_osmosis_roundabout_reverse.py:63
-#: ../plugins/TagFix_MultipleTag.py:88
+#: ../plugins/TagFix_MultipleTag.py:63
 msgid ""
 "![](https://wiki.openstreetmap.org/w/images/6/68/Osmose-eg-error-1050.png)\n"
 "\n"
@@ -2828,17 +2822,16 @@ msgstr "例. \"Chemin Rural dit des Vignes\" は \"Chemin des Vignes\" のよう
 msgid "Add tag `dispensing=yes`."
 msgstr "`dispensing=yes`タグを追加。"
 
-#: ../plugins/TagFix_MultipleTag.py:46 ../plugins/TagFix_MultipleTag.py:52
+#: ../plugins/TagFix_MultipleTag2.py:16 ../plugins/TagFix_MultipleTag2.py:17
 msgid "Check if it is really a highway and it is not already mapped."
 msgstr "これが本当に道路で既にマッピングされていないかチェックしてください。"
 
-#: ../plugins/TagFix_MultipleTag.py:58
 msgid ""
 "Missing `maxheight=*` or `maxheight:*` for a tunnel or a way under a\n"
 "bridge."
 msgstr "トンネルまたは橋の下のウェイに`maxheight=*`または`maxheight:*` がありません。"
 
-#: ../plugins/TagFix_MultipleTag.py:79
+#: ../plugins/TagFix_MultipleTag.py:54
 msgid ""
 "For the mini roundabouts `highway=mini_roundabout`: the tag\n"
 "`direction=*` indicates the direction, in countries driven on the right,\n"
@@ -2990,24 +2983,24 @@ msgid ""
 "and not a road connected, same thing for `ref=*`."
 msgstr "`oneway=*` と `ref=*`タグはロータリーでは不要です。\n`name=*`はそれがロータリーの名前である場合には必要で、接続している道路名ではありません。  `ref=*`も同じです。"
 
-#: ../analysers/analyser_merge_street_objects.py:48
-#: ../analysers/analyser_merge_traffic_signs.py:84
+#: ../analysers/analyser_merge_street_objects.py:47
+#: ../analysers/analyser_merge_traffic_signs.py:83
 #, python-brace-format
 msgid "Unmapped {0}"
 msgstr "{0}がマッピングされていない"
 
-#: ../analysers/analyser_merge_street_objects.py:49
+#: ../analysers/analyser_merge_street_objects.py:48
 #, python-brace-format
 msgid "Street object ({1}) detected by Mapillary, but no nearby \"{0}\" tagging."
 msgstr "街路のオブジェクト({1})がMapillaryによって検出されましたが、近くに\"{0}\"のタグ付けされたものがありません。"
 
-#: ../analysers/analyser_merge_street_objects.py:51
+#: ../analysers/analyser_merge_street_objects.py:50
 msgid ""
 "Map the corresponding object if the imagery is up-to-date and object "
 "detection is correct."
 msgstr "画像が最新でオブジェクト検知が正しい場合は、対応するオブジェクトをマッピングします。"
 
-#: ../analysers/analyser_merge_traffic_signs.py:86
+#: ../analysers/analyser_merge_traffic_signs.py:85
 msgid ""
 "Add the appropriate highway tagging if the imagery is up-to-date and sign "
 "detection is correct."
@@ -3059,17 +3052,17 @@ msgstr "name内の想定外のシンボル"
 msgid "Bad tag value"
 msgstr "タグの値の誤り"
 
-#: ../plugins/TagFix_MultipleTag.py:61
+#: ../plugins/TagFix_MultipleTag.py:40
 msgid "Untagged named object"
 msgstr "タグがないname付きのオブジェクト"
 
-#: ../analysers/analyser_merge_street_objects.py:71
+#: ../analysers/analyser_merge_street_objects.py:70
 #: ../analysers/analyser_merge_traffic_signs.py:106
 #, python-brace-format
 msgid "Observed between {0} and {1}"
 msgstr "{0} から {1} の間に観察されています"
 
-#: ../analysers/analyser_merge_street_objects.py:72
+#: ../analysers/analyser_merge_street_objects.py:71
 #: ../analysers/analyser_merge_traffic_signs.py:107
 #, python-brace-format
 msgid "Observed on {0}"
@@ -3186,7 +3179,7 @@ msgid ""
 "`area=yes` features are:"
 msgstr "トップレベルのタグを追加してこの地物を記述します。考えられる受け入れ可能な`area=yes`の地物は以下の通り:"
 
-#: ../plugins/TagFix_Area.py:38 ../plugins/TagFix_MultipleTag.py:66
+#: ../plugins/TagFix_Area.py:38 ../plugins/TagFix_MultipleTag.py:45
 msgid ""
 "It may be more appropriate to remove the object completely if it isn't "
 "useful."
@@ -3200,19 +3193,19 @@ msgstr "冗長なエリアの否定"
 msgid "This feature is already implicitly not an area."
 msgstr "この地物は既にエリアではないという意味を含んでいます。"
 
-#: ../plugins/TagFix_MultipleTag.py:62
+#: ../plugins/TagFix_MultipleTag.py:41
 msgid ""
 "The object is missing any tag which defines what kind of feature it is. This"
 " is unexpected for something with a `name` tag."
 msgstr "このオブジェクトには地物の種類を示すものがありません。`name` タグがある場合には何かしらの種類を示すタグがあることが想定されます。"
 
-#: ../plugins/TagFix_MultipleTag.py:64
+#: ../plugins/TagFix_MultipleTag.py:43
 msgid ""
 "Add a top level tag to state what this feature is. Considered top level tags"
 " are (with derived `disused:`, `abandoned:` and `historic:` variants):"
 msgstr "トップレベルのタグを追加してこの地物を記述します。考えられる受け入れ可能な`area=yes`の地物は以下の通り (派生する`disused:`, `abandoned:`そして`historic:`バリアント付き):"
 
-#: ../plugins/TagFix_MultipleTag.py:70
+#: ../plugins/TagFix_MultipleTag2.py:19
 msgid "The relation is missing a `type` tag to define what it represents."
 msgstr "このリレーションにはそれが何を表しているかを定義する`type`タグがありません。"
 
@@ -3264,7 +3257,7 @@ msgstr "{0} ガラスリサイクリングの提案"
 msgid "The tag `{0}` is deprecated in favour of {1}"
 msgstr "`{0}`タグは{1}で置き換えられました"
 
-#: ../analysers/analyser_merge_traffic_signs.py:85
+#: ../analysers/analyser_merge_traffic_signs.py:84
 #, python-brace-format
 msgid ""
 "Traffic sign ({1}) detected by Mapillary, but no nearby tagging of any:{0}"
@@ -3357,11 +3350,13 @@ msgid "{0} parking for disabled not integrated"
 msgstr "{0} 未統合のparking for disabled"
 
 #: ../analysers/analyser_merge_recycling_FR_csma.py:31
+#: ../analysers/analyser_merge_recycling_FR_sitcom40.py:31
 #, python-brace-format
 msgid "{0} recycling not integrated"
 msgstr "{0} 未統合のrecycling"
 
 #: ../analysers/analyser_merge_recycling_FR_csma.py:33
+#: ../analysers/analyser_merge_recycling_FR_sitcom40.py:33
 #, python-brace-format
 msgid "{0} recycling, integration suggestion"
 msgstr "{0} recyclingの統合の提案"
@@ -3444,11 +3439,11 @@ msgstr "適切な場合は、ノードを接合して建物をつなぎます。
 msgid "Merge the building parts together as appropriate."
 msgstr "建物の部分を適切にマージします。"
 
-#: ../plugins/TagFix_MultipleTag.py:92 ../plugins/TagFix_MultipleTag.py:98
+#: ../plugins/TagFix_MultipleTag.py:67 ../plugins/TagFix_MultipleTag.py:73
 msgid "Overly permissive access"
 msgstr "緩すぎるアクセス制限"
 
-#: ../plugins/TagFix_MultipleTag.py:94 ../plugins/TagFix_MultipleTag.py:100
+#: ../plugins/TagFix_MultipleTag.py:69 ../plugins/TagFix_MultipleTag.py:75
 msgid ""
 "The tags `access=yes` and `access=permissive` mark a feature as wide open to"
 " all transport modes. This is almost never the case and more specific tags "
@@ -3481,11 +3476,11 @@ msgstr "薬局の更新"
 msgid "Way access mismatch relation route={0}"
 msgstr "ウェイのaccessタグの値とリレーションのroute={0}が一致していない"
 
-#: ../plugins/TagFix_MultipleTag.py:44
+#: ../plugins/TagFix_MultipleTag2.py:16
 msgid "The way has a tag `junction=*` but without `highway=*`."
 msgstr "このウェイには`junction=*`タグはあるが`highway=*`タグが無い。"
 
-#: ../plugins/TagFix_MultipleTag.py:50
+#: ../plugins/TagFix_MultipleTag2.py:17
 msgid "The way has a tag `oneway=*` but without `highway=*`."
 msgstr "このウェイには`oneway=*`タグはあるが`highway=*`タグが無い。"
 
@@ -3773,11 +3768,11 @@ msgid ""
 "Check carefully the position before adding to OSM."
 msgstr "このデータセットによるAEDの位置はアバウトであることがあります。OSMに追加する前に位置をよく注意してください。"
 
-#: ../plugins/TagFix_MultipleTag.py:37
+#: ../plugins/TagFix_MultipleTag2.py:22
 msgid "Level should be used for buildings, shops, amenities, etc."
 msgstr "level は buildings, shops, amenityなどに使うべきです。"
 
-#: ../plugins/TagFix_MultipleTag.py:38
+#: ../plugins/TagFix_MultipleTag2.py:22
 msgid "Remove level and check if layer is needed instead"
 msgstr "levelを削除して代わりにlayerが必要か検討します"
 
@@ -4968,7 +4963,7 @@ msgstr ""
 msgid "Bad colour name"
 msgstr ""
 
-#: ../plugins/Colour.py:223 ../plugins/Colour.py:452 ../plugins/Colour.py:655
+#: ../plugins/Colour.py:225 ../plugins/Colour.py:456 ../plugins/Colour.py:661
 #, python-brace-format
 msgid "Unknown or invalid colour in tag ''{0}''"
 msgstr ""
@@ -5188,8 +5183,8 @@ msgstr ""
 msgid "Simple and frequent errors, can be updated by anyone on the wiki."
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag2.py:18 ../plugins/TagFix_MultipleTag2.py:41
-#: ../plugins/TagFix_MultipleTag2.py:114 ../plugins/TagFix_MultipleTag2.py:222
+#: ../plugins/TagFix_MultipleTag2.py:21 ../plugins/TagFix_MultipleTag2.py:48
+#: ../plugins/TagFix_MultipleTag2.py:135 ../plugins/TagFix_MultipleTag2.py:323
 #, python-brace-format
 msgid ""
 "{0} together with {1}, usually {1} is located underneath the {2}. Tag the "
@@ -5208,8 +5203,36 @@ msgstr ""
 msgid "`{0}` without `{1}`"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag2.py:19
+#: ../plugins/TagFix_MultipleTag2.py:23
 msgid ""
 "Most street-side glass containers only accept soda-lime glass (e.g. bottles "
 "and jars), but not glasses for high temperatures or window glass."
+msgstr ""
+
+#: ../plugins/Colour.py:17
+msgid ""
+"Colour names should be one of those in the CSS specifications and should be "
+"spelled in lowercase letters and without dashes. Multiple colours can be "
+"separated by a semicolon."
+msgstr ""
+
+#: ../plugins/Colour.py:91 ../plugins/Colour.py:157 ../plugins/Colour.py:307
+#: ../plugins/Colour.py:378 ../plugins/Colour.py:527 ../plugins/Colour.py:593
+#, python-brace-format
+msgid "{0} colour code should start with '#' followed by 3 or 6 hex digits"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag2.py:26
+msgid ""
+"Missing `maxheight=*` or `maxheight:physical=*` for a tunnel or a way under "
+"a bridge."
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag2.py:27
+msgid "suspicious tag combination"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag2.py:113
+#, python-brace-format
+msgid "{0} on suspicious object"
 msgstr ""
