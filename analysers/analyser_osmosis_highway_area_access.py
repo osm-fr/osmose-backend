@@ -101,8 +101,9 @@ FROM
   JOIN nodes AS barrier ON
     barrier.tags != ''::hstore AND
     barrier.id = ANY(highways.nodes) AND
+    barrier.geom && highways.linestring AND
     --barrier.tags?'barrier' AND -- commented to prevent slow route
-    barrier.tags->'barrier' NOT IN ('border_control', 'cattle_grid', 'entrance', 'height_restrictor', 'toll_booth') AND
+    barrier.tags->'barrier' NOT IN ('border_control', 'cattle_grid', 'entrance', 'height_restrictor', 'no', 'toll_booth') AND
     NOT (barrier.tags?'access' OR barrier.tags?'access:conditional') AND
     NOT (barrier.tags?'vehicle' OR barrier.tags?'vehicle:conditional') AND
     NOT (barrier.tags?'motor_vehicle' OR barrier.tags?'motor_vehicle:conditional')
@@ -116,38 +117,52 @@ WHERE
 
 sql41 = """
 SELECT
-  ways.id,
+  DISTINCT ON(barrier.id)
   barrier.id,
   ST_AsText(barrier.geom)
 FROM
   highways AS ways
-  JOIN way_nodes ON
-    way_nodes.way_id = ways.id
   JOIN nodes AS barrier ON
     barrier.tags != ''::hstore AND
-    barrier.id = way_nodes.node_id AND
-    --barrier.id = ANY(ways.nodes) will cause a very slow planning (focused on the X.tags?'Y') on some countries (e.g. japan_chubu)
+    barrier.geom && ways.linestring AND
+    barrier.id = ANY(ways.nodes) AND
     barrier.tags?'barrier' AND
-    barrier.tags->'barrier' NOT IN ('bollard', 'border_control', 'cattle_grid', 'entrance', 'height_restrictor', 'toll_booth') AND
-    barrier.id != ways.nodes[1] AND barrier.id != ways.nodes[array_length(ways.nodes,1)] AND -- Barrier is not an end node
-    NOT (barrier.tags?'access' OR barrier.tags?'access:conditional') AND
-    NOT (barrier.tags?'vehicle' OR barrier.tags?'vehicle:conditional') AND
-    NOT (barrier.tags?'motor_vehicle' OR barrier.tags?'motor_vehicle:conditional')
+    barrier.tags->'barrier' NOT IN ('bollard', 'cattle_grid', 'entrance', 'no') AND
+    barrier.id != ways.nodes[1] AND barrier.id != ways.nodes[array_length(ways.nodes,1)] -- Barrier is not an end node
   JOIN highways AS minor_highway ON
     barrier.id = ANY(minor_highway.nodes) AND
-    (minor_highway.level IS NULL OR minor_highway.level > 4)
+    minor_highway.id != ways.id AND
+    minor_highway.linestring && ways.linestring AND
+    (minor_highway.level IS NULL OR minor_highway.level >= 4) AND
+    NOT minor_highway.is_area
 WHERE
-  ways.level = 4 AND
-  NOT (ways.tags?'access' OR ways.tags?'access:conditional') AND
-  NOT (ways.tags?'vehicle' OR ways.tags?'vehicle:conditional') AND
-  NOT (ways.tags?'motor_vehicle' OR ways.tags?'motor_vehicle:conditional')
+  (ways.level IS NULL OR ways.level >= 4) AND
+  NOT ways.is_area
+UNION
+SELECT
+  barrier.id,
+  ST_AsText(barrier.geom)
+FROM
+  nodes AS barrier
+  JOIN highway_ends AS way_ends ON
+    way_ends.nid = barrier.id AND
+    (way_ends.level IS NULL OR way_ends.level >= 4)
+WHERE
+  barrier.tags != ''::hstore AND
+  barrier.tags?'barrier' AND
+  barrier.tags->'barrier' NOT IN ('bollard', 'cattle_grid', 'entrance', 'no')
+GROUP BY
+  barrier.id,
+  barrier.geom
+HAVING
+  COUNT(way_ends.id) >= 3
 """
 
 
 class Analyser_Osmosis_HighwayAreaAccess(Analyser_Osmosis):
 
-    requires_tables_full = ['highways']
-    requires_tables_diff = ['highways', 'touched_highways', 'not_touched_highways']
+    requires_tables_common = ['highways', 'highway_ends']
+    requires_tables_diff = ['touched_highways', 'not_touched_highways']
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
@@ -176,14 +191,18 @@ If there is a barrier, check if it has the appropriate (conditional) access keys
         self.classs[4] = self.def_class(item = 2130, level = 3, tags = ['highway', 'routing'],
             title = T_('Barrier blocking highway'),
             detail = T_(
-'''A barrier is blocking a residential or unclassified way on a crossing with a minor highway.
-Likely the barrier was only supposed to be present on the minor road.'''),
+'''A barrier is blocking a crossing with another highway.
+Likely the barrier was only supposed to be present on one of the roads.
+In the current situation, traffic coming from any direction has to go through the barrier, to reach any of the destination ways.'''),
             trap = T_(
 '''Sometimes a barrier can exist on an (otherwise uninterrupted) highway to prevent vehicles from using it for purposes other than destination traffic.'''),
             fix = T_(
-'''Check if there is really a barrier on the highway itself (instead of for instance a connecting minor way only).
+'''Check if there is really a barrier on the crossing itself (instead of for instance a connecting minor way only).
 If there is no such barrier, remove it, or move it to the appropriate connecting way.
-If there is a barrier, check if it has the appropriate (conditional) access keys.'''))
+If there is a barrier, check if it has the appropriate (conditional) access keys.'''),
+            example = T_('''![](https://wiki.openstreetmap.org/w/images/9/95/Badbarrierposition.png)
+A barrier placed incorrectly. From the service road, one has to cross the gate, but walking
+the (almost) U-turn over the paths can in reality be done without passing the gate.'''))
         self.callback10 = lambda res: {"class":1, "data":[self.node_full, self.way_full, self.positionAsText],
             "text": T_("Inconsistent motor_vehicle values ('{0}'!='{1}')", res[3] if res[3] else '', res[4] if res[4] else '') }
 
@@ -203,7 +222,7 @@ If there is a barrier, check if it has the appropriate (conditional) access keys
             "class": 3, "data":[self.way, self.node_full, self.positionAsText]
         })
         self.run(sql41, lambda res: {
-            "class": 4, "data":[self.way, self.node_full, self.positionAsText]
+            "class": 4, "data":[self.node_full, self.positionAsText]
         })
 
     def analyser_osmosis_full(self):
@@ -240,6 +259,8 @@ class Test(TestAnalyserOsmosis):
         self.check_err(cl="2", elems=[("node", "37"), ("way", "107")])
         self.check_err(cl="3", elems=[("node", "46"), ("way", "116")])
         self.check_err(cl="3", elems=[("node", "47"), ("way", "116")])
-        self.check_err(cl="4", elems=[("node", "55"), ("way", "118")])
-        self.check_err(cl="4", elems=[("node", "56"), ("way", "118")])
-        self.check_num_err(9)
+        self.check_err(cl="4", elems=[("node", "55")])
+        self.check_err(cl="4", elems=[("node", "56")])
+        self.check_err(cl="4", elems=[("node", "61")])
+        self.check_err(cl="4", elems=[("node", "62")])
+        self.check_num_err(11)
