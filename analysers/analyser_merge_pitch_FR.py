@@ -25,7 +25,6 @@ from modules.OsmoseTranslation import T_
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
 from .Analyser_Merge import SourceOpenDataSoft, CSV, Load_XY, Conflate, Select, Mapping
 
-
 class Analyser_Merge_Pitch_FR(Analyser_Merge_Dynamic):
 
     def __init__(self, config, logger = None):
@@ -89,7 +88,6 @@ class SubAnalyser_Merge_Pitch_FR(SubAnalyser_Merge_Dynamic):
         # 2967 Carrelage
         # 4637 Parquet
     }
-
 
     def surface(self, res):
         return self.surfaceMap.get(res["Nature du sol"])
