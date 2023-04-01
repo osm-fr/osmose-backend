@@ -36,7 +36,8 @@ class Analyser_Merge_Recycling_FR_sitcom40(Analyser_Merge_Point):
             "https://www.sitcom40.fr/",
             "Points d'apport volontaire",
             CSV(Source(attribution = "SITCOM - Côte sud des Landes",
-                    fileUrl = "https://publicsitcom.z28.web.core.windows.net/OSM/ExportForOSM.csv"),
+                    fileUrl = "https://publicsitcom.z28.web.core.windows.net/OSM/ExportForOSM.csv",
+                    fileUrlCache = 1), # Qucik update asked by data provider
                 separator = ";"),
             Load_XY("LON", "LAT"),
             Conflate(
