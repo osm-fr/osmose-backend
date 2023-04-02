@@ -27,7 +27,9 @@ sql10 = """
 CREATE TEMP TABLE park_highway AS
 SELECT
   id,
-  linestring
+  linestring,
+  highway,
+  tags
 FROM
   highways
 WHERE
@@ -46,7 +48,8 @@ SELECT
   pr.tags->'park_ride' != 'no'
 FROM
   ways AS pr
-  LEFT JOIN park_highway as highway ON
+  LEFT JOIN park_highway AS highway ON
+    pr.linestring && highway.linestring AND
     ST_Intersects(pr.linestring, highway.linestring)
 WHERE
   ST_NPoints(pr.linestring) >= 2 AND
@@ -55,6 +58,47 @@ WHERE
   pr.tags->'amenity' = 'parking' AND
   (NOT pr.tags?'parking' OR pr.tags->'parking' NOT IN ('street_side', 'lane')) AND
   highway.id IS NULL
+"""
+
+
+sql20 = """
+SELECT
+  DISTINCT ON(parking.id)
+  parking.id,
+  private_parking_way.id,
+  ST_AsText(ST_Centroid(parking.linestring)),
+  private_parking_way.tags->'access',
+  parking.tags->'access'
+FROM
+  ways AS parking
+  JOIN park_highway AS private_parking_way ON
+    parking.linestring && private_parking_way.linestring AND
+    ST_Intersects(parking.linestring, private_parking_way.linestring) AND
+    private_parking_way.highway = 'service' AND
+    private_parking_way.tags?'access' AND
+    private_parking_way.tags->'access' IN ('private', 'permit', 'delivery', 'customers')
+  LEFT JOIN park_highway AS other_parking_way ON
+    parking.linestring && other_parking_way.linestring AND
+    ST_Intersects(parking.linestring, other_parking_way.linestring) AND
+    (
+      other_parking_way.highway != 'service' OR
+      NOT other_parking_way.tags?'access' OR
+      other_parking_way.tags->'access' NOT IN ('private', 'permit', 'delivery', 'customers')
+    )
+WHERE
+  parking.is_polygon AND
+  parking.tags != ''::hstore AND
+  parking.tags?'amenity' AND
+  parking.tags->'amenity' = 'parking' AND
+  (NOT parking.tags?'parking' OR parking.tags->'parking' NOT IN ('street_side', 'lane')) AND
+  other_parking_way.id IS NULL AND
+  (
+    NOT parking.tags?'access' OR
+    (
+      parking.tags->'access' NOT IN ('private', 'permit', 'delivery', 'customers', 'no') AND
+      parking.tags->'access' NOT LIKE '%;%'
+    )
+  )
 """
 
 class Analyser_Osmosis_Parking_highway(Analyser_Osmosis):
@@ -75,6 +119,12 @@ correct. If it is a street side parking (`parking=street_side`) or lane,
 then add appropriate tags.
 
 See [parking](https://wiki.openstreetmap.org/wiki/Key:parking) tag on the wiki.'''))
+        self.classs[3] = self.def_class(item = 3161, level = 3, tags = ['highway'],
+            title = T_('Inconsistent access of parking'),
+            detail = T_('''The `access` tag of the parking does not match the `access` tag of the ways inside the parking.
+As a result, this public parking space can only be reached via limited-access roads.'''),
+            fix = T_('Check which access restrictions are correct and apply them accordingly to the highways and the parking.'),
+            trap = T_('A parking may be partially publicly accessible and partially private.'))
 
     def analyser_osmosis_common(self):
         self.run(sql10.format(""))
@@ -84,3 +134,33 @@ See [parking](https://wiki.openstreetmap.org/wiki/Key:parking) tag on the wiki.'
             "data": [self.way_full, self.positionAsText],
             "fix": {"+": {"parking": "street_side"}},
         })
+        self.run(sql20, lambda res: {
+            "class": 3,
+            "data": [self.way_full, self.way_full, self.positionAsText],
+            "text": T_("highway: `access={0}` - parking: `access={1}`",res[3], res[4] if res[4] else '')
+        })
+
+
+
+###########################################################################
+
+from .Analyser_Osmosis import TestAnalyserOsmosis
+
+class Test(TestAnalyserOsmosis):
+    @classmethod
+    def setup_class(cls):
+        from modules import config
+        TestAnalyserOsmosis.setup_class()
+        cls.analyser_conf = cls.load_osm("tests/osmosis_parking_highway.osm",
+                                         config.dir_tmp + "/tests/osmosis_parking_highway.test.xml",
+                                         {"proj": 2154}) # Random proj to satisfy highway table generation
+
+    def test_classes(self):
+        with Analyser_Osmosis_Parking_highway(self.analyser_conf, self.logger) as a:
+            a.analyser()
+
+        self.root_err = self.load_errors()
+        self.check_err(cl="1", elems=[("way", "101")])
+        self.check_err(cl="2", elems=[("way", "100")])
+        self.check_err(cl="3", elems=[("way", "103"), ("way", "102")])
+        self.check_num_err(3)
