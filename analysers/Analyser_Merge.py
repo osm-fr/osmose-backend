@@ -225,7 +225,7 @@ SELECT
     missing_osm.id,
     missing_osm.type,
     CASE
-        WHEN missing_osm.geom IS NOT NULL THEN ST_AsText(missing_osm.geom)
+        WHEN missing_osm.geom IS NOT NULL THEN ST_AsText(ST_Transform(missing_osm.geom, 4326))
         ELSE ST_AsText(any_locate(missing_osm.type, missing_osm.id))
     END,
     missing_official.tags AS official_tags,
@@ -310,8 +310,10 @@ FROM
         {joinClause}
 WHERE
     official.tags1
-        - (SELECT coalesce(array_agg(key), array[]::text[]) FROM jsonb_each(official.tags1) WHERE NOT osm_item.tags?key OR value::text = '""" + GENERATE_DELETE_TAG + """')
-        - (SELECT array_agg(key) FROM jsonb_object_keys(osm_item.tags) AS t(key))
+          -- Remove tags already existing in OSM, except tags to delete
+        - (SELECT coalesce(array_agg(key), array[]::text[]) FROM jsonb_object_keys(osm_item.tags) AS t(key) WHERE official.tags1->>key != '""" + GENERATE_DELETE_TAG + """')
+          -- Remove tags to delete not existing in OSM
+        - (SELECT coalesce(array_agg(key), array[]::text[]) FROM jsonb_each(official.tags1) WHERE value->>0 = '""" + GENERATE_DELETE_TAG + """' AND NOT osm_item.tags?key)
         - 'source'::text
         != '{{}}'::jsonb
 """
