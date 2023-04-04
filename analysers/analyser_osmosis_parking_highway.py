@@ -49,7 +49,6 @@ SELECT
 FROM
   ways AS pr
   LEFT JOIN park_highway AS highway ON
-    pr.linestring && highway.linestring AND
     ST_Intersects(pr.linestring, highway.linestring)
 WHERE
   ST_NPoints(pr.linestring) >= 2 AND
@@ -63,35 +62,23 @@ WHERE
 
 sql20 = """
 SELECT
-  DISTINCT ON(parking.id)
   parking.id,
-  private_parking_way.id,
+  max(parking_way.id),
   ST_AsText(ST_Centroid(parking.linestring)),
-  private_parking_way.tags->'access',
+  -- grab access value of the one belonging to the highlighted way (matching max id)
+  (array_agg(parking_way.tags->'access' ORDER BY parking_way.id DESC))[1],
   parking.tags->'access'
 FROM
   ways AS parking
-  JOIN park_highway AS private_parking_way ON
-    parking.linestring && private_parking_way.linestring AND
-    ST_Intersects(parking.linestring, private_parking_way.linestring) AND
-    private_parking_way.highway = 'service' AND
-    private_parking_way.tags?'access' AND
-    private_parking_way.tags->'access' IN ('private', 'permit', 'delivery', 'customers')
-  LEFT JOIN park_highway AS other_parking_way ON
-    parking.linestring && other_parking_way.linestring AND
-    ST_Intersects(parking.linestring, other_parking_way.linestring) AND
-    (
-      other_parking_way.highway != 'service' OR
-      NOT other_parking_way.tags?'access' OR
-      other_parking_way.tags->'access' NOT IN ('private', 'permit', 'delivery', 'customers')
-    )
+  JOIN park_highway AS parking_way ON
+    ST_Intersects(parking.linestring, parking_way.linestring) AND
+    NOT ST_Contains(ST_MakePolygon(parking.linestring), parking_way.linestring)
 WHERE
   parking.is_polygon AND
   parking.tags != ''::hstore AND
   parking.tags?'amenity' AND
   parking.tags->'amenity' = 'parking' AND
   (NOT parking.tags?'parking' OR parking.tags->'parking' NOT IN ('street_side', 'lane')) AND
-  other_parking_way.id IS NULL AND
   (
     NOT parking.tags?'access' OR
     (
@@ -99,6 +86,11 @@ WHERE
       parking.tags->'access' NOT LIKE '%;%'
     )
   )
+GROUP BY
+  parking.id,
+  parking.tags
+HAVING
+  array_agg(parking_way.tags->'access') <@ array['private', 'permit', 'delivery', 'customers']
 """
 
 class Analyser_Osmosis_Parking_highway(Analyser_Osmosis):
@@ -163,4 +155,5 @@ class Test(TestAnalyserOsmosis):
         self.check_err(cl="1", elems=[("way", "101")])
         self.check_err(cl="2", elems=[("way", "100")])
         self.check_err(cl="3", elems=[("way", "103"), ("way", "102")])
-        self.check_num_err(3)
+        self.check_err(cl="3", elems=[("way", "118"), ("way", "120")])
+        self.check_num_err(4)
