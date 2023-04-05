@@ -187,7 +187,10 @@ class Analyser_Osmosis_HighwayAreaAccess(Analyser_Osmosis):
             fix = T_(
 '''Check if there is really a barrier on the highway itself (instead of for instance a connecting minor way only).
 If there is no such barrier, remove it, or move it to the appropriate connecting way.
-If there is a barrier, check if it has the appropriate (conditional) access keys.'''))
+If there is a barrier, check if it has the appropriate (conditional) access keys.'''),
+            example = T_('''![](https://wiki.openstreetmap.org/w/images/e/ef/Kerb-on-highway.png)
+In the top example, the kerb is located next to the road, and only pedestrians that want to cross will cross the kerb.
+In the bottom example, cars will also have to drive over the kerb. Usually, kerbs are not located on the road, but alongsides.'''))
         self.classs[4] = self.def_class(item = 2130, level = 3, tags = ['highway', 'routing'],
             title = T_('Barrier blocking highway'),
             detail = T_(
@@ -202,7 +205,11 @@ If there is no such barrier, remove it, or move it to the appropriate connecting
 If there is a barrier, check if it has the appropriate (conditional) access keys.'''),
             example = T_('''![](https://wiki.openstreetmap.org/w/images/9/95/Badbarrierposition.png)
 A barrier placed incorrectly. From the service road, one has to cross the gate, but walking
-the (almost) U-turn over the paths can in reality be done without passing the gate.'''))
+the (almost) U-turn over the paths can in reality be done without passing the gate.
+
+![](https://wiki.openstreetmap.org/w/images/e/ef/Kerb-on-highway.png)
+In the top example, the kerb is located next to the road, and only pedestrians that want to cross will cross the kerb.
+In the bottom example, cars will also have to drive over the kerb. Usually, kerbs are not located on the road, but alongsides.'''))
         self.callback10 = lambda res: {"class":1, "data":[self.node_full, self.way_full, self.positionAsText],
             "text": T_("Inconsistent motor_vehicle values ('{0}'!='{1}')", res[3] if res[3] else '', res[4] if res[4] else '') }
 
