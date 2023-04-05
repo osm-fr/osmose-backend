@@ -29,6 +29,7 @@ if [ -f ${Semaphore} ]; then
     echo "$(date --rfc-3339=s) WARNING: requirements.txt is newer than our semaphore. updating"
     pip3 install --upgrade pip
     [ -f requirements.txt ] || { echo "$(date --rfc-3339=s) ERROR: requirements.txt not found in $PWD" >&2 ; exit 3 ; }
+    rm -rf ~/.local/lib/python*/site-packages/PyKOpeningHours*
     pip3 install -r requirements.txt || exit 2
     touch -r requirements.txt ${Semaphore}
     echo "$(date --rfc-3339=s) INFO: pip -r requirements.txt done"
@@ -39,6 +40,7 @@ else
   echo "$(date --rfc-3339=s) WARNING: requirements semaphore doesn't exist. updating"
   pip3 install --upgrade pip
   [ -f requirements.txt ] || { echo "$(date --rfc-3339=s) ERROR: requirements.txt not found in $PWD" >&2 ; exit 3 ; }
+  rm -rf ~/.local/lib/python*/site-packages/PyKOpeningHours*
   pip3 install -r requirements.txt || exit 2
   touch -r requirements.txt ${Semaphore}
   echo "$(date --rfc-3339=s) INFO: pip -r requirements.txt done"
