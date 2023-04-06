@@ -97,9 +97,9 @@ sql50 = """
 SELECT
     lc1.id,
     ST_AsText(way_locate(lc1.linestring)),
-    CASE lc1.highway_conn LIKE '%_link'
-        WHEN TRUE THEN lc1.highway_conn
-        ELSE lc1.highway_conn || '_link'
+    CASE
+        WHEN lc1.highway_conn IN ('motorway', 'trunk', 'primary', 'secondary', 'tertiary') THEN lc1.highway_conn || '_link'
+        ELSE lc1.highway_conn
     END
 FROM
     links_conn AS lc1
@@ -159,3 +159,27 @@ connected.'''),
 
     def analyser_osmosis_diff(self):
         self.run(sql40.format("touched_"), self.callback40)
+
+
+
+###########################################################################
+
+from .Analyser_Osmosis import TestAnalyserOsmosis
+
+class Test(TestAnalyserOsmosis):
+    @classmethod
+    def setup_class(cls):
+        from modules import config
+        TestAnalyserOsmosis.setup_class()
+        cls.analyser_conf = cls.load_osm("tests/osmosis_highway_link.osm",
+                                         config.dir_tmp + "/tests/osmosis_highway_link.test.xml",
+                                         {"proj": 2154}) # Random proj to satisfy highway table generation
+
+    def test_classes(self):
+        with Analyser_Osmosis_Highway_Link(self.analyser_conf, self.logger) as a:
+            a.analyser()
+
+        self.root_err = self.load_errors()
+        self.check_err(cl="3", elems=[("way", "105")], fixes=[{"~": {"highway": "residential"}}])
+        self.check_err(cl="3", elems=[("way", "109")], fixes=[{"~": {"highway": "primary_link"}}])
+        self.check_err(cl="3", elems=[("way", "117")], fixes=[{"~": {"highway": "secondary_link"}}])

@@ -345,7 +345,7 @@ class TestAnalyser(unittest.TestCase):
         tree = ET.parse(self.xml_res_file)
         return tree.getroot()
 
-    def check_err(self, cl=None, lat=None, lon=None, elems=None):
+    def check_err(self, cl=None, lat=None, lon=None, elems=None, fixes=None):
         for e in self.root_err.find("analyser").findall('error'):
             if cl is not None and e.attrib["class"] != cl:
                 continue
@@ -359,6 +359,24 @@ class TestAnalyser(unittest.TestCase):
                     for err_elem in e.findall(t):
                         xml_elems.append((t, err_elem.attrib["id"]))
                 if set(elems) != set(xml_elems):
+                    continue
+            if fixes is not None:
+                # input: [ {"+": {k1:v1, k2:v2}, "-": [k1, k1], "~": {k1:v1, k2:v2}} , ...]
+                xml_elems = []
+                for f in e.find('fixes').findall('fix'):
+                    fixactions = {"+": {}, "-": [], "~": {}}
+                    for t in ("node", "way", "relation"):
+                        for fi in f.findall(t):
+                            for fix in fi.findall("tag"):
+                                if fix.attrib["action"] == "delete":
+                                    fixactions["-"].append(fix.attrib["k"])
+                                elif fix.attrib["action"] == "modify":
+                                    fixactions["~"][fix.attrib["k"]] = fix.attrib["v"]
+                                elif fix.attrib["action"] == "create":
+                                    fixactions["+"][fix.attrib["k"]] = fix.attrib["v"]
+                    fixactions = {k:v for k,v in fixactions.items() if len(v)}
+                    xml_elems.append(fixactions)
+                if fixes != xml_elems:
                     continue
             return True
 
