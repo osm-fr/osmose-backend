@@ -44,13 +44,14 @@ sql12 = """
 SELECT
   pr.id,
   ST_AsText(ST_Centroid(pr.linestring)),
-  pr.tags->'park_ride' != 'no'
+  pr.tags->'park_ride' != 'no',
+  ST_Length(ST_Transform(pr.linestring, {proj})) / ST_Area(ST_MakePolygon(ST_Transform(pr.linestring, {proj})))
 FROM
   ways AS pr
   LEFT JOIN park_highway AS highway ON
     ST_Intersects(pr.linestring, highway.linestring)
 WHERE
-  ST_NPoints(pr.linestring) >= 2 AND
+  pr.is_polygon AND
   pr.tags != ''::hstore AND
   pr.tags?'amenity' AND
   pr.tags->'amenity' = 'parking' AND
@@ -119,10 +120,11 @@ As a result, this public parking space can only be reached via limited-access ro
     def analyser_osmosis_common(self):
         self.run(sql10.format(""))
         self.run(sql11.format(""))
-        self.run(sql12, lambda res: {
+        self.run(sql12.format(proj=self.config.options["proj"]), lambda res: {
             "class": 1 if res[2] else 2,
             "data": [self.way_full, self.positionAsText],
-            "fix": {"+": {"parking": "street_side"}},
+            # Street side parkings typically have a perimeter/area ratio > 0.1
+            "fix": {"+": {"parking": "street_side"}} if res[3] > 0.1 else None,
         })
         self.run(sql20, lambda res: {
             "class": 3,
@@ -151,7 +153,9 @@ class Test(TestAnalyserOsmosis):
 
         self.root_err = self.load_errors()
         self.check_err(cl="1", elems=[("way", "101")])
-        self.check_err(cl="2", elems=[("way", "100")])
+        self.check_err(cl="2", elems=[("way", "100")], fixes=[{"+": {"parking": "street_side"}}])
+        self.check_err(cl="2", elems=[("way", "124")], fixes=[])
+        self.check_err(cl="2", elems=[("way", "125")], fixes=[])
         self.check_err(cl="3", elems=[("way", "103"), ("way", "102")])
         self.check_err(cl="3", elems=[("way", "118"), ("way", "119"), ("way", "120")])
-        self.check_num_err(4)
+        self.check_num_err(6)
