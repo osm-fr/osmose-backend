@@ -28,8 +28,7 @@ CREATE TEMP TABLE park_highway AS
 SELECT
   id,
   linestring,
-  highway,
-  tags
+  tags->'access' AS access
 FROM
   highways
 WHERE
@@ -63,10 +62,9 @@ WHERE
 sql20 = """
 SELECT
   parking.id,
-  max(parking_way.id),
+  array_agg('W' || parking_way.id),
   ST_AsText(ST_Centroid(parking.linestring)),
-  -- grab access value of the one belonging to the highlighted way (matching max id)
-  (array_agg(parking_way.tags->'access' ORDER BY parking_way.id DESC))[1],
+  array_agg(parking_way.access),
   parking.tags->'access'
 FROM
   ways AS parking
@@ -90,7 +88,7 @@ GROUP BY
   parking.id,
   parking.tags
 HAVING
-  array_agg(parking_way.tags->'access') <@ array['private', 'permit', 'delivery', 'customers']
+  array_agg(parking_way.access) <@ array['private', 'permit', 'delivery', 'customers']
 """
 
 class Analyser_Osmosis_Parking_highway(Analyser_Osmosis):
@@ -128,8 +126,8 @@ As a result, this public parking space can only be reached via limited-access ro
         })
         self.run(sql20, lambda res: {
             "class": 3,
-            "data": [self.way_full, self.way_full, self.positionAsText],
-            "text": T_("highway: `access={0}` - parking: `access={1}`",res[3], res[4] if res[4] else '')
+            "data": [self.way_full, self.array_full, self.positionAsText],
+            "text": T_("highway: `access={0}` - parking: `access={1}`", '/'.join(set(res[3])), res[4] if res[4] else '')
         })
 
 
@@ -155,5 +153,5 @@ class Test(TestAnalyserOsmosis):
         self.check_err(cl="1", elems=[("way", "101")])
         self.check_err(cl="2", elems=[("way", "100")])
         self.check_err(cl="3", elems=[("way", "103"), ("way", "102")])
-        self.check_err(cl="3", elems=[("way", "118"), ("way", "120")])
+        self.check_err(cl="3", elems=[("way", "118"), ("way", "119"), ("way", "120")])
         self.check_num_err(4)
