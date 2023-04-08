@@ -109,10 +109,12 @@ The available value for the `data`, mapping OSM object id are:
 * `way_full`
 * `relation`
 * `relation_full`
+* `any_full` (N/W/R + id)
+
 From array of (type: N/W/R, ids):
 * `array_full`
 
-Without `_full` variant, only the id is keep in the Osmose issue, not the tags and other attributes.
+Without the `_full` suffix, only the id is kept in the Osmose issue, not the tags and other attributes.
 
 When we want to create a new node object we can use:
 * `node_new`
