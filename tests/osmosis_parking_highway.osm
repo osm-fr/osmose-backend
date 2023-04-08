@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <osm version='0.6' generator='JOSM'>
-  <node id='1' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.81153986582' lon='5.81084093495' />
-  <node id='2' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.81135523212' lon='5.81079842412' />
-  <node id='3' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.81131182761' lon='5.81129161495' />
+  <node id='1' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.81142559988' lon='5.81081705868' />
+  <node id='2' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.81135808025' lon='5.81079940245' />
+  <node id='3' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.8113093583' lon='5.81128684668' />
   <node id='4' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.81168178543' lon='5.81124732951' />
   <node id='5' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.81149715231' lon='5.81120481869' />
   <node id='6' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.81145374794' lon='5.81169800951' />
@@ -54,10 +54,20 @@
   <node id='52' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.8116458994' lon='5.81210974804' />
   <node id='53' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.81165393645' lon='5.81218635347' />
   <node id='54' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.81171679763' lon='5.81218449637' />
+  <node id='55' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.811376878' lon='5.81130450291' />
+  <node id='56' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.81134120413' lon='5.81079309111' />
+  <node id='57' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.81127368437' lon='5.81077543488' />
+  <node id='58' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.81122496233' lon='5.81126287911' />
+  <node id='59' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.81129248216' lon='5.81128053534' />
+  <node id='60' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.81127635684' lon='5.81053898695' />
+  <node id='61' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.81084809207' lon='5.81043376656' />
+  <node id='62' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.810780024' lon='5.81115856271' />
+  <node id='63' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.81120828942' lon='5.8112637831' />
   <way id='100' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='1' />
     <nd ref='2' />
     <nd ref='3' />
+    <nd ref='55' />
     <nd ref='1' />
     <tag k='amenity' v='parking' />
   </way>
@@ -215,5 +225,22 @@
     <nd ref='53' />
     <nd ref='54' />
     <tag k='highway' v='service' />
+  </way>
+  <way id='124' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='56' />
+    <nd ref='57' />
+    <nd ref='58' />
+    <nd ref='59' />
+    <nd ref='56' />
+    <tag k='amenity' v='parking' />
+    <tag k='parking' v='sheds' />
+  </way>
+  <way id='125' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='60' />
+    <nd ref='61' />
+    <nd ref='62' />
+    <nd ref='63' />
+    <nd ref='60' />
+    <tag k='amenity' v='parking' />
   </way>
 </osm>

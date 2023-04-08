@@ -363,19 +363,20 @@ class TestAnalyser(unittest.TestCase):
             if fixes is not None:
                 # input: [ {"+": {k1:v1, k2:v2}, "-": [k1, k1], "~": {k1:v1, k2:v2}} , ...]
                 xml_elems = []
-                for f in e.find('fixes').findall('fix'):
-                    fixactions = {"+": {}, "-": [], "~": {}}
-                    for t in ("node", "way", "relation"):
-                        for fi in f.findall(t):
-                            for fix in fi.findall("tag"):
-                                if fix.attrib["action"] == "delete":
-                                    fixactions["-"].append(fix.attrib["k"])
-                                elif fix.attrib["action"] == "modify":
-                                    fixactions["~"][fix.attrib["k"]] = fix.attrib["v"]
-                                elif fix.attrib["action"] == "create":
-                                    fixactions["+"][fix.attrib["k"]] = fix.attrib["v"]
-                    fixactions = {k:v for k,v in fixactions.items() if len(v)}
-                    xml_elems.append(fixactions)
+                if e.find('fixes') is not None:
+                    for f in e.find('fixes').findall('fix'):
+                        fixactions = {"+": {}, "-": [], "~": {}}
+                        for t in ("node", "way", "relation"):
+                            for fi in f.findall(t):
+                                for fix in fi.findall("tag"):
+                                    if fix.attrib["action"] == "delete":
+                                        fixactions["-"].append(fix.attrib["k"])
+                                    elif fix.attrib["action"] == "modify":
+                                        fixactions["~"][fix.attrib["k"]] = fix.attrib["v"]
+                                    elif fix.attrib["action"] == "create":
+                                        fixactions["+"][fix.attrib["k"]] = fix.attrib["v"]
+                        fixactions = {k:v for k,v in fixactions.items() if len(v)}
+                        xml_elems.append(fixactions)
                 if fixes != xml_elems:
                     continue
             return True
