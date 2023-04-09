@@ -64,7 +64,7 @@ However, this should probably still conform to the typical format used for value
             'parking', 'place', 'power', 'public_transport',
             'railway', 'ramp', 'religion', 'route', 'route_master',
             'sac_scale', 'seasonal', 'service', 'shelter', 'shop', 'shoulder', 'sidewalk', 'smoothness', 'sport', 'surface',
-            'tactile_paving', 'toll', 'tourism', 'tracktype', 'traffic_calming', 'trail_visibility', 'traffic_signals', 'tunnel',
+            'tactile_paving', 'toll', 'tourism', 'traffic_calming', 'trail_visibility', 'traffic_signals', 'tunnel',
             'usage', 'utility',
             'wall', 'water', 'waterway', 'wetland', 'wheelchair', 'wood'
         ))
