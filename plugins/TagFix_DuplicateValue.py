@@ -79,6 +79,7 @@ Ensure the interpretation of the tag does not change when you delete one item.''
             'communication:mobile_phone',
             'cuisine',
             'operator',
+            'delivery',
             'changing_table:location',
             'furniture',
             'seamark:berth:category',
