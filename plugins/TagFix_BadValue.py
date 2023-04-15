@@ -64,7 +64,7 @@ However, this should probably still conform to the typical format used for value
             'parking', 'place', 'power', 'public_transport',
             'railway', 'ramp', 'religion', 'route', 'route_master',
             'sac_scale', 'seasonal', 'service', 'shelter', 'shop', 'shoulder', 'sidewalk', 'smoothness', 'sport', 'surface',
-            'tactile_paving', 'toll', 'tourism', 'tracktype', 'traffic_calming', 'trail_visibility', 'traffic_signals', 'tunnel',
+            'tactile_paving', 'toll', 'tourism', 'traffic_calming', 'trail_visibility', 'traffic_signals', 'tunnel',
             'usage', 'utility',
             'wall', 'water', 'waterway', 'wetland', 'wheelchair', 'wood'
         ))
@@ -101,6 +101,7 @@ However, this should probably still conform to the typical format used for value
                             "oneway": ( "yes", "no", "1", "-1", "reversible", "alternating"),
                             "segregated": ( "yes", "no", ),
                             "trolley_wire": ( "yes", "no", ),
+                            "tracktype":  ( "grade1", "grade2", "grade3", "grade4", "grade5", ),
                           }
         self.check_list_closed = set(self.allow_closed.keys())
 
@@ -154,6 +155,7 @@ class Test(TestPluginCommon):
                   {"sport": "rugby-union;shot-put;long_jump"}, # bad;whitelisted;good
                   {"sport": "rugby_union;shot-put;long-jump"}, # good;whitelisted;bad
                   {"access": "unknown"},
+                  {"tracktype": "gradde1"},
                  ]:
             self.check_err(a.node(None, t), t)
             self.check_err(a.way(None, t, None), t)
