@@ -39,8 +39,9 @@ class Analyser_merge_defibrillators_FR_saintmalo(Analyser_Merge_Point):
                     dataset="54295e4188ee380326a5915d",
                     resource="75e18892-529f-4037-b38f-a9e4d9c39a91",
                     encoding="iso-8859-14"),
-                separator=";"),
-            Load_XY("XCOORD", "YCOORD", srid = 2154),
+                separator=";",
+                srid = 2154),
+            Load_XY("XCOORD", "YCOORD"),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways", "relations"],

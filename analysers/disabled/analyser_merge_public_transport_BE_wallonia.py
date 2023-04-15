@@ -35,8 +35,9 @@ class Analyser_Merge_Public_Transport_BE_Wallonia(Analyser_Merge):
                 name = u"Données TEC",
                 file = "public_transport_BE_wallonia.csv.bz2", bz2 = True,
                 encoding = "ISO-8859-15",
-                csv = CSV(separator = u"|", header = False)),
-            Load("X coordinate", "Y coordinate", srid = 31370,
+                csv = CSV(separator = u"|", header = False),
+                srid = 31370),
+            Load("X coordinate", "Y coordinate",
                 create = """
                     "Stop identifier" character(8),
                     "Description (Dutch)" character(50),
