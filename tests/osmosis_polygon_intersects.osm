@@ -82,9 +82,6 @@
   <node id='100' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83481049515' lon='5.90030956255' />
   <node id='101' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82523901964' lon='5.89301130171' />
   <node id='102' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82988727516' lon='5.89819253765' />
-  <node id='103' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84115314098' lon='5.90683680794' />
-  <node id='104' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83671586788' lon='5.90322288858' />
-  <node id='105' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84615789848' lon='5.91132860863' />
   <node id='108' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84254504257' lon='5.91860160766' />
   <node id='109' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84140657059' lon='5.92283788833' />
   <node id='110' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83499970025' lon='5.91832758587' />
@@ -117,7 +114,24 @@
   <node id='137' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.81795168778' lon='5.92228526335' />
   <node id='138' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82161975426' lon='5.920818174' />
   <node id='139' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82292372537' lon='5.92977335689' />
-  <node id='140' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82107421744' lon='5.91683567931' />
+  <node id='140' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82267467041' lon='5.94159338716' />
+  <node id='141' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82005935627' lon='5.94349752755' />
+  <node id='142' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82227709281' lon='5.94579326988' />
+  <node id='143' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82686495872' lon='5.94256804254' />
+  <node id='144' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82456882378' lon='5.94234950757' />
+  <node id='145' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82438457003' lon='5.94741738097' />
+  <node id='146' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82668071436' lon='5.94763591594' />
+  <node id='147' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82421436679' lon='5.93926669031' />
+  <node id='148' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82293704431' lon='5.95041761517' />
+  <node id='149' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82094115543' lon='5.9489537872' />
+  <node id='150' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.8220056405' lon='5.93862088385' />
+  <node id='151' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82599413576' lon='5.94441935296' />
+  <node id='152' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82498364284' lon='5.94419808202' />
+  <node id='153' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82603212378' lon='5.94623869185' />
+  <node id='154' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82677670517' lon='5.95076241652' />
+  <node id='155' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82735410949' lon='5.93945301264' />
+  <node id='156' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82900157915' lon='5.8820351702' />
+  <node id='157' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82801107079' lon='5.8846363293' />
   <way id='1000' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='1' />
     <nd ref='2' />
@@ -287,7 +301,6 @@
     <nd ref='92' />
     <nd ref='93' />
     <nd ref='94' />
-    <nd ref='103' />
     <nd ref='95' />
     <nd ref='92' />
     <tag k='landuse' v='forest' />
@@ -309,11 +322,8 @@
     <tag k='highway' v='secondary' />
   </way>
   <way id='1037' timestamp='2014-03-31T22:00:00Z' version='1'>
-    <nd ref='104' />
     <nd ref='95' />
     <nd ref='94' />
-    <nd ref='105' />
-    <tag k='note' v='A very tiny difference with the forest' />
     <tag k='railway' v='rail' />
   </way>
   <way id='1039' timestamp='2014-03-31T22:00:00Z' version='1'>
@@ -392,6 +402,50 @@
     <nd ref='139' />
     <tag k='waterway' v='canal' />
   </way>
+  <way id='1052' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='140' />
+    <nd ref='141' />
+    <nd ref='142' />
+    <nd ref='140' />
+  </way>
+  <way id='1053' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='143' />
+    <nd ref='144' />
+    <nd ref='145' />
+    <nd ref='146' />
+    <nd ref='143' />
+  </way>
+  <way id='1054' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='147' />
+    <nd ref='148' />
+    <tag k='note' v='Between multipolygon outers' />
+    <tag k='railway' v='rail' />
+  </way>
+  <way id='1055' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='149' />
+    <nd ref='150' />
+    <tag k='railway' v='rail' />
+  </way>
+  <way id='1056' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='151' />
+    <nd ref='152' />
+    <nd ref='153' />
+    <nd ref='151' />
+    <tag k='natural' v='water' />
+  </way>
+  <way id='1057' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='154' />
+    <nd ref='146' />
+    <nd ref='143' />
+    <nd ref='155' />
+    <tag k='note' v='Only touching the MP outer' />
+    <tag k='railway' v='rail' />
+  </way>
+  <way id='1058' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='156' />
+    <nd ref='157' />
+    <tag k='aeroway' v='runway' />
+  </way>
   <relation id='10000' timestamp='2014-03-31T22:00:00Z' version='1'>
     <member type='way' ref='1045' role='inner' />
     <member type='way' ref='1044' role='outer' />
@@ -407,6 +461,13 @@
   <relation id='10002' timestamp='2014-03-31T22:00:00Z' version='1'>
     <member type='way' ref='1042' role='outer' />
     <member type='way' ref='1043' role='outer' />
+    <tag k='landuse' v='forest' />
+    <tag k='type' v='multipolygon' />
+  </relation>
+  <relation id='10003' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <member type='way' ref='1052' role='outer' />
+    <member type='way' ref='1053' role='outer' />
+    <member type='way' ref='1056' role='inner' />
     <tag k='landuse' v='forest' />
     <tag k='type' v='multipolygon' />
   </relation>

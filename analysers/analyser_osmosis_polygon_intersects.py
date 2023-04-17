@@ -24,6 +24,7 @@ from modules.OsmoseTranslation import T_
 from .Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
+-- Collect all major highways, waterways, railways and aeroways
 CREATE TEMP TABLE mobility_ways AS
 SELECT
   *
@@ -63,7 +64,8 @@ FROM (
         (NOT tags?'intermittent' OR tags->'intermittent' = 'no')
       ) OR (
         tags?'aeroway' AND
-        tags->'aeroway' IN ('apron', 'helipad', 'runway', 'taxilane', 'taxiway') -- aircraft moving places
+        tags->'aeroway' IN ('apron', 'helipad', 'runway', 'taxilane', 'taxiway') AND -- aircraft moving places
+        (NOT tags?'surface' OR tags->'surface' IN ('asphalt', 'paved', 'concrete')) -- ignore almost invisible landing areas in i.e. meadows
       )
     )
   ) AS t
@@ -76,6 +78,7 @@ WHERE
 """
 
 sql11 = """
+-- Collect all landuse=* and natural=*, closed ways and outer ways of multipolygons
 CREATE TEMP TABLE landusage AS
 SELECT
   id,
@@ -104,7 +107,7 @@ SELECT
   ways.id,
   ways.linestring,
   -- Better would be to parse inner and outer segments and create an SQL multipolygon
-  -- For now, just use a 0.0000000001m buffer zone around the linestring
+  -- For now, just use a very small buffer zone around the linestring
   ST_Buffer(ways.linestring, 0.0000000001, 'quad_segs=1 endcap=flat join=bevel') AS poly,
   CASE
     WHEN r.tags?'landuse' THEN 'landuse'
@@ -132,11 +135,11 @@ WHERE
 sql12 = """
 CREATE INDEX idx_mobilityway_linestring ON mobility_ways USING GIST(linestring);
 CREATE INDEX idx_landusage_linestring ON landusage USING GIST(linestring);
-CREATE INDEX idx_landusage_poly ON landusage USING GIST(poly);
 """
 
 sql13 = """
-CREATE TEMP TABLE intersections AS
+-- Collect high|rail|water|aeroways either entering or fully inside landuse/natural geometries
+CREATE TEMP TABLE intersecting_geometries AS
 SELECT
   mobility_ways.id AS mobility_way_id,
   mobility_ways.linestring AS mobility_way_linestring,
@@ -151,8 +154,9 @@ FROM
   mobility_ways
   JOIN landusage ON
     (
-      NOT landusage.tags?'layer' AND NOT mobility_ways.tags?'layer' OR
       (
+        NOT landusage.tags?'layer' AND NOT mobility_ways.tags?'layer'
+      ) OR (
         landusage.tags?'layer' AND mobility_ways.tags?'layer' AND
         landusage.tags->'layer' = mobility_ways.tags->'layer'
       )
@@ -160,27 +164,26 @@ FROM
     landusage.linestring && mobility_ways.linestring AND
     -- Only find ways where the highway/railway/waterway/aeroway actually enters the
     -- polygon. Exclude cases where the polygon is tied to the way without going inside.
-    ST_Intersects(landusage.poly, mobility_ways.linestring) AND
-    NOT ST_Touches(landusage.poly, mobility_ways.linestring) AND
     (
-      -- Ignore very minor overlaps. The distance between the center of the overlap and one of the ways must be at least 1m
-      -- Can't do this for multipolygons (without parsing all inner/outer segments) hence disabling this simplification for those
-      landusage.is_multipolygon OR
-      ST_Distance(ST_Centroid(ST_Transform(ST_Intersection(landusage.poly, mobility_ways.linestring), {proj})), ST_Transform(mobility_ways.linestring, {proj})) > 1 OR
-      ST_Distance(ST_Centroid(ST_Transform(ST_Intersection(landusage.poly, mobility_ways.linestring), {proj})), ST_Transform(landusage.linestring, {proj})) > 1
+      ST_Crosses(landusage.linestring, mobility_ways.linestring) OR
+      (
+        ST_Contains(landusage.poly, mobility_ways.linestring) AND
+        NOT landusage.is_multipolygon -- due to ST_buffer approach for mp, instead of full parsing of inners/outers
+      )
     )
 """
 
 sql14 = """
+-- Intersections with railway, aeroway or highway
 SELECT
   mobility_way_id,
   landusage_way_id,
-  ST_AsText(ST_Centroid(ST_Intersection(landusage_poly, mobility_way_linestring))),
+  ST_AsText(ST_PointOnSurface(ST_Intersection(landusage_poly, mobility_way_linestring))),
   mobility_way_type,
   tag_way,
   tag_polygon
 FROM
-  intersections
+  intersecting_geometries
 WHERE
   mobility_way_type != 'waterway' AND
   (
@@ -200,15 +203,16 @@ WHERE
 """
 
 sql15 = """
+-- Intersections with waterway
 SELECT
   mobility_way_id,
   landusage_way_id,
-  ST_AsText(ST_Centroid(ST_Intersection(landusage_poly, mobility_way_linestring))),
+  ST_AsText(ST_PointOnSurface(ST_Intersection(landusage_poly, mobility_way_linestring))),
   mobility_way_type,
   tag_way,
   tag_polygon
 FROM
-  intersections
+  intersecting_geometries
 WHERE
   mobility_way_type = 'waterway' AND
   (
@@ -306,6 +310,7 @@ class Test(TestAnalyserOsmosis):
         self.check_err(cl=str(a.classIndex["waterway"]), elems=[("way", "1022"), ("way", "1021")])
         self.check_err(cl=str(a.classIndex["railway"]), elems=[("way", "1025"), ("way", "1023")])
         self.check_err(cl=str(a.classIndex["aeroway"]), elems=[("way", "1026"), ("way", "1023")])
+        self.check_err(cl=str(a.classIndex["aeroway"]), elems=[("way", "1058"), ("way", "1023")])
         self.check_err(cl=str(a.classIndex["highway"]), elems=[("way", "1027"), ("way", "1023")])
         self.check_err(cl=str(a.classIndex["waterway"]), elems=[("way", "1028"), ("way", "1023")])
         self.check_err(cl=str(a.classIndex["highway"]), elems=[("way", "1036"), ("way", "1035")])
@@ -313,4 +318,5 @@ class Test(TestAnalyserOsmosis):
         self.check_err(cl=str(a.classIndex["highway"]), elems=[("way", "1049"), ("way", "1043")])
         self.check_err(cl=str(a.classIndex["railway"]), elems=[("way", "1050"), ("way", "1047")])
         self.check_err(cl=str(a.classIndex["waterway"]), elems=[("way", "1051"), ("way", "1048")])
-        self.check_num_err(16)
+        self.check_err(cl=str(a.classIndex["railway"]), elems=[("way", "1055"), ("way", "1052")])
+        self.check_num_err(18)
