@@ -22,7 +22,7 @@ msgstr ""
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
 "PO-Revision-Date: 2014-04-30 17:25+0000\n"
 "Last-Translator: Famlam, 2022-2023\n"
-"Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
+"Language-Team: Dutch (http://app.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -538,7 +538,7 @@ msgstr "OpenSeaMap import, positie bij benadering."
 #: ../plugins/TagRemove_Roundabout.py:31
 #: ../plugins/TagRemove_Roundabout_Ref.py:33
 msgid "Unneeded tag on junction=roundabout"
-msgstr "Onnodig tag op junction=roundabout"
+msgstr "Onnodige tag op junction=roundabout"
 
 #: ../analysers/analyser_osmosis_fantoir.py:109
 msgid "Multiple name for the same ref FANTOIR"
@@ -730,8 +730,8 @@ msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "Inclusief auto, paard, bromfiets, hazmat en ga zo maar door, tenzij uitdrukkelijk uitgesloten"
 
-#: ../analysers/analyser_osmosis_highway_area_access.py:105
-#: ../analysers/analyser_osmosis_highway_area_access.py:109
+#: ../analysers/analyser_osmosis_highway_area_access.py:172
+#: ../analysers/analyser_osmosis_highway_area_access.py:176
 msgid "Inconsistent Access"
 msgstr "Inconsistent Toegang"
 
@@ -1379,7 +1379,7 @@ msgstr "Bevolkingsaantal op admin_centre role ({0})  is groter dan bevolkingsaan
 msgid "Multiple name for the same ref FANTOIR {0}: {1}"
 msgstr "Meerdere namen voor dezelfde ref FANTOIR {0}: {1}"
 
-#: ../analysers/analyser_osmosis_highway_area_access.py:117
+#: ../analysers/analyser_osmosis_highway_area_access.py:207
 #, python-brace-format
 msgid "Inconsistent motor_vehicle values ('{0}'!='{1}')"
 msgstr "Inconsistent motor_vehicle waarden ('{0}'!='{1}')"
@@ -1835,7 +1835,7 @@ msgid ""
 "World Heritage."
 msgstr ""
 
-#: ../analysers/analyser_merge_pitch_FR.py:49
+#: ../analysers/analyser_merge_pitch_FR.py:48
 #, python-brace-format
 msgid "Pitch not integrated {0}"
 msgstr "Pitch niet geïntegreerd {0}"
@@ -3575,35 +3575,35 @@ msgstr ""
 msgid "{0} parking  update"
 msgstr "{0} parking  bijwerken"
 
-#: ../analysers/Analyser_Merge.py:1159
+#: ../analysers/Analyser_Merge.py:1161
 msgid ""
 "If after review you are sure that it is new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr "Als u na een beoordeling zeker weet dat het nieuwe gegevens zijn en geschikt zijn voor OpenStreetMap, dan kunt u het toevoegen."
 
-#: ../analysers/Analyser_Merge.py:1162
+#: ../analysers/Analyser_Merge.py:1164
 msgid "Be sure that it does not already exist in another place."
 msgstr "Zorg ervoor dat het niet al op een andere plaats bestaat."
 
-#: ../analysers/Analyser_Merge.py:1167
+#: ../analysers/Analyser_Merge.py:1169
 msgid ""
 "This is reported from an open data source, without any prior individual\n"
 "verification of this data."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1324
+#: ../analysers/Analyser_Merge.py:1326
 msgid ""
 "This is a integration suggestion, mixing open data source and\n"
 "OpenStreetMap."
 msgstr "Dit is een integratie suggestie, mixing OpenData source en\nOpenStreetMap."
 
-#: ../analysers/Analyser_Merge.py:1337
+#: ../analysers/Analyser_Merge.py:1339
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "open data and OSM."
 msgstr "Dit is een update suggestie omdat dezelfde ref op OpenData en OSM kan worden gevonden ."
 
-#: ../analysers/Analyser_Merge.py:1155
+#: ../analysers/Analyser_Merge.py:1157
 msgid ""
 "It is from an open data source, but that is not enough to ensure the quality\n"
 "of the data. Review it before integrating the data. You must not do blind imports\n"
@@ -4983,26 +4983,27 @@ msgstr ""
 msgid "Similar values {v1} and {v2} in {key}={val}"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_area_access.py:107
+#: ../analysers/analyser_osmosis_highway_area_access.py:174
 msgid "Inconsistent `motor_vehicle` values."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_area_access.py:111
+#: ../analysers/analyser_osmosis_highway_area_access.py:178
 msgid "Inconsistent access values between barrier and highway."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_area_access.py:113
+#: ../analysers/analyser_osmosis_highway_area_access.py:180
+#: ../analysers/analyser_osmosis_highway_area_access.py:198
 msgid ""
 "Sometimes a barrier can exist on an (otherwise uninterrupted) highway to "
 "prevent vehicles from using it for purposes other than destination traffic."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_area_access.py:115
+#: ../analysers/analyser_osmosis_highway_area_access.py:182
 msgid "Copy the appropriate access tag to the barrier node."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_area_access.py:125
-#: ../analysers/analyser_osmosis_highway_area_access.py:129
+#: ../analysers/analyser_osmosis_highway_area_access.py:215
+#: ../analysers/analyser_osmosis_highway_area_access.py:219
 #, python-brace-format
 msgid "Inconsistent {0} access: '{1}' on highway, not set on barrier"
 msgstr ""
@@ -5238,4 +5239,46 @@ msgstr ""
 #: ../plugins/TagFix_MultipleTag2.py:113
 #, python-brace-format
 msgid "{0} on suspicious object"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_area_access.py:184
+msgid "Barrier blocking major highway"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_area_access.py:186
+msgid ""
+"A barrier is blocking a major highway. Typically, major highways (`tertiary`"
+" and above) are meant for passing traffic."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_area_access.py:188
+msgid ""
+"Check if there is really a barrier on the highway itself (instead of for instance a connecting minor way only).\n"
+"If there is no such barrier, remove it, or move it to the appropriate connecting way.\n"
+"If there is a barrier, check if it has the appropriate (conditional) access keys."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_area_access.py:192
+msgid "Barrier blocking highway"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_area_access.py:194
+msgid ""
+"A barrier is blocking a crossing with another highway.\n"
+"Likely the barrier was only supposed to be present on one of the roads.\n"
+"In the current situation, traffic coming from any direction has to go through the barrier, to reach any of the destination ways."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_area_access.py:200
+msgid ""
+"Check if there is really a barrier on the crossing itself (instead of for instance a connecting minor way only).\n"
+"If there is no such barrier, remove it, or move it to the appropriate connecting way.\n"
+"If there is a barrier, check if it has the appropriate (conditional) access keys."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_area_access.py:203
+msgid ""
+"![](https://wiki.openstreetmap.org/w/images/9/95/Badbarrierposition.png)\n"
+"A barrier placed incorrectly. From the service road, one has to cross the gate, but walking\n"
+"the (almost) U-turn over the paths can in reality be done without passing the gate."
 msgstr ""
