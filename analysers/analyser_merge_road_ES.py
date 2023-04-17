@@ -39,11 +39,12 @@ class Analyser_Merge_Road_ES(Analyser_Merge_Network):
                 fileUrl='http://centrodedescargas.cnig.es/CentroDescargas/descargaDir', post={'secuencialDescDir': self.secuencialDescDir(config.options['country']), 'aceptCodsLicsDD_0': '15'},
                 encoding='LATIN1'),
                 zip="*/*/rt_tramo_vial.shp",
-                fields=['claseD', 'estadofis']),
+                fields=['clased', 'estadofis'],
+                srid=4258),
             Load('geom',
                 table_name = 'road_es_' + self.secuencialDescDir(config.options['country']),
                 select = {
-                    'claseD': ['Carretera convencional', 'Urbano', 'Autovía', 'Carretera multicarril'],  # Exclude 'Senda' and 'Camino'
+                    'clased': ['Carretera convencional', 'Urbano', 'Autovía', 'Carretera multicarril'],  # Exclude 'Senda' and 'Camino'
                     'estadofis': '1'} ),
             ConflateNetwork(
                 select = Select(
@@ -53,7 +54,7 @@ class Analyser_Merge_Road_ES(Analyser_Merge_Network):
                 mapping = Mapping(
                     static1 = {'highway': 'road'},
                     static2 = {'source': self.source},
-                    text = lambda tags, fields: {'en': ', '.join(filter(lambda x: x, [fields['claseD']]))} )))
+                    text = lambda tags, fields: {'en': ', '.join(filter(lambda x: x, [fields['clased']]))} )))
 
     def secuencialDescDir(self, code):
         return {

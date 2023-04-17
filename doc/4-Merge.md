@@ -171,6 +171,9 @@ from .Analyser_Merge import CSV
     )
 ```
 
+Common option to all parsers:
+- `srid`: SIRD code of the data coordinates. Overwrite the projection of geometry, by default projection comes from parsed content, or if no fallback to 4326.
+
 
 ## Load
 
@@ -211,9 +214,6 @@ A common usage is to split a unique coordinate field:
 Helpers function are also available:
 - `Load_XY.float_comma`: Convert decimal comma to dot separated.
 - `Load_XY.degree`: Convert coordinate in degree, minute, second to decimal degrees.
-
-Overwrite the projection of geometry, by default projection comes from parsed content, or if no fallback to 4326.
-- `srid`: SIRD code of the data coordinates.
 
 ### Data Table
 The names of the attributes are generally given with the data. If it is not the case an SQL table definition can be given with parameter `create`.

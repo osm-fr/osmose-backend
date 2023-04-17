@@ -31,8 +31,9 @@ class Analyser_Merge_Street_Number_Montpellier(_Analyser_Merge_Street_Number):
             u"Ville de Montpellier - Point adresse",
             # Convert shp with QGis, save as CSV with layer "GEOMETRY=AS_XY".
             CSV(Source(attribution = u"Ville de Montpellier", millesime = "05/2016",
-                    file = "address_france_montpellier.csv.bz2", bz2 = True)),
-            Load("X", "Y", srid = 2154,
+                    file = "address_france_montpellier.csv.bz2", bz2 = True),
+                srid = 2154),
+            Load("X", "Y",
                 where = lambda res: res["NUM_VOI"] != "0"),
             Conflate(
                 mapping = Mapping(
