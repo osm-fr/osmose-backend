@@ -160,7 +160,7 @@ class Test(TestPluginCommon):
         self.check_err(a.node(None, {"aera": "plop"}))               # No only_for
         self.check_err(a.node(None, {"administrative": "boundary"})) # No only_for
         assert not a.node(None, {"School:FR": "plop"})   # only_for FR
-        assert not a.node(None, {"amenity": "Chapelle"}) # only for fr
+        assert not a.node(None, {"amenity": "Pharmacie"}) # only for fr
         assert not a.node(None, {"amenity": u"Collège"}) # only_for fr
 
 
@@ -175,7 +175,7 @@ class Test(TestPluginCommon):
         self.check_err(a.node(None, {"aera": "plop"}))               # No only_for
         self.check_err(a.node(None, {"administrative": "boundary"})) # No only_for
         self.check_err(a.node(None, {"School:FR": "plop"})) # only_for FR
-        assert not a.node(None, {"amenity": "Chapelle"})    # only for fr
+        assert not a.node(None, {"amenity": "Pharmacie"})    # only for fr
         assert not a.node(None, {"amenity": u"Collège"})    # only_for fr
 
     def test_only_for_fr(self):
@@ -189,5 +189,5 @@ class Test(TestPluginCommon):
         self.check_err(a.node(None, {"aera": "plop"}))               # No only_for
         self.check_err(a.node(None, {"administrative": "boundary"})) # No only_for
         assert not a.node(None, {"School:FR": "plop"})        # only_for FR
-        self.check_err(a.node(None, {"amenity": "Chapelle"})) # only for fr
+        self.check_err(a.node(None, {"amenity": "Pharmacie"})) # only for fr
         self.check_err(a.node(None, {"amenity": u"Collège"})) # only_for fr
