@@ -113,7 +113,7 @@ FROM
         highways.id = highway_ends.id
 WHERE
     indoor_surfaces.indoor IN ('room', 'corridor', 'area') AND
-    highways.highway IN ('steps', 'footway', 'pedestrian')
+    highways.highway IN ('steps', 'footway', 'pedestrian', 'path')
 """
 
 # TODO : check that all surfaces have at least one connected_highway_level that matches it own surface_level
