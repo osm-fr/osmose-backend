@@ -138,7 +138,7 @@ CREATE INDEX idx_landusage_linestring ON landusage USING GIST(linestring);
 """
 
 sql13 = """
--- Collect high|rail|water|aeroways either entering or fully inside landuse/natural geometries
+-- Collect highway|rail|water|aeroways either entering or fully inside landuse/natural geometries
 CREATE TEMP TABLE intersecting_geometries AS
 SELECT
   mobility_ways.id AS mobility_way_id,
