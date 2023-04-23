@@ -130,6 +130,8 @@ class Source_Fuel(Source):
         header = next(csvreader)
         writer.writerow(header + ['Carburanti'])
         for row in csvreader:
+            if len(row) != 10:
+                continue
             impianto = impianti.get(row[0])
             if impianto:
                 writer.writerow(row + [ impianto ])
