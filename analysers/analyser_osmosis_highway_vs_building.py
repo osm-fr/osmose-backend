@@ -128,6 +128,34 @@ sql07 = """
 CREATE INDEX idx_{0}water_linestring ON {0}water USING gist(linestring)
 """
 
+sql08 = """
+CREATE TEMP TABLE commercial AS
+SELECT
+    id,
+    geom,
+    CASE
+      WHEN tags?'layer' THEN tags->'layer'
+      ELSE '0'
+    END AS layer,
+    ST_Buffer(geom::geography, 0.9)::geometry AS buffergeom
+FROM
+    nodes
+WHERE
+    tags != ''::hstore AND
+    (
+      (tags?'craft' AND tags->'craft'!='no') OR
+      (tags?'shop' AND tags->'shop'!='no') OR
+      (tags?'office' AND tags->'office'!='no')
+    ) AND
+    (NOT tags?'street_vendor' OR tags->'street_vendor' = 'no') AND
+    (NOT tags?'drive_through' OR tags->'drive_through' = 'no') AND
+    (NOT tags?'level' OR tags->'level' = '0')
+"""
+
+sql09 = """
+CREATE INDEX idx_commercial_buffergeom ON commercial USING gist(buffergeom)
+"""
+
 sql10 = """
 SELECT
     building.id,
@@ -203,6 +231,32 @@ FROM
         highway.layer = '0' AND
         power.geom && highway.linestring AND
         ST_Intersects(ST_Buffer(power.geom::geography, 0.25)::geometry, highway.linestring)
+"""
+
+sql32 = """
+SELECT
+    DISTINCT ON(commercial.id)
+    commercial.id,
+    highway.id,
+    ST_AsText(commercial.geom)
+FROM
+    {0}commercial AS commercial
+    JOIN {1}highway AS highway ON
+        highway.level = '0' AND
+        commercial.layer = highway.layer AND
+        commercial.buffergeom && highway.linestring AND
+        ST_Intersects(commercial.buffergeom, highway.linestring) AND
+        (
+            -- exclude shops nearly touching service roads (e.g. unmapped drivethroughs), pedestrian ways (e.g. shopping streets), ...
+            highway.highway IS NULL OR -- railways are also in table highway
+            highway.highway IN ('living_street', 'residential', 'unclassified', 'tertiary', 'tertiary_link',
+                              'secondary', 'secondary_link', 'primary', 'primary_link', 'trunk', 'trunk_link',
+                              'motorway', 'motorway_link', 'busway', 'bus_guideway')
+        )
+ORDER BY
+    commercial.id,
+    highway.id,
+    commercial.geom
 """
 
 sql40 = """
@@ -376,11 +430,13 @@ Intersection lane / building.'''))
         self.classs_change[9] = self.def_class(item = 1070, level = 2, tags = ['highway', 'geom', 'fix:imagery'], title = T_(u'Highway overlaps'), **doc)
         self.classs_change[10] = self.def_class(item = 1070, level = 3, tags = ['waterway', 'geom', 'fix:imagery'], title = T_(u'Waterway intersecting waterway'), **doc)
         self.classs_change[11] = self.def_class(item = 1070, level = 3, tags = ['waterway', 'geom', 'fix:imagery'], title = T_(u'Waterway overlaps'), **doc)
+        self.classs_change[16] = self.def_class(item = 1070, level = 2, tags = ['highway', 'shop', 'geom'], title = T_(u'Commercial object or office and highway too close'), **doc)
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText]}
         self.callback20 = lambda res: {"class":2, "data":[self.node_full, self.way_full, self.positionAsText]}
         self.callback21 = lambda res: {"class":6, "data":[self.node_full, self.way_full, self.positionAsText]}
         self.callback30 = lambda res: {"class":3, "data":[self.node_full, self.way_full, self.positionAsText]}
         self.callback31 = lambda res: {"class":7, "data":[self.node_full, self.way_full, self.positionAsText]}
+        self.callback32 = lambda res: {"class":16, "data":[self.node_full, self.way_full, self.positionAsText]}
         self.callback40 = lambda res: {"class":res[3], "data":[self.way_full, self.way_full, self.positionAsText]}
         self.callback50 = lambda res: {"class":res[3], "data":[self.way_full, self.way_full, self.positionAsText] }
         self.callback60 = lambda res: {"class":res[3], "data":[self.way_full, self.way_full, self.positionAsText] }
@@ -392,6 +448,8 @@ Intersection lane / building.'''))
         self.run(sql03)
         self.run(sql04)
         self.run(sql05)
+        self.run(sql08)
+        self.run(sql09)
         self.run(sql06.format(""))
         self.run(sql07.format(""))
 
@@ -400,6 +458,7 @@ Intersection lane / building.'''))
         self.run(sql21.format("", ""), self.callback21)
         self.run(sql30.format("", ""), self.callback30)
         self.run(sql31.format("", ""), self.callback31)
+        self.run(sql32.format("", ""), self.callback32)
         self.run(sql40.format("", ""), self.callback40)
         self.run(sql50.format("", "", "false"))
         self.run(sql51.format("", ""), self.callback50)
@@ -415,14 +474,18 @@ Intersection lane / building.'''))
         self.run(sql05)
         self.run(sql06.format(""))
         self.run(sql07.format(""))
+        self.run(sql08)
+        self.run(sql09)
         self.create_view_touched("highway", "W")
         self.create_view_touched("tree", "N")
         self.create_view_touched("power", "N")
         self.create_view_touched("water", "N")
+        self.create_view_touched("commercial", "N")
         self.create_view_not_touched("highway", "W")
         self.create_view_not_touched("tree", "N")
         self.create_view_not_touched("power", "N")
         self.create_view_not_touched("water", "W")
+        self.create_view_not_touched("commercial", "N")
 
         self.run(sql10.format("touched_", "not_touched_"), self.callback10)
         self.run(sql10.format("", "touched_"), self.callback10)
@@ -434,6 +497,8 @@ Intersection lane / building.'''))
         self.run(sql30.format("not_touched_", "touched_"), self.callback30)
         self.run(sql31.format("touched_", ""), self.callback31)
         self.run(sql31.format("not_touched_", "touched_"), self.callback31)
+        self.run(sql32.format("touched_", ""), self.callback31)
+        self.run(sql32.format("not_touched_", "touched_"), self.callback31)
         self.run(sql40.format("touched_", "not_touched_"), self.callback40)
         self.run(sql40.format("", "touched_"), self.callback40)
         self.run(sql50.format("not_touched_", "touched_", "true"))
