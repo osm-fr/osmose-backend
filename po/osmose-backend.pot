@@ -5396,3 +5396,53 @@ msgstr ""
 #, python-brace-format
 msgid "highway: `access={0}` - parking: `access={1}`"
 msgstr ""
+
+#: ../analysers/analyser_osmosis_polygon_intersects.py:239
+msgid ""
+"A way meant for transport (such as a highway or a waterway) intersects with "
+"a\n"
+"land coverage that would pose an obstacle for this transportation mode."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_polygon_intersects.py:242
+msgid ""
+"A major highway usually does not have trees growing on it, so a crossing "
+"between\n"
+"`landuse=forest` and `highway=trunk` is unlikely.\n"
+"The same applies for a railway running through an area with "
+"`natural=water`,\n"
+"without bridge or tunnel."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_polygon_intersects.py:247
+msgid ""
+"If the way for transportation (such as a highway) has i.e. a forest growing "
+"on\n"
+"either side of the way, cut out the shape of the highway from the forest "
+"polygon.\n"
+"However, if the way for transportation is a tunnel or a bridge, add "
+"`tunnel=*` or\n"
+"`bridge=*` where appropriate, together with `layer=*` if needed."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_polygon_intersects.py:254
+msgid "Bad intersection with major highway"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_polygon_intersects.py:258
+msgid "Bad intersection with railway"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_polygon_intersects.py:262
+msgid "Bad intersection with waterway"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_polygon_intersects.py:266
+msgid "Bad intersection with aeroway"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_polygon_intersects.py:279
+#: ../analysers/analyser_osmosis_polygon_intersects.py:284
+#, python-brace-format
+msgid "`{0}` intersects `{1}`"
+msgstr ""
