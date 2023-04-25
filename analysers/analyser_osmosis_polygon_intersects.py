@@ -24,7 +24,7 @@ from modules.OsmoseTranslation import T_
 from .Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
--- Collect all major highways, waterways, railways and aeroways
+-- Collect all major highways, railways and aeroways
 CREATE TEMP TABLE mobility_ways AS
 SELECT
   *
@@ -43,7 +43,6 @@ FROM (
     id,
     linestring,
     CASE
-      WHEN tags?'waterway' THEN 'waterway'
       WHEN tags?'railway' THEN 'railway'
       WHEN tags?'aeroway' THEN 'aeroway'
     END AS type,
@@ -57,11 +56,6 @@ FROM (
         tags?'railway' AND
         tags->'railway' NOT IN ('abandoned', 'construction', 'disused', 'dismantled', 'miniature', 'proposed', 'razed', 'subway') AND
         NOT is_polygon
-      ) OR (
-        tags?'waterway' AND
-        tags->'waterway' = 'canal' AND -- big waterways -- river excluded due to excessive reports
-        (NOT tags?'seasonal' OR tags->'seasonal' = 'no') AND
-        (NOT tags?'intermittent' OR tags->'intermittent' = 'no')
       ) OR (
         tags?'aeroway' AND
         tags->'aeroway' IN ('apron', 'helipad', 'runway', 'taxilane', 'taxiway') AND -- aircraft moving places
@@ -138,7 +132,7 @@ CREATE INDEX idx_landusage_linestring ON landusage USING GIST(linestring);
 """
 
 sql13 = """
--- Collect highway|rail|water|aeroways either entering or fully inside landuse/natural geometries
+-- Collect highway|railway|aeroways either entering or fully inside landuse/natural geometries
 CREATE TEMP TABLE intersecting_geometries AS
 SELECT
   mobility_ways.id AS mobility_way_id,
@@ -162,7 +156,7 @@ FROM
       )
     ) AND
     landusage.linestring && mobility_ways.linestring AND
-    -- Only find ways where the highway/railway/waterway/aeroway actually enters the
+    -- Only find ways where the highway/railway/aeroway actually enters the
     -- polygon. Exclude cases where the polygon is tied to the way without going inside.
     (
       ST_Crosses(landusage.linestring, mobility_ways.linestring) OR
@@ -185,43 +179,16 @@ SELECT
 FROM
   intersecting_geometries
 WHERE
-  mobility_way_type != 'waterway' AND
   (
+    landusekey = 'landuse' AND
+    landusevalue NOT IN ('civic_admin', 'commercial', 'construction', 'education', 'grass', 'harbour', 'industrial', 'military', 'port', 'proposed', 'railway', 'religious', 'residential', 'retail', 'winter_sports')
+  ) OR (
+    landusekey = 'natural' AND
+    landusevalue IN ('bay', 'cliff', 'scrub', 'shrubbery', 'sinkhole', 'tree_group', 'wetland', 'wood') OR
     (
-      landusekey = 'landuse' AND
-      landusevalue NOT IN ('civic_admin', 'commercial', 'construction', 'education', 'grass', 'harbour', 'industrial', 'military', 'port', 'proposed', 'railway', 'religious', 'residential', 'retail', 'winter_sports')
-    ) OR (
-      landusekey = 'natural' AND
-      landusevalue IN ('bay', 'cliff', 'scrub', 'shrubbery', 'sinkhole', 'tree_group', 'wetland', 'wood') OR
-      (
-        -- Special case as highway=* vs. natural=water is already included in item 1070 class 4/5
-        landusevalue = 'water' AND
-        mobility_way_type != 'highway'
-      )
-    )
-  )
-"""
-
-sql15 = """
--- Intersections with waterway
-SELECT
-  mobility_way_id,
-  landusage_way_id,
-  ST_AsText(ST_PointOnSurface(ST_Intersection(landusage_poly, mobility_way_linestring))),
-  mobility_way_type,
-  tag_way,
-  tag_polygon
-FROM
-  intersecting_geometries
-WHERE
-  mobility_way_type = 'waterway' AND
-  (
-    (
-      landusekey = 'landuse' AND
-      landusevalue NOT IN ('basin', 'civic_admin', 'commercial', 'construction', 'education', 'harbour', 'industrial', 'military', 'port', 'proposed', 'railway', 'recreation_ground', 'religious', 'reservoir', 'residential', 'retail', 'salt_pond', 'winter_sports')
-    ) OR (
-      landusekey = 'natural' AND
-      landusevalue IN ('bare_rock', 'cliff', 'dune', 'grassland', 'rock', 'sand', 'scree', 'scrub', 'shrubbery', 'sinkhole', 'tree_group', 'wood')
+      -- Special case as highway=* vs. natural=water is already included in item 1070 class 4/5
+      landusevalue = 'water' AND
+      mobility_way_type != 'highway'
     )
   )
 """
@@ -233,10 +200,10 @@ class Analyser_Osmosis_Polygon_Intersects(Analyser_Osmosis):
         if not "proj" in self.config.options:
             return
 
-        self.classIndex = {'highway': 12, 'railway': 13, 'waterway': 14, 'aeroway': 15}
+        self.classIndex = {'highway': 12, 'railway': 13, 'aeroway': 15}
 
         detailTxt = T_(
-'''A way meant for transport (such as a highway or a waterway) intersects with a
+'''A way meant for transport (such as a highway or a railway) intersects with a
 land coverage that would pose an obstacle for this transportation mode.''')
         exampleTxt = T_(
 '''A major highway usually does not have trees growing on it, so a crossing between
@@ -257,10 +224,6 @@ However, if the way for transportation is a tunnel or a bridge, add `tunnel=*` o
             item = 1070, level = 2, tags = ['landuse', 'fix:chair', 'railway'],
             title = T_('Bad intersection with railway'),
             detail = detailTxt, example = exampleTxt, fix = fixTxt)
-        self.classs[self.classIndex["waterway"]] = self.def_class(
-            item = 1070, level = 2, tags = ['landuse', 'fix:chair', 'waterway'],
-            title = T_('Bad intersection with waterway'),
-            detail = detailTxt, example = exampleTxt, fix = fixTxt)
         self.classs[self.classIndex["aeroway"]] = self.def_class(
             item = 1070, level = 2, tags = ['landuse', 'fix:chair'],
             title = T_('Bad intersection with aeroway'),
@@ -278,11 +241,7 @@ However, if the way for transportation is a tunnel or a bridge, add `tunnel=*` o
             "data": [self.way, self.way, self.positionAsText],
             "text": T_("`{0}` intersects `{1}`", res[4], res[5])
         })
-        self.run(sql15, lambda res: {
-            "class": self.classIndex[res[3]],
-            "data": [self.way, self.way, self.positionAsText],
-            "text": T_("`{0}` intersects `{1}`", res[4], res[5])
-        })
+
 
 
 from .Analyser_Osmosis import TestAnalyserOsmosis
@@ -306,17 +265,13 @@ class Test(TestAnalyserOsmosis):
         self.check_err(cl=str(a.classIndex["highway"]), elems=[("way", "1017"), ("way", "1016")])
         self.check_err(cl=str(a.classIndex["aeroway"]), elems=[("way", "1018"), ("way", "1016")])
         self.check_err(cl=str(a.classIndex["railway"]), elems=[("way", "1019"), ("way", "1016")])
-        self.check_err(cl=str(a.classIndex["waterway"]), elems=[("way", "1020"), ("way", "1016")])
-        self.check_err(cl=str(a.classIndex["waterway"]), elems=[("way", "1022"), ("way", "1021")])
         self.check_err(cl=str(a.classIndex["railway"]), elems=[("way", "1025"), ("way", "1023")])
         self.check_err(cl=str(a.classIndex["aeroway"]), elems=[("way", "1026"), ("way", "1023")])
         self.check_err(cl=str(a.classIndex["aeroway"]), elems=[("way", "1058"), ("way", "1023")])
         self.check_err(cl=str(a.classIndex["highway"]), elems=[("way", "1027"), ("way", "1023")])
-        self.check_err(cl=str(a.classIndex["waterway"]), elems=[("way", "1028"), ("way", "1023")])
         self.check_err(cl=str(a.classIndex["highway"]), elems=[("way", "1036"), ("way", "1035")])
         self.check_err(cl=str(a.classIndex["highway"]), elems=[("way", "1049"), ("way", "1042")])
         self.check_err(cl=str(a.classIndex["highway"]), elems=[("way", "1049"), ("way", "1043")])
         self.check_err(cl=str(a.classIndex["railway"]), elems=[("way", "1050"), ("way", "1047")])
-        self.check_err(cl=str(a.classIndex["waterway"]), elems=[("way", "1051"), ("way", "1048")])
         self.check_err(cl=str(a.classIndex["railway"]), elems=[("way", "1055"), ("way", "1052")])
-        self.check_num_err(18)
+        self.check_num_err(14)
