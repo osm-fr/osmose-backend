@@ -143,7 +143,7 @@
   <way id='1001' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='5' />
     <nd ref='6' />
-    <tag k='waterway' v='river' />
+    <tag k='waterway' v='canal' />
   </way>
   <way id='1004' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='13' />
@@ -169,13 +169,13 @@
   <way id='1007' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='23' />
     <nd ref='24' />
-    <tag k='highway' v='secondary' />
+    <tag k='highway' v='primary' />
   </way>
   <way id='1008' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='25' />
     <nd ref='26' />
     <tag k='bridge' v='yes' />
-    <tag k='highway' v='secondary' />
+    <tag k='highway' v='primary' />
   </way>
   <way id='1009' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='28' />
@@ -189,7 +189,7 @@
     <nd ref='32' />
     <nd ref='33' />
     <tag k='abandoned' v='yes' />
-    <tag k='highway' v='secondary' />
+    <tag k='highway' v='primary' />
   </way>
   <way id='1011' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='34' />
@@ -226,7 +226,7 @@
     <nd ref='50' />
     <nd ref='78' />
     <nd ref='51' />
-    <tag k='highway' v='secondary' />
+    <tag k='highway' v='primary' />
   </way>
   <way id='1018' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='52' />
@@ -241,7 +241,7 @@
   <way id='1020' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='57' />
     <nd ref='56' />
-    <tag k='waterway' v='river' />
+    <tag k='waterway' v='canal' />
   </way>
   <way id='1021' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='58' />
@@ -254,7 +254,7 @@
   <way id='1022' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='62' />
     <nd ref='63' />
-    <tag k='waterway' v='river' />
+    <tag k='waterway' v='canal' />
   </way>
   <way id='1023' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='64' />
@@ -288,14 +288,14 @@
   <way id='1028' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='76' />
     <nd ref='77' />
-    <tag k='waterway' v='river' />
+    <tag k='waterway' v='canal' />
   </way>
   <way id='1033' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='90' />
     <nd ref='93' />
     <nd ref='92' />
     <nd ref='91' />
-    <tag k='highway' v='secondary' />
+    <tag k='highway' v='primary' />
   </way>
   <way id='1034' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='92' />
@@ -319,7 +319,7 @@
     <nd ref='102' />
     <nd ref='96' />
     <nd ref='101' />
-    <tag k='highway' v='secondary' />
+    <tag k='highway' v='primary' />
   </way>
   <way id='1037' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='95' />

@@ -37,7 +37,7 @@ FROM (
   FROM
     highways
   WHERE
-    level <= 3
+    level = 1 -- tertiary (0.8M issues) and secondary (0.4M issues) + _links excluded due to excessive reports
   UNION ALL
   SELECT
     id,
@@ -59,7 +59,7 @@ FROM (
         NOT is_polygon
       ) OR (
         tags?'waterway' AND
-        tags->'waterway' IN ('river', 'canal') AND -- big waterways
+        tags->'waterway' = 'canal' AND -- big waterways -- river excluded due to excessive reports
         (NOT tags?'seasonal' OR tags->'seasonal' = 'no') AND
         (NOT tags?'intermittent' OR tags->'intermittent' = 'no')
       ) OR (
