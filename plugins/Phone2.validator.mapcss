@@ -31,10 +31,10 @@ meta[lang=fr] {
     description: "Téléphone";
 }
 
-*[phone][contact:phone][contact:phone!=tag(phone)],
-*[fax][contact:fax][contact:fax!=tag(fax)],
-*[email][contact:email][contact:email!=tag(email)],
-*[website][contact:website][contact:website!=tag(website)] {
+*[phone][contact:phone][contact:phone!=*phone],
+*[fax][contact:fax][contact:fax!=*fax],
+*[email][contact:email][contact:email!=*email],
+*[website][contact:website][contact:website!=*website] {
     group: tr("Different value of tag contact:* and *");
     throwWarning: tr("Different values of {0} and of {1}", "{0.key}", "{1.key}");
     -osmoseItemClassLevel: "3092/3097/2";

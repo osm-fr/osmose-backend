@@ -38,7 +38,7 @@ way[place=hamlet][name=~/.+([- ]([Nn]ord|[Ss]ud$|[Ee]st|[Oo]uest|[Cc]entre))$/][
     throwError: tr("Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be removed from Cadastre name. Place should be integrated only once.");
     -osmoseItemClassLevel: "5080/50801/1";
 
-    -osmoseAssertMatchWithContext: list('node place=hamlet name=Montdésert-Sud', "inside=FR");
-    -osmoseAssertNoMatchWithContext: list('node place=hamlet name="ZA Sud Loire"', "inside=FR");
-    -osmoseAssertNoMatchWithContext: list('node place=hamlet name="Kerbrest"', "inside=FR");
+    -osmoseAssertMatchWithContext: list("node place=hamlet name=Montdésert-Sud", "inside=FR");
+    -osmoseAssertNoMatchWithContext: list("node place=hamlet name=\"ZA Sud Loire\"", "inside=FR");
+    -osmoseAssertNoMatchWithContext: list("node place=hamlet name=Kerbrest", "inside=FR");
 }
