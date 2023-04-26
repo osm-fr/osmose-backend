@@ -23,10 +23,10 @@ class Phone2(PluginMapCSS):
         err = []
 
 
-        # *[phone][contact:phone][contact:phone!=tag(phone)]
-        # *[fax][contact:fax][contact:fax!=tag(fax)]
-        # *[email][contact:email][contact:email!=tag(email)]
-        # *[website][contact:website][contact:website!=tag(website)]
+        # *[phone][contact:phone][contact:phone!=*phone]
+        # *[fax][contact:fax][contact:fax!=*fax]
+        # *[email][contact:email][contact:email!=*email]
+        # *[website][contact:website][contact:website!=*website]
         if ('contact:email' in keys and 'email' in keys) or ('contact:fax' in keys and 'fax' in keys) or ('contact:phone' in keys and 'phone' in keys) or ('contact:website' in keys and 'website' in keys):
             match = False
             if not match:
@@ -61,10 +61,10 @@ class Phone2(PluginMapCSS):
         err = []
 
 
-        # *[phone][contact:phone][contact:phone!=tag(phone)]
-        # *[fax][contact:fax][contact:fax!=tag(fax)]
-        # *[email][contact:email][contact:email!=tag(email)]
-        # *[website][contact:website][contact:website!=tag(website)]
+        # *[phone][contact:phone][contact:phone!=*phone]
+        # *[fax][contact:fax][contact:fax!=*fax]
+        # *[email][contact:email][contact:email!=*email]
+        # *[website][contact:website][contact:website!=*website]
         if ('contact:email' in keys and 'email' in keys) or ('contact:fax' in keys and 'fax' in keys) or ('contact:phone' in keys and 'phone' in keys) or ('contact:website' in keys and 'website' in keys):
             match = False
             if not match:
@@ -97,10 +97,10 @@ class Phone2(PluginMapCSS):
         err = []
 
 
-        # *[phone][contact:phone][contact:phone!=tag(phone)]
-        # *[fax][contact:fax][contact:fax!=tag(fax)]
-        # *[email][contact:email][contact:email!=tag(email)]
-        # *[website][contact:website][contact:website!=tag(website)]
+        # *[phone][contact:phone][contact:phone!=*phone]
+        # *[fax][contact:fax][contact:fax!=*fax]
+        # *[email][contact:email][contact:email!=*email]
+        # *[website][contact:website][contact:website!=*website]
         if ('contact:email' in keys and 'email' in keys) or ('contact:fax' in keys and 'fax' in keys) or ('contact:phone' in keys and 'phone' in keys) or ('contact:website' in keys and 'website' in keys):
             match = False
             if not match:
