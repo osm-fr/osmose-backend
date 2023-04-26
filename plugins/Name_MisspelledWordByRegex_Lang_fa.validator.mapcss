@@ -31,26 +31,38 @@ meta[lang=fr] {
     description: "Mot mal écrit";
 }
 
-*[name=~/ي/][language("fa")],
+*[name=~/ي/][language("fa")] {
+    group: tr("Arabic letter detected in Farsi name");
+    throwError: tr("In Farsi, the Arabic letter `{0}` should be replaced by `{1}`.", "ي", "ی");
+    -osmoseItemClassLevel: "5010/50109001:0/2";
+    fixAdd: concat("name=", replace(tag("name"),  "ي", "ی"));
+
+    -osmoseAssertMatchWithContext: list("node name=\"روابط عمومي مجتمع مس شهربابك\"", "language=fa");
+    assertNoMatch: "node name=\"روابط عمومي مجتمع مس شهربابك\"";
+}
 *[name:fa=~/ي/] {
     group: tr("Arabic letter detected in Farsi name");
-    throwError: tr("In Farsi, the Arabic letter '{0}' should be replaced by '{1}'", "ي", "ی");
+    throwError: tr("In Farsi, the Arabic letter `{0}` should be replaced by `{1}`.", "ي", "ی");
     -osmoseItemClassLevel: "5010/50109001:0/2";
-    fixAdd: concat("{0.key}=", replace("{0.value}",  "ي", "ی"));
+    fixAdd: concat("name:fa=", replace(tag("name:fa"),  "ي", "ی"));
 
-    -osmoseAssertMatchWithContext: list('node name="روابط عمومي مجتمع مس شهربابك"', 'language=fa');
-    assertNoMatch: 'node name="روابط عمومي مجتمع مس شهربابك"';
-    assertMatch: 'node name:fa="روابط عمومي مجتمع مس شهربابك"';
+    assertMatch: "node name:fa=\"روابط عمومي مجتمع مس شهربابك\"";
 }
 
-*[name=~/ك/][language("fa")],
+*[name=~/ك/][language("fa")] {
+    group: tr("Arabic letter detected in Farsi name");
+    throwError: tr("In Farsi, the Arabic letter `{0}` should be replaced by `{1}`.", "ك", "ک");
+    -osmoseItemClassLevel: "5010/50109001:1/2";
+    fixAdd: concat("name=", replace(tag("name"),  "ك", "ک"));
+
+    -osmoseAssertMatchWithContext: list("node name=\"روابط عمومي مجتمع مس شهربابك\"", "language=fa");
+    assertNoMatch: "node name=\"روابط عمومي مجتمع مس شهربابك\"";
+}
 *[name:fa=~/ك/] {
     group: tr("Arabic letter detected in Farsi name");
-    throwError: tr("In Farsi, the Arabic letter '{0}' should be replaced by '{1}'", "ك", "ک");
+    throwError: tr("In Farsi, the Arabic letter `{0}` should be replaced by `{1}`.", "ك", "ک");
     -osmoseItemClassLevel: "5010/50109001:1/2";
-    fixAdd: concat("{0.key}=", replace("{0.value}",  "ك", "ک"));
+    fixAdd: concat("name:fa=", replace(tag("name:fa"),  "ك", "ک"));
 
-    -osmoseAssertMatchWithContext: list('node name="روابط عمومي مجتمع مس شهربابك"', 'language=fa');
-    assertNoMatch: 'node name="روابط عمومي مجتمع مس شهربابك"';
-    assertMatch: 'node name:fa="روابط عمومي مجتمع مس شهربابك"';
+    assertMatch: "node name:fa=\"روابط عمومي مجتمع مس شهربابك\"";
 }
