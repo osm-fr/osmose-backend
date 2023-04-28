@@ -31,7 +31,7 @@ class ConditionalRestrictions(Plugin):
     Plugin.init(self, logger)
 
     self.ReYear = re.compile(r'\b20\d\d\b') # Update in 2099
-    self.ReSimpleCondition = re.compile(r'^\w+$', re.ASCII)
+    self.ReSimpleCondition = re.compile(r'^[\w:-]+$', re.ASCII)
     self.ReAND = re.compile(r'\band\b', re.IGNORECASE)
     self.currentYear = date.today().year
     self.comparisonOperatorChars = ["<", "=", ">"]
@@ -256,6 +256,7 @@ class Test(TestPluginCommon):
         for t in [{"highway": "residential"},
                   {"highway": "residential", "access:conditional": "no@wet"}, # note: remove if we start warning about missing spaces around @
                   {"highway": "residential", "access:conditional": "no @ wet", "source:access:conditional": "survey"},
+                  {"highway": "residential", "maxspeed:conditional": "20 @ 06:00-19:00"},
                   {"highway": "residential", "maxspeed:conditional": "20 @ (06:00-19:00)"},
                   {"highway": "residential", "maxspeed:conditional": "20 @ (06:00-20:00); 100 @ (22:00-06:00)"},
                   {"highway": "residential", "access:forward:conditional": "delivery @ (Mo-Fr 06:00-11:00,17:00-19:00;Sa 03:30-19:00)"},
@@ -317,6 +318,7 @@ class Test(TestPluginCommon):
 
         # Optimizable, yet valid conditions
         for t in [{"highway": "residential", "access:conditional": "no @ 2099 May 22-2099 Oct 07"},
+                    {"highway": "residential", "access:conditional": "no @ wet AND Sep-Apr"},
                     {"highway": "residential", "access:conditional": "no @ wet; no @ snow"},
                     {"highway": "residential", "access:conditional": "no @ wet; no @ (20:00-22:00)"},
                  ]:
