@@ -90,7 +90,7 @@ Other landuses could be tagged with:
             {'key': 'natural', 'val': 'wood', 'minarea': 20, 'class': 1}, # 20m2 is roughly 1 big tree of 5m diameter
             {'key': 'landuse', 'val': 'forest', 'minarea': 20, 'class': 2}, # 20m2 is roughly 1 big tree of 5m diameter
             {'key': 'landuse', 'val': 'farmland', 'minarea': 100, 'class': 3},
-            {'key': 'landuse', 'val': 'village_green`', 'minarea': 100, 'class': 4},
+            {'key': 'landuse', 'val': 'village_green', 'minarea': 500, 'class': 4},
         ]
 
     def analyser_osmosis_full(self):
