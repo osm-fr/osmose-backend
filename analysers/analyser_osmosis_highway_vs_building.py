@@ -26,10 +26,12 @@ from .Analyser_Osmosis import Analyser_Osmosis
 
 sql00 = """
 CREATE TEMP TABLE {0}highway AS
+WITH ways AS (
 SELECT
     id,
     linestring,
     ST_Transform(linestring, {1}) AS linestring_proj,
+    ceil(ST_Length(ST_Transform(linestring, {1})) / 500)::integer AS split_n,
     nodes,
     tags->'highway' AS highway,
     coalesce(tags->'level', '0') AS level,
@@ -41,7 +43,7 @@ SELECT
     END AS layer,
     tags ?| ARRAY['ford', 'flood_prone'] AS onwater
 FROM
-    {0}ways AS ways
+    {0}ways
 WHERE
     tags != ''::hstore AND
     ((
@@ -55,6 +57,33 @@ WHERE
     NOT tags?'area:highway' AND
     array_length(nodes, 1) <= 100 AND -- Large ways have too big bbox
     ST_NPoints(linestring) > 1
+)
+SELECT
+    id,
+    linestring_part AS linestring,
+    linestring_proj_part AS linestring_proj,
+    nodes,
+    highway,
+    level,
+    layer,
+    onwater
+FROM
+    ways
+    CROSS JOIN LATERAL (
+        SELECT
+            ST_LineSubstring(
+                linestring,
+                i::float / split_n,
+                (i + 1)::float / split_n
+            ) AS linestring_part,
+            ST_LineSubstring(
+                linestring_proj,
+                i::float / split_n,
+                (i + 1)::float / split_n
+            ) AS linestring_proj_part
+        FROM
+            generate_series(0, split_n - 1) AS t(i)
+    ) AS t
 """
 
 sql01 = """
