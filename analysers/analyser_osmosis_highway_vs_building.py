@@ -26,10 +26,14 @@ from .Analyser_Osmosis import Analyser_Osmosis
 
 sql00 = """
 CREATE TEMP TABLE {0}highway AS
+WITH ways AS (
 SELECT
     id,
     linestring,
     ST_Transform(linestring, {1}) AS linestring_proj,
+    ST_Length(ST_Transform(linestring, {1})) AS length,
+    ceil(ST_Length(ST_Transform(linestring, {1})) / 500)::integer AS split_n,
+    ST_Length(ST_Transform(linestring, {1})) / ceil(ST_Length(ST_Transform(linestring, {1})) / 500)::integer AS split_length,
     nodes,
     tags->'highway' AS highway,
     coalesce(tags->'level', '0') AS level,
@@ -41,7 +45,7 @@ SELECT
     END AS layer,
     tags ?| ARRAY['ford', 'flood_prone'] AS onwater
 FROM
-    {0}ways AS ways
+    {0}ways
 WHERE
     tags != ''::hstore AND
     ((
@@ -55,6 +59,33 @@ WHERE
     NOT tags?'area:highway' AND
     array_length(nodes, 1) <= 100 AND -- Large ways have too big bbox
     ST_NPoints(linestring) > 1
+)
+SELECT
+    id,
+    linestring_part AS linestring,
+    linestring_proj_part AS linestring_proj,
+    nodes,
+    highway,
+    level,
+    layer,
+    onwater
+FROM
+    ways
+    CROSS JOIN LATERAL (
+        SELECT
+            ST_LineSubstring(
+                linestring,
+                i * split_length / length,
+                CASE i WHEN split_n - 1 THEN 1 ELSE (i+1) * split_length / length END
+            ) AS linestring_part,
+            ST_LineSubstring(
+                linestring_proj,
+                i * split_length / length,
+                CASE i WHEN split_n - 1 THEN 1 ELSE (i+1) * split_length / length END
+            ) AS linestring_proj_part
+        FROM
+            generate_series(0, split_n - 1) AS t(i)
+    ) AS t
 """
 
 sql01 = """
@@ -129,7 +160,7 @@ CREATE INDEX idx_{0}water_linestring ON {0}water USING gist(linestring)
 """
 
 sql10 = """
-SELECT
+SELECT DISTINCT ON (highway.id, building.id)
     building.id,
     highway.id,
     ST_AsText(way_locate(building.linestring))
@@ -144,6 +175,9 @@ FROM
 WHERE
     building.wall AND
     NOT building.layer
+ORDER BY
+    highway.id,
+    building.id
 """
 
 sql20 = """
@@ -177,7 +211,7 @@ FROM
 """
 
 sql30 = """
-SELECT
+SELECT DISTINCT ON (highway.id, tree.id)
     tree.id,
     highway.id,
     ST_AsText(tree.geom)
@@ -189,10 +223,13 @@ FROM
         highway.highway NOT IN ('footway', 'path', 'track') AND
         tree.geom && highway.linestring AND
         ST_Intersects(ST_Buffer(tree.geom::geography, 0.25)::geometry, highway.linestring)
+ORDER BY
+    highway.id,
+    tree.id
 """
 
 sql31 = """
-SELECT
+SELECT DISTINCT ON (highway.id, power.id)
     power.id,
     highway.id,
     ST_AsText(power.geom)
@@ -203,10 +240,13 @@ FROM
         highway.layer = '0' AND
         power.geom && highway.linestring AND
         ST_Intersects(ST_Buffer(power.geom::geography, 0.25)::geometry, highway.linestring)
+ORDER BY
+    highway.id,
+    power.id
 """
 
 sql40 = """
-SELECT
+SELECT DISTINCT ON (highway.id, water.id)
     highway.id,
     water.id,
     ST_AsText(ST_Centroid(ST_Intersection(highway.linestring, water.linestring))),
@@ -216,20 +256,15 @@ FROM
     JOIN {1}water AS water ON
         ST_Crosses(highway.linestring, water.linestring)
     LEFT JOIN nodes ON
-        nodes.geom && highway.linestring AND
-        nodes.geom && water.linestring AND
         ST_Intersects(nodes.geom, ST_Intersection(highway.linestring, water.linestring))
 WHERE
     highway.level = '0' AND
     highway.layer = water.layer AND
     NOT highway.onwater AND
     (nodes.id IS NULL OR NOT nodes.tags?'ford')
-GROUP BY
+ORDER BY
     highway.id,
-    water.id,
-    highway.linestring,
-    water.linestring,
-    water.waterway
+    water.id
 """
 
 sql50 = """
