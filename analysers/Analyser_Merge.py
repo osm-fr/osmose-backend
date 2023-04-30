@@ -595,7 +595,7 @@ class GTFS(CSV):
         Load GTFS file data.
         @param source: source file reader
         """
-        super().__init__(srid = 4326)
+        super().__init__(source, srid = 4326)
         source.zip = "stops.txt"
         CSV.__init__(self, source)
 
