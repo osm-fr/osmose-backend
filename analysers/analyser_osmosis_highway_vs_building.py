@@ -513,3 +513,39 @@ Intersection lane / building.'''))
         self.run(sql61.format("touched_", "not_touched_"), self.callback60)
         self.run(sql60.format("touched_", "touched_", "false"))
         self.run(sql61.format("touched_", "touched_"), self.callback60)
+
+
+from .Analyser_Osmosis import TestAnalyserOsmosis
+
+class Test(TestAnalyserOsmosis):
+    @classmethod
+    def setup_class(cls):
+        from modules import config
+        TestAnalyserOsmosis.setup_class()
+        cls.analyser_conf = cls.load_osm("tests/osmosis_highway_vs_building.osm",
+                                         config.dir_tmp + "/tests/osmosis_highway_vs_building.test.xml",
+                                         {"proj": 23032})
+
+    def test_classes(self):
+        with Analyser_Osmosis_Highway_VS_Building(self.analyser_conf, self.logger) as a:
+            a.analyser()
+
+        self.root_err = self.load_errors()
+        self.check_err(cl="1", elems=[("way", "106047"), ("way", "105973")])
+        self.check_err(cl="1", elems=[("way", "106100"), ("way", "105973")])
+        self.check_err(cl="1", elems=[("way", "106047"), ("way", "106077")])
+        self.check_err(cl="2", elems=[("way", "106047"), ("node", "139726")])
+        self.check_err(cl="3", elems=[("way", "105973"), ("node", "139808")])
+        self.check_err(cl="3", elems=[("way", "105973"), ("node", "139838")])
+        self.check_err(cl="4", elems=[("way", "105973"), ("way", "106401")])
+        self.check_err(cl="4", elems=[("way", "105973"), ("way", "106260")])
+        self.check_err(cl="5", elems=[("way", "105973"), ("way", "106234")])
+        self.check_err(cl="6", elems=[("way", "106047"), ("node", "139728")])
+        self.check_err(cl="7", elems=[("way", "105973"), ("node", "139807")])
+        self.check_err(cl="8", elems=[("way", "105973"), ("way", "106603")])
+        self.check_err(cl="8", elems=[("way", "105973"), ("way", "106285")])
+        self.check_err(cl="9", elems=[("way", "105973"), ("way", "106427")])
+        self.check_err(cl="10", elems=[("way", "106234"), ("way", "106526")])
+        self.check_err(cl="11", elems=[("way", "106234"), ("way", "106555")])
+        self.check_err(cl="16", elems=[("way", "105973"), ("node", "139809")])
+        self.check_num_err(17)
