@@ -2026,6 +2026,21 @@ class TestPluginCommon(unittest.TestCase):
         duplicate_polygon_ids = list(map(lambda a: a[0], filter(lambda c: c[1] >= 2, Counter(polygon_ids).items())))
         assert len(duplicate_polygon_ids) == 0, "Duplicate relation IDs: {}".format(sorted(duplicate_polygon_ids))
 
+    def test_analysersExist(self):
+        # Get all analysers ran for at least 1 country
+        c = config.values()
+        analysers_per_country = list(map(lambda cc: list(cc.analyser.keys()), c))
+        all_analysers = {i for country_list in analysers_per_country for i in country_list}
+
+        # Get all files in the directory with analysers
+        analysers_path = os.path.join(os.path.dirname(__file__), "analysers")
+        analyser_files = os.listdir(analysers_path)
+
+        # Verify analyser file corresponding to analyser name exist
+        for a in all_analysers:
+            f = "analyser_" + a + ".py"
+            assert f in analyser_files, "Not found: {0}".format(f)
+
 if __name__ == "__main__":
 
   import json
