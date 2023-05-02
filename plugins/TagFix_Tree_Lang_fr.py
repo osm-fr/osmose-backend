@@ -68,7 +68,7 @@ class TagFix_Tree_Lang_fr(Plugin):
             title = T_('Tree tagging'),
             detail = T_(
 '''To characterize the trees `natural=tree`, there are two main tags:
-`type` and `species`.'''),
+`genus` and `species`.'''),
             fix = T_(
 '''Put the right data in the correct tag, in this case species.'''),
             trap = T_(
