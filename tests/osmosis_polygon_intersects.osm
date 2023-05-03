@@ -118,6 +118,21 @@
   <node id='155' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82735410949' lon='5.93945301264' />
   <node id='156' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82900157915' lon='5.8820351702' />
   <node id='157' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82801107079' lon='5.8846363293' />
+  <node id='158' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86325415449' lon='5.94951099447' />
+  <node id='159' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85482861434' lon='5.94430396071' />
+  <node id='160' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.8519525888' lon='5.95650321883' />
+  <node id='161' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85462725272' lon='5.94522112268' />
+  <node id='162' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85180850371' lon='5.95664434869' />
+  <node id='163' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86335610317' lon='5.94952434142' />
+  <node id='164' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85759956032' lon='5.95301346689' />
+  <node id='165' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86047233074' lon='5.95122267254' />
+  <node id='166' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85469567' lon='5.9547965556' />
+  <node id='167' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85386091171' lon='5.94437696956' />
+  <node id='168' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85483260746' lon='5.94430388623' />
+  <node id='169' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85509278473' lon='5.94660197761' />
+  <node id='170' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85473263308' lon='5.94986392287' />
+  <node id='171' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86305597816' lon='5.94939459778' />
+  <node id='172' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85940211083' lon='5.94713689084' />
   <way id='1000' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='1' />
     <nd ref='2' />
@@ -398,6 +413,38 @@
     <nd ref='156' />
     <nd ref='157' />
     <tag k='aeroway' v='runway' />
+  </way>
+  <way id='1059' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='158' />
+    <nd ref='159' />
+    <nd ref='160' />
+    <nd ref='158' />
+    <tag k='landuse' v='forest' />
+    <tag k='name' v='Small intersection woods' />
+  </way>
+  <way id='1060' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='167' />
+    <nd ref='161' />
+    <tag k='highway' v='primary' />
+  </way>
+  <way id='1061' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='162' />
+    <nd ref='166' />
+    <nd ref='164' />
+    <nd ref='165' />
+    <nd ref='163' />
+    <nd ref='171' />
+    <nd ref='172' />
+    <tag k='railway' v='rail' />
+    <tag k='note' v='many very shallow intersections' />
+  </way>
+  <way id='1062' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='170' />
+    <nd ref='167' />
+    <nd ref='168' />
+    <nd ref='169' />
+    <tag k='highway' v='motorway' />
+    <tag k='note' v='small + 2x big intersection' />
   </way>
   <relation id='10000' timestamp='2014-03-31T22:00:00Z' version='1'>
     <member type='way' ref='1045' role='inner' />
