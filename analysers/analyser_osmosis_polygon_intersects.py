@@ -207,7 +207,7 @@ FROM
 WHERE
   (
     landusekey = 'landuse' AND
-    landusevalue NOT IN ('civic_admin', 'commercial', 'construction', 'education', 'grass', 'harbour', 'industrial', 'military', 'port', 'proposed', 'railway', 'religious', 'residential', 'retail', 'winter_sports')
+    landusevalue NOT IN ('civic_admin', 'commercial', 'construction', 'education', 'grass', 'harbour', 'industrial', 'military', 'port', 'proposed', 'quarry', 'railway', 'religious', 'residential', 'retail', 'winter_sports')
   ) OR (
     landusekey = 'natural' AND
     landusevalue IN ('bay', 'cliff', 'scrub', 'shrubbery', 'sinkhole', 'tree_group', 'wetland', 'wood') OR
