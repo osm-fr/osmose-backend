@@ -217,11 +217,9 @@ WHERE
       mobility_way_type != 'highway'
     )
   )
-GROUP BY
+ORDER BY
   mobility_way_id,
   landusage_way_id,
-  landusage_poly,
-  mobility_way_linestring,
   mobility_way_type,
   tag_way,
   tag_polygon
