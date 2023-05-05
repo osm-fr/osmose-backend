@@ -1,7 +1,7 @@
 # Osmose backend
 # Copyright (C) 2014
 # This file is distributed under the same license as the osmose-backend package.
-# 
+#
 # Translators:
 # Aurimas Fišeras <aurimas@members.fsf.org>, 2015-2016
 msgid ""
@@ -12,10 +12,10 @@ msgstr ""
 "PO-Revision-Date: 2014-04-30 17:25+0000\n"
 "Last-Translator: Aurimas Fišeras <aurimas@members.fsf.org>, 2015-2016\n"
 "Language-Team: Lithuanian (http://www.transifex.com/openstreetmap-france/osmose/language/lt/)\n"
+"Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: lt\n"
 "Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);\n"
 
 #: ../analysers/analyser_merge_college_FR.py:31
@@ -712,12 +712,16 @@ msgstr "Pavadinimas su didžiosiomis"
 #: ../plugins/TagFix_MultipleTag.py:163
 msgid ""
 "Including ski, horse, moped, hazmat and so on, unless explicitly excluded"
-msgstr "Įskaitant slides, arklius, mopedus, pavojingas medžiagas ir t. t., nebent atskirai atmesta"
+msgstr ""
+"Įskaitant slides, arklius, mopedus, pavojingas medžiagas ir t. t., nebent "
+"atskirai atmesta"
 
 #: ../plugins/TagFix_MultipleTag.py:165
 msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
-msgstr "Įskaitant automobilius, arklius, mopedus, pavojingas medžiagas ir t. t., nebent atskirai atmesta"
+msgstr ""
+"Įskaitant automobilius, arklius, mopedus, pavojingas medžiagas ir t. t., "
+"nebent atskirai atmesta"
 
 #: ../analysers/analyser_osmosis_highway_area_access.py:105
 #: ../analysers/analyser_osmosis_highway_area_access.py:109
@@ -1291,7 +1295,7 @@ msgstr ""
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:155
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:177
 #, python-brace-format
-msgid "In Farsi, the Arabic letter '{0}' should be replaced by '{1}'"
+msgid "In Farsi, the Arabic letter `{0}` should be replaced by `{1}`."
 msgstr ""
 
 #: ../plugins/Colour.py:16
@@ -3766,11 +3770,11 @@ msgid ""
 msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:37
-msgid "Level should be used for buildings, shops, amenities, etc."
+msgid "Remove level and check if layer is needed instead"
 msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:38
-msgid "Remove level and check if layer is needed instead"
+msgid "Level should be used for buildings, shops, amenities, etc."
 msgstr ""
 
 #: ../plugins/TagRemove_Layer.py:43

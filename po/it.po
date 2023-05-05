@@ -20,7 +20,7 @@ msgstr ""
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
 "PO-Revision-Date: 2014-04-30 17:25+0000\n"
 "Last-Translator: frodrigo <fred.rodrigo@gmail.com>, 2019\n"
-"Language-Team: Italian (http://www.transifex.com/openstreetmap-france/osmose/language/it/)\n"
+"Language-Team: Italian (http://app.transifex.com/openstreetmap-france/osmose/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -728,8 +728,8 @@ msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "Inclusi auto, cavalli, scooter, mezzi per il trasporto di sostanze pericolose e così via a meno che non siano esplicitamente esclusi"
 
-#: ../analysers/analyser_osmosis_highway_area_access.py:105
-#: ../analysers/analyser_osmosis_highway_area_access.py:109
+#: ../analysers/analyser_osmosis_highway_area_access.py:172
+#: ../analysers/analyser_osmosis_highway_area_access.py:176
 msgid "Inconsistent Access"
 msgstr "Accesso non consistente"
 
@@ -1255,8 +1255,8 @@ msgstr "Suggerimento di integrazione di polizia/“gendarmeria”"
 msgid "Police/\"Gendarmerie\" update"
 msgstr "Aggiorna polizia/“gendarmeria”"
 
-#: ../analysers/analyser_osmosis_parking_highway.py:67
-#: ../analysers/analyser_osmosis_parking_highway.py:70
+#: ../analysers/analyser_osmosis_parking_highway.py:102
+#: ../analysers/analyser_osmosis_parking_highway.py:105
 msgid "Missing access way to parking"
 msgstr "Via di accesso al parcheggio mancante"
 
@@ -1300,7 +1300,7 @@ msgstr "Trovata lettera araba in un nome Farsi"
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:155
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:177
 #, python-brace-format
-msgid "In Farsi, the Arabic letter '{0}' should be replaced by '{1}'"
+msgid "In Farsi, the Arabic letter `{0}` should be replaced by `{1}`."
 msgstr "In Farsi la lettera araba '{0}' dovrebbe essere sostituita con '{1}'"
 
 #: ../plugins/Colour.py:16
@@ -1377,7 +1377,7 @@ msgstr "Popolazione sul ruolo admin_centre ({0}) maggiore di quella sulla relazi
 msgid "Multiple name for the same ref FANTOIR {0}: {1}"
 msgstr "Nome multiplo per lo stesso ref FANTOIR {0}: {1}"
 
-#: ../analysers/analyser_osmosis_highway_area_access.py:117
+#: ../analysers/analyser_osmosis_highway_area_access.py:214
 #, python-brace-format
 msgid "Inconsistent motor_vehicle values ('{0}'!='{1}')"
 msgstr "Valori di motor_vehicle non coerenti ('{0}'!='{1}')"
@@ -1833,7 +1833,7 @@ msgid ""
 "World Heritage."
 msgstr ""
 
-#: ../analysers/analyser_merge_pitch_FR.py:49
+#: ../analysers/analyser_merge_pitch_FR.py:48
 #, python-brace-format
 msgid "Pitch not integrated {0}"
 msgstr "Campo sportivo non integrato {0}"
@@ -3113,7 +3113,7 @@ msgid ""
 "tagged."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_parking_highway.py:68
+#: ../analysers/analyser_osmosis_parking_highway.py:103
 msgid ""
 "There should be a `highway` feature leading to this parking facility to "
 "allow for correct routing."
@@ -3277,8 +3277,8 @@ msgstr ""
 #: ../plugins/Phone.py:127 ../plugins/Phone.py:141 ../plugins/Phone.py:147
 #: ../plugins/Phone.py:153 ../plugins/Phone.py:159 ../plugins/Phone.py:166
 #: ../plugins/TagFix_BadKey.py:88 ../plugins/TagFix_BadKey.py:90
-#: ../plugins/TagFix_BadKey.py:92 ../plugins/TagFix_BadValue.py:117
-#: ../plugins/TagFix_BadValue.py:122 ../plugins/TagFix_BadValue.py:126
+#: ../plugins/TagFix_BadKey.py:92 ../plugins/TagFix_BadValue.py:118
+#: ../plugins/TagFix_BadValue.py:123 ../plugins/TagFix_BadValue.py:127
 #: ../plugins/TagFix_MultipleValue.py:99
 #, python-brace-format
 msgid "Concerns tag: `{0}`"
@@ -3573,35 +3573,35 @@ msgstr ""
 msgid "{0} parking  update"
 msgstr "Aggiorna parcheggio {0}"
 
-#: ../analysers/Analyser_Merge.py:1159
+#: ../analysers/Analyser_Merge.py:1174
 msgid ""
 "If after review you are sure that it is new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1162
+#: ../analysers/Analyser_Merge.py:1177
 msgid "Be sure that it does not already exist in another place."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1167
+#: ../analysers/Analyser_Merge.py:1182
 msgid ""
 "This is reported from an open data source, without any prior individual\n"
 "verification of this data."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1324
+#: ../analysers/Analyser_Merge.py:1339
 msgid ""
 "This is a integration suggestion, mixing open data source and\n"
 "OpenStreetMap."
 msgstr "Questo è un suggerimento di integrazione, che combina insieme\nfonti di dati liberi e OpenStreetMap."
 
-#: ../analysers/Analyser_Merge.py:1337
+#: ../analysers/Analyser_Merge.py:1352
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "open data and OSM."
 msgstr "Viene suggerito l’aggiornamento poiché lo stesso codice di riferimento\nè presente sia su OpenData che su OSM."
 
-#: ../analysers/Analyser_Merge.py:1155
+#: ../analysers/Analyser_Merge.py:1170
 msgid ""
 "It is from an open data source, but that is not enough to ensure the quality\n"
 "of the data. Review it before integrating the data. You must not do blind imports\n"
@@ -3770,11 +3770,11 @@ msgid ""
 msgstr ""
 
 #: ../plugins/TagFix_MultipleTag2.py:22
-msgid "Level should be used for buildings, shops, amenities, etc."
+msgid "Remove level and check if layer is needed instead"
 msgstr ""
 
 #: ../plugins/TagFix_MultipleTag2.py:22
-msgid "Remove level and check if layer is needed instead"
+msgid "Level should be used for buildings, shops, amenities, etc."
 msgstr ""
 
 #: ../plugins/TagRemove_Layer.py:43
@@ -4006,7 +4006,7 @@ msgstr ""
 msgid "After checking orthophotos, add nodes or move existing nodes."
 msgstr ""
 
-#: ../plugins/TagFix_DuplicateValue.py:155
+#: ../plugins/TagFix_DuplicateValue.py:156
 #, python-brace-format
 msgid "Duplicated values {key}={val}"
 msgstr ""
@@ -4257,7 +4257,7 @@ msgstr ""
 msgid "one-directional roads"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_parking_highway.py:72
+#: ../analysers/analyser_osmosis_parking_highway.py:107
 msgid ""
 "There should be a `highway` feature leading to this parking facility\n"
 "to allow for correct routing. Add a road or check if `parking=*` is\n"
@@ -4976,31 +4976,32 @@ msgid ""
 "Ensure the interpretation of the tag does not change when you delete one item."
 msgstr ""
 
-#: ../plugins/TagFix_DuplicateValue.py:167
+#: ../plugins/TagFix_DuplicateValue.py:168
 #, python-brace-format
 msgid "Similar values {v1} and {v2} in {key}={val}"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_area_access.py:107
+#: ../analysers/analyser_osmosis_highway_area_access.py:174
 msgid "Inconsistent `motor_vehicle` values."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_area_access.py:111
+#: ../analysers/analyser_osmosis_highway_area_access.py:178
 msgid "Inconsistent access values between barrier and highway."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_area_access.py:113
+#: ../analysers/analyser_osmosis_highway_area_access.py:180
+#: ../analysers/analyser_osmosis_highway_area_access.py:201
 msgid ""
 "Sometimes a barrier can exist on an (otherwise uninterrupted) highway to "
 "prevent vehicles from using it for purposes other than destination traffic."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_area_access.py:115
+#: ../analysers/analyser_osmosis_highway_area_access.py:182
 msgid "Copy the appropriate access tag to the barrier node."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_area_access.py:125
-#: ../analysers/analyser_osmosis_highway_area_access.py:129
+#: ../analysers/analyser_osmosis_highway_area_access.py:222
+#: ../analysers/analyser_osmosis_highway_area_access.py:226
 #, python-brace-format
 msgid "Inconsistent {0} access: '{1}' on highway, not set on barrier"
 msgstr ""
@@ -5211,10 +5212,7 @@ msgid ""
 msgstr ""
 
 #: ../plugins/Colour.py:17
-msgid ""
-"Colour names should be one of those in the CSS specifications and should be "
-"spelled in lowercase letters and without dashes. Multiple colours can be "
-"separated by a semicolon."
+msgid "Bad colour name"
 msgstr ""
 
 #: ../plugins/Colour.py:91 ../plugins/Colour.py:157 ../plugins/Colour.py:307
@@ -5236,4 +5234,128 @@ msgstr ""
 #: ../plugins/TagFix_MultipleTag2.py:113
 #, python-brace-format
 msgid "{0} on suspicious object"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_area_access.py:184
+msgid "Barrier blocking major highway"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_area_access.py:186
+msgid ""
+"A barrier is blocking a major highway. Typically, major highways (`tertiary`"
+" and above) are meant for passing traffic."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_area_access.py:188
+msgid ""
+"Check if there is really a barrier on the highway itself (instead of for instance a connecting minor way only).\n"
+"If there is no such barrier, remove it, or move it to the appropriate connecting way.\n"
+"If there is a barrier, check if it has the appropriate (conditional) access keys."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_area_access.py:195
+msgid "Barrier blocking highway"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_area_access.py:197
+msgid ""
+"A barrier is blocking a crossing with another highway.\n"
+"Likely the barrier was only supposed to be present on one of the roads.\n"
+"In the current situation, traffic coming from any direction has to go through the barrier, to reach any of the destination ways."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_area_access.py:203
+msgid ""
+"Check if there is really a barrier on the crossing itself (instead of for instance a connecting minor way only).\n"
+"If there is no such barrier, remove it, or move it to the appropriate connecting way.\n"
+"If there is a barrier, check if it has the appropriate (conditional) access keys."
+msgstr ""
+
+msgid ""
+"![](https://wiki.openstreetmap.org/w/images/9/95/Badbarrierposition.png)\n"
+"A barrier placed incorrectly. From the service road, one has to cross the gate, but walking\n"
+"the (almost) U-turn over the paths can in reality be done without passing the gate."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_area_access.py:191
+msgid ""
+"![](https://wiki.openstreetmap.org/w/images/e/ef/Kerb-on-highway.png)\n"
+"In the top example, the kerb is located next to the road, and only pedestrians that want to cross will cross the kerb.\n"
+"In the bottom example, cars will also have to drive over the kerb. Usually, kerbs are not located on the road, but alongsides."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_area_access.py:206
+msgid ""
+"![](https://wiki.openstreetmap.org/w/images/9/95/Badbarrierposition.png)\n"
+"A barrier placed incorrectly. From the service road, one has to cross the gate, but walking\n"
+"the (almost) U-turn over the paths can in reality be done without passing the gate.\n"
+"\n"
+"![](https://wiki.openstreetmap.org/w/images/e/ef/Kerb-on-highway.png)\n"
+"In the top example, the kerb is located next to the road, and only pedestrians that want to cross will cross the kerb.\n"
+"In the bottom example, cars will also have to drive over the kerb. Usually, kerbs are not located on the road, but alongsides."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_parking_highway.py:114
+msgid "Inconsistent access of parking"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_parking_highway.py:115
+msgid ""
+"The `access` tag of the parking does not match the `access` tag of the ways inside the parking.\n"
+"As a result, this public parking space can only be reached via limited-access roads."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_parking_highway.py:117
+msgid ""
+"Check which access restrictions are correct and apply them accordingly to "
+"the highways and the parking."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_parking_highway.py:118
+msgid "A parking may be partially publicly accessible and partially private."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_parking_highway.py:132
+#, python-brace-format
+msgid "highway: `access={0}` - parking: `access={1}`"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_polygon_intersects.py:239
+msgid ""
+"A way meant for transport (such as a highway or a waterway) intersects with a\n"
+"land coverage that would pose an obstacle for this transportation mode."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_polygon_intersects.py:242
+msgid "`{0}` intersects `{1}`"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_polygon_intersects.py:247
+msgid ""
+"If the way for transportation (such as a highway) has i.e. a forest growing on\n"
+"either side of the way, cut out the shape of the highway from the forest polygon.\n"
+"However, if the way for transportation is a tunnel or a bridge, add `tunnel=*` or\n"
+"`bridge=*` where appropriate, together with `layer=*` if needed."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_polygon_intersects.py:254
+msgid "Bad intersection with major highway"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_polygon_intersects.py:258
+msgid "Bad intersection with railway"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_polygon_intersects.py:262
+msgid "Bad intersection with waterway"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_polygon_intersects.py:266
+msgid "Bad intersection with aeroway"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_polygon_intersects.py:279
+#: ../analysers/analyser_osmosis_polygon_intersects.py:284
+#, python-brace-format
+msgid "`{0}` intersects `{1}`"
 msgstr ""
