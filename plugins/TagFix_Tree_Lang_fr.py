@@ -92,11 +92,10 @@ class TagFix_Tree_Lang_fr(Plugin):
                 err.append(c)
 
         if 'type' in tags:
+            # type is a deprecated tag, but the new tag isn't used with French tree names
             c = self.check('type', tags['type'], 2)
             if c:
                 err.append(c)
-            elif tags['type'] not in ('broad_leaved', 'broad_leafed', 'conifer', 'palm'):
-                err.append({"class": 3120, "subclass": 3, "text": T_("Bad tag type=\"{0}\"", tags["type"])})
 
         if 'denotation' in tags:
             if tags['denotation'] not in ('avenue', 'urban', 'natural_monument', 'landmark', 'agricultural'):
@@ -132,9 +131,6 @@ class Test(TestPluginCommon):
 
         for d in [u"landmark", u"agricultural"]:
             assert not a.node(None, {"natural":"tree", "denotation":d}), ("denotation='{0}'".format(d))
-
-        for d in [u"anything", u"Pin Sylvestre", u"Frêne commun", u"Chêne vert"]:
-            self.check_err(a.node(None, {"natural":"tree", "type":d}), ("type='{0}'".format(d)))
 
         for d in [u"broad_leafed", u"conifer"]:
             assert not a.node(None, {"natural":"tree", "type":d}), ("type='{0}'".format(d))

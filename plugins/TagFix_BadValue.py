@@ -57,7 +57,7 @@ However, this should probably still conform to the typical format used for value
             'information', 'intermittent', 'internet_access',
             'junction',
             'kerb',
-            'landuse', 'leaf_type', 'leaf_cycle', 'leisure', 'location',
+            'landuse', 'leisure', 'location',
             'material', 'man_made', 'meadow', 'military', 'mooring', 'mountain_pass',
             'natural', 'noexit',
             'office',
@@ -102,6 +102,8 @@ However, this should probably still conform to the typical format used for value
                             "segregated": ( "yes", "no", ),
                             "trolley_wire": ( "yes", "no", ),
                             "tracktype":  ( "grade1", "grade2", "grade3", "grade4", "grade5", ),
+                            "leaf_type":  ( "broadleaved", "needleleaved", "mixed", "leafless", "palm", ), # palm formally not documented
+                            "leaf_cycle":  ( "evergreen", "deciduous", "semi_evergreen", "semi_deciduous", "mixed", ),
                           }
         self.check_list_closed = set(self.allow_closed.keys())
 
