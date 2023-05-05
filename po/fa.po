@@ -157,15 +157,15 @@ msgstr "معبر ‎*_link بد"
 msgid "Highway too long for a *_link"
 msgstr "معبر برای تگ ‎*_link خیلی طولانی است"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:368
+#: ../analysers/analyser_osmosis_highway_vs_building.py:418
 msgid "Highway intersecting building"
 msgstr "روی هم افتادن معبر و ساختمان "
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:369
+#: ../analysers/analyser_osmosis_highway_vs_building.py:419
 msgid "Tree intersecting building"
 msgstr "روی هم افتادن درخت و ساختمان"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:370
+#: ../analysers/analyser_osmosis_highway_vs_building.py:420
 msgid "Tree and highway too close"
 msgstr "درخت و ساختمان خیلی به هم نزدیک‌اند"
 
@@ -671,15 +671,9 @@ msgstr "ساختار پل ذکر نشده"
 msgid "Roundabout as area"
 msgstr "فلکه در قالب محوطه"
 
-msgid "Level or repeat_on tag missing"
-msgstr "کمبود تگ Level یا repeat_on"
-
 #: ../analysers/analyser_osmosis_building_overlaps.py:195
 msgid "Building in parts"
 msgstr ""
-
-msgid "Indoor or building:part tag missing"
-msgstr "کمبود تگ indoor یا buildingpart"
 
 #: ../plugins/TagFix_MultipleTag2.py:18 ../plugins/TagFix_MultipleTag2.py:61
 #: ../plugins/TagFix_MultipleTag2.py:148 ../plugins/TagFix_MultipleTag2.py:336
@@ -745,11 +739,11 @@ msgstr "power major line ناتمام مانده"
 msgid "Unfinished power minor line"
 msgstr "power minor line ناتمام مانده"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:371
+#: ../analysers/analyser_osmosis_highway_vs_building.py:421
 msgid "Highway intersecting small water piece"
 msgstr "معبر روی یک قطعهٔ آبی کوچک افتاده"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:372
+#: ../analysers/analyser_osmosis_highway_vs_building.py:422
 msgid "Highway intersecting large water piece"
 msgstr "معبر روی یک قطعهٔ آبی بزرگ افتاده"
 
@@ -1148,19 +1142,19 @@ msgid ""
 "upstream"
 msgstr "گروه کوچکی از معابر جدا از شبکهٔ اصلی هستند یا دسترسی‌شان به شبکه نامناسب است"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:373
+#: ../analysers/analyser_osmosis_highway_vs_building.py:423
 msgid "Power object intersecting building"
 msgstr "تجهیزات برق روی ساختمان افتاده"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:374
+#: ../analysers/analyser_osmosis_highway_vs_building.py:424
 msgid "Power object and highway too close"
 msgstr "معبر و تجهیزات برق خیلی به هم نزدیک‌اند"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:376
+#: ../analysers/analyser_osmosis_highway_vs_building.py:426
 msgid "Highway overlaps"
 msgstr "روی هم افتادن معابر"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:378
+#: ../analysers/analyser_osmosis_highway_vs_building.py:428
 msgid "Waterway overlaps"
 msgstr "روی هم افتادن راه‌های آبی"
 
@@ -1285,12 +1279,18 @@ msgstr "موتورسیکلت اشتراکی/پارکینگ موتورسیکلت 
 msgid "Arabic letter detected in Farsi name"
 msgstr "حرف عربی در نام فارسی"
 
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:48
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:73
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:103
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:125
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:155
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:177
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:42
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:60
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:79
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:97
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:122
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:139
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:156
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:173
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:198
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:215
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:232
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:249
 #, python-brace-format
 msgid "In Farsi, the Arabic letter `{0}` should be replaced by `{1}`."
 msgstr "در کلمات فارسی، باید به‌جای {0} از {1} استفاده کرد."
@@ -1996,9 +1996,6 @@ msgstr ""
 msgid "Compare tags and delete object or merge them."
 msgstr ""
 
-msgid "Inconsistent `motor_vehicle` values (`destination`!=)"
-msgstr ""
-
 #: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:112
 msgid ""
 "Check the continuity of the highway types. The classification of a\n"
@@ -2108,7 +2105,7 @@ msgid ""
 "bridges](https://wiki.openstreetmap.org/wiki/Key:bridge)."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:365
+#: ../analysers/analyser_osmosis_highway_vs_building.py:415
 msgid ""
 "![](https://wiki.openstreetmap.org/w/images/d/dc/Osmose-eg-error-1070.png)\n"
 "\n"
@@ -2784,9 +2781,6 @@ msgstr ""
 msgid "Delete one value."
 msgstr ""
 
-msgid "In some case all values maybe required."
-msgstr ""
-
 #: ../plugins/TagFix_Housenumber.py:38
 msgid ""
 "Interpolation way only valid with addr:interpolation=* and optional\n"
@@ -2817,11 +2811,6 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag2.py:16 ../plugins/TagFix_MultipleTag2.py:17
 msgid "Check if it is really a highway and it is not already mapped."
-msgstr ""
-
-msgid ""
-"Missing `maxheight=*` or `maxheight:*` for a tunnel or a way under a\n"
-"bridge."
 msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:54
@@ -2999,19 +2988,19 @@ msgid ""
 "detection is correct."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:356
+#: ../analysers/analyser_osmosis_highway_vs_building.py:406
 msgid ""
 "Two features overlap with no shared node to indicate a physical connection "
 "or tagging to indicate a vertical separation."
 msgstr "دو عارضه روی هم افتاده‌اند بدون نقطهٔ مشترکی که نشان‌دهندهٔ اتصال فیزیکی باشد یا تگ‌گذاری‌ای که نشان دهد در راستای عمودی از هم جدا هستند."
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:358
+#: ../analysers/analyser_osmosis_highway_vs_building.py:408
 msgid ""
 "Move a feature if it's in the wrong place. Connect the features if "
 "appropriate or update the tags if not."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:360
+#: ../analysers/analyser_osmosis_highway_vs_building.py:410
 msgid ""
 "A feature may be missing a tag e.g. `tunnel=*`, `bridge=*`,\n"
 "`covered=*`. If a road or railway intersects a building, consider adding the\n"
@@ -3019,11 +3008,11 @@ msgid ""
 "time or with spatial offset."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:375
+#: ../analysers/analyser_osmosis_highway_vs_building.py:425
 msgid "Highway intersecting highway"
 msgstr "روی هم افتادن دو معبر"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:377
+#: ../analysers/analyser_osmosis_highway_vs_building.py:427
 msgid "Waterway intersecting waterway"
 msgstr ""
 
@@ -4801,9 +4790,6 @@ msgid ""
 "The value of the tag is very unspecific. Replace it by a meaningful value."
 msgstr ""
 
-msgid "Use `parking:lane:left`, `parking:lane:right` or `parking:lane:both`."
-msgstr ""
-
 #: ../plugins/Highway_Parking_Lane.py:46
 msgid ""
 "The key `parking:lane:both` was used together with `parking:lane:left` and/or `parking:lane:right`.\n"
@@ -4917,9 +4903,6 @@ msgstr ""
 msgid ""
 "Check if the voltages are really different.\n"
 "Add a transformer using `power=transformer` (standalone transformers) or `power=pole + transformer=*` (pole mounted transformers)."
-msgstr ""
-
-msgid "Unknown colour name"
 msgstr ""
 
 #, python-brace-format
@@ -5203,10 +5186,6 @@ msgid ""
 "and jars), but not glasses for high temperatures or window glass."
 msgstr ""
 
-#: ../plugins/Colour.py:17
-msgid "Bad colour name"
-msgstr ""
-
 #: ../plugins/Colour.py:91 ../plugins/Colour.py:157 ../plugins/Colour.py:307
 #: ../plugins/Colour.py:378 ../plugins/Colour.py:527 ../plugins/Colour.py:593
 #, python-brace-format
@@ -5263,12 +5242,6 @@ msgid ""
 "If there is a barrier, check if it has the appropriate (conditional) access keys."
 msgstr ""
 
-msgid ""
-"![](https://wiki.openstreetmap.org/w/images/9/95/Badbarrierposition.png)\n"
-"A barrier placed incorrectly. From the service road, one has to cross the gate, but walking\n"
-"the (almost) U-turn over the paths can in reality be done without passing the gate."
-msgstr ""
-
 #: ../analysers/analyser_osmosis_highway_area_access.py:191
 msgid ""
 "![](https://wiki.openstreetmap.org/w/images/e/ef/Kerb-on-highway.png)\n"
@@ -5312,17 +5285,12 @@ msgstr ""
 msgid "highway: `access={0}` - parking: `access={1}`"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_polygon_intersects.py:239
-msgid ""
-"A way meant for transport (such as a highway or a waterway) intersects with a\n"
-"land coverage that would pose an obstacle for this transportation mode."
-msgstr ""
-
 #: ../analysers/analyser_osmosis_polygon_intersects.py:242
+#, python-brace-format
 msgid "`{0}` intersects `{1}`"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_polygon_intersects.py:247
+#: ../analysers/analyser_osmosis_polygon_intersects.py:214
 msgid ""
 "If the way for transportation (such as a highway) has i.e. a forest growing on\n"
 "either side of the way, cut out the shape of the highway from the forest polygon.\n"
@@ -5330,24 +5298,39 @@ msgid ""
 "`bridge=*` where appropriate, together with `layer=*` if needed."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_polygon_intersects.py:254
+#: ../analysers/analyser_osmosis_polygon_intersects.py:221
 msgid "Bad intersection with major highway"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_polygon_intersects.py:258
+#: ../analysers/analyser_osmosis_polygon_intersects.py:225
 msgid "Bad intersection with railway"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_polygon_intersects.py:262
-msgid "Bad intersection with waterway"
-msgstr ""
-
-#: ../analysers/analyser_osmosis_polygon_intersects.py:266
+#: ../analysers/analyser_osmosis_polygon_intersects.py:229
 msgid "Bad intersection with aeroway"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_polygon_intersects.py:279
-#: ../analysers/analyser_osmosis_polygon_intersects.py:284
-#, python-brace-format
-msgid "`{0}` intersects `{1}`"
+#: ../analysers/analyser_osmosis_highway_vs_building.py:429
+msgid "Commercial object or office and highway too close"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_polygon_intersects.py:206
+msgid ""
+"A way meant for transport (such as a highway or a railway) intersects with a\n"
+"land coverage that would pose an obstacle for this transportation mode."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_polygon_intersects.py:209
+msgid ""
+"A major highway usually does not have trees growing on it, so a crossing between\n"
+"`landuse=forest` and `highway=trunk` is unlikely.\n"
+"The same applies for a railway running through an area with `natural=water`,\n"
+"without bridge or tunnel."
+msgstr ""
+
+#: ../plugins/Colour.py:17
+msgid ""
+"Colour names should be one of those in the CSS specifications and should be "
+"spelled in lowercase letters and without dashes. Multiple colours can be "
+"separated by a semicolon."
 msgstr ""

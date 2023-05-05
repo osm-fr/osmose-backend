@@ -668,14 +668,8 @@ msgstr ""
 msgid "Roundabout as area"
 msgstr ""
 
-msgid "Level or repeat_on tag missing"
-msgstr ""
-
 #: ../analysers/analyser_osmosis_building_overlaps.py:195
 msgid "Building in parts"
-msgstr ""
-
-msgid "Indoor or building:part tag missing"
 msgstr ""
 
 #: ../plugins/TagFix_MultipleTag2.py:18 ../plugins/TagFix_MultipleTag2.py:61
@@ -2002,9 +1996,6 @@ msgstr ""
 msgid "Compare tags and delete object or merge them."
 msgstr ""
 
-msgid "Inconsistent `motor_vehicle` values (`destination`!=)"
-msgstr ""
-
 #: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:112
 msgid ""
 "Check the continuity of the highway types. The classification of a\n"
@@ -2796,9 +2787,6 @@ msgstr ""
 msgid "Delete one value."
 msgstr ""
 
-msgid "In some case all values maybe required."
-msgstr ""
-
 #: ../plugins/TagFix_Housenumber.py:38
 msgid ""
 "Interpolation way only valid with addr:interpolation=* and optional\n"
@@ -2829,11 +2817,6 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag2.py:16 ../plugins/TagFix_MultipleTag2.py:17
 msgid "Check if it is really a highway and it is not already mapped."
-msgstr ""
-
-msgid ""
-"Missing `maxheight=*` or `maxheight:*` for a tunnel or a way under a\n"
-"bridge."
 msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:54
@@ -4853,9 +4836,6 @@ msgid ""
 "The value of the tag is very unspecific. Replace it by a meaningful value."
 msgstr ""
 
-msgid "Use `parking:lane:left`, `parking:lane:right` or `parking:lane:both`."
-msgstr ""
-
 #: ../plugins/Highway_Parking_Lane.py:46
 msgid ""
 "The key `parking:lane:both` was used together with `parking:lane:left` and/"
@@ -4978,9 +4958,6 @@ msgid ""
 "Check if the voltages are really different.\n"
 "Add a transformer using `power=transformer` (standalone transformers) or "
 "`power=pole + transformer=*` (pole mounted transformers)."
-msgstr ""
-
-msgid "Unknown colour name"
 msgstr ""
 
 #, python-brace-format
@@ -5337,14 +5314,6 @@ msgid ""
 "keys."
 msgstr ""
 
-msgid ""
-"![](https://wiki.openstreetmap.org/w/images/9/95/Badbarrierposition.png)\n"
-"A barrier placed incorrectly. From the service road, one has to cross the "
-"gate, but walking\n"
-"the (almost) U-turn over the paths can in reality be done without passing "
-"the gate."
-msgstr ""
-
 #: ../analysers/analyser_osmosis_highway_area_access.py:191
 msgid ""
 "![](https://wiki.openstreetmap.org/w/images/e/ef/Kerb-on-highway.png)\n"
@@ -5396,12 +5365,6 @@ msgstr ""
 msgid "highway: `access={0}` - parking: `access={1}`"
 msgstr ""
 
-msgid ""
-"A way meant for transport (such as a highway or a waterway) intersects with "
-"a\n"
-"land coverage that would pose an obstacle for this transportation mode."
-msgstr ""
-
 #: ../analysers/analyser_osmosis_polygon_intersects.py:242
 #, python-brace-format
 msgid "`{0}` intersects `{1}`"
@@ -5424,9 +5387,6 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_polygon_intersects.py:225
 msgid "Bad intersection with railway"
-msgstr ""
-
-msgid "Bad intersection with waterway"
 msgstr ""
 
 #: ../analysers/analyser_osmosis_polygon_intersects.py:229
