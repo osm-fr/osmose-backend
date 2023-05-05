@@ -214,6 +214,17 @@ class Test(TestPluginCommon):
         assert not a.node(None, {"addr:postcode":"HM 02"})
         assert a.node(None, {"addr:postcode":"plopplop"})
 
+    def test_SA(self):
+        a = TagFix_Postcode(None)
+        class _config:
+            options = {"country": "SA", "project": "openstreetmap"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+        assert not a.node(None, {"postal_code":"30318"})
+        assert not a.node(None, {"postal_code":"30318-2522"})
+
     def test_US(self):
         a = TagFix_Postcode(None)
         class _config:
@@ -222,8 +233,10 @@ class Test(TestPluginCommon):
             config = _config()
         a.father = father()
         a.init(None)
-        assert not a.node(None, {"postal_code":"30318"})
-        assert not a.node(None, {"postal_code":"30318-2522"})
+        assert a.node(None, {"addr:postcode": "30318"})
+        assert a.node(None, {"postal_code": "30318-2522"})
+        assert not a.node(None, {"postal_code": "30318"})
+        assert not a.node(None, {"addr:postcode": "30318-2522"})
 
     def test_IE(self):
         a = TagFix_Postcode(None)
