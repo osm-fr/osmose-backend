@@ -154,7 +154,7 @@ CREATE INDEX idx_commercial_buffergeom ON commercial USING gist(buffergeom)
 """
 
 sql10 = """
-SELECT
+SELECT DISTINCT ON (highway.id, building.id)
     building.id,
     highway.id,
     ST_AsText(way_locate(building.linestring))
@@ -169,6 +169,9 @@ FROM
 WHERE
     building.wall AND
     NOT building.layer
+ORDER BY
+    highway.id,
+    building.id
 """
 
 sql20 = """
@@ -202,7 +205,7 @@ FROM
 """
 
 sql30 = """
-SELECT
+SELECT DISTINCT ON (tree.id)
     tree.id,
     highway.id,
     ST_AsText(tree.geom)
@@ -214,10 +217,12 @@ FROM
         highway.highway NOT IN ('footway', 'path', 'track') AND
         tree.geom && highway.linestring AND
         ST_Intersects(ST_Buffer(tree.geom::geography, 0.25)::geometry, highway.linestring)
+ORDER BY
+    tree.id
 """
 
 sql31 = """
-SELECT
+SELECT DISTINCT ON (power.id)
     power.id,
     highway.id,
     ST_AsText(power.geom)
@@ -228,11 +233,12 @@ FROM
         highway.layer = '0' AND
         power.geom && highway.linestring AND
         ST_Intersects(ST_Buffer(power.geom::geography, 0.25)::geometry, highway.linestring)
+ORDER BY
+    power.id
 """
 
 sql32 = """
-SELECT
-    DISTINCT ON(commercial.id)
+SELECT DISTINCT ON (commercial.id)
     commercial.id,
     highway.id,
     ST_AsText(commercial.geom)
@@ -256,7 +262,7 @@ ORDER BY
 """
 
 sql40 = """
-SELECT
+SELECT DISTINCT ON (highway.id, water.id)
     highway.id,
     water.id,
     ST_AsText(ST_Centroid(ST_Intersection(highway.linestring, water.linestring))),
@@ -266,20 +272,15 @@ FROM
     JOIN {1}water AS water ON
         ST_Crosses(highway.linestring, water.linestring)
     LEFT JOIN nodes ON
-        nodes.geom && highway.linestring AND
-        nodes.geom && water.linestring AND
         ST_Intersects(nodes.geom, ST_Intersection(highway.linestring, water.linestring))
 WHERE
     highway.level = '0' AND
     highway.layer = water.layer AND
     NOT highway.onwater AND
     (nodes.id IS NULL OR NOT nodes.tags?'ford')
-GROUP BY
+ORDER BY
     highway.id,
-    water.id,
-    highway.linestring,
-    water.linestring,
-    water.waterway
+    water.id
 """
 
 sql50 = """
