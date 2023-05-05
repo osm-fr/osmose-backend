@@ -133,10 +133,7 @@ CREATE TEMP TABLE commercial AS
 SELECT
     id,
     geom,
-    CASE
-      WHEN tags?'layer' THEN tags->'layer'
-      ELSE '0'
-    END AS layer,
+    COALESCE(tags->'layer', '0') AS layer,
     ST_Buffer(geom::geography, 0.9)::geometry AS buffergeom
 FROM
     nodes
@@ -255,8 +252,7 @@ FROM
         )
 ORDER BY
     commercial.id,
-    highway.id,
-    commercial.geom
+    highway.id
 """
 
 sql40 = """
