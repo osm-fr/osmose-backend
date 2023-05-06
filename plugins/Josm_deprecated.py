@@ -64,7 +64,7 @@ class Josm_deprecated(PluginMapCSS):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_bbq_autofix = set_beam_pump_no_mech = set_diaper___checked = set_diaper_checked = set_generic_power_tower_type_warning = set_levels_building = set_power_pole_type_warning = set_power_tower_type_warning = set_pumping_ring_no_mech = False
+        set_bbq_autofix = set_beam_pump_no_mech = set_diaper___checked = set_diaper_checked = set_generic_power_tower_type_warning = set_levels_building = set_parcel_fixable = set_power_pole_type_warning = set_power_tower_type_warning = set_pumping_ring_no_mech = False
 
         # *[barrier=wire_fence]
         if ('barrier' in keys):
@@ -4079,6 +4079,84 @@ class Josm_deprecated(PluginMapCSS):
                 # suggestAlternative:"landuse=education"
                 err.append({'class': 9002001, 'subclass': 817812278, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
+        # *[amenity=vending_machine][vending=parcel_mail_in]
+        # *[amenity=vending_machine][vending=parcel_pickup]
+        if ('amenity' in keys and 'vending' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'vending_machine')) and (mapcss._tag_capture(capture_tags, 1, tags, 'vending') == mapcss._value_capture(capture_tags, 1, 'parcel_mail_in')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'vending_machine')) and (mapcss._tag_capture(capture_tags, 1, tags, 'vending') == mapcss._value_capture(capture_tags, 1, 'parcel_pickup')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # set .parcel_fixable
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{1.tag}")
+                # suggestAlternative:"amenity=parcel_locker + {1.value}=yes"
+                # fixAdd:"amenity=parcel_locker"
+                # fixRemove:"vending"
+                # fixAdd:"{1.value}=yes"
+                # assertMatch:"node amenity=vending_machine vending=parcel_mail_in"
+                # assertMatch:"node amenity=vending_machine vending=parcel_pickup"
+                set_parcel_fixable = True
+                err.append({'class': 9002001, 'subclass': 1305128315, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{1.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['amenity','parcel_locker'],
+                    (mapcss._tag_uncapture(capture_tags, '{1.value}=yes')).split('=', 1)]),
+                    '-': ([
+                    'vending'])
+                }})
+
+        # *[amenity=vending_machine][vending][vending~=parcel_mail_in][vending~=parcel_pickup][count(uniq_list(split(";",tag("vending"))))==2]
+        if ('amenity' in keys and 'vending' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'vending_machine')) and (mapcss._tag_capture(capture_tags, 1, tags, 'vending')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 2, tags, 'vending'), mapcss._value_capture(capture_tags, 2, 'parcel_mail_in'))) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 3, tags, 'vending'), mapcss._value_capture(capture_tags, 3, 'parcel_pickup'))) and (mapcss.count(mapcss.uniq_list(mapcss.split(';', mapcss.tag(tags, 'vending')))) == 2))
+                except mapcss.RuleAbort: pass
+            if match:
+                # set .parcel_fixable
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{1.tag}")
+                # suggestAlternative:"amenity=parcel_locker + parcel_pickup=yes + parcel_mail_in=yes"
+                # fixAdd:"amenity=parcel_locker"
+                # fixAdd:"parcel_mail_in=yes"
+                # fixAdd:"parcel_pickup=yes"
+                # fixRemove:"vending"
+                # assertMatch:"node amenity=vending_machine vending=parcel_mail_in;parcel_pickup"
+                # assertMatch:"node amenity=vending_machine vending=parcel_pickup;parcel_mail_in"
+                set_parcel_fixable = True
+                err.append({'class': 9002001, 'subclass': 954921281, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{1.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['amenity','parcel_locker'],
+                    ['parcel_mail_in','yes'],
+                    ['parcel_pickup','yes']]),
+                    '-': ([
+                    'vending'])
+                }})
+
+        # *[amenity=vending_machine][vending~=parcel_mail_in]!.parcel_fixable
+        # *[amenity=vending_machine][vending~=parcel_pickup]!.parcel_fixable
+        if ('amenity' in keys and 'vending' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_parcel_fixable) and (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'vending_machine')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'vending'), mapcss._value_capture(capture_tags, 1, 'parcel_mail_in'))))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_parcel_fixable) and (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'vending_machine')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'vending'), mapcss._value_capture(capture_tags, 1, 'parcel_pickup'))))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{1.tag}")
+                # suggestAlternative:"amenity=parcel_locker + {1.value}=yes"
+                # assertMatch:"node amenity=vending_machine vending=parcel_pickup;stamp"
+                err.append({'class': 9002001, 'subclass': 424486726, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+
         # *[surface=decoturf]
         if ('surface' in keys):
             match = False
@@ -4204,7 +4282,7 @@ class Josm_deprecated(PluginMapCSS):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_bbq_autofix = set_beam_pump_no_mech = set_diaper___checked = set_diaper_checked = set_generic_power_tower_type_warning = set_levels_building = set_power_pole_type_warning = set_power_tower_type_warning = set_pumping_ring_no_mech = False
+        set_bbq_autofix = set_beam_pump_no_mech = set_diaper___checked = set_diaper_checked = set_generic_power_tower_type_warning = set_levels_building = set_parcel_fixable = set_power_pole_type_warning = set_power_tower_type_warning = set_pumping_ring_no_mech = False
 
         # *[barrier=wire_fence]
         if ('barrier' in keys):
@@ -8175,6 +8253,79 @@ class Josm_deprecated(PluginMapCSS):
                 # suggestAlternative:"landuse=education"
                 err.append({'class': 9002001, 'subclass': 817812278, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
+        # *[amenity=vending_machine][vending=parcel_mail_in]
+        # *[amenity=vending_machine][vending=parcel_pickup]
+        if ('amenity' in keys and 'vending' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'vending_machine')) and (mapcss._tag_capture(capture_tags, 1, tags, 'vending') == mapcss._value_capture(capture_tags, 1, 'parcel_mail_in')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'vending_machine')) and (mapcss._tag_capture(capture_tags, 1, tags, 'vending') == mapcss._value_capture(capture_tags, 1, 'parcel_pickup')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # set .parcel_fixable
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{1.tag}")
+                # suggestAlternative:"amenity=parcel_locker + {1.value}=yes"
+                # fixAdd:"amenity=parcel_locker"
+                # fixRemove:"vending"
+                # fixAdd:"{1.value}=yes"
+                set_parcel_fixable = True
+                err.append({'class': 9002001, 'subclass': 1305128315, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{1.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['amenity','parcel_locker'],
+                    (mapcss._tag_uncapture(capture_tags, '{1.value}=yes')).split('=', 1)]),
+                    '-': ([
+                    'vending'])
+                }})
+
+        # *[amenity=vending_machine][vending][vending~=parcel_mail_in][vending~=parcel_pickup][count(uniq_list(split(";",tag("vending"))))==2]
+        if ('amenity' in keys and 'vending' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'vending_machine')) and (mapcss._tag_capture(capture_tags, 1, tags, 'vending')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 2, tags, 'vending'), mapcss._value_capture(capture_tags, 2, 'parcel_mail_in'))) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 3, tags, 'vending'), mapcss._value_capture(capture_tags, 3, 'parcel_pickup'))) and (mapcss.count(mapcss.uniq_list(mapcss.split(';', mapcss.tag(tags, 'vending')))) == 2))
+                except mapcss.RuleAbort: pass
+            if match:
+                # set .parcel_fixable
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{1.tag}")
+                # suggestAlternative:"amenity=parcel_locker + parcel_pickup=yes + parcel_mail_in=yes"
+                # fixAdd:"amenity=parcel_locker"
+                # fixAdd:"parcel_mail_in=yes"
+                # fixAdd:"parcel_pickup=yes"
+                # fixRemove:"vending"
+                set_parcel_fixable = True
+                err.append({'class': 9002001, 'subclass': 954921281, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{1.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['amenity','parcel_locker'],
+                    ['parcel_mail_in','yes'],
+                    ['parcel_pickup','yes']]),
+                    '-': ([
+                    'vending'])
+                }})
+
+        # *[amenity=vending_machine][vending~=parcel_mail_in]!.parcel_fixable
+        # *[amenity=vending_machine][vending~=parcel_pickup]!.parcel_fixable
+        if ('amenity' in keys and 'vending' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_parcel_fixable) and (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'vending_machine')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'vending'), mapcss._value_capture(capture_tags, 1, 'parcel_mail_in'))))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_parcel_fixable) and (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'vending_machine')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'vending'), mapcss._value_capture(capture_tags, 1, 'parcel_pickup'))))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{1.tag}")
+                # suggestAlternative:"amenity=parcel_locker + {1.value}=yes"
+                err.append({'class': 9002001, 'subclass': 424486726, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+
         # *[surface=decoturf]
         if ('surface' in keys):
             match = False
@@ -8297,7 +8448,7 @@ class Josm_deprecated(PluginMapCSS):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_bbq_autofix = set_beam_pump_no_mech = set_diaper___checked = set_diaper_checked = set_generic_power_tower_type_warning = set_levels_building = set_power_pole_type_warning = set_power_tower_type_warning = set_pumping_ring_no_mech = False
+        set_bbq_autofix = set_beam_pump_no_mech = set_diaper___checked = set_diaper_checked = set_generic_power_tower_type_warning = set_levels_building = set_parcel_fixable = set_power_pole_type_warning = set_power_tower_type_warning = set_pumping_ring_no_mech = False
 
         # *[barrier=wire_fence]
         if ('barrier' in keys):
@@ -11664,6 +11815,79 @@ class Josm_deprecated(PluginMapCSS):
                 # suggestAlternative:"landuse=education"
                 err.append({'class': 9002001, 'subclass': 817812278, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
+        # *[amenity=vending_machine][vending=parcel_mail_in]
+        # *[amenity=vending_machine][vending=parcel_pickup]
+        if ('amenity' in keys and 'vending' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'vending_machine')) and (mapcss._tag_capture(capture_tags, 1, tags, 'vending') == mapcss._value_capture(capture_tags, 1, 'parcel_mail_in')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'vending_machine')) and (mapcss._tag_capture(capture_tags, 1, tags, 'vending') == mapcss._value_capture(capture_tags, 1, 'parcel_pickup')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # set .parcel_fixable
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{1.tag}")
+                # suggestAlternative:"amenity=parcel_locker + {1.value}=yes"
+                # fixAdd:"amenity=parcel_locker"
+                # fixRemove:"vending"
+                # fixAdd:"{1.value}=yes"
+                set_parcel_fixable = True
+                err.append({'class': 9002001, 'subclass': 1305128315, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{1.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['amenity','parcel_locker'],
+                    (mapcss._tag_uncapture(capture_tags, '{1.value}=yes')).split('=', 1)]),
+                    '-': ([
+                    'vending'])
+                }})
+
+        # *[amenity=vending_machine][vending][vending~=parcel_mail_in][vending~=parcel_pickup][count(uniq_list(split(";",tag("vending"))))==2]
+        if ('amenity' in keys and 'vending' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'vending_machine')) and (mapcss._tag_capture(capture_tags, 1, tags, 'vending')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 2, tags, 'vending'), mapcss._value_capture(capture_tags, 2, 'parcel_mail_in'))) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 3, tags, 'vending'), mapcss._value_capture(capture_tags, 3, 'parcel_pickup'))) and (mapcss.count(mapcss.uniq_list(mapcss.split(';', mapcss.tag(tags, 'vending')))) == 2))
+                except mapcss.RuleAbort: pass
+            if match:
+                # set .parcel_fixable
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{1.tag}")
+                # suggestAlternative:"amenity=parcel_locker + parcel_pickup=yes + parcel_mail_in=yes"
+                # fixAdd:"amenity=parcel_locker"
+                # fixAdd:"parcel_mail_in=yes"
+                # fixAdd:"parcel_pickup=yes"
+                # fixRemove:"vending"
+                set_parcel_fixable = True
+                err.append({'class': 9002001, 'subclass': 954921281, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{1.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['amenity','parcel_locker'],
+                    ['parcel_mail_in','yes'],
+                    ['parcel_pickup','yes']]),
+                    '-': ([
+                    'vending'])
+                }})
+
+        # *[amenity=vending_machine][vending~=parcel_mail_in]!.parcel_fixable
+        # *[amenity=vending_machine][vending~=parcel_pickup]!.parcel_fixable
+        if ('amenity' in keys and 'vending' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_parcel_fixable) and (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'vending_machine')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'vending'), mapcss._value_capture(capture_tags, 1, 'parcel_mail_in'))))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_parcel_fixable) and (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'vending_machine')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'vending'), mapcss._value_capture(capture_tags, 1, 'parcel_pickup'))))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{1.tag}")
+                # suggestAlternative:"amenity=parcel_locker + {1.value}=yes"
+                err.append({'class': 9002001, 'subclass': 424486726, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+
         # *[surface=decoturf]
         if ('surface' in keys):
             match = False
@@ -11815,6 +12039,11 @@ class Test(TestPluginMapcss):
         self.check_not_err(n.node(data, {'emergency_telephone_code': '123', 'highway': 'emergency_access_point'}), expected={'class': 9002001, 'subclass': 663070970})
         self.check_not_err(n.node(data, {'emergency_telephone_code': '123', 'highway': 'emergency_access_point', 'phone': '123'}), expected={'class': 9002001, 'subclass': 663070970})
         self.check_not_err(n.node(data, {'highway': 'emergency_access_point', 'phone': '123'}), expected={'class': 9002001, 'subclass': 663070970})
+        self.check_err(n.node(data, {'amenity': 'vending_machine', 'vending': 'parcel_mail_in'}), expected={'class': 9002001, 'subclass': 1305128315})
+        self.check_err(n.node(data, {'amenity': 'vending_machine', 'vending': 'parcel_pickup'}), expected={'class': 9002001, 'subclass': 1305128315})
+        self.check_err(n.node(data, {'amenity': 'vending_machine', 'vending': 'parcel_mail_in;parcel_pickup'}), expected={'class': 9002001, 'subclass': 954921281})
+        self.check_err(n.node(data, {'amenity': 'vending_machine', 'vending': 'parcel_pickup;parcel_mail_in'}), expected={'class': 9002001, 'subclass': 954921281})
+        self.check_err(n.node(data, {'amenity': 'vending_machine', 'vending': 'parcel_pickup;stamp'}), expected={'class': 9002001, 'subclass': 424486726})
         self.check_not_err(n.node(data, {'image': 'https://commons.wikimedia.org/wiki/File:2015-05-13_Basteibr%C3%BCcke-.jpg'}), expected={'class': 9002023, 'subclass': 2042174729})
         self.check_not_err(n.node(data, {'image': 'https://web.archive.org/web/20220623215400/https://westnordost.de/p/97331.jpg'}), expected={'class': 9002023, 'subclass': 2042174729})
         self.check_err(n.node(data, {'image': 'https://westnordost.de/p/17484.jpg'}), expected={'class': 9002023, 'subclass': 2042174729})
