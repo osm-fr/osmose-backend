@@ -22,6 +22,7 @@
 
 from .Analyser import Analyser
 from .Analyser_Merge import Analyser_Merge_Point, Source, Load_XY, Mapping
+from modules.Stablehash import hexastablehash
 
 
 class Analyser_Merge_Dynamic(Analyser):
@@ -60,6 +61,8 @@ class SubAnalyser_Merge_Dynamic(Analyser_Merge_Point):
         if not load.table_name: # Rename all table of sub analysers the same
             load.table_name = self.__class__.__name__.lower()[18:]
             load.table_name = '_'.join(load.table_name.split('_')[:-1])
+            country_hash = self.config.db_schema.split('_')[-1][0:10] + hexastablehash(self.config.db_schema)[-4:]
+            load.table_name = country_hash + '_' + load.table_name
         Analyser_Merge_Point.init(self, url, name, source, load, mapping)
 
     def open_error_file(self):
