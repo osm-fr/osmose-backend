@@ -112,13 +112,13 @@ way[oneway][!highway][!railway][!aerialway][!waterway][!aeroway][!piste:type] {
 
 
 way[waterway][level] {
-    throwWarning: tr("Waterway with level");
+    throwWarning: tr("Waterway with `level`");
     assertMatch: "way waterway=stream level=-1";
     fixChangeKey: "level=>layer";
     -osmoseItemClassLevel: "3032/30327:0/2";
     -osmoseTags: list("tag", "fix:chair");
-    -osmoseDetail: tr("Level should be used for buildings, shops, amenities, etc.");
-    -osmoseTrap: tr("Remove level and check if layer is needed instead");
+    -osmoseDetail: tr("The tag `level` should be used for buildings, shops, amenities, etc.");
+    -osmoseTrap: tr("Remove `level` and check if `layer` is needed instead.");
 }
 
 
