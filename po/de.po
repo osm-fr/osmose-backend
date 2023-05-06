@@ -670,7 +670,7 @@ msgid "Long Highway above ground and no bridge"
 msgstr "Lange Straße über Grund und keine Brücke"
 
 #: ../plugins/TagFix_MultipleTag2.py:22 ../plugins/TagFix_MultipleTag2.py:275
-msgid "Waterway with level"
+msgid "Waterway with `level`"
 msgstr "Wasserstraße mit Level"
 
 #: ../plugins/TagRemove_Roundabout.py:39
@@ -3773,11 +3773,11 @@ msgid ""
 msgstr "Die Position der Defibrillatoren aus diesem Datensatz kann ungenau sein. Bitte die Position vor dem Hinzufügen zu OSM sorgfältig prüfen."
 
 #: ../plugins/TagFix_MultipleTag2.py:22
-msgid "Remove level and check if layer is needed instead"
+msgid "Remove `level` and check if `layer` is needed instead."
 msgstr "Level sollte verwendet werden für Gebäude, Geschäfte, Einrichtungen etc."
 
 #: ../plugins/TagFix_MultipleTag2.py:22
-msgid "Level should be used for buildings, shops, amenities, etc."
+msgid "The tag `level` should be used for buildings, shops, amenities, etc."
 msgstr "Das level-Tag entfernen und prüfen, ob stattdessen das layer-Tag verwendet werden sollte."
 
 #: ../plugins/TagRemove_Layer.py:43
