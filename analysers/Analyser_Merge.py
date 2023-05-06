@@ -670,10 +670,13 @@ class GeoJSON(Parser):
         self.source = source
         self.extractor = extractor
 
-        self.json = None
+        self.json = self.extractor(json.loads(self.source.open().read()))
+        try:
+            self._srid = int(self.json['crs']['properties']['name'].split(':')[1])
+        except:
+            pass
 
     def header(self):
-        self.json = self.extractor(json.loads(self.source.open().read()))
         columns = set()
         # Read all entries because structure can vary
         for feature in self.json['features']:
@@ -684,7 +687,6 @@ class GeoJSON(Parser):
         return columns
 
     def import_(self, table, osmosis):
-        self.json = self.json or self.extractor(json.loads(self.source.open().read()))
         for row in self.json['features']:
             if row['geometry'] and row['geometry']['coordinates'] and len(row['geometry']['coordinates']) > 0:
                 row['properties'] = flattenjson(row['properties'])
