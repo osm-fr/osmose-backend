@@ -135,41 +135,67 @@ sql13 = """
 -- Collect highway|railway|aeroways either entering or fully inside landuse/natural geometries
 CREATE TEMP TABLE intersecting_geometries AS
 SELECT
-  mobility_ways.id AS mobility_way_id,
-  mobility_ways.linestring AS mobility_way_linestring,
-  mobility_ways.type AS mobility_way_type,
-  landusage.id AS landusage_way_id,
-  landusage.poly AS landusage_poly,
-  landusage.landusekey,
-  landusage.landusevalue,
-  CONCAT(mobility_ways.type, '=', mobility_ways.tags->mobility_ways.type) AS tag_way,
-  CONCAT(landusage.landusekey, '=', landusage.landusevalue) AS tag_polygon
-FROM
-  mobility_ways
-  JOIN landusage ON
-    (
+  mobility_way_id,
+  mobility_way_linestring,
+  mobility_way_type,
+  landusage_way_id,
+  landusage_poly,
+  landusekey,
+  landusevalue,
+  tag_way,
+  tag_polygon
+FROM (
+  SELECT
+    mobility_ways.id AS mobility_way_id,
+    mobility_ways.linestring AS mobility_way_linestring,
+    mobility_ways.type AS mobility_way_type,
+    landusage.id AS landusage_way_id,
+    landusage.poly AS landusage_poly,
+    landusage.linestring AS landusage_linestring,
+    landusage.landusekey,
+    landusage.landusevalue,
+    CONCAT(mobility_ways.type, '=', mobility_ways.tags->mobility_ways.type) AS tag_way,
+    CONCAT(landusage.landusekey, '=', landusage.landusevalue) AS tag_polygon,
+    (ST_Dump(ST_Transform(ST_Intersection(landusage.poly, mobility_ways.linestring), {proj}))).geom AS intersection_part_geom,
+    landusage.is_multipolygon AS skip_intersection_size_check -- due to ST_buffer approach for mp, instead of full parsing of inners/outers
+  FROM
+    mobility_ways
+    JOIN landusage ON
       (
-        NOT landusage.tags?'layer' AND NOT mobility_ways.tags?'layer'
-      ) OR (
-        landusage.tags?'layer' AND mobility_ways.tags?'layer' AND
-        landusage.tags->'layer' = mobility_ways.tags->'layer'
-      )
-    ) AND
-    landusage.linestring && mobility_ways.linestring AND
-    -- Only find ways where the highway/railway/aeroway actually enters the
-    -- polygon. Exclude cases where the polygon is tied to the way without going inside.
-    (
-      ST_Crosses(landusage.linestring, mobility_ways.linestring) OR
+        (
+          NOT landusage.tags?'layer' AND NOT mobility_ways.tags?'layer'
+        ) OR (
+          landusage.tags?'layer' AND mobility_ways.tags?'layer' AND
+          landusage.tags->'layer' = mobility_ways.tags->'layer'
+        )
+      ) AND
+      landusage.linestring && mobility_ways.linestring AND
+      -- Only find ways where the highway/railway/aeroway actually enters the
+      -- polygon. Exclude cases where the polygon is tied to the way without going inside.
       (
-        ST_Contains(landusage.poly, mobility_ways.linestring) AND
-        NOT landusage.is_multipolygon -- due to ST_buffer approach for mp, instead of full parsing of inners/outers
+        ST_Crosses(landusage.linestring, mobility_ways.linestring) OR
+        (
+          ST_Contains(landusage.poly, mobility_ways.linestring) AND
+          NOT landusage.is_multipolygon -- due to ST_buffer approach for mp, instead of full parsing of inners/outers
+        )
       )
+  ) AS t
+WHERE
+  skip_intersection_size_check OR
+  (
+    -- Only include significant intersections
+    ST_Length(intersection_part_geom) > 2 AND
+    (
+      ST_Distance(ST_Centroid(intersection_part_geom), ST_Transform(mobility_way_linestring, {proj})) > 1 OR
+      ST_Distance(ST_Centroid(intersection_part_geom), ST_Transform(landusage_linestring, {proj})) > 1
     )
+  )
 """
 
 sql14 = """
 -- Intersections with railway, aeroway or highway
 SELECT
+  DISTINCT ON (mobility_way_id, landusage_way_id)
   mobility_way_id,
   landusage_way_id,
   ST_AsText(ST_PointOnSurface(ST_Intersection(landusage_poly, mobility_way_linestring))),
@@ -181,7 +207,7 @@ FROM
 WHERE
   (
     landusekey = 'landuse' AND
-    landusevalue NOT IN ('civic_admin', 'commercial', 'construction', 'education', 'grass', 'harbour', 'industrial', 'military', 'port', 'proposed', 'railway', 'religious', 'residential', 'retail', 'winter_sports')
+    landusevalue NOT IN ('civic_admin', 'commercial', 'construction', 'education', 'grass', 'harbour', 'industrial', 'military', 'port', 'proposed', 'quarry', 'railway', 'religious', 'residential', 'retail', 'winter_sports')
   ) OR (
     landusekey = 'natural' AND
     landusevalue IN ('bay', 'cliff', 'scrub', 'shrubbery', 'sinkhole', 'tree_group', 'wetland', 'wood') OR
@@ -191,6 +217,12 @@ WHERE
       mobility_way_type != 'highway'
     )
   )
+ORDER BY
+  mobility_way_id,
+  landusage_way_id,
+  mobility_way_type,
+  tag_way,
+  tag_polygon
 """
 
 class Analyser_Osmosis_Polygon_Intersects(Analyser_Osmosis):
@@ -274,4 +306,5 @@ class Test(TestAnalyserOsmosis):
         self.check_err(cl=str(a.classIndex["highway"]), elems=[("way", "1049"), ("way", "1043")])
         self.check_err(cl=str(a.classIndex["railway"]), elems=[("way", "1050"), ("way", "1047")])
         self.check_err(cl=str(a.classIndex["railway"]), elems=[("way", "1055"), ("way", "1052")])
-        self.check_num_err(14)
+        self.check_err(cl=str(a.classIndex["highway"]), elems=[("way", "1062"), ("way", "1059")])
+        self.check_num_err(15)
