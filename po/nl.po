@@ -21,7 +21,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
 "PO-Revision-Date: 2014-04-30 17:25+0000\n"
-"Last-Translator: Oli Vier, 2022\n"
+"Last-Translator: Famlam, 2022-2023\n"
 "Language-Team: Dutch (http://app.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -144,7 +144,7 @@ msgstr "Niet verbonden fietspad"
 
 #: ../analysers/analyser_osmosis_highway_features.py:78
 msgid "Missing way on level crossing"
-msgstr "Ontbrekend weg op overweg niveau "
+msgstr "Ontbrekende weg op overweg"
 
 #: ../analysers/analyser_osmosis_highway_features.py:82
 msgid "Lone highway or barrier node"
@@ -659,7 +659,7 @@ msgstr "Lange Weg bovengronds en geen brug"
 
 #: ../plugins/TagFix_MultipleTag2.py:22 ../plugins/TagFix_MultipleTag2.py:275
 msgid "Waterway with level"
-msgstr "Waterweg met niveau"
+msgstr "Waterweg met `level`"
 
 #: ../plugins/TagRemove_Roundabout.py:39
 msgid "Unnecessary tag oneway"
@@ -3020,7 +3020,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:425
 msgid "Highway intersecting highway"
-msgstr "Weg kruist water "
+msgstr "Weg kruist een weg"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:427
 msgid "Waterway intersecting waterway"
@@ -3762,11 +3762,11 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag2.py:22
 msgid "Remove level and check if layer is needed instead"
-msgstr "Niveau moet worden gebruikt voor gebouwen, winkels, voorzieningen, enz."
+msgstr "Verwijder de tag `level` en kijk of `layer` noodzakelijk is."
 
 #: ../plugins/TagFix_MultipleTag2.py:22
 msgid "Level should be used for buildings, shops, amenities, etc."
-msgstr "Niveau moet worden gebruikt voor gebouwen, winkels, voorzieningen, enz."
+msgstr "De tag `level` moet gebruikt worden voor gebouwen, winkels, voorzieningen, enz."
 
 #: ../plugins/TagRemove_Layer.py:43
 msgid "Waterway/water underground and no tunnel"
@@ -5039,7 +5039,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_polygon_small.py:55
 msgid "Natural area very small"
-msgstr ""
+msgstr "Klein natuurlijk landgebruik"
 
 #: ../analysers/analyser_osmosis_polygon_small.py:57
 msgid ""
@@ -5056,7 +5056,7 @@ msgstr ""
 #: ../analysers/analyser_osmosis_polygon_small.py:62
 #: ../analysers/analyser_osmosis_polygon_small.py:80
 msgid "Landuse very small"
-msgstr ""
+msgstr "Klein landgebruik"
 
 #: ../analysers/analyser_osmosis_polygon_small.py:64
 #: ../analysers/analyser_osmosis_polygon_small.py:71
@@ -5066,7 +5066,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_polygon_small.py:69
 msgid "Small farm"
-msgstr ""
+msgstr "Kleine boerderij"
 
 #: ../analysers/analyser_osmosis_polygon_small.py:73
 #, python-brace-format
