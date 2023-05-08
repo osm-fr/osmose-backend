@@ -107,6 +107,93 @@ WHERE
 ANALYZE {0}.highway_ends;
 """
 
+    sql_create_multipolygons = """
+DO $$
+DECLARE
+    mp RECORD;
+BEGIN
+    DROP TABLE IF EXISTS {0}.multipolygons;
+    CREATE UNLOGGED TABLE {0}.multipolygons (
+        LIKE relations INCLUDING ALL,
+        poly geometry(Geometry, 4326) NOT NULL,
+        poly_proj geometry(Geometry, {1}) NOT NULL,
+        is_valid boolean NOT NULL
+    );
+
+    FOR mp in (
+        SELECT
+            relations.*,
+            ST_LineMerge(ST_Collect(ways.linestring)) AS linestrings
+        FROM
+            relations
+            JOIN relation_members ON
+                relation_members.relation_id = relations.id AND
+                relation_members.member_type = 'W' AND
+                relation_members.member_role IN ('outer', 'inner')
+            JOIN ways ON
+                ways.id = relation_members.member_id
+        WHERE
+            relations.tags->'type' = 'multipolygon'
+        GROUP BY
+            relations.id
+    ) LOOP
+        BEGIN
+            IF ST_BuildArea(mp.linestrings) IS NOT NULL AND NOT ST_IsEmpty(ST_BuildArea(mp.linestrings)) THEN
+                WITH
+                unary AS (
+                    SELECT
+                        id, version, user_id, tstamp, changeset_id, tags,
+                        (ST_Dump(poly)).geom AS poly
+                    FROM (VALUES (
+                        mp.id,
+                        mp.version,
+                        mp.user_id,
+                        mp.tstamp,
+                        mp.changeset_id,
+                        mp.tags,
+                        ST_BuildArea(mp.linestrings)
+                    )) AS t(id, version, user_id, tstamp, changeset_id, tags, poly)
+                ),
+                simplified AS (
+                    SELECT
+                        id, version, user_id, tstamp, changeset_id, tags,
+                        ST_BuildArea(ST_Collect(
+                            ST_ExteriorRing(poly),
+                            (SELECT ST_Union(ST_InteriorRingN(poly, n)) FROM generate_series(1, ST_NumInteriorRings(poly)) AS t(n))
+                        )) AS poly
+                    FROM
+                        unary
+                ),
+                multi AS (
+                    SELECT
+                        id, version, user_id, tstamp, changeset_id, tags,
+                        ST_CollectionHomogenize(ST_Collect(poly)) AS poly
+                    FROM
+                        simplified
+                    GROUP BY
+                        id, version, user_id, tstamp, changeset_id, tags
+                )
+                INSERT INTO
+                    {0}.multipolygons
+                SELECT
+                    *,
+                    ST_Transform(poly, {1}) AS poly_proj,
+                    ST_IsValid(poly) AS is_valid
+                FROM multi;
+            END IF;
+        EXCEPTION WHEN OTHERS THEN
+            RAISE NOTICE 'multipolygon fails: %', mp.id;
+        END;
+    END LOOP;
+END;
+$$ LANGUAGE 'plpgsql';
+
+CREATE INDEX idx_multipolygons_poly ON {0}.multipolygons USING GIST(poly);
+CREATE INDEX idx_multipolygons_poly_proj ON {0}.multipolygons USING gist(poly_proj);
+CREATE INDEX idx_multipolygons_tags ON {0}.multipolygons USING gist (tags);
+ANALYZE {0}.multipolygons;
+"""
+
     sql_create_buildings = """
 CREATE UNLOGGED TABLE {0}.buildings AS
 SELECT
@@ -268,6 +355,11 @@ ANALYZE {0}.buildings;
                 elif table == 'touched_highway_ends':
                     self.requires_tables_build(["highway_ends"])
                     self.create_view_touched('highway_ends', 'W')
+                elif table == 'multipolygons':
+                    self.giscurs.execute(self.sql_create_multipolygons.format(self.config.db_schema.split(',')[0], self.config.options.get("proj")))
+                elif table == 'touched_multipolygons':
+                    self.requires_tables_build(['multipolygons'])
+                    self.create_view_touched('multipolygons', 'R')
                 elif table == 'buildings':
                     self.giscurs.execute(self.sql_create_buildings.format(self.config.db_schema.split(',')[0], self.config.options.get("proj")))
                 elif table == 'touched_buildings':
