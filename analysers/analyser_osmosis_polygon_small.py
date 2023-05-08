@@ -26,16 +26,16 @@ from .Analyser_Osmosis import Analyser_Osmosis
 sql10 = """
 SELECT
   id,
-  ST_AsText(way_locate(ways.linestring)),
-  ST_Area(ST_MakePolygon(ST_Transform(ways.linestring, {proj})))
+  ST_AsText(way_locate(linestring)),
+  ST_Area(ST_MakePolygon(ST_Transform(linestring, {proj})))
 FROM
-  {touched}ways AS ways
+  {touched}ways
 WHERE
-  ways.is_polygon AND
-  ways.tags != ''::hstore AND
-  ways.tags?'{key}' AND
-  ways.tags->'{key}' = '{val}' AND
-  ST_Area(ST_MakePolygon(ST_Transform(ways.linestring, {proj}))) < {minarea}
+  is_polygon AND
+  tags != ''::hstore AND
+  tags?'{key}' AND
+  tags->'{key}' = '{val}' AND
+  ST_Area(ST_MakePolygon(ST_Transform(linestring, {proj}))) < {minarea}
 """
 
 
