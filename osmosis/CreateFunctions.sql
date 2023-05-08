@@ -171,6 +171,13 @@ $$ LANGUAGE plpgsql
    STABLE
    RETURNS NULL ON NULL INPUT;
 
+CREATE OR REPLACE FUNCTION multipolygon_locate(poly geometry) RETURNS geometry AS $$
+DECLARE BEGIN
+    RETURN ST_PointOnSurface(poly);
+END
+$$ LANGUAGE plpgsql
+   IMMUTABLE
+   RETURNS NULL ON NULL INPUT;
 
 CREATE OR REPLACE FUNCTION any_locate(type char(1), aid bigint) RETURNS geometry AS $$
     SELECT CASE $1
