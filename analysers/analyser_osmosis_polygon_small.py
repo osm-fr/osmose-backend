@@ -25,7 +25,7 @@ from .Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
 SELECT
-  id,
+  'W' || id,
   ST_AsText(way_locate(linestring)),
   ST_Area(ST_MakePolygon(ST_Transform(linestring, {proj})))
 FROM
@@ -36,10 +36,27 @@ WHERE
   tags?'{key}' AND
   tags->'{key}' = '{val}' AND
   ST_Area(ST_MakePolygon(ST_Transform(linestring, {proj}))) < {minarea}
+
+UNION ALL
+
+SELECT
+  'R' || id,
+  ST_AsText(multipolygon_locate(poly)),
+  ST_Area(poly_proj)
+FROM
+  {touched}multipolygons
+WHERE
+  is_valid AND
+  tags?'{key}' AND
+  tags->'{key}' = '{val}' AND
+  ST_Area(poly_proj) < {minarea}
 """
 
 
 class Analyser_Osmosis_Polygon_Small(Analyser_Osmosis):
+
+    requires_tables_full = ['multipolygons']
+    requires_tables_diff = ['touched_multipolygons']
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
@@ -97,7 +114,7 @@ Other landuses could be tagged with:
         for item in self.checks:
             self.run(sql10.format(key=item["key"], val=item["val"], minarea=item["minarea"], proj=self.proj, touched=""), lambda res: {
                 "class": item["class"],
-                "data": [self.way_full, self.positionAsText],
+                "data": [self.any_full, self.positionAsText],
                 "text": T_("{0} with an area of {1} m2", "`{0}={1}`".format(item["key"], item["val"]), round(res[2]))
             })
 
@@ -105,7 +122,7 @@ Other landuses could be tagged with:
         for item in self.checks:
             self.run(sql10.format(key=item["key"], val=item["val"], minarea=item["minarea"], proj=self.proj, touched='touched_'), lambda res: {
                 "class": item["class"],
-                "data": [self.way_full, self.positionAsText],
+                "data": [self.any_full, self.positionAsText],
                 "text": T_("{0} with an area of {1} m2", "`{0}={1}`".format(item["key"], item["val"]), round(res[2]))
             })
 
