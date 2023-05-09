@@ -148,7 +148,7 @@ node[natural=tree][type][type!=palm] {
     throwWarning: tr("The tag `{0}` is deprecated in favour of {1}", "{1.key}", "`leaf_type`");
     group: tr("Deprecated tag");
     -osmoseItemClassLevel: "4010/40106/3";
-    -osmoseTags: list("tag", "tree");
+    -osmoseTags: list("tag", "tree", "fix:chair", "deprecated");
     /* No autofix, most remaining values are misspelled (or palm, which cannot easily be converted) */
 }
 
