@@ -147,7 +147,7 @@ class default_simple(template_config):
         self.analyser["osmosis_boundary_hole"] = "xxx"
         self.analyser["osmosis_building_overlaps"] = "xxx"
         self.analyser["osmosis_polygon"] = "xxx"
-        self.analyser["osmosis_highway_vs_building"] = "xxx"
+#        self.analyser["osmosis_highway_vs_building"] = "xxx"
         self.analyser["osmosis_orphan_nodes_cluster"] = "xxx"
         self.analyser["osmosis_powerline"] = "xxx"
         self.analyser["osmosis_double_tagging"] = "xxx"
