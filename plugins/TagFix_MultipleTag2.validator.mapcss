@@ -144,6 +144,15 @@ relation[!type] {
 }
 
 
+node[natural=tree][type][type!=palm] {
+    throwWarning: tr("The tag `{0}` is deprecated in favour of {1}", "{1.key}", "`leaf_type`");
+    group: tr("Deprecated tag");
+    -osmoseItemClassLevel: "4010/40106/3";
+    -osmoseTags: list("tag", "tree", "fix:chair", "deprecated");
+    /* No autofix, most remaining values are misspelled (or palm, which cannot easily be converted) */
+}
+
+
 /* Workaround for issue #1766 */
 node[tunnel][!highway][!area:highway][!railway][!waterway][!piste:type][type!=tunnel][public_transport!=platform][route!=ferry][man_made!=pipeline][man_made!=goods_conveyor][man_made!=wildlife_crossing][man_made!=tunnel][power!=cable] {
     throwWarning: tr("{0} on suspicious object", "{0.key}");
