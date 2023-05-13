@@ -58,7 +58,7 @@ class Analyser_merge_Eclext_FR(Analyser_Merge_Point):
                 return 'xenon'
             else:
                 return None
-            
+
         def extract_support(res):
             if res.get('typeSource') == 'CAT':
                 return 'catenary'
@@ -80,15 +80,15 @@ class Analyser_merge_Eclext_FR(Analyser_Merge_Point):
                         return None
                 except ValueError:
                     return None
-        
+
         def extract_adaptatif(res):
             adaptatif = res.get('eclairageAdaptatif')
 
-            if adaptatif=='EN':
+            if adaptatif == 'EN':
                 return 'dusk-dawn'
-            elif adaptatif=='CO':
+            elif adaptatif == 'CO':
                 return 'motion'
-            elif adaptatif=='AV':
+            elif adaptatif == 'AV':
                 return 'demand'
             else:
                 return None
@@ -148,5 +148,5 @@ class Analyser_merge_Eclext_FR(Analyser_Merge_Point):
                         "model":clean_string_tag("model"),
                         "power": lambda res: "pole" if (res.get('typeSource') == 'POT') else None,
                         "start_date": lambda res: parse(res.get('datePremieInstallation')).date() if res.get('datePremieInstallation') else None},
-                        
+
                 text = lambda tags, fields: {} )))
