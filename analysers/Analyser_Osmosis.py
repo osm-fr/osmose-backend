@@ -114,7 +114,8 @@ DECLARE
 BEGIN
     DROP TABLE IF EXISTS {0}.multipolygons;
     CREATE UNLOGGED TABLE {0}.multipolygons (
-        LIKE relations INCLUDING ALL,
+        id bigint,
+        tags hstore,
         poly geometry(Geometry, 4326) NOT NULL,
         poly_proj geometry(Geometry, {1}) NOT NULL,
         is_valid boolean NOT NULL
@@ -122,7 +123,8 @@ BEGIN
 
     FOR mp in (
         SELECT
-            relations.*,
+            relations.id,
+            relations.tags,
             ST_LineMerge(ST_Collect(ways.linestring)) AS linestrings
         FROM
             relations
@@ -142,21 +144,17 @@ BEGIN
                 WITH
                 unary AS (
                     SELECT
-                        id, version, user_id, tstamp, changeset_id, tags,
+                        id, tags,
                         (ST_Dump(poly)).geom AS poly
                     FROM (VALUES (
                         mp.id,
-                        mp.version,
-                        mp.user_id,
-                        mp.tstamp,
-                        mp.changeset_id,
                         mp.tags,
                         ST_BuildArea(mp.linestrings)
-                    )) AS t(id, version, user_id, tstamp, changeset_id, tags, poly)
+                    )) AS t(id, tags, poly)
                 ),
                 simplified AS (
                     SELECT
-                        id, version, user_id, tstamp, changeset_id, tags,
+                        id, tags,
                         ST_BuildArea(ST_Collect(
                             ST_ExteriorRing(poly),
                             (SELECT ST_Union(ST_InteriorRingN(poly, n)) FROM generate_series(1, ST_NumInteriorRings(poly)) AS t(n))
@@ -166,12 +164,12 @@ BEGIN
                 ),
                 multi AS (
                     SELECT
-                        id, version, user_id, tstamp, changeset_id, tags,
+                        id, tags,
                         ST_CollectionHomogenize(ST_Collect(poly)) AS poly
                     FROM
                         simplified
                     GROUP BY
-                        id, version, user_id, tstamp, changeset_id, tags
+                        id, tags
                 )
                 INSERT INTO
                     {0}.multipolygons
