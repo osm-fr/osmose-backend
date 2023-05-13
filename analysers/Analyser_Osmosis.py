@@ -136,12 +136,16 @@ BEGIN
                 relation_members.relation_id = relations.id AND
                 relation_members.member_type = 'W' AND
                 relation_members.member_role IN ('outer', 'inner')
-            JOIN ways ON
+            LEFT JOIN ways ON
                 ways.id = relation_members.member_id
         WHERE
             relations.tags->'type' = 'multipolygon'
         GROUP BY
             relations.id
+        HAVING
+            -- Ensure all ways are downloaded; may be false at extract borders
+            -- If false, calculations like ST_Area would give invalid results
+            bool_and(ways.id IS NOT NULL)
     ) LOOP
         BEGIN
             IF ST_BuildArea(mp.linestrings) IS NOT NULL AND NOT ST_IsEmpty(ST_BuildArea(mp.linestrings)) THEN
