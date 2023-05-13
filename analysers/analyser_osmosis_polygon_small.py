@@ -126,4 +126,6 @@ class Test(TestAnalyserOsmosis):
 
         self.root_err = self.load_errors()
         self.check_err(cl="1", elems=[("way", "100")])
-        self.check_num_err(1)
+        self.check_err(cl="3", elems=[("relation", "1000")])
+        self.check_err(cl="3", elems=[("relation", "1001")])
+        self.check_num_err(3)
