@@ -656,7 +656,7 @@ msgid "Long Highway above ground and no bridge"
 msgstr "bridgeタグがないのに地表より上にある長い道路"
 
 #: ../plugins/TagFix_MultipleTag2.py:22 ../plugins/TagFix_MultipleTag2.py:275
-msgid "Waterway with level"
+msgid "Waterway with `level`"
 msgstr "levelのある水路"
 
 #: ../plugins/TagRemove_Roundabout.py:39
@@ -3759,11 +3759,11 @@ msgid ""
 msgstr "このデータセットによるAEDの位置はアバウトであることがあります。OSMに追加する前に位置をよく注意してください。"
 
 #: ../plugins/TagFix_MultipleTag2.py:22
-msgid "Remove level and check if layer is needed instead"
+msgid "Remove `level` and check if `layer` is needed instead."
 msgstr "level は buildings, shops, amenityなどに使うべきです。"
 
 #: ../plugins/TagFix_MultipleTag2.py:22
-msgid "Level should be used for buildings, shops, amenities, etc."
+msgid "The tag `level` should be used for buildings, shops, amenities, etc."
 msgstr "levelを削除して代わりにlayerが必要か検討します"
 
 #: ../plugins/TagRemove_Layer.py:43

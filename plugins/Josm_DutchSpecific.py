@@ -54,6 +54,7 @@ class Josm_DutchSpecific(PluginMapCSS):
         self.re_223975fd = re.compile(r'(^|;)NL:(C19|L0?1)\b')
         self.re_229e1925 = re.compile(r'^hazmat(:[A-E])?(:forward|:backward|:both_ways)?(:conditional)?$')
         self.re_2441139b = re.compile(r'(?i)\b(aansl|empl|goed|ind|inhaalsp|opstel|overloopw|racc|rang|terr)\b')
+        self.re_251abd6a = re.compile(r'^(residential|unclassified|tertiary|secondary|primary|trunk|motorway|busway)(_link)?$')
         self.re_25a62b9d = re.compile(r'^(motor_)?vehicle(:forward|:backward|:both_ways)?(:conditional)?$')
         self.re_26ae994a = re.compile(r'^motorcycle(:forward|:backward|:both_ways)?(:conditional)?$')
         self.re_26e04b1e = re.compile(r'\b(([Aa]f)?gesloten|[Gg]eopend)\b')
@@ -101,6 +102,7 @@ class Josm_DutchSpecific(PluginMapCSS):
         self.re_5ed5036a = re.compile(r'(?i)^speeltuin$')
         self.re_5ef8db88 = re.compile(r'^addr:(street|housenumber|postcode|city)$')
         self.re_5f5aa10b = re.compile(r'^footway(:left|:right|:both)?:')
+        self.re_5fbb635f = re.compile(r'[1-9]$')
         self.re_617e36ee = re.compile(r'^hazmat(:[A-E])?(:backward|:both_ways)?(:conditional)?$')
         self.re_6211f625 = re.compile(r'(?i)(voormalige?)')
         self.re_62e192cf = re.compile(r'^(motorway(_link)?|construction|proposed)$')
@@ -114,6 +116,7 @@ class Josm_DutchSpecific(PluginMapCSS):
         self.re_6b8a2885 = re.compile(r'^bicycle(:backward|:both_ways)?(:conditional)?$')
         self.re_6cd83c9e = re.compile(r'(?i)^gratis\s|gratis\)')
         self.re_6d837295 = re.compile(r'(^|;)NL:C17\b')
+        self.re_6e264741 = re.compile(r'(?i)^(Geldmaat|ABN.?AMRO|ING|Rabobank|SNS)\b')
         self.re_7087ae0d = re.compile(r'^trailer(:forward|:backward|:both_ways)?(:conditional)?$')
         self.re_70de8f0d = re.compile(r'^(00|\+)31 ?0[0-9]{8,}')
         self.re_7184e9bc = re.compile(r'^sidewalk:(left|right|both)$')
@@ -122,6 +125,7 @@ class Josm_DutchSpecific(PluginMapCSS):
         self.re_7372291c = re.compile(r'^bicycle(:forward|:backward|:both_ways)?(:conditional)?$')
         self.re_73d53d80 = re.compile(r'(^|;)NL:A0?4\b')
         self.re_73ea17b1 = re.compile(r'^moped(:forward|:backward|:both_ways)?(:conditional)?$')
+        self.re_745836a5 = re.compile(r'^(brand|name|operator)$')
         self.re_7531ba03 = re.compile(r'^maxaxleload(:forward|:both_ways)?(:conditional)?$')
         self.re_75b7dc3e = re.compile(r'^oneway:hazmat')
         self.re_774d1ba2 = re.compile(r'^maxwidth(:backward|:both_ways)?(:conditional)?$')
@@ -277,9 +281,9 @@ class Josm_DutchSpecific(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("NL deprecated features")
-                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
                 # fixRemove:"{0.key}"
-                err.append({'class': 2, 'subclass': 788111375, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 2, 'subclass': 788111375, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
                     '-': ([
                     mapcss._tag_uncapture(capture_tags, '{0.key}')])
                 }})
@@ -293,10 +297,10 @@ class Josm_DutchSpecific(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("NL deprecated features")
-                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
                 # suggestAlternative:"payment:ov-chipkaart"
                 # fixChangeKey:"{0.key}=>payment:ov-chipkaart"
-                err.append({'class': 2, 'subclass': 1555838972, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 2, 'subclass': 1555838972, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     [(mapcss._tag_uncapture(capture_tags, '{0.key}=>payment:ov-chipkaart')).split('=>', 1)[1].strip(), mapcss.tag(tags, (mapcss._tag_uncapture(capture_tags, '{0.key}=>payment:ov-chipkaart')).split('=>', 1)[0].strip())]]),
                     '-': ([
@@ -328,6 +332,18 @@ class Josm_DutchSpecific(PluginMapCSS):
                     '-': ([
                     mapcss._tag_uncapture(capture_tags, '{0.key}')])
                 }})
+
+        # node[opening_hours="24/7"][amenity=atm][/^(brand|name|operator)$/=~/(?i)^(Geldmaat|ABN.?AMRO|ING|Rabobank|SNS)\b/][inside("NL")]
+        if ('amenity' in keys and 'opening_hours' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'opening_hours') == mapcss._value_capture(capture_tags, 0, '24/7')) and (mapcss._tag_capture(capture_tags, 1, tags, 'amenity') == mapcss._value_capture(capture_tags, 1, 'atm')) and (mapcss.regexp_test(self.re_6e264741, mapcss._match_regex(tags, self.re_745836a5))) and (mapcss.inside(self.father.config.options, 'NL')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("NL deprecated features")
+                # throwWarning:tr("{0} op {1} is onwaarschijnlijk, Geldmaten zijn niet de hele nacht geopend","{0.tag}","{1.tag}")
+                err.append({'class': 2, 'subclass': 1466427444, 'text': mapcss.tr('{0} op {1} is onwaarschijnlijk, Geldmaten zijn niet de hele nacht geopend', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
         # node[name][highway][name=~/(?i)^(lift)$/]
         # node[name][amenity=drinking_water][name=~/(?i)(drinkwater|\swater|kraan)/]
@@ -1861,9 +1877,9 @@ class Josm_DutchSpecific(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("NL deprecated features")
-                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
                 # suggestAlternative:"addr:postcode via BAG imports on addresses"
-                err.append({'class': 2, 'subclass': 194633982, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                err.append({'class': 2, 'subclass': 194633982, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # way[building=terrace][inside("NL")]
         if ('building' in keys):
@@ -1874,10 +1890,11 @@ class Josm_DutchSpecific(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("NL deprecated features")
-                # throwWarning:tr("Rijtjeshuizen ({0}) worden in Nederland individueel geïmporteerd uit de BAG","{0.tag}")
+                # throwWarning:tr("Een rij met rijtjeshuizen ({0}) wordt in Nederland per huis geïmporteerd uit de BAG","{0.tag}")
                 # suggestAlternative:"leisure=outdoor_seating voor 'terrasjes'"
+                # suggestAlternative:"building=house + house=terraced voor een individueel rijtjeshuis"
                 # suggestAlternative:"building=house via een BAG importverzoek voor huizen"
-                err.append({'class': 2, 'subclass': 239999292, 'text': mapcss.tr('Rijtjeshuizen ({0}) worden in Nederland individueel geïmporteerd uit de BAG', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                err.append({'class': 2, 'subclass': 239999292, 'text': mapcss.tr('Een rij met rijtjeshuizen ({0}) wordt in Nederland per huis geïmporteerd uit de BAG', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # *[addr:interpolation][inside("NL")]
         if ('addr:interpolation' in keys):
@@ -1926,9 +1943,9 @@ class Josm_DutchSpecific(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("NL deprecated features")
-                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
                 # fixRemove:"{0.key}"
-                err.append({'class': 2, 'subclass': 788111375, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 2, 'subclass': 788111375, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
                     '-': ([
                     mapcss._tag_uncapture(capture_tags, '{0.key}')])
                 }})
@@ -2416,6 +2433,31 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # assertNoMatch:"way highway=unclassified maxspeed:moped=45"
                 err.append({'class': 7, 'subclass': 790150725, 'text': mapcss.tr('{0} overschrijdt de maximumsnelheid van RVV art. 22', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
+        # way[maxspeed][maxspeed=~/[1-9]$/][maxspeed!=5][maxspeed!=15][highway=~/^(residential|unclassified|tertiary|secondary|primary|trunk|motorway|busway)(_link)?$/][!access][!vehicle][!motor_vehicle][inside("NL")]
+        # way[maxspeed=20][highway=~/^(residential|unclassified|tertiary|secondary|primary|trunk|motorway|busway)(_link)?$/][!access][!vehicle][!motor_vehicle][inside("NL")]
+        # way[maxspeed=40][highway=~/^(residential|unclassified|tertiary|secondary|primary|trunk|motorway|busway)(_link)?$/][!access][!vehicle][!motor_vehicle][inside("NL")]
+        if ('highway' in keys and 'maxspeed' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxspeed')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5fbb635f), mapcss._tag_capture(capture_tags, 1, tags, 'maxspeed'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'maxspeed') != mapcss._value_capture(capture_tags, 2, 5)) and (mapcss._tag_capture(capture_tags, 3, tags, 'maxspeed') != mapcss._value_capture(capture_tags, 3, 15)) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 4, self.re_251abd6a), mapcss._tag_capture(capture_tags, 4, tags, 'highway'))) and (not mapcss._tag_capture(capture_tags, 5, tags, 'access')) and (not mapcss._tag_capture(capture_tags, 6, tags, 'vehicle')) and (not mapcss._tag_capture(capture_tags, 7, tags, 'motor_vehicle')) and (mapcss.inside(self.father.config.options, 'NL')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxspeed') == mapcss._value_capture(capture_tags, 0, 20)) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_251abd6a), mapcss._tag_capture(capture_tags, 1, tags, 'highway'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'access')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'vehicle')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'motor_vehicle')) and (mapcss.inside(self.father.config.options, 'NL')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxspeed') == mapcss._value_capture(capture_tags, 0, 40)) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_251abd6a), mapcss._tag_capture(capture_tags, 1, tags, 'highway'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'access')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'vehicle')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'motor_vehicle')) and (mapcss.inside(self.father.config.options, 'NL')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("NL speed limits")
+                # throwWarning:tr("{0} is a non-standard speed limit. Possibly this is an advisory speed limit instead?","{0.tag}")
+                # assertNoMatch:"way highway=cycleway maxspeed=40"
+                # assertNoMatch:"way highway=residential maxspeed=30"
+                # assertNoMatch:"way highway=unclassified access=permissive note=eigen_weg maxspeed=25"
+                err.append({'class': 7, 'subclass': 441867371, 'text': mapcss.tr('{0} is a non-standard speed limit. Possibly this is an advisory speed limit instead?', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
         # way[oneway:bicycle?!][!oneway:mofa][oneway?][inside("NL")]
         if ('oneway' in keys and 'oneway:bicycle' in keys):
             match = False
@@ -2541,9 +2583,9 @@ class Josm_DutchSpecific(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("NL deprecated features")
-                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
                 # fixRemove:"{0.key}"
-                err.append({'class': 2, 'subclass': 788111375, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 2, 'subclass': 788111375, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
                     '-': ([
                     mapcss._tag_uncapture(capture_tags, '{0.key}')])
                 }})
@@ -2894,4 +2936,7 @@ class Test(TestPluginMapcss):
         self.check_not_err(n.way(data, {'highway': 'trunk_link', 'maxspeed': '100'}, [0]), expected={'class': 7, 'subclass': 286842004})
         self.check_not_err(n.way(data, {'highway': 'unclassified', 'maxspeed': '80'}, [0]), expected={'class': 7, 'subclass': 286842004})
         self.check_not_err(n.way(data, {'highway': 'unclassified', 'maxspeed:moped': '45'}, [0]), expected={'class': 7, 'subclass': 790150725})
+        self.check_not_err(n.way(data, {'highway': 'cycleway', 'maxspeed': '40'}, [0]), expected={'class': 7, 'subclass': 441867371})
+        self.check_not_err(n.way(data, {'highway': 'residential', 'maxspeed': '30'}, [0]), expected={'class': 7, 'subclass': 441867371})
+        self.check_not_err(n.way(data, {'access': 'permissive', 'highway': 'unclassified', 'maxspeed': '25', 'note': 'eigen_weg'}, [0]), expected={'class': 7, 'subclass': 441867371})
         self.check_not_err(n.relation(data, {'addr:housename': 'huis', 'building': 'yes', 'type': 'multipolygon'}, []), expected={'class': 1, 'subclass': 2065929412})

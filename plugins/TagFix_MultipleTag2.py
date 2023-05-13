@@ -19,9 +19,10 @@ class TagFix_MultipleTag2(PluginMapCSS):
         self.errors[21102] = self.def_class(item = 2110, level = 2, tags = mapcss.list_('tag') + mapcss.list_('tag'), title = mapcss.tr('Missing relation type'), detail = mapcss.tr('The relation is missing a `type` tag to define what it represents.'))
         self.errors[30320] = self.def_class(item = 3032, level = 1, tags = mapcss.list_('tag') + mapcss.list_('fix:chair', 'highway', 'tag'), title = mapcss.tr('Watch multiple tags'))
         self.errors[30322] = self.def_class(item = 3032, level = 3, tags = mapcss.list_('tag'), title = mapcss.tr('{0} together with {1}, usually {1} is located underneath the {2}. Tag the {3} as a separate object.', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{0.value}'), mapcss._tag_uncapture(capture_tags, '{1.key}')))
-        self.errors[30327] = self.def_class(item = 3032, level = 2, tags = mapcss.list_('tag') + mapcss.list_('tag', 'fix:chair'), title = mapcss.tr('Waterway with level'), detail = mapcss.tr('Level should be used for buildings, shops, amenities, etc.'), trap = mapcss.tr('Remove level and check if layer is needed instead'))
+        self.errors[30327] = self.def_class(item = 3032, level = 2, tags = mapcss.list_('tag') + mapcss.list_('tag', 'fix:chair'), title = mapcss.tr('Waterway with `level`'), trap = mapcss.tr('Remove `level` and check if `layer` is needed instead.'), detail = mapcss.tr('The tag `level` should be used for buildings, shops, amenities, etc.'))
         self.errors[32301] = self.def_class(item = 3230, level = 2, tags = mapcss.list_('tag') + mapcss.list_('fix:chair'), title = mapcss.tr('Probably only for bottles, not any type of glass'), detail = mapcss.tr('Most street-side glass containers only accept soda-lime glass (e.g. bottles and jars), but not glasses for high temperatures or window glass.'), resource = 'https://wiki.openstreetmap.org/wiki/Tag:amenity=recycling')
         self.errors[32302] = self.def_class(item = 3230, level = 2, tags = mapcss.list_('tag') + mapcss.list_('fix:chair'), title = mapcss.tr('Suspicious name for a container'))
+        self.errors[40106] = self.def_class(item = 4010, level = 3, tags = mapcss.list_('tag') + mapcss.list_('tag', 'tree', 'fix:chair', 'deprecated'), title = mapcss.tr('Deprecated tag'))
         self.errors[40201] = self.def_class(item = 4020, level = 1, tags = mapcss.list_('tag') + mapcss.list_('fix:chair', 'highway', 'roundabout'), title = mapcss.tr('Roundabout as area'))
         self.errors[71301] = self.def_class(item = 7130, level = 3, tags = mapcss.list_('tag') + mapcss.list_('tag', 'highway', 'maxheight', 'fix:survey'), title = mapcss.tr('Missing maxheight tag'), detail = mapcss.tr('Missing `maxheight=*` or `maxheight:physical=*` for a tunnel or a way under a bridge.'))
         self.errors[303211] = self.def_class(item = 3032, level = 3, tags = mapcss.list_('tag') + mapcss.list_('tag'), title = mapcss.tr('suspicious tag combination'))
@@ -97,6 +98,20 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 # throwWarning:tr("Suspicious name for a container")
                 # assertMatch:"node amenity=recycling recycling_type=container name=\"My nice awesome container\""
                 err.append({'class': 32302, 'subclass': 0, 'text': mapcss.tr('Suspicious name for a container')})
+
+        # node[natural=tree][type][type!=palm]
+        if ('natural' in keys and 'type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'natural') == mapcss._value_capture(capture_tags, 0, 'tree')) and (mapcss._tag_capture(capture_tags, 1, tags, 'type')) and (mapcss._tag_capture(capture_tags, 2, tags, 'type') != mapcss._value_const_capture(capture_tags, 2, 'palm', 'palm')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("Deprecated tag")
+                # -osmoseTags:list("tag","tree","fix:chair","deprecated")
+                # -osmoseItemClassLevel:"4010/40106/3"
+                # throwWarning:tr("The tag `{0}` is deprecated in favour of {1}","{1.key}","`leaf_type`")
+                err.append({'class': 40106, 'subclass': 0, 'text': mapcss.tr('The tag `{0}` is deprecated in favour of {1}', mapcss._tag_uncapture(capture_tags, '{1.key}'), '`leaf_type`')})
 
         # node[tunnel][!highway][!area:highway][!railway][!waterway][!piste:type][type!=tunnel][public_transport!=platform][route!=ferry][man_made!=pipeline][man_made!=goods_conveyor][man_made!=wildlife_crossing][man_made!=tunnel][power!=cable]
         if ('tunnel' in keys):
@@ -266,13 +281,13 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("tag","fix:chair")
-                # -osmoseDetail:tr("Level should be used for buildings, shops, amenities, etc.")
-                # -osmoseTrap:tr("Remove level and check if layer is needed instead")
+                # -osmoseTrap:tr("Remove `level` and check if `layer` is needed instead.")
+                # -osmoseDetail:tr("The tag `level` should be used for buildings, shops, amenities, etc.")
                 # -osmoseItemClassLevel:"3032/30327:0/2"
-                # throwWarning:tr("Waterway with level")
+                # throwWarning:tr("Waterway with `level`")
                 # fixChangeKey:"level=>layer"
                 # assertMatch:"way waterway=stream level=-1"
-                err.append({'class': 30327, 'subclass': 0, 'text': mapcss.tr('Waterway with level'), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 30327, 'subclass': 0, 'text': mapcss.tr('Waterway with `level`'), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     ['layer', mapcss.tag(tags, 'level')]]),
                     '-': ([

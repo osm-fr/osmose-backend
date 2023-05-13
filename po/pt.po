@@ -654,7 +654,7 @@ msgid "Long Highway above ground and no bridge"
 msgstr "Via comprida acima do solo mas sem etiqueta de ponte"
 
 #: ../plugins/TagFix_MultipleTag2.py:22 ../plugins/TagFix_MultipleTag2.py:275
-msgid "Waterway with level"
+msgid "Waterway with `level`"
 msgstr "Hidrovia com etiqueta de level (nível)"
 
 #: ../plugins/TagRemove_Roundabout.py:39
@@ -3757,11 +3757,11 @@ msgid ""
 msgstr ""
 
 #: ../plugins/TagFix_MultipleTag2.py:22
-msgid "Remove level and check if layer is needed instead"
+msgid "Remove `level` and check if `layer` is needed instead."
 msgstr ""
 
 #: ../plugins/TagFix_MultipleTag2.py:22
-msgid "Level should be used for buildings, shops, amenities, etc."
+msgid "The tag `level` should be used for buildings, shops, amenities, etc."
 msgstr ""
 
 #: ../plugins/TagRemove_Layer.py:43
