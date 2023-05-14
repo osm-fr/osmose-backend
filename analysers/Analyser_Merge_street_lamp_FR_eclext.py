@@ -25,49 +25,34 @@ from dateutil.parser import parse
 from .Analyser_Merge import Analyser_Merge_Point, CSV, Load_XY, Conflate, Select, Mapping
 
 
-class Analyser_merge_Eclext_FR(Analyser_Merge_Point):
+class Analyser_Merge_street_lamp_FR_eclext (Analyser_Merge_Point):
     def __init__(self, config, source_url, dataset_name, source, srid, osmRef, logger = None):
         Analyser_Merge_Point.__init__(self, config, logger)
-        self.def_class_missing_official(item = 8090, id = 11, level = 3, tags = ['merge', 'eclairage', 'eclext', 'fix:chair', 'fix:survey'],
+        self.def_class_missing_official(item = 8090, id = 11, level = 3, tags = ['merge', 'street_lamp', 'fix:chair', 'fix:survey'],
             title = T_('Street light not integrated'))
-        self.def_class_possible_merge(item = 8091, id = 13, level = 3, tags = ['merge', 'eclairage', 'eclext', 'fix:chair', 'fix:picture'],
+        self.def_class_possible_merge(item = 8091, id = 13, level = 3, tags = ['merge', 'street_lamp', 'fix:chair', 'fix:picture'],
             title = T_('Street light integration suggestion'))
-        self.def_class_update_official(item = 8092, id = 14, level = 3, tags = ['merge', 'eclairage', 'eclext', 'fix:chair', 'fix:survey'],
+        self.def_class_update_official(item = 8092, id = 14, level = 3, tags = ['merge', 'street_lamp', 'fix:chair', 'fix:survey'],
             title = T_('Street light update'))
 
-        def extract_light_method(res):
-            if res.get('typeSource') == 'FLUO':
-                return 'fluorescent'
-            elif res.get('typeSource') == 'HAL':
-                return 'halogen'
-            elif res.get('typeSource') == 'IM':
-                return 'metal-iodide'
-            elif res.get('typeSource') == 'INC':
-                return 'incandescent'
-            elif res.get('typeSource') == 'IND':
-                return 'induction'
-            elif res.get('typeSource') == 'LED':
-                return 'LED'
-            elif res.get('typeSource') == 'SBP':
-                return 'low_pressure_sodium'
-            elif res.get('typeSource') == 'SHP':
-                return 'high_pressure_sodium'
-            elif res.get('typeSource') == 'VM':
-                return 'mercury'
-            elif res.get('typeSource') == 'XEN':
-                return 'xenon'
-            else:
-                return None
+        extract_light_method = {
+            'FLUO': 'fluorescent',
+            'HAL': 'halogen',
+            'IM': 'metal-iodide',
+            'INC': 'incandescent',
+            'IND': 'induction',
+            'LED': 'LED',
+            'SBP': 'low_pressure_sodium',
+            'SHP': 'high_pressure_sodium',
+            'VM': 'mercury',
+            'XEN': 'xenon'
+        }
 
-        def extract_support(res):
-            if res.get('typeSource') == 'CAT':
-                return 'catenary'
-            elif res.get('support') == 'MUR':
-                return 'wall'
-            elif res.get('typeSource') == 'SOL':
-                return 'ground'
-            else:
-                return None
+        extract_support = {
+            'CAT': 'catenary',
+            'MUR': 'wall',
+            'SOL': 'ground'
+        }
 
         def extract_temperature(res):
             v = res.get('TemperatureCouleur')
@@ -137,13 +122,13 @@ class Analyser_merge_Eclext_FR(Analyser_Merge_Point):
                     static1 = {"highway": "street_lamp", "operator": "Syane"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "light:method":extract_light_method,
+                        "light:method":lambda res: extract_light_method[res.get('typeSource')] if extract_light_method[res.get('typeSource')] else None,
                         "light:colour":extract_temperature,
                         "light:flux":clean_float_tag("fluxSource"),
                         "light:height":clean_float_tag("hauteurFeu"),
                         "light:power":clean_float_tag("puissance"),
                         "light:lit":extract_adaptatif,
-                        "support":extract_support,
+                        "support":lambda res: extract_support[res.get('support')] if extract_support[res.get('support')] else None,
                         "manufacturer":clean_string_tag("fabricant"),
                         "model":clean_string_tag("model"),
                         "power": lambda res: "pole" if (res.get('typeSource') == 'POT') else None,

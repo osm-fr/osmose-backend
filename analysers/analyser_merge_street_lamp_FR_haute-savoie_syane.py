@@ -20,18 +20,19 @@
 ##                                                                       ##
 ###########################################################################
 
-from .analyser_merge_eclext_FR import Analyser_merge_Eclext_FR
-from .Analyser_Merge import Source
+from .Analyser_Merge_street_lamp_FR_eclext import Analyser_Merge_street_lamp_FR_eclext
+from .Analyser_Merge import SourceDataGouv
 
 
-class Analyser_Merge_Eclext_FR_Syane(Analyser_merge_Eclext_FR):
+class Analyser_Merge_Eclext_FR_Syane(Analyser_Merge_street_lamp_FR_eclext):
     def __init__(self, config, logger = None):
-        Analyser_merge_Eclext_FR.__init__(self, config,
+        Analyser_Merge_street_lamp_FR_eclext.__init__(self, config,
             source_url='https://www.data.gouv.fr/fr/datasets/points-lumineux-declairage-public-exterieur-dont-le-syane-est-exploitant-haute-savoie/',
             dataset_name='Points lumineux d\'éclairage public extérieur dont le Syane est exploitant (Haute-Savoie)',
-            source=Source(attribution='Syane',
-                millesime='2023-04',
-                fileUrl='https://www.data.gouv.fr/fr/datasets/r/011aa541-8510-4caf-8a00-43d7efbe7543'),
+            source=SourceDataGouv(
+                attribution="Syane",
+                dataset="6447bfe8709c0b4a2b88355a",
+                resource="011aa541-8510-4caf-8a00-43d7efbe7543"),
             srid = 2154,
             osmRef='ref',
             logger=logger)
