@@ -45,7 +45,10 @@ SELECT
     tags->'highway' LIKE '%_link' AS is_link,
     (tags?'junction' AND tags->'junction' = 'roundabout') AS is_roundabout,
     (tags?'oneway' AND tags->'oneway' IN ('yes', 'true', '1', '-1')) AS is_oneway,
-    (tags?'area' AND tags->'area' != 'no') AS is_area,
+    CASE
+      WHEN tags?'area' THEN tags->'area' != 'no'
+      ELSE (is_polygon AND tags->'highway' = 'pedestrian')
+    END AS is_area,
     tags->'highway' IN ('planned', 'proposed', 'construction') AS is_construction,
     CASE tags->'highway'
         WHEN 'motorway' THEN 1
