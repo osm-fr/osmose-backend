@@ -474,7 +474,9 @@ france_departement("provence_alpes_cote_d_azur/alpes_maritimes", 7385, "FR-06", 
     'merge_public_transport_FR_zestbus',
 ])
 
-france_departement("provence_alpes_cote_d_azur/bouches_du_rhone", 7393, "FR-13")
+france_departement("provence_alpes_cote_d_azur/bouches_du_rhone", 7393, "FR-13", include=[
+    'merge_recycling_FR_ampm',
+])
 france_departement("provence_alpes_cote_d_azur/var", 7390, "FR-83")
 france_departement("provence_alpes_cote_d_azur/vaucluse", 7445, "FR-84")
 
