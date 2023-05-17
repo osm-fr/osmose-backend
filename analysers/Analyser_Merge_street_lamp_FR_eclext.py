@@ -63,7 +63,7 @@ class Analyser_Merge_street_lamp_FR_eclext (Analyser_Merge_Point):
                         "start_date": lambda res: parse(res.get('datePremieInstallation')).date() if res.get('datePremieInstallation') else None},
 
                 text = lambda tags, fields: {} )))
-        
+
     extract_light_method = {
         'FLUO': 'fluorescent',
         'HAL': 'halogen',
