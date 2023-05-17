@@ -22,9 +22,7 @@
 from modules.OsmoseTranslation import T_
 from plugins.Plugin import TestPluginCommon
 from plugins.Plugin import Plugin
-from modules.downloader import urlread
-import json
-
+from plugins.modules.name_suggestion_index import download_nsi
 
 class TagFix_Brand(Plugin):
 
@@ -52,15 +50,9 @@ If not, see if you can improve the [name-suggestion-index project](https://githu
             return False
         self.country_code = self.father.config.options.get("country").split("-")[0].lower()
 
-        nsi = self._download_nsi()
+        nsi = download_nsi()
         self.brands_from_nsi = self._parse_category_from_nsi(nsi, "brands/", "brand")
         self.operators_from_nsi = self._parse_category_from_nsi(nsi, "operators/", "operator")
-
-    def _download_nsi(self):
-        nsi_url = "https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist/nsi.json"
-        json_str = urlread(nsi_url, 30)
-        results = json.loads(json_str)
-        return results['nsi']
 
     def _parse_category_from_nsi(self, nsi, nsiprefix, key):
         additional_presets = {}
