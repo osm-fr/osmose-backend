@@ -27,6 +27,7 @@ from modules.languages import language2scripts, gen_regex
 from modules import confusables
 from modules.py3 import ilen
 from modules.Stablehash import stablehash64
+from plugins.modules.name_suggestion_index import whitelist_from_nsi
 
 
 class Name_Script(Plugin):
@@ -117,6 +118,10 @@ appropriate.'''),
 
         self.names = [u"name", u"name_1", u"name_2", u"alt_name", u"loc_name", u"old_name", u"official_name", u"short_name"]
 
+        self.whitelist_names = set()
+        if country:
+            self.whitelist_names = whitelist_from_nsi(country.lower())
+
     def node(self, data, tags):
         err = []
         for key, value in tags.items():
@@ -157,7 +162,7 @@ appropriate.'''),
                 break
 
             if self.default:
-                if key in self.names:
+                if key in self.names and value not in self.whitelist_names:
                     s = self.non_letter.sub(u" ", value)
                     s = self.alone_char.sub(u"", s)
                     s = self.roman_number.sub(u"", s)
@@ -226,6 +231,7 @@ class Test(TestPluginCommon):
 
         assert not a.node(None, {u"name": u"test ь"})
         assert not a.node(None, {u"name": u"Sacré-Cœur"})
+        assert not a.node(None, {u"name": u"Søstrene Grene"}) # in NSI
 
         self.check_err(a.node(None, {u"name:uk": u"Sacré-Cœur"}))
 
