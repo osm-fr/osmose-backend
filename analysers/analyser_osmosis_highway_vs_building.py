@@ -26,11 +26,41 @@ from .Analyser_Osmosis import Analyser_Osmosis
 
 sql00 = """
 CREATE TEMP TABLE {0}highway AS
-WITH ways AS (
+WITH railways_highways AS (
+SELECT
+    id,
+    linestring,
+    linestring_proj,
+    tags,
+    nodes
+FROM
+    {0}highways
+WHERE
+    NOT is_construction AND
+    NOT is_area AND
+    highway != 'elevator' AND
+    NOT tags?'area:highway'
+UNION ALL
 SELECT
     id,
     linestring,
     ST_Transform(linestring, {1}) AS linestring_proj,
+    tags,
+    nodes
+FROM
+    {0}ways
+WHERE
+    tags != ''::hstore AND
+    tags?'railway' AND
+    tags->'railway' IN ('rail', 'tram') AND
+    (NOT tags?'area' OR tags->'area' = 'no') AND
+    ST_NPoints(linestring) > 1
+),
+ways AS ( -- WITH continuation
+SELECT
+    id,
+    linestring,
+    linestring_proj,
     ceil(ST_Length(ST_Transform(linestring, {1})) / 500)::integer AS split_n,
     nodes,
     tags->'highway' AS highway,
@@ -43,20 +73,9 @@ SELECT
     END AS layer,
     tags ?| ARRAY['ford', 'flood_prone'] AS onwater
 FROM
-    {0}ways
+    railways_highways
 WHERE
-    tags != ''::hstore AND
-    ((
-        tags?'highway' AND
-        tags->'highway' NOT IN ('planned', 'proposed', 'construction', 'rest_area', 'razed', 'no', 'services', 'elevator')
-    ) OR (
-        tags?'railway' AND
-        tags->'railway' IN ('rail', 'tram')
-    )) AND
-    (NOT tags?'area' OR tags->'area' = 'no') AND
-    NOT tags?'area:highway' AND
-    array_length(nodes, 1) <= 100 AND -- Large ways have too big bbox
-    ST_NPoints(linestring) > 1
+    array_length(nodes, 1) <= 100 -- Large ways have too big bbox
 )
 SELECT
     id,
@@ -190,7 +209,7 @@ SELECT DISTINCT ON (highway.id, building.id)
 FROM
     {0}buildings AS building
     JOIN {1}highway AS highway ON
-        highway.highway NOT IN ('footway', 'path', 'steps', 'elevator', 'corridor') AND
+        highway.highway NOT IN ('footway', 'path', 'steps', 'corridor') AND
         highway.level = '0' AND
         highway.layer = '0' AND
         ST_Crosses(building.polygon_proj, highway.linestring_proj) AND
@@ -426,8 +445,8 @@ FROM (
 
 class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
 
-    requires_tables_full = ['buildings']
-    requires_tables_diff = ['buildings', 'touched_buildings']
+    requires_tables_full = ['buildings', 'highways']
+    requires_tables_diff = ['buildings', 'touched_buildings', 'highways']
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
