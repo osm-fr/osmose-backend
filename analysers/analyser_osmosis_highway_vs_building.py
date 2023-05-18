@@ -74,8 +74,6 @@ SELECT
     tags ?| ARRAY['ford', 'flood_prone'] AS onwater
 FROM
     railways_highways
-WHERE
-    array_length(nodes, 1) <= 100 -- Large ways have too big bbox
 )
 SELECT
     id,
