@@ -245,6 +245,7 @@ ANALYZE {0}.buildings;
             self.relation:"relation", self.relation_full:"relation",
         }
         self.typeMapping = {'N': self.node_full, 'W': self.way_full, 'R': self.relation_full}
+        self.typeMapping_id_only = {'N': self.node, 'W': self.way, 'R': self.relation}
         self.resume_from_timestamp = None
         self.already_issued_objects = None
 
@@ -610,6 +611,9 @@ WHERE
 
     def any_full(self, res):
         self.typeMapping[res[0]](int(res[1:]))
+
+    def any_id(self, res):
+        self.typeMapping_id_only[res[0]](int(res[1:]))
 
     def array_full(self, res):
         for type, id in map(lambda r: (r[0], r[1:]), res):
