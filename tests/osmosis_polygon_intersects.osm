@@ -133,6 +133,11 @@
   <node id='170' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85473263308' lon='5.94986392287' />
   <node id='171' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86305597816' lon='5.94939459778' />
   <node id='172' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85940211083' lon='5.94713689084' />
+  <node id='173' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82243018532' lon='5.92452682867' />
+  <node id='174' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82087367465' lon='5.92317387773' />
+  <node id='175' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82188764589' lon='5.92684902751' />
+  <node id='176' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.81909375438' lon='5.92556846439' />
+  <node id='177' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82106700151' lon='5.92696119385' />
   <way id='1000' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='1' />
     <nd ref='2' />
@@ -435,8 +440,8 @@
     <nd ref='163' />
     <nd ref='171' />
     <nd ref='172' />
-    <tag k='railway' v='rail' />
     <tag k='note' v='many very shallow intersections' />
+    <tag k='railway' v='rail' />
   </way>
   <way id='1062' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='170' />
@@ -445,6 +450,28 @@
     <nd ref='169' />
     <tag k='highway' v='motorway' />
     <tag k='note' v='small + 2x big intersection' />
+  </way>
+  <way id='1063' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='173' />
+    <nd ref='136' />
+    <tag k='railway' v='rail' />
+  </way>
+  <way id='1064' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='174' />
+    <nd ref='173' />
+    <tag k='aeroway' v='runway' />
+  </way>
+  <way id='1065' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='175' />
+    <nd ref='177' />
+    <tag k='aeroway' v='runway' />
+    <tag k='note' v='mini-intersection' />
+  </way>
+  <way id='1066' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='130' />
+    <nd ref='176' />
+    <tag k='aeroway' v='runway' />
+    <tag k='note' v='mini-intersection' />
   </way>
   <relation id='10000' timestamp='2014-03-31T22:00:00Z' version='1'>
     <member type='way' ref='1045' role='inner' />

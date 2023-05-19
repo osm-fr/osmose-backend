@@ -110,6 +110,7 @@ The available value for the `data`, mapping OSM object id are:
 * `relation`
 * `relation_full`
 * `any_full` (N/W/R + id)
+* `any_id` (N/W/R + id)
 
 From array of (type: N/W/R, ids):
 * `array_full`
