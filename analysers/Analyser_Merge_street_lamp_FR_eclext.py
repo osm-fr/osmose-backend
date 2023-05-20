@@ -83,7 +83,7 @@ class Analyser_Merge_street_lamp_FR_eclext (Analyser_Merge_Point):
     }
 
     def extract_temperature(self, v):
-        if v == None:
+        if v is None:
             return None
 
         try:
@@ -113,7 +113,7 @@ class Analyser_Merge_street_lamp_FR_eclext (Analyser_Merge_Point):
         an integer, otherwise return the string unchanged.
         Returns None for 0.
         """
-        if v == None:
+        if v is None:
             return None
         try:
             num_value = float(v)
