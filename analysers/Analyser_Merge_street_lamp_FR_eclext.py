@@ -51,15 +51,15 @@ class Analyser_Merge_street_lamp_FR_eclext (Analyser_Merge_Point):
                     static2 = {'source': self.source},
                     mapping1 = {
                         'light:method': lambda res: self.extract_light_method.get(res['typeSource']),
-                        'light:colour': lambda res: self.extract_temperature(res['TemperatureCouleur']) if res.get('TemperatureCouleur') else None,
-                        'light:flux': lambda res: self.clean_float(res['fluxSource']) if res.get('fluxSource') else None,
-                        'light:height': lambda res: self.clean_float(res['hauteurFeu']) if res.get('hauteurFeu') else None,
-                        'light:power': lambda res: self.clean_float(res['puissance']) if res.get('puissance') else None,
-                        'light:lit': lambda res: self.extract_adaptatif.get(res['eclairageAdaptatif']),
+                        'light:colour': lambda res: self.extract_temperature(res['TemperatureCouleur']),
+                        'light:flux': lambda res: self.clean_float(res.get('fluxSource')) if res.get('fluxSource') else None,
+                        'light:height': lambda res: self.clean_float(res.get('hauteurFeu')) if res.get('hauteurFeu') else None,
+                        'light:power': lambda res: self.clean_float(res['puissance']),
+                        'light:lit': lambda res: self.extract_adaptatif.get(res.get('eclairageAdaptatif')) if res.get('eclairageAdaptatif') else None,
                         'support': lambda res: self.extract_support.get(res['support']),
-                        'manufacturer': lambda res: self.clean_string_tag(res['fabricant']) if res.get('fabricant') else None,
-                        'model': lambda res: self.clean_string_tag(res['model']) if res.get('model') else None,
-                        'power': lambda res: 'pole' if (res.get('typeSource') == 'POT') else None,
+                        'manufacturer': lambda res: self.clean_string_tag(res.get('fabricant')) if res.get('fabricant') else None,
+                        'model': lambda res: self.clean_string_tag(res.get('model')) if res.get('model') else None,
+                        'power': lambda res: 'pole' if (res['typeSource'] == 'POT') else None,
                         'start_date': lambda res: parse(res.get('datePremieInstallation')).date() if res.get('datePremieInstallation') else None},
                 text = lambda tags, fields: {} )))
 
