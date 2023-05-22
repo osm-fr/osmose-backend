@@ -76,8 +76,8 @@ sql11 = """
 CREATE TEMP TABLE landusage AS
 SELECT
   'W' || id AS id,
-  ST_Transform(linestring, {proj}) AS linestring_proj,
   ST_MakePolygon(linestring) AS poly,
+  ST_Transform(ST_MakePolygon(linestring), {proj}) AS poly_proj,
   CASE
     WHEN tags?'landuse' THEN 'landuse'
     WHEN tags?'natural' THEN 'natural'
@@ -97,33 +97,23 @@ WHERE
   ST_Area(ST_MakePolygon(ST_Transform(linestring, {proj}))) >= 20
 UNION ALL
 SELECT
-  'R' || mp.id AS id,
-  ST_Transform(ST_LineMerge(ST_Collect(ways.linestring)), {proj}) AS linestring_proj, -- usually multilinestring
-  mp.poly,
+  'R' || id AS id,
+  poly,
+  poly_proj,
   CASE
-    WHEN mp.tags?'landuse' THEN 'landuse'
-    WHEN mp.tags?'natural' THEN 'natural'
+    WHEN tags?'landuse' THEN 'landuse'
+    WHEN tags?'natural' THEN 'natural'
   END AS landusekey,
   CASE
-    WHEN mp.tags?'landuse' THEN mp.tags->'landuse'
-    WHEN mp.tags?'natural' THEN mp.tags->'natural'
+    WHEN tags?'landuse' THEN tags->'landuse'
+    WHEN tags?'natural' THEN tags->'natural'
   END AS landusevalue,
-  mp.tags
+  tags
 FROM
-  multipolygons AS mp
-  JOIN relation_members ON
-    relation_id = mp.id
-  JOIN ways ON
-    member_role IN ('outer', 'inner') AND
-    member_id = ways.id AND
-    member_type = 'W'
+  multipolygons
 WHERE
-  mp.is_valid AND
-  (mp.tags?'natural' OR mp.tags?'landuse')
-GROUP BY
-  mp.id,
-  mp.poly,
-  mp.tags
+  is_valid AND
+  (tags?'natural' OR tags?'landuse')
 """
 
 sql12 = """
@@ -135,53 +125,34 @@ sql13 = """
 -- Collect highway|railway|aeroways either entering or fully inside landuse/natural geometries
 CREATE TEMP TABLE intersecting_geometries AS
 SELECT
-  mobility_way_id,
-  mobility_way_linestring,
-  mobility_way_type,
-  landusage_id,
-  landusage_poly,
-  landusekey,
-  landusevalue,
-  tag_way,
+  mobility_ways.id AS mobility_way_id,
+  mobility_ways.linestring AS mobility_way_linestring,
+  mobility_ways.type AS mobility_way_type,
+  landusage.id AS landusage_id,
+  landusage.poly AS landusage_poly,
+  landusage.landusekey,
+  landusage.landusevalue,
+  CONCAT(mobility_ways.type, '=', mobility_ways.tags->mobility_ways.type) AS tag_way,
   CONCAT(landusekey, '=', landusevalue) AS tag_polygon
-FROM (
-  SELECT
-    mobility_ways.id AS mobility_way_id,
-    mobility_ways.linestring AS mobility_way_linestring,
-    mobility_ways.type AS mobility_way_type,
-    landusage.id AS landusage_id,
-    landusage.poly AS landusage_poly,
-    landusage.linestring_proj AS landusage_linestring_proj,
-    landusage.landusekey,
-    landusage.landusevalue,
-    CONCAT(mobility_ways.type, '=', mobility_ways.tags->mobility_ways.type) AS tag_way,
-    (ST_Dump(ST_Transform(ST_Intersection(landusage.poly, mobility_ways.linestring), {proj}))).geom AS intersection_part_geom_proj
-  FROM
-    mobility_ways
-    JOIN landusage ON
+FROM
+  mobility_ways
+  JOIN landusage ON
+    (
       (
-        (
-          NOT landusage.tags?'layer' AND NOT mobility_ways.tags?'layer'
-        ) OR (
-          landusage.tags?'layer' AND mobility_ways.tags?'layer' AND
-          landusage.tags->'layer' = mobility_ways.tags->'layer'
-        )
-      ) AND
-      landusage.poly && mobility_ways.linestring AND
-      -- Only find ways where the highway/railway/aeroway actually enters the
-      -- polygon. Exclude cases where the polygon is tied to the way without going inside.
-      (
-        ST_Crosses(landusage.poly, mobility_ways.linestring) OR
-        ST_Contains(landusage.poly, mobility_ways.linestring)
+        NOT landusage.tags?'layer' AND NOT mobility_ways.tags?'layer'
+      ) OR (
+        landusage.tags?'layer' AND mobility_ways.tags?'layer' AND
+        landusage.tags->'layer' = mobility_ways.tags->'layer'
       )
-  ) AS t
-WHERE
-  -- Only include significant intersections
-  ST_Length(intersection_part_geom_proj) > 2 AND
-  (
-    ST_Distance(ST_Centroid(intersection_part_geom_proj), ST_Transform(mobility_way_linestring, {proj})) > 1 OR
-    ST_Distance(ST_Centroid(intersection_part_geom_proj), landusage_linestring_proj) > 1
-  )
+    ) AND
+    landusage.poly && mobility_ways.linestring AND
+    -- Only find ways where the highway/railway/aeroway actually enters the
+    -- polygon. Exclude cases where the polygon is tied to the way without going inside.
+    -- Use a -2 meter buffer to exclude small or shallow intersections.
+    (
+      ST_Crosses(ST_Buffer(landusage.poly_proj, -2.0), ST_Transform(mobility_ways.linestring, {proj})) OR
+      ST_Contains(ST_Buffer(landusage.poly_proj, -2.0), ST_Transform(mobility_ways.linestring, {proj}))
+    )
 """
 
 sql14 = """
