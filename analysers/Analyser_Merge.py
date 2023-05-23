@@ -529,8 +529,11 @@ class Parser:
     def close(self):
         pass
 
-    def srid(self):
+    def source_srid(self):
         return self._srid or 4326
+
+    def imported_srid(self):
+        return self.source_srid()
 
 class CSV(Parser):
     def __init__(self, source, separator = ',', null = '', header = True, quote = '"', csv = True, skip_first_lines = 0, fields = None, srid: Optional[int] = None):
@@ -763,7 +766,7 @@ class GDAL(Parser):
         return True
 
     def import_(self, table, osmosis):
-        wkt = PointInPolygon.PointInPolygon(self.polygon_id).polygon.as_simplified_wkt(self.srid(), self.proj) if self.polygon_id else None
+        wkt = PointInPolygon.PointInPolygon(self.polygon_id).polygon.as_simplified_wkt(self.source_srid(), self.proj) if self.polygon_id else None
 
         select = "-select '{}'".format(','.join(self.fields)) if self.fields else ''
         gdal = "ogr2ogr -f PostgreSQL 'PG:{}' -lco SCHEMA={} -nln '{}' {} -nlt PROMOTE_TO_MULTI -lco OVERWRITE=yes -lco GEOMETRY_NAME=geom -lco OVERWRITE=YES -lco LAUNDER=NO -skipfailures {} -s_srs EPSG:{} -t_srs EPSG:{} '{}' {}".format(
@@ -772,7 +775,7 @@ class GDAL(Parser):
             table,
             f"-clipsrc '{wkt}'" if wkt else '',
             select,
-            self.srid(),
+            self.source_srid(),
             self.proj,
             self.source_layer[0],
             self.source_layer[1] if len(self.source_layer) >= 2 else '',
@@ -780,6 +783,9 @@ class GDAL(Parser):
         print(gdal)
         if os.system(gdal):
             raise Exception("ogr2ogr error")
+
+    def imported_srid(self):
+        return self.proj
 
 SHP = GDAL
 GPKG = GDAL
@@ -899,7 +905,7 @@ class Load(object):
                 distinct = order_by = ""
             osmosis.run0((sql01_ref if conflate.osmRef != "NULL" else sql01_geo).format(table = table, geom = self.geom, validationGeomSQL = self.validationGeomSQL, where = Select.where_attributes(self.select), distinct = distinct, order_by = order_by), insertOfficial)
             osmosis.run(sql02b.format(official = tableOfficial))
-            if self.parser.srid():
+            if self.parser.imported_srid():
                 giscurs.execute("SELECT ST_AsText(ST_Envelope(ST_Extent(geom))) FROM {0}".format(tableOfficial))
                 self.bbox = giscurs.fetchone()[0]
             else:
@@ -919,7 +925,7 @@ class Load(object):
         else:
             self.bbox = self.data[0]
 
-        if not (self.parser.srid() and not self.bbox): # Abort condition
+        if not (self.parser.imported_srid() and not self.bbox): # Abort condition
             return tableOfficial
 
     @staticmethod
@@ -976,17 +982,17 @@ class Load_XY(Load):
         super().__init__((f'ARRAY[{x}, {y}]',), table_name, create, select, unique, where, map, self.geomFunctionPoint, validationGeomSQL)
 
     def spatialGeom(self, geom):
-        return f"ST_Transform(ST_GeomFromEWKT('SRID={self.parser.srid()};POINT({geom[0]} {geom[1]})'), {self.proj})" if self.parser.srid() else "NULL::geometry"
+        return f"ST_Transform(ST_GeomFromEWKT('SRID={self.parser.imported_srid()};POINT({geom[0]} {geom[1]})'), {self.proj})" if self.parser.imported_srid() else "NULL::geometry"
 
     def run(self, osmosis, conflate, db_schema, default_table_base_name, version):
         """
         @return if data loaded in data base
         """
         if not self.pip:
-            self.pip = PointInPolygon.PointInPolygon(self.polygon_id) if self.parser.srid() and self.polygon_id else None
+            self.pip = PointInPolygon.PointInPolygon(self.polygon_id) if self.parser.imported_srid() and self.polygon_id else None
             if self.pip:
                 if Transformer:  # type: ignore
-                    self.transformer = Transformer.from_crs(self.parser.srid(), 4326, always_xy = True)
+                    self.transformer = Transformer.from_crs(self.parser.imported_srid(), 4326, always_xy = True)
                 else: # pyproj < 2.1
                     self.transformer = None
 
@@ -1007,7 +1013,7 @@ class Load_XY(Load):
                 if self.transformer:
                     lonLat = self.transformer.transform(x, y)
                 else:
-                    self.giscurs_getpoint.execute("SELECT ST_AsText(ST_Transform(ST_SetSRID(ST_MakePoint({x}, {y}), {srid}), 4326))".format(x=x, y=y, srid=self.parser.srid()))
+                    self.giscurs_getpoint.execute("SELECT ST_AsText(ST_Transform(ST_SetSRID(ST_MakePoint({x}, {y}), {srid}), 4326))".format(x=x, y=y, srid=self.parser.imported_srid()))
                     lonLat = self.osmosis.get_points(self.giscurs_getpoint.fetchone()[0])[0]
                     lonLat = [float(lonLat["lon"]), float(lonLat["lat"])]
                 is_pip = self.pip.point_inside_polygon(lonLat[0], lonLat[1])
@@ -1240,7 +1246,7 @@ verification of this data.'''))
             return None
 
         # Extract OSM objects
-        if self.parser.srid():
+        if self.parser.imported_srid():
             typeSelect, typeGeom, typeShape = self.typeGeom()
         else:
             typeSelect = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
@@ -1264,8 +1270,8 @@ verification of this data.'''))
                         {from_}
                         LEFT JOIN LATERAL regexp_split_to_table(tags->'{ref}', ';') a(ref) ON true
                     WHERE""" + ("""
-                        {geomSelect} IS NOT NULL AND""" if self.parser.srid() else "") + ("""
-                        ST_Transform(ST_Expand(ST_SetSRID(ST_GeomFromText('{bbox}'), {proj}), {distance}), 4326) && {geomSelect} AND""" if self.load.bbox and self.parser.srid() else "") + """
+                        {geomSelect} IS NOT NULL AND""" if self.parser.imported_srid() else "") + ("""
+                        ST_Transform(ST_Expand(ST_SetSRID(ST_GeomFromText('{bbox}'), {proj}), {distance}), 4326) && {geomSelect} AND""" if self.load.bbox and self.parser.imported_srid() else "") + """
                         tags != ''::hstore AND
                         {where})""").format(
                         type = type[0].upper(),
@@ -1275,7 +1281,7 @@ verification of this data.'''))
                         shape = typeShape[type[0].upper()],
                         from_ = type,
                         bbox = self.load.bbox,
-                        srid = self.parser.srid(),
+                        srid = self.parser.imported_srid(),
                         proj = self.config.options.get("proj"),
                         distance = self.conflate.conflationDistance or 0, where = where),
                     self.conflate.select.types
@@ -1406,7 +1412,7 @@ open data and OSM.'''))
         joinClause = []
         if self.conflate.osmRef != "NULL":
             joinClause.append("official.ref = osm_item.ref")
-        elif self.parser.srid():
+        elif self.parser.imported_srid():
             joinClause.append("ST_DWithin(official.geom, osm_item.shape, {0})".format(self.conflate.conflationDistance))
         if self.conflate.extraJoin:
             joinClause.append("official.tags->'{tag}' = osm_item.tags->'{tag}'".format(tag=self.conflate.extraJoin))
@@ -1466,7 +1472,7 @@ open data and OSM.'''))
             if self.possible_merge:
                 possible_merge_joinClause = []
                 possible_merge_orderBy = ""
-                if self.parser.srid():
+                if self.parser.imported_srid():
                     possible_merge_joinClause.append("ST_DWithin(missing_official.geom, missing_osm.shape, {0})".format(self.conflate.conflationDistance))
                     possible_merge_orderBy = ", ST_Distance(missing_official.geom, missing_osm.shape) ASC"
                 if self.conflate.extraJoin:
