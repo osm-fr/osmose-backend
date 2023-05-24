@@ -1708,81 +1708,102 @@ at_state("vorarlberg", 74942, "AT-8")
 #########################################################################
 
 es_prov = gen_country('europe', 'spain', download_repo=OSMFR, language='es', municipality_ref='ine:municipio', phone_code='34', phone_len=9, phone_len_short=[3, 4, 5], phone_international='00', include=[
-    "merge_road_ES",
-])
+    'merge_road_ES',
+    'merge_bridge_ES',
+], hydro_map={
+    'Canarias': '10122474',
+    'Cantábrico Occidental': '10122478',
+    'Cantábrico Oriental': '10122486',
+    'Cuencas Internas de Cataluña': '10122481',
+    'Cuencas Mediterráneas Andaluzas': '10122487',
+    'Ebro': '10122484',
+    'Galicia-Costa': '10122475',
+    'Guadalete y Barbate': '10122473',
+    'Guadalquivir': '10122483',
+    'Guadiana': '10122472',
+    'Islas Baleares': '10122488',
+    'Júcar': '10122476',
+    'Miño-Sil': '10122485',
+    'Duero': '10122480',
+    'Segura': '10122479',
+    'Tajo': '10122482',
+    'Tinto Odiel y Piedras': '10122477',
+    'Ceuta': '10230051',
+    'Melilla': '10230051',
+})
 
-es_prov('andalucia/almeria', 348997, 'ES-AL', proj=32629)
-es_prov('andalucia/cadiz', 349017, 'ES-CA', proj=32629)
-es_prov('andalucia/cordoba', 349016, 'ES-CO', proj=32629)
-es_prov('andalucia/granada', 349026, 'ES-GR', proj=32629)
-es_prov('andalucia/huelva', 348995, 'ES-H', proj=32629)
-es_prov('andalucia/jaen', 348998, 'ES-J', proj=32629)
-es_prov('andalucia/malaga', 5275848, 'ES-MA', proj=32629)
-es_prov('andalucia/sevilla', 349008, 'ES-SE', proj=32629)
+es_prov('andalucia/almeria', 348997, 'ES-AL', proj=32629, hydro=['Cuencas_Mediterraneas_Andaluzas'])
+es_prov('andalucia/cadiz', 349017, 'ES-CA', proj=32629, hydro=['Guadalete_y_Barbate','Cuencas_Mediterraneas_Andaluzas'])
+es_prov('andalucia/cordoba', 349016, 'ES-CO', proj=32629, hydro=['Guadalquivir','Guadiana'])
+es_prov('andalucia/granada', 349026, 'ES-GR', proj=32629, hydro=['Guadalquivir','Cuencas_Mediterraneas_Andaluzas'])
+es_prov('andalucia/huelva', 348995, 'ES-H', proj=32629, hydro=['Tinto_Odiel_y_Piedras','Guadiana','Guadalquivir'])
+es_prov('andalucia/jaen', 348998, 'ES-J', proj=32629, hydro=['Guadalquivir'])
+es_prov('andalucia/malaga', 5275848, 'ES-MA', proj=32629, hydro=['Cuencas_Mediterraneas_Andaluzas'])
+es_prov('andalucia/sevilla', 349008, 'ES-SE', proj=32629, hydro=['Guadalquivir'])
 
-es_prov('aragon/huesca', 349022, 'ES-HU', proj=32630)
-es_prov('aragon/teruel', 349002, 'ES-TE', proj=32630)
-es_prov('aragon/zaragoza', 349030, 'ES-Z', proj=32630)
+es_prov('aragon/huesca', 349022, 'ES-HU', proj=32630, hydro=['Ebro'])
+es_prov('aragon/teruel', 349002, 'ES-TE', proj=32630, hydro=['Ebro','Jucar'])
+es_prov('aragon/zaragoza', 349030, 'ES-Z', proj=32630, hydro=['Ebro'])
 
-es_prov('asturias', 6428094, 'ES-O', proj=32629, language=['es', 'ast'], multilingual_style='sp_ast')
+es_prov('asturias', 6428094, 'ES-O', proj=32629, language=['es', 'ast'], multilingual_style='sp_ast', hydro=['Cantabrico_Occidental'])
 
-es_prov('illes_balears', 348981, 'ES-PM', proj=32630, language='ca')
+es_prov('illes_balears', 348981, 'ES-PM', proj=32630, language='ca', hydro=['Islas Baleares'])
 
-es_prov('cantabria', 6426101, 'ES-S', proj=32630)
+es_prov('cantabria', 6426101, 'ES-S', proj=32630, hydro=['Cantabrico_Occidental'])
 
-es_prov('castilla_la_mancha/albacete', 348989, 'ES-AB', proj=32630)
-es_prov('castilla_la_mancha/ciudad_real', 349019, 'ES-CR', proj=32630)
-es_prov('castilla_la_mancha/cuenca', 349024, 'ES-CU', proj=32630)
-es_prov('castilla_la_mancha/guadalajara', 349025, 'ES-GU', proj=32630)
-es_prov('castilla_la_mancha/toledo', 348982, 'ES-TO', proj=32630)
+es_prov('castilla_la_mancha/albacete', 348989, 'ES-AB', proj=32630, hydro=['Jucar','Segura'])
+es_prov('castilla_la_mancha/ciudad_real', 349019, 'ES-CR', proj=32630, hydro=['Guadiana','Guadalquivir'])
+es_prov('castilla_la_mancha/cuenca', 349024, 'ES-CU', proj=32630, hydro=['Jucar','Guadiana','Tajo'])
+es_prov('castilla_la_mancha/guadalajara', 349025, 'ES-GU', proj=32630, hydro=['Tajo'])
+es_prov('castilla_la_mancha/toledo', 348982, 'ES-TO', proj=32630, hydro=['Tajo','Guadiana'])
 
-es_prov('castilla_y_leon/avila', 349009, 'ES-AV', proj=32629)
-es_prov('castilla_y_leon/burgos', 349004, 'ES-BU', proj=32629)
-es_prov('castilla_y_leon/leon', 349010, 'ES-LE', proj=32629)
-es_prov('castilla_y_leon/palencia', 349032, 'ES-P', proj=32629)
-es_prov('castilla_y_leon/salamanca', 349029, 'ES-SA', proj=32629)
-es_prov('castilla_y_leon/segovia', 349007, 'ES-SG', proj=32629)
-es_prov('castilla_y_leon/soria', 349005, 'ES-SO', proj=32629)
-es_prov('castilla_y_leon/valladolid', 349001, 'ES-VA', proj=32629)
-es_prov('castilla_y_leon/zamora', 348987, 'ES-ZA', proj=32629)
+es_prov('castilla_y_leon/avila', 349009, 'ES-AV', proj=32629, hydro=['Duero','Tajo'])
+es_prov('castilla_y_leon/burgos', 349004, 'ES-BU', proj=32629, hydro=['Duero','Ebro'])
+es_prov('castilla_y_leon/leon', 349010, 'ES-LE', proj=32629, hydro=['Duero','Mino_Sil'])
+es_prov('castilla_y_leon/palencia', 349032, 'ES-P', proj=32629, hydro=['Duero'])
+es_prov('castilla_y_leon/salamanca', 349029, 'ES-SA', proj=32629, hydro=['Duero'])
+es_prov('castilla_y_leon/segovia', 349007, 'ES-SG', proj=32629, hydro=['Duero'])
+es_prov('castilla_y_leon/soria', 349005, 'ES-SO', proj=32629, hydro=['Duero','Ebro'])
+es_prov('castilla_y_leon/valladolid', 349001, 'ES-VA', proj=32629, hydro=['Duero'])
+es_prov('castilla_y_leon/zamora', 348987, 'ES-ZA', proj=32629, hydro=['Duero'])
 
-es_prov('catalunya/barcelona', 349035, 'ES-B', proj=32630, language='ca')
-es_prov('catalunya/girona', 349023, 'ES-GI', proj=32630, language='ca')
-es_prov('catalunya/lleida', 348990, 'ES-L', proj=32630, language='ca')
-es_prov('catalunya/tarragona', 348985, 'ES-T', proj=32630, language='ca')
+es_prov('catalunya/barcelona', 349035, 'ES-B', proj=32630, language='ca', hydro=['Cuencas_Internas_de_Cataluna'])
+es_prov('catalunya/girona', 349023, 'ES-GI', proj=32630, language='ca', hydro=['Cuencas_Internas_de_Cataluna'])
+es_prov('catalunya/lleida', 348990, 'ES-L', proj=32630, language='ca', hydro=['Ebro'])
+es_prov('catalunya/tarragona', 348985, 'ES-T', proj=32630, language='ca', hydro=['Ebro','Cuencas_Internas_de_Cataluna'])
 
-es_prov('comunitat_valenciana/alicante', 349012, 'ES-A', proj=32630, language=['ca', 'es'])
-es_prov('comunitat_valenciana/castellon', 349020, 'ES-CS', proj=32630, language=['ca', 'es'])
-es_prov('comunitat_valenciana/valencia', 349000, 'ES-V', proj=32630, language=['ca', 'es'])
+es_prov('comunitat_valenciana/alicante', 349012, 'ES-A', proj=32630, language=['ca', 'es'], hydro=['Jucar','Segura'])
+es_prov('comunitat_valenciana/castellon', 349020, 'ES-CS', proj=32630, language=['ca', 'es'], hydro=['Jucar'])
+es_prov('comunitat_valenciana/valencia', 349000, 'ES-V', proj=32630, language=['ca', 'es'], hydro=['Jucar'])
 
-es_prov('extremadura/badajoz', 348994, 'ES-BA', proj=32629)
-es_prov('extremadura/caceres', 1863380, 'ES-CC', proj=32629)
+es_prov('extremadura/badajoz', 348994, 'ES-BA', proj=32629, hydro=['Guadiana'])
+es_prov('extremadura/caceres', 1863380, 'ES-CC', proj=32629, hydro=['Tajo','Guadiana'])
 
-es_prov('galicia/la_coruna', 349021, 'ES-C', proj=32629, language=['gl', 'es'])
-es_prov('galicia/lugo', 348992, 'ES-LU', proj=32629, language=['gl', 'es'])
-es_prov('galicia/ourense', 348988, 'ES-OR', proj=32629, language=['gl', 'es'])
-es_prov('galicia/pontevedra', 348986, 'ES-PO', proj=32629, language=['gl', 'es'])
+es_prov('galicia/la_coruna', 349021, 'ES-C', proj=32629, language=['gl', 'es'], hydro=['Galicia_Costa'])
+es_prov('galicia/lugo', 348992, 'ES-LU', proj=32629, language=['gl', 'es'], hydro=['Mino_Sil','Cantabrico_Occidental','Galicia_Costa'])
+es_prov('galicia/ourense', 348988, 'ES-OR', proj=32629, language=['gl', 'es'], hydro=['Mino_Sil','Duero'])
+es_prov('galicia/pontevedra', 348986, 'ES-PO', proj=32629, language=['gl', 'es'], hydro=['Galicia_Costa','Mino_Sil'])
 
-es_prov('la_rioja', 348991, 'ES-LO', proj=32630)
+es_prov('la_rioja', 348991, 'ES-LO', proj=32630, hydro=['Ebro'])
 
-es_prov('comunidad_de_madrid', 349055, 'ES-M', proj=32630, include=[
+es_prov('comunidad_de_madrid', 349055, 'ES-M', proj=32630, hydro=['Tajo'], include=[
     'merge_water_drinking_ES_madrid',
     'merge_bicycle_parking_ES_madrid',
 ])
 
-es_prov('comunidad_foral_de_navarra', 6429242, 'ES-NA', proj=32630, language=['es', 'eu'], multilingual_style='sp_eu')
+es_prov('comunidad_foral_de_navarra', 6429242, 'ES-NA', proj=32630, language=['es', 'eu'], multilingual_style='sp_eu', hydro=['Ebro'])
 
-es_prov('euskadi/alava', 349011, 'ES-VI', proj=32630, language=['eu', 'es'], multilingual_style='sp_eu')
-es_prov('euskadi/vizcaya', 349034, 'ES-BI', proj=32630, language=['eu', 'es'], multilingual_style='sp_eu')
-es_prov('euskadi/guipuzcoa', 349015, 'ES-SS', proj=32630, language=['eu', 'es'], multilingual_style='sp_eu')
+es_prov('euskadi/alava', 349011, 'ES-VI', proj=32630, language=['eu', 'es'], multilingual_style='sp_eu', hydro=['Ebro'])
+es_prov('euskadi/vizcaya', 349034, 'ES-BI', proj=32630, language=['eu', 'es'], multilingual_style='sp_eu', hydro=['Cantabrico_Oriental'])
+es_prov('euskadi/guipuzcoa', 349015, 'ES-SS', proj=32630, language=['eu', 'es'], multilingual_style='sp_eu', hydro=['Cantabrico_Oriental'])
 
-es_prov('region_de_murcia', 6427907, 'ES-MU', proj=32630)
+es_prov('region_de_murcia', 6427907, 'ES-MU', proj=32630, hydro=['Segura'])
 
-es_prov('canarias/las_palmas', 349031, 'ES-GC', proj=32628, area='africa')
-es_prov('canarias/santa_cruz_de_tenerife', 349014, 'ES-TF', proj=32628, area='africa')
+es_prov('canarias/las_palmas', 349031, 'ES-GC', proj=32628, area='africa', hydro=['Canarias'])
+es_prov('canarias/santa_cruz_de_tenerife', 349014, 'ES-TF', proj=32628, area='africa', hydro=['Canarias'])
 
-es_prov('ceuta', 1154756, 'ES-CE', proj=32630, area='africa')
-es_prov('melilla', 1154757, 'ES-ML', proj=32628, area='africa')
+es_prov('ceuta', 1154756, 'ES-CE', proj=32630, area='africa', hydro=['Ceuta'])
+es_prov('melilla', 1154757, 'ES-ML', proj=32628, area='africa', hydro=['Melilla'])
 
 #########################################################################
 
