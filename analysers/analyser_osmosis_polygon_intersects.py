@@ -32,6 +32,7 @@ FROM (
   SELECT
     id,
     linestring,
+    linestring_proj,
     'highway' AS type,
     tags
   FROM
@@ -42,6 +43,7 @@ FROM (
   SELECT
     id,
     linestring,
+    ST_Transform(linestring, {proj}) AS linestring_proj,
     CASE
       WHEN tags?'railway' THEN 'railway'
       WHEN tags?'aeroway' THEN 'aeroway'
@@ -76,16 +78,12 @@ sql11 = """
 CREATE TEMP TABLE landusage AS
 SELECT
   'W' || id AS id,
-  ST_MakePolygon(linestring) AS poly,
-  ST_Transform(ST_MakePolygon(linestring), {proj}) AS poly_proj,
+  ST_MakePolygon(linestring) AS poly_full,
+  ST_Subdivide(ST_Buffer(ST_Transform(ST_MakePolygon(linestring), {proj}), -2.0), 1000) AS poly_proj_buffer_fragment,
   CASE
     WHEN tags?'landuse' THEN 'landuse'
     WHEN tags?'natural' THEN 'natural'
   END AS landusekey,
-  CASE
-    WHEN tags?'landuse' THEN tags->'landuse'
-    WHEN tags?'natural' THEN tags->'natural'
-  END AS landusevalue,
   tags
 FROM
   ways
@@ -98,16 +96,12 @@ WHERE
 UNION ALL
 SELECT
   'R' || id AS id,
-  poly,
-  poly_proj,
+  poly AS poly_full,
+  ST_Subdivide(ST_Buffer(poly_proj, -2.0), 1000) AS poly_proj_buffer_fragment,
   CASE
     WHEN tags?'landuse' THEN 'landuse'
     WHEN tags?'natural' THEN 'natural'
   END AS landusekey,
-  CASE
-    WHEN tags?'landuse' THEN tags->'landuse'
-    WHEN tags?'natural' THEN tags->'natural'
-  END AS landusevalue,
   tags
 FROM
   multipolygons
@@ -117,8 +111,8 @@ WHERE
 """
 
 sql12 = """
-CREATE INDEX idx_mobilityway_linestring ON mobility_ways USING GIST(linestring);
-CREATE INDEX idx_landusage_poly ON landusage USING GIST(poly);
+CREATE INDEX idx_mobilityway_linestring_proj ON mobility_ways USING GIST(linestring_proj);
+CREATE INDEX idx_landusage_poly_buffer_fragment ON landusage USING GIST(poly_proj_buffer_fragment);
 """
 
 sql13 = """
@@ -129,11 +123,11 @@ SELECT
   mobility_ways.linestring AS mobility_way_linestring,
   mobility_ways.type AS mobility_way_type,
   landusage.id AS landusage_id,
-  landusage.poly AS landusage_poly,
+  landusage.poly_full AS landusage_poly,
   landusage.landusekey,
-  landusage.landusevalue,
+  landusage.tags->landusage.landusekey AS landusevalue,
   CONCAT(mobility_ways.type, '=', mobility_ways.tags->mobility_ways.type) AS tag_way,
-  CONCAT(landusekey, '=', landusevalue) AS tag_polygon
+  CONCAT(landusekey, '=', landusage.tags->landusage.landusekey) AS tag_polygon
 FROM
   mobility_ways
   JOIN landusage ON
@@ -145,13 +139,13 @@ FROM
         landusage.tags->'layer' = mobility_ways.tags->'layer'
       )
     ) AND
-    landusage.poly && mobility_ways.linestring AND
+    landusage.poly_proj_buffer_fragment && mobility_ways.linestring_proj AND
     -- Only find ways where the highway/railway/aeroway actually enters the
     -- polygon. Exclude cases where the polygon is tied to the way without going inside.
     -- Use a -2 meter buffer to exclude small or shallow intersections.
     (
-      ST_Crosses(ST_Buffer(landusage.poly_proj, -2.0), ST_Transform(mobility_ways.linestring, {proj})) OR
-      ST_Contains(ST_Buffer(landusage.poly_proj, -2.0), ST_Transform(mobility_ways.linestring, {proj}))
+      ST_Crosses(landusage.poly_proj_buffer_fragment, linestring_proj) OR
+      ST_Contains(landusage.poly_proj_buffer_fragment, linestring_proj)
     )
 """
 
@@ -227,10 +221,10 @@ However, if the way for transportation is a tunnel or a bridge, add `tunnel=*` o
     requires_tables_common = ['highways', 'multipolygons']
 
     def analyser_osmosis_common(self):
-        self.run(sql10)
+        self.run(sql10.format(proj=self.config.options["proj"]))
         self.run(sql11.format(proj=self.config.options["proj"]))
         self.run(sql12)
-        self.run(sql13.format(proj=self.config.options["proj"]))
+        self.run(sql13)
         self.run(sql14, lambda res: {
             "class": self.classIndex[res[3]],
             "data": [self.way, self.any_id, self.positionAsText],
