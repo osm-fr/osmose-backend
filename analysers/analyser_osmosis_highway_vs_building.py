@@ -214,7 +214,8 @@ FROM
         ST_Dimension(ST_Intersection(building.polygon_proj, highway.linestring_proj)) >= 1 -- The cross is more than a point
 WHERE
     building.wall AND
-    NOT building.layer
+    NOT building.layer AND
+    (NOT building.tags?'amenity' OR building.tags->'amenity'!='parking')
 ORDER BY
     highway.id,
     building.id
