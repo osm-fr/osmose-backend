@@ -45,7 +45,9 @@ class Analyser_Merge_Bridge_ES(Analyser_Merge_Point):
                     types = ['ways'],
                     tags = [
                         {'highway': True, 'bridge': True},
-                        {'railway': True, 'bridge': True}] ),
+                        {'railway': True, 'bridge': True},
+                        {'highway': True, 'tunnel': True},
+                        {'railway': True, 'tunnel': True}] ),
                 conflationDistance = 50,
                 mapping = Mapping(
                     static1 = {'bridge': 'yes'},
