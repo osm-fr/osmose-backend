@@ -20,9 +20,9 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Osmosis import Analyser_Osmosis
-
-sql10 = """
+de . Analyseur_Osmose  import  Analyseur_Osmose
+ 
+sql10  =  """
 CREATE TEMP TABLE c1 AS
 WITH
 cvqnotag AS (
