@@ -44,6 +44,7 @@ class Josm_numeric(PluginMapCSS):
         self.re_18424cc6 = re.compile(r'^[0-9]+,[0-9][0-9]?( (m|ft))?$')
         self.re_19ef4172 = re.compile(r'^([1-9][0-9]*(\.[0-9]+)? h)$')
         self.re_1b78ea82 = re.compile(r'^([1-9][0-9]*(\.[0-9]+)? min)$')
+        self.re_21cf6a81 = re.compile(r'^-?[0-9]+,[0-9][0-9]?( m|\')?$')
         self.re_22159f36 = re.compile(r'([0-9.]+)( )*(.+)')
         self.re_23eb7c0d = re.compile(r'^([0-9][0-9]?[0-9]?|north|east|south|west|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW|forward|backward|both|clockwise|anti-clockwise|anticlockwise|up|down)((-|;)([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))*$')
         self.re_288e587a = re.compile(r'^\+\d')
@@ -54,6 +55,8 @@ class Josm_numeric(PluginMapCSS):
         self.re_2bbc29e4 = re.compile(r'^(([0-9]+(\.[0-9]+)?( (m|ft))?)|([0-9]+\'([0-9]+(\.[0-9]+)?\")?))$')
         self.re_330da7b0 = re.compile(r'^([1-9][0-9]*(\.[0-9]+)? hr)$')
         self.re_33ecb9da = re.compile(r'^((14(?:3[0-4]|[4-9])|(?:14[0-2]|(?:1[0-3]|9)[0-9])[0-9]?|143|(?:[2-7][0-9]|1[5-9])[0-9]|8(?:[0-8][0-9]|9[0-9]?));?)+$')
+        self.re_3861d693 = re.compile(r'(-?[0-9.]+)( )*(.+)')
+        self.re_3aa67801 = re.compile(r'^-?[0-9]+(\.[0-9]+)?(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$')
         self.re_3c02ab12 = re.compile(r'^0*(\.0*)?( (m|ft))?$')
         self.re_41726192 = re.compile(r'^(([0-9]+(\.[0-9]+)?( (m|km|mi|nmi))?)|([0-9]+\'([0-9]+(\.[0-9]+)?\")?))$')
         self.re_43c55ce5 = re.compile(r'(.*[A-Za-z].*)|.*,.*|.*( ).*')
@@ -85,7 +88,7 @@ class Josm_numeric(PluginMapCSS):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_distance_separator_autofix = set_ele_meter_remove_autofix = set_ele_separator_autofix = set_height_foot_autofix = set_height_meter_autofix = set_height_separator_autofix = set_imprecise_gauge = set_maxaxleload_separator_autofix = set_maxheight_foot_autofix = set_maxheight_meter_autofix = set_maxheight_separator_autofix = set_maxlength_foot_autofix = set_maxlength_meter_autofix = set_maxlength_separator_autofix = set_maxstay_autofix = set_maxweight_separator_autofix = set_maxwidth_foot_autofix = set_maxwidth_meter_autofix = set_maxwidth_separator_autofix = set_negative_value = set_roof_height_foot_autofix = set_roof_height_meter_autofix = set_roof_height_separator_autofix = set_unusual_gauge = set_width_foot_autofix = set_width_meter_autofix = set_width_separator_autofix = set_zero_roof_height_flat = False
+        set_distance_separator_autofix = set_ele_meter_remove_autofix = set_ele_separator_autofix = set_height_foot_autofix = set_height_meter_autofix = set_height_separator_autofix = set_imprecise_gauge = set_maxaxleload_separator_autofix = set_maxheight_foot_autofix = set_maxheight_meter_autofix = set_maxheight_separator_autofix = set_maxlength_foot_autofix = set_maxlength_meter_autofix = set_maxlength_separator_autofix = set_maxstay_autofix = set_maxweight_separator_autofix = set_maxwidth_foot_autofix = set_maxwidth_meter_autofix = set_maxwidth_separator_autofix = set_min_height_meter_autofix = set_min_height_separator_autofix = set_negative_value = set_roof_height_foot_autofix = set_roof_height_meter_autofix = set_roof_height_separator_autofix = set_unusual_gauge = set_width_foot_autofix = set_width_meter_autofix = set_width_separator_autofix = set_zero_roof_height_flat = False
 
         # *[/^[0-9]+$/]
         if True:
@@ -675,6 +678,55 @@ class Josm_numeric(PluginMapCSS):
                 # assertNoMatch:"node width=10'5\""
                 err.append({'class': 9006026, 'subclass': 1612248632, 'text': mapcss.tr('unusual value of {0}: {1} is default; only positive values; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss.tr('meters'))})
 
+        # *[min_height][min_height=~/^-?[0-9]+(\.[0-9]+)?(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$/]
+        if ('min_height' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'min_height')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3aa67801), mapcss._tag_capture(capture_tags, 1, tags, 'min_height'))))
+                except mapcss.RuleAbort: pass
+            if match:
+                # set min_height_meter_autofix
+                # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
+                # fixAdd:concat("min_height=",get(regexp_match("(-?[0-9.]+)( )*(.+)",tag("min_height")),1)," m")
+                # assertNoMatch:"node min_height=2 m"
+                # assertMatch:"node min_height=2m"
+                # assertMatch:"node min_height=5  metre"
+                # assertNoMatch:"node min_height=5"
+                # assertMatch:"node min_height=6.78 meters"
+                set_min_height_meter_autofix = True
+                err.append({'class': 9006024, 'subclass': 288121068, 'text': mapcss.tr('unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat('min_height=', mapcss.get(mapcss.regexp_match(self.re_3861d693, mapcss.tag(tags, 'min_height')), 1), ' m')).split('=', 1)])
+                }})
+
+        # *[min_height][min_height=~/^-?[0-9]+,[0-9][0-9]?( m|\')?$/]
+        if ('min_height' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'min_height')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_21cf6a81), mapcss._tag_capture(capture_tags, 1, tags, 'min_height'))))
+                except mapcss.RuleAbort: pass
+            if match:
+                # set min_height_separator_autofix
+                # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
+                # fixAdd:concat("min_height=",replace(tag("min_height"),",","."))
+                # assertMatch:"node min_height=12,5'"
+                # assertMatch:"node min_height=12,00"
+                # assertNoMatch:"node min_height=12,000"
+                # assertNoMatch:"node min_height=3,50,5"
+                # assertNoMatch:"node min_height=3.5"
+                # assertNoMatch:"node min_height=4"
+                # assertMatch:"node min_height=5,5"
+                set_min_height_separator_autofix = True
+                err.append({'class': 9006017, 'subclass': 180326537, 'text': mapcss.tr('unusual value of {0}: use . instead of , as decimal separator', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat('min_height=', mapcss.replace(mapcss.tag(tags, 'min_height'), ',', '.'))).split('=', 1)])
+                }})
+
+        # *[min_height][min_height!~/^(-?([0-9]+(\.[0-9]+)?( m)?)|(-?[1-9][0-9]*\'((10|11|[0-9])((\.[0-9]+)?)\")?))$/]!.min_height_separator_autofix!.min_height_meter_autofix!.min_height_foot_autofix
+        # Rule Blacklisted (id: 1251729862)
+
         # *[maxaxleload][maxaxleload=~/^[0-9]+,[0-9][0-9]?( (t|kg|st|lbs))?$/]
         if ('maxaxleload' in keys):
             match = False
@@ -1210,7 +1262,7 @@ class Josm_numeric(PluginMapCSS):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_distance_separator_autofix = set_ele_meter_remove_autofix = set_ele_separator_autofix = set_height_foot_autofix = set_height_meter_autofix = set_height_separator_autofix = set_imprecise_gauge = set_maxaxleload_separator_autofix = set_maxheight_foot_autofix = set_maxheight_meter_autofix = set_maxheight_separator_autofix = set_maxlength_foot_autofix = set_maxlength_meter_autofix = set_maxlength_separator_autofix = set_maxstay_autofix = set_maxweight_separator_autofix = set_maxwidth_foot_autofix = set_maxwidth_meter_autofix = set_maxwidth_separator_autofix = set_negative_value = set_roof_height_foot_autofix = set_roof_height_meter_autofix = set_roof_height_separator_autofix = set_unusual_gauge = set_width_foot_autofix = set_width_meter_autofix = set_width_separator_autofix = set_zero_roof_height_flat = False
+        set_distance_separator_autofix = set_ele_meter_remove_autofix = set_ele_separator_autofix = set_height_foot_autofix = set_height_meter_autofix = set_height_separator_autofix = set_imprecise_gauge = set_maxaxleload_separator_autofix = set_maxheight_foot_autofix = set_maxheight_meter_autofix = set_maxheight_separator_autofix = set_maxlength_foot_autofix = set_maxlength_meter_autofix = set_maxlength_separator_autofix = set_maxstay_autofix = set_maxweight_separator_autofix = set_maxwidth_foot_autofix = set_maxwidth_meter_autofix = set_maxwidth_separator_autofix = set_min_height_meter_autofix = set_min_height_separator_autofix = set_negative_value = set_roof_height_foot_autofix = set_roof_height_meter_autofix = set_roof_height_separator_autofix = set_unusual_gauge = set_width_foot_autofix = set_width_meter_autofix = set_width_separator_autofix = set_zero_roof_height_flat = False
 
         # *[/^[0-9]+$/]
         if True:
@@ -1639,6 +1691,43 @@ class Josm_numeric(PluginMapCSS):
             if match:
                 # throwWarning:tr("unusual value of {0}: {1} is default; only positive values; point is decimal separator; if units, put space then unit","{0.key}",tr("meters"))
                 err.append({'class': 9006026, 'subclass': 1612248632, 'text': mapcss.tr('unusual value of {0}: {1} is default; only positive values; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss.tr('meters'))})
+
+        # *[min_height][min_height=~/^-?[0-9]+(\.[0-9]+)?(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$/]
+        if ('min_height' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'min_height')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3aa67801), mapcss._tag_capture(capture_tags, 1, tags, 'min_height'))))
+                except mapcss.RuleAbort: pass
+            if match:
+                # set min_height_meter_autofix
+                # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
+                # fixAdd:concat("min_height=",get(regexp_match("(-?[0-9.]+)( )*(.+)",tag("min_height")),1)," m")
+                set_min_height_meter_autofix = True
+                err.append({'class': 9006024, 'subclass': 288121068, 'text': mapcss.tr('unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat('min_height=', mapcss.get(mapcss.regexp_match(self.re_3861d693, mapcss.tag(tags, 'min_height')), 1), ' m')).split('=', 1)])
+                }})
+
+        # *[min_height][min_height=~/^-?[0-9]+,[0-9][0-9]?( m|\')?$/]
+        if ('min_height' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'min_height')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_21cf6a81), mapcss._tag_capture(capture_tags, 1, tags, 'min_height'))))
+                except mapcss.RuleAbort: pass
+            if match:
+                # set min_height_separator_autofix
+                # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
+                # fixAdd:concat("min_height=",replace(tag("min_height"),",","."))
+                set_min_height_separator_autofix = True
+                err.append({'class': 9006017, 'subclass': 180326537, 'text': mapcss.tr('unusual value of {0}: use . instead of , as decimal separator', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat('min_height=', mapcss.replace(mapcss.tag(tags, 'min_height'), ',', '.'))).split('=', 1)])
+                }})
+
+        # *[min_height][min_height!~/^(-?([0-9]+(\.[0-9]+)?( m)?)|(-?[1-9][0-9]*\'((10|11|[0-9])((\.[0-9]+)?)\")?))$/]!.min_height_separator_autofix!.min_height_meter_autofix!.min_height_foot_autofix
+        # Rule Blacklisted (id: 1251729862)
 
         # *[maxaxleload][maxaxleload=~/^[0-9]+,[0-9][0-9]?( (t|kg|st|lbs))?$/]
         if ('maxaxleload' in keys):
@@ -2240,7 +2329,7 @@ class Josm_numeric(PluginMapCSS):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_distance_separator_autofix = set_ele_meter_remove_autofix = set_ele_separator_autofix = set_height_foot_autofix = set_height_meter_autofix = set_height_separator_autofix = set_imprecise_gauge = set_maxaxleload_separator_autofix = set_maxheight_foot_autofix = set_maxheight_meter_autofix = set_maxheight_separator_autofix = set_maxlength_foot_autofix = set_maxlength_meter_autofix = set_maxlength_separator_autofix = set_maxstay_autofix = set_maxweight_separator_autofix = set_maxwidth_foot_autofix = set_maxwidth_meter_autofix = set_maxwidth_separator_autofix = set_negative_value = set_roof_height_foot_autofix = set_roof_height_meter_autofix = set_roof_height_separator_autofix = set_unusual_gauge = set_width_foot_autofix = set_width_meter_autofix = set_width_separator_autofix = set_zero_roof_height_flat = False
+        set_distance_separator_autofix = set_ele_meter_remove_autofix = set_ele_separator_autofix = set_height_foot_autofix = set_height_meter_autofix = set_height_separator_autofix = set_imprecise_gauge = set_maxaxleload_separator_autofix = set_maxheight_foot_autofix = set_maxheight_meter_autofix = set_maxheight_separator_autofix = set_maxlength_foot_autofix = set_maxlength_meter_autofix = set_maxlength_separator_autofix = set_maxstay_autofix = set_maxweight_separator_autofix = set_maxwidth_foot_autofix = set_maxwidth_meter_autofix = set_maxwidth_separator_autofix = set_min_height_meter_autofix = set_min_height_separator_autofix = set_negative_value = set_roof_height_foot_autofix = set_roof_height_meter_autofix = set_roof_height_separator_autofix = set_unusual_gauge = set_width_foot_autofix = set_width_meter_autofix = set_width_separator_autofix = set_zero_roof_height_flat = False
 
         # *[/^[0-9]+$/]
         if True:
@@ -2667,6 +2756,43 @@ class Josm_numeric(PluginMapCSS):
             if match:
                 # throwWarning:tr("unusual value of {0}: {1} is default; only positive values; point is decimal separator; if units, put space then unit","{0.key}",tr("meters"))
                 err.append({'class': 9006026, 'subclass': 1612248632, 'text': mapcss.tr('unusual value of {0}: {1} is default; only positive values; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss.tr('meters'))})
+
+        # *[min_height][min_height=~/^-?[0-9]+(\.[0-9]+)?(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$/]
+        if ('min_height' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'min_height')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3aa67801), mapcss._tag_capture(capture_tags, 1, tags, 'min_height'))))
+                except mapcss.RuleAbort: pass
+            if match:
+                # set min_height_meter_autofix
+                # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
+                # fixAdd:concat("min_height=",get(regexp_match("(-?[0-9.]+)( )*(.+)",tag("min_height")),1)," m")
+                set_min_height_meter_autofix = True
+                err.append({'class': 9006024, 'subclass': 288121068, 'text': mapcss.tr('unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat('min_height=', mapcss.get(mapcss.regexp_match(self.re_3861d693, mapcss.tag(tags, 'min_height')), 1), ' m')).split('=', 1)])
+                }})
+
+        # *[min_height][min_height=~/^-?[0-9]+,[0-9][0-9]?( m|\')?$/]
+        if ('min_height' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'min_height')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_21cf6a81), mapcss._tag_capture(capture_tags, 1, tags, 'min_height'))))
+                except mapcss.RuleAbort: pass
+            if match:
+                # set min_height_separator_autofix
+                # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
+                # fixAdd:concat("min_height=",replace(tag("min_height"),",","."))
+                set_min_height_separator_autofix = True
+                err.append({'class': 9006017, 'subclass': 180326537, 'text': mapcss.tr('unusual value of {0}: use . instead of , as decimal separator', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat('min_height=', mapcss.replace(mapcss.tag(tags, 'min_height'), ',', '.'))).split('=', 1)])
+                }})
+
+        # *[min_height][min_height!~/^(-?([0-9]+(\.[0-9]+)?( m)?)|(-?[1-9][0-9]*\'((10|11|[0-9])((\.[0-9]+)?)\")?))$/]!.min_height_separator_autofix!.min_height_meter_autofix!.min_height_foot_autofix
+        # Rule Blacklisted (id: 1251729862)
 
         # *[maxaxleload][maxaxleload=~/^[0-9]+,[0-9][0-9]?( (t|kg|st|lbs))?$/]
         if ('maxaxleload' in keys):
@@ -3271,6 +3397,18 @@ class Test(TestPluginMapcss):
         self.check_not_err(n.node(data, {'maxwidth': '7 ft'}), expected={'class': 9006026, 'subclass': 1612248632})
         self.check_err(n.node(data, {'width': '10\'2."'}), expected={'class': 9006026, 'subclass': 1612248632})
         self.check_not_err(n.node(data, {'width': '10\'5"'}), expected={'class': 9006026, 'subclass': 1612248632})
+        self.check_not_err(n.node(data, {'min_height': '2 m'}), expected={'class': 9006024, 'subclass': 288121068})
+        self.check_err(n.node(data, {'min_height': '2m'}), expected={'class': 9006024, 'subclass': 288121068})
+        self.check_err(n.node(data, {'min_height': '5  metre'}), expected={'class': 9006024, 'subclass': 288121068})
+        self.check_not_err(n.node(data, {'min_height': '5'}), expected={'class': 9006024, 'subclass': 288121068})
+        self.check_err(n.node(data, {'min_height': '6.78 meters'}), expected={'class': 9006024, 'subclass': 288121068})
+        self.check_err(n.node(data, {'min_height': '12,5\''}), expected={'class': 9006017, 'subclass': 180326537})
+        self.check_err(n.node(data, {'min_height': '12,00'}), expected={'class': 9006017, 'subclass': 180326537})
+        self.check_not_err(n.node(data, {'min_height': '12,000'}), expected={'class': 9006017, 'subclass': 180326537})
+        self.check_not_err(n.node(data, {'min_height': '3,50,5'}), expected={'class': 9006017, 'subclass': 180326537})
+        self.check_not_err(n.node(data, {'min_height': '3.5'}), expected={'class': 9006017, 'subclass': 180326537})
+        self.check_not_err(n.node(data, {'min_height': '4'}), expected={'class': 9006017, 'subclass': 180326537})
+        self.check_err(n.node(data, {'min_height': '5,5'}), expected={'class': 9006017, 'subclass': 180326537})
         self.check_err(n.node(data, {'maxaxleload': '12,00'}), expected={'class': 9006017, 'subclass': 1432954177})
         self.check_not_err(n.node(data, {'maxaxleload': '12,000'}), expected={'class': 9006017, 'subclass': 1432954177})
         self.check_not_err(n.node(data, {'maxaxleload': '3,50,5'}), expected={'class': 9006017, 'subclass': 1432954177})

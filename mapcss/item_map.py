@@ -365,6 +365,7 @@ item_map = \
                        '{0} value with + sign': 9006002},
              'item': 9006,
              'prefix': 'Josm_',
+             'subclass_blacklist': [1251729862],
              'tags': ['tag', 'value'],
              'url': 'https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/numeric.mapcss?format=txt',
              'url_display': 'https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/numeric.mapcss'},
