@@ -88,6 +88,34 @@ def convert_area_selectors(t, c):
         s['simple_selectors'][0]['predicates'].append({'type': 'booleanExpression', 'operator': '!=', 'operands': [{'type': 'valueExpression', 'operator': None, 'operands': [{'type': 'primaryExpression', 'derefered': False, 'value': {'type': 'osmtag', 'value': 'area'}}]}, {'type': 'valueExpression', 'operator': None, 'operands': [{'type': 'primaryExpression', 'derefered': False, 'value': {'type': 'osmtag', 'value': 'no'}}]}], 'selector_index': selector_index_map['arearule']}) # This is the output of an [area!=no] selector with a mock selector_index
     return t
 
+def convert_closed_pseudo_relation_node(t, c):
+    """
+    type = rule
+    Convert relation:closed/closed2 to [type=multipolygon]
+    Multipolygon relations are always closed, nodes and other relations are always open
+    (Technically partially downloaded multipolygons aren't closed2)
+    """
+
+    for selector in t['selectors']:
+        type_selector = selector['simple_selectors'][0]['type_selector']
+        if type_selector not in ('node', 'relation'):
+            continue
+
+        if type_selector == 'node':
+            selector.update({'pseudo_class': list(filter(lambda p: not (p['not_class'] and p['pseudo_class'] in ('closed', 'closed2')), selector['pseudo_class']))})
+            selector['simple_selectors'][0]['pseudo_class'] = list(filter(lambda p: not (p['not_class'] and p['pseudo_class'] in ('closed', 'closed2')), selector['pseudo_class']))
+        if type_selector == 'relation':
+            isPseudoClosed = any(map(lambda p: p['pseudo_class'] in ('closed', 'closed2') and not p['not_class'], selector['pseudo_class']))
+            isPseudoNotClosed = any(map(lambda p: p['pseudo_class'] in ('closed', 'closed2') and p['not_class'], selector['pseudo_class']))
+            selector.update({'pseudo_class': list(filter(lambda p: not p['pseudo_class'] in ('closed', 'closed2'), selector['pseudo_class']))})
+            selector['simple_selectors'][0]['pseudo_class'] = list(filter(lambda p: not p['pseudo_class'] in ('closed', 'closed2'), selector['pseudo_class']))
+            if isPseudoClosed:
+                selector['simple_selectors'][0]['predicates'].append({'type': 'booleanExpression', 'operator': '=', 'operands': [{'type': 'valueExpression', 'operator': None, 'operands': [{'type': 'primaryExpression', 'derefered': False, 'value': {'type': 'osmtag', 'value': 'type'}}]}, {'type': 'valueExpression', 'operator': None, 'operands': [{'type': 'primaryExpression', 'derefered': False, 'value': {'type': 'osmtag', 'value': 'multipolygon'}}]}], 'selector_index': selector_index_map['closedrelation']}) # This is the output of an [type=multipolygon] selector with a mock selector_index
+            if isPseudoNotClosed:
+                selector['simple_selectors'][0]['predicates'].append({'type': 'booleanExpression', 'operator': '!=', 'operands': [{'type': 'valueExpression', 'operator': None, 'operands': [{'type': 'primaryExpression', 'derefered': False, 'value': {'type': 'osmtag', 'value': 'type'}}]}, {'type': 'valueExpression', 'operator': None, 'operands': [{'type': 'primaryExpression', 'derefered': False, 'value': {'type': 'osmtag', 'value': 'multipolygon'}}]}], 'selector_index': selector_index_map['closedrelation']}) # This is the output of an [type!=multipolygon] selector with a mock selector_index
+
+    return t
+
 def functionExpression_eval(t, c):
     """
     type = functionExpression
@@ -402,6 +430,7 @@ rewrite_rules_clean = [
     ('regexExpression', regexExpression_unescape),
     ('simple_selector', simple_selector_pseudo_class),
     ('rule', convert_area_selectors),
+    ('rule', convert_closed_pseudo_relation_node),
     ('functionExpression', functionExpression_eval),
     ('rule', rule_exclude_throw_other),
     ('rule', rule_exclude_unsupported_meta),
@@ -775,8 +804,9 @@ context_map = {
 }
 
 selector_index_map = {
-  # Non-real selector indices, used for rule rewrites
-  'arearule': -1,
+    # Non-real selector indices, used for rule rewrites
+    'arearule': -1,
+    'closedrelation': -2,
 }
 
 def build_tests(tests):
