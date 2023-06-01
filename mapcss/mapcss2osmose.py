@@ -12,6 +12,7 @@ from .generated.MapCSSLexer import MapCSSLexer
 from .generated.MapCSSParser import MapCSSParser
 from .MapCSSListenerL import MapCSSListenerL
 from typing import Dict, List, Set, Optional
+from copy import deepcopy
 
 
 # Clean
@@ -69,6 +70,22 @@ def simple_selector_pseudo_class(t, c):
     Remove always true pseudo class
     """
     t['pseudo_class'] = list(filter(lambda p: not (p['not_class'] and p['pseudo_class'] in ('completely_downloaded', 'in-downloaded-area')), t['pseudo_class']))
+    return t
+
+def convert_area_selectors(t, c):
+    """
+    type = rule
+    Convert area* rules to way[area!=no]* + relation[type=multipolygon]*
+    """
+    areaselectors = list(filter(lambda selector: selector['simple_selectors'][0]['type_selector'] == 'area', t['selectors']))
+    for s in areaselectors:
+        relSelector = deepcopy(s)
+        relSelector['simple_selectors'][0]['type_selector'] = 'relation'
+        relSelector['simple_selectors'][0]['predicates'].append({'type': 'booleanExpression', 'operator': '=', 'operands': [{'type': 'valueExpression', 'operator': None, 'operands': [{'type': 'primaryExpression', 'derefered': False, 'value': {'type': 'osmtag', 'value': 'type'}}]}, {'type': 'valueExpression', 'operator': None, 'operands': [{'type': 'primaryExpression', 'derefered': False, 'value': {'type': 'osmtag', 'value': 'multipolygon'}}]}], 'selector_index': selector_index_map['arearule']}) # This is the output of an [type=multipolygon] selector with a mock selector_index
+        t['selectors'].append(relSelector)
+
+        s['simple_selectors'][0]['type_selector'] = 'way'
+        s['simple_selectors'][0]['predicates'].append({'type': 'booleanExpression', 'operator': '!=', 'operands': [{'type': 'valueExpression', 'operator': None, 'operands': [{'type': 'primaryExpression', 'derefered': False, 'value': {'type': 'osmtag', 'value': 'area'}}]}, {'type': 'valueExpression', 'operator': None, 'operands': [{'type': 'primaryExpression', 'derefered': False, 'value': {'type': 'osmtag', 'value': 'no'}}]}], 'selector_index': selector_index_map['arearule']}) # This is the output of an [area!=no] selector with a mock selector_index
     return t
 
 def functionExpression_eval(t, c):
@@ -384,6 +401,7 @@ rewrite_rules_clean = [
     ('quoted', quoted_unescape),
     ('regexExpression', regexExpression_unescape),
     ('simple_selector', simple_selector_pseudo_class),
+    ('rule', convert_area_selectors),
     ('functionExpression', functionExpression_eval),
     ('rule', rule_exclude_throw_other),
     ('rule', rule_exclude_unsupported_meta),
@@ -754,6 +772,11 @@ def build_items(class_):
 
 context_map = {
     'inside': 'country',
+}
+
+selector_index_map = {
+  # Non-real selector indices, used for rule rewrites
+  'arearule': -1,
 }
 
 def build_tests(tests):
