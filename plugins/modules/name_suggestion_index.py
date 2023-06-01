@@ -52,8 +52,6 @@ def whitelist_from_nsi(country, nsi = download_nsi(), nsiprefix = 'brands/'):
                     if "exclude" in preset["locationSet"] and country in preset["locationSet"]["exclude"]:
                         continue
                 if "name" in preset["tags"]:
-                    for name in preset["tags"]["name"].split():
-                        whitelist.add(name)
-                for name in preset["displayName"].split():
-                    whitelist.add(name)
+                    whitelist.add(preset["tags"]["name"])
+                whitelist.add(preset["displayName"])
     return whitelist
