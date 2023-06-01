@@ -5,7 +5,7 @@ import sys
 import os
 import re
 import ast
-import hashlib
+from modules.Stablehash import stablehash
 from pprint import pprint
 from antlr4 import FileStream, CommonTokenStream, ParseTreeWalker
 from .generated.MapCSSLexer import MapCSSLexer
@@ -66,7 +66,7 @@ def regexExpression_unescape(t, c):
 def simple_selector_pseudo_class(t, c):
     """
     type = simple_selector
-    Remove allways true pseudo class
+    Remove always true pseudo class
     """
     t['pseudo_class'] = list(filter(lambda p: not (p['not_class'] and p['pseudo_class'] in ('completely_downloaded', 'in-downloaded-area')), t['pseudo_class']))
     return t
@@ -464,7 +464,7 @@ def segregate_selectors_by_complexity(t):
             for selector in rule['selectors']:
                 if selector['operator']:
                     selector_complex.append(selector)
-                elif any(map(lambda a: not a['pseudo_class'] in ('closed', 'closed2', 'tagged', 'righthandtraffic'), selector['simple_selectors'][0]['pseudo_class'])):
+                elif any(map(lambda a: not a['pseudo_class'] in ('closed', 'closed2', 'righthandtraffic'), selector['simple_selectors'][0]['pseudo_class'])):
                     selector_complex.append(selector)
                 else:
                     selector_simple.append(selector)
@@ -519,20 +519,12 @@ def filter_osmose_none_rules(rules):
         rules))
 
 
-def filter_area_rules(rules):
+def filter_typeselector_rules(rules):
     return list(filter(lambda rule: rule.get('_meta') or len(rule['selectors']) > 0, map(lambda rule:
         rule.get('_meta') and rule or
-        rule.update({'selectors': list(filter(lambda selector: selector['simple_selectors'][0]['type_selector'] != 'area' or print("W: Skip area selector"), rule['selectors']))}) or rule,
+        rule.update({'selectors': list(filter(lambda selector: selector['simple_selectors'][0]['type_selector'] in ('node', 'way', 'relation', '*') or print("W: Skip unknown type selector"), rule['selectors']))}) or rule,
         rules
     )))
-
-
-def stablehash(s):
-    """
-    Compute a stable positive integer hash on 32bits
-    @param s: a string
-    """
-    return int(abs(int(hashlib.md5(s.encode('utf-8')).hexdigest(), 16)) % 2147483647)
 
 
 class_map: Dict[Optional[str], int] = {}
@@ -803,7 +795,7 @@ def compile(input, class_name, mapcss_url = None, only_for = [], not_for = [], p
     tree = rewrite_tree(selectors_by_complexity['rules_meta'] + selectors_by_complexity['rules_simple'])
     tree = filter_non_productive_rules(tree)
     tree = filter_osmose_none_rules(tree)
-    tree = filter_area_rules(tree)
+    tree = filter_typeselector_rules(tree)
     selectors_type = segregate_selectors_type(tree)
 
     global class_, tests, regex_store, set_store
