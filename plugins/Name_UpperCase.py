@@ -61,11 +61,11 @@ class Name_UpperCase(Plugin):
         if u"name" in tags:
             # first check if the name *might* match
             if self.UpperTitleCase.match(tags[u"name"]) and not self.RomanNumber.match(tags[u"name"]):
-                if not self.whitelist:
+                if not self.whitelist or not any(map(lambda whitelist: whitelist in tags["name"], self.whitelist)):
                     err.append({"class": 803, "text": T_("Concerns tag: `{0}`", '='.join(['name', tags['name']])) })
                 else:
                     # Check if we match the whitelist and if so re-try
-                    name = " ".join(i for i in tags[u"name"].split() if not i in self.whitelist)
+                    name = " ".join([i for i in tags["name"].split() if not i in " ".join(self.whitelist).split()])
                     if self.UpperTitleCase.match(name) and not self.RomanNumber.match(name):
                         err.append({"class": 803, "text": T_("Concerns tag: `{0}`", '='.join(['name', tags['name']])) })
         return err
@@ -90,6 +90,7 @@ class Test(TestPluginCommon):
                   {u"name": u"EHPAD MAGEUSCULE"},
                   {u"name": u"ICI PARIS XL"}, # in NSI, but not for FR
                   {u"name": u"AÇǱÞΣSSὩΙST"},
+                  {u"name": u"SHOO LOONG KAN PARIS"},
                  ]:
             self.check_err(a.node(None, t), t)
             self.check_err(a.way(None, t, None), t)
@@ -97,6 +98,7 @@ class Test(TestPluginCommon):
         for t in [{u"name": u"Col des Champs XIIVVVIM"},
                   {u"name": u"EHPAD La Madelon"},
                   {u"name": u"SHOO LOONG KAN"}, # in NSI
+                  {u"name": u"SHOO LOONG KAN Paris"},
                   {u"name": u"ƻאᎯᚦ京"},
                  ]:
             assert not a.node(None, t), t

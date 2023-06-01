@@ -120,7 +120,7 @@ appropriate.'''),
 
         self.whitelist_names = set()
         if country:
-            self.whitelist_names = whitelist_from_nsi(country.lower())
+            self.whitelist_names = whitelist_from_nsi(country[:2].lower())
 
     def node(self, data, tags):
         err = []
@@ -162,7 +162,7 @@ appropriate.'''),
                 break
 
             if self.default:
-                if key in self.names and value not in self.whitelist_names:
+                if key in self.names and not any(map(lambda whitelist: whitelist in value, self.whitelist_names)):
                     s = self.non_letter.sub(u" ", value)
                     s = self.alone_char.sub(u"", s)
                     s = self.roman_number.sub(u"", s)
@@ -231,9 +231,23 @@ class Test(TestPluginCommon):
 
         assert not a.node(None, {u"name": u"test ь"})
         assert not a.node(None, {u"name": u"Sacré-Cœur"})
-        assert not a.node(None, {u"name": u"Søstrene Grene"}) # in NSI
 
         self.check_err(a.node(None, {u"name:uk": u"Sacré-Cœur"}))
+
+    def test_NL(self):
+        a = Name_Script(None)
+        class _config:
+            options = {"country": "NL-GE", "language": "nl"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+
+        assert not a.node(None, {u"name": u"Søstrene Grene"}) # in NSI
+        assert not a.node(None, {u"name": u"Søstrene Grene Netherlands"}) # Partial name matches with NSI, assume local office
+        assert not a.node(None, {u"name": u"İşbank"}) # in NSI
+
+        self.check_err(a.node(None, {u"name": u"Abcdefghijklmnø"}))
 
     def test_fr(self):
         a = Name_Script(None)
