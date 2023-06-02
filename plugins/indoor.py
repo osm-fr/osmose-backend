@@ -13,6 +13,7 @@ class indoor(PluginMapCSS):
     def init(self, logger):
         super().init(logger)
         tags = capture_tags = {} # noqa
+        self.errors[1] = self.def_class(item = 0, level = 2, tags = mapcss.list_('indoor', 'geom'), title = mapcss.tr('This indoor room should have a door'))
         self.errors[50] = self.def_class(item = 1300, level = 3, tags = mapcss.list_('indoor', 'geom') + mapcss.list_('fix:survey'), title = mapcss.tr('This indoor feature should be a closed and valid polygon'))
         self.errors[51] = self.def_class(item = 1300, level = 3, tags = mapcss.list_('indoor', 'geom') + mapcss.list_('fix:survey'), title = mapcss.tr('This indoor feature should have a level'))
         self.errors[52] = self.def_class(item = 1300, level = 3, tags = mapcss.list_('indoor', 'geom') + mapcss.list_('fix:survey', 'shop'), title = mapcss.tr('This indoor shop should probably be inside a room'))
@@ -104,6 +105,14 @@ class indoor(PluginMapCSS):
                 # throwError:tr("This indoor feature should be a closed and valid polygon")
                 err.append({'class': 50, 'subclass': 0, 'text': mapcss.tr('This indoor feature should be a closed and valid polygon')})
 
+        # area[indoor=room][access!~/no|private/]!.room_with_door
+        if ('indoor' in keys):
+            match = False
+            # Skip selector using undeclared class room_with_door
+            if match:
+                # throwError:tr("This indoor room should have a door")
+                err.append({'class': 1, 'subclass': 2098248673, 'text': mapcss.tr('This indoor room should have a door')})
+
         # way:closed[indoor=~/room|corridor|area|level/][!level][inside("DE,CH,FR")]
         if ('indoor' in keys):
             match = False
@@ -179,6 +188,14 @@ class indoor(PluginMapCSS):
         keys = tags.keys()
         err = []
 
+
+        # area[indoor=room][access!~/no|private/]!.room_with_door
+        if ('indoor' in keys and 'type' in keys):
+            match = False
+            # Skip selector using undeclared class room_with_door
+            if match:
+                # throwError:tr("This indoor room should have a door")
+                err.append({'class': 1, 'subclass': 2098248673, 'text': mapcss.tr('This indoor room should have a door')})
 
         # *[indoor][!level][!repeat_on][indoor!=yes][indoor!=no]
         if ('indoor' in keys):

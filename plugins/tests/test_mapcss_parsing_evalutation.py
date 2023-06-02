@@ -21,15 +21,17 @@ class test_mapcss_parsing_evalutation(PluginMapCSS):
         self.errors[6] = self.def_class(item = 0, level = 2, tags = [], title = {'en': 'test'})
         self.errors[7] = self.def_class(item = 0, level = 2, tags = [], title = mapcss.tr('test #1882 - {0}-{1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}')))
         self.errors[8] = self.def_class(item = 0, level = 2, tags = [], title = mapcss.tr('test #1882 - {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
-        self.errors[9] = self.def_class(item = 0, level = 3, tags = [], title = {'en': 'test #1610'})
-        self.errors[10] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test #1603 - {0}{1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}')))
-        self.errors[11] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test righthandtraffic'))
-        self.errors[12] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test lefthandtraffic'))
-        self.errors[13] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
-        self.errors[14] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test #1303, #1742 {0}', mapcss._tag_uncapture(capture_tags, '{2.key}')))
-        self.errors[15] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test #1303 {0}', mapcss._tag_uncapture(capture_tags, '{2.key}')))
-        self.errors[16] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test #1742 - {0}', mapcss._tag_uncapture(capture_tags, '{1.tag}')))
-        self.errors[17] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test {0}{1}', 'text', mapcss._tag_uncapture(capture_tags, '{0.key}')))
+        self.errors[9] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test area rule {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
+        self.errors[10] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test closed rewrite {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
+        self.errors[11] = self.def_class(item = 0, level = 3, tags = [], title = {'en': 'test #1610'})
+        self.errors[12] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test #1603 - {0}{1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}')))
+        self.errors[13] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test righthandtraffic'))
+        self.errors[14] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test lefthandtraffic'))
+        self.errors[15] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
+        self.errors[16] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test #1303, #1742 {0}', mapcss._tag_uncapture(capture_tags, '{2.key}')))
+        self.errors[17] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test #1303 {0}', mapcss._tag_uncapture(capture_tags, '{2.key}')))
+        self.errors[18] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test #1742 - {0}', mapcss._tag_uncapture(capture_tags, '{1.tag}')))
+        self.errors[19] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test {0}{1}', 'text', mapcss._tag_uncapture(capture_tags, '{0.key}')))
         self.errors[97] = self.def_class(item = 4, level = 1, tags = mapcss.list_('osmose_rules'), title = mapcss.tr('test'), trap = mapcss.tr('Don\'t do this!'), detail = mapcss.tr('More {0}.', '`info`'), example = {"en": 'Look at me, I haven\'t lost my apostrophe'}, fix = {"en": 'This may fix it.'}, resource = 'https://wiki.openstreetmap.org/wiki/Useful_Page')
         self.errors[98] = self.def_class(item = 4030, level = 2, tags = mapcss.list_('fix:survey'), title = {'en': 'test #1740'})
         self.errors[99] = self.def_class(item = 4, level = 1, tags = mapcss.list_('osmose_rules'), title = mapcss.tr('test'), trap = mapcss.tr('Don\'t do this!'), detail = mapcss.tr('More {0}.', '`info`'), example = {"en": 'Look at me, I haven\'t lost my apostrophe'}, fix = {"en": 'This may fix it.'}, resource = 'https://wiki.openstreetmap.org/wiki/Useful_Page')
@@ -355,6 +357,31 @@ class test_mapcss_parsing_evalutation(PluginMapCSS):
                 # assertMatch:"node a=ananas b=2.0"
                 err.append({'class': 7, 'subclass': 1734018842, 'text': mapcss.tr('test #1882 - {0}-{1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
+        # node[x]
+        if ('x' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'x')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("test area rule {0}","{0.tag}")
+                # assertNoMatch:"node building=yes"
+                # assertMatch:"node x=z"
+                err.append({'class': 9, 'subclass': 555657026, 'text': mapcss.tr('test area rule {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # node[x]!:closed
+        if ('x' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'x')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("test closed rewrite {0}","{0.tag}")
+                # assertMatch:"node x=yes"
+                err.append({'class': 10, 'subclass': 2047373107, 'text': mapcss.tr('test closed rewrite {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
         return err
 
     def way(self, data, tags, nds):
@@ -375,7 +402,7 @@ class test_mapcss_parsing_evalutation(PluginMapCSS):
                 # assertMatch:"way x=C00;C1;C22"
                 # assertMatch:"way x=C1"
                 # assertNoMatch:"way x=C12"
-                err.append({'class': 9, 'subclass': 1785050832, 'text': {'en': 'test #1610'}})
+                err.append({'class': 11, 'subclass': 1785050832, 'text': {'en': 'test #1610'}})
 
         # way:righthandtraffic[x=y][z?]
         if ('x' in keys and 'z' in keys):
@@ -387,7 +414,7 @@ class test_mapcss_parsing_evalutation(PluginMapCSS):
             if match:
                 # throwWarning:tr("test #1603 - {0}{1}","{1.tag}","{2.tag}")
                 # -osmoseAssertMatchWithContext:list("way x=y z=yes","inside=NL")
-                err.append({'class': 10, 'subclass': 169712264, 'text': mapcss.tr('test #1603 - {0}{1}', mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{2.tag}'))})
+                err.append({'class': 12, 'subclass': 169712264, 'text': mapcss.tr('test #1603 - {0}{1}', mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{2.tag}'))})
 
         # way[x=y][z?]:righthandtraffic
         if ('x' in keys and 'z' in keys):
@@ -399,7 +426,7 @@ class test_mapcss_parsing_evalutation(PluginMapCSS):
             if match:
                 # throwWarning:tr("test #1603 - {0}{1}","{0.tag}","{1.tag}")
                 # -osmoseAssertMatchWithContext:list("way x=y z=yes","inside=NL")
-                err.append({'class': 10, 'subclass': 2074848923, 'text': mapcss.tr('test #1603 - {0}{1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+                err.append({'class': 12, 'subclass': 2074848923, 'text': mapcss.tr('test #1603 - {0}{1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
         # *[parking][amenity!~/^(parking|motorcycle_parking)$/]
         if ('parking' in keys):
@@ -465,7 +492,7 @@ class test_mapcss_parsing_evalutation(PluginMapCSS):
                 # throwWarning:tr("test righthandtraffic")
                 # -osmoseAssertNoMatchWithContext:list("way","driving_side=left")
                 # -osmoseAssertMatchWithContext:list("way","driving_side=right")
-                err.append({'class': 11, 'subclass': 529680562, 'text': mapcss.tr('test righthandtraffic')})
+                err.append({'class': 13, 'subclass': 529680562, 'text': mapcss.tr('test righthandtraffic')})
 
         # way!:righthandtraffic
         if True:
@@ -478,7 +505,7 @@ class test_mapcss_parsing_evalutation(PluginMapCSS):
                 # throwWarning:tr("test lefthandtraffic")
                 # -osmoseAssertMatchWithContext:list("way","driving_side=left")
                 # -osmoseAssertNoMatchWithContext:list("way","driving_side=right")
-                err.append({'class': 12, 'subclass': 877255184, 'text': mapcss.tr('test lefthandtraffic')})
+                err.append({'class': 14, 'subclass': 877255184, 'text': mapcss.tr('test lefthandtraffic')})
 
         # way[count(uniq_list(tag_regex("abc")))==2]
         if True:
@@ -524,7 +551,7 @@ class test_mapcss_parsing_evalutation(PluginMapCSS):
                 # assertNoMatch:"way oneway=no"
                 # assertMatch:"way oneway=yes"
                 # assertNoMatch:"way x=y"
-                err.append({'class': 13, 'subclass': 1489464739, 'text': mapcss.tr('test {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                err.append({'class': 15, 'subclass': 1489464739, 'text': mapcss.tr('test {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # way[oneway?!]
         if ('oneway' in keys):
@@ -539,7 +566,7 @@ class test_mapcss_parsing_evalutation(PluginMapCSS):
                 # assertMatch:"way oneway=no"
                 # assertNoMatch:"way oneway=yes"
                 # assertNoMatch:"way x=y"
-                err.append({'class': 13, 'subclass': 722694187, 'text': mapcss.tr('test {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                err.append({'class': 15, 'subclass': 722694187, 'text': mapcss.tr('test {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # way[name*=Trigger][tag("building")=="chapel"||tag("amenity")=="place_of_worship"][x]
         if ('name' in keys and 'x' in keys):
@@ -554,7 +581,7 @@ class test_mapcss_parsing_evalutation(PluginMapCSS):
                 # assertMatch:"way amenity=place_of_worship name=OsmoseRuleTrigger x=yes"
                 # assertNoMatch:"way amenity=place_of_worship name=Westminster x=yes"
                 # assertMatch:"way building=chapel name=OsmoseRuleTrigger x=yes"
-                err.append({'class': 14, 'subclass': 1095325051, 'text': mapcss.tr('test #1303, #1742 {0}', mapcss._tag_uncapture(capture_tags, '{2.key}'))})
+                err.append({'class': 16, 'subclass': 1095325051, 'text': mapcss.tr('test #1303, #1742 {0}', mapcss._tag_uncapture(capture_tags, '{2.key}'))})
 
         # way[name*=Trigger][tag("building")=="chapel"&&tag("amenity")=="place_of_worship"][x]
         if ('name' in keys and 'x' in keys):
@@ -569,7 +596,7 @@ class test_mapcss_parsing_evalutation(PluginMapCSS):
                 # assertNoMatch:"way amenity=place_of_worship building=chapel name=Westminster x=yes"
                 # assertNoMatch:"way amenity=place_of_worship name=OsmoseRuleTrigger x=yes"
                 # assertNoMatch:"way building=chapel name=OsmoseRuleTrigger x=yes"
-                err.append({'class': 15, 'subclass': 1140742172, 'text': mapcss.tr('test #1303 {0}', mapcss._tag_uncapture(capture_tags, '{2.key}'))})
+                err.append({'class': 17, 'subclass': 1140742172, 'text': mapcss.tr('test #1303 {0}', mapcss._tag_uncapture(capture_tags, '{2.key}'))})
 
         # way[inside(FR)][x]
         if ('x' in keys):
@@ -581,7 +608,7 @@ class test_mapcss_parsing_evalutation(PluginMapCSS):
             if match:
                 # throwWarning:tr("test #1742 - {0}","{1.tag}")
                 # -osmoseAssertMatchWithContext:list("way x=y","inside=FR")
-                err.append({'class': 16, 'subclass': 1132689531, 'text': mapcss.tr('test #1742 - {0}', mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+                err.append({'class': 18, 'subclass': 1132689531, 'text': mapcss.tr('test #1742 - {0}', mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
         # *[a][a=*b]
         if ('a' in keys):
@@ -663,7 +690,7 @@ class test_mapcss_parsing_evalutation(PluginMapCSS):
                 # assertNoMatch:"way maxspeed=5000"
                 # assertNoMatch:"way maxspeed=default"
                 # assertNoMatch:"way"
-                err.append({'class': 17, 'subclass': 2063115534, 'text': mapcss.tr('test {0}{1}', 'text', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                err.append({'class': 19, 'subclass': 2063115534, 'text': mapcss.tr('test {0}{1}', 'text', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # way[tag(a)>tag(b)]
         if True:
@@ -694,6 +721,69 @@ class test_mapcss_parsing_evalutation(PluginMapCSS):
                 set_a = True
                 set_b = True
                 err.append({'class': 6, 'subclass': 1961315435, 'text': {'en': 'test'}})
+
+        # area[building]
+        if ('building' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building')) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("test area rule {0}","{0.tag}")
+                # assertNoMatch:"way area=no building=yes"
+                # assertMatch:"way area=yes building=yes"
+                # assertMatch:"way building=yes"
+                # assertNoMatch:"way x=yes"
+                err.append({'class': 9, 'subclass': 1099901647, 'text': mapcss.tr('test area rule {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # area[building]:closed:closed2
+        # area[landuse]:closed2
+        if ('building' in keys) or ('landuse' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building')) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')) and (nds[0] == nds[-1]) and (nds[0] == nds[-1]))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'landuse')) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')) and (nds[0] == nds[-1]))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("test area rule {0}","{0.tag}")
+                # assertNoMatch:"way area=no building=yes"
+                # assertNoMatch:"way area=no landuse=yes"
+                err.append({'class': 9, 'subclass': 2006953473, 'text': mapcss.tr('test area rule {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # area[building]!:closed
+        if ('building' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building')) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')) and (nds[0] != nds[-1]))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("test area rule {0}","{0.tag}")
+                err.append({'class': 9, 'subclass': 1591435356, 'text': mapcss.tr('test area rule {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # way[y]
+        # area[building=yes]
+        if ('building' in keys) or ('y' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'y')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("test area rule {0}","{0.tag}")
+                # assertNoMatch:"way area=no building=yes"
+                # assertMatch:"way building=yes"
+                # assertMatch:"way y=z"
+                err.append({'class': 9, 'subclass': 2128563767, 'text': mapcss.tr('test area rule {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         return err
 
@@ -766,6 +856,88 @@ class test_mapcss_parsing_evalutation(PluginMapCSS):
             if match:
                 # throwError:"test"
                 err.append({'class': 6, 'subclass': 1343056298, 'text': {'en': 'test'}})
+
+        # area[building]
+        if ('building' in keys and 'type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building')) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("test area rule {0}","{0.tag}")
+                # assertNoMatch:"relation building=yes"
+                # assertMatch:"relation type=multipolygon building=yes"
+                # assertNoMatch:"relation type=multipolygon x=yes"
+                err.append({'class': 9, 'subclass': 1099901647, 'text': mapcss.tr('test area rule {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # area[building]:closed:closed2
+        # area[landuse]:closed2
+        if ('building' in keys and 'type' in keys) or ('landuse' in keys and 'type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building')) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')) and (mapcss._tag_capture(capture_tags, -2, tags, 'type') == mapcss._value_capture(capture_tags, -2, 'multipolygon')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'landuse')) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')) and (mapcss._tag_capture(capture_tags, -2, tags, 'type') == mapcss._value_capture(capture_tags, -2, 'multipolygon')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("test area rule {0}","{0.tag}")
+                # assertNoMatch:"relation building=yes"
+                # assertNoMatch:"relation landuse=yes"
+                # assertMatch:"relation type=multipolygon building=yes"
+                # assertMatch:"relation type=multipolygon landuse=yes"
+                # assertNoMatch:"relation type=multipolygon x=yes"
+                err.append({'class': 9, 'subclass': 2006953473, 'text': mapcss.tr('test area rule {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # area[building]!:closed
+        if ('building' in keys and 'type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building')) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')) and (mapcss._tag_capture(capture_tags, -2, tags, 'type') != mapcss._value_const_capture(capture_tags, -2, 'multipolygon', 'multipolygon')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("test area rule {0}","{0.tag}")
+                # assertNoMatch:"relation type=multipolygon building=yes"
+                # assertNoMatch:"relation type=other building=yes"
+                err.append({'class': 9, 'subclass': 1591435356, 'text': mapcss.tr('test area rule {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # area[building=yes]
+        if ('building' in keys and 'type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("test area rule {0}","{0.tag}")
+                # assertNoMatch:"relation building=yes"
+                # assertMatch:"relation type=multipolygon building=yes"
+                # assertNoMatch:"relation x=z y=z"
+                err.append({'class': 9, 'subclass': 434545653, 'text': mapcss.tr('test area rule {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # relation[y]:closed
+        # relation[z]!:closed2
+        if ('type' in keys and 'y' in keys) or ('z' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'y')) and (mapcss._tag_capture(capture_tags, -2, tags, 'type') == mapcss._value_capture(capture_tags, -2, 'multipolygon')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'z')) and (mapcss._tag_capture(capture_tags, -2, tags, 'type') != mapcss._value_const_capture(capture_tags, -2, 'multipolygon', 'multipolygon')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("test closed rewrite {0}","{0.tag}")
+                # assertMatch:"relation type=multipolygon y=yes"
+                # assertNoMatch:"relation type=multipolygon z=yes"
+                # assertNoMatch:"relation type=other y=yes"
+                # assertMatch:"relation type=other z=yes"
+                err.append({'class': 10, 'subclass': 758090756, 'text': mapcss.tr('test closed rewrite {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         return err
 
@@ -889,25 +1061,28 @@ class Test(TestPluginMapcss):
         self.check_not_err(n.node(data, {'a': 'X', 'b': '2.0'}), expected={'class': 7, 'subclass': 1734018842})
         self.check_err(n.node(data, {'a': 'ananas', 'b': '2'}), expected={'class': 7, 'subclass': 1734018842})
         self.check_err(n.node(data, {'a': 'ananas', 'b': '2.0'}), expected={'class': 7, 'subclass': 1734018842})
-        self.check_err(n.way(data, {'x': 'C00;C1;C22'}, [0]), expected={'class': 9, 'subclass': 1785050832})
-        self.check_err(n.way(data, {'x': 'C1'}, [0]), expected={'class': 9, 'subclass': 1785050832})
-        self.check_not_err(n.way(data, {'x': 'C12'}, [0]), expected={'class': 9, 'subclass': 1785050832})
+        self.check_not_err(n.node(data, {'building': 'yes'}), expected={'class': 9, 'subclass': 555657026})
+        self.check_err(n.node(data, {'x': 'z'}), expected={'class': 9, 'subclass': 555657026})
+        self.check_err(n.node(data, {'x': 'yes'}), expected={'class': 10, 'subclass': 2047373107})
+        self.check_err(n.way(data, {'x': 'C00;C1;C22'}, [0]), expected={'class': 11, 'subclass': 1785050832})
+        self.check_err(n.way(data, {'x': 'C1'}, [0]), expected={'class': 11, 'subclass': 1785050832})
+        self.check_not_err(n.way(data, {'x': 'C12'}, [0]), expected={'class': 11, 'subclass': 1785050832})
         with with_options(n, {'country': 'NL'}):
-            self.check_err(n.way(data, {'x': 'y', 'z': 'yes'}, [0]), expected={'class': 10, 'subclass': 169712264})
+            self.check_err(n.way(data, {'x': 'y', 'z': 'yes'}, [0]), expected={'class': 12, 'subclass': 169712264})
         with with_options(n, {'country': 'NL'}):
-            self.check_err(n.way(data, {'x': 'y', 'z': 'yes'}, [0]), expected={'class': 10, 'subclass': 2074848923})
+            self.check_err(n.way(data, {'x': 'y', 'z': 'yes'}, [0]), expected={'class': 12, 'subclass': 2074848923})
         self.check_not_err(n.way(data, {'a': 'b', 'c': 'd'}, [0]), expected={'class': 3, 'subclass': 1004069731})
         self.check_err(n.way(data, {'a': 'b'}, [0]), expected={'class': 3, 'subclass': 1004069731})
         self.check_not_err(n.way(data, {'b': 'a', 'd': 'c'}, [0]), expected={'class': 3, 'subclass': 1004069731})
         self.check_err(n.way(data, {'b': 'c'}, [0]), expected={'class': 3, 'subclass': 1004069731})
         with with_options(n, {'driving_side': 'left'}):
-            self.check_not_err(n.way(data, {}, [0]), expected={'class': 11, 'subclass': 529680562})
+            self.check_not_err(n.way(data, {}, [0]), expected={'class': 13, 'subclass': 529680562})
         with with_options(n, {'driving_side': 'right'}):
-            self.check_err(n.way(data, {}, [0]), expected={'class': 11, 'subclass': 529680562})
+            self.check_err(n.way(data, {}, [0]), expected={'class': 13, 'subclass': 529680562})
         with with_options(n, {'driving_side': 'left'}):
-            self.check_err(n.way(data, {}, [0]), expected={'class': 12, 'subclass': 877255184})
+            self.check_err(n.way(data, {}, [0]), expected={'class': 14, 'subclass': 877255184})
         with with_options(n, {'driving_side': 'right'}):
-            self.check_not_err(n.way(data, {}, [0]), expected={'class': 12, 'subclass': 877255184})
+            self.check_not_err(n.way(data, {}, [0]), expected={'class': 14, 'subclass': 877255184})
         self.check_not_err(n.way(data, {'abc': 'def', 'abcdef': 'def'}, [0]), expected={'class': 6, 'subclass': 346020981})
         self.check_err(n.way(data, {'abc': 'def', 'abcd': 'ghi', 'abcdef': 'ghi'}, [0]), expected={'class': 6, 'subclass': 346020981})
         self.check_err(n.way(data, {'abc': 'def', 'abcdef': 'ghi'}, [0]), expected={'class': 6, 'subclass': 346020981})
@@ -916,38 +1091,64 @@ class Test(TestPluginMapcss):
         self.check_err(n.way(data, {'abc': 'def', 'abcd': 'ghi', 'abcdef': 'ghi'}, [0]), expected={'class': 6, 'subclass': 57938147})
         self.check_err(n.way(data, {'abc': 'def', 'abcdef': 'ghi'}, [0]), expected={'class': 6, 'subclass': 57938147})
         self.check_not_err(n.way(data, {'abc': 'def', 'def': 'def'}, [0]), expected={'class': 6, 'subclass': 57938147})
-        self.check_err(n.way(data, {'oneway': '1'}, [0]), expected={'class': 13, 'subclass': 1489464739})
-        self.check_not_err(n.way(data, {'oneway': '4.0'}, [0]), expected={'class': 13, 'subclass': 1489464739})
-        self.check_not_err(n.way(data, {'oneway': 'no'}, [0]), expected={'class': 13, 'subclass': 1489464739})
-        self.check_err(n.way(data, {'oneway': 'yes'}, [0]), expected={'class': 13, 'subclass': 1489464739})
-        self.check_not_err(n.way(data, {'x': 'y'}, [0]), expected={'class': 13, 'subclass': 1489464739})
-        self.check_err(n.way(data, {'oneway': '0'}, [0]), expected={'class': 13, 'subclass': 722694187})
-        self.check_err(n.way(data, {'oneway': 'no'}, [0]), expected={'class': 13, 'subclass': 722694187})
-        self.check_not_err(n.way(data, {'oneway': 'yes'}, [0]), expected={'class': 13, 'subclass': 722694187})
-        self.check_not_err(n.way(data, {'x': 'y'}, [0]), expected={'class': 13, 'subclass': 722694187})
-        self.check_err(n.way(data, {'amenity': 'place_of_worship', 'building': 'chapel', 'name': 'OsmoseRuleTrigger', 'x': 'yes'}, [0]), expected={'class': 14, 'subclass': 1095325051})
-        self.check_err(n.way(data, {'amenity': 'place_of_worship', 'name': 'OsmoseRuleTrigger', 'x': 'yes'}, [0]), expected={'class': 14, 'subclass': 1095325051})
-        self.check_not_err(n.way(data, {'amenity': 'place_of_worship', 'name': 'Westminster', 'x': 'yes'}, [0]), expected={'class': 14, 'subclass': 1095325051})
-        self.check_err(n.way(data, {'building': 'chapel', 'name': 'OsmoseRuleTrigger', 'x': 'yes'}, [0]), expected={'class': 14, 'subclass': 1095325051})
-        self.check_err(n.way(data, {'amenity': 'place_of_worship', 'building': 'chapel', 'name': 'OsmoseRuleTrigger', 'x': 'yes'}, [0]), expected={'class': 15, 'subclass': 1140742172})
-        self.check_not_err(n.way(data, {'amenity': 'place_of_worship', 'building': 'chapel', 'name': 'Westminster', 'x': 'yes'}, [0]), expected={'class': 15, 'subclass': 1140742172})
-        self.check_not_err(n.way(data, {'amenity': 'place_of_worship', 'name': 'OsmoseRuleTrigger', 'x': 'yes'}, [0]), expected={'class': 15, 'subclass': 1140742172})
-        self.check_not_err(n.way(data, {'building': 'chapel', 'name': 'OsmoseRuleTrigger', 'x': 'yes'}, [0]), expected={'class': 15, 'subclass': 1140742172})
+        self.check_err(n.way(data, {'oneway': '1'}, [0]), expected={'class': 15, 'subclass': 1489464739})
+        self.check_not_err(n.way(data, {'oneway': '4.0'}, [0]), expected={'class': 15, 'subclass': 1489464739})
+        self.check_not_err(n.way(data, {'oneway': 'no'}, [0]), expected={'class': 15, 'subclass': 1489464739})
+        self.check_err(n.way(data, {'oneway': 'yes'}, [0]), expected={'class': 15, 'subclass': 1489464739})
+        self.check_not_err(n.way(data, {'x': 'y'}, [0]), expected={'class': 15, 'subclass': 1489464739})
+        self.check_err(n.way(data, {'oneway': '0'}, [0]), expected={'class': 15, 'subclass': 722694187})
+        self.check_err(n.way(data, {'oneway': 'no'}, [0]), expected={'class': 15, 'subclass': 722694187})
+        self.check_not_err(n.way(data, {'oneway': 'yes'}, [0]), expected={'class': 15, 'subclass': 722694187})
+        self.check_not_err(n.way(data, {'x': 'y'}, [0]), expected={'class': 15, 'subclass': 722694187})
+        self.check_err(n.way(data, {'amenity': 'place_of_worship', 'building': 'chapel', 'name': 'OsmoseRuleTrigger', 'x': 'yes'}, [0]), expected={'class': 16, 'subclass': 1095325051})
+        self.check_err(n.way(data, {'amenity': 'place_of_worship', 'name': 'OsmoseRuleTrigger', 'x': 'yes'}, [0]), expected={'class': 16, 'subclass': 1095325051})
+        self.check_not_err(n.way(data, {'amenity': 'place_of_worship', 'name': 'Westminster', 'x': 'yes'}, [0]), expected={'class': 16, 'subclass': 1095325051})
+        self.check_err(n.way(data, {'building': 'chapel', 'name': 'OsmoseRuleTrigger', 'x': 'yes'}, [0]), expected={'class': 16, 'subclass': 1095325051})
+        self.check_err(n.way(data, {'amenity': 'place_of_worship', 'building': 'chapel', 'name': 'OsmoseRuleTrigger', 'x': 'yes'}, [0]), expected={'class': 17, 'subclass': 1140742172})
+        self.check_not_err(n.way(data, {'amenity': 'place_of_worship', 'building': 'chapel', 'name': 'Westminster', 'x': 'yes'}, [0]), expected={'class': 17, 'subclass': 1140742172})
+        self.check_not_err(n.way(data, {'amenity': 'place_of_worship', 'name': 'OsmoseRuleTrigger', 'x': 'yes'}, [0]), expected={'class': 17, 'subclass': 1140742172})
+        self.check_not_err(n.way(data, {'building': 'chapel', 'name': 'OsmoseRuleTrigger', 'x': 'yes'}, [0]), expected={'class': 17, 'subclass': 1140742172})
         with with_options(n, {'country': 'FR'}):
-            self.check_err(n.way(data, {'x': 'y'}, [0]), expected={'class': 16, 'subclass': 1132689531})
+            self.check_err(n.way(data, {'x': 'y'}, [0]), expected={'class': 18, 'subclass': 1132689531})
         self.check_err(n.way(data, {'x': 'yes'}, [0]), expected={'class': 97, 'subclass': 2})
         self.check_not_err(n.way(data, {'y': 'yes'}, [0]), expected={'class': 97, 'subclass': 2})
         self.check_err(n.way(data, {'x': 'yes'}, [0]), expected={'class': 99, 'subclass': 2})
         self.check_not_err(n.way(data, {'y': 'yes'}, [0]), expected={'class': 99, 'subclass': 2})
-        self.check_err(n.way(data, {'maxspeed': '10000'}, [0]), expected={'class': 17, 'subclass': 2063115534})
-        self.check_not_err(n.way(data, {'maxspeed': '5000'}, [0]), expected={'class': 17, 'subclass': 2063115534})
-        self.check_not_err(n.way(data, {'maxspeed': 'default'}, [0]), expected={'class': 17, 'subclass': 2063115534})
-        self.check_not_err(n.way(data, {}, [0]), expected={'class': 17, 'subclass': 2063115534})
+        self.check_err(n.way(data, {'maxspeed': '10000'}, [0]), expected={'class': 19, 'subclass': 2063115534})
+        self.check_not_err(n.way(data, {'maxspeed': '5000'}, [0]), expected={'class': 19, 'subclass': 2063115534})
+        self.check_not_err(n.way(data, {'maxspeed': 'default'}, [0]), expected={'class': 19, 'subclass': 2063115534})
+        self.check_not_err(n.way(data, {}, [0]), expected={'class': 19, 'subclass': 2063115534})
         self.check_not_err(n.way(data, {'a': '0', 'b': '1'}, [0]), expected={'class': 6, 'subclass': 384294833})
         self.check_not_err(n.way(data, {'a': '0', 'b': 'yes'}, [0]), expected={'class': 6, 'subclass': 384294833})
         self.check_err(n.way(data, {'a': '1', 'b': '0'}, [0]), expected={'class': 6, 'subclass': 384294833})
         self.check_err(n.way(data, {'x': 'y'}, [0]), expected={'class': 6, 'subclass': 1961315435})
+        self.check_not_err(n.way(data, {'area': 'no', 'building': 'yes'}, [0]), expected={'class': 9, 'subclass': 1099901647})
+        self.check_err(n.way(data, {'area': 'yes', 'building': 'yes'}, [0]), expected={'class': 9, 'subclass': 1099901647})
+        self.check_err(n.way(data, {'building': 'yes'}, [0]), expected={'class': 9, 'subclass': 1099901647})
+        self.check_not_err(n.way(data, {'x': 'yes'}, [0]), expected={'class': 9, 'subclass': 1099901647})
+        self.check_not_err(n.way(data, {'area': 'no', 'building': 'yes'}, [0]), expected={'class': 9, 'subclass': 2006953473})
+        self.check_not_err(n.way(data, {'area': 'no', 'landuse': 'yes'}, [0]), expected={'class': 9, 'subclass': 2006953473})
+        self.check_not_err(n.way(data, {'area': 'no', 'building': 'yes'}, [0]), expected={'class': 9, 'subclass': 2128563767})
+        self.check_err(n.way(data, {'building': 'yes'}, [0]), expected={'class': 9, 'subclass': 2128563767})
+        self.check_err(n.way(data, {'y': 'z'}, [0]), expected={'class': 9, 'subclass': 2128563767})
         self.check_not_err(n.relation(data, {'ABC': 'DEF'}, []), expected={'class': 4, 'subclass': 1371556921})
         self.check_err(n.relation(data, {'abc': 'def'}, []), expected={'class': 4, 'subclass': 1371556921})
         self.check_not_err(n.relation(data, {'abc': 'ghi'}, []), expected={'class': 4, 'subclass': 1371556921})
         self.check_err(n.relation(data, {'xabcx': 'xdefx'}, []), expected={'class': 4, 'subclass': 1371556921})
+        self.check_not_err(n.relation(data, {'building': 'yes'}, []), expected={'class': 9, 'subclass': 1099901647})
+        self.check_err(n.relation(data, {'building': 'yes', 'type': 'multipolygon'}, []), expected={'class': 9, 'subclass': 1099901647})
+        self.check_not_err(n.relation(data, {'type': 'multipolygon', 'x': 'yes'}, []), expected={'class': 9, 'subclass': 1099901647})
+        self.check_not_err(n.relation(data, {'building': 'yes'}, []), expected={'class': 9, 'subclass': 2006953473})
+        self.check_not_err(n.relation(data, {'landuse': 'yes'}, []), expected={'class': 9, 'subclass': 2006953473})
+        self.check_err(n.relation(data, {'building': 'yes', 'type': 'multipolygon'}, []), expected={'class': 9, 'subclass': 2006953473})
+        self.check_err(n.relation(data, {'landuse': 'yes', 'type': 'multipolygon'}, []), expected={'class': 9, 'subclass': 2006953473})
+        self.check_not_err(n.relation(data, {'type': 'multipolygon', 'x': 'yes'}, []), expected={'class': 9, 'subclass': 2006953473})
+        self.check_not_err(n.relation(data, {'building': 'yes', 'type': 'multipolygon'}, []), expected={'class': 9, 'subclass': 1591435356})
+        self.check_not_err(n.relation(data, {'building': 'yes', 'type': 'other'}, []), expected={'class': 9, 'subclass': 1591435356})
+        self.check_not_err(n.relation(data, {'building': 'yes'}, []), expected={'class': 9, 'subclass': 434545653})
+        self.check_err(n.relation(data, {'building': 'yes', 'type': 'multipolygon'}, []), expected={'class': 9, 'subclass': 434545653})
+        self.check_not_err(n.relation(data, {'x': 'z', 'y': 'z'}, []), expected={'class': 9, 'subclass': 434545653})
+        self.check_err(n.relation(data, {'type': 'multipolygon', 'y': 'yes'}, []), expected={'class': 10, 'subclass': 758090756})
+        self.check_not_err(n.relation(data, {'type': 'multipolygon', 'z': 'yes'}, []), expected={'class': 10, 'subclass': 758090756})
+        self.check_not_err(n.relation(data, {'type': 'other', 'y': 'yes'}, []), expected={'class': 10, 'subclass': 758090756})
+        self.check_err(n.relation(data, {'type': 'other', 'z': 'yes'}, []), expected={'class': 10, 'subclass': 758090756})

@@ -55,6 +55,7 @@ class Josm_openrailwaymap(PluginMapCSS):
         self.errors[9015043] = self.def_class(item = 9015, level = 2, tags = ["tag", "railway"], title = {'en': 'interlocking relation with type other than railway'})
         self.errors[9015044] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = mapcss.tr('{0}={1} without name', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{0.value}')))
         self.errors[9015045] = self.def_class(item = 9015, level = 2, tags = ["tag", "railway"], title = {'en': 'track numbers inside a station should be railway:track_ref, not ref'})
+        self.errors[9015046] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = {'en': 'Wrong tag for railway station building'})
 
         self.re_066203d3 = re.compile(r'^[0-9]+$')
         self.re_0e3375d5 = re.compile(r'[Vv]iadu[ck]t')
@@ -649,16 +650,21 @@ class Josm_openrailwaymap(PluginMapCSS):
                 }})
 
         # way[railway=station]
+        # area[railway=station]
         if ('railway' in keys):
             match = False
             if not match:
                 capture_tags = {}
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'station')))
                 except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'station')) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')))
+                except mapcss.RuleAbort: pass
             if match:
                 # throwError:"Station mapped as a way, but should be mapped as a node"
                 # assertMatch:"way railway=station"
-                err.append({'class': 9015002, 'subclass': 1498103253, 'text': {'en': 'Station mapped as a way, but should be mapped as a node'}})
+                err.append({'class': 9015002, 'subclass': 610823238, 'text': {'en': 'Station mapped as a way, but should be mapped as a node'}})
 
         # way[railway][traffic_mode]
         if ('railway' in keys and 'traffic_mode' in keys):
@@ -1340,6 +1346,8 @@ class Josm_openrailwaymap(PluginMapCSS):
 
         # way[railway=crossing]
         # way[railway=level_crossing]
+        # area[railway=crossing]
+        # area[railway=level_crossing]
         if ('railway' in keys):
             match = False
             if not match:
@@ -1350,11 +1358,19 @@ class Josm_openrailwaymap(PluginMapCSS):
                 capture_tags = {}
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'level_crossing')))
                 except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'crossing')) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'level_crossing')) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')))
+                except mapcss.RuleAbort: pass
             if match:
                 # throwError:"Crossings and level crossings should be mapped as nodes"
                 # assertMatch:"way railway=crossing railway:position:exact=2.4"
                 # assertMatch:"way railway=level_crossing railway:position:exact=2.4"
-                err.append({'class': 9015017, 'subclass': 2146160181, 'text': {'en': 'Crossings and level crossings should be mapped as nodes'}})
+                err.append({'class': 9015017, 'subclass': 145776718, 'text': {'en': 'Crossings and level crossings should be mapped as nodes'}})
 
         # way[railway][radio="GSM-R"][!"railway:radio"]
         # way[railway][radio="GSM-R"]["railway:radio"="gsm-r"]
@@ -1630,6 +1646,27 @@ class Josm_openrailwaymap(PluginMapCSS):
                     'mph:maxspeed'])
                 }})
 
+        # area[building=station]
+        # area[building=railway_station]
+        if ('building' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building') == mapcss._value_capture(capture_tags, 0, 'station')) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building') == mapcss._value_capture(capture_tags, 0, 'railway_station')) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:"Wrong tag for railway station building"
+                # suggestAlternative:"building=train_station"
+                # fixAdd:"building=train_station"
+                err.append({'class': 9015046, 'subclass': 520452514, 'text': {'en': 'Wrong tag for railway station building'}, 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['building','train_station']])
+                }})
+
         # way|z9-[railway=disused][!"disused:railway"]
         # way|z9-[railway=abandoned][!"abandoned:railway"]
         # way|z9-[railway=razed][!"razed:railway"]
@@ -1644,6 +1681,33 @@ class Josm_openrailwaymap(PluginMapCSS):
         keys = tags.keys()
         err = []
 
+
+        # area[railway=station]
+        if ('railway' in keys and 'type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'station')) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwError:"Station mapped as a way, but should be mapped as a node"
+                err.append({'class': 9015002, 'subclass': 641708275, 'text': {'en': 'Station mapped as a way, but should be mapped as a node'}})
+
+        # area[railway=crossing]
+        # area[railway=level_crossing]
+        if ('railway' in keys and 'type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'crossing')) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'level_crossing')) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwError:"Crossings and level crossings should be mapped as nodes"
+                err.append({'class': 9015017, 'subclass': 803023253, 'text': {'en': 'Crossings and level crossings should be mapped as nodes'}})
 
         # relation[railway=controlled_area]
         if ('railway' in keys):
@@ -1693,6 +1757,27 @@ class Josm_openrailwaymap(PluginMapCSS):
                 # assertMatch:"relation railway=interlocking type=public_transport"
                 # assertNoMatch:"relation railway=interlocking type=railway"
                 err.append({'class': 9015043, 'subclass': 1419769139, 'text': {'en': 'interlocking relation with type other than railway'}})
+
+        # area[building=station]
+        # area[building=railway_station]
+        if ('building' in keys and 'type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building') == mapcss._value_capture(capture_tags, 0, 'station')) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building') == mapcss._value_capture(capture_tags, 0, 'railway_station')) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:"Wrong tag for railway station building"
+                # suggestAlternative:"building=train_station"
+                # fixAdd:"building=train_station"
+                err.append({'class': 9015046, 'subclass': 520452514, 'text': {'en': 'Wrong tag for railway station building'}, 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['building','train_station']])
+                }})
 
         return err
 
@@ -1791,7 +1876,7 @@ class Test(TestPluginMapcss):
         self.check_err(n.way(data, {'railway': 'rail', 'service': 'siding', 'usage': 'main'}, [0]), expected={'class': 9015001, 'subclass': 1888453557})
         self.check_not_err(n.way(data, {'railway': 'rail', 'usage': 'main'}, [0]), expected={'class': 9015001, 'subclass': 1888453557})
         self.check_not_err(n.way(data, {'railway': 'rail', 'service': 'yard', 'usage': 'military'}, [0]), expected={'class': 9015001, 'subclass': 1888453557})
-        self.check_err(n.way(data, {'railway': 'station'}, [0]), expected={'class': 9015002, 'subclass': 1498103253})
+        self.check_err(n.way(data, {'railway': 'station'}, [0]), expected={'class': 9015002, 'subclass': 610823238})
         self.check_not_err(n.way(data, {'railway': 'rail', 'railway:traffic_mode': 'passenger'}, [0]), expected={'class': 9015004, 'subclass': 1755442170})
         self.check_err(n.way(data, {'railway': 'rail', 'traffic_mode': 'passenger'}, [0]), expected={'class': 9015004, 'subclass': 1755442170})
         self.check_not_err(n.way(data, {'railway': 'rail'}, [0]), expected={'class': 9015004, 'subclass': 1755442170})
@@ -1889,8 +1974,8 @@ class Test(TestPluginMapcss):
         self.check_not_err(n.way(data, {'railway': 'rail', 'tracks': '1'}, [0]), expected={'class': 9015016, 'subclass': 256757521})
         self.check_err(n.way(data, {'railway': 'rail', 'service': 'foo', 'tracks': '2'}, [0]), expected={'class': 9015016, 'subclass': 256757521})
         self.check_not_err(n.way(data, {'railway': 'rail', 'tracks': '2', 'usage': 'bar'}, [0]), expected={'class': 9015016, 'subclass': 256757521})
-        self.check_err(n.way(data, {'railway': 'crossing', 'railway:position:exact': '2.4'}, [0]), expected={'class': 9015017, 'subclass': 2146160181})
-        self.check_err(n.way(data, {'railway': 'level_crossing', 'railway:position:exact': '2.4'}, [0]), expected={'class': 9015017, 'subclass': 2146160181})
+        self.check_err(n.way(data, {'railway': 'crossing', 'railway:position:exact': '2.4'}, [0]), expected={'class': 9015017, 'subclass': 145776718})
+        self.check_err(n.way(data, {'railway': 'level_crossing', 'railway:position:exact': '2.4'}, [0]), expected={'class': 9015017, 'subclass': 145776718})
         self.check_not_err(n.way(data, {'radio': 'GSM', 'railway': 'rail'}, [0]), expected={'class': 9015018, 'subclass': 2078132492})
         self.check_not_err(n.way(data, {'radio': 'GSM-R', 'railway': 'rail', 'railway:radio': 'gsm'}, [0]), expected={'class': 9015018, 'subclass': 2078132492})
         self.check_err(n.way(data, {'radio': 'GSM-R', 'railway': 'rail', 'railway:radio': 'gsm-r'}, [0]), expected={'class': 9015018, 'subclass': 2078132492})
