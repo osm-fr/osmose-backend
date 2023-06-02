@@ -24,15 +24,17 @@ class Josm_geometry(PluginMapCSS):
         self.errors[9003009] = self.def_class(item = 9003, level = 2, tags = ["geom"], title = mapcss.tr('Object at Position 0.00E 0.00N. There is nothing at this position except an already mapped weather buoy.'))
         self.errors[9003011] = self.def_class(item = 9003, level = 3, tags = ["geom"], title = mapcss.tr('{0} on a closed way. Should be used on an unclosed way.', mapcss._tag_uncapture(capture_tags, '{1.tag}')))
         self.errors[9003012] = self.def_class(item = 9003, level = 3, tags = ["geom"], title = mapcss.tr('{0} on a relation', mapcss._tag_uncapture(capture_tags, '{0.key}')))
+        self.errors[9003013] = self.def_class(item = 9003, level = 3, tags = ["geom"], title = mapcss.tr('{0} is the tag for the linear waterway. To tag the water area use {1} + {2} instead.', mapcss._tag_uncapture(capture_tags, '{1.tag}'), 'natural=water', 'water=*'))
 
         self.re_22f56734 = re.compile(r'^(no_right_turn|no_left_turn|no_u_turn|no_straight_on|only_right_turn|only_left_turn|only_straight_on|no_entry|no_exit)$')
+        self.re_3fa2f9f1 = re.compile(r'^(water|wetland|coastline)$')
 
 
     def node(self, data, tags):
         capture_tags = {}
         keys = tags.keys()
         err = []
-
+        set_water_area = False
 
         # node[area=no]
         # node[oneway]
@@ -476,7 +478,7 @@ class Josm_geometry(PluginMapCSS):
         capture_tags = {}
         keys = tags.keys()
         err = []
-
+        set_water_area = False
 
         # way[emergency=fire_hydrant]
         # way[emergency=defibrillator]
@@ -687,13 +689,74 @@ class Josm_geometry(PluginMapCSS):
                 # throwWarning:tr("{0} on a closed way. Should be used on an unclosed way.","{1.tag}")
                 err.append({'class': 9003011, 'subclass': 2100265426, 'text': mapcss.tr('{0} on a closed way. Should be used on an unclosed way.', mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
+        # area[natural=~/^(water|wetland|coastline)$/]
+        # area[waterway=riverbank]
+        # area[landuse=reservoir]
+        if ('landuse' in keys) or ('natural' in keys) or ('waterway' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_3fa2f9f1), mapcss._tag_capture(capture_tags, 0, tags, 'natural'))) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'waterway') == mapcss._value_capture(capture_tags, 0, 'riverbank')) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'landuse') == mapcss._value_capture(capture_tags, 0, 'reservoir')) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # set water_area
+                set_water_area = True
+
+        # area:closed[place=islet][eval(areasize())>1500000]
+        # Part of rule not implemented
+
+        # area:closed[place=island][eval(areasize())<500000]
+        # Part of rule not implemented
+
+        # area:closed[building][building!=no][eval(areasize())>920000]
+        # Part of rule not implemented
+
+        # area:closed[waterway=canal][area!=no]
+        # area:closed[waterway=drain][area!=no]
+        # area:closed[waterway=ditch][area!=no]
+        # area:closed[waterway=stream][area!=no]
+        # area:closed[waterway=river][area!=no]
+        if ('waterway' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 1, tags, 'waterway') == mapcss._value_capture(capture_tags, 1, 'canal')) and (mapcss._tag_capture(capture_tags, 2, tags, 'area') != mapcss._value_const_capture(capture_tags, 2, 'no', 'no')) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')) and (nds[0] == nds[-1]))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 1, tags, 'waterway') == mapcss._value_capture(capture_tags, 1, 'drain')) and (mapcss._tag_capture(capture_tags, 2, tags, 'area') != mapcss._value_const_capture(capture_tags, 2, 'no', 'no')) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')) and (nds[0] == nds[-1]))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 1, tags, 'waterway') == mapcss._value_capture(capture_tags, 1, 'ditch')) and (mapcss._tag_capture(capture_tags, 2, tags, 'area') != mapcss._value_const_capture(capture_tags, 2, 'no', 'no')) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')) and (nds[0] == nds[-1]))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 1, tags, 'waterway') == mapcss._value_capture(capture_tags, 1, 'stream')) and (mapcss._tag_capture(capture_tags, 2, tags, 'area') != mapcss._value_const_capture(capture_tags, 2, 'no', 'no')) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')) and (nds[0] == nds[-1]))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 1, tags, 'waterway') == mapcss._value_capture(capture_tags, 1, 'river')) and (mapcss._tag_capture(capture_tags, 2, tags, 'area') != mapcss._value_const_capture(capture_tags, 2, 'no', 'no')) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')) and (nds[0] == nds[-1]))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("{0} is the tag for the linear waterway. To tag the water area use {1} + {2} instead.","{1.tag}","natural=water","water=*")
+                err.append({'class': 9003013, 'subclass': 2034482714, 'text': mapcss.tr('{0} is the tag for the linear waterway. To tag the water area use {1} + {2} instead.', mapcss._tag_uncapture(capture_tags, '{1.tag}'), 'natural=water', 'water=*')})
+
         return err
 
     def relation(self, data, tags, members):
         capture_tags = {}
         keys = tags.keys()
         err = []
-
+        set_water_area = False
 
         # relation[area?]
         if ('area' in keys):
@@ -709,6 +772,67 @@ class Josm_geometry(PluginMapCSS):
                     '-': ([
                     mapcss._tag_uncapture(capture_tags, '{0.key}')])
                 }})
+
+        # area[natural=~/^(water|wetland|coastline)$/]
+        # area[waterway=riverbank]
+        # area[landuse=reservoir]
+        if ('landuse' in keys and 'type' in keys) or ('natural' in keys and 'type' in keys) or ('type' in keys and 'waterway' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_3fa2f9f1), mapcss._tag_capture(capture_tags, 0, tags, 'natural'))) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'waterway') == mapcss._value_capture(capture_tags, 0, 'riverbank')) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'landuse') == mapcss._value_capture(capture_tags, 0, 'reservoir')) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # set water_area
+                set_water_area = True
+
+        # area:closed[place=islet][eval(areasize())>1500000]
+        # Part of rule not implemented
+
+        # area:closed[place=island][eval(areasize())<500000]
+        # Part of rule not implemented
+
+        # area:closed[building][building!=no][eval(areasize())>920000]
+        # Part of rule not implemented
+
+        # area:closed[waterway=canal][area!=no]
+        # area:closed[waterway=drain][area!=no]
+        # area:closed[waterway=ditch][area!=no]
+        # area:closed[waterway=stream][area!=no]
+        # area:closed[waterway=river][area!=no]
+        if ('type' in keys and 'waterway' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 1, tags, 'waterway') == mapcss._value_capture(capture_tags, 1, 'canal')) and (mapcss._tag_capture(capture_tags, 2, tags, 'area') != mapcss._value_const_capture(capture_tags, 2, 'no', 'no')) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')) and (mapcss._tag_capture(capture_tags, -2, tags, 'type') == mapcss._value_capture(capture_tags, -2, 'multipolygon')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 1, tags, 'waterway') == mapcss._value_capture(capture_tags, 1, 'drain')) and (mapcss._tag_capture(capture_tags, 2, tags, 'area') != mapcss._value_const_capture(capture_tags, 2, 'no', 'no')) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')) and (mapcss._tag_capture(capture_tags, -2, tags, 'type') == mapcss._value_capture(capture_tags, -2, 'multipolygon')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 1, tags, 'waterway') == mapcss._value_capture(capture_tags, 1, 'ditch')) and (mapcss._tag_capture(capture_tags, 2, tags, 'area') != mapcss._value_const_capture(capture_tags, 2, 'no', 'no')) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')) and (mapcss._tag_capture(capture_tags, -2, tags, 'type') == mapcss._value_capture(capture_tags, -2, 'multipolygon')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 1, tags, 'waterway') == mapcss._value_capture(capture_tags, 1, 'stream')) and (mapcss._tag_capture(capture_tags, 2, tags, 'area') != mapcss._value_const_capture(capture_tags, 2, 'no', 'no')) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')) and (mapcss._tag_capture(capture_tags, -2, tags, 'type') == mapcss._value_capture(capture_tags, -2, 'multipolygon')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 1, tags, 'waterway') == mapcss._value_capture(capture_tags, 1, 'river')) and (mapcss._tag_capture(capture_tags, 2, tags, 'area') != mapcss._value_const_capture(capture_tags, 2, 'no', 'no')) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')) and (mapcss._tag_capture(capture_tags, -2, tags, 'type') == mapcss._value_capture(capture_tags, -2, 'multipolygon')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("{0} is the tag for the linear waterway. To tag the water area use {1} + {2} instead.","{1.tag}","natural=water","water=*")
+                err.append({'class': 9003013, 'subclass': 2034482714, 'text': mapcss.tr('{0} is the tag for the linear waterway. To tag the water area use {1} + {2} instead.', mapcss._tag_uncapture(capture_tags, '{1.tag}'), 'natural=water', 'water=*')})
 
         return err
 
