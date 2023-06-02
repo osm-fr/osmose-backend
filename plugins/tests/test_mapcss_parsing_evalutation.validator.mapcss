@@ -334,3 +334,57 @@ node[a][b][count(split("n", tag("a"))) > tag(b)] {
   assertNoMatch: "node a=X b=2";
   assertNoMatch: "node a=X b=2.0";
 }
+
+area[building] {
+  throwWarning: tr("test area rule {0}", "{0.tag}");
+  assertMatch: "way building=yes";
+  assertMatch: "way area=yes building=yes";
+  assertNoMatch: "way area=no building=yes";
+  assertNoMatch: "way x=yes";
+  assertMatch: "relation type=multipolygon building=yes";
+  assertNoMatch: "relation building=yes";
+  assertNoMatch: "relation type=multipolygon x=yes";
+}
+
+area[building]:closed:closed2,
+area[landuse]:closed2 {
+  throwWarning: tr("test area rule {0}", "{0.tag}");
+  assertNoMatch: "way area=no building=yes";
+  assertNoMatch: "way area=no landuse=yes";
+  assertMatch: "relation type=multipolygon building=yes";
+  assertMatch: "relation type=multipolygon landuse=yes";
+  assertNoMatch: "relation building=yes";
+  assertNoMatch: "relation landuse=yes";
+  assertNoMatch: "relation type=multipolygon x=yes";
+}
+
+area[building]!:closed {
+  throwWarning: tr("test area rule {0}", "{0.tag}");
+  assertNoMatch: "relation type=multipolygon building=yes";
+  assertNoMatch: "relation type=other building=yes";
+}
+
+way[y],
+area[building=yes],
+node[x] {
+  throwWarning: tr("test area rule {0}", "{0.tag}");
+  assertMatch: "way y=z";
+  assertMatch: "node x=z";
+  assertNoMatch: "relation x=z y=z";
+  assertNoMatch: "node building=yes";
+  assertMatch: "way building=yes";
+  assertNoMatch: "way area=no building=yes";
+  assertMatch: "relation type=multipolygon building=yes";
+  assertNoMatch: "relation building=yes";
+}
+
+node[x]!:closed,
+relation[y]:closed,
+relation[z]!:closed2 {
+  throwWarning: tr("test closed rewrite {0}", "{0.tag}");
+  assertMatch: "node x=yes";
+  assertMatch: "relation type=multipolygon y=yes";
+  assertNoMatch: "relation type=other y=yes";
+  assertNoMatch: "relation type=multipolygon z=yes";
+  assertMatch: "relation type=other z=yes";
+}
