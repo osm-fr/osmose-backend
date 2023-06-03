@@ -81,11 +81,15 @@ def convert_area_selectors(t, c):
     for s in areaselectors:
         relSelector = deepcopy(s)
         relSelector['simple_selectors'][0]['type_selector'] = 'relation'
-        relSelector['simple_selectors'][0]['predicates'].append({'type': 'booleanExpression', 'operator': '=', 'operands': [{'type': 'valueExpression', 'operator': None, 'operands': [{'type': 'primaryExpression', 'derefered': False, 'value': {'type': 'osmtag', 'value': 'type'}}]}, {'type': 'valueExpression', 'operator': None, 'operands': [{'type': 'primaryExpression', 'derefered': False, 'value': {'type': 'osmtag', 'value': 'multipolygon'}}]}], 'selector_index': selector_index_map['arearule']}) # This is the output of an [type=multipolygon] selector with a mock selector_index
+        extra_predicate = deepcopy(mock_rules['type_eq_multipolygon'])
+        extra_predicate.update({'selector_index': selector_index_map['arearule']})
+        relSelector['simple_selectors'][0]['predicates'].append(extra_predicate)
         t['selectors'].append(relSelector)
 
         s['simple_selectors'][0]['type_selector'] = 'way'
-        s['simple_selectors'][0]['predicates'].append({'type': 'booleanExpression', 'operator': '!=', 'operands': [{'type': 'valueExpression', 'operator': None, 'operands': [{'type': 'primaryExpression', 'derefered': False, 'value': {'type': 'osmtag', 'value': 'area'}}]}, {'type': 'valueExpression', 'operator': None, 'operands': [{'type': 'primaryExpression', 'derefered': False, 'value': {'type': 'osmtag', 'value': 'no'}}]}], 'selector_index': selector_index_map['arearule']}) # This is the output of an [area!=no] selector with a mock selector_index
+        extra_predicate = deepcopy(mock_rules['area_neq_no'])
+        extra_predicate.update({'selector_index': selector_index_map['arearule']})
+        s['simple_selectors'][0]['predicates'].append(extra_predicate)
     return t
 
 def convert_closed_pseudo_relation_node(t, c):
@@ -110,9 +114,13 @@ def convert_closed_pseudo_relation_node(t, c):
             selector.update({'pseudo_class': list(filter(lambda p: not p['pseudo_class'] in ('closed', 'closed2'), selector['pseudo_class']))})
             selector['simple_selectors'][0]['pseudo_class'] = list(filter(lambda p: not p['pseudo_class'] in ('closed', 'closed2'), selector['pseudo_class']))
             if isPseudoClosed:
-                selector['simple_selectors'][0]['predicates'].append({'type': 'booleanExpression', 'operator': '=', 'operands': [{'type': 'valueExpression', 'operator': None, 'operands': [{'type': 'primaryExpression', 'derefered': False, 'value': {'type': 'osmtag', 'value': 'type'}}]}, {'type': 'valueExpression', 'operator': None, 'operands': [{'type': 'primaryExpression', 'derefered': False, 'value': {'type': 'osmtag', 'value': 'multipolygon'}}]}], 'selector_index': selector_index_map['closedrelation']}) # This is the output of an [type=multipolygon] selector with a mock selector_index
+                extra_predicate = deepcopy(mock_rules['type_eq_multipolygon'])
+                extra_predicate.update({'selector_index': selector_index_map['closedrelation']})
+                selector['simple_selectors'][0]['predicates'].append(extra_predicate)
             if isPseudoNotClosed:
-                selector['simple_selectors'][0]['predicates'].append({'type': 'booleanExpression', 'operator': '!=', 'operands': [{'type': 'valueExpression', 'operator': None, 'operands': [{'type': 'primaryExpression', 'derefered': False, 'value': {'type': 'osmtag', 'value': 'type'}}]}, {'type': 'valueExpression', 'operator': None, 'operands': [{'type': 'primaryExpression', 'derefered': False, 'value': {'type': 'osmtag', 'value': 'multipolygon'}}]}], 'selector_index': selector_index_map['closedrelation']}) # This is the output of an [type!=multipolygon] selector with a mock selector_index
+                extra_predicate = deepcopy(mock_rules['type_neq_multipolygon'])
+                extra_predicate.update({'selector_index': selector_index_map['closedrelation']})
+                selector['simple_selectors'][0]['predicates'].append(extra_predicate)
 
     return t
 
@@ -809,6 +817,16 @@ selector_index_map = {
     'closedrelation': -2,
 }
 
+mock_rules = {} # Contains the predicate selector part of mocked rules
+def build_mock_rules():
+    files = os.listdir(os.path.join(os.path.dirname(__file__), "mock_rules"))
+    for f in list(map(lambda fn: fn[0:-7], files)):
+        listener, tree = parse_mapcss("mapcss/mock_rules/" + f + ".mapcss")
+        r = listener.stylesheet['rules'][0]['selectors'][0]['simple_selectors'][0]['predicates'][0]
+        r['selector_index'] = None # Safety, for mock rules it should never propagate
+        mock_rules.update({f: r})
+
+
 def build_tests(tests):
     kv_split = re.compile('([^= ]*=)')
     out = []
@@ -829,10 +847,8 @@ def build_tests(tests):
         out.append(test_code)
     return "\n".join(out)
 
-
-def compile(input, class_name, mapcss_url = None, only_for = [], not_for = [], prefix = ""):
-    global item_default, class_map, subclass_blacklist, class_index, meta_tags
-
+def parse_mapcss(inputfile):
+    input = FileStream(inputfile, encoding='utf-8')
     lexer = MapCSSLexer(input)
     stream = CommonTokenStream(lexer)
     parser = MapCSSParser(stream)
@@ -841,6 +857,14 @@ def compile(input, class_name, mapcss_url = None, only_for = [], not_for = [], p
     listener = MapCSSListenerL()
     walker = ParseTreeWalker()
     walker.walk(listener, tree)
+    return listener, tree
+
+def compile(inputfile, class_name, mapcss_url = None, only_for = [], not_for = [], prefix = ""):
+    global item_default, class_map, subclass_blacklist, class_index, meta_tags
+
+    listener, tree = parse_mapcss(inputfile)
+
+    build_mock_rules()
 
     selectors_by_complexity = segregate_selectors_by_complexity(listener.stylesheet)
     if len(selectors_by_complexity['rules_complex']) > 0:
@@ -934,9 +958,7 @@ def mapcss2osmose(mapcss, output_path = None):
         meta_tags = None
     class_name = class_name.replace('.', '_').replace('-', '_')
 
-    input = FileStream(mapcss, encoding='utf-8')
-
-    python_code = compile(input, class_name, mapcss_url, only_for, not_for, prefix)
+    python_code = compile(mapcss, class_name, mapcss_url, only_for, not_for, prefix)
 
     path = output_path if output_path else os.path.dirname(mapcss)
     output = open((path or '.') + '/' + prefix + class_name + '.py', 'w')
