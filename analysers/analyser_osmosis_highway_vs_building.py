@@ -325,6 +325,7 @@ WHERE
     highway.layer = water.layer AND
     NOT highway.onwater AND
     (nodes.id IS NULL OR NOT nodes.tags?'ford')
+    {2} -- used to exclude specific types for specific countries
 ORDER BY
     highway.id,
     water.id
@@ -455,10 +456,9 @@ class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
             fix = T_(
 '''Move a feature if it's in the wrong place. Connect the features if appropriate or update the tags if not.'''),
             trap = T_(
-'''A feature may be missing a tag e.g. `tunnel=*`, `bridge=*`,
-`covered=*`. If a road or railway intersects a building, consider adding the
-`layer=*` tag to it. Warning: information sources can be contradictory in
-time or with spatial offset.'''),
+'''A feature may be missing a tag, such as `tunnel=*`, `bridge=*`, `covered=*` or `ford=*`.
+If a road or railway intersects a building, consider adding the`layer=*` tag to it.
+Warning: information sources can be contradictory in time or with spatial offset.'''),
             example = T_(
 '''![](https://wiki.openstreetmap.org/w/images/d/dc/Osmose-eg-error-1070.png)
 
@@ -485,6 +485,8 @@ Intersection lane / building.'''))
         self.callback50 = lambda res: {"class":res[3], "data":[self.way_full, self.way_full, self.positionAsText] }
         self.callback60 = lambda res: {"class":res[3], "data":[self.way_full, self.way_full, self.positionAsText] }
 
+        self.country = self.config.options.get("country")
+
     def analyser_osmosis_full(self):
         self.run(sql00.format("", self.config.options.get("proj")))
         self.run(sql01.format(""))
@@ -503,7 +505,10 @@ Intersection lane / building.'''))
         self.run(sql30.format("", ""), self.callback30)
         self.run(sql31.format("", ""), self.callback31)
         self.run(sql32.format("", ""), self.callback32)
-        self.run(sql40.format("", ""), self.callback40)
+        if self.country and self.country.startswith("CA-BC"): # Too many results
+            self.run(sql40.format("", "", "AND water.waterway != 'stream'"), self.callback40)
+        else:
+            self.run(sql40.format("", "", ""), self.callback40)
         self.run(sql50.format("", "", "false"))
         self.run(sql51.format("", ""), self.callback50)
         self.run(sql60.format("", "", "false"))
@@ -543,8 +548,12 @@ Intersection lane / building.'''))
         self.run(sql31.format("not_touched_", "touched_"), self.callback31)
         self.run(sql32.format("touched_", ""), self.callback31)
         self.run(sql32.format("not_touched_", "touched_"), self.callback31)
-        self.run(sql40.format("touched_", "not_touched_"), self.callback40)
-        self.run(sql40.format("", "touched_"), self.callback40)
+        if self.country and self.country.startswith("CA-BC"): # Too many results
+            self.run(sql40.format("touched_", "not_touched_", "AND water.waterway != 'stream'"), self.callback40)
+            self.run(sql40.format("", "touched_", "AND water.waterway != 'stream'"), self.callback40)
+        else:
+            self.run(sql40.format("touched_", "not_touched_", ""), self.callback40)
+            self.run(sql40.format("", "touched_", ""), self.callback40)
         self.run(sql50.format("not_touched_", "touched_", "true"))
         self.run(sql51.format("not_touched_", "touched_"), self.callback50)
         self.run(sql50.format("touched_", "not_touched_", "true"))
