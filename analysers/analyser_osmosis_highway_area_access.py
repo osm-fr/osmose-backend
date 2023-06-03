@@ -69,7 +69,7 @@ WHERE
   barrier.tags != ''::hstore AND
   -- barrier.tags?'barrier' AND -- commented to avoid planner to try to use idx_nodes_tags, build bad plan with it. Very slow
   barrier.tags->'barrier' = '{barriertype}' AND
-  -- Default of bollard is access=no / bicycle=foot=yes; default of bus_trap is motor_vehicle=no / psv=foot=bicycle=yes.
+  -- Default of bollard is access=no / bicycle=mofa=moped=foot=yes; default of bus_trap is motor_vehicle=no / psv=foot=bicycle=yes.
   -- Hence, the below three lines should cover all cases as long as we don't test for any non-motor_vehicle or vehicles under psv
   (NOT barrier.tags?'access' OR barrier.tags->'access' = 'no') AND
   (NOT barrier.tags?'vehicle' OR barrier.tags->'vehicle' = 'no') AND
@@ -216,7 +216,7 @@ In the bottom example, cars will also have to drive over the kerb. Usually, kerb
     def analyser_osmosis_common(self):
         self.run(sql20.format(barriertype='bollard'))
         self.run(sql20.format(barriertype='bus_trap'))
-        for vehicle in ['motorcycle', 'mofa', 'moped', 'emergency', 'motorcar']:
+        for vehicle in ['motorcycle', 'emergency', 'motorcar']:
             self.run(sql21.format(barriertype='bollard', vehicle=vehicle), lambda res: {
                 "class":2, "data":[self.way_full, self.node_full, self.positionAsText],
                 "text": T_("Inconsistent {0} access: '{1}' on highway, not set on barrier", vehicle, res[3])})
