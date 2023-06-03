@@ -104,18 +104,18 @@ class str_value_(str):
     def __lt__(self, o):
         if self.none:
             return False
-        elif o.__class__ == int:
+        elif o.__class__ in (int, float):
             return self.to_n() < o
         else:
-            return super(str_value_, self).__lt__(o)
+            return self.to_n() < str_value(o).to_n()
 
     def __le__(self, o):
         if self.none:
             return False
-        elif o.__class__ == int:
+        elif o.__class__ in (int, float):
             return self.to_n() <= o
         else:
-            return super(str_value_, self).__le__(o)
+            return self.to_n() <= str_value(o).to_n()
 
     def __eq__(self, o):
         if self.none:
@@ -138,18 +138,18 @@ class str_value_(str):
     def __gt__(self, o):
         if self.none:
             return False
-        elif o.__class__ == int:
+        elif o.__class__ in (int, float):
             return self.to_n() > o
         else:
-            return super(str_value_, self).__gt__(o)
+            return self.to_n() > str_value(o).to_n()
 
     def __ge__(self, o):
         if self.none:
             return False
-        elif o.__class__ == int:
+        elif o.__class__ in (int, float):
             return self.to_n() >= o
         else:
-            return super(str_value_, self).__ge__(o)
+            return self.to_n() >= str_value(o).to_n()
 
     def __bool__(self):
         if self.none:
