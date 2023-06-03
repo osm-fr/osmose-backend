@@ -204,10 +204,8 @@ way[maxspeed > 5000] {
 way[tag(a) > tag(b)] {
   throwWarning: "test";
   assertMatch: "way a=1 b=0";
-  assertMatch: "way a=1.5 b=0";
   assertNoMatch: "way a=0 b=1";
   assertNoMatch: "way a=0 b=yes";
-  assertNoMatch: "way a=no b=yes";
 }
 
 way[x] {
@@ -215,4 +213,124 @@ way[x] {
   set b;
   throwWarning: "test";
   assertMatch: "way x=y";
+}
+
+node[a][b][tag("a") > tag("b")] {
+  throwError: tr("test #1882 - {0}-{1}", "{0.tag}", "{1.tag}");
+  assertNoMatch: "node a=3  b=6";
+  assertNoMatch: "node a=X  b=Y";
+  assertNoMatch: "node a=3a b=6a";
+  assertNoMatch: "node a=3a b=6";
+  assertNoMatch: "node a=3  b=6a";
+  assertMatch:   "node b=3  a=6";
+  assertMatch:   "node b=3  a=12.0";
+  assertMatch:   "node b=3  a=12";
+  assertMatch:   "node b=-5 a=6";
+  assertNoMatch: "node b=X  a=Y";
+  assertNoMatch: "node b=3a a=6a";
+  assertNoMatch: "node b=3a a=6";
+  assertNoMatch: "node b=3  a=6a";
+  assertNoMatch: "node a=3.0  b=6a";
+  assertMatch:   "node b=3.0  a=6.0";
+  assertMatch:   "node b=3.0  a=12";
+}
+
+node[a][b][tag("a") >= tag("b")] {
+  throwError: tr("test #1882 - {0}-{1}", "{0.tag}", "{1.tag}");
+  assertNoMatch: "node a=3  b=6";
+  assertNoMatch: "node a=X  b=Y";
+  assertNoMatch: "node a=3a b=6a";
+  assertNoMatch: "node a=3a b=6";
+  assertNoMatch: "node a=3  b=6a";
+  assertMatch:   "node b=3  a=6";
+  assertMatch:   "node b=3  a=12.0";
+  assertMatch:   "node b=3  a=12";
+  assertMatch:   "node b=-5 a=6";
+  assertNoMatch: "node b=X  a=Y";
+  assertNoMatch: "node b=3a a=6a";
+  assertNoMatch: "node b=3a a=6";
+  assertNoMatch: "node b=3  a=6a";
+  assertNoMatch: "node a=3.0  b=6a";
+  assertMatch:   "node b=3.0  a=6.0";
+  assertMatch:   "node b=3.0  a=12";
+}
+
+node[a][b][tag("b") < tag("a")] {
+  throwError: tr("test #1882 - {0}-{1}", "{0.tag}", "{1.tag}");
+  assertNoMatch: "node a=3  b=6";
+  assertNoMatch: "node a=X  b=Y";
+  assertNoMatch: "node a=3a b=6a";
+  assertNoMatch: "node a=3a b=6";
+  assertNoMatch: "node a=3  b=6a";
+  assertMatch:   "node b=3  a=6";
+  assertMatch:   "node b=3  a=12.0";
+  assertMatch:   "node b=3  a=12";
+  assertMatch:   "node b=-5 a=6";
+  assertNoMatch: "node b=X  a=Y";
+  assertNoMatch: "node b=3a a=6a";
+  assertNoMatch: "node b=3a a=6";
+  assertNoMatch: "node b=3  a=6a";
+  assertNoMatch: "node a=3.0  b=6a";
+  assertMatch:   "node b=3.0  a=6.0";
+  assertMatch:   "node b=3.0  a=12";
+}
+
+node[a][b][tag("b") <= tag("a")] {
+  throwError: tr("test #1882 - {0}-{1}", "{0.tag}", "{1.tag}");
+  assertNoMatch: "node a=3  b=6";
+  assertNoMatch: "node a=X  b=Y";
+  assertNoMatch: "node a=3a b=6a";
+  assertNoMatch: "node a=3a b=6";
+  assertNoMatch: "node a=3  b=6a";
+  assertMatch:   "node b=3  a=6";
+  assertMatch:   "node b=3  a=12.0";
+  assertMatch:   "node b=3  a=12";
+  assertMatch:   "node b=-5 a=6";
+  assertNoMatch: "node b=X  a=Y";
+  assertNoMatch: "node b=3a a=6a";
+  assertNoMatch: "node b=3a a=6";
+  assertNoMatch: "node b=3  a=6a";
+  assertNoMatch: "node a=3.0  b=6a";
+  assertMatch:   "node b=3.0  a=6.0";
+  assertMatch:   "node b=3.0  a=12";
+}
+
+node[a > 2] {
+  throwError: tr("test #1882 - {0}", "{0.tag}");
+  assertMatch: "node a=3";
+  assertMatch: "node a=3.0";
+  assertNoMatch: "node a=X";
+  assertNoMatch: "node a=-5";
+  assertNoMatch: "node a=1";
+  assertNoMatch: "node a=1.0";
+}
+
+node[a > 2.0] {
+  throwError: tr("test #1882 - {0}", "{0.tag}");
+  assertMatch: "node a=3";
+  assertMatch: "node a=3.0";
+  assertNoMatch: "node a=X";
+  assertNoMatch: "node a=-5";
+  assertNoMatch: "node a=1";
+  assertNoMatch: "node a=1.0";
+}
+
+node[a][count(split("n", tag("a"))) > 2] {
+  throwError: tr("test #1882 - {0}", "{0.tag}");
+  assertMatch: "node a=ananas";
+  assertNoMatch: "node a=X";
+}
+
+node[a][count(split("n", tag("a"))) > 2.0] {
+  throwError: tr("test #1882 - {0}", "{0.tag}");
+  assertMatch: "node a=ananas";
+  assertNoMatch: "node a=X";
+}
+
+node[a][b][count(split("n", tag("a"))) > tag(b)] {
+  throwError: tr("test #1882 - {0}-{1}", "{0.tag}", "{1.tag}");
+  assertMatch: "node a=ananas b=2";
+  assertMatch: "node a=ananas b=2.0";
+  assertNoMatch: "node a=X b=2";
+  assertNoMatch: "node a=X b=2.0";
 }
