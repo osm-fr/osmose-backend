@@ -21,6 +21,7 @@
 
 from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
+from modules.Stablehash import stablehash64
 from datetime import date
 
 
@@ -35,7 +36,7 @@ class TagRemove_Fixme(Plugin):
             detail = T_(
 '''`highway=road` has been used, choose a correct value, such as
 `highway=unclassified`.'''))
-        self.currentYear = date.today().year
+        self.currentYear = str(date.today().year)
 
     def node(self, data, tags):
         err = []
@@ -43,7 +44,7 @@ class TagRemove_Fixme(Plugin):
             if t.lower().startswith("fixme") or t.lower().endswith(":fixme"):
                 err.append({
                     "class": 40610,
-                    "subclass": self.currentYear, # Reset false positives every year
+                    "subclass": stablehash64(t + self.currentYear), # Reset false positives every year
                     "text": {"en": tags[t]}
                 })
         return err
