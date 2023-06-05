@@ -53,7 +53,7 @@ class TagRemove_Fixme(Plugin):
         ret = self.node(data, tags)
 
         if tags.get("highway") == "road":
-            ret.append({"class": 40611, "subclass": self.currentYear})
+            ret.append({"class": 40611, "subclass": stablehash64("highway=road" + self.currentYear)})
 
         return ret
 
