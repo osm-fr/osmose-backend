@@ -90,9 +90,7 @@ FROM
 WHERE
   is_polygon AND
   tags != ''::hstore AND
-  (tags?'natural' OR tags?'landuse') AND
-  -- Leave minipolygons for analyser osmosis_polygon_small
-  ST_Area(ST_MakePolygon(ST_Transform(linestring, {proj}))) >= 20
+  (tags?'natural' OR tags?'landuse')
 UNION ALL
 SELECT
   'R' || id AS id,
