@@ -185,7 +185,11 @@ BEGIN
                     *,
                     ST_Transform(poly, {1}) AS poly_proj,
                     ST_IsValid(poly) AS is_valid
-                FROM multi;
+                FROM
+                    multi
+                WHERE
+                    -- Avoid dealing with very large multi-polygons
+                    ST_NPoints(poly) < 100000;
             END IF;
         EXCEPTION WHEN OTHERS THEN
             RAISE NOTICE 'multipolygon fails: %', mp.id;
