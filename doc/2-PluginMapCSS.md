@@ -97,7 +97,10 @@ The rules selectors can apply on OSM objects filtered by type or not. The common
 The wildcard selector is for all at once:
 * `*`
 
-Note: JOSM also have an `area` type. But it is not implemented in Osmose-QA, and such selectors are ignored.
+A wildcard for ways and multipolygon relations:
+* `area`
+
+Note: for consistency with the implementation in JOSM, `area` does not imply that the way is closed. It is good to combine it with the pseudo class selector `:closed` (see below) to ensure it only matches closed ways and multipolygons.
 
 #### Condition on tags
 
