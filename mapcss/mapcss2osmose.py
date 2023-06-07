@@ -264,10 +264,10 @@ def pseudo_class_righthandtraffic(t, c):
     Replace pseudo class :righthandtraffic by call to setting()
     """
     if t['pseudo_class'] == 'righthandtraffic':
-        t = {'type': 'booleanExpression', 'operator': '=' if t['not_class'] else '!=', 'operands': [
-            {'type': 'functionExpression', 'name': 'setting', 'params': [{'type': 'primaryExpression', 'derefered': False, 'value': {'type': 'quoted', 'value': 'driving_side'}}]},
-            {'type': 'primaryExpression', 'derefered': False, 'value': {'type': 'quoted', 'value': 'left'}}
-        ]}
+        setting_selector = deepcopy(mock_rules['setting_drivingside_eq_left' if t['not_class'] else 'setting_drivingside_neq_left'])
+        setting_selector = rewrite_tree_rules(rewrite_rules_clean, None, setting_selector, {})
+        setting_selector['selector_index'] = t.get('selector_index')
+        return setting_selector
     return t
 
 rule_declarations_order_map = {

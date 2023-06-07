@@ -1,0 +1,1 @@
+*[setting("driving_side")!="left"] {}
