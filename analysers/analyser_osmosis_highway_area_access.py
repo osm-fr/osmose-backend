@@ -22,6 +22,7 @@
 
 from modules.OsmoseTranslation import T_
 from .Analyser_Osmosis import Analyser_Osmosis
+from modules.Stablehash import stablehash64
 
 sql10 = """
 SELECT
@@ -218,11 +219,13 @@ In the bottom example, cars will also have to drive over the kerb. Usually, kerb
         self.run(sql20.format(barriertype='bus_trap'))
         for vehicle in ['motorcycle', 'emergency', 'motorcar']:
             self.run(sql21.format(barriertype='bollard', vehicle=vehicle), lambda res: {
-                "class":2, "data":[self.way_full, self.node_full, self.positionAsText],
+                "class": 2, "subclass": 0 + stablehash64(str(res[0]) + vehicle + str(res[1])),
+                "data": [self.way_full, self.node_full, self.positionAsText],
                 "text": T_("Inconsistent {0} access: '{1}' on highway, not set on barrier", vehicle, res[3])})
         for vehicle in ['motorcycle', 'mofa', 'moped', 'agricultural', 'hgv', 'emergency']:
             self.run(sql21.format(barriertype='bus_trap', vehicle=vehicle), lambda res: {
-                "class":2, "data":[self.way_full, self.node_full, self.positionAsText],
+                "class": 2, "subclass": 1 + stablehash64(str(res[0]) + vehicle + str(res[1])),
+                "data": [self.way_full, self.node_full, self.positionAsText],
                 "text": T_("Inconsistent {0} access: '{1}' on highway, not set on barrier", vehicle, res[3])})
 
         self.run(sql31, lambda res: {
