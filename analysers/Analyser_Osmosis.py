@@ -380,7 +380,7 @@ ANALYZE {0}.buildings;
                     self.requires_tables_build(["buildings"])
                     self.create_view_not_touched('buildings', 'W')
                 else:
-                    raise Exception('Unknow table name {0}'.format(table))
+                    raise Exception('Unknown table name {0}'.format(table))
                 self.giscurs.execute('COMMIT')
                 self.giscurs.execute('BEGIN')
 
