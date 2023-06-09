@@ -400,6 +400,17 @@ class TestAnalyser(unittest.TestCase):
         if max is not None:
             self.assertLessEqual(xml_num, max, "Found {0} errors instead of <= {1}".format(xml_num, max))
 
+        # Check if errors are also unique (see #1887)
+        if root_analyser is not None:
+            err_semihash = list(# assumes source and item are identical
+                map(lambda e: 'cl=' + e.attrib.get('class', '') +
+                              ' subcl=' + e.attrib.get('subclass', '') + ' ' +
+                              ' '.join(map(lambda elem: 'r' + elem.attrib.get('id', ''), e.findall('relation'))) + ' ' +
+                              ' '.join(map(lambda elem: 'w' + elem.attrib.get('id', ''), e.findall('way'))) + ' ' +
+                              ' '.join(map(lambda elem: 'n' + elem.attrib.get('id', ''), e.findall('node'))),
+                root_analyser.findall('error')))
+            non_unique = set([x for x in err_semihash if err_semihash.count(x) > 1])
+            assert len(non_unique) == 0, "Multiple errors having the same (sub)class and elements\n- " + '\n- '.join(non_unique)
 
 ###########################################################################
 
