@@ -49,7 +49,7 @@ class Analyser(object):
         # Check keys
         diff_keys = set(kwargs.keys()) - set(['item', 'id', 'level', 'tags', 'title', 'detail', 'fix', 'trap', 'example', 'source', 'resource'])
         if len(diff_keys) > 0:
-            raise Exception('Unknow key ' + ', '.join(diff_keys))
+            raise Exception('Unknown key ' + ', '.join(diff_keys))
 
         if 'source' not in kwargs:
             caller = getframeinfo(stack()[back_in_stack][0])

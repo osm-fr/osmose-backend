@@ -86,7 +86,7 @@ def to_mapcss(t):
     elif t['type'] == 'primaryExpression':
         return ("*" if t['derefered'] else "") + to_mapcss(t['value'])
     else:
-        return "<UNKNOW TYPE {0}>".format(t['type'])
+        return "<UNKNOWN TYPE {0}>".format(t['type'])
 
 
 def main(argv):

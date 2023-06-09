@@ -796,7 +796,7 @@ def to_p(t):
             raise NotImplementedError(t) # Done with rewrite_rules
         return to_p(t['value'])
     else:
-        return "<UNKNOW TYPE {0}>".format(t['type'])
+        return "<UNKNOWN TYPE {0}>".format(t['type'])
 
 
 def build_items(class_):
