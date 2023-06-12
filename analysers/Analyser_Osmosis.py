@@ -145,7 +145,9 @@ BEGIN
         HAVING
             -- Ensure all ways are downloaded; may be false at extract borders
             -- If false, calculations like ST_Area would give invalid results
-            bool_and(ways.id IS NOT NULL)
+            bool_and(ways.id IS NOT NULL) AND
+            -- Avoid dealing with very large multi-polygons
+            ST_NPoints(ST_Collect(ways.linestring)) < 100000
     ) LOOP
         BEGIN
             IF ST_BuildArea(mp.linestrings) IS NOT NULL AND NOT ST_IsEmpty(ST_BuildArea(mp.linestrings)) THEN
@@ -186,10 +188,7 @@ BEGIN
                     ST_Transform(poly, {1}) AS poly_proj,
                     ST_IsValid(poly) AS is_valid
                 FROM
-                    multi
-                WHERE
-                    -- Avoid dealing with very large multi-polygons
-                    ST_NPoints(poly) < 100000;
+                    multi;
             END IF;
         EXCEPTION WHEN OTHERS THEN
             RAISE NOTICE 'multipolygon fails: %', mp.id;
