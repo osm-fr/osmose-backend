@@ -280,6 +280,19 @@ class OsmOsisManager:
     gisconn = self.osmosis(schema_path = False).conn()
     giscurs = gisconn.cursor()
 
+    def human_readable_size(size, decimal_places=2):
+        for unit in ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB']:
+            if size < 1024.0 or unit == 'PiB':
+                break
+            size /= 1024.0
+        return f"{size:.{decimal_places}f} {unit}"
+
+    # print size of schema
+    sql = "select sum(pg_total_relation_size(quote_ident(schemaname) || '.' || quote_ident(tablename)))::bigint from pg_tables where schemaname = %s;"
+    giscurs.execute(sql, [self.db_schema])
+    schema_size = giscurs.fetchone()[0]
+    self.logger.sub().log("Schema size is: {} bytes ({})".format(schema_size, human_readable_size(schema_size)))
+
     if conf.db_persistent:
       pass
 
