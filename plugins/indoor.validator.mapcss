@@ -50,6 +50,7 @@ node[door] < area[indoor=room] {
 
 area[indoor=room][access!~/no|private/]!.room_with_door {
     throwError: tr("This indoor room should have a door");
+    -osmoseItemClassLevel: "1300/53/2";
 }
 
 
