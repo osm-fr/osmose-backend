@@ -291,7 +291,8 @@ class OsmOsisManager:
     sql = "select sum(pg_total_relation_size(quote_ident(schemaname) || '.' || quote_ident(tablename)))::bigint from pg_tables where schemaname = %s;"
     giscurs.execute(sql, [self.db_schema])
     schema_size = giscurs.fetchone()[0]
-    self.logger.sub().log("Schema size is: {} bytes ({})".format(schema_size, human_readable_size(schema_size)))
+    if schema_size is not None:
+      self.logger.sub().log("Schema size is: {} bytes ({})".format(schema_size, human_readable_size(schema_size)))
 
     if conf.db_persistent:
       pass
