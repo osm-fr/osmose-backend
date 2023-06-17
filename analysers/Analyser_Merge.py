@@ -1527,35 +1527,31 @@ open data and OSM.'''))
             } )
 
     def dumpCSV(self, sql, ext, head, callback):
-        self.giscurs.execute(sql)
-        row = []
-        column = {}
-        while True:
-            many = self.giscurs.fetchmany(1000)
-            if not many:
-                break
-            for res in many:
-                row.append(res)
-                for k in res['tags'].keys():
-                    if k not in column:
-                        column[k] = 1
-                    else:
-                        column[k] += 1
-        column = sorted(column, key=column.get, reverse=True)
+        self.giscurs.execute(f"CREATE TEMP TABLE dump AS {sql}")
+
+        self.giscurs.execute("SELECT array_agg(key) FROM (SELECT key, count(*) FROM DUMP, LATERAL jsonb_object_keys(tags) key GROUP BY key ORDER BY count(*) DESC) AS t(key)")
+        column = self.giscurs.fetchone()[0]
         column = list(filter(lambda a: a != self.conflate.osmRef and not a in self.conflate.select.tags[0], column))
         column = [self.conflate.osmRef] + list(self.conflate.select.tags[0].keys()) + column
         buffer = io.StringIO()
         writer = csv.writer(buffer, lineterminator=u'\n')
         writer.writerow(head + column)
-        for r in row:
-            cc = []
-            for c in column:
-                tags = r['tags']
-                if c in tags:
-                    cc.append(tags[c])
-                else:
-                    cc.append(None)
-            writer.writerow(callback(r, cc))
+
+        self.giscurs.execute("SELECT * FROM dump")
+        while True:
+            many = self.giscurs.fetchmany(1000)
+            if not many:
+                break
+            for res in many:
+                cc = []
+                for c in column:
+                    tags = res['tags']
+                    if c in tags:
+                        cc.append(tags[c])
+                    else:
+                        cc.append(None)
+                writer.writerow(callback(res, cc))
+        self.giscurs.execute("DROP TABLE dump")
 
         with bz2.BZ2File("{0}/{1}-{2}{3}.csv.bz2".format(self.config.dst_dir, self.name, self.__class__.__name__, ext), mode='w') as csv_bz2_file:
             csv_bz2_file.write(buffer.getvalue().encode('utf-8'))
