@@ -1543,13 +1543,8 @@ open data and OSM.'''))
             if not many:
                 break
             for res in many:
-                cc = []
-                for c in column:
-                    tags = res['tags']
-                    if c in tags:
-                        cc.append(tags[c])
-                    else:
-                        cc.append(None)
+                tags = res['tags']
+                cc = list(map(lambda c: tags.get(c, None), column))
                 writer.writerow(callback(res, cc))
         self.giscurs.execute("DROP TABLE dump")
 
