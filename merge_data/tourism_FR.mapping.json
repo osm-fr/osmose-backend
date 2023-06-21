@@ -1,7 +1,7 @@
 [
   {
     "title": "Tourism office",
-    "type": "https://www.datatourisme.gouv.fr/ontology/core#LocalTouristOffice",
+    "type": "https://www.datatourisme.fr/ontology/core#LocalTouristOffice",
     "items": 8420,
     "classes": 310,
     "tags_select": {
@@ -15,7 +15,7 @@
   },
   {
     "title": "Church",
-    "type": "https://www.datatourisme.gouv.fr/ontology/core#Church",
+    "type": "https://www.datatourisme.fr/ontology/core#Church",
     "items": 8100,
     "classes": 320,
     "tags_select": {
@@ -29,7 +29,7 @@
   },
   {
     "title": "Camping",
-    "type": "https://www.datatourisme.gouv.fr/ontology/core#Camping",
+    "type": "https://www.datatourisme.fr/ontology/core#Camping",
     "items": 8140,
     "classes": 330,
     "tags_select": {
@@ -50,7 +50,7 @@
   },
   {
     "title": "Restaurant",
-    "type": "https://www.datatourisme.gouv.fr/ontology/core#Restaurant",
+    "type": "https://www.datatourisme.fr/ontology/core#Restaurant",
     "items": 8240,
     "classes": 340,
     "tags_select": {
@@ -63,7 +63,7 @@
   },
   {
     "title": "Museum",
-    "type": "https://www.datatourisme.gouv.fr/ontology/core#Museum",
+    "type": "https://www.datatourisme.fr/ontology/core#Museum",
     "items": 8010,
     "classes": 350,
     "tags_select": {
@@ -76,7 +76,7 @@
   },
   {
     "title": "Winery",
-    "type": "https://www.datatourisme.gouv.fr/ontology/core#WineCellar",
+    "type": "https://www.datatourisme.fr/ontology/core#WineCellar",
     "items": 8250,
     "classes": 360,
     "tags_select": {
@@ -89,7 +89,7 @@
   },
   {
     "title": "Viewpoint",
-    "type": "https://www.datatourisme.gouv.fr/ontology/core#PointOfView",
+    "type": "https://www.datatourisme.fr/ontology/core#PointOfView",
     "items": 8450,
     "classes": 370,
     "tags_select": {
@@ -105,7 +105,7 @@
   },
   {
     "title": "Picnic site",
-    "type": "https://www.datatourisme.gouv.fr/ontology/core#PicnicArea",
+    "type": "https://www.datatourisme.fr/ontology/core#PicnicArea",
     "items": 8460,
     "classes": 380,
     "tags_select": {
