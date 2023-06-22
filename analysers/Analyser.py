@@ -408,7 +408,7 @@ class TestAnalyser(unittest.TestCase):
                               ' '.join(map(lambda elem: 'r' + elem.attrib.get('id', ''), e.findall('relation'))) + ' ' +
                               ' '.join(map(lambda elem: 'w' + elem.attrib.get('id', ''), e.findall('way'))) + ' ' +
                               ' '.join(map(lambda elem: 'n' + elem.attrib.get('id', ''), e.findall('node'))),
-                root_analyser.findall('error')))
+                    root_analyser.findall('error')))
             non_unique = set([x for x in err_semihash if err_semihash.count(x) > 1])
             assert len(non_unique) == 0, "Multiple errors having the same (sub)class and elements\n- " + '\n- '.join(non_unique)
 
