@@ -1287,7 +1287,6 @@ default_country("asia", "nepal", 184633, {"country": "NP", "language": "ne", "dr
 default_country("asia", "oman", 305138, {"country": "OM", "language": "ar","proj": 32640}, download_repo=OSMFR)
 default_country("asia", "pakistan", 307573, {"country": "PK", "language": ["en", "ur"], "driving_side": "left", "proj": 32642})
 default_country("asia", "palestine", 1703814, {"country": "PS", "language": "ar", "proj": 32636}, download_repo=OSMFR)
-default_country("asia", "philippines", 2850940, {"country": "PH", "language": "en", "proj": 32651, 'phone_code': '63', 'phone_len': [7, 8], 'phone_international': '00'}, download_repo=GEOFABRIK)
 default_country("asia", "qatar", 305095, {"country": "QA", "language": "ar","proj": 32639}, download_repo=OSMFR)
 default_country("asia", "saudi_arabia", 307584, {"country": "SA", "language": "ar","proj": 32637}, download_repo=OSMFR)
 default_country("asia", "singapore", 536780, {"country": "SG", "language": "en", "driving_side": "left", "proj": 32648}, download_repo=OSMFR)
@@ -1305,6 +1304,28 @@ default_country("asia", "united_kingdom_british_indian_ocean_territory", 1993867
 default_country("asia", "uzbekistan", 196240, {"country": "UZ", "proj": 32640}, download_repo=GEOFABRIK)
 default_country("asia", "vietnam", 49915, {"country": "VN", "language": "vi", "proj": 32648}, download_repo=GEOFABRIK)
 default_country("asia", "yemen", 305092, {"country": "YE", "language": "ar","proj": 32638}, download_repo=GEOFABRIK)
+
+#########################################################################
+
+ph_state = gen_country('asia', 'philippines', download_repo=OSMFR, language='en', proj=32651, phone_code='63', phone_len=[7, 8], phone_international=00)
+
+ph_state("metro_manila", 147488, "PH-00")
+ph_state("calabarzon", 1552120, "PH-40")
+ph_state("ilocos_region", 1552186, "PH-01")
+ph_state("cordillera_administrative_region", 1552190, "PH-15")
+ph_state("cagayan_valley", 1552192, "PH-02")
+ph_state("central_luzon", 1552195, "PH-03")
+ph_state("mimaropa", 1552261, "PH-41")
+ph_state("bicol_region", 3561455, "PH-05")
+ph_state("western_visayas", 3589982, "PH-06")
+ph_state("central_visayas", 3625910, "PH-07")
+ph_state("eastern_visayas", 3759193, "PH-08")
+ph_state("zamboanga_peninsula", 3777290, "PH-09")
+ph_state("bangsamoro", 3821409, "PH-14")
+ph_state("soccsksargen", 3851570, "PH-12")
+ph_state("caraga", 3870502, "PH-13")
+ph_state("northern_mindanao", 3873457, "PH-10")
+ph_state("davao_region", 3936842, "PH-11")
 
 #########################################################################
 
