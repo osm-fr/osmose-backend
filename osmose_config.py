@@ -766,9 +766,26 @@ fi_part('aland', 1650407, 'AX', language="sv")
 
 #########################################################################
 
-default_country("europe", "portugal",  295480, {"country": "PT", "language": "pt", "proj": 32629}, download_repo=GEOFABRIK)
+pt_part = gen_country('europe', 'portugal', download_repo=OSMFR, language='pt', proj=32629)
 
-pt_part = gen_country('europe', 'portugal', download_repo=OSMFR, language='pt')
+pt_part('faro', 1278415, 'PT-08')
+pt_part('lisbon', 2897141, 'PT-11')
+pt_part('porto', 3459013, 'PT-13')
+pt_part('braga', 3738284, 'PT-03')
+pt_part('viana_do_castelo', 3898131, 'PT-16')
+pt_part('guarda', 3905924, 'PT-09')
+pt_part('braganca', 3905929, 'PT-04')
+pt_part('aveiro', 3920249, 'PT-01')
+pt_part('viseu', 3920285, 'PT-18')
+pt_part('vila_real', 3967823, 'PT-17')
+pt_part('castelo_branco', 4104644, 'PT-05')
+pt_part('coimbra', 4875183, 'PT-06')
+pt_part('leiria', 5011694, 'PT-10')
+pt_part('santarem', 5122644, 'PT-14')
+pt_part('portalegre', 5123448, 'PT-12')
+pt_part('evora', 5130767, 'PT-07')
+pt_part('beja', 5134927, 'PT-02')
+pt_part('setubal', 5143590, 'PT-15')
 
 pt_part('azores', 6451096, 'PT', proj=32627)
 pt_part('madeira', 6451097, 'PT', proj=32628)
