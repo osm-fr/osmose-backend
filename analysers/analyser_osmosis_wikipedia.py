@@ -26,14 +26,12 @@ from .Analyser_Osmosis import Analyser_Osmosis
 sql10 = """
 SELECT
   (array_agg(tid))[1:10],
-  ST_AsText(any_locate((array_agg(type))[1], (array_agg(id))[1])),
+  ST_AsText(any_locate(substring(MIN(tid), 1, 1), substring(MIN(tid), 2)::bigint)),
   w
 FROM ((
   SELECT
     tags->'wikipedia' AS w,
-    'N' || id AS tid,
-    'N' AS type,
-    id
+    'N' || id AS tid
   FROM
     nodes
   WHERE
@@ -41,14 +39,10 @@ FROM ((
     tags?'wikipedia' AND
     NOT tags->'wikipedia' LIKE '%#%' AND
     NOT tags?| ARRAY['highway', 'railway', 'waterway', 'power', 'place', 'shop', 'network', 'operator']
-  ORDER BY
-    id
 ) UNION ALL (
   SELECT
     tags->'wikipedia' AS w,
-    'W' || id AS tid,
-    'W' AS type,
-    id
+    'W' || id AS tid
   FROM
     ways
   WHERE
@@ -56,14 +50,10 @@ FROM ((
     tags?'wikipedia' AND
     NOT tags->'wikipedia' LIKE '%#%' AND
     NOT tags?| ARRAY['highway', 'railway', 'waterway', 'power', 'place', 'shop', 'network', 'operator']
-  ORDER BY
-    id
 ) UNION ALL (
   SELECT
     tags->'wikipedia' AS w,
-    'R' || id AS tid,
-    'R' AS type,
-    id
+    'R' || id AS tid
   FROM
     relations
   WHERE
@@ -72,8 +62,6 @@ FROM ((
     NOT tags->'wikipedia' LIKE '%#%' AND
     NOT tags->'type' IN ('route', 'boundary') AND
     NOT tags?| ARRAY['highway', 'railway', 'waterway', 'power', 'place', 'shop', 'network', 'operator']
-  ORDER BY
-    id
 )) AS t
 GROUP BY
   w
