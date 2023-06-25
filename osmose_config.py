@@ -766,7 +766,7 @@ fi_part('aland', 1650407, 'AX', language="sv")
 
 #########################################################################
 
-pt_part = gen_country('europe', 'portugal', download_repo=OSMFR, language='pt')
+pt_part = gen_country('europe', 'portugal', download_repo=OSMFR, language='pt', proj=32629)
 
 pt_part('faro', 1278415, 'PT-08')
 pt_part('lisbon', 2897141, 'PT-11')
