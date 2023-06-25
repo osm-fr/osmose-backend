@@ -255,12 +255,12 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 # assertNoMatch:"way junction=yes"
                 err.append({'class': 20800, 'subclass': 0, 'text': mapcss.tr('Tag highway missing on junction')})
 
-        # way[oneway][!highway][!railway][!aerialway][!waterway][!aeroway][!piste:type]
+        # way[oneway][!highway][!railway][!aerialway][!waterway][!aeroway][!piste:type][!area:highway][attraction!=summer_toboggan][leisure!=track]
         if ('oneway' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'oneway')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'highway')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'railway')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'aerialway')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'waterway')) and (not mapcss._tag_capture(capture_tags, 5, tags, 'aeroway')) and (not mapcss._tag_capture(capture_tags, 6, tags, 'piste:type')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'oneway')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'highway')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'railway')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'aerialway')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'waterway')) and (not mapcss._tag_capture(capture_tags, 5, tags, 'aeroway')) and (not mapcss._tag_capture(capture_tags, 6, tags, 'piste:type')) and (not mapcss._tag_capture(capture_tags, 7, tags, 'area:highway')) and (mapcss._tag_capture(capture_tags, 8, tags, 'attraction') != mapcss._value_const_capture(capture_tags, 8, 'summer_toboggan', 'summer_toboggan')) and (mapcss._tag_capture(capture_tags, 9, tags, 'leisure') != mapcss._value_const_capture(capture_tags, 9, 'track', 'track')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("tag","highway","fix:chair")
