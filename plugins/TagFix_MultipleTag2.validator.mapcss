@@ -100,7 +100,8 @@ way[junction][junction!=yes][!highway][!area:highway] {
 }
 
 
-way[oneway][!highway][!railway][!aerialway][!waterway][!aeroway][!piste:type] {
+way[oneway][!highway][!railway][!aerialway][!waterway][!aeroway][!piste:type][!area:highway][attraction!=summer_toboggan][leisure!=track] {
+    /* Largely overlapping with a JOSM rule */
     throwWarning: tr("Tag highway missing on oneway");
     assertMatch: "way oneway=yes building=yes";
     assertNoMatch: "way highway=x cycleway=opposite oneway=yes";
