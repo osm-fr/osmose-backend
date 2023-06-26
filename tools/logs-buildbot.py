@@ -89,6 +89,7 @@ if __name__ == "__main__":
   group = parser.add_argument_group('various statistics')
   group.add_argument("--country-stats", dest="stats_country", action="store_true", help="Statistics per country")
   group.add_argument("--global-stats", dest="stats_global", action="store_true", help="Global statistics")
+  group.add_argument("--disabled", dest="disabled", action="store_true", help="Check countries that were disabled on builbot")
 
   args = parser.parse_args()
 
@@ -101,7 +102,12 @@ if __name__ == "__main__":
   buildbot_root = u"https://buildbot.osmose.openstreetmap.fr"
   buildbot_api = buildbot_root + "/api/v2/"
 
-  builders_json: Dict[str, Any] = json.loads(requests.get(buildbot_api + "builders?masterids__contains=1").text)
+  if args.disabled:
+    u = buildbot_api + "builders"
+  else:
+    u = buildbot_api + "builders?masterids__contains=1"
+
+  builders_json: Dict[str, Any] = json.loads(requests.get(u).text)
   builders = {}
   for b in builders_json["builders"]:
     builders[b["name"]] = b["builderid"]
