@@ -394,7 +394,7 @@ def count(lst):
 #    returns the first object which is not null (formerly coalesce, [since 7164])
 def any_(*args):
     if args is not None:
-        return next(item for item in args if item is not None)
+        return next(item for item in args if item is not None and (not isinstance(item, str_value_) or not item.none))
 
 #concat(str1, str2, ...)
 #    assemble the strings to one
