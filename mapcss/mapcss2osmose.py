@@ -425,6 +425,7 @@ def functionExpression_runtime(t, c):
         t['name'] = (
             "keys.__contains__" if t['name'] == 'has_tag_key' else
             "mapcss.list_" if t['name'] == 'list' else
+            "mapcss.any_" if t['name'] == 'any' else
             "mapcss.round_" if t['name'] == 'round' else
             "mapcss." + t['name']
         )
