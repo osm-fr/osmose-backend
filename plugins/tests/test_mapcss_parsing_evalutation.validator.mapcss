@@ -388,3 +388,18 @@ relation[z]!:closed2 {
   assertNoMatch: "relation type=multipolygon z=yes";
   assertMatch: "relation type=other z=yes";
 }
+
+
+node[any(tag("x"), "") == any(tag("y"), "hello")],
+node[a] {
+  throwWarning: tr("test any {0} {1}", any(tag("b"), ""), any(tag("c"), tag("d"), ""));
+  assertMatch: "node a=1 b=2 c=3 d=four";
+  assertMatch: "node a=1 b=2 d=four";
+  assertMatch: "node a=1";
+  assertMatch: "node x=hello";
+  assertMatch: "node x=hello y=hello";
+  assertNoMatch: "node x=hello y=world";
+  assertNoMatch: "node x=bye y=world";
+  assertNoMatch: "node y=world";
+  assertNoMatch: "node unknownkey=yes";
+}
