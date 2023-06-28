@@ -652,7 +652,6 @@ default_country("europe", "romania", 90689, {"country": "RO", "language": "ro", 
 default_country("europe", "san_marino", 54624, {"country": "SM", "language": "it", "proj": 23032}, download_repo=OSMFR)
 default_country("europe", "serbia", 1741311, {"country": "RS", "language": "sr", "proj": 32634}, download_repo=GEOFABRIK)
 default_country("europe", "slovenia", 218657, {"country": "SI", "language": ["sl", "hu", "it"], "proj": 32633}, download_repo=GEOFABRIK)
-default_country("europe", "turkey", 174737, {"country": "TR", "language": "tr", "proj": 32636}, download_repo=GEOFABRIK)
 default_country("europe", "vatican_city", 36989, {"country": "VA", "language": "it", "proj": 23032}, download_repo=OSMFR)
 default_country("europe", "united_kingdom_akrotiri_and_dhekelia", 3263728, {"country": "GB", "language": ["en", "he"], "driving_side": "left", "proj": 32636}, download_country="cyprus")  # British Sovereign Base in Cyprus
 default_country("europe", "united_kingdom_gibraltar", 1278736, {"country": "GI", "language": "en", "proj": 32630}, download_repo=OSMFR, download_country="gibraltar")
@@ -663,6 +662,18 @@ default_country("europe", "united_kingdom_scotland", 58446, {"country": "GB-SCT"
 iceland = default_country("europe","iceland", 299133, {"country": "IS", "language": "is", "proj": 32627}, download_repo=GEOFABRIK) # 299133
 
 default_country("europe", "denmark",  50046, {"country": "DK", "language": "da","proj": 32632, "phone_code": '45', "phone_len": 8, "phone_international": '00'}, download_repo=GEOFABRIK)
+
+#########################################################################
+
+tr_part = gen_country('europe', 'turkey', download_repo=OSMFR, language='tr', proj=32636)
+
+tr_part('black_sea', 1726294, 'TR-2')
+tr_part('mediterranean', 2092903, 'TR-6')
+tr_part('eastern_anatolia', 2094154, 'TR-4')
+tr_part('southeastern_anatolia', 2094155, 'TR-7')
+tr_part('aegean', 2094170, 'TR-1')
+tr_part('marmara', 2094193, 'TR-5')
+tr_part('central_anatolia', 2094194, 'TR-3')
 
 #########################################################################
 
