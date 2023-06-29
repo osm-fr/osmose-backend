@@ -17,7 +17,7 @@ RUN apt-get update && \
         libprotobuf-dev \
         locales \
         make \
-        openjdk-11-jre-headless \
+        openjdk-17-jre-headless \
         pkg-config \
         postgis \
         postgresql-client \
