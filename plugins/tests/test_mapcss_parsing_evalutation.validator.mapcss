@@ -403,3 +403,10 @@ node[a] {
   assertNoMatch: "node y=world";
   assertNoMatch: "node unknownkey=yes";
 }
+
+node[any(tag("x"), tag("y"))] {
+  throwWarning: "test";
+  assertMatch: "node x=yes";
+  assertMatch: "node y=yes";
+  assertNoMatch: "node z=yes";
+}
