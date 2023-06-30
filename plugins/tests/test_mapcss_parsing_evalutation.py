@@ -422,6 +422,18 @@ class test_mapcss_parsing_evalutation(PluginMapCSS):
                 # assertNoMatch:"node z=yes"
                 err.append({'class': 6, 'subclass': 519126950, 'text': {'en': 'test'}})
 
+        # node[x][substring(tag(x),1)=="bcde"][substring(tag(x),1,3)="bc"]
+        if ('x' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'x')) and (mapcss.substring(mapcss.tag(tags, 'x'), 1) == 'bcde') and (mapcss.substring(mapcss.tag(tags, 'x'), 1, 3) == 'bc'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:"test"
+                # assertMatch:"node x=abcde"
+                err.append({'class': 6, 'subclass': 770828321, 'text': {'en': 'test'}})
+
         return err
 
     def way(self, data, tags, nds):
@@ -979,6 +991,9 @@ class test_mapcss_parsing_evalutation(PluginMapCSS):
                 # assertMatch:"relation type=other z=yes"
                 err.append({'class': 10, 'subclass': 758090756, 'text': mapcss.tr('test closed rewrite {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
+        # relation[tag(x)==parent_tag(x)]
+        # Part of rule not implemented
+
         return err
 
 
@@ -1116,6 +1131,7 @@ class Test(TestPluginMapcss):
         self.check_err(n.node(data, {'x': 'yes'}), expected={'class': 6, 'subclass': 519126950})
         self.check_err(n.node(data, {'y': 'yes'}), expected={'class': 6, 'subclass': 519126950})
         self.check_not_err(n.node(data, {'z': 'yes'}), expected={'class': 6, 'subclass': 519126950})
+        self.check_err(n.node(data, {'x': 'abcde'}), expected={'class': 6, 'subclass': 770828321})
         self.check_err(n.way(data, {'x': 'C00;C1;C22'}, [0]), expected={'class': 12, 'subclass': 1785050832})
         self.check_err(n.way(data, {'x': 'C1'}, [0]), expected={'class': 12, 'subclass': 1785050832})
         self.check_not_err(n.way(data, {'x': 'C12'}, [0]), expected={'class': 12, 'subclass': 1785050832})
