@@ -408,6 +408,20 @@ class test_mapcss_parsing_evalutation(PluginMapCSS):
                 # assertNoMatch:"node y=world"
                 err.append({'class': 11, 'subclass': 1778220616, 'text': mapcss.tr('test any {0} {1}', mapcss.any_(mapcss.tag(tags, 'b'), ''), mapcss.any_(mapcss.tag(tags, 'c'), mapcss.tag(tags, 'd'), ''))})
 
+        # node[any(tag("x"),tag("y"))]
+        if True:
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss.any_(mapcss.tag(tags, 'x'), mapcss.tag(tags, 'y'))))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:"test"
+                # assertMatch:"node x=yes"
+                # assertMatch:"node y=yes"
+                # assertNoMatch:"node z=yes"
+                err.append({'class': 6, 'subclass': 519126950, 'text': {'en': 'test'}})
+
         return err
 
     def way(self, data, tags, nds):
@@ -1099,6 +1113,9 @@ class Test(TestPluginMapcss):
         self.check_not_err(n.node(data, {'x': 'hello', 'y': 'world'}), expected={'class': 11, 'subclass': 1778220616})
         self.check_err(n.node(data, {'x': 'hello'}), expected={'class': 11, 'subclass': 1778220616})
         self.check_not_err(n.node(data, {'y': 'world'}), expected={'class': 11, 'subclass': 1778220616})
+        self.check_err(n.node(data, {'x': 'yes'}), expected={'class': 6, 'subclass': 519126950})
+        self.check_err(n.node(data, {'y': 'yes'}), expected={'class': 6, 'subclass': 519126950})
+        self.check_not_err(n.node(data, {'z': 'yes'}), expected={'class': 6, 'subclass': 519126950})
         self.check_err(n.way(data, {'x': 'C00;C1;C22'}, [0]), expected={'class': 12, 'subclass': 1785050832})
         self.check_err(n.way(data, {'x': 'C1'}, [0]), expected={'class': 12, 'subclass': 1785050832})
         self.check_not_err(n.way(data, {'x': 'C12'}, [0]), expected={'class': 12, 'subclass': 1785050832})
