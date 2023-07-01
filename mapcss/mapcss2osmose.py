@@ -443,7 +443,7 @@ def checkValidFunction(fn_name, num_params):
     if fn_name[0:7] != "mapcss.":
         return
     if not fn_name[7:] in dir(mapcss_lib):
-        raise NotImplementedError("Undefined function '{0}'. Blacklist or implement to avoid runtime errors".format(fn_name))
+        raise NotImplementedError("Undefined function '{0}'. Blacklist or implement to avoid errors".format(fn_name))
     else:
         sig = signature(getattr(mapcss_lib, fn_name[7:]))
         argcount = len(sig.parameters) # includes optional arguments
@@ -452,7 +452,7 @@ def checkValidFunction(fn_name, num_params):
         if has_vararg:
             argcount = argcount - 1 # *args can be zero-length
         if num_params < argcount - num_optional_arg or (not has_vararg and num_params > argcount):
-            raise NotImplementedError("Undefined function '{0}' with {1} arguments. Blacklist or implement to avoid runtime errors".format(fn_name, num_params))
+            raise NotImplementedError("Undefined function '{0}' with {1} arguments. Blacklist or implement to avoid errors".format(fn_name, num_params))
 
 
 rewrite_rules_clean = [
