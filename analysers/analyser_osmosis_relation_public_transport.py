@@ -276,12 +276,15 @@ FROM
     JOIN way_nodes ON
         nodes.id = way_nodes.node_id
     JOIN highways ON
-    way_nodes.way_id = highways.id
+        way_nodes.way_id = highways.id
 WHERE
     nodes.tags != ''::hstore AND
     nodes.tags?'highway' AND nodes.tags->'highway' = 'bus_stop' AND
     nodes.tags->'public_transport' != 'stop_position' AND
     highways.highway NOT IN ('footway', 'path', 'pedestrian', 'platform', 'steps')
+GROUP BY
+    nodes.id,
+    nodes.geom
 """
 
 sql70 = """
@@ -302,8 +305,7 @@ sql80 = """
 SELECT
     relations.id,
     'N' || nodes.id,
-    ST_AsText(nodes.geom) AS geom,
-    way_nodes.way_id
+    ST_AsText(nodes.geom) AS geom
 FROM
     way_nodes
     JOIN relation_members ON
@@ -317,9 +319,13 @@ FROM
     JOIN nodes ON
         nodes.id = way_nodes.node_id
 WHERE
-  relations.tags->'type' = 'route' AND
-  relations.tags->'route' IN ('bus', 'trolleybus', 'coach', 'share_taxi', 'school_bus', 'walking_bus') AND
-  highways.highway NOT IN ('footway', 'path', 'pedestrian', 'platform', 'steps')
+    relations.tags->'type' = 'route' AND
+    relations.tags->'route' IN ('bus', 'trolleybus', 'coach', 'share_taxi', 'school_bus', 'walking_bus') AND
+    highways.highway NOT IN ('footway', 'path', 'pedestrian', 'platform', 'steps')
+GROUP BY
+    relations.id,
+    nodes.id,
+    nodes.geom
 """
 
 sql90 = """
@@ -336,7 +342,12 @@ FROM
 WHERE
     mrole IN ('stop', 'stop_exit_only', 'stop_entry_only') AND
     relations.tags->'public_transport:version' = '2' AND
-    node_id IS NULL;
+    node_id IS NULL
+GROUP BY
+    stop_platform.id,
+    stop_platform.member_type,
+    stop_platform.mid,
+    stop_platform.geom
 """
 
 sqlA0 = """
