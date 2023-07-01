@@ -1,7 +1,3 @@
-from modules.OsmoseTranslation import T_
-from plugins.Plugin import Plugin
-from plugins.Plugin import TestPluginCommon
-
 ###########################################################################
 ##                                                                       ##
 ## Copyrights Éric Gillet 2020                                           ##
@@ -20,6 +16,11 @@ from plugins.Plugin import TestPluginCommon
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>. ##
 ##                                                                       ##
 ###########################################################################
+
+from modules.Stablehash import stablehash64
+from modules.OsmoseTranslation import T_
+from plugins.Plugin import Plugin
+from plugins.Plugin import TestPluginCommon
 
 
 class Capacity(Plugin):
@@ -57,13 +58,13 @@ class Capacity(Plugin):
             if total_capacity < 0:
                 return [{
                     "class": 30913,
-                    "subclass": 5,
+                    "subclass": stablehash64('5capacity'),
                     "text": T_('"{0}" value "{1}" is negative', "capacity", total_capacity),
                 }]
         except ValueError:
             errors.append({
                 "class": 30912,
-                "subclass": 4,
+                "subclass": stablehash64('4capacity'),
                 "text": T_('"{0}" value "{1}" is not an integer', "capacity", tags["capacity"]),
             })
             total_capacity = None
@@ -83,7 +84,7 @@ class Capacity(Plugin):
                 if total_capacity is not None and capacity_int > total_capacity:
                     errors.append({
                         "class": 30913,
-                        "subclass": 1,
+                        "subclass": stablehash64('1' + key),
                         "text": T_(
                             'Specific "{0}" value "{1}" should be lower than total capacity {2}',
                             key,
@@ -95,13 +96,13 @@ class Capacity(Plugin):
                 if capacity_int < 0:
                     errors.append({
                         "class": 30912,
-                        "subclass": 5,
+                        "subclass": stablehash64('5' + key),
                         "text": T_('"{0}" value "{1}" is negative', key, value),
                     })
             except ValueError:
                 errors.append({
                     "class": 30912,
-                    "subclass": 4,
+                    "subclass": stablehash64('4' + key),
                     "text": T_('"{0}" value "{1}" is not an integer', key, value),
                 })
                 continue
