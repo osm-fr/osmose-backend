@@ -410,3 +410,13 @@ node[any(tag("x"), tag("y"))] {
   assertMatch: "node y=yes";
   assertNoMatch: "node z=yes";
 }
+
+relation[tag(x)==parent_tag(x)] { /*parent_tag not implemented, but blacklisted, should be skipped*/
+  throwWarning: "test";
+  assertMatch: "relation a=b c=d";
+}
+
+node[x][substring(tag(x), 1) == "bcde"][substring(tag(x), 1, 3) = "bc"] {
+  throwWarning: "test";
+  assertMatch: "node x=abcde";
+}

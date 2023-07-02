@@ -13,6 +13,8 @@ from .generated.MapCSSParser import MapCSSParser
 from .MapCSSListenerL import MapCSSListenerL
 from typing import Dict, List, Set, Optional
 from copy import deepcopy
+from . import mapcss_lib
+from inspect import signature, Parameter
 
 
 # Clean
@@ -429,7 +431,29 @@ def functionExpression_runtime(t, c):
             "mapcss.round_" if t['name'] == 'round' else
             "mapcss." + t['name']
         )
+
+        if not c.get('flags'):
+            checkValidFunction(t['name'], len(t['params']))
     return t
+
+def checkValidFunction(fn_name, num_params):
+    """
+    Tests if mapcss.* functions actually exist, throws a compile error otherwise
+    """
+    if fn_name[0:7] != "mapcss.":
+        return
+    if not fn_name[7:] in dir(mapcss_lib):
+        raise NotImplementedError("Undefined function '{0}'. Blacklist or implement to avoid errors".format(fn_name))
+    else:
+        sig = signature(getattr(mapcss_lib, fn_name[7:]))
+        argcount = len(sig.parameters) # includes optional arguments
+        has_vararg = any(map(lambda p: p.kind == Parameter.VAR_POSITIONAL, sig.parameters.values()))
+        num_optional_arg = len(set(filter(lambda p: p.default != Parameter.empty, sig.parameters.values())))
+        if has_vararg:
+            argcount = argcount - 1 # *args can be zero-length
+        if num_params < argcount - num_optional_arg or (not has_vararg and num_params > argcount):
+            raise NotImplementedError("Undefined function '{0}' with {1} arguments. Blacklist or implement to avoid errors".format(fn_name, num_params))
+
 
 rewrite_rules_clean = [
     ('valueExpression', valueExpression_remove_null_op),
