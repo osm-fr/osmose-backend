@@ -216,6 +216,7 @@ Any parking details should be tagged on that object instead.'''),
                 # Note: conflicting values are dealt with in Highway_Sides
                 err.append({
                     "class": 31623,
+                    "subclass": stablehash64(leftrightkey),
                     "text": {"en": "{0} = {1}".format(bothkey, leftrightkey)},
                     "fix": {"-": [leftrightkey]}
                 })
