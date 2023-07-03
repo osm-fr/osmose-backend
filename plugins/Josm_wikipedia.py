@@ -34,6 +34,7 @@ class Josm_wikipedia(PluginMapCSS):
         self.re_07f8e639 = re.compile(r'(?i)^[-a-z]{2,12}:')
         self.re_08b52119 = re.compile(r'(?i)^[-a-z]{2,12}:.*_')
         self.re_091c4afa = re.compile(r'(?i)^[-a-z]{2,12}:https?:\/\/')
+        self.re_09a81144 = re.compile(r'(?i)^([-a-z]+:)?(.*)$')
         self.re_1559839b = re.compile(r'(?i)^([-a-z]+:)(.+)$')
         self.re_19995c46 = re.compile(r'(?i)^[-a-z]{2,12}:.*%[0-9A-F][0-9A-F]')
         self.re_1ac7f364 = re.compile(r'^jbo:')
@@ -48,6 +49,7 @@ class Josm_wikipedia(PluginMapCSS):
         self.re_577ca7fb = re.compile(r'^cz:(.+)$')
         self.re_5940ff7c = re.compile(r'^[-a-zA-Z]{2,12}:\p{Ll}')
         self.re_62d51e93 = re.compile(r'(?i)^([-a-z]+:)([-a-z]+:)(.*)$')
+        self.re_644be9e0 = re.compile(r'(?i)^([-a-z]+:)?(.+)$')
         self.re_676bdf5d = re.compile(r'(?i)^([-a-z]+:)(.*)$')
         self.re_67a81e56 = re.compile(r'^(aa|ab|ace|ady|af|ak|als|alt|am|ami|an|ang|ar|arc|ary|arz|as|ast|atj|av|avk|awa|ay|az|azb|ba|ban|bar|bat-smg|bcl|be|be-tarask|be-x-old|bg|bh|bi|bjn|bm|bn|bo|bpy|br|bs|bug|bxr|ca|cbk-zam|cdo|ce|ceb|ch|cho|chr|chy|ckb|co|cr|crh|cs|csb|cu|cv|cy|da|dag|de|din|diq|dsb|dty|dv|dz|ee|el|eml|en|eo|es|et|eu|ext|fa|ff|fi|fiu-vro|fj|fo|fr|frp|frr|fur|fy|ga|gag|gan|gcr|gd|gl|glk|gn|gom|gor|got|gu|guw|gv|ha|hak|haw|he|hi|hif|ho|hr|hsb|ht|hu|hy|hyw|hz|ia|id|ie|ig|ii|ik|ilo|inh|io|is|it|iu|ja|jam|jbo|jv|ka|kaa|kab|kbd|kbp|kcg|kg|ki|kj|kk|kl|km|kn|ko|koi|kr|krc|ks|ksh|ku|kv|kw|ky|la|lad|lb|lbe|lez|lfn|lg|li|lij|lld|lmo|ln|lo|lrc|lt|ltg|lv|mad|mai|map-bms|mdf|mg|mh|mhr|mi|min|mk|ml|mn|mni|mnw|mo|mr|mrj|ms|mt|mus|mwl|my|myv|mzn|na|nah|nap|nds|nds-nl|ne|new|ng|nia|nl|nn|no|nov|nqo|nrm|nso|nv|ny|oc|olo|om|or|os|pa|pag|pam|pap|pcd|pdc|pfl|pi|pih|pl|pms|pnb|pnt|ps|pt|pwn|qu|rm|rmy|rn|ro|roa-rup|roa-tara|ru|rue|rw|sa|sah|sat|sc|scn|sco|sd|se|sg|sh|shi|shn|shy|si|simple|sk|skr|sl|sm|smn|sn|so|sq|sr|srn|ss|st|stq|su|sv|sw|szl|szy|ta|tay|tcy|te|tet|tg|th|ti|tk|tl|tn|to|tpi|tr|trv|ts|tt|tum|tw|ty|tyv|udm|ug|uk|ur|uz|ve|vec|vep|vi|vls|vo|wa|war|wo|wuu|xal|xh|xmf|yi|yo|yue|za|zea|zh|zh-classical|zh-min-nan|zh-yue|zu):')
         self.re_67c3b565 = re.compile(r'(?i)^[-a-z]{2,12}:wiki\/')
@@ -187,9 +189,13 @@ class Josm_wikipedia(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("{0} tag should not have URL-encoded values like ''%27''","{0.key}")
+                # fixAdd:concat("{0.key}","=",get(regexp_match("(?i)^([-a-z]+:)?(.*)$",tag("{0.key}")),1),trim(replace(URL_decode(get(println(regexp_match("(?i)^([-a-z]+:)?(.+)$",tag("{0.key}"))),2)),"_"," ")))
                 # assertMatch:"node wikipedia:de=Foo%27s"
                 # assertNoMatch:"node wikipedia:de=Foo"
-                err.append({'class': 9011006, 'subclass': 556604422, 'text': mapcss.tr('{0} tag should not have URL-encoded values like \'\'%27\'\'', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                err.append({'class': 9011006, 'subclass': 556604422, 'text': mapcss.tr('{0} tag should not have URL-encoded values like \'\'%27\'\'', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(mapcss._tag_uncapture(capture_tags, '{0.key}'), '=', mapcss.get(mapcss.regexp_match(self.re_09a81144, mapcss.tag(tags, mapcss._tag_uncapture(capture_tags, '{0.key}'))), 1), mapcss.trim(mapcss.replace(mapcss.URL_decode(mapcss.get(mapcss.println(mapcss.regexp_match(self.re_644be9e0, mapcss.tag(tags, mapcss._tag_uncapture(capture_tags, '{0.key}')))), 2)), '_', ' ')))).split('=', 1)])
+                }})
 
         # *[wikipedia=~/(?i)^[-a-z]{2,12}: /]
         if ('wikipedia' in keys):
@@ -558,7 +564,11 @@ class Josm_wikipedia(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("{0} tag should not have URL-encoded values like ''%27''","{0.key}")
-                err.append({'class': 9011006, 'subclass': 556604422, 'text': mapcss.tr('{0} tag should not have URL-encoded values like \'\'%27\'\'', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                # fixAdd:concat("{0.key}","=",get(regexp_match("(?i)^([-a-z]+:)?(.*)$",tag("{0.key}")),1),trim(replace(URL_decode(get(println(regexp_match("(?i)^([-a-z]+:)?(.+)$",tag("{0.key}"))),2)),"_"," ")))
+                err.append({'class': 9011006, 'subclass': 556604422, 'text': mapcss.tr('{0} tag should not have URL-encoded values like \'\'%27\'\'', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(mapcss._tag_uncapture(capture_tags, '{0.key}'), '=', mapcss.get(mapcss.regexp_match(self.re_09a81144, mapcss.tag(tags, mapcss._tag_uncapture(capture_tags, '{0.key}'))), 1), mapcss.trim(mapcss.replace(mapcss.URL_decode(mapcss.get(mapcss.println(mapcss.regexp_match(self.re_644be9e0, mapcss.tag(tags, mapcss._tag_uncapture(capture_tags, '{0.key}')))), 2)), '_', ' ')))).split('=', 1)])
+                }})
 
         # *[wikipedia=~/(?i)^[-a-z]{2,12}: /]
         if ('wikipedia' in keys):
@@ -895,7 +905,11 @@ class Josm_wikipedia(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("{0} tag should not have URL-encoded values like ''%27''","{0.key}")
-                err.append({'class': 9011006, 'subclass': 556604422, 'text': mapcss.tr('{0} tag should not have URL-encoded values like \'\'%27\'\'', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                # fixAdd:concat("{0.key}","=",get(regexp_match("(?i)^([-a-z]+:)?(.*)$",tag("{0.key}")),1),trim(replace(URL_decode(get(println(regexp_match("(?i)^([-a-z]+:)?(.+)$",tag("{0.key}"))),2)),"_"," ")))
+                err.append({'class': 9011006, 'subclass': 556604422, 'text': mapcss.tr('{0} tag should not have URL-encoded values like \'\'%27\'\'', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(mapcss._tag_uncapture(capture_tags, '{0.key}'), '=', mapcss.get(mapcss.regexp_match(self.re_09a81144, mapcss.tag(tags, mapcss._tag_uncapture(capture_tags, '{0.key}'))), 1), mapcss.trim(mapcss.replace(mapcss.URL_decode(mapcss.get(mapcss.println(mapcss.regexp_match(self.re_644be9e0, mapcss.tag(tags, mapcss._tag_uncapture(capture_tags, '{0.key}')))), 2)), '_', ' ')))).split('=', 1)])
+                }})
 
         # *[wikipedia=~/(?i)^[-a-z]{2,12}: /]
         if ('wikipedia' in keys):

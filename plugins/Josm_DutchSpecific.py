@@ -48,7 +48,6 @@ class Josm_DutchSpecific(PluginMapCSS):
         self.re_1d0c9a01 = re.compile(r'^NL:zone[36]0$')
         self.re_1d478f9e = re.compile(r'\bNL:C0?2\b')
         self.re_1d614d5c = re.compile(r'^maxspeed(:forward|:backward|:both_ways)?$')
-        self.re_1e0ec701 = re.compile(r'\b(Adm|Burg|Dr|Drs|Ds|Gen|Ing|Ir|Mgr|Mr|Past|Prof|St|Weth)\.? [A-Za-z]')
         self.re_1faa7e13 = re.compile(r'^hgv(:forward|:both_ways)?(:conditional)?$')
         self.re_21dc697e = re.compile(r'^maxaxleload(:backward|:both_ways)?(:conditional)?$')
         self.re_223975fd = re.compile(r'(^|;)NL:(C19|L0?1)\b')
@@ -64,6 +63,7 @@ class Josm_DutchSpecific(PluginMapCSS):
         self.re_30fdb33a = re.compile(r'(?i)^(lift)$')
         self.re_31154585 = re.compile(r'^motorcycle(:forward|:both_ways)?(:conditional)?$')
         self.re_3254c1c6 = re.compile(r'(?i)(parkeren$|parkeerplaats$|^toegang(sweg)?\s|^richting\s|drive.thro?u(gh)?)')
+        self.re_32d334cf = re.compile(r'(^|.+:)addr:street($|:.+)')
         self.re_33480e64 = re.compile(r'^maxheight(:forward|:backward|:both_ways)?(:conditional)?$')
         self.re_339dfcbd = re.compile(r'^maxweight(:backward|:both_ways)?(:conditional)?$')
         self.re_33af5199 = re.compile(r'^motorcycle(:backward|:both_ways)?(:conditional)?$')
@@ -82,6 +82,7 @@ class Josm_DutchSpecific(PluginMapCSS):
         self.re_460900e8 = re.compile(r'^maxspeed:advisory(:backward|:both_ways)?(:conditional)?$')
         self.re_467ce1ba = re.compile(r'(?i)(parkeren|parkeerplaats|parkeergarage|^garage)$')
         self.re_47aaa0f7 = re.compile(r'^(yes|designated)$')
+        self.re_49026388 = re.compile(r'(^|.+:)addr:housenumber($|:.+)')
         self.re_4cfe628c = re.compile(r'^access(:forward|:both_ways)?(:conditional)?$')
         self.re_4d17a717 = re.compile(r'^(no|-1|0)*$')
         self.re_4d87e9ab = re.compile(r'^access(:backward|:both_ways)?(:conditional)?$')
@@ -98,6 +99,7 @@ class Josm_DutchSpecific(PluginMapCSS):
         self.re_5577fcc2 = re.compile(r'^hgv(:backward|:both_ways)?(:conditional)?$')
         self.re_5578cc63 = re.compile(r'100.+19:00')
         self.re_55879a11 = re.compile(r'^(no|-1|0)$')
+        self.re_561be3ff = re.compile(r'^addr:(city|postcode)$')
         self.re_5b4448e5 = re.compile(r'(?i)^(honden\s?)?(toilet|uitlaa[dt]|los.?loop)')
         self.re_5e498788 = re.compile(r'^(left|right|both|yes)$')
         self.re_5ed5036a = re.compile(r'(?i)^speeltuin$')
@@ -112,6 +114,7 @@ class Josm_DutchSpecific(PluginMapCSS):
         self.re_6454d3f5 = re.compile(r'stenen$|^hout$|\bbestraa?t(ing)?$|grond$|^puin$|^grind$|zand$')
         self.re_65dfbf19 = re.compile(r'^(motor_)?vehicle(:forward|:both_ways)?(:conditional)?$')
         self.re_65e19305 = re.compile(r'(^|;)NL:C22(\[[A-E]\])?(;|$)')
+        self.re_676d2c9e = re.compile(r'\b(Adm|Br|Burg|Cmdt|Dr|Drs|Ds|Gebr|Gen|Ing|Ir|Jhr|Kard|Kon|Luit|Mej|Mevr|Mgr|Min|Mr|Past|Pr|Pres|Prof|St|Vr|Weth|Zr)\.? [A-Za-z]')
         self.re_682234cc = re.compile(r'^foot(:forward|:backward|:both_ways)?(:conditional)?$')
         self.re_697de1f2 = re.compile(r'^moped(:forward|:both_ways)?(:conditional)?$')
         self.re_6b1906aa = re.compile(r'(?i)(klanten|bezoek(ers)?|medewerkers)\b')
@@ -143,7 +146,7 @@ class Josm_DutchSpecific(PluginMapCSS):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_abbrname = set_badPhoneNumber = set_multipleGsigns = set_steps = False
+        set_abbrname = set_addrOnBuilding = set_badPhoneNumber = set_multipleGsigns = set_steps = False
 
         # node[contact:phone=~/^(00|\+)31 ?0[0-9]{8,}/]
         # node[contact:mobile=~/^(00|\+)31 ?0[0-9]{8,}/]
@@ -233,6 +236,29 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # assertNoMatch:"node phone=\"06 12345678\""
                 # assertNoMatch:"node phone=\"0800 1234567\""
                 err.append({'class': 90201, 'subclass': 1429902606, 'text': mapcss.tr('Invalid tag {0}: too many digits (or foreign number, if so: ignore)', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+
+        # node[/^addr:(city|postcode)$/][!/(^|.+:)addr:housenumber($|:.+)/][!/(^|.+:)addr:street($|:.+)/][inside("NL")]
+        # node[addr:street][!/(^|.+:)addr:housenumber($|:.+)/][!addr:interpolation][!addr:flats][inside("NL")]
+        if True:
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, self.re_561be3ff)) and (not mapcss._tag_capture(capture_tags, 1, tags, self.re_49026388)) and (not mapcss._tag_capture(capture_tags, 2, tags, self.re_32d334cf)) and (mapcss.inside(self.father.config.options, 'NL')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'addr:street')) and (not mapcss._tag_capture(capture_tags, 1, tags, self.re_49026388)) and (not mapcss._tag_capture(capture_tags, 2, tags, 'addr:interpolation')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'addr:flats')) and (mapcss.inside(self.father.config.options, 'NL')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("NL addresses and contacts")
+                # throwWarning:tr("Incomplete address: {0} {1} {2} {3}",any(tag("addr:street"),"[street?]"),any(tag("addr:housenumber"),"[housenumber?]"),any(tag("addr:postcode"),""),any(tag("addr:city"),""))
+                # assertNoMatch:"node addr:street=\"Pastoor Simonisplein\" addr:housenumber=2a addr:city=Milheeze amenity=atm"
+                # assertNoMatch:"node addr:street=Ozingaloane addr:housenumber=1W-5 addr:city=Marrum power=generator"
+                # assertNoMatch:"node addr:street=XXX addr:flats=1-3 addr:postcode=1234AB addr:city=XXX"
+                # assertNoMatch:"node addr:street=XXX addr:housenumber:construction=123 addr:postcode=1234AB addr:city=XXX"
+                # assertNoMatch:"node addr:street=XXX addr:housenumber=123 addr:postcode=1234AB addr:city=XXX"
+                # assertNoMatch:"node addr:street=XXX proposed:addr:housenumber=123 addr:postcode=1234AB addr:city=XXX"
+                err.append({'class': 90201, 'subclass': 509151640, 'text': mapcss.tr('Incomplete address: {0} {1} {2} {3}', mapcss.any_(mapcss.tag(tags, 'addr:street'), '[street?]'), mapcss.any_(mapcss.tag(tags, 'addr:housenumber'), '[housenumber?]'), mapcss.any_(mapcss.tag(tags, 'addr:postcode'), ''), mapcss.any_(mapcss.tag(tags, 'addr:city'), ''))})
 
         # node["addr:postcode"]["addr:postcode"!~/[0-9]{4} ?[A-Z]{2}/][inside("NL")]
         # Rule Blacklisted (id: 1560886491)
@@ -424,13 +450,13 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # suggestAlternative:"old_name=*"
                 err.append({'class': 90203, 'subclass': 538711457, 'text': mapcss.tr('descriptive name')})
 
-        # *[name][place][name=~/\b(Adm|Burg|Dr|Drs|Ds|Gen|Ing|Ir|Mgr|Mr|Past|Prof|St|Weth)\.? [A-Za-z]/][inside("NL")]!.abbrname
+        # *[name][place][name=~/\b(Adm|Br|Burg|Cmdt|Dr|Drs|Ds|Gebr|Gen|Ing|Ir|Jhr|Kard|Kon|Luit|Mej|Mevr|Mgr|Min|Mr|Past|Pr|Pres|Prof|St|Vr|Weth|Zr)\.? [A-Za-z]/][inside("NL")]!.abbrname
         # *[name][place][name=~/^[A-Z][a-z]{1,4}\. /][inside("NL")]!.abbrname
         if ('name' in keys and 'place' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((not set_abbrname) and (mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss._tag_capture(capture_tags, 1, tags, 'place')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_1e0ec701), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'NL')))
+                try: match = ((not set_abbrname) and (mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss._tag_capture(capture_tags, 1, tags, 'place')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_676d2c9e), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'NL')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -441,7 +467,7 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # group:tr("NL nomenclature")
                 # throwWarning:tr("Gebiedsnaam met afkorting")
                 set_abbrname = True
-                err.append({'class': 90203, 'subclass': 1737008469, 'text': mapcss.tr('Gebiedsnaam met afkorting')})
+                err.append({'class': 90203, 'subclass': 1100707926, 'text': mapcss.tr('Gebiedsnaam met afkorting')})
 
         # *[railway][name][name=~/(?i)(aansl|empl|goed|ind|inhaalsp|opstel|overloopw|racc|rang|terr)\./][inside("NL")]!.abbrname
         # *[railway][name][name=~/(?i)\b(aansl|empl|goed|ind|inhaalsp|opstel|overloopw|racc|rang|terr)\b/][inside("NL")]!.abbrname
@@ -569,7 +595,7 @@ class Josm_DutchSpecific(PluginMapCSS):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_abbrname = set_badPhoneNumber = set_multipleGsigns = set_steps = False
+        set_abbrname = set_addrOnBuilding = set_badPhoneNumber = set_multipleGsigns = set_steps = False
 
         # way[highway=cycleway][traffic_sign~="NL:G11"][moped][moped=~/^(yes|designated)$/]
         # way[highway=cycleway][traffic_sign~="NL:G12a"][moped][moped=~/^(no|use_sidepath)$/]
@@ -1702,9 +1728,28 @@ class Josm_DutchSpecific(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building')) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_5ef8db88)) and (mapcss._tag_capture(capture_tags, 2, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 2, 'place_of_worship', 'place_of_worship')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_17085e60, 'houseboat|static_caravan'), mapcss._tag_capture(capture_tags, 3, tags, 'building'))) and (mapcss.inside(self.father.config.options, 'NL')) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')) and (nds[0] == nds[-1]))
                 except mapcss.RuleAbort: pass
             if match:
+                # set .addrOnBuilding
                 # group:tr("NL addresses and contacts")
                 # throwWarning:tr("In Nederland is het gebouw niet gekoppeld aan het adres. Het adres is wel gekoppeld aan het gebruiksdoel.")
+                set_addrOnBuilding = True
                 err.append({'class': 90201, 'subclass': 822822875, 'text': mapcss.tr('In Nederland is het gebouw niet gekoppeld aan het adres. Het adres is wel gekoppeld aan het gebruiksdoel.')})
+
+        # area[/^addr:(city|postcode)$/][!/(^|.+:)addr:housenumber($|:.+)/][!/(^|.+:)addr:street($|:.+)/][inside("NL")]!.addrOnBuilding
+        # area[addr:street][!/(^|.+:)addr:housenumber($|:.+)/][!addr:interpolation][!addr:flats][inside("NL")]!.addrOnBuilding
+        if True:
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_addrOnBuilding) and (mapcss._tag_capture(capture_tags, 0, tags, self.re_561be3ff)) and (not mapcss._tag_capture(capture_tags, 1, tags, self.re_49026388)) and (not mapcss._tag_capture(capture_tags, 2, tags, self.re_32d334cf)) and (mapcss.inside(self.father.config.options, 'NL')) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_addrOnBuilding) and (mapcss._tag_capture(capture_tags, 0, tags, 'addr:street')) and (not mapcss._tag_capture(capture_tags, 1, tags, self.re_49026388)) and (not mapcss._tag_capture(capture_tags, 2, tags, 'addr:interpolation')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'addr:flats')) and (mapcss.inside(self.father.config.options, 'NL')) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("NL addresses and contacts")
+                # throwWarning:tr("Incomplete address: {0} {1} {2} {3}",any(tag("addr:street"),"[street?]"),any(tag("addr:housenumber"),"[housenumber?]"),any(tag("addr:postcode"),""),any(tag("addr:city"),""))
+                err.append({'class': 90201, 'subclass': 2087285475, 'text': mapcss.tr('Incomplete address: {0} {1} {2} {3}', mapcss.any_(mapcss.tag(tags, 'addr:street'), '[street?]'), mapcss.any_(mapcss.tag(tags, 'addr:housenumber'), '[housenumber?]'), mapcss.any_(mapcss.tag(tags, 'addr:postcode'), ''), mapcss.any_(mapcss.tag(tags, 'addr:city'), ''))})
 
         # way[cycleway:surface][surface][highway=cycleway][surface=*"cycleway:surface"][inside("NL")]
         # way[footway:surface][surface][highway=footway][surface=*"footway:surface"][inside("NL")]
@@ -2166,13 +2211,13 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # suggestAlternative:"old_name=*"
                 err.append({'class': 90203, 'subclass': 538711457, 'text': mapcss.tr('descriptive name')})
 
-        # way[name][highway][name=~/\b(Adm|Burg|Dr|Drs|Ds|Gen|Ing|Ir|Mgr|Mr|Past|Prof|St|Weth)\.? [A-Za-z]/][inside("NL")]!.abbrname
+        # way[name][highway][name=~/\b(Adm|Br|Burg|Cmdt|Dr|Drs|Ds|Gebr|Gen|Ing|Ir|Jhr|Kard|Kon|Luit|Mej|Mevr|Mgr|Min|Mr|Past|Pr|Pres|Prof|St|Vr|Weth|Zr)\.? [A-Za-z]/][inside("NL")]!.abbrname
         # way[name][highway][name=~/^[A-Z][a-z]{1,4}\. /][inside("NL")]!.abbrname
         if ('highway' in keys and 'name' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((not set_abbrname) and (mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss._tag_capture(capture_tags, 1, tags, 'highway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_1e0ec701), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'NL')))
+                try: match = ((not set_abbrname) and (mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss._tag_capture(capture_tags, 1, tags, 'highway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_676d2c9e), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'NL')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -2184,16 +2229,17 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # throwWarning:tr("Straatnaam met afkorting")
                 # assertNoMatch:"way highway=residential name=\"De Visserstraat\""
                 # assertNoMatch:"way highway=residential name=\"J.T. de Visserstraat\""
+                # assertNoMatch:"way highway=residential name=\"Wim Kan Dreef\""
                 set_abbrname = True
-                err.append({'class': 90203, 'subclass': 34991053, 'text': mapcss.tr('Straatnaam met afkorting')})
+                err.append({'class': 90203, 'subclass': 165355266, 'text': mapcss.tr('Straatnaam met afkorting')})
 
-        # *[name][place][name=~/\b(Adm|Burg|Dr|Drs|Ds|Gen|Ing|Ir|Mgr|Mr|Past|Prof|St|Weth)\.? [A-Za-z]/][inside("NL")]!.abbrname
+        # *[name][place][name=~/\b(Adm|Br|Burg|Cmdt|Dr|Drs|Ds|Gebr|Gen|Ing|Ir|Jhr|Kard|Kon|Luit|Mej|Mevr|Mgr|Min|Mr|Past|Pr|Pres|Prof|St|Vr|Weth|Zr)\.? [A-Za-z]/][inside("NL")]!.abbrname
         # *[name][place][name=~/^[A-Z][a-z]{1,4}\. /][inside("NL")]!.abbrname
         if ('name' in keys and 'place' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((not set_abbrname) and (mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss._tag_capture(capture_tags, 1, tags, 'place')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_1e0ec701), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'NL')))
+                try: match = ((not set_abbrname) and (mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss._tag_capture(capture_tags, 1, tags, 'place')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_676d2c9e), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'NL')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -2204,7 +2250,7 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # group:tr("NL nomenclature")
                 # throwWarning:tr("Gebiedsnaam met afkorting")
                 set_abbrname = True
-                err.append({'class': 90203, 'subclass': 1737008469, 'text': mapcss.tr('Gebiedsnaam met afkorting')})
+                err.append({'class': 90203, 'subclass': 1100707926, 'text': mapcss.tr('Gebiedsnaam met afkorting')})
 
         # *[railway][name][name=~/(?i)(aansl|empl|goed|ind|inhaalsp|opstel|overloopw|racc|rang|terr)\./][inside("NL")]!.abbrname
         # *[railway][name][name=~/(?i)\b(aansl|empl|goed|ind|inhaalsp|opstel|overloopw|racc|rang|terr)\b/][inside("NL")]!.abbrname
@@ -2560,7 +2606,7 @@ class Josm_DutchSpecific(PluginMapCSS):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_abbrname = set_badPhoneNumber = set_multipleGsigns = set_steps = False
+        set_abbrname = set_addrOnBuilding = set_badPhoneNumber = set_multipleGsigns = set_steps = False
 
         # area[building][/^addr:(street|housenumber|postcode|city)$/][amenity!=place_of_worship][building!~/houseboat|static_caravan/][inside("NL")]:closed
         if ('building' in keys and 'type' in keys):
@@ -2570,10 +2616,29 @@ class Josm_DutchSpecific(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building')) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_5ef8db88)) and (mapcss._tag_capture(capture_tags, 2, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 2, 'place_of_worship', 'place_of_worship')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_17085e60, 'houseboat|static_caravan'), mapcss._tag_capture(capture_tags, 3, tags, 'building'))) and (mapcss.inside(self.father.config.options, 'NL')) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')) and (mapcss._tag_capture(capture_tags, -2, tags, 'type') == mapcss._value_capture(capture_tags, -2, 'multipolygon')))
                 except mapcss.RuleAbort: pass
             if match:
+                # set .addrOnBuilding
                 # group:tr("NL addresses and contacts")
                 # throwWarning:tr("In Nederland is het gebouw niet gekoppeld aan het adres. Het adres is wel gekoppeld aan het gebruiksdoel.")
                 # assertNoMatch:"relation type=multipolygon building=yes addr:housename=huis"
+                set_addrOnBuilding = True
                 err.append({'class': 90201, 'subclass': 822822875, 'text': mapcss.tr('In Nederland is het gebouw niet gekoppeld aan het adres. Het adres is wel gekoppeld aan het gebruiksdoel.')})
+
+        # area[/^addr:(city|postcode)$/][!/(^|.+:)addr:housenumber($|:.+)/][!/(^|.+:)addr:street($|:.+)/][inside("NL")]!.addrOnBuilding
+        # area[addr:street][!/(^|.+:)addr:housenumber($|:.+)/][!addr:interpolation][!addr:flats][inside("NL")]!.addrOnBuilding
+        if ('addr:street' in keys and 'type' in keys) or ('type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_addrOnBuilding) and (mapcss._tag_capture(capture_tags, 0, tags, self.re_561be3ff)) and (not mapcss._tag_capture(capture_tags, 1, tags, self.re_49026388)) and (not mapcss._tag_capture(capture_tags, 2, tags, self.re_32d334cf)) and (mapcss.inside(self.father.config.options, 'NL')) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_addrOnBuilding) and (mapcss._tag_capture(capture_tags, 0, tags, 'addr:street')) and (not mapcss._tag_capture(capture_tags, 1, tags, self.re_49026388)) and (not mapcss._tag_capture(capture_tags, 2, tags, 'addr:interpolation')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'addr:flats')) and (mapcss.inside(self.father.config.options, 'NL')) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("NL addresses and contacts")
+                # throwWarning:tr("Incomplete address: {0} {1} {2} {3}",any(tag("addr:street"),"[street?]"),any(tag("addr:housenumber"),"[housenumber?]"),any(tag("addr:postcode"),""),any(tag("addr:city"),""))
+                err.append({'class': 90201, 'subclass': 2087285475, 'text': mapcss.tr('Incomplete address: {0} {1} {2} {3}', mapcss.any_(mapcss.tag(tags, 'addr:street'), '[street?]'), mapcss.any_(mapcss.tag(tags, 'addr:housenumber'), '[housenumber?]'), mapcss.any_(mapcss.tag(tags, 'addr:postcode'), ''), mapcss.any_(mapcss.tag(tags, 'addr:city'), ''))})
 
         # relation[type=associatedStreet][inside("NL")]
         if ('type' in keys):
@@ -2759,13 +2824,13 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # suggestAlternative:"old_name=*"
                 err.append({'class': 90203, 'subclass': 538711457, 'text': mapcss.tr('descriptive name')})
 
-        # *[name][place][name=~/\b(Adm|Burg|Dr|Drs|Ds|Gen|Ing|Ir|Mgr|Mr|Past|Prof|St|Weth)\.? [A-Za-z]/][inside("NL")]!.abbrname
+        # *[name][place][name=~/\b(Adm|Br|Burg|Cmdt|Dr|Drs|Ds|Gebr|Gen|Ing|Ir|Jhr|Kard|Kon|Luit|Mej|Mevr|Mgr|Min|Mr|Past|Pr|Pres|Prof|St|Vr|Weth|Zr)\.? [A-Za-z]/][inside("NL")]!.abbrname
         # *[name][place][name=~/^[A-Z][a-z]{1,4}\. /][inside("NL")]!.abbrname
         if ('name' in keys and 'place' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((not set_abbrname) and (mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss._tag_capture(capture_tags, 1, tags, 'place')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_1e0ec701), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'NL')))
+                try: match = ((not set_abbrname) and (mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss._tag_capture(capture_tags, 1, tags, 'place')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_676d2c9e), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'NL')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -2776,7 +2841,7 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # group:tr("NL nomenclature")
                 # throwWarning:tr("Gebiedsnaam met afkorting")
                 set_abbrname = True
-                err.append({'class': 90203, 'subclass': 1737008469, 'text': mapcss.tr('Gebiedsnaam met afkorting')})
+                err.append({'class': 90203, 'subclass': 1100707926, 'text': mapcss.tr('Gebiedsnaam met afkorting')})
 
         # *[railway][name][name=~/(?i)(aansl|empl|goed|ind|inhaalsp|opstel|overloopw|racc|rang|terr)\./][inside("NL")]!.abbrname
         # *[railway][name][name=~/(?i)\b(aansl|empl|goed|ind|inhaalsp|opstel|overloopw|racc|rang|terr)\b/][inside("NL")]!.abbrname
@@ -2911,6 +2976,12 @@ class Test(TestPluginMapcss):
         self.check_not_err(n.node(data, {'phone': '0031612345678'}), expected={'class': 90201, 'subclass': 1429902606})
         self.check_not_err(n.node(data, {'phone': '06 12345678'}), expected={'class': 90201, 'subclass': 1429902606})
         self.check_not_err(n.node(data, {'phone': '0800 1234567'}), expected={'class': 90201, 'subclass': 1429902606})
+        self.check_not_err(n.node(data, {'addr:city': 'Milheeze', 'addr:housenumber': '2a', 'addr:street': 'Pastoor Simonisplein', 'amenity': 'atm'}), expected={'class': 90201, 'subclass': 509151640})
+        self.check_not_err(n.node(data, {'addr:city': 'Marrum', 'addr:housenumber': '1W-5', 'addr:street': 'Ozingaloane', 'power': 'generator'}), expected={'class': 90201, 'subclass': 509151640})
+        self.check_not_err(n.node(data, {'addr:city': 'XXX', 'addr:flats': '1-3', 'addr:postcode': '1234AB', 'addr:street': 'XXX'}), expected={'class': 90201, 'subclass': 509151640})
+        self.check_not_err(n.node(data, {'addr:city': 'XXX', 'addr:housenumber:construction': '123', 'addr:postcode': '1234AB', 'addr:street': 'XXX'}), expected={'class': 90201, 'subclass': 509151640})
+        self.check_not_err(n.node(data, {'addr:city': 'XXX', 'addr:housenumber': '123', 'addr:postcode': '1234AB', 'addr:street': 'XXX'}), expected={'class': 90201, 'subclass': 509151640})
+        self.check_not_err(n.node(data, {'addr:city': 'XXX', 'addr:postcode': '1234AB', 'addr:street': 'XXX', 'proposed:addr:housenumber': '123'}), expected={'class': 90201, 'subclass': 509151640})
         self.check_err(n.node(data, {'amenity': 'drinking_water', 'name': 'kraanwater'}), expected={'class': 90203, 'subclass': 310270104})
         self.check_err(n.node(data, {'amenity': 'parking_entrance', 'name': 'parkeerplaats voor bezoekers'}), expected={'class': 90203, 'subclass': 310270104})
         self.check_err(n.node(data, {'leisure': 'pitch', 'name': 'voetbalveld'}), expected={'class': 90203, 'subclass': 310270104})
@@ -3012,8 +3083,9 @@ class Test(TestPluginMapcss):
         self.check_err(n.way(data, {'highway': 'service', 'name': 'rolstoelpad'}, [0]), expected={'class': 90203, 'subclass': 381483467})
         self.check_not_err(n.way(data, {'highway': 'unclassified', 'name': 'Gesloten Stad'}, [0]), expected={'class': 90203, 'subclass': 381483467})
         self.check_not_err(n.way(data, {'highway': 'unclassified', 'name': 'Landbouwweg'}, [0]), expected={'class': 90203, 'subclass': 381483467})
-        self.check_not_err(n.way(data, {'highway': 'residential', 'name': 'De Visserstraat'}, [0]), expected={'class': 90203, 'subclass': 34991053})
-        self.check_not_err(n.way(data, {'highway': 'residential', 'name': 'J.T. de Visserstraat'}, [0]), expected={'class': 90203, 'subclass': 34991053})
+        self.check_not_err(n.way(data, {'highway': 'residential', 'name': 'De Visserstraat'}, [0]), expected={'class': 90203, 'subclass': 165355266})
+        self.check_not_err(n.way(data, {'highway': 'residential', 'name': 'J.T. de Visserstraat'}, [0]), expected={'class': 90203, 'subclass': 165355266})
+        self.check_not_err(n.way(data, {'highway': 'residential', 'name': 'Wim Kan Dreef'}, [0]), expected={'class': 90203, 'subclass': 165355266})
         self.check_not_err(n.way(data, {'highway': 'residential', 'maxspeed:forward': '30', 'traffic_sign:forward': 'NL:A1-30'}, [0]), expected={'class': 90207, 'subclass': 678880168})
         self.check_err(n.way(data, {'highway': 'residential', 'traffic_sign:forward': 'NL:A1-30-ZB'}, [0]), expected={'class': 90207, 'subclass': 678880168})
         self.check_not_err(n.way(data, {'highway': 'residential', 'maxspeed': '30', 'traffic_sign': 'NL:A01-30'}, [0]), expected={'class': 90207, 'subclass': 678880168})
