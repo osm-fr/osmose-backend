@@ -404,7 +404,7 @@ def any_(*args):
 #    assemble the strings to one
 def concat(*args):
     if args is not None:
-        return str_value(''.join(args))
+        return str_value(''.join(filter(lambda arg: arg is not None and (not isinstance(arg, str_value_) or not arg.none), args)))
 
 #join(sep, str1, str2, ...)
 #    join strings, whith sep as separator [since 6737]
