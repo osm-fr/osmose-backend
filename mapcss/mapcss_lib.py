@@ -523,6 +523,7 @@ def URL_decode(string):
 #    prints a string representation of o to the command line, followed by a new line (for debugging) [since 7237]
 def println(o):
     print(o)
+    return o
 
 #JOSM_pref(key, default)
 #    Get value from the JOSM advanced preferences. This way you can offer certain options to the user and make the style customizable. It works with strings, numbers, colors and boolean values.
