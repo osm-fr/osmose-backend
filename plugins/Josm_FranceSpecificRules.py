@@ -18,9 +18,13 @@ class Josm_FranceSpecificRules(PluginMapCSS):
         tags = capture_tags = {} # noqa
         self.errors[20806] = self.def_class(item = 2080, level = 3, tags = mapcss.list_('parking', 'amenity', 'fix:chair'), title = mapcss.tr('Missing tag carpool on area'))
         self.errors[21600] = self.def_class(item = 2160, level = 3, tags = mapcss.list_('tag', 'railway'), title = mapcss.tr('Missing tag gauge on rail'))
-        self.errors[30401] = self.def_class(item = 3040, level = 3, tags = mapcss.list_('ref', 'infrastructure', 'telecom'), title = mapcss.tr('{0} is invalid. Should look like 12345ABC', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
         self.errors[30402] = self.def_class(item = 3040, level = 3, tags = mapcss.list_('ref', 'infrastructure', 'power'), title = mapcss.tr('missing tag'))
         self.errors[30403] = self.def_class(item = 3040, level = 3, tags = mapcss.list_('ref', 'infrastructure', 'telecom'), title = mapcss.tr('missing tag'))
+        self.errors[30406] = self.def_class(item = 3040, level = 3, tags = mapcss.list_('ref', 'infrastructure', 'power'), title = mapcss.tr('{0} is invalid', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
+        self.errors[30407] = self.def_class(item = 3040, level = 3, tags = mapcss.list_('ref', 'infrastructure', 'telecom'), title = mapcss.tr('{0} is invalid. Should look like PT123 without leading zeros', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
+        self.errors[30408] = self.def_class(item = 3040, level = 3, tags = mapcss.list_('ref', 'infrastructure', 'telecom'), title = mapcss.tr('{0} is invalid. Should look like 12345ABC', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
+        self.errors[30409] = self.def_class(item = 3040, level = 3, tags = mapcss.list_('ref', 'infrastructure', 'telecom'), title = mapcss.tr('{0} is invalid. Should look like ABC', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
+        self.errors[30410] = self.def_class(item = 3040, level = 3, tags = mapcss.list_('ref', 'infrastructure', 'telecom'), title = mapcss.tr('{0} is invalid. Should look like 12345ABC', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
         self.errors[40103] = self.def_class(item = 4010, level = 3, tags = mapcss.list_('tag', 'infrastructure', 'power'), title = mapcss.tr('deprecated tagging'))
         self.errors[40104] = self.def_class(item = 4010, level = 3, tags = mapcss.list_('ref', 'infrastructure', 'power'), title = mapcss.tr('deprecated tagging'))
         self.errors[40105] = self.def_class(item = 4010, level = 3, tags = [], title = mapcss.tr('misused tag in this country'))
@@ -140,9 +144,9 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("ref","infrastructure","power")
-                # -osmoseItemClassLevel:"3040/30401/3"
+                # -osmoseItemClassLevel:"3040/30406/3"
                 # throwWarning:tr("{0} is invalid","{0.tag}")
-                err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                err.append({'class': 30406, 'subclass': 0, 'text': mapcss.tr('{0} is invalid', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # *[power=substation][!"ref:FR:gdo"][ref][operator=~/^(Enedis|GRDF)$/][inside("FR")]
         # *[power=switch][!"ref:FR:gdo"][ref][operator=Enedis][inside("FR")]
@@ -218,9 +222,9 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("ref","infrastructure","telecom")
-                # -osmoseItemClassLevel:"3040/30401/3"
+                # -osmoseItemClassLevel:"3040/30407/3"
                 # throwWarning:tr("{0} is invalid. Should look like PT123 without leading zeros","{0.tag}")
-                err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like PT123 without leading zeros', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                err.append({'class': 30407, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like PT123 without leading zeros', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # *["ref:FR:Orange:NRO"]["ref:FR:Orange:NRO"!~/[0-9]{5}[A-Z0-9]{3}/][inside("FR")]
         if ('ref:FR:Orange:NRO' in keys):
@@ -231,9 +235,9 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("ref","infrastructure","telecom")
-                # -osmoseItemClassLevel:"3040/30401/3"
+                # -osmoseItemClassLevel:"3040/30408/3"
                 # throwWarning:tr("{0} is invalid. Should look like 12345ABC","{0.tag}")
-                err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like 12345ABC', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                err.append({'class': 30408, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like 12345ABC', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # *["ref:FR:PTT"]["ref:FR:PTT"!~/[A-Z0-9]{3}/][inside("FR")]
         if ('ref:FR:PTT' in keys):
@@ -244,9 +248,9 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("ref","infrastructure","telecom")
-                # -osmoseItemClassLevel:"3040/30401/3"
+                # -osmoseItemClassLevel:"3040/30409/3"
                 # throwWarning:tr("{0} is invalid. Should look like ABC","{0.tag}")
-                err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like ABC', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                err.append({'class': 30409, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like ABC', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # *["ref:FR:PTT:NRA"]["ref:FR:PTT:NRA"!~/[0-9]{5}[A-Z0-9]{3}/][inside("FR")]
         if ('ref:FR:PTT:NRA' in keys):
@@ -257,9 +261,9 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("ref","infrastructure","telecom")
-                # -osmoseItemClassLevel:"3040/30401/3"
+                # -osmoseItemClassLevel:"3040/30410/3"
                 # throwWarning:tr("{0} is invalid. Should look like 12345ABC","{0.tag}")
-                err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like 12345ABC', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                err.append({'class': 30410, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like 12345ABC', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # node[highway=milestone][operator][nat_ref][nat_ref!~/^(([1-9][0-9]|0[1-9])PR([0-9]|[1-9][0-9]|[1-9][0-9][0-9])[DGU](|C))$/][inside("FR")]
         if ('highway' in keys and 'nat_ref' in keys and 'operator' in keys):
@@ -462,9 +466,9 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("ref","infrastructure","power")
-                # -osmoseItemClassLevel:"3040/30401/3"
+                # -osmoseItemClassLevel:"3040/30406/3"
                 # throwWarning:tr("{0} is invalid","{0.tag}")
-                err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                err.append({'class': 30406, 'subclass': 0, 'text': mapcss.tr('{0} is invalid', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # *[power=substation][!"ref:FR:gdo"][ref][operator=~/^(Enedis|GRDF)$/][inside("FR")]
         # *[power=switch][!"ref:FR:gdo"][ref][operator=Enedis][inside("FR")]
@@ -528,9 +532,9 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("ref","infrastructure","telecom")
-                # -osmoseItemClassLevel:"3040/30401/3"
+                # -osmoseItemClassLevel:"3040/30407/3"
                 # throwWarning:tr("{0} is invalid. Should look like PT123 without leading zeros","{0.tag}")
-                err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like PT123 without leading zeros', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                err.append({'class': 30407, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like PT123 without leading zeros', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # *["ref:FR:Orange:NRO"]["ref:FR:Orange:NRO"!~/[0-9]{5}[A-Z0-9]{3}/][inside("FR")]
         if ('ref:FR:Orange:NRO' in keys):
@@ -541,9 +545,9 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("ref","infrastructure","telecom")
-                # -osmoseItemClassLevel:"3040/30401/3"
+                # -osmoseItemClassLevel:"3040/30408/3"
                 # throwWarning:tr("{0} is invalid. Should look like 12345ABC","{0.tag}")
-                err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like 12345ABC', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                err.append({'class': 30408, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like 12345ABC', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # *["ref:FR:PTT"]["ref:FR:PTT"!~/[A-Z0-9]{3}/][inside("FR")]
         if ('ref:FR:PTT' in keys):
@@ -554,9 +558,9 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("ref","infrastructure","telecom")
-                # -osmoseItemClassLevel:"3040/30401/3"
+                # -osmoseItemClassLevel:"3040/30409/3"
                 # throwWarning:tr("{0} is invalid. Should look like ABC","{0.tag}")
-                err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like ABC', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                err.append({'class': 30409, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like ABC', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # *["ref:FR:PTT:NRA"]["ref:FR:PTT:NRA"!~/[0-9]{5}[A-Z0-9]{3}/][inside("FR")]
         if ('ref:FR:PTT:NRA' in keys):
@@ -567,9 +571,9 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("ref","infrastructure","telecom")
-                # -osmoseItemClassLevel:"3040/30401/3"
+                # -osmoseItemClassLevel:"3040/30410/3"
                 # throwWarning:tr("{0} is invalid. Should look like 12345ABC","{0.tag}")
-                err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like 12345ABC', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                err.append({'class': 30410, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like 12345ABC', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # way[highway=~/^(motorway|trunk|primary|secondary|tertiary|unclassified)$/][nat_ref][operator][!junction][inside("FR")]
         # way[highway=service][nat_ref][nat_ref!~/^([1-9][0-9]|0[1-9])[AN]8[0-9]{3}(|A|N)([0-9]?[0-9])(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9])D$/][operator][!junction][inside("FR")]
@@ -855,9 +859,9 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("ref","infrastructure","power")
-                # -osmoseItemClassLevel:"3040/30401/3"
+                # -osmoseItemClassLevel:"3040/30406/3"
                 # throwWarning:tr("{0} is invalid","{0.tag}")
-                err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                err.append({'class': 30406, 'subclass': 0, 'text': mapcss.tr('{0} is invalid', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # *[power=substation][!"ref:FR:gdo"][ref][operator=~/^(Enedis|GRDF)$/][inside("FR")]
         # *[power=switch][!"ref:FR:gdo"][ref][operator=Enedis][inside("FR")]
@@ -921,9 +925,9 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("ref","infrastructure","telecom")
-                # -osmoseItemClassLevel:"3040/30401/3"
+                # -osmoseItemClassLevel:"3040/30407/3"
                 # throwWarning:tr("{0} is invalid. Should look like PT123 without leading zeros","{0.tag}")
-                err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like PT123 without leading zeros', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                err.append({'class': 30407, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like PT123 without leading zeros', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # *["ref:FR:Orange:NRO"]["ref:FR:Orange:NRO"!~/[0-9]{5}[A-Z0-9]{3}/][inside("FR")]
         if ('ref:FR:Orange:NRO' in keys):
@@ -934,9 +938,9 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("ref","infrastructure","telecom")
-                # -osmoseItemClassLevel:"3040/30401/3"
+                # -osmoseItemClassLevel:"3040/30408/3"
                 # throwWarning:tr("{0} is invalid. Should look like 12345ABC","{0.tag}")
-                err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like 12345ABC', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                err.append({'class': 30408, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like 12345ABC', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # *["ref:FR:PTT"]["ref:FR:PTT"!~/[A-Z0-9]{3}/][inside("FR")]
         if ('ref:FR:PTT' in keys):
@@ -947,9 +951,9 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("ref","infrastructure","telecom")
-                # -osmoseItemClassLevel:"3040/30401/3"
+                # -osmoseItemClassLevel:"3040/30409/3"
                 # throwWarning:tr("{0} is invalid. Should look like ABC","{0.tag}")
-                err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like ABC', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                err.append({'class': 30409, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like ABC', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # *["ref:FR:PTT:NRA"]["ref:FR:PTT:NRA"!~/[0-9]{5}[A-Z0-9]{3}/][inside("FR")]
         if ('ref:FR:PTT:NRA' in keys):
@@ -960,9 +964,9 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("ref","infrastructure","telecom")
-                # -osmoseItemClassLevel:"3040/30401/3"
+                # -osmoseItemClassLevel:"3040/30410/3"
                 # throwWarning:tr("{0} is invalid. Should look like 12345ABC","{0.tag}")
-                err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like 12345ABC', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                err.append({'class': 30410, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like 12345ABC', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # *[amenity=kindergarten]["school:FR"=maternelle][inside("FR")]
         if ('amenity' in keys and 'school:FR' in keys):
