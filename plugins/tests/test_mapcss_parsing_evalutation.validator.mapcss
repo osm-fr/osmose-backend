@@ -420,3 +420,11 @@ node[x][substring(tag(x), 1) == "bcde"][substring(tag(x), 1, 3) = "bc"] {
   throwWarning: "test";
   assertMatch: "node x=abcde";
 }
+
+node[a][concat(tag("a"), "bc", tag("d")) == "1bc"] {
+  throwWarning: tr("test concat {0}", concat(tag("b"), tag("c")));
+  assertNoMatch: "node a=1 b=2 c=c d=d";
+  assertMatch: "node a=1 b=2 c=c";
+  assertMatch: "node a=1 b=2";
+  assertMatch: "node a=1";
+}
