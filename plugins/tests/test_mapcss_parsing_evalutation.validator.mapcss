@@ -428,3 +428,8 @@ node[a][concat(tag("a"), "bc", tag("d")) == "1bc"] {
   assertMatch: "node a=1 b=2";
   assertMatch: "node a=1";
 }
+
+node[URL_decode("M%C3%A1rio Leopoldo Pereira da C%C3%A2mara") == "Mário Leopoldo Pereira da Câmara"] {
+  throwWarning: "test";
+  assertMatch: "node x=abcde";
+}
