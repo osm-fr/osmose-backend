@@ -199,9 +199,9 @@ Any parking details should be tagged on that object instead.'''),
 
         # Unknown [side] of parking:[side]
         # Allows 'condition' and 'lane' to avoid duplicate warnings with TagFix_Deprecated
-        sides = [i for i in sides if i not in ("left", "right", "both", "condition", "lane")]
-        for side in sides:
-            err.append({"class": 31621, "subclass": stablehash64(side), "text": {"en": "parking:" + side}})
+        sides = list(set([i for i in sides if i not in ("left", "right", "both", "condition", "lane")]))
+        if len(sides) > 0:
+            err.append({"class": 31621, "subclass": stablehash64(';'.join(sides)), "text": {"en": f"parking:[{'|'.join(sides)}]" if len(sides) > 1 else f"parking:{sides[0]}"}})
 
         # Parking:[side]:*=* without parking:[side]=* or parking:[side]:restriction=no_*
         if ((not "parking:both" in parking_keys and not "parking:left" in parking_keys and any(map(lambda key: key.startswith("parking:left:") and (not key.startswith("parking:left:restriction") or (key == "parking:left:restriction" and tags[key][0:3] != 'no_')), parking_keys))) or
