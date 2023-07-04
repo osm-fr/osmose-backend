@@ -450,6 +450,18 @@ class test_mapcss_parsing_evalutation(PluginMapCSS):
                 # assertMatch:"node a=1"
                 err.append({'class': 12, 'subclass': 2101484523, 'text': mapcss.tr('test concat {0}', mapcss.concat(mapcss.tag(tags, 'b'), mapcss.tag(tags, 'c')))})
 
+        # node[URL_decode("M%C3%A1rio Leopoldo Pereira da C%C3%A2mara")=="Mário Leopoldo Pereira da Câmara"]
+        if True:
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss.URL_decode('M%C3%A1rio Leopoldo Pereira da C%C3%A2mara') == 'Mário Leopoldo Pereira da Câmara'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:"test"
+                # assertMatch:"node x=abcde"
+                err.append({'class': 6, 'subclass': 1303771934, 'text': {'en': 'test'}})
+
         return err
 
     def way(self, data, tags, nds):
@@ -1152,6 +1164,7 @@ class Test(TestPluginMapcss):
         self.check_err(n.node(data, {'a': '1', 'b': '2', 'c': 'c'}), expected={'class': 12, 'subclass': 2101484523})
         self.check_err(n.node(data, {'a': '1', 'b': '2'}), expected={'class': 12, 'subclass': 2101484523})
         self.check_err(n.node(data, {'a': '1'}), expected={'class': 12, 'subclass': 2101484523})
+        self.check_err(n.node(data, {'x': 'abcde'}), expected={'class': 6, 'subclass': 1303771934})
         self.check_err(n.way(data, {'x': 'C00;C1;C22'}, [0]), expected={'class': 13, 'subclass': 1785050832})
         self.check_err(n.way(data, {'x': 'C1'}, [0]), expected={'class': 13, 'subclass': 1785050832})
         self.check_not_err(n.way(data, {'x': 'C12'}, [0]), expected={'class': 13, 'subclass': 1785050832})
