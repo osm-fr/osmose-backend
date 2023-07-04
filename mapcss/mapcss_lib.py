@@ -1,5 +1,5 @@
 #-*- coding: utf-8 -*-
-import requests.utils
+from urllib.parse import unquote
 import re
 from modules.OsmoseTranslation import T_
 
@@ -499,7 +499,7 @@ def URL_decode(string):
     if string is not None:
         # An URL is an ASCII String
         try:
-            return requests.utils.unquote_unreserved(string)
+            return unquote(string, errors='strict')
         except UnicodeDecodeError:
             pass
 
