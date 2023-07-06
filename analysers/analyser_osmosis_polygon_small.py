@@ -101,6 +101,15 @@ Other landuses could be tagged with:
 '''Small patches of maintained vegetation should be tagged as any of `{0}`, (etcetera) rather than `landuse=village_green`.''',
 '`, `'.join(('natural=shrubbery', 'landuse=grass', 'natural=scrub', 'leisure=garden', 'landuse=flowerbed'))),
             trap = trapmsg)
+        self.classs_change[5] = self.def_class(item = 3100, level = 3, tags = ['leisure', 'fix:chair'],
+            title = T_('Leisure very small'),
+            detail = T_(
+'''Leisures of this type are typically larger than the current object.'''),
+            example = T_(
+'''Small individual patches of vegetation should be tagged as `{0}`, (etcetera) rather than `leisure=park`.
+Usually a park contains grass, other vegetation, walking paths. A park often has a name.''',
+'`, `'.join(('landuse=grass', 'natural=shrubbery', 'landuse=flowerbed'))),
+            trap = trapmsg)
 
         self.checks = [
             # Objects to be checked. Requires: key, val(ue) of tag, min(imum)area (in m2) of the object, and class
@@ -108,6 +117,7 @@ Other landuses could be tagged with:
             {'key': 'landuse', 'val': 'forest', 'minarea': 20, 'class': 2}, # 20m2 is roughly 1 big tree of 5m diameter
             {'key': 'landuse', 'val': 'farmland', 'minarea': 100, 'class': 3},
             {'key': 'landuse', 'val': 'village_green', 'minarea': 500, 'class': 4},
+            {'key': 'leisure', 'val': 'park', 'minarea': 10, 'class': 5},
         ]
 
     def analyser_osmosis_full(self):
