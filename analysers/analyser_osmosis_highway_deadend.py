@@ -235,6 +235,7 @@ WHERE
   drivethroughs.tags?'service' AND
   drivethroughs.tags->'service' = 'drive-through' AND
   NOT drivethroughs.is_oneway AND
+  drivethroughs.nodes[1] != drivethroughs.nodes[array_length(drivethroughs.nodes,1)] AND
   other_highways.id IS NULL
 """
 

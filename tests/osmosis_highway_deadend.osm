@@ -83,6 +83,8 @@
   <node id='77' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85536371943' lon='5.82689960204' />
   <node id='78' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.8552634216' lon='5.82729637275' />
   <node id='79' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85536226544' lon='5.82729731998' />
+  <node id='80' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85556437347' lon='5.82683739266' />
+  <node id='81' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85556585241' lon='5.82696669393' />
   <way id='1000' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='1' />
     <nd ref='2' />
@@ -341,5 +343,14 @@
     <nd ref='56' />
     <nd ref='60' />
     <tag k='highway' v='tertiary' />
+  </way>
+  <way id='1036' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='80' />
+    <nd ref='70' />
+    <nd ref='81' />
+    <nd ref='80' />
+    <tag k='highway' v='service' />
+    <tag k='name' v='Class 5 good' />
+    <tag k='service' v='drive-through' />
   </way>
 </osm>
