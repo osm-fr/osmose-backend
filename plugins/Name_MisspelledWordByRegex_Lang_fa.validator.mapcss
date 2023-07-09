@@ -34,7 +34,7 @@ meta[lang=fr] {
 *[name=~/ي/][language("fa")] {
     group: tr("Arabic letter detected in Farsi name");
     throwError: tr("In Farsi, the Arabic letter `{0}` should be replaced by `{1}`.", "ي", "ی");
-    -osmoseItemClassLevel: "5010/50109001:0/2";
+    -osmoseItemClassLevel: "5010/50109001:10/2";
     fixAdd: concat("name=", replace(tag("name"),  "ي", "ی"));
 
     -osmoseAssertMatchWithContext: list("node name=\"روابط عمومي مجتمع مس شهربابك\"", "language=fa");
@@ -43,7 +43,7 @@ meta[lang=fr] {
 *[name:fa=~/ي/] {
     group: tr("Arabic letter detected in Farsi name");
     throwError: tr("In Farsi, the Arabic letter `{0}` should be replaced by `{1}`.", "ي", "ی");
-    -osmoseItemClassLevel: "5010/50109001:0/2";
+    -osmoseItemClassLevel: "5010/50109001:11/2";
     fixAdd: concat("name:fa=", replace(tag("name:fa"),  "ي", "ی"));
 
     assertMatch: "node name:fa=\"روابط عمومي مجتمع مس شهربابك\"";
@@ -52,7 +52,7 @@ meta[lang=fr] {
 *[name=~/ك/][language("fa")] {
     group: tr("Arabic letter detected in Farsi name");
     throwError: tr("In Farsi, the Arabic letter `{0}` should be replaced by `{1}`.", "ك", "ک");
-    -osmoseItemClassLevel: "5010/50109001:1/2";
+    -osmoseItemClassLevel: "5010/50109001:20/2";
     fixAdd: concat("name=", replace(tag("name"),  "ك", "ک"));
 
     -osmoseAssertMatchWithContext: list("node name=\"روابط عمومي مجتمع مس شهربابك\"", "language=fa");
@@ -61,7 +61,7 @@ meta[lang=fr] {
 *[name:fa=~/ك/] {
     group: tr("Arabic letter detected in Farsi name");
     throwError: tr("In Farsi, the Arabic letter `{0}` should be replaced by `{1}`.", "ك", "ک");
-    -osmoseItemClassLevel: "5010/50109001:1/2";
+    -osmoseItemClassLevel: "5010/50109001:21/2";
     fixAdd: concat("name:fa=", replace(tag("name:fa"),  "ك", "ک"));
 
     assertMatch: "node name:fa=\"روابط عمومي مجتمع مس شهربابك\"";
