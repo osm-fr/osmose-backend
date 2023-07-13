@@ -156,9 +156,8 @@ For example, use `no @ (weight > 5 AND wet)` rather than `no@weight>5 and wet`.'
           continue
 
       if not bad_tag:
-        condition_ANDsplitted = []
-        for condition in list(set(conditions)):
-          condition_ANDsplitted += list(map(str.strip, self.ReAND.split(condition)))
+        for condition in conditions:
+          condition_ANDsplitted = list(map(str.strip, self.ReAND.split(condition)))
           # Check the position of AND is ok
           if "" in condition_ANDsplitted:
             err.append({"class": 33501, "subclass": 4 + stablehash64(tag + '|' + tag_value + '|' + condition), "text": T_("Missing condition before or after AND combinator in \"{0}\"", tag)})
@@ -170,26 +169,23 @@ For example, use `no @ (weight > 5 AND wet)` rather than `no@weight>5 and wet`.'
             # For simplicity: ignore.
             continue
 
-        for c in set(condition_ANDsplitted):
-          if c == "":
-            continue
-
-          # Validate time-based conditionals
-          if self.isLikelyOpeningHourSyntax(c):
-            sanitized = self.sanitize_openinghours(self.kOpeningHours452236.sub(r"\1\2", c))
-            if not sanitized['isValid']:
-              if "fix" in sanitized:
-                err.append({"class": 33504, "subclass": 6 + stablehash64(tag + '|' + tag_value + '|' + c), "text": T_("Involves \"{0}\" in \"{1}\". Consider using \"{2}\"", c, tag, sanitized['fix'])})
-              else:
-                err.append({"class": 33504, "subclass": 6 + stablehash64(tag + '|' + tag_value + '|' + c), "text": T_("Involves \"{0}\" in \"{1}\"", c, tag)})
-              bad_tag = True
-              break
-          else:
-            # Validate vehicle property comparisons
-            if c[0] in self.comparisonOperatorChars or c[-1] in self.comparisonOperatorChars:
-              err.append({"class": 33501, "subclass": 5 + stablehash64(tag + '|' + tag_value + '|' + c), "text": T_("Unexpected <, = or > in \"{0}\"", tag)})
-              bad_tag = True
-              break
+          for c in condition_ANDsplitted:
+            # Validate time-based conditionals
+            if self.isLikelyOpeningHourSyntax(c):
+              sanitized = self.sanitize_openinghours(self.kOpeningHours452236.sub(r"\1\2", c))
+              if not sanitized['isValid']:
+                if "fix" in sanitized:
+                  err.append({"class": 33504, "subclass": 6 + stablehash64(tag + '|' + tag_value + '|' + c), "text": T_("Involves \"{0}\" in \"{1}\". Consider using \"{2}\"", c, tag, sanitized['fix'])})
+                else:
+                  err.append({"class": 33504, "subclass": 6 + stablehash64(tag + '|' + tag_value + '|' + c), "text": T_("Involves \"{0}\" in \"{1}\"", c, tag)})
+                bad_tag = True
+                break
+            else:
+              # Validate vehicle property comparisons
+              if c[0] in self.comparisonOperatorChars or c[-1] in self.comparisonOperatorChars:
+                err.append({"class": 33501, "subclass": 5 + stablehash64(tag + '|' + tag_value + '|' + c), "text": T_("Unexpected <, = or > in \"{0}\"", tag)})
+                bad_tag = True
+                break
 
       if bad_tag:
         continue
