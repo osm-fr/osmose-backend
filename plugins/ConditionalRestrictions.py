@@ -171,7 +171,7 @@ For example, use `no @ (weight > 5 AND wet)` rather than `no@weight>5 and wet`.'
             continue
 
         for c in set(condition_ANDsplitted):
-          if "" in condition_ANDsplitted:
+          if c == "":
             continue
 
           # Validate time-based conditionals
