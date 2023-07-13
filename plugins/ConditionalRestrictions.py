@@ -261,11 +261,14 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "maxspeed:conditional": "20 @ (06:00-20:00); 100 @ (22:00-06:00)"},
                   {"highway": "residential", "access:forward:conditional": "delivery @ (Mo-Fr 06:00-11:00,17:00-19:00;Sa 03:30-19:00)"},
                   {"highway": "residential", "access:forward:conditional": "no @ (10:00-18:00 AND length>5)"},
+                  {"highway": "residential", "access:forward:conditional": "no @ (Mo-Fr 10:00-18:00 and wet)"}, # suboptimal but valid: and instead of AND
+                  {"highway": "residential", "access:forward:conditional": "no @ (Mo-Fr 10:00-18:00 and wet AND weight > 5)"}, # suboptimal but valid: and instead of AND
                   {"highway": "residential", "access:conditional": "no @ 2099"},
                   {"highway": "residential", "access:conditional": "no @ (weight >= 12020 AND length < 20200)"},
                   {"highway": "residential", "access:conditional": "no @ (2099 May 22-2099 Oct 07 Mo-Su 09:00-18:00)"},
                   {"highway": "residential", "access:conditional": "no @ (2010 May 22-2099 Oct 07)"},
                   {"highway": "residential", "turn:lanes:forward:conditional": "left|through|through;right @ (Mo-Fr 06:00-09:00)"},
+                  {"highway": "service", "access:conditional": 'customers @ (Mo-Fr || "by appointment and >5 persons")'},
                  ]:
           assert not a.way(None, t, None), a.way(None, t, None)
 
