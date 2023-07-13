@@ -42,6 +42,8 @@ class ConditionalRestrictions(Plugin):
     # Workaround https://bugs.kde.org/show_bug.cgi?id=452236
     self.kOpeningHours452236 = re.compile(r'(20\d\d [A-Z][a-z][a-z] \d\d?\s?-\s?)20\d\d ([A-Z][a-z][a-z] \d\d?)')
 
+    self.getDuplicatesFromList = lambda lst: [x for x in set(lst) if lst.count(x) > 1]
+
     OHplugin = TagFix_Opening_Hours(None)
     self.sanitize_openinghours = OHplugin.sanitize_openinghours
 
@@ -67,6 +69,15 @@ For example, use `no @ (weight > 5 AND wet)` rather than `no@weight>5 and wet`.'
     self.errors[33504] = self.def_class(item = 3350, level = 3, tags = ['highway', 'fix:chair'],
         title = T_('Invalid date/time span'),
         detail = T_('''A date/time-based condition is invalid or poorly formatted. Time-based conditions of a conditional restriction use the same syntax as the key `opening_hours`.'''))
+    self.errors[33505] = self.def_class(item = 3350, level = 3, tags = ['highway', 'fix:chair'],
+        title = T_('Repeated condition in conditional restriction'),
+        detail = T_('''Two different values are set to apply under the same condition or a condition is repeated. The first value is overruled by the second value.'''),
+        example = T_('''In the following example, the maximum speed of 20 km/h between midnight and noon (first condition) is overwritten by 60 km/h (third condition):
+`maxspeed:conditional = 20 @ (00:00-12:00); 40 @ (12:00-24:00); 60 (00:00-12:00)`.
+
+The first condition can be removed. The simplified rule would be:
+`maxspeed:conditional = 40 @ (12:00-24:00); 60 (00:00-12:00)`.'''),
+        resource="https://wiki.openstreetmap.org/wiki/Conditional_restrictions")
 
   def way(self, data, tags, nds):
     # Get the relevant tags with *:conditional
@@ -155,8 +166,13 @@ For example, use `no @ (weight > 5 AND wet)` rather than `no@weight>5 and wet`.'
           err.append({"class": 33501, "subclass": 2 + stablehash64(tag + '|' + tag_value), "text": T_("Mismatch in the number of parentheses in \"{0}\"", tag)})
           continue
 
+      # For a duplicated condition, the value of the last occurance overrules the preceding values
+      for d in self.getDuplicatesFromList(conditions):
+        err.append({"class": 33505, "subclass": 0 + stablehash64(tag + '|' + tag_value + '|' + d), "text": T_("Repeated condition `{0}` in `{1}`", d, tag)})
+
       if not bad_tag:
-        for condition in conditions:
+        allANDsplittedConditions = []
+        for condition in set(conditions):
           condition_ANDsplitted = list(map(str.strip, self.ReAND.split(condition)))
           # Check the position of AND is ok
           if "" in condition_ANDsplitted:
@@ -169,29 +185,36 @@ For example, use `no @ (weight > 5 AND wet)` rather than `no@weight>5 and wet`.'
             # For simplicity: ignore.
             continue
 
-          for c in condition_ANDsplitted:
-            # Validate time-based conditionals
-            if self.isLikelyOpeningHourSyntax(c):
-              sanitized = self.sanitize_openinghours(self.kOpeningHours452236.sub(r"\1\2", c))
-              if not sanitized['isValid']:
-                if "fix" in sanitized:
-                  err.append({"class": 33504, "subclass": 6 + stablehash64(tag + '|' + tag_value + '|' + c), "text": T_("Involves \"{0}\" in \"{1}\". Consider using \"{2}\"", c, tag, sanitized['fix'])})
-                else:
-                  err.append({"class": 33504, "subclass": 6 + stablehash64(tag + '|' + tag_value + '|' + c), "text": T_("Involves \"{0}\" in \"{1}\"", c, tag)})
-                bad_tag = True
-                break
-            else:
-              # Validate vehicle property comparisons
-              if c[0] in self.comparisonOperatorChars or c[-1] in self.comparisonOperatorChars:
-                err.append({"class": 33501, "subclass": 5 + stablehash64(tag + '|' + tag_value + '|' + c), "text": T_("Unexpected <, = or > in \"{0}\"", tag)})
-                bad_tag = True
-                break
+          # A condition was set twice, separated by the AND keyword
+          for d in self.getDuplicatesFromList(condition_ANDsplitted):
+            err.append({"class": 33505, "subclass": 0 + stablehash64(tag + '|' + tag_value + '|' + condition + '|' + d), "text": T_("Repeated condition `{0}` in `{1}` (in tag `{2}`)", d, condition, tag)})
+
+          allANDsplittedConditions.extend(condition_ANDsplitted)
+
+        # Note: allANDsplittedConditions may intentionally be incomplete as preceding lines do filter some
+        for c in set(allANDsplittedConditions):
+          # Validate time-based conditionals
+          if self.isLikelyOpeningHourSyntax(c):
+            sanitized = self.sanitize_openinghours(self.kOpeningHours452236.sub(r"\1\2", c))
+            if not sanitized['isValid']:
+              if "fix" in sanitized:
+                err.append({"class": 33504, "subclass": 6 + stablehash64(tag + '|' + tag_value + '|' + c), "text": T_("Involves \"{0}\" in \"{1}\". Consider using \"{2}\"", c, tag, sanitized['fix'])})
+              else:
+                err.append({"class": 33504, "subclass": 6 + stablehash64(tag + '|' + tag_value + '|' + c), "text": T_("Involves \"{0}\" in \"{1}\"", c, tag)})
+              bad_tag = True
+              break
+          else:
+            # Validate vehicle property comparisons
+            if c[0] in self.comparisonOperatorChars or c[-1] in self.comparisonOperatorChars:
+              err.append({"class": 33501, "subclass": 5 + stablehash64(tag + '|' + tag_value + '|' + c), "text": T_("Unexpected <, = or > in \"{0}\"", tag)})
+              bad_tag = True
+              break
 
       if bad_tag:
         continue
 
       # Find outdated conditional restrictions, i.e. temporary road closures
-      for condition in conditions:
+      for condition in set(conditions):
         years_str = re.findall(self.ReYear, condition)
         if len(years_str) == 0:
           continue
@@ -269,6 +292,7 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "access:conditional": "no @ (2010 May 22-2099 Oct 07)"},
                   {"highway": "residential", "turn:lanes:forward:conditional": "left|through|through;right @ (Mo-Fr 06:00-09:00)"},
                   {"highway": "service", "access:conditional": 'customers @ (Mo-Fr || "by appointment and >5 persons")'},
+                  {"highway": "residential", "maxspeed:conditional": "20 @ (06:00-19:00); 40 @ (06:00-19:00 AND length < 2)"},
                  ]:
           assert not a.way(None, t, None), a.way(None, t, None)
 
@@ -292,6 +316,13 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "access:conditional": "no @ (Ma-Vr 18:00-20:00); destination @ (length < 4)"},
                   {"highway": "residential", "access:conditional": "no @ (Mei 22 - Okt 7 AND weight > 5)"},
                   {"highway": "residential", "access:conditional": "no @ (weight > 5 AND mei 22 - okt 7)"},
+                 ]:
+          assert a.way(None, t, None), a.way(None, t, None)
+
+        # Repeated conditions in conditionals
+        for t in [{"highway": "residential", "access:conditional": "no @ (weight >= 12020 AND length < 20200 AND weight >= 12020)"},
+                  {"highway": "residential", "maxspeed:conditional": "20 @ (06:00-19:00); 40 @ (06:00-19:00)"},
+                  {"highway": "residential", "maxspeed:conditional": "40 @ (06:00-19:00); 40 @ (06:00-19:00)"},
                  ]:
           assert a.way(None, t, None), a.way(None, t, None)
 

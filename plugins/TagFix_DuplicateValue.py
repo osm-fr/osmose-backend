@@ -97,10 +97,10 @@ Ensure the interpretation of the tag does not change when you delete one item.''
             re.compile('massgis:.+'),
             re.compile('lacounty:.+'),
             re.compile('turn:lanes.*'),
+            re.compile('.+:conditional'), # More thorough check in ConditionalRestrictions plugin
         ))
         self.WhitelistSimilarRegex = set(( # Regexes for keys that can have similar, but not equal values
             re.compile('.+_name'),
-            re.compile('.+:conditional'),
             re.compile('.+:date'),
             re.compile('.+:colour'),
             re.compile('opening_hours(:.+)?'),
