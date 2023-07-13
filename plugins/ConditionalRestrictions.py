@@ -171,6 +171,9 @@ For example, use `no @ (weight > 5 AND wet)` rather than `no@weight>5 and wet`.'
             continue
 
         for c in set(condition_ANDsplitted):
+          if "" in condition_ANDsplitted:
+            continue
+
           # Validate time-based conditionals
           if self.isLikelyOpeningHourSyntax(c):
             sanitized = self.sanitize_openinghours(self.kOpeningHours452236.sub(r"\1\2", c))
