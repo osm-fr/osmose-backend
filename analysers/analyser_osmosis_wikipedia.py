@@ -24,14 +24,11 @@ from modules.OsmoseTranslation import T_
 from .Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
-SELECT
-  (array_agg(tid))[1:10],
-  ST_AsText(any_locate(substring(MIN(tid), 1, 1), substring(MIN(tid), 2)::bigint)),
-  w
-FROM ((
+WITH t AS ((
   SELECT
     tags->'wikipedia' AS w,
-    'N' || id AS tid
+    'N'  AS type,
+    id AS id
   FROM
     nodes
   WHERE
@@ -39,10 +36,11 @@ FROM ((
     tags?'wikipedia' AND
     NOT tags->'wikipedia' LIKE '%#%' AND
     NOT tags?| ARRAY['highway', 'railway', 'waterway', 'power', 'place', 'shop', 'network', 'operator']
-) UNION ALL (
+  ) UNION ALL (
   SELECT
     tags->'wikipedia' AS w,
-    'W' || id AS tid
+    'W' AS type,
+    id
   FROM
     ways
   WHERE
@@ -50,10 +48,11 @@ FROM ((
     tags?'wikipedia' AND
     NOT tags->'wikipedia' LIKE '%#%' AND
     NOT tags?| ARRAY['highway', 'railway', 'waterway', 'power', 'place', 'shop', 'network', 'operator']
-) UNION ALL (
+  ) UNION ALL (
   SELECT
     tags->'wikipedia' AS w,
-    'R' || id AS tid
+    'R' AS type,
+    id
   FROM
     relations
   WHERE
@@ -62,9 +61,28 @@ FROM ((
     NOT tags->'wikipedia' LIKE '%#%' AND
     NOT tags->'type' IN ('route', 'boundary') AND
     NOT tags?| ARRAY['highway', 'railway', 'waterway', 'power', 'place', 'shop', 'network', 'operator']
-)) AS t
-GROUP BY
+)),
+b AS (
+  SELECT
+    w,
+    first_value(type) OVER (PARTITION BY w ORDER BY t, id) || first_value(id) OVER (PARTITION BY w ORDER BY t, id) AS tid
+  FROM
+    t
+)
+SELECT
+  (array_agg(tid))[1:10],
+  ST_AsText(
+    any_locate(
+      substring(tid, 1, 1),
+      substring(tid, 2)::bigint
+    )
+  ),
   w
+FROM
+  b
+GROUP BY
+  w,
+  tid
 HAVING
   count(*) > 1
 """
