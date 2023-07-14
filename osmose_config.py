@@ -510,7 +510,7 @@ france_departement_dom = gen_country(None, country_base='france', download_repo=
     'merge_poste_FR',
     'merge_school_FR',
     'merge_college_FR',
-    'merge_service_public_FR',
+    'merge_public_services_FR',
     'merge_pitch_FR',
     'merge_police_FR_gn',
     'merge_police_FR_pn',
@@ -542,7 +542,7 @@ france_com = gen_country(None, country_base='france', download_repo=OSMFR, langu
     phone_len=9, phone_format=r'^([+]%s([- ./]*[0-9]){8}[0-9])|[0-9]{4}|[0-9]{6}$', phone_international='00', phone_local_prefix='0',
     include=[
     'merge_college_FR',
-    'merge_service_public_FR',
+    'merge_public_services_FR',
     'merge_pitch_FR',
     'merge_police_FR_gn',
     'merge_police_FR_pn',
@@ -584,7 +584,7 @@ france_local_db.analyser["merge_railway_level_crossing_FR"] = "xxx"
 france_local_db.analyser["merge_railway_railstation_FR"] = "xxx"
 france_local_db.analyser["merge_geodesie"] = "xxx"
 france_local_db.analyser["merge_college_FR"] = "xxx"
-france_local_db.analyser["merge_service_public_FR"] = "xxx"
+france_local_db.analyser["merge_public_services_FR"] = "xxx"
 france_local_db.analyser["merge_pitch_FR"] = "xxx"
 france_local_db.analyser["merge_police_FR_gn"] = "xxx"
 france_local_db.analyser["merge_police_FR_pn"] = "xxx"
