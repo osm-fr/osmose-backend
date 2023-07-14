@@ -169,7 +169,7 @@ class Public_Services_Source(Source):
         return getattr(self.source, name)
 
     def open(self):
-        return open(downloader.update_cache('join://' + self.source.fileUrl, 15, fetch=self.fetch))
+        return open(downloader.update_cache('parse://' + self.source.fileUrl, 15, fetch=self.fetch))
 
     def fetch(self, url, tmp_file, date_string=None):
         dataset_dl = downloader.request_get(self.source.fileUrl)
