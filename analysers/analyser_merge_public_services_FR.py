@@ -36,7 +36,7 @@ class _Generic_Analyser_Merge_Public_Services_FR_(Analyser_Merge_Point):
             title = T_('Public service not integrated'))
 
         self.init(
-            u"https://www.data.gouv.fr/fr/datasets/service-public-fr-annuaire-de-l-administration-base-de-donnees-locales/",
+            "https://www.data.gouv.fr/fr/datasets/service-public-fr-annuaire-de-l-administration-base-de-donnees-locales/",
             "Service-Public.fr",
             CSV(Public_Services_Source(Source(attribution = "Service-Public.fr",
                     fileUrl="https://www.data.gouv.fr/fr/datasets/r/73302880-e4df-4d4c-8676-1a61bb997f3d"))),
