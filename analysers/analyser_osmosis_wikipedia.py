@@ -65,12 +65,14 @@ WITH t AS ((
 b AS (
   SELECT
     w,
-    first_value(type) OVER (PARTITION BY w ORDER BY t, id) || first_value(id) OVER (PARTITION BY w ORDER BY t, id) AS tid
+    type,
+    id,
+    first_value(type) OVER (PARTITION BY w ORDER BY type, id) || first_value(id) OVER (PARTITION BY w ORDER BY type, id) AS tid
   FROM
     t
 )
 SELECT
-  (array_agg(tid))[1:10],
+  (array_agg(type || id))[1:10],
   ST_AsText(
     any_locate(
       substring(tid, 1, 1),
