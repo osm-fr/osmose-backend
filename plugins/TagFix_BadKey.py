@@ -66,12 +66,12 @@ separator '_' or ':'. See
             "cityracks.housenum", "cityracks.installed", "cityracks.large", "cityracks.rackid", "cityracks.small", "cityracks.street", # NYC amenity=bicycle_parking
             "strassen-nrw", # DE import
             "hazmat",
-            "ref:refuges.info", "ref:clochers.org",
-            "ref:temples.ru", "ref:sobory.ru",
         ))
 
         self.exceptions_whole = set((
             "railway:memor2+", "railway:tbl1+",
+            "ref:refuges.info", "ref:clochers.org",
+            "ref:temples.ru", "ref:sobory.ru",
         ))
     def node(self, data, tags):
         err = []
