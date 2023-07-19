@@ -15,7 +15,7 @@ BEGIN
       ST_IsValid(NEW.linestring) AND
       ST_IsSimple(NEW.linestring) AND
       ST_IsValid(ST_MakePolygon(NEW.linestring)) AND
-      NOT (NEW.tags?'attraction' AND NEW.tags->'attraction' = 'roller_coaster');
+      NOT (NEW.tags?'roller_coaster' AND NEW.tags->'roller_coaster' = 'track');
   END IF;
   RETURN NEW;
 END;
