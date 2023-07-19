@@ -633,7 +633,7 @@ WHERE
 
     def positionAsText(self, res):
         if res is None:
-            self.logger.err("NULL location provided")
+            self.logger.warn("NULL location provided")
             return []
         for loc in self.get_points(res):
             self.geom["position"].append(loc)
