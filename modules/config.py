@@ -36,7 +36,7 @@ url_frontend_update = os.environ.get("URL_FRONTEND_UPDATE", u"https://osmose.ope
 url_frontend_opendata_update = u"https://opendata.osmose.openstreetmap.fr/control/send-update"
 
 # where osmosis is located
-bin_osmosis = dir_osmose + "/osmosis/osmosis-0.48.3-34-gb5383475-SNAPSHOT/bin/osmosis"
+bin_osmosis = dir_osmose + "/osmosis/osmosis-0.48.3-36-gada1b6f5-SNAPSHOT/bin/osmosis"
 
 # where pyosmium_up_to_date is located
 bin_pyosmium_up_to_date = "pyosmium-up-to-date"
