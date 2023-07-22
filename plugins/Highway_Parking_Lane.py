@@ -242,7 +242,7 @@ Any parking details should be tagged on that object instead.'''),
                           (k.startswith(s + ":") and k != s + ":restriction" and ((not ":reason" in k and tags[k] != 'no') or tags[side] == 'separate'))):
                             err.append({
                                 "class": 31625 if tags[side] == 'no' else 31626,
-                                "subclass": stablehash64(s + k),
+                                "subclass": stablehash64(s + k + side),
                                 "text": {"en": "{0}={1} + {2}".format(side, tags[side], k)}
                             })
             # Mixup of other 'subkeys' of parking:side
