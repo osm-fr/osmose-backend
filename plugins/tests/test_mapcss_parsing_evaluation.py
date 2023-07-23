@@ -6,7 +6,7 @@ from plugins.Plugin import with_options # noqa
 from plugins.PluginMapCSS import PluginMapCSS
 
 
-class test_mapcss_parsing_evalutation(PluginMapCSS):
+class test_mapcss_parsing_evaluation(PluginMapCSS):
 
 
 
@@ -1030,7 +1030,7 @@ from plugins.PluginMapCSS import TestPluginMapcss
 
 class Test(TestPluginMapcss):
     def test(self):
-        n = test_mapcss_parsing_evalutation(None)
+        n = test_mapcss_parsing_evaluation(None)
         class _config:
             options = {"country": None, "language": None}
         class father:
