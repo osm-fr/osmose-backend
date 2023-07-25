@@ -71,7 +71,7 @@ class TagFix_Access(Plugin):
     for tag in accessTags:
       values = accessTags[tag]["value"].split(";")
       isConditional = ":conditional" in tag
-      for accessVal in values:
+      for accessVal in set(values):
         accessValue = accessVal
         if isConditional:
           if "@" in accessVal:
@@ -91,9 +91,9 @@ class TagFix_Access(Plugin):
               propose = propose.replace("###", "no") # assume 'no' holds for all other transport modes
             if isConditional:
               propose = propose + " @ (...)" # conditional may need to change
-            err.append({"class": 30405, "subclass": 0 + stablehash64(tag + '|' + accessValue), "text": T_("Access value \"{0}\" for key \"{1}\" is a transport mode. Consider using \"{2}\" instead", accessValue, tag, propose)})
+            err.append({"class": 30405, "subclass": 0 + stablehash64(tag + '|' + accessVal), "text": T_("Access value \"{0}\" for key \"{1}\" is a transport mode. Consider using \"{2}\" instead", accessValue, tag, propose)})
           else:
-            err.append({"class": 30404, "subclass": 0 + stablehash64(tag + '|' + accessValue), "text": T_("Unknown access value \"{0}\" for key \"{1}\"", accessValue, tag)})
+            err.append({"class": 30404, "subclass": 0 + stablehash64(tag + '|' + accessVal), "text": T_("Unknown access value \"{0}\" for key \"{1}\"", accessValue, tag)})
 
     if err != []:
       return err
@@ -102,7 +102,7 @@ class TagFix_Access(Plugin):
     return self.checkAccessKeys(tags, self.suffixesWay)
 
   def node(self, data, tags):
-    return self.checkAccessKeys(tags, self.suffixesWay)
+    return self.checkAccessKeys(tags, self.suffixesNode)
 
   def relation(self, data, tags, members):
     pass
