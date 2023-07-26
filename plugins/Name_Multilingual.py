@@ -69,6 +69,7 @@ class Name_Multilingual(Plugin):
                     {"name": tags["name:"+lang[0]].strip()},
                     {"name": tags["name:"+lang[1]].strip()},
                     {"name": tags["name:"+lang[0]].strip() + separator + tags["name:"+lang[1].strip()]},
+                    {"name": tags["name:"+lang[1]].strip() + separator + tags["name:"+lang[0].strip()]},
                 ] if tags.get("name:"+lang[0]) and tags.get("name:"+lang[1]) and tags["name:"+lang[0]].strip() != tags["name:"+lang[1]].strip() else [{"name": tags.get("name:"+lang[0], tags.get("name:"+lang[1])).strip()}]
             self.aggregator = aggregator
             self.split = self.split_sp_ast
