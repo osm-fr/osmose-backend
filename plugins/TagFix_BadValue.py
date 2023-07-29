@@ -95,7 +95,7 @@ However, this should probably still conform to the typical format used for value
         self.allow_closed = { "area": ( "yes", "no", ),
                             "backrest": ( "yes", "no", ),
                             "conveying": ( "yes", "forward", "backward", "no", "reversible", ),
-                            "crossing": ( "traffic_signals", "uncontrolled", "unmarked", "no", "marked", "zebra", ),
+                            "crossing": ( "traffic_signals", "uncontrolled", "unmarked", "no", "marked", "zebra", "informal", ),
                             "lane_markings": ( "yes", "no", ),
                             "narrow": ( "yes", "no", ),
                             "oneway": ( "yes", "no", "1", "-1", "reversible", "alternating"),
