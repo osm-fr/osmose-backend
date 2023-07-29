@@ -38,9 +38,9 @@ class TagFix_Access(Plugin):
                        "hazmat:water", "hgv", "horse", "hov", "inline_skates", "light_rail", "minibus", "mofa", "moped", "motor_vehicle", "motorboat", "motorcar", "motorcycle", "motorhome", "psv",
                        "share_taxi", "ship", "ski:nordic", "ski", "small_electric_vehicle", "snowmobile", "speed_pedelec", "subway", "swimming", "tank", "taxi", "tourist_bus", "trailer", "train", "tram", "vehicle"]
     self.accessValuesGeneral = ["yes", "no", "private", "permissive", "permit", "destination", "delivery", "customers", "designated", "use_sidepath", "agricultural", "forestry", "discouraged"]
-    self.accessValuesSpecial = {"bicycle": ["dismount"],
+    self.accessValuesSpecial = {"bicycle": ["optional_sidepath", "dismount"],
                                 "canoe": ["put_in", "portage"],
-                                "dog": ["leashed", "unleashed"],
+                                "dog": ["leashed", "unleashed", "outside"],
                                 "horse": ["dismount"],
                                 "mofa": ["dismount"],
                                 "moped": ["dismount"],
