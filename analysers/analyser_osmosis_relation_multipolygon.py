@@ -189,8 +189,11 @@ WHERE
     ) AND
     ways.linestring IS NOT NULL AND
     NOT ways.is_polygon AND
-    ST_IsValid(ways.linestring) AND -- avoid confusing warnings for invalid ways (checked elsewhere)
-    relation_members.member_id IS NULL
+    relation_members.member_id IS NULL AND
+    -- Avoid confusing warnings for invalid polygons. Any closed way with >3 nodes that doesn't match
+    -- is_polygon (with any of the tags above) must be an invalid polygon (which is checked elsewhere)
+    -- Note: use array_length instead of ST_NPoints as the former includes nodes outside of the extract
+    (NOT ST_IsClosed(ways.linestring) OR array_length(ways.nodes,1) = 3)
 """
 
 class Analyser_Osmosis_Relation_Multipolygon(Analyser_Osmosis):
