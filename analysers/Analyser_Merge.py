@@ -430,7 +430,7 @@ class Source:
             else:
                 self.millesime = self.get_millesime()
                 downloader.set_millesime(self.fileUrl, self.millesime)
-        if self.millesime is None or type(self.millesime) == str:
+        if self.millesime is None or type(self.millesime) is str:
             return self.millesime
         return self.millesime.strftime("%Y-%m")
 

@@ -328,7 +328,7 @@ def _formatData(data):
 class OsmSaxWriter(XMLGenerator):
 
     def __init__(self, out, enc):
-        if type(out) == str:
+        if type(out) is str:
             XMLGenerator.__init__(self, open(out, "w"), enc)
         else:
             XMLGenerator.__init__(self, out, enc)
