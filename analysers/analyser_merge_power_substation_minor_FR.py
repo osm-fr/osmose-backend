@@ -61,5 +61,6 @@ class Analyser_Merge_Power_Substation_minor_FR(Analyser_Merge_Point):
                     mapping2 = {
                         "operator": "GRD",
                         "source": lambda fields: self.source() + " - " + fields["GRD"],
-                        "name": lambda fields: fields["Nom poste"] if fields["Nom poste"] != "" else None},
+                        "name": lambda fields: fields["Nom poste"] if fields["Nom poste"] != "" and fields["GRD"] != "Strasbourg Électricité Réseaux" else None,
+                        "ref": lambda fields: fields["Nom poste"] if fields["Nom poste"] != "" and fields["GRD"] == "Strasbourg Électricité Réseaux" else None},
                 )))
