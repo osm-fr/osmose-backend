@@ -906,7 +906,7 @@ class Load(object):
             osmosis.run0((sql01_ref if conflate.osmRef != "NULL" else sql01_geo).format(table = table, geom = self.geom, validationGeomSQL = self.validationGeomSQL, where = Select.where_attributes(self.select), distinct = distinct, order_by = order_by), insertOfficial)
             osmosis.run(sql02b.format(official = tableOfficial))
             if self.parser.imported_srid():
-                giscurs.execute("SELECT ST_AsText(ST_Envelope(ST_Extent(geom))) FROM {0}".format(tableOfficial))
+                giscurs.execute("SELECT ST_AsText(ST_Transform(ST_Envelope(ST_SetSRID(ST_Extent(ST_Transform(geom, 4326)), 4326)), {1})) FROM {0}".format(tableOfficial, self.proj))
                 self.bbox = giscurs.fetchone()[0]
             else:
                 self.bbox = None
