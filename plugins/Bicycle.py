@@ -47,17 +47,18 @@ class Bicycle(PluginMapCSS):
                 # assertMatch:"way cycleway=a cycleway:right=b cycleway:left=c"
                 err.append({'class': 40301, 'subclass': 0, 'text': mapcss.tr('{0} with {1} and {2}', 'cycleway', 'cycleway:right', 'cycleway:left')})
 
-        # way[footway=sidewalk][highway!~/footway|construction/]
-        if ('footway' in keys):
+        # way[footway=sidewalk][highway!~/footway|construction/][highway]
+        if ('footway' in keys and 'highway' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'footway') == mapcss._value_capture(capture_tags, 0, 'sidewalk')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1825c777, 'footway|construction'), mapcss._tag_capture(capture_tags, 1, tags, 'highway'))))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'footway') == mapcss._value_capture(capture_tags, 0, 'sidewalk')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1825c777, 'footway|construction'), mapcss._tag_capture(capture_tags, 1, tags, 'highway'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'highway')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("footway","fix:chair")
                 # -osmoseItemClassLevel:"2080/20805/3"
                 # throwWarning:tr("{0} without {1}","footway=sidewalk","highway=footway|construction")
+                # assertNoMatch:"way footway=sidewalk area:highway=footway"
                 # assertNoMatch:"way footway=sidewalk highway=construction construction=footway"
                 # assertNoMatch:"way footway=sidewalk highway=footway"
                 # assertMatch:"way footway=sidewalk highway=path"
@@ -200,6 +201,7 @@ class Test(TestPluginMapcss):
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
         self.check_err(n.way(data, {'cycleway': 'a', 'cycleway:left': 'c', 'cycleway:right': 'b'}, [0]), expected={'class': 40301, 'subclass': 0})
+        self.check_not_err(n.way(data, {'area:highway': 'footway', 'footway': 'sidewalk'}, [0]), expected={'class': 20805, 'subclass': 0})
         self.check_not_err(n.way(data, {'construction': 'footway', 'footway': 'sidewalk', 'highway': 'construction'}, [0]), expected={'class': 20805, 'subclass': 0})
         self.check_not_err(n.way(data, {'footway': 'sidewalk', 'highway': 'footway'}, [0]), expected={'class': 20805, 'subclass': 0})
         self.check_err(n.way(data, {'footway': 'sidewalk', 'highway': 'path'}, [0]), expected={'class': 20805, 'subclass': 0})
