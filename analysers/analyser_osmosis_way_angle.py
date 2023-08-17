@@ -49,7 +49,6 @@ WITH
         SELECT
             id, index, type,
             lead(geom4326) OVER (PARTITION BY id ORDER BY index) AS geom4326,
-            lead(geom) OVER (PARTITION BY id ORDER BY index) AS geom,
             degrees(
                 ST_Angle(geom,
                      lead(geom, 1) OVER (PARTITION BY id ORDER BY index),
