@@ -73,10 +73,10 @@ For example, use `no @ (weight > 5 AND wet)` rather than `no@weight>5 and wet`.'
         title = T_('Repeated condition in conditional restriction'),
         detail = T_('''Two different values are set to apply under the same condition or a condition is repeated. The first value is overruled by the second value.'''),
         example = T_('''In the following example, the maximum speed of 20 km/h between midnight and noon (first condition) is overwritten by 60 km/h (third condition):
-`maxspeed:conditional = 20 @ (00:00-12:00); 40 @ (12:00-24:00); 60 (00:00-12:00)`.
+`maxspeed:conditional = 20 @ (00:00-12:00); 40 @ (12:00-24:00); 60 @ (00:00-12:00)`.
 
 The first condition can be removed. The simplified rule would be:
-`maxspeed:conditional = 40 @ (12:00-24:00); 60 (00:00-12:00)`.'''),
+`maxspeed:conditional = 40 @ (12:00-24:00); 60 @ (00:00-12:00)`.'''),
         resource="https://wiki.openstreetmap.org/wiki/Conditional_restrictions")
 
   def way(self, data, tags, nds):
