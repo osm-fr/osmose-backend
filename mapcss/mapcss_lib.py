@@ -445,7 +445,10 @@ def JOSM_search(string):
 #    translate from English to the current language (only for strings in the JOSM user interface) [since 6506]
 def tr(string, *args):
     if string is not None:
-        return T_(string, *args)
+        # Treat '' as ' so JOSM translations work in Osmose too.
+        # A ' is a special character in JOSM, see https://josm.openstreetmap.de/wiki/Translations
+        t = T_(string, *args)
+        return {k: t[k].replace("''", "'") for k in t.keys()}
 
 #regexp_test(regexp, string)
 #    test if string matches pattern regexp [since 5699]
