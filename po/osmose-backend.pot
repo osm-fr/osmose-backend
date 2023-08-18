@@ -64,7 +64,7 @@ msgstr ""
 msgid "School, integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_service_public_FR.py:37
+#: ../analysers/analyser_merge_public_services_FR.py:36
 msgid "Public service not integrated"
 msgstr ""
 
@@ -125,7 +125,7 @@ msgstr ""
 msgid "Special building (large)"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:254
+#: ../analysers/analyser_osmosis_highway_deadend.py:255
 msgid "Unconnected cycleway"
 msgstr ""
 
@@ -230,15 +230,15 @@ msgstr ""
 msgid "Large relation"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:200
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:204
 msgid "Double inner polygon"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:208
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:212
 msgid "Inconsistent multipolygon nature with members nature"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:213
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:217
 msgid "Inconsistent multipolygon member nature"
 msgstr ""
 
@@ -423,10 +423,10 @@ msgstr ""
 msgid "Deprecated tag"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag2.py:20 ../plugins/TagFix_MultipleTag_FR.py:34
+#: ../plugins/TagFix_MultipleTag.py:34 ../plugins/TagFix_MultipleTag2.py:20
+#: ../plugins/TagFix_MultipleTag_FR.py:34
 #: ../plugins/TagFix_MultipleTag_Lang_es.py:33
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:33
-#: ../plugins/TagFix_MultipleTag.py:34
 msgid "Watch multiple tags"
 msgstr ""
 
@@ -450,7 +450,7 @@ msgstr ""
 msgid "Tag highway missing on oneway"
 msgstr ""
 
-#: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:153
+#: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:154
 msgid "Opposite cycleway without oneway"
 msgstr ""
 
@@ -604,15 +604,15 @@ msgstr ""
 msgid "Natural feature underground"
 msgstr ""
 
-#: ../plugins/Name_Local_JP.py:34 ../plugins/Name_Local.py:42
+#: ../plugins/Name_Local.py:42 ../plugins/Name_Local_JP.py:34
 msgid "Default and local language name not the same"
 msgstr ""
 
-#: ../plugins/Name_Local_JP.py:36 ../plugins/Name_Local.py:44
+#: ../plugins/Name_Local.py:44 ../plugins/Name_Local_JP.py:36
 msgid "Local language name without default name"
 msgstr ""
 
-#: ../plugins/Name_Local_JP.py:38 ../plugins/Name_Local.py:46
+#: ../plugins/Name_Local.py:46 ../plugins/Name_Local_JP.py:38
 msgid "Language name without default name"
 msgstr ""
 
@@ -951,7 +951,7 @@ msgstr ""
 msgid "Duplicated node without tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:218
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:222
 msgid "Should be polygon, part of multipolygon or not having area tag"
 msgstr ""
 
@@ -959,7 +959,7 @@ msgstr ""
 msgid "Almost junction, join or use noexit tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:269
+#: ../analysers/analyser_osmosis_highway_deadend.py:270
 msgid "One way inaccessible or missing parking or parking entrance"
 msgstr ""
 
@@ -1010,7 +1010,7 @@ msgstr ""
 msgid "Power support, integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_wikipedia.py:89
+#: ../analysers/analyser_osmosis_wikipedia.py:97
 msgid "Duplicate wikipedia tag"
 msgstr ""
 
@@ -1200,17 +1200,17 @@ msgstr ""
 msgid "Direct or too permissive access to motorway"
 msgstr ""
 
-#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:183
+#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:184
 msgid "Opposite or opposite lane in the same way of the oneway"
 msgstr ""
 
-#: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:64
+#: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:65
 #, python-brace-format
 msgid "{0} without {1}"
 msgstr ""
 
-#: ../plugins/Bicycle.py:19 ../plugins/Bicycle.py:20 ../plugins/Bicycle.py:100
-#: ../plugins/Bicycle.py:132
+#: ../plugins/Bicycle.py:19 ../plugins/Bicycle.py:20 ../plugins/Bicycle.py:101
+#: ../plugins/Bicycle.py:133
 #, python-brace-format
 msgid "{0} with {1}"
 msgstr ""
@@ -1220,7 +1220,7 @@ msgstr ""
 msgid "{0} with {1} and {2}"
 msgstr ""
 
-#: ../plugins/Bicycle.py:21 ../plugins/Bicycle.py:81
+#: ../plugins/Bicycle.py:21 ../plugins/Bicycle.py:82
 #, python-brace-format
 msgid "{0} is preferred to {1}"
 msgstr ""
@@ -1492,7 +1492,7 @@ msgstr ""
 msgid "Bad separator for multiple values"
 msgstr ""
 
-#: ../plugins/TagFix_Maxspeed.py:101
+#: ../plugins/TagFix_Maxspeed.py:102
 #, python-brace-format
 msgid "Discordant {0} and {1}"
 msgstr ""
@@ -1545,7 +1545,7 @@ msgstr ""
 msgid "Fence with material tag, better use fence_type tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:262
+#: ../analysers/analyser_osmosis_highway_deadend.py:263
 msgid "Unconnected highway"
 msgstr ""
 
@@ -1687,6 +1687,7 @@ msgstr ""
 msgid "Conditional interval does not fit into opening hours"
 msgstr ""
 
+#: ../analysers/analyser_merge_defibrillators_FR.py:61
 #: ../analysers/analyser_merge_defibrillators_FR_aedmap.py:34
 #: ../analysers/analyser_merge_defibrillators_FR_gers.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_hautesalpes.py:31
@@ -1694,7 +1695,6 @@ msgstr ""
 #: ../analysers/analyser_merge_defibrillators_FR_lorient.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_montfort.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_paris.py:31
-#: ../analysers/analyser_merge_defibrillators_FR.py:61
 #: ../analysers/analyser_merge_defibrillators_FR_saintmalo.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_toulouse.py:31
 msgid "Defibrillator not integrated"
@@ -1859,7 +1859,6 @@ msgid ""
 "administrative schools for a single physical school."
 msgstr ""
 
-#: ../analysers/analyser_merge_service_public_FR.py:39
 msgid "The location can be quite rough."
 msgstr ""
 
@@ -2023,24 +2022,24 @@ msgid ""
 "Secondary connecting directly to a residential."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:252
+#: ../analysers/analyser_osmosis_highway_deadend.py:253
 #: ../analysers/analyser_osmosis_highway_floating_islands.py:130
 msgid "The end of the way is not connected to another way."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:259
+#: ../analysers/analyser_osmosis_highway_deadend.py:260
 msgid ""
 "Connect the `cycleway` to the road, even with a little virtual\n"
 "path."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:264
+#: ../analysers/analyser_osmosis_highway_deadend.py:265
 msgid ""
 "Highway from `motorway` to `tertiary` are important ways. They should\n"
 "lead to somewhere and in particular to a network of minor roads."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:267
+#: ../analysers/analyser_osmosis_highway_deadend.py:268
 msgid "Review the classification of road or draw the local road network."
 msgstr ""
 
@@ -2223,37 +2222,37 @@ msgid ""
 "Relations_are_not_Categories)."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:202
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:206
 msgid ""
 "The geometry of the inner of the multipolygon is duplicated. One in\n"
 "relation without tag and another with tags not part of the relation."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:205
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:209
 msgid ""
 "Remove the ring without tag. Add in the relation the one with the tags\n"
 "as `inner` role."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:210
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:214
 msgid ""
 "Multipolygon defines a nature that is different from that specified in\n"
 "the outers roles."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:215
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:219
 msgid ""
 "Multipolygon does not define nature, several found on the outer role\n"
 "members."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:220
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:224
 msgid ""
 "The nature of the way indicates that it is a surface, the way would be\n"
 "a polygon or a part of a multipolygon as outer role."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:223
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:227
 msgid "Close the way to make a polygon or add to a multipolygon."
 msgstr ""
 
@@ -3197,20 +3196,20 @@ msgstr ""
 msgid "The relation is missing a `type` tag to define what it represents."
 msgstr ""
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:31
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:31
+#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:31
 #, python-brace-format
 msgid "{0} bicycle rental not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:33
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:33
+#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:33
 #, python-brace-format
 msgid "{0} bicycle rental integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:35
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:35
+#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:35
 #, python-brace-format
 msgid "{0} bicycle update"
 msgstr ""
@@ -3324,14 +3323,14 @@ msgstr ""
 msgid "Gas station without tag `ref:mise` or invalid"
 msgstr ""
 
-#: ../analysers/analyser_merge_parking_FR_bm.py:31
 #: ../analysers/analyser_merge_parking_FR_BNLS.py:38
+#: ../analysers/analyser_merge_parking_FR_bm.py:31
 #, python-brace-format
 msgid "{0} parking not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_parking_FR_bm.py:33
 #: ../analysers/analyser_merge_parking_FR_BNLS.py:41
+#: ../analysers/analyser_merge_parking_FR_bm.py:33
 #, python-brace-format
 msgid "{0} parking integration suggestion"
 msgstr ""
@@ -3654,26 +3653,29 @@ msgid ""
 "exceeded."
 msgstr ""
 
-#: ../plugins/Covid19.py:16 ../plugins/Covid19.py:93 ../plugins/Covid19.py:184
-#: ../plugins/Covid19.py:262
+#: ../plugins/Covid19.py:19 ../plugins/Covid19.py:96 ../plugins/Covid19.py:187
+#: ../plugins/Covid19.py:265
 msgid ""
 "This store was on an adapted schedule during the lockdown. Are these opening "
 "hours still in effect?"
 msgstr ""
 
-#: ../plugins/Covid19.py:40 ../plugins/Covid19.py:123 ../plugins/Covid19.py:210
+#: ../plugins/Covid19.py:16 ../plugins/Covid19.py:43 ../plugins/Covid19.py:126
+#: ../plugins/Covid19.py:213
 msgid ""
 "This store offered a take-away service during the lockdown. Does it still "
 "offer take-away in usual times"
 msgstr ""
 
-#: ../plugins/Covid19.py:59 ../plugins/Covid19.py:145 ../plugins/Covid19.py:228
+#: ../plugins/Covid19.py:17 ../plugins/Covid19.py:62 ../plugins/Covid19.py:148
+#: ../plugins/Covid19.py:231
 msgid ""
 "This store offered a delivery service during the lockdown. Does it still "
 "offer delivery in usual times"
 msgstr ""
 
-#: ../plugins/Covid19.py:77 ../plugins/Covid19.py:166 ../plugins/Covid19.py:246
+#: ../plugins/Covid19.py:18 ../plugins/Covid19.py:80 ../plugins/Covid19.py:169
+#: ../plugins/Covid19.py:249
 msgid "The lockdown is over. Has this place reopened?"
 msgstr ""
 
@@ -3764,7 +3766,7 @@ msgstr ""
 msgid "Different values of {0} and of {1}"
 msgstr ""
 
-#: ../plugins/TagFix_Maxspeed.py:86
+#: ../plugins/TagFix_Maxspeed.py:87
 msgid "Discordant maxspeed and source:maxspeed or maxspeed:type"
 msgstr ""
 
@@ -4113,7 +4115,7 @@ msgstr ""
 msgid "Guess with probability: {0}"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:256
+#: ../analysers/analyser_osmosis_highway_deadend.py:257
 msgid ""
 "The end of a `highway=cycleway` must be connected to the rest of the\n"
 "road network to ensure continuity, especially for routes planner."
@@ -4439,11 +4441,11 @@ msgid ""
 "IGN (French geographic name conventions)"
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:49
+#: ../plugins/ConditionalRestrictions.py:51
 msgid "Bad conditional restriction"
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:50
+#: ../plugins/ConditionalRestrictions.py:52
 msgid ""
 "Conditional restrictions should follow `value @ condition; value2 @ "
 "condition2` syntax.\n"
@@ -4452,52 +4454,52 @@ msgid ""
 "contains semicolons `;`, i.e. `value @ (date;date)`."
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:64
+#: ../plugins/ConditionalRestrictions.py:66
 msgid "Expired conditional"
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:65
+#: ../plugins/ConditionalRestrictions.py:67
 msgid ""
 "This conditional was only valid up to a date in the past. It can likely be "
 "removed."
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:66
+#: ../plugins/ConditionalRestrictions.py:68
 msgid "Other tags might need to be updated too to reflect the new situation."
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:91
-#: ../plugins/ConditionalRestrictions.py:114
+#: ../plugins/ConditionalRestrictions.py:102
+#: ../plugins/ConditionalRestrictions.py:125
 #, python-brace-format
 msgid "Missing `@` in \"{0}\""
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:106
+#: ../plugins/ConditionalRestrictions.py:117
 #, python-brace-format
 msgid "Missing value for the condition in \"{0}\""
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:124
-#: ../plugins/ConditionalRestrictions.py:155
+#: ../plugins/ConditionalRestrictions.py:135
+#: ../plugins/ConditionalRestrictions.py:166
 #, python-brace-format
 msgid "Mismatch in the number of parentheses in \"{0}\""
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:163
+#: ../plugins/ConditionalRestrictions.py:179
 #, python-brace-format
 msgid "Missing condition before or after AND combinator in \"{0}\""
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:201
+#: ../plugins/ConditionalRestrictions.py:224
 #, python-brace-format
 msgid "Condition \"{0}\" in \"{1}\" was only valid until {2}"
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:55
+#: ../plugins/ConditionalRestrictions.py:57
 msgid "Improve style of conditional"
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:56
+#: ../plugins/ConditionalRestrictions.py:58
 msgid ""
 "Although valid, it is recommended to format conditional restrictions with:\n"
 "- spaces around the `@`;\n"
@@ -4508,13 +4510,13 @@ msgid ""
 "wet`."
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:132
-#: ../plugins/ConditionalRestrictions.py:151
+#: ../plugins/ConditionalRestrictions.py:143
+#: ../plugins/ConditionalRestrictions.py:162
 #, python-brace-format
 msgid "Missing condition, `@` or parentheses in \"{0}\""
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:207
+#: ../plugins/ConditionalRestrictions.py:230
 #, python-brace-format
 msgid "Add parentheses around the condition(s) in \"{0}\""
 msgstr ""
@@ -4643,34 +4645,34 @@ msgstr ""
 msgid "Drinking water not integrated"
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:68
+#: ../plugins/ConditionalRestrictions.py:70
 msgid "Invalid date/time span"
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:69
+#: ../plugins/ConditionalRestrictions.py:71
 msgid ""
 "A date/time-based condition is invalid or poorly formatted. Time-based "
 "conditions of a conditional restriction use the same syntax as the key "
 "`opening_hours`."
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:118
-#: ../plugins/ConditionalRestrictions.py:142
+#: ../plugins/ConditionalRestrictions.py:129
+#: ../plugins/ConditionalRestrictions.py:153
 #, python-brace-format
 msgid "Unexpected \"{0}\" before or after parentheses in \"{1}\""
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:178
+#: ../plugins/ConditionalRestrictions.py:201
 #, python-brace-format
 msgid "Involves \"{0}\" in \"{1}\". Consider using \"{2}\""
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:180
+#: ../plugins/ConditionalRestrictions.py:203
 #, python-brace-format
 msgid "Involves \"{0}\" in \"{1}\""
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:186
+#: ../plugins/ConditionalRestrictions.py:209
 #, python-brace-format
 msgid "Unexpected <, = or > in \"{0}\""
 msgstr ""
@@ -4854,26 +4856,26 @@ msgstr ""
 #: ../plugins/Highway_Parking_Lane.py:176
 #: ../plugins/Highway_Parking_Lane.py:178
 #: ../plugins/Highway_Parking_Lane.py:193
-#: ../plugins/Highway_Parking_Lane.py:227
-#: ../plugins/Highway_Parking_Lane.py:229
-#: ../plugins/Highway_Parking_Lane.py:231
-#: ../plugins/Highway_Parking_Lane.py:233
+#: ../plugins/Highway_Parking_Lane.py:228
+#: ../plugins/Highway_Parking_Lane.py:230
+#: ../plugins/Highway_Parking_Lane.py:232
+#: ../plugins/Highway_Parking_Lane.py:234
 #, python-brace-format
 msgid "`{0}` is a value for key `{1}`"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:271
+#: ../analysers/analyser_osmosis_highway_deadend.py:272
 msgid "Unconnected drive-through"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:273
+#: ../analysers/analyser_osmosis_highway_deadend.py:274
 msgid ""
 "Drive-throughs are usually not dead-ended. Make sure the full drive-through "
 "path was drawn, including i.e. turning circles and covered areas.\n"
 "Ensure that `service=drive-through` is the correct tag."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:276
+#: ../analysers/analyser_osmosis_highway_deadend.py:277
 msgid "Review the type of the service road or draw the local road network."
 msgstr ""
 
@@ -5132,8 +5134,8 @@ msgid ""
 "(etcetera) rather than `landuse=village_green`."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_polygon_small.py:118
-#: ../analysers/analyser_osmosis_polygon_small.py:126
+#: ../analysers/analyser_osmosis_polygon_small.py:128
+#: ../analysers/analyser_osmosis_polygon_small.py:136
 #, python-brace-format
 msgid "{0} with an area of {1} m2"
 msgstr ""
@@ -5447,4 +5449,52 @@ msgid ""
 "to it.\n"
 "Warning: information sources can be contradictory in time or with spatial "
 "offset."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_polygon_small.py:105
+msgid "Leisure very small"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_polygon_small.py:107
+msgid "Leisures of this type are typically larger than the current object."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_polygon_small.py:109
+#, python-brace-format
+msgid ""
+"Small individual patches of vegetation should be tagged as `{0}`, (etcetera) "
+"rather than `leisure=park`.\n"
+"Usually a park contains grass, other vegetation, walking paths. A park often "
+"has a name."
+msgstr ""
+
+#: ../plugins/ConditionalRestrictions.py:73
+msgid "Repeated condition in conditional restriction"
+msgstr ""
+
+#: ../plugins/ConditionalRestrictions.py:74
+msgid ""
+"Two different values are set to apply under the same condition or a "
+"condition is repeated. The first value is overruled by the second value."
+msgstr ""
+
+#: ../plugins/ConditionalRestrictions.py:75
+msgid ""
+"In the following example, the maximum speed of 20 km/h between midnight and "
+"noon (first condition) is overwritten by 60 km/h (third condition):\n"
+"`maxspeed:conditional = 20 @ (00:00-12:00); 40 @ (12:00-24:00); 60 "
+"(00:00-12:00)`.\n"
+"\n"
+"The first condition can be removed. The simplified rule would be:\n"
+"`maxspeed:conditional = 40 @ (12:00-24:00); 60 (00:00-12:00)`."
+msgstr ""
+
+#: ../plugins/ConditionalRestrictions.py:171
+#, python-brace-format
+msgid "Repeated condition `{0}` in `{1}`"
+msgstr ""
+
+#: ../plugins/ConditionalRestrictions.py:190
+#, python-brace-format
+msgid "Repeated condition `{0}` in `{1}` (in tag `{2}`)"
 msgstr ""
