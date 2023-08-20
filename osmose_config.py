@@ -195,6 +195,7 @@ class default_simple(template_config):
         self.analyser["osmosis_relation_open"] = "xxx"
         self.analyser["osmosis_polygon_small"] = "xxx"
         self.analyser["osmosis_polygon_intersects"] = "xxx"
+        self.analyser["osmosis_way_angle"] = "xxx"
 
 class default_country_simple(default_simple):
     def __init__(self, part, country, polygon_id=None, analyser_options=None,
