@@ -171,8 +171,7 @@ drawing and the real way especially in the curve.'''),
                 fix = T_(
 '''After checking orthophotos, add nodes or move existing nodes.'''),
                 trap = T_(
-'''On service ways, train stations, train workshops that may be either a
-false positive'''),
+'''On service ways, train stations and train workshops this could be a false positive.'''),
                 example = T_(
 '''![](https://wiki.openstreetmap.org/w/images/9/9d/Osmose-eg-error-1190.png)
 
