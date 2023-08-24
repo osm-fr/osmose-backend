@@ -55,11 +55,11 @@ class Analyser_Merge_Power_Substation_FR(Analyser_Merge_Point):
                 tag_keep_multiple_values = ["voltage"],
                 mapping = Mapping(
                     static1 = {
-                        "power": "substation",
+                        "power": "substation"},
+                    static2 = {
+                        "source": self.source,
                         "operator": "RTE",
                         "operator:wikidata": "Q2178795"},
-                    static2 = {
-                        "source": self.source},
                     mapping1 = {
                         "ref:FR:RTE": "Code poste",
                         "ref:FR:RTE_nom": "Nom poste"},

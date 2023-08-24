@@ -51,7 +51,8 @@ class Analyser_Merge_Power_Line_FR(Analyser_Merge_Network):
                         'power': 'line',
                         'operator': 'RTE',
                         'operator:wikidata': 'Q2178795'},
-                    static2 = {'source': self.source},
+                    static2 = {
+                        'source': self.source},
                     mapping1 = {
                         'voltage': lambda fields: str((int(float(fields['tension'].replace('kV', '')) * 1000))) if fields['tension'] not in ('HORS TENSION', '<45kV', 'COURANT CONTINU') else None,
                     },
