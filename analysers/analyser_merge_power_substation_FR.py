@@ -48,14 +48,16 @@ class Analyser_Merge_Power_Substation_FR(Analyser_Merge_Point):
                 select = Select(
                     types = ["ways"],
                     tags = [
-                        {"power": "substation", "operator": [False, "RTE"], "substation": [False, "transmission", "distribution", "industrial"]}]),
+                        {"power": "substation", "substation": [False, "transmission", "distribution", "industrial"]}
+                    ]),
                 osmRef = "ref:FR:RTE",
                 conflationDistance = 200,
                 tag_keep_multiple_values = ["voltage"],
                 mapping = Mapping(
                     static1 = {
                         "power": "substation",
-                        "operator": "RTE"},
+                        "operator": "RTE",
+                        "operator:wikidata": "Q2178795"},
                     static2 = {
                         "source": self.source},
                     mapping1 = {

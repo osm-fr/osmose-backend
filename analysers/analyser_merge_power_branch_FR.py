@@ -47,14 +47,14 @@ class Analyser_Merge_Power_Branch_FR(Analyser_Merge_Point):
             Conflate(
                 select = Select(
                     types = ["nodes"],
-                    tags = [
-                        {"power": ["tower", "pole", "portal", "insulator", "connection"], "operator": "RTE", "line_management": {"regex": r"(^|\(|\|)branch(\||\)|$)"}}]),
+                    tags = [{"power": ["tower", "pole", "portal", "insulator", "connection"], "operator": "RTE", "line_management": {"regex": r"(^|\(|\|)branch(\||\)|$)"}}]),
                 osmRef = "ref:FR:RTE",
                 conflationDistance = 200,
                 mapping = Mapping(
                     static1 = {
                         "power": "tower",
-                        "operator": "RTE"},
+                        "operator": "RTE",
+                        "operator:wikidata": "Q2178795"},
                     static2 = {
                         "source": self.source,
                         "line_management": "branch"},

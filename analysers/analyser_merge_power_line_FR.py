@@ -32,24 +32,27 @@ class Analyser_Merge_Power_Line_FR(Analyser_Merge_Network):
             title = T_('Power line not integrated'))
 
         self.init(
-            'https://odre.opendatasoft.com/explore/dataset/lignes-aeriennes-rte-nv/information',
-            'Lignes aériennes RTE',
+            "https://odre.opendatasoft.com/explore/dataset/lignes-aeriennes-rte-nv/information",
+            "Lignes aériennes RTE",
             GDAL(SourceOpenDataSoft(
-                url='https://odre.opendatasoft.com/explore/dataset/lignes-aeriennes-rte-nv/information',
-                attribution='RTE',
-                format='geojson'),
-                fields=['tension']),
+                url="https://odre.opendatasoft.com/explore/dataset/lignes-aeriennes-rte-nv/information",
+                attribution="RTE",
+                format="geojson"),
+                fields=["tension"]),
             Load('geom',
-                select={'tension': lambda t: f'{t} != \'HORS TENSION\''}),
+                select={"tension": lambda t: f'{t} != \'HORS TENSION\''}),
             ConflateNetwork(
                 select = Select(
-                    types = ['ways'],
-                    tags = [{'power': 'line'}, {'disused:power': 'line'}]),
+                    types = ["ways"],
+                    tags = [{"power": "line"}, {"disused:power": "line"}]),
                 conflationDistance = 30,
                 mapping = Mapping(
-                    static1 = {'power': 'line'},
-                    static2 = {'source': self.source},
+                    static1 = {
+                        "power": "line", 
+                        "operator": "RTE",
+                        "operator:wikidata": "Q2178795"},
+                    static2 = {"source": self.source},
                     mapping1 = {
-                        'voltage': lambda fields: str((int(float(fields['tension'].replace('kV', '')) * 1000))) if fields['tension'] not in ('HORS TENSION', '<45kV', 'COURANT CONTINU') else None,
+                        "voltage": lambda fields: str((int(float(fields["tension"].replace("kV", "")) * 1000))) if fields["tension"] not in ("HORS TENSION", "<45kV", "COURANT CONTINU") else None,
                     },
-                    text = lambda tags, fields: {'en': ', '.join(filter(lambda res: res and res != 'None', [fields['tension']]))} )))
+                    text = lambda tags, fields: {"en": ", ".join(filter(lambda res: res and res != "None", [fields["tension"]]))} )))
