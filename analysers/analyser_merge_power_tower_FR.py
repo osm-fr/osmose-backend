@@ -50,10 +50,10 @@ class Analyser_Merge_Power_Tower_FR(Analyser_Merge_Point):
                 conflationDistance = 10,
                 mapping = Mapping(
                     static1 = {
-                        "power": "tower",
                         "operator": "RTE",
                         "operator:wikidata": "Q2178795"},
-                    static2 = {"source": self.source},
+                    static2 = {"power": "tower", #Currently default value, we're not able to destinguish tower, pole, terminal, portal and insulator in opendata
+                        "source": self.source},
                     mapping1 = {
                         "ref": "Numéro pylône"},
                     mapping2 = {
