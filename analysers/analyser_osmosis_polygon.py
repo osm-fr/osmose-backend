@@ -32,7 +32,8 @@ FROM
     {0}ways
 WHERE
     NOT is_polygon AND
-    NOT (tags?'attraction' AND tags->'attraction' = 'roller_coaster') AND
+    NOT (tags?'roller_coaster' AND tags->'roller_coaster' = 'track') AND -- permit self-intersecting ways
+    NOT (tags?'highway' AND tags->'highway' = 'raceway') AND -- permit self-intersecting ways
     nodes[1] = nodes[array_length(nodes,1)] AND
     ST_NumPoints(linestring) > 3 AND
     ST_IsClosed(linestring) AND
