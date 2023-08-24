@@ -52,7 +52,8 @@ class Analyser_Merge_Power_Tower_FR(Analyser_Merge_Point):
                     static1 = {
                         "operator": "RTE",
                         "operator:wikidata": "Q2178795"},
-                    static2 = {"power": "tower", # Currently default value, we're not able to destinguish tower, pole, terminal, portal and insulator in opendata
+                    static2 = {
+                        "power": "tower", # Currently default value, we're not able to destinguish tower, pole, terminal, portal and insulator in opendata
                         "source": self.source},
                     mapping1 = {
                         "ref": "Numéro pylône"},
