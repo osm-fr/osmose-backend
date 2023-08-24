@@ -48,7 +48,7 @@ class Analyser_Merge_Power_Line_FR(Analyser_Merge_Network):
                 conflationDistance = 30,
                 mapping = Mapping(
                     static1 = {
-                        "power": "line", 
+                        "power": "line",
                         "operator": "RTE",
                         "operator:wikidata": "Q2178795"},
                     static2 = {"source": self.source},
