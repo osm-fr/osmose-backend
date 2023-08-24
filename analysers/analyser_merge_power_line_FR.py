@@ -49,8 +49,7 @@ class Analyser_Merge_Power_Line_FR(Analyser_Merge_Network):
                 mapping = Mapping(
                     static1 = {
                         'power': 'line',
-                        'operator': 'RTE'
-                        },
+                        'operator': 'RTE'},
                     static2 = {
                         'operator:wikidata': 'Q2178795',
                         'source': self.source},
