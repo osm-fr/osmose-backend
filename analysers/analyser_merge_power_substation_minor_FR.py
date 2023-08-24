@@ -57,10 +57,9 @@ class Analyser_Merge_Power_Substation_minor_FR(Analyser_Merge_Point):
                         "voltage": "20000"},
                     static2 = {
                         "substation": "minor_distribution"}, # Currently default value, we're unable to destinguish distribution and minor_distribution in opendata
-                    mapping1 = {
+                    mapping2 = {
                         "operator": "GRD",
                         "name": lambda fields: fields["Nom poste"] if fields["Nom poste"] != "" and fields["GRD"] != "Strasbourg Électricité Réseaux" else None,
-                        "ref": lambda fields: fields["Nom poste"] if fields["Nom poste"] != "" and fields["GRD"] == "Strasbourg Électricité Réseaux" else None},
-                    mapping2 = {
+                        "ref": lambda fields: fields["Nom poste"] if fields["Nom poste"] != "" and fields["GRD"] == "Strasbourg Électricité Réseaux" else None,
                         "source": lambda fields: self.source() + " - " + fields["GRD"]},
                 )))
