@@ -26,8 +26,12 @@ from modules.Stablehash import stablehash64
 
 class Website(Plugin):
 
-    URL_TAGS = set((u"contact:website", u"contact:webcam", u"url",
-                    u"website", u"website:mobile", u"website:stock"))
+    URL_TAGS = set(("brand:website",
+                    "contact:website", "contact:webcam",
+                    "heritage:website",
+                    "opening_hours:url", "operator:website",
+                    "url",
+                    "website", "website:menu", "website:mobile", "website:stock"))
 
     def init(self, logger):
         Plugin.init(self, logger)
