@@ -47,8 +47,12 @@ class Analyser_Merge_Power_Line_FR(Analyser_Merge_Network):
                     tags = [{'power': 'line'}, {'disused:power': 'line'}]),
                 conflationDistance = 30,
                 mapping = Mapping(
-                    static1 = {'power': 'line'},
-                    static2 = {'source': self.source},
+                    static1 = {
+                        'power': 'line',
+                        'operator': 'RTE'},
+                    static2 = {
+                        'operator:wikidata': 'Q2178795',
+                        'source': self.source},
                     mapping1 = {
                         'voltage': lambda fields: str((int(float(fields['tension'].replace('kV', '')) * 1000))) if fields['tension'] not in ('HORS TENSION', '<45kV', 'COURANT CONTINU') else None,
                     },

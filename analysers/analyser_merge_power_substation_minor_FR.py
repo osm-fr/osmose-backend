@@ -48,19 +48,18 @@ class Analyser_Merge_Power_Substation_minor_FR(Analyser_Merge_Point):
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = [
-                        {"power": "substation", "substation": "minor_distribution"},
-                        {"power": None, "transformer": ["distribution", "main"]},
-                        {"power": "substation", "substation": "distribution"}]),
+                        {"power": "substation", "substation": ["distribution", "minor_distribution"]},
+                        {"power": None, "transformer": ["distribution", "main"]}]),
                 conflationDistance = 50,
                 mapping = Mapping(
                     static1 = {
                         "power": "substation",
                         "voltage": "20000"},
                     static2 = {
-                        "substation": "minor_distribution"},
+                        "substation": "minor_distribution"}, # Currently default value, we're unable to destinguish distribution and minor_distribution in opendata
                     mapping2 = {
                         "operator": "GRD",
-                        "source": lambda fields: self.source() + " - " + fields["GRD"],
                         "name": lambda fields: fields["Nom poste"] if fields["Nom poste"] != "" and fields["GRD"] != "Strasbourg Électricité Réseaux" else None,
-                        "ref": lambda fields: fields["Nom poste"] if fields["Nom poste"] != "" and fields["GRD"] == "Strasbourg Électricité Réseaux" else None},
+                        "ref": lambda fields: fields["Nom poste"] if fields["Nom poste"] != "" and fields["GRD"] == "Strasbourg Électricité Réseaux" else None,
+                        "source": lambda fields: self.source() + " - " + fields["GRD"]},
                 )))

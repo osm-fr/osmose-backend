@@ -45,15 +45,16 @@ class Analyser_Merge_Power_Tower_FR(Analyser_Merge_Point):
             Conflate(
                 select = Select(
                     types = ["nodes"],
-                    tags = [{"power": "tower", "operator": "RTE"}, {"power": "pole", "operator": "RTE"}, {"power": "terminal", "operator": "RTE"}, {"power": "portal", "operator": "RTE"}, {"power": "insulator", "operator": "RTE"},
-                      {"power": "tower", "operator": False}, {"power": "pole", "operator": False}, {"power": "terminal", "operator": False}, {"power": "portal", "operator": False}, {"power": "insulator", "operator": False}]),
+                    tags = [{"power": ["tower", "pole", "terminal", "portal", "insulator"], "operator": [False, "RTE"]}]),
 #                osmRef = "ref:FR:RTE", # Commented initial. Only issues missing tower. Then when the missing tower number lower, uncomment to integrate ref into OSM.
                 conflationDistance = 10,
                 mapping = Mapping(
                     static1 = {
-                        "power": "tower",
                         "operator": "RTE"},
-                    static2 = {"source": self.source},
+                    static2 = {
+                        "power": "tower", # Currently default value, we're not able to destinguish tower, pole, terminal, portal and insulator in opendata
+                        "operator:wikidata": "Q2178795",
+                        "source": self.source},
                     mapping1 = {
                         "ref": "Numéro pylône"},
                     mapping2 = {
