@@ -22,7 +22,8 @@
 from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 from modules.Stablehash import stablehash64
-
+from urllib.parse import urlsplit, urlunsplit
+from modules.downloader import urlread
 
 class Website(Plugin):
 
@@ -39,14 +40,28 @@ class Website(Plugin):
         import re
         # From RFC 1738 paragraph 2.1
         self.HasScheme = re.compile(r"^[a-zA-Z0-9.+-]+://")
+        self.strippable_queryparameters = self._load_trackingparameter_list()
 
         self.errors[30931] = self.def_class(item = 3093, level = 2, tags = ['value', 'fix:chair'],
             title = T_('The URL contains a space'))
         self.errors[30932] = self.def_class(item = 3093, level = 3, tags = ['value', 'fix:chair'],
             title = T_('The URL does not have a valid scheme'))
+        self.errors[30933] = self.def_class(item = 3093, level = 3, tags = ['value', 'fix:chair'],
+            title = T_('Invalid URL'))
+        self.errors[30934] = self.def_class(item = 3093, level = 3, tags = ['value', 'fix:chair'],
+            title = T_('Tracking parameter in URL'),
+            fix = T_('Strip the tracking parameter from the URL. Verify that the URL still works afterwards.'),
+            resource = 'https://github.com/mpchadwick/tracking-query-params-registry')
 
     def _bad_url(self, tag, tags):
         return T_("Bad URL {k}={v}", k = tag, v = tags[tag])
+
+    def _load_trackingparameter_list(self):
+        # Permission to use via https://github.com/mpchadwick/tracking-query-params-registry/issues/15
+        url = "https://raw.githubusercontent.com/mpchadwick/tracking-query-params-registry/master/_data/params.csv"
+        csvlines = urlread(url, 30).split("\n")[1:] # Discard first line, it contains headers
+        # Filter entries of len<=2 for safety. First column contains the parameter
+        return set(filter(lambda p: len(p) > 2, map(lambda line: line.split(",", 1)[0].strip(), csvlines)))
 
     def check(self, tags):
         err = []
@@ -66,9 +81,25 @@ class Website(Plugin):
                 stripped = True
 
             if self.HasScheme.match(url):
-                if stripped:
+                try:
+                    parsed_url = urlsplit(url)
+                except ValueError as e:
+                    err.append({"class": 30933, "subclass": stablehash64(tag), "text": T_('Bad URL in `{0}`: {1}', tag, str(e))})
+                    continue
+                queryparams = parsed_url.query.split("&") # not parse_qs/parse_qsl because we don't want to change whether i.e. + is encoded in the fix
+                if any(map(lambda qs: qs.split("=")[0] in self.strippable_queryparameters, queryparams)):
+                    stripped_query = '&'.join(list(filter(lambda qs: qs.split("=")[0] not in self.strippable_queryparameters, queryparams)))
+                    parsed_url = parsed_url._replace(query = stripped_query)
+                    err.append({
+                        "class": 30934, "subclass": stablehash64(tag),
+                        "text": T_('Tracking parameter in `{0}`', tag),
+                        "fix": [{"~": {tag: urlunsplit(parsed_url)}}]
+                    })
+                elif stripped:
                     err.append({"class": 30931, "fix": {tag: url}})
                 continue
+
+            # Scheme is missing
             elif url.startswith('://'):
                 url = url[3:]
             elif ':' in url or '//' in url:
@@ -112,10 +143,22 @@ class Test(TestPluginCommon):
             self.assertEqual(err[0]["fix"][0]["website"], "https://{0}".format(test_url))
             self.assertEqual(err[0]["fix"][1]["website"], "http://{0}".format(test_url))
 
+        # Assure bad URLs that give an ValueError in urlsplit are caught
+        self.check_err(p.node(None, {"website": "http://1111:2222:aaaa:bbb::1111]/"}))
+
+        # Detect and strip tracker parameters
+        err = p.node(None, {"website": "https://osmose.osmose/osmose?osmose=osmose&fbclid=abcdefghijkl&osmose2=test+%2Btest%20test&osmose3=&osmose4"})
+        self.check_err(err)
+        self.assertEqual(err[0]["fix"][0]["~"]["website"], "https://osmose.osmose/osmose?osmose=osmose&osmose2=test+%2Btest%20test&osmose3=&osmose4")
+        err = p.node(None, {"website": "https://osmose.osmose/osmose/osmose/?utm_campaign=abcdefghijkl#osmose"})
+        self.check_err(err)
+        self.assertEqual(err[0]["fix"][0]["~"]["website"], "https://osmose.osmose/osmose/osmose/#osmose")
+
         # Verify we get no error for other correct URLs
         for good in ("ftp://{0}".format(test_url),
                      "http://{0}".format(test_url),
                      "https://{0}".format(test_url)):
             assert not p.node(None, {"website": good}), ("website='{0}'".format(good))
 
-        assert not p.node(None, {u"url": u"http://ancien-geodesie.ign.fr/fiche_point_OM.asp?num_site=9712301&#38;no_ptg=04"})
+        assert not p.node(None, {"url": "http://ancien-geodesie.ign.fr/fiche_point_OM.asp?num_site=9712301&#38;no_ptg=04"})
+        assert not p.node(None, {"url": "https://osmose.osmose/osmose/osmose?osmose=osmose&name=osmose"}) # Ensure we strip the header line of the CSV file
