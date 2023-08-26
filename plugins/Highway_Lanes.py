@@ -277,14 +277,14 @@ or right (for `only_left`) side of the lane to which changing is possible.'''),
                 non_fullwidth_lanes_number_star = ((non_fullwidth_lanes_number.get(direction) or 0) if star != 'lanes' else 0)
                 non_fullwidth_lanes_number_tag = ((non_fullwidth_lanes_number.get(direction) or 0) if tag != 'lanes:lanes'+direction else 0)
                 if n_lanes.get(direction) is not None and number[star].get(direction) is not None and \
-                        number[star][direction] - non_fullwidth_lanes_number_star != \
-                        n_lanes[direction] - non_fullwidth_lanes_number_tag:
+                        (number[star][direction] - non_fullwidth_lanes_number_star > n_lanes[direction] or
+                        n_lanes[direction] - non_fullwidth_lanes_number_tag > number[star][direction]):
                     err.append({"class": 31608, "subclass": 0 + stablehash64(direction + '|' + star), "text": {
                         "en": "(lanes({0})={1}) - (non fullwidth={2}) != (lanes({3})={4}) - (non fullwidth={5})".format(
                             star+":*"+direction, number[star][direction], non_fullwidth_lanes_number_star,
                             tag, n_lanes[direction], non_fullwidth_lanes_number_tag) }})
                 elif n_lanes.get(direction) is None and number[star].get(direction) is not None:
-                    # Fist loop, pick the star as tag and the number of lanes to compare to the others
+                    # First loop, pick the star as tag and the number of lanes to compare to the others
                     n_lanes[direction] = number[star][direction]
                     tag = star+":lanes"+direction
 
@@ -321,7 +321,7 @@ or right (for `only_left`) side of the lane to which changing is possible.'''),
             elif nlb is not None or nl2 is not None:
                 err.append({"class": 31605, "subclass": 0})
         else:
-            if nl is not None and nlf is not None and nlb is not None and nl != nlf + nlb + (nl2 or 0) - nfw_nl - nfw_nlf - nfw_nlb - nfw_nl2:
+            if nl is not None and nlf is not None and nlb is not None and (nl < nlf + nlb + (nl2 or 0) - nfw_nl - nfw_nlf - nfw_nlb - nfw_nl2 or nl > nlf + nlb + (nl2 or 0)):
                 err.append({"class": 31604, "subclass": 0, "text": T_("on two way, (lanes={0}) != (lanes:forward={1}) + (lanes:backward={2}) + (lanes:both_ways={3}) - (non fullwidth={4}) - (non fullwidth forward={5}) - (non fullwidth backward={6}) - (non fullwidth both_ways={7})", nl, nlf, nlb, nl2, nfw_nl, nfw_nlf, nfw_nlb, nfw_nl2)})
             elif nl is not None and nlf is not None and nl <= nlf - nfw_nlf:
                 err.append({"class": 31604, "subclass": 0, "text": T_("on two way, (lanes={0}) <= (lanes:forward={1}) - (non fullwidth forward={2})", nl, nlf, nfw_nlf)})
@@ -389,6 +389,8 @@ class Test(TestPluginCommon):
                   {"highway": "secondary", "lanes": "3", "lanes:both_ways": "1"},
                   {"highway": "secondary", "lanes": "2", "change:lanes": "no|no|no|no", "bicycle:lanes": "|designated||designated", "cycleway": "lane"},
                   {"highway": "secondary", "lanes": "1", "width:lanes": "3|1.5|1.5", "access:lanes": "yes|no|no", "bicycle:lanes": "yes|designated|designated"},
+                  {"highway": "tertiary", "lanes": "6", "lanes:forward": "4", "lanes:backward": "2", "bus:lanes:backward": "yes|designated", "bicycle:lanes:backward": "yes|designated", "cycleway": "opposite_share_busway"},
+                  {"highway": "tertiary", "lanes": "3", "bus:lanes": "||designated", "bicycle:lanes": "no|designated|designated", "turn:lanes": "through|through|right"},
                  ]:
             assert not a.way(None, t, None), a.way(None, t, None)
 
