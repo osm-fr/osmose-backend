@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='1' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.8879550452' lon='5.50219983257' />
+  <node id='2' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.88479461836' lon='5.49959471824' />
+  <node id='3' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.88501640995' lon='5.50534393606' />
+  <node id='4' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.88789960103' lon='5.51360843668' />
+  <node id='5' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.88407378814' lon='5.51405759432' />
+  <node id='6' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.88401833918' lon='5.52034580131' />
+  <node id='7' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.8881768212' lon='5.51863900227' />
+  <node id='8' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.88174995384' lon='5.51046802881'>
+    <tag k='tourism' v='camp_pitch' />
+  </node>
+  <node id='9' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.88567299679' lon='5.50254039643'>
+    <tag k='tourism' v='camp_pitch' />
+  </node>
+  <node id='10' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.88459176824' lon='5.51493714735'>
+    <tag k='tourism' v='camp_pitch' />
+  </node>
+  <node id='11' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.88696210604' lon='5.51641939003' />
+  <node id='12' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.88672646264' lon='5.51617235332' />
+  <node id='13' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.88667101696' lon='5.51718295802' />
+  <node id='14' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.88648390112' lon='5.50232704655' />
+  <node id='15' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.88624825522' lon='5.50208000985' />
+  <node id='16' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.88619280894' lon='5.50309061454' />
+  <node id='17' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.88179847413' lon='5.51148986245' />
+  <node id='18' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.88156280366' lon='5.51124282574' />
+  <node id='19' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.88150735161' lon='5.51225343044' />
+  <way id='100' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='1' />
+    <nd ref='2' />
+    <nd ref='3' />
+    <nd ref='1' />
+    <tag k='tourism' v='camp_site' />
+  </way>
+  <way id='101' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='4' />
+    <nd ref='5' />
+    <nd ref='6' />
+  </way>
+  <way id='102' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='6' />
+    <nd ref='7' />
+    <nd ref='4' />
+  </way>
+  <way id='103' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='11' />
+    <nd ref='12' />
+    <nd ref='13' />
+    <nd ref='11' />
+    <tag k='tourism' v='camp_pitch' />
+  </way>
+  <way id='104' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='14' />
+    <nd ref='15' />
+    <nd ref='16' />
+    <nd ref='14' />
+    <tag k='tourism' v='camp_pitch' />
+  </way>
+  <way id='105' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='17' />
+    <nd ref='18' />
+    <nd ref='19' />
+    <nd ref='17' />
+    <tag k='tourism' v='camp_pitch' />
+  </way>
+  <relation id='1000' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <member type='way' ref='101' role='outer' />
+    <member type='way' ref='102' role='outer' />
+    <tag k='tourism' v='camp_site' />
+    <tag k='type' v='multipolygon' />
+  </relation>
+</osm>
