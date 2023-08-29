@@ -93,6 +93,7 @@ class TagRemove_Incompatibles(Plugin):
                 ['shelter', 'highway', 'bus_stop'],
                 ['event_venue', 'leisure', 'garden'],
                 ['gambling', 'leisure', 'adult_gaming_centre'],
+                ['restaurant', 'leisure', 'amusement_arcade'],
             ],
         }.items()
 
