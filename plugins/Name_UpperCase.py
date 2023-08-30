@@ -90,15 +90,15 @@ class Test(TestPluginCommon):
                   {u"name": u"EHPAD MAGEUSCULE"},
                   {u"name": u"ICI PARIS XL"}, # in NSI, but not for FR
                   {u"name": u"AÇǱÞΣSSὩΙST"},
-                  {u"name": u"SHOO LOONG KAN PARIS"},
+                  {u"name": u"NORMA PARIS"},
                  ]:
             self.check_err(a.node(None, t), t)
             self.check_err(a.way(None, t, None), t)
 
         for t in [{u"name": u"Col des Champs XIIVVVIM"},
                   {u"name": u"EHPAD La Madelon"},
-                  {u"name": u"SHOO LOONG KAN"}, # in NSI
-                  {u"name": u"SHOO LOONG KAN Paris"},
+                  {u"name": u"NORMA"}, # in NSI
+                  {u"name": u"NORMA Paris"},
                   {u"name": u"ƻאᎯᚦ京"},
                  ]:
             assert not a.node(None, t), t
