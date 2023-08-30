@@ -79,7 +79,7 @@ values.'''))
             'left:city', 'left:country', 'left:departement', 'left:village',
             'leisure',
             'maxspeed', 'motorcar', 'mtb:scale',
-            'name', 'natural',
+            'natural',
             'oneway',
             'power',
             'railway',
