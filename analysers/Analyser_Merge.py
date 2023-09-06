@@ -1062,7 +1062,7 @@ class Select:
                     clauses.append("NOT " + k_not_exists)
                     clauses.append(v(k_value))
                 elif isinstance(v, list):
-                    actualList = filter(lambda i: i is not False, v)
+                    actualList = list(filter(lambda i: i is not False, v))
                     if len(actualList) > 1:
                         cond = "string_to_array(" + k_value + "::text, ';')" + " && ARRAY['{}']".format("', '".join(map(lambda i: i.replace("'", "''"), actualList)))
                     else:
