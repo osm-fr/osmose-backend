@@ -1062,7 +1062,12 @@ class Select:
                     clauses.append("NOT " + k_not_exists)
                     clauses.append(v(k_value))
                 elif isinstance(v, list):
-                    cond = "string_to_array(" + k_value + "::text, ';')" + " && ARRAY['{}']".format("', '".join(map(lambda i: i.replace("'", "''"), filter(lambda i: i is not False, v))))
+                    actualList = filter(lambda i: i is not False, v)
+                    if len(actualList) > 1:
+                        cond = "string_to_array(" + k_value + "::text, ';')" + " && ARRAY['{}']".format("', '".join(map(lambda i: i.replace("'", "''"), actualList)))
+                    else:
+                        cond = "'{}'".format(actualList[0].replace("'", "''"))+"=ANY(string_to_array(" + k_value + "::text, ';'))"
+
                     if False in v:
                         cond = "(" + cond + " OR " + k_not_exists + ")"
                     else:
@@ -1078,7 +1083,7 @@ class Select:
                         elif "regex" in v:
                             clauses.append(k_value + " ~ '{}'".format(v["regex"].replace("'", "''")))
                     else:
-                        clauses.append(k_value + " = '{}'".format(v.replace("'", "''")))
+                        clauses.append("'{}'".format(v.replace("'", "''"))+"=ANY(string_to_array(" + k_value + "::text, ';'))")
         return " AND ".join(clauses) if clauses else "1=1"
 
 
@@ -1607,12 +1612,12 @@ class Test(TestAnalyserOsmosis):
         self.assertEqual(Select.where_attributes({'a': True}), """((NOT "a" IS NULL))""")
         self.assertEqual(Select.where_attributes({'a': False}), """(("a" IS NULL))""")
         self.assertEqual(Select.where_attributes({'a': {'like': 'a%'}}), """((NOT "a" IS NULL AND "a" LIKE 'a%'))""")
-        self.assertEqual(Select.where_attributes({'a': '1'}), """((NOT "a" IS NULL AND "a" = '1'))""")
+        self.assertEqual(Select.where_attributes({'a': '1'}), """((NOT "a" IS NULL AND '1'=ANY(string_to_array("a"::text, ';'))))""")
         self.assertEqual(Select.where_attributes({'a': ['1', '2']}), """((NOT "a" IS NULL AND string_to_array("a"::text, ';') && ARRAY['1', '2']))""")
-        self.assertEqual(Select.where_attributes({'a': ['1', False]}), """((("a" IN ('1') OR "a" IS NULL)))""")
-        self.assertEqual(Select.where_attributes({'a': '1', 'b': '2'}), """((NOT "a" IS NULL AND "a" = '1' AND NOT "b" IS NULL AND "b" = '2'))""")
+        self.assertEqual(Select.where_attributes({'a': ['1', False]}), """((('1'=ANY(string_to_array("a"::text, ';')) OR "a" IS NULL)))""")
+        self.assertEqual(Select.where_attributes({'a': '1', 'b': '2'}), """((NOT "a" IS NULL AND '1'=ANY(string_to_array("a"::text, ';')) AND NOT "b" IS NULL AND '2'=ANY(string_to_array("b"::text, ';'))))""")
 
-        self.assertEqual(Select.where_tags({'a': '1'}), """((NOT NOT tags?'a' AND tags->'a' = '1'))""")
+        self.assertEqual(Select.where_tags({'a': '1'}), """((NOT NOT tags?'a' AND '1'=ANY(string_to_array(tags->'a'::text, ';'))))""")
         self.assertEqual(Select.where_tags({'a': None}), """((NOT NOT tags?'a'))""")
 
-        self.assertEqual(Select.where_attributes([{'a': '1'}, {'b': '2'}]), """((NOT "a" IS NULL AND "a" = '1') OR (NOT "b" IS NULL AND "b" = '2'))""")
+        self.assertEqual(Select.where_attributes([{'a': '1'}, {'b': '2'}]), """((NOT "a" IS NULL AND '1'=ANY(string_to_array("a"::text, ';'))) OR (NOT "b" IS NULL AND '2'=ANY(string_to_array("b"::text, ';'))))""")
