@@ -1608,7 +1608,7 @@ class Test(TestAnalyserOsmosis):
         self.assertEqual(Select.where_attributes({'a': False}), """(("a" IS NULL))""")
         self.assertEqual(Select.where_attributes({'a': {'like': 'a%'}}), """((NOT "a" IS NULL AND "a" LIKE 'a%'))""")
         self.assertEqual(Select.where_attributes({'a': '1'}), """((NOT "a" IS NULL AND "a" = '1'))""")
-        self.assertEqual(Select.where_attributes({'a': ['1', '2']}), """((NOT "a" IS NULL AND "a" IN ('1', '2')))""")
+        self.assertEqual(Select.where_attributes({'a': ['1', '2']}), """((NOT "a" IS NULL AND string_to_array("a"::text, ';') && ARRAY['1', '2']))""")
         self.assertEqual(Select.where_attributes({'a': ['1', False]}), """((("a" IN ('1') OR "a" IS NULL)))""")
         self.assertEqual(Select.where_attributes({'a': '1', 'b': '2'}), """((NOT "a" IS NULL AND "a" = '1' AND NOT "b" IS NULL AND "b" = '2'))""")
 
