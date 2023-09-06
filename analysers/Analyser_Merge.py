@@ -1062,7 +1062,7 @@ class Select:
                     clauses.append("NOT " + k_not_exists)
                     clauses.append(v(k_value))
                 elif isinstance(v, list):
-                    cond = k_value + " IN ('{}')".format("', '".join(map(lambda i: i.replace("'", "''"), filter(lambda i: i is not False, v))))
+                    cond = "string_to_array(" + k_value + "::text, ';')" + " && ARRAY['{}']".format("', '".join(map(lambda i: i.replace("'", "''"), filter(lambda i: i is not False, v))))
                     if False in v:
                         cond = "(" + cond + " OR " + k_not_exists + ")"
                     else:
