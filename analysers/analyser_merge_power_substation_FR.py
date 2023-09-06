@@ -28,7 +28,7 @@ class Analyser_Merge_Power_Substation_FR(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
         Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_osm(item = 7190, id = 2, level = 3, tags = ['merge', 'power', 'fix:chair'],
-            title = T_('Power substation is not known from operator'))
+            title = T_('Power substation is not known from operator or misses substation=* value'))
         self.def_class_possible_merge(item = 8281, id = 3, level = 3, tags = ['merge', 'power', 'fix:chair'],
             title = T_('Power substation, integration suggestion'))
         self.def_class_update_official(item = 8282, id = 4, level = 3, tags = ['merge', 'power', 'fix:chair'],
@@ -46,9 +46,13 @@ class Analyser_Merge_Power_Substation_FR(Analyser_Merge_Point):
                 select = {"FONCTION DU POSTE": "Poste de transformation"}),
             Conflate(
                 select = Select(
-                    types = ["ways"],
+                    types = ["nodes","ways", "relations"],
                     tags = [
-                        {"power": "substation", "substation": [False, "transmission", "distribution", "industrial"]}
+                        {"power": "substation", "substation": ["transmission"]},
+                        {
+                            "power": "substation",
+                            "substation": [False, "industrial", "generation", "traction", "distribution", "converter", "transition", "compensation"],
+                            "voltage": ["400000", "380000", "320000", "225000", "220000", "150000", "90000", "63000", "45000", "42000"]}
                     ]),
                 osmRef = "ref:FR:RTE",
                 conflationDistance = 200,
