@@ -36,7 +36,7 @@ class Highway_Lanes(Plugin):
             title = T_('Conflict between usage of *:lanes or *:lanes:(forward|backward|both_ways)'),
             detail = T_(
 '''You can not simultaneously set a tag and the variants with
-`forward`, `backward` or `both_ways` prefixes.'''))
+`forward`, `backward` or `both_ways` suffixes.'''))
         self.errors[31604] = self.def_class(item = 3160, level = 2, tags = ['highway', 'fix:chair'],
             title = T_('Conflict between lanes number'))
         self.errors[31605] = self.def_class(item = 3160, level = 2, tags = ['highway', 'fix:chair'],
