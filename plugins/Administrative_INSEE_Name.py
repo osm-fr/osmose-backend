@@ -45,15 +45,15 @@ be associated with tags such as `amenity`, `highway`. When the case, the
 tag `place=*` should be removed.'''))
         doc = dict(
             detail = T_(
-'''Check of tags `ref:INSEE` and `name` are consistent with the [COG
+'''Check if tags `ref:INSEE` and `name` are consistent with the [COG
 database](https://www.insee.fr/fr/information/2560452).'''),
             fix = T_(
 '''Correct INSEE the value or the name as appropriate.'''),
             trap = T_(
 '''The names on `place=*` may differ from the COG of INSEE, especially
 for merged city. It also happens in several occasions that local
-authorities are at odds with INSEE. In this case, that's always been a
-priority for the field on OSM.'''))
+authorities are at odds with INSEE. In this case, always use the
+information from local authorities / ground usage.'''))
 
         self.errors[801] = self.def_class(item = 6040, level = 1, tags = ['place', 'fix:chair'],
             title = T_('INSEE code cannot be found in INSEE database'),
