@@ -1,13 +1,13 @@
 # 
 # Translators:
 # frodrigo <fred.rodrigo@gmail.com>, 2018
-# Ігор Варварчук <182050@i.ua>, 2020
 # Green Aloe, 2022
+# VARVAR <182050@i.ua>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Green Aloe, 2022\n"
-"Language-Team: Ukrainian (https://www.transifex.com/openstreetmap-france/teams/17462/uk/)\n"
+"Last-Translator: VARVAR <182050@i.ua>, 2023\n"
+"Language-Team: Ukrainian (https://app.transifex.com/openstreetmap-france/teams/17462/uk/)\n"
 "Language: uk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
@@ -208,9 +208,12 @@ msgid ""
 "The station entrance should be part of a building or a highway (steps, "
 "footway, etc)"
 msgstr ""
+"Вхід до станції повинен бути частиною будівлі або шляху (сходи, хідник, "
+"тощо)"
 
 #: ../transport.validator.mapcss:375
 msgid ""
 "The station entrance should be in part of a station: add it to a stop_area "
 "relation"
 msgstr ""
+"Вхід до станції має бути частиною станції: додайте його до зв'язку stop_area"

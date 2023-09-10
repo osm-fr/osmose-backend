@@ -1,12 +1,12 @@
 # 
 # Translators:
 # frodrigo <fred.rodrigo@gmail.com>, 2018
-# Gábor Babos <gabor.babos@gmail.com>, 2020
+# Gábor Babos <gabor.babos@gmail.com>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Gábor Babos <gabor.babos@gmail.com>, 2020\n"
-"Language-Team: Hungarian (https://www.transifex.com/openstreetmap-france/teams/17462/hu/)\n"
+"Last-Translator: Gábor Babos <gabor.babos@gmail.com>, 2023\n"
+"Language-Team: Hungarian (https://app.transifex.com/openstreetmap-france/teams/17462/hu/)\n"
 "Language: hu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
@@ -225,16 +225,20 @@ msgstr ""
 
 #: ../transport.validator.mapcss:359
 msgid "Subway entrances should be mapped as nodes"
-msgstr ""
+msgstr "A metrólejárókat pontként kell felvenni a térképre."
 
 #: ../transport.validator.mapcss:391
 msgid ""
 "The station entrance should be part of a building or a highway (steps, "
 "footway, etc)"
 msgstr ""
+"Az állomás bejáratának egy épület vagy egy út (lépcső, járda stb.) részét "
+"kell képeznie."
 
 #: ../transport.validator.mapcss:375
 msgid ""
 "The station entrance should be in part of a station: add it to a stop_area "
 "relation"
 msgstr ""
+"Az állomás bejáratának részben az állomás részét kell képeznie: adja hozzá "
+"egy [stop_area] kapcsolathoz"
