@@ -117,7 +117,7 @@ WHERE
   tags != '' AND
   (
     (tags?'amenity'  AND tags->'amenity' = 'parking_entrance') OR
-    (tags?'entrance' AND tags->'entrance'!= 'garage')
+    (tags?'entrance' AND tags->'entrance' IN ('garage', 'emergency'))
   )
 UNION ALL
 SELECT DISTINCT
@@ -135,15 +135,19 @@ WHERE
   -- Construction roads are usually temporary, the connections are likely access=no or similar
   is_construction
 UNION ALL
--- Include nodes outside the extract; the recursive check will otherwise fail on oneways originating outside of the extract. See #1949
-SELECT DISTINCT
-  way_nodes.node_id
+-- Include nodes of ways that cross the extract border. See #1949
+-- Better would be to only include the nodes outside of the extract, but that's expensive
+SELECT
+  unnest(borderways.nodes)
 FROM
-  way_nodes
-  LEFT JOIN nodes AS n ON
-    n.id = way_nodes.node_id
+  relation_members AS boundary_members
+  JOIN ways AS boundary_ways ON
+    boundary_members.member_id = boundary_ways.id
+  JOIN highways AS borderways ON
+    ST_Intersects(boundary_ways.linestring, borderways.linestring)
 WHERE
-  n IS NULL
+  boundary_members.member_type = 'W' AND
+  boundary_members.relation_id IN {boundary_ids}
 """
 
 sql33 = """
@@ -189,7 +193,7 @@ FROM
     terminal.id = allowed_oneway_end_nodes.id
 WHERE
   allowed_oneway_end_nodes IS NULL AND
-  array_length(array_positions(oneway.nodes, terminal.id), 1) = 1 -- exclude end nodes folding back into the same way
+  array_length(array_positions(oneway.nodes, terminal.id), 1) = 1 -- exclude end nodes folding back into the same way, e.g. in P or O-shaped ways
 ORDER BY
   terminal.id,
   oneway.id
@@ -413,9 +417,15 @@ Ensure that `service=drive-through` is the correct tag.''')),
         self.callback20 = lambda res: {"class":1 if res[3] == 'cycleway' else 2, "data":[self.way_full, self.node_full, self.positionAsText]}
 
     def analyser_osmosis_common(self):
+        boundary_relation = self.config.polygon_id # Either a number, None or (number, number, ...)
+        if isinstance(boundary_relation, int):
+          boundary_relation = "({0})".format(boundary_relation)
+        elif not boundary_relation:
+          boundary_relation = "(0)"
+
         self.run(sql30)
         self.run(sql31)
-        self.run(sql32)
+        self.run(sql32.format(boundary_ids=boundary_relation))
         self.run(sql33)
         self.run(sql34)
         self.run(sql35)

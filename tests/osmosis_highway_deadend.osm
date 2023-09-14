@@ -149,15 +149,6 @@
   <node id='141' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84999049234' lon='5.83810808606' />
   <node id='142' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85249840029' lon='5.83773533993' />
   <node id='143' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85260805587' lon='5.83767364981' />
-  <node id='144' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84929069747' lon='5.83761451174'>
-    <tag k='note' v='Part of partially downloaded way, not rendered if viewed in JOSM. Dont delete :)' />
-  </node>
-  <node id='145' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84929150034' lon='5.83750793564'>
-    <tag k='note' v='Part of partially downloaded way, not rendered if viewed in JOSM. Dont delete :)' />
-  </node>
-  <node id='146' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84928980502' lon='5.83773297784'>
-    <tag k='note' v='Part of partially downloaded way, not rendered if viewed in JOSM. Dont delete :)' />
-  </node>
   <node id='147' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84970483707' lon='5.83749903043' />
   <node id='148' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85246990716' lon='5.83727205663' />
   <node id='149' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85236117697' lon='5.83706388515' />
@@ -577,6 +568,7 @@
     <nd ref='109' />
     <nd ref='110' />
     <tag k='highway' v='residential' />
+    <tag k='note' v='Inaccessible: no entry ways' />
     <tag k='oneway' v='yes' />
   </way>
   <way id='1059' timestamp='2014-03-31T22:00:00Z' version='1'>
@@ -584,6 +576,7 @@
     <nd ref='111' />
     <nd ref='108' />
     <tag k='highway' v='residential' />
+    <tag k='note' v='Inaccessible: no entry ways' />
     <tag k='oneway' v='yes' />
   </way>
   <way id='1060' timestamp='2014-03-31T22:00:00Z' version='1'>
@@ -688,22 +681,6 @@
     <nd ref='142' />
     <nd ref='143' />
     <tag k='highway' v='service' />
-    <tag k='oneway' v='yes' />
-  </way>
-  <way id='1075' timestamp='2014-03-31T22:00:00Z' version='1'>
-    <nd ref='9999999' />
-    <nd ref='145' />
-    <nd ref='144' />
-    <tag k='highway' v='residential' />
-    <tag k='note' v='Outer nodes are &apos;not downloaded&apos; e.g. out of the extract! Should not warn!' />
-    <tag k='oneway' v='yes' />
-  </way>
-  <way id='1076' timestamp='2014-03-31T22:00:00Z' version='1'>
-    <nd ref='144' />
-    <nd ref='146' />
-    <nd ref='9999998' />
-    <tag k='highway' v='residential' />
-    <tag k='note' v='Outer nodes are &apos;not downloaded&apos; e.g. out of the extract! Should not warn!' />
     <tag k='oneway' v='yes' />
   </way>
   <way id='1077' timestamp='2014-03-31T22:00:00Z' version='1'>
