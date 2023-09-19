@@ -20,6 +20,15 @@
   <node id='18' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85227362937' lon='5.83801632619' />
   <node id='19' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85227335578' lon='5.83808054832' />
   <node id='20' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.8523279728' lon='5.83808115812' />
+  <node id='21' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85281310453' lon='5.83892828569' />
+  <node id='22' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85242601411' lon='5.83838813655' />
+  <node id='23' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85240171962' lon='5.83938452817' />
+  <node id='24' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85251671342' lon='5.8390200586' />
+  <node id='25' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.8524405908' lon='5.8390987211' />
+  <node id='26' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.8524405908' lon='5.83896237277' />
+  <node id='27' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85263251673' lon='5.83880766986' />
+  <node id='28' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85250537602' lon='5.83868180987' />
+  <node id='29' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85260093404' lon='5.83903054694' />
   <way id='100' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='1' />
     <nd ref='2' />
@@ -62,4 +71,30 @@
     <nd ref='17' />
     <tag k='building' v='stable' />
   </way>
+  <way id='105' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='21' />
+    <nd ref='22' />
+    <nd ref='23' />
+    <nd ref='21' />
+  </way>
+  <way id='106' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='24' />
+    <nd ref='25' />
+    <nd ref='26' />
+    <nd ref='24' />
+    <tag k='natural' v='water' />
+  </way>
+  <way id='107' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='27' />
+    <nd ref='28' />
+    <nd ref='29' />
+    <nd ref='27' />
+    <tag k='building' v='yes' />
+  </way>
+  <relation id='1000' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <member type='way' ref='106' role='inner' />
+    <member type='way' ref='105' role='outer' />
+    <tag k='landuse' v='vineyard' />
+    <tag k='type' v='multipolygon' />
+  </relation>
 </osm>

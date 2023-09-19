@@ -24,27 +24,54 @@ from modules.OsmoseTranslation import T_
 from .Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
+CREATE TEMP TABLE poly_landuse AS
 SELECT
-  DISTINCT ON (ways.id)
-  ways.id,
+  type_id,
+  poly_proj,
+  tags->'landuse' AS landuse
+FROM (
+  SELECT
+    'W' || id AS type_id,
+    tags,
+    ST_Transform(ST_MakePolygon(ways.linestring), {proj}) AS poly_proj
+  FROM
+    ways
+  WHERE
+    is_polygon AND
+    tags != ''::hstore
+  UNION ALL
+  SELECT
+    'R' || id AS type_id,
+    tags,
+    poly_proj
+  FROM
+    multipolygons
+  WHERE
+    is_valid
+) AS t
+WHERE
+  tags?'landuse' AND
+  tags->'landuse' IN ('farmland', 'vineyard', 'orchard', 'plant_nursery')
+"""
+
+sql11 = """
+SELECT DISTINCT ON (poly_landuse.type_id)
+  poly_landuse.type_id,
   buildings.id,
   -- Use the building location to point out the error, even though the landuse should be changed
   ST_AsText(way_locate(buildings.linestring)),
   buildings.tags->'building',
-  ways.tags->'landuse'
+  poly_landuse.landuse
 FROM
   buildings
-  JOIN ways ON
-    ways.is_polygon AND
-    ways.tags != ''::hstore AND
-    ways.tags?'landuse' AND
-    ways.tags->'landuse' IN ('farmland', 'vineyard', 'orchard', 'plant_nursery') AND
-    ways.linestring && buildings.linestring AND
-    ST_Contains(ST_Transform(ST_MakePolygon(ways.linestring), {proj}), buildings.polygon_proj)
+  JOIN poly_landuse ON
+    ST_Contains(poly_landuse.poly_proj, buildings.polygon_proj)
 WHERE
   -- ignore e.g. small utility buildings that happen to be on the farmland or are fully surrounded by farmland
   buildings.area > 36 AND
   (NOT buildings.tags?'location' OR buildings.tags->'location' != 'underground')
+ORDER BY
+  poly_landuse.type_id
 """
 
 
@@ -68,12 +95,13 @@ such as `landuse=vineyard` or `landuse=orchard`).
 For areas dedicated to greenhouse horticulture, use `landuse=greenhouse_horticulture`.'''),
             resource = "https://wiki.openstreetmap.org/wiki/Tag:landuse%3Dfarmland")
 
-    requires_tables_common = ['buildings']
+    requires_tables_common = ['buildings', 'multipolygons']
 
     def analyser_osmosis_common(self):
-        self.run(sql10.format(proj=self.config.options["proj"]), lambda res: {
+        self.run(sql10.format(proj=self.config.options["proj"]))
+        self.run(sql11, lambda res: {
             "class": 1,
-            "data": [self.way_full, self.way, self.positionAsText],
+            "data": [self.any_full, self.way, self.positionAsText],
             "text": T_("`{0}` inside `{1}`", "building=" + res[3], 'landuse=' + res[4])
         })
 
@@ -94,4 +122,5 @@ class Test(TestAnalyserOsmosis):
 
         self.root_err = self.load_errors()
         self.check_err(cl="1", elems=[("way", "100"), ("way", "101")])
-        self.check_num_err(1)
+        self.check_err(cl="1", elems=[("relation", "1000"), ("way", "107")])
+        self.check_num_err(2)
