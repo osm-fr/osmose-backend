@@ -115,8 +115,10 @@ FROM
     JOIN nodes ON
         nodes.id = ww.end AND
         nodes.tags != ''::hstore AND
-        nodes.tags?'natural' AND
-        nodes.tags->'natural' IN ('sinkhole')
+        (
+            (nodes.tags?'natural' AND nodes.tags->'natural' IN ('sinkhole')) OR
+            (nodes.tags?'waterway' AND nodes.tags->'waterway' IN ('stream_end'))
+        )
 """
 
 sql24 = """
