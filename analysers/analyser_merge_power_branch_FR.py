@@ -28,13 +28,13 @@ class Analyser_Merge_Power_Branch_FR(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
         Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_osm(item = 7190, id = 22, level = 3, tags = ['merge', 'power', 'fix:chair'],
-            title = T_('Power connection not known from operator'))
+            title = T_('Power line branch not known by the operator'))
         self.def_class_possible_merge(item = 8281, id = 23, level = 3, tags = ['merge', 'power', 'fix:chair'],
-            title = T_('Power connection, integration suggestion'))
+            title = T_('Power line branch, integration suggestion'))
         self.def_class_update_official(item = 8282, id = 24, level = 3, tags = ['merge', 'power', 'fix:chair'],
-            title = T_('Power connection update'))
+            title = T_('Power line branch update'))
         self.def_class_missing_official(item = 8280, id = 21, level = 3, tags = ['merge', 'power', 'fix:survey', 'fix:picture', 'fix:imagery'],
-            title = T_('Power connection is missing in OSM or without tag "ref:FR:RTE"'))
+            title = T_('Power line branch is missing in OSM or without tag "ref:FR:RTE"'))
 
         self.init(
             "https://opendata.reseaux-energies.fr/explore/dataset/postes-electriques-rte",
