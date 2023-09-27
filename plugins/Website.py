@@ -24,6 +24,7 @@ from plugins.Plugin import Plugin
 from modules.Stablehash import stablehash64
 from urllib.parse import urlsplit, urlunsplit
 from modules.downloader import urlread
+import csv
 
 class Website(Plugin):
 
@@ -59,9 +60,10 @@ class Website(Plugin):
     def _load_trackingparameter_list(self):
         # Permission to use via https://github.com/mpchadwick/tracking-query-params-registry/issues/15
         url = "https://raw.githubusercontent.com/mpchadwick/tracking-query-params-registry/master/_data/params.csv"
-        csvlines = urlread(url, 30).split("\n")[1:] # Discard first line, it contains headers
+        csvlines = urlread(url, 30).splitlines()[1:] # Discard first line, it contains headers. Use urlread to allow caching the external file
+        csvparsed = csv.reader(csvlines, delimiter=',')
         # Filter entries of len<=2 for safety. First column contains the parameter
-        return set(filter(lambda p: len(p) > 2, map(lambda line: line.split(",", 1)[0].strip(), csvlines)))
+        return set(filter(lambda p: len(p) > 2, map(lambda linesplit: linesplit[0].strip(), csvparsed)))
 
     def check(self, tags):
         err = []
@@ -93,7 +95,7 @@ class Website(Plugin):
                     err.append({
                         "class": 30934, "subclass": stablehash64(tag),
                         "text": T_('Tracking parameter in `{0}`', tag),
-                        "fix": [{"~": {tag: urlunsplit(parsed_url)}}]
+                        "fix": {"~": {tag: urlunsplit(parsed_url)}}
                     })
                 elif stripped:
                     err.append({"class": 30931, "fix": {tag: url}})
@@ -149,10 +151,10 @@ class Test(TestPluginCommon):
         # Detect and strip tracker parameters
         err = p.node(None, {"website": "https://osmose.osmose/osmose?osmose=osmose&fbclid=abcdefghijkl&osmose2=test+%2Btest%20test&osmose3=&osmose4"})
         self.check_err(err)
-        self.assertEqual(err[0]["fix"][0]["~"]["website"], "https://osmose.osmose/osmose?osmose=osmose&osmose2=test+%2Btest%20test&osmose3=&osmose4")
+        self.assertEqual(err[0]["fix"]["~"]["website"], "https://osmose.osmose/osmose?osmose=osmose&osmose2=test+%2Btest%20test&osmose3=&osmose4")
         err = p.node(None, {"website": "https://osmose.osmose/osmose/osmose/?utm_campaign=abcdefghijkl#osmose"})
         self.check_err(err)
-        self.assertEqual(err[0]["fix"][0]["~"]["website"], "https://osmose.osmose/osmose/osmose/#osmose")
+        self.assertEqual(err[0]["fix"]["~"]["website"], "https://osmose.osmose/osmose/osmose/#osmose")
 
         # Verify we get no error for other correct URLs
         for good in ("ftp://{0}".format(test_url),
