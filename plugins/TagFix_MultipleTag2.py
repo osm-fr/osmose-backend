@@ -24,10 +24,12 @@ class TagFix_MultipleTag2(PluginMapCSS):
         self.errors[32302] = self.def_class(item = 3230, level = 2, tags = mapcss.list_('tag') + mapcss.list_('fix:chair'), title = mapcss.tr('Suspicious name for a container'))
         self.errors[40106] = self.def_class(item = 4010, level = 3, tags = mapcss.list_('tag') + mapcss.list_('tag', 'tree', 'fix:chair', 'deprecated'), title = mapcss.tr('Deprecated tag'))
         self.errors[40201] = self.def_class(item = 4020, level = 1, tags = mapcss.list_('tag') + mapcss.list_('fix:chair', 'highway', 'roundabout'), title = mapcss.tr('Roundabout as area'))
+        self.errors[40303] = self.def_class(item = 4030, level = 1, tags = mapcss.list_('tag') + mapcss.list_('tag', 'fix:chair'), title = mapcss.tr('Tag conflict'), trap = mapcss.tr('Sometimes the object needs both tags.'), detail = mapcss.tr('The object contains two incompatible tags.'))
         self.errors[71301] = self.def_class(item = 7130, level = 3, tags = mapcss.list_('tag') + mapcss.list_('tag', 'highway', 'maxheight', 'fix:survey'), title = mapcss.tr('Missing maxheight tag'), detail = mapcss.tr('Missing `maxheight=*` or `maxheight:physical=*` for a tunnel or a way under a bridge.'))
         self.errors[303211] = self.def_class(item = 3032, level = 3, tags = mapcss.list_('tag') + mapcss.list_('tag'), title = mapcss.tr('suspicious tag combination'))
 
         self.re_2ae49e65 = re.compile(r'^(motorway_link|trunk_link|primary|primary_link|secondary|secondary_link)$')
+        self.re_5955bda1 = re.compile(r'^(no|informal)$')
 
 
     def node(self, data, tags):
@@ -112,6 +114,60 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 # -osmoseItemClassLevel:"4010/40106/3"
                 # throwWarning:tr("The tag `{0}` is deprecated in favour of {1}","{1.key}","`leaf_type`")
                 err.append({'class': 40106, 'subclass': 0, 'text': mapcss.tr('The tag `{0}` is deprecated in favour of {1}', mapcss._tag_uncapture(capture_tags, '{1.key}'), '`leaf_type`')})
+
+        # *[bridge=yes][tunnel=yes]
+        if ('bridge' in keys and 'tunnel' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'bridge') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'tunnel') == mapcss._value_capture(capture_tags, 1, 'yes')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("Tag conflict")
+                # -osmoseTags:list("tag","fix:chair")
+                # -osmoseTrap:tr("Sometimes the object needs both tags.")
+                # -osmoseDetail:tr("The object contains two incompatible tags.")
+                # -osmoseItemClassLevel:"4030/40303:0/1"
+                # throwWarning:tr("Conflict between tags: `{0}` and `{1}`","{0.tag}","{1.tag}")
+                err.append({'class': 40303, 'subclass': 0, 'text': mapcss.tr('Conflict between tags: `{0}` and `{1}`', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+
+        # node[highway=crossing][crossing][crossing=~/^(no|informal)$/]
+        if ('crossing' in keys and 'highway' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'crossing')) and (mapcss._tag_capture(capture_tags, 1, tags, 'crossing')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_5955bda1), mapcss._tag_capture(capture_tags, 2, tags, 'crossing'))))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("Tag conflict")
+                # -osmoseTags:list("tag","fix:chair")
+                # -osmoseTrap:tr("Sometimes the object needs both tags.")
+                # -osmoseDetail:tr("The object contains two incompatible tags.")
+                # -osmoseItemClassLevel:"4030/40303:1/1"
+                # throwWarning:tr("Conflict between tags: `{1}` must be used without `{0}`","{0.tag}","{1.tag}")
+                # fixRemove:"{0.key}"
+                # assertMatch:"node crossing=no highway=crossing"
+                # assertNoMatch:"node crossing=uncontrolled highway=crossing"
+                err.append({'class': 40303, 'subclass': 1, 'text': mapcss.tr('Conflict between tags: `{1}` must be used without `{0}`', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}')), 'allow_fix_override': True, 'fix': {
+                    '-': ([
+                    mapcss._tag_uncapture(capture_tags, '{0.key}')])
+                }})
+
+        # node[leisure=picnic_table][tourism=picnic_site]
+        if ('leisure' in keys and 'tourism' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'picnic_table')) and (mapcss._tag_capture(capture_tags, 1, tags, 'tourism') == mapcss._value_capture(capture_tags, 1, 'picnic_site')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("Tag conflict")
+                # -osmoseTags:list("tag","fix:chair")
+                # -osmoseTrap:tr("Sometimes the object needs both tags.")
+                # -osmoseDetail:tr("The object contains two incompatible tags.")
+                # -osmoseItemClassLevel:"4030/40303:2/1"
+                # throwWarning:tr("{0} together with {1}. A picnic site rarely consists of only one single picnic table","{0.tag}","{1.tag}")
+                err.append({'class': 40303, 'subclass': 2, 'text': mapcss.tr('{0} together with {1}. A picnic site rarely consists of only one single picnic table', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
         # node[tunnel][!highway][!area:highway][!railway][!waterway][!piste:type][type!=tunnel][public_transport!=platform][route!=ferry][man_made!=pipeline][man_made!=goods_conveyor][man_made!=wildlife_crossing][man_made!=tunnel][power!=cable]
         if ('tunnel' in keys):
@@ -317,6 +373,56 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 # assertMatch:"way highway=primary tunnel=yes"
                 err.append({'class': 71301, 'subclass': 0, 'text': mapcss.tr('Missing maxheight tag')})
 
+        # *[bridge=yes][tunnel=yes]
+        if ('bridge' in keys and 'tunnel' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'bridge') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'tunnel') == mapcss._value_capture(capture_tags, 1, 'yes')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("Tag conflict")
+                # -osmoseTags:list("tag","fix:chair")
+                # -osmoseTrap:tr("Sometimes the object needs both tags.")
+                # -osmoseDetail:tr("The object contains two incompatible tags.")
+                # -osmoseItemClassLevel:"4030/40303:0/1"
+                # throwWarning:tr("Conflict between tags: `{0}` and `{1}`","{0.tag}","{1.tag}")
+                # assertNoMatch:"way bridge=yes tunnel=no"
+                # assertMatch:"way bridge=yes tunnel=yes"
+                err.append({'class': 40303, 'subclass': 0, 'text': mapcss.tr('Conflict between tags: `{0}` and `{1}`', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+
+        # area[leisure=picnic_table][tourism=picnic_site]
+        if ('leisure' in keys and 'tourism' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'picnic_table')) and (mapcss._tag_capture(capture_tags, 1, tags, 'tourism') == mapcss._value_capture(capture_tags, 1, 'picnic_site')) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("Tag conflict")
+                # -osmoseTags:list("tag","fix:chair")
+                # -osmoseTrap:tr("Sometimes the object needs both tags.")
+                # -osmoseDetail:tr("The object contains two incompatible tags.")
+                # -osmoseItemClassLevel:"4030/40303:2/1"
+                # throwWarning:tr("{0} together with {1}. A picnic site rarely consists of only one single picnic table","{0.tag}","{1.tag}")
+                err.append({'class': 40303, 'subclass': 2, 'text': mapcss.tr('{0} together with {1}. A picnic site rarely consists of only one single picnic table', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+
+        # way[attraction=roller_coaster][roller_coaster=track]
+        if ('attraction' in keys and 'roller_coaster' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'attraction') == mapcss._value_capture(capture_tags, 0, 'roller_coaster')) and (mapcss._tag_capture(capture_tags, 1, tags, 'roller_coaster') == mapcss._value_capture(capture_tags, 1, 'track')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("Tag conflict")
+                # -osmoseTags:list("tag","fix:chair")
+                # -osmoseTrap:tr("Sometimes the object needs both tags.")
+                # -osmoseDetail:tr("The object contains two incompatible tags.")
+                # -osmoseItemClassLevel:"4030/40303:3/1"
+                # throwWarning:tr("{0} together with {1}. {0} should be used for the area containing the attraction, {1} for the actual tracks","{0.tag}","{1.tag}")
+                err.append({'class': 40303, 'subclass': 3, 'text': mapcss.tr('{0} together with {1}. {0} should be used for the area containing the attraction, {1} for the actual tracks', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+
         return err
 
     def relation(self, data, tags, members):
@@ -400,6 +506,38 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 # assertMatch:"relation"
                 err.append({'class': 21102, 'subclass': 0, 'text': mapcss.tr('Missing relation type')})
 
+        # *[bridge=yes][tunnel=yes]
+        if ('bridge' in keys and 'tunnel' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'bridge') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'tunnel') == mapcss._value_capture(capture_tags, 1, 'yes')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("Tag conflict")
+                # -osmoseTags:list("tag","fix:chair")
+                # -osmoseTrap:tr("Sometimes the object needs both tags.")
+                # -osmoseDetail:tr("The object contains two incompatible tags.")
+                # -osmoseItemClassLevel:"4030/40303:0/1"
+                # throwWarning:tr("Conflict between tags: `{0}` and `{1}`","{0.tag}","{1.tag}")
+                err.append({'class': 40303, 'subclass': 0, 'text': mapcss.tr('Conflict between tags: `{0}` and `{1}`', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+
+        # area[leisure=picnic_table][tourism=picnic_site]
+        if ('leisure' in keys and 'tourism' in keys and 'type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'picnic_table')) and (mapcss._tag_capture(capture_tags, 1, tags, 'tourism') == mapcss._value_capture(capture_tags, 1, 'picnic_site')) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("Tag conflict")
+                # -osmoseTags:list("tag","fix:chair")
+                # -osmoseTrap:tr("Sometimes the object needs both tags.")
+                # -osmoseDetail:tr("The object contains two incompatible tags.")
+                # -osmoseItemClassLevel:"4030/40303:2/1"
+                # throwWarning:tr("{0} together with {1}. A picnic site rarely consists of only one single picnic table","{0.tag}","{1.tag}")
+                err.append({'class': 40303, 'subclass': 2, 'text': mapcss.tr('{0} together with {1}. A picnic site rarely consists of only one single picnic table', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+
         return err
 
 
@@ -422,6 +560,8 @@ class Test(TestPluginMapcss):
         with with_options(n, {'country': 'FR'}):
             self.check_err(n.node(data, {'amenity': 'recycling', 'recycling:glass': 'yes', 'recycling_type': 'container'}), expected={'class': 32301, 'subclass': 0})
         self.check_err(n.node(data, {'amenity': 'recycling', 'name': 'My nice awesome container', 'recycling_type': 'container'}), expected={'class': 32302, 'subclass': 0})
+        self.check_err(n.node(data, {'crossing': 'no', 'highway': 'crossing'}), expected={'class': 40303, 'subclass': 1})
+        self.check_not_err(n.node(data, {'crossing': 'uncontrolled', 'highway': 'crossing'}), expected={'class': 40303, 'subclass': 1})
         self.check_err(n.way(data, {'amenity': 'fuel', 'building': 'roof'}, [0]), expected={'class': 30322, 'subclass': 0})
         self.check_not_err(n.way(data, {'amenity': 'parking', 'building': 'roof', 'parking': 'rooftop'}, [0]), expected={'class': 30322, 'subclass': 0})
         self.check_err(n.way(data, {'fee': 'yes', 'highway': 'primary'}, [0]), expected={'class': 30320, 'subclass': 1000})
@@ -437,4 +577,6 @@ class Test(TestPluginMapcss):
         self.check_err(n.way(data, {'covered': 'yes', 'highway': 'primary'}, [0]), expected={'class': 71301, 'subclass': 0})
         self.check_not_err(n.way(data, {'highway': 'primary', 'maxheight': '2.4', 'tunnel': 'yes'}, [0]), expected={'class': 71301, 'subclass': 0})
         self.check_err(n.way(data, {'highway': 'primary', 'tunnel': 'yes'}, [0]), expected={'class': 71301, 'subclass': 0})
+        self.check_not_err(n.way(data, {'bridge': 'yes', 'tunnel': 'no'}, [0]), expected={'class': 40303, 'subclass': 0})
+        self.check_err(n.way(data, {'bridge': 'yes', 'tunnel': 'yes'}, [0]), expected={'class': 40303, 'subclass': 0})
         self.check_err(n.relation(data, {}, []), expected={'class': 21102, 'subclass': 0})
