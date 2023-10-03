@@ -121,9 +121,6 @@ class TagRemove_Incompatibles(Plugin):
                 if len(conflict) > 1:
                     return {"class": 900, "subclass": 1, "text": T_("Conflict between tags: {0}", (", ".join(sorted(conflict))))}
 
-        if tags.get('highway') == 'crossing' and tags.get('crossing') == 'no':
-            return {"class": 900, "subclass": 3, "text": T_("Conflict between tags: crossing=no must be used without a highway=crossing")}
-
     def way(self, data, tags, nds):
         return self.node(data, tags)
 
@@ -139,7 +136,6 @@ class Test(TestPluginCommon):
         a.init(None)
         for t in [{"aerialway": "yes", "aeroway": "yes"},
                   {"highway": "trunk", "railway": "rail"},
-                  {"crossing": "no", "highway": "crossing"},
                   {"amenity": "fountain", "leisure": "swimming_pool", "natural": "water"},
                  ]:
             self.check_err(a.node(None, t), t)
