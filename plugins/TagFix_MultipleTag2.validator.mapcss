@@ -179,6 +179,17 @@ node[highway=crossing][crossing][crossing=~/^(no|informal)$/] {
 }
 
 
+node[leisure=picnic_table][tourism=picnic_site],
+area[leisure=picnic_table][tourism=picnic_site] {
+  throwWarning: tr("{0} together with {1}. A picnic site rarely consists of only one single picnic table", "{0.tag}", "{1.tag}");
+  group: tr("Tag conflict");
+  -osmoseItemClassLevel: "4030/40303:2/1";
+  -osmoseTags: list("tag", "fix:chair");
+  -osmoseDetail: tr("The object contains two incompatible tags.");
+  -osmoseTrap: tr("Sometimes the object needs both tags.");
+}
+
+
 /* Workaround for issue #1766 */
 node[tunnel][!highway][!area:highway][!railway][!waterway][!piste:type][type!=tunnel][public_transport!=platform][route!=ferry][man_made!=pipeline][man_made!=goods_conveyor][man_made!=wildlife_crossing][man_made!=tunnel][power!=cable] {
     throwWarning: tr("{0} on suspicious object", "{0.key}");
