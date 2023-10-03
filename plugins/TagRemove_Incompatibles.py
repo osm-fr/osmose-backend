@@ -121,9 +121,6 @@ class TagRemove_Incompatibles(Plugin):
                 if len(conflict) > 1:
                     return {"class": 900, "subclass": 1, "text": T_("Conflict between tags: {0}", (", ".join(sorted(conflict))))}
 
-        if tags.get('bridge') == 'yes' and tags.get('tunnel') == 'yes':
-            return {"class": 900, "subclass": 2, "text": T_("Conflict between tags: 'bridge' and 'tunnel'")}
-
         if tags.get('highway') == 'crossing' and tags.get('crossing') == 'no':
             return {"class": 900, "subclass": 3, "text": T_("Conflict between tags: crossing=no must be used without a highway=crossing")}
 
@@ -142,7 +139,6 @@ class Test(TestPluginCommon):
         a.init(None)
         for t in [{"aerialway": "yes", "aeroway": "yes"},
                   {"highway": "trunk", "railway": "rail"},
-                  {"bridge": "yes", "tunnel": "yes"},
                   {"crossing": "no", "highway": "crossing"},
                   {"amenity": "fountain", "leisure": "swimming_pool", "natural": "water"},
                  ]:
@@ -153,7 +149,6 @@ class Test(TestPluginCommon):
         for t in [{"aerialway": "yes"},
                   {"highway": "residential", "railway": "tram"},
                   {"highway": "bus_stop", "railway": "tram_stop"},
-                  {"bridge": "yes", "tunnel": "no"},
                   {"waterway": "dam", "highway": "road"},
                   {"landuse": "school", "amenity": "school"},
                   {"place": "square", "highway": "pedestrian"},
