@@ -13,20 +13,20 @@ class TagFix_MultipleTag2(PluginMapCSS):
     def init(self, logger):
         super().init(logger)
         tags = capture_tags = {} # noqa
-        self.errors[20800] = self.def_class(item = 2080, level = 1, tags = mapcss.list_('tag') + mapcss.list_('tag', 'highway', 'roundabout', 'fix:chair'), title = mapcss.tr('Tag highway missing on junction'), trap = mapcss.tr('Check if it is really a highway and it is not already mapped.'), detail = mapcss.tr('The way has a tag `junction=*` but without `highway=*`.'))
-        self.errors[20801] = self.def_class(item = 2080, level = 1, tags = mapcss.list_('tag') + mapcss.list_('tag', 'highway', 'fix:chair'), title = mapcss.tr('Tag highway missing on oneway'), trap = mapcss.tr('Check if it is really a highway and it is not already mapped.'), detail = mapcss.tr('The way has a tag `oneway=*` but without `highway=*`.'))
+        self.errors[20800] = self.def_class(item = 2080, level = 1, tags = mapcss.list_('tag') + mapcss.list_('highway', 'roundabout', 'fix:chair'), title = mapcss.tr('Tag highway missing on junction'), trap = mapcss.tr('Check if it is really a highway and it is not already mapped.'), detail = mapcss.tr('The way has a tag `junction=*` but without `highway=*`.'))
+        self.errors[20801] = self.def_class(item = 2080, level = 1, tags = mapcss.list_('tag') + mapcss.list_('highway', 'fix:chair'), title = mapcss.tr('Tag highway missing on oneway'), trap = mapcss.tr('Check if it is really a highway and it is not already mapped.'), detail = mapcss.tr('The way has a tag `oneway=*` but without `highway=*`.'))
         self.errors[20802] = self.def_class(item = 2080, level = 2, tags = mapcss.list_('tag') + mapcss.list_('highway'), title = mapcss.tr('Missing tag ref for emergency access point'))
-        self.errors[21102] = self.def_class(item = 2110, level = 2, tags = mapcss.list_('tag') + mapcss.list_('tag'), title = mapcss.tr('Missing relation type'), detail = mapcss.tr('The relation is missing a `type` tag to define what it represents.'))
-        self.errors[30320] = self.def_class(item = 3032, level = 1, tags = mapcss.list_('tag') + mapcss.list_('fix:chair', 'highway', 'tag'), title = mapcss.tr('Watch multiple tags'))
+        self.errors[21102] = self.def_class(item = 2110, level = 2, tags = mapcss.list_('tag'), title = mapcss.tr('Missing relation type'), detail = mapcss.tr('The relation is missing a `type` tag to define what it represents.'))
+        self.errors[30320] = self.def_class(item = 3032, level = 1, tags = mapcss.list_('tag') + mapcss.list_('fix:chair', 'highway'), title = mapcss.tr('Watch multiple tags'))
         self.errors[30322] = self.def_class(item = 3032, level = 3, tags = mapcss.list_('tag'), title = mapcss.tr('{0} together with {1}, usually {1} is located underneath the {2}. Tag the {3} as a separate object.', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{0.value}'), mapcss._tag_uncapture(capture_tags, '{1.key}')))
-        self.errors[30327] = self.def_class(item = 3032, level = 2, tags = mapcss.list_('tag') + mapcss.list_('tag', 'fix:chair'), title = mapcss.tr('Waterway with `level`'), trap = mapcss.tr('Remove `level` and check if `layer` is needed instead.'), detail = mapcss.tr('The tag `level` should be used for buildings, shops, amenities, etc.'))
+        self.errors[30327] = self.def_class(item = 3032, level = 2, tags = mapcss.list_('tag') + mapcss.list_('fix:chair'), title = mapcss.tr('Waterway with `level`'), trap = mapcss.tr('Remove `level` and check if `layer` is needed instead.'), detail = mapcss.tr('The tag `level` should be used for buildings, shops, amenities, etc.'))
         self.errors[32301] = self.def_class(item = 3230, level = 2, tags = mapcss.list_('tag') + mapcss.list_('fix:chair'), title = mapcss.tr('Probably only for bottles, not any type of glass'), detail = mapcss.tr('Most street-side glass containers only accept soda-lime glass (e.g. bottles and jars), but not glasses for high temperatures or window glass.'), resource = 'https://wiki.openstreetmap.org/wiki/Tag:amenity=recycling')
         self.errors[32302] = self.def_class(item = 3230, level = 2, tags = mapcss.list_('tag') + mapcss.list_('fix:chair'), title = mapcss.tr('Suspicious name for a container'))
-        self.errors[40106] = self.def_class(item = 4010, level = 3, tags = mapcss.list_('tag') + mapcss.list_('tag', 'tree', 'fix:chair', 'deprecated'), title = mapcss.tr('Deprecated tag'))
+        self.errors[40106] = self.def_class(item = 4010, level = 3, tags = mapcss.list_('tag') + mapcss.list_('tree', 'fix:chair', 'deprecated'), title = mapcss.tr('Deprecated tag'))
         self.errors[40201] = self.def_class(item = 4020, level = 1, tags = mapcss.list_('tag') + mapcss.list_('fix:chair', 'highway', 'roundabout'), title = mapcss.tr('Roundabout as area'))
-        self.errors[40303] = self.def_class(item = 4030, level = 1, tags = mapcss.list_('tag') + mapcss.list_('tag', 'fix:chair'), title = mapcss.tr('Tag conflict'), trap = mapcss.tr('Sometimes the object needs both tags.'), detail = mapcss.tr('The object contains two incompatible tags.'))
-        self.errors[71301] = self.def_class(item = 7130, level = 3, tags = mapcss.list_('tag') + mapcss.list_('tag', 'highway', 'maxheight', 'fix:survey'), title = mapcss.tr('Missing maxheight tag'), detail = mapcss.tr('Missing `maxheight=*` or `maxheight:physical=*` for a tunnel or a way under a bridge.'))
-        self.errors[303211] = self.def_class(item = 3032, level = 3, tags = mapcss.list_('tag') + mapcss.list_('tag'), title = mapcss.tr('suspicious tag combination'))
+        self.errors[40303] = self.def_class(item = 4030, level = 1, tags = mapcss.list_('tag') + mapcss.list_('fix:chair'), title = mapcss.tr('Tag conflict'), trap = mapcss.tr('Sometimes the object needs both tags.'), detail = mapcss.tr('The object contains two incompatible tags.'))
+        self.errors[71301] = self.def_class(item = 7130, level = 3, tags = mapcss.list_('tag') + mapcss.list_('highway', 'maxheight', 'fix:survey'), title = mapcss.tr('Missing maxheight tag'), detail = mapcss.tr('Missing `maxheight=*` or `maxheight:physical=*` for a tunnel or a way under a bridge.'))
+        self.errors[303211] = self.def_class(item = 3032, level = 3, tags = mapcss.list_('tag'), title = mapcss.tr('suspicious tag combination'))
 
         self.re_2ae49e65 = re.compile(r'^(motorway_link|trunk_link|primary|primary_link|secondary|secondary_link)$')
         self.re_5955bda1 = re.compile(r'^(no|informal)$')
@@ -110,7 +110,7 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Deprecated tag")
-                # -osmoseTags:list("tag","tree","fix:chair","deprecated")
+                # -osmoseTags:list("tree","fix:chair","deprecated")
                 # -osmoseItemClassLevel:"4010/40106/3"
                 # throwWarning:tr("The tag `{0}` is deprecated in favour of {1}","{1.key}","`leaf_type`")
                 err.append({'class': 40106, 'subclass': 0, 'text': mapcss.tr('The tag `{0}` is deprecated in favour of {1}', mapcss._tag_uncapture(capture_tags, '{1.key}'), '`leaf_type`')})
@@ -124,7 +124,7 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Tag conflict")
-                # -osmoseTags:list("tag","fix:chair")
+                # -osmoseTags:list("fix:chair")
                 # -osmoseTrap:tr("Sometimes the object needs both tags.")
                 # -osmoseDetail:tr("The object contains two incompatible tags.")
                 # -osmoseItemClassLevel:"4030/40303:0/1"
@@ -140,7 +140,7 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Tag conflict")
-                # -osmoseTags:list("tag","fix:chair")
+                # -osmoseTags:list("fix:chair")
                 # -osmoseTrap:tr("Sometimes the object needs both tags.")
                 # -osmoseDetail:tr("The object contains two incompatible tags.")
                 # -osmoseItemClassLevel:"4030/40303:1/1"
@@ -162,7 +162,7 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Tag conflict")
-                # -osmoseTags:list("tag","fix:chair")
+                # -osmoseTags:list("fix:chair")
                 # -osmoseTrap:tr("Sometimes the object needs both tags.")
                 # -osmoseDetail:tr("The object contains two incompatible tags.")
                 # -osmoseItemClassLevel:"4030/40303:2/1"
@@ -178,7 +178,6 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-                # -osmoseTags:list("tag")
                 # -osmoseItemClassLevel:"3032/303211/3"
                 # throwWarning:tr("{0} on suspicious object","{0.key}")
                 err.append({'class': 303211, 'subclass': 0, 'text': mapcss.tr('{0} on suspicious object', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
@@ -262,7 +261,7 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Watch multiple tags")
-                # -osmoseTags:list("fix:chair","highway","tag")
+                # -osmoseTags:list("fix:chair","highway")
                 # -osmoseItemClassLevel:"3032/30320:1000/1"
                 # throwWarning:tr("Use tag \"toll\" instead of \"fee\"")
                 # fixChangeKey:"fee=>toll"
@@ -301,7 +300,7 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'junction')) and (mapcss._tag_capture(capture_tags, 1, tags, 'junction') != mapcss._value_const_capture(capture_tags, 1, 'yes', 'yes')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'highway')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'area:highway')))
                 except mapcss.RuleAbort: pass
             if match:
-                # -osmoseTags:list("tag","highway","roundabout","fix:chair")
+                # -osmoseTags:list("highway","roundabout","fix:chair")
                 # -osmoseTrap:tr("Check if it is really a highway and it is not already mapped.")
                 # -osmoseDetail:tr("The way has a tag `junction=*` but without `highway=*`.")
                 # -osmoseItemClassLevel:"2080/20800:0/1"
@@ -319,7 +318,7 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'oneway')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'highway')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'railway')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'aerialway')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'waterway')) and (not mapcss._tag_capture(capture_tags, 5, tags, 'aeroway')) and (not mapcss._tag_capture(capture_tags, 6, tags, 'piste:type')) and (not mapcss._tag_capture(capture_tags, 7, tags, 'area:highway')) and (mapcss._tag_capture(capture_tags, 8, tags, 'attraction') != mapcss._value_const_capture(capture_tags, 8, 'summer_toboggan', 'summer_toboggan')) and (mapcss._tag_capture(capture_tags, 9, tags, 'leisure') != mapcss._value_const_capture(capture_tags, 9, 'track', 'track')))
                 except mapcss.RuleAbort: pass
             if match:
-                # -osmoseTags:list("tag","highway","fix:chair")
+                # -osmoseTags:list("highway","fix:chair")
                 # -osmoseTrap:tr("Check if it is really a highway and it is not already mapped.")
                 # -osmoseDetail:tr("The way has a tag `oneway=*` but without `highway=*`.")
                 # -osmoseItemClassLevel:"2080/20801:0/1"
@@ -336,7 +335,7 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'waterway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'level')))
                 except mapcss.RuleAbort: pass
             if match:
-                # -osmoseTags:list("tag","fix:chair")
+                # -osmoseTags:list("fix:chair")
                 # -osmoseTrap:tr("Remove `level` and check if `layer` is needed instead.")
                 # -osmoseDetail:tr("The tag `level` should be used for buildings, shops, amenities, etc.")
                 # -osmoseItemClassLevel:"3032/30327:0/2"
@@ -363,7 +362,7 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'covered')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_2ae49e65), mapcss._tag_capture(capture_tags, 1, tags, 'highway'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'maxheight')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'maxheight:physical')) and (mapcss._tag_capture(capture_tags, 4, tags, 'covered') != mapcss._value_const_capture(capture_tags, 4, 'no', 'no')))
                 except mapcss.RuleAbort: pass
             if match:
-                # -osmoseTags:list("tag","highway","maxheight","fix:survey")
+                # -osmoseTags:list("highway","maxheight","fix:survey")
                 # -osmoseDetail:tr("Missing `maxheight=*` or `maxheight:physical=*` for a tunnel or a way under a bridge.")
                 # -osmoseItemClassLevel:"7130/71301:0/3"
                 # throwWarning:tr("Missing maxheight tag")
@@ -382,7 +381,7 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Tag conflict")
-                # -osmoseTags:list("tag","fix:chair")
+                # -osmoseTags:list("fix:chair")
                 # -osmoseTrap:tr("Sometimes the object needs both tags.")
                 # -osmoseDetail:tr("The object contains two incompatible tags.")
                 # -osmoseItemClassLevel:"4030/40303:0/1"
@@ -400,7 +399,7 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Tag conflict")
-                # -osmoseTags:list("tag","fix:chair")
+                # -osmoseTags:list("fix:chair")
                 # -osmoseTrap:tr("Sometimes the object needs both tags.")
                 # -osmoseDetail:tr("The object contains two incompatible tags.")
                 # -osmoseItemClassLevel:"4030/40303:2/1"
@@ -416,7 +415,7 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Tag conflict")
-                # -osmoseTags:list("tag","fix:chair")
+                # -osmoseTags:list("fix:chair")
                 # -osmoseTrap:tr("Sometimes the object needs both tags.")
                 # -osmoseDetail:tr("The object contains two incompatible tags.")
                 # -osmoseItemClassLevel:"4030/40303:3/1"
@@ -499,7 +498,6 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 try: match = ((not mapcss._tag_capture(capture_tags, 0, tags, 'type')))
                 except mapcss.RuleAbort: pass
             if match:
-                # -osmoseTags:list("tag")
                 # -osmoseDetail:tr("The relation is missing a `type` tag to define what it represents.")
                 # -osmoseItemClassLevel:"2110/21102/2"
                 # throwWarning:tr("Missing relation type")
@@ -515,7 +513,7 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Tag conflict")
-                # -osmoseTags:list("tag","fix:chair")
+                # -osmoseTags:list("fix:chair")
                 # -osmoseTrap:tr("Sometimes the object needs both tags.")
                 # -osmoseDetail:tr("The object contains two incompatible tags.")
                 # -osmoseItemClassLevel:"4030/40303:0/1"
@@ -531,7 +529,7 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Tag conflict")
-                # -osmoseTags:list("tag","fix:chair")
+                # -osmoseTags:list("fix:chair")
                 # -osmoseTrap:tr("Sometimes the object needs both tags.")
                 # -osmoseDetail:tr("The object contains two incompatible tags.")
                 # -osmoseItemClassLevel:"4030/40303:2/1"
