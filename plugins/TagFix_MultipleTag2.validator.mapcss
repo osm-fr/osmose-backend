@@ -74,7 +74,7 @@ way[highway][fee][!amenity][!leisure] {
     assertNoMatch: "way highway=service fee=yes amenity=weighbridge";
     fixChangeKey: "fee=>toll";
     -osmoseItemClassLevel: "3032/30320:1000/1";
-    -osmoseTags: list("fix:chair", "highway", "tag");
+    -osmoseTags: list("fix:chair", "highway");
 }
 
 
@@ -94,7 +94,7 @@ way[junction][junction!=yes][!highway][!area:highway] {
     assertNoMatch: "way junction=yes";
     assertNoMatch: "way junction=roundabout highway=service";
     -osmoseItemClassLevel: "2080/20800:0/1";
-    -osmoseTags: list("tag", "highway", "roundabout", "fix:chair");
+    -osmoseTags: list("highway", "roundabout", "fix:chair");
     -osmoseDetail: tr("The way has a tag `junction=*` but without `highway=*`.");
     -osmoseTrap: tr("Check if it is really a highway and it is not already mapped.");
 }
@@ -106,7 +106,7 @@ way[oneway][!highway][!railway][!aerialway][!waterway][!aeroway][!piste:type][!a
     assertMatch: "way oneway=yes building=yes";
     assertNoMatch: "way highway=x cycleway=opposite oneway=yes";
     -osmoseItemClassLevel: "2080/20801:0/1";
-    -osmoseTags: list("tag", "highway", "fix:chair");
+    -osmoseTags: list("highway", "fix:chair");
     -osmoseDetail: tr("The way has a tag `oneway=*` but without `highway=*`.");
     -osmoseTrap: tr("Check if it is really a highway and it is not already mapped.");
 }
@@ -117,7 +117,7 @@ way[waterway][level] {
     assertMatch: "way waterway=stream level=-1";
     fixChangeKey: "level=>layer";
     -osmoseItemClassLevel: "3032/30327:0/2";
-    -osmoseTags: list("tag", "fix:chair");
+    -osmoseTags: list("fix:chair");
     -osmoseDetail: tr("The tag `level` should be used for buildings, shops, amenities, etc.");
     -osmoseTrap: tr("Remove `level` and check if `layer` is needed instead.");
 }
@@ -131,7 +131,7 @@ way[covered][highway=~/^(motorway_link|trunk_link|primary|primary_link|secondary
     assertNoMatch: "way highway=primary tunnel=yes maxheight=2.4";
     assertNoMatch: "way highway=primary covered=no";
     -osmoseItemClassLevel: "7130/71301:0/3";
-    -osmoseTags: list("tag", "highway", "maxheight", "fix:survey");
+    -osmoseTags: list("highway", "maxheight", "fix:survey");
     -osmoseDetail: tr("Missing `maxheight=*` or `maxheight:physical=*` for a tunnel or a way under a bridge.");
 }
 
@@ -140,7 +140,6 @@ relation[!type] {
     throwWarning: tr("Missing relation type");
     assertMatch: "relation";
     -osmoseItemClassLevel: "2110/21102/2";
-    -osmoseTags: list("tag");
     -osmoseDetail: tr("The relation is missing a `type` tag to define what it represents.");
 }
 
@@ -149,7 +148,7 @@ node[natural=tree][type][type!=palm] {
     throwWarning: tr("The tag `{0}` is deprecated in favour of {1}", "{1.key}", "`leaf_type`");
     group: tr("Deprecated tag");
     -osmoseItemClassLevel: "4010/40106/3";
-    -osmoseTags: list("tag", "tree", "fix:chair", "deprecated");
+    -osmoseTags: list("tree", "fix:chair", "deprecated");
     /* No autofix, most remaining values are misspelled (or palm, which cannot easily be converted) */
 }
 
@@ -158,7 +157,7 @@ node[natural=tree][type][type!=palm] {
   throwWarning: tr("Conflict between tags: `{0}` and `{1}`", "{0.tag}", "{1.tag}");
   group: tr("Tag conflict");
   -osmoseItemClassLevel: "4030/40303:0/1";
-  -osmoseTags: list("tag", "fix:chair");
+  -osmoseTags: list("fix:chair");
   -osmoseDetail: tr("The object contains two incompatible tags.");
   -osmoseTrap: tr("Sometimes the object needs both tags.");
   assertMatch: "way bridge=yes tunnel=yes";
@@ -170,7 +169,7 @@ node[highway=crossing][crossing][crossing=~/^(no|informal)$/] {
   throwWarning: tr("Conflict between tags: `{1}` must be used without `{0}`", "{0.tag}", "{1.tag}");
   group: tr("Tag conflict");
   -osmoseItemClassLevel: "4030/40303:1/1";
-  -osmoseTags: list("tag", "fix:chair");
+  -osmoseTags: list("fix:chair");
   -osmoseDetail: tr("The object contains two incompatible tags.");
   -osmoseTrap: tr("Sometimes the object needs both tags.");
   assertMatch: "node crossing=no highway=crossing";
@@ -184,7 +183,7 @@ area[leisure=picnic_table][tourism=picnic_site] {
   throwWarning: tr("{0} together with {1}. A picnic site rarely consists of only one single picnic table", "{0.tag}", "{1.tag}");
   group: tr("Tag conflict");
   -osmoseItemClassLevel: "4030/40303:2/1";
-  -osmoseTags: list("tag", "fix:chair");
+  -osmoseTags: list("fix:chair");
   -osmoseDetail: tr("The object contains two incompatible tags.");
   -osmoseTrap: tr("Sometimes the object needs both tags.");
 }
@@ -194,7 +193,7 @@ way[attraction=roller_coaster][roller_coaster=track] {
   throwWarning: tr("{0} together with {1}. {0} should be used for the area containing the attraction, {1} for the actual tracks", "{0.tag}", "{1.tag}");
   group: tr("Tag conflict");
   -osmoseItemClassLevel: "4030/40303:3/1";
-  -osmoseTags: list("tag", "fix:chair");
+  -osmoseTags: list("fix:chair");
   -osmoseDetail: tr("The object contains two incompatible tags.");
   -osmoseTrap: tr("Sometimes the object needs both tags.");
 }
@@ -205,5 +204,4 @@ node[tunnel][!highway][!area:highway][!railway][!waterway][!piste:type][type!=tu
     throwWarning: tr("{0} on suspicious object", "{0.key}");
     group: tr("suspicious tag combination");
     -osmoseItemClassLevel: "3032/303211/3"; /* Not using 9001/9001002 as we don't know how JOSM will change its rules */
-    -osmoseTags: list("tag");
 }
