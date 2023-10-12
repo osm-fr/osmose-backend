@@ -94,6 +94,7 @@ class TagRemove_Incompatibles(Plugin):
                 ['event_venue', 'leisure', 'garden'],
                 ['gambling', 'leisure', 'adult_gaming_centre'],
                 ['restaurant', 'leisure', 'amusement_arcade'],
+                ['sanitary_dump_station', 'waterway', 'sanitary_dump_station'],
             ],
         }.items()
 
