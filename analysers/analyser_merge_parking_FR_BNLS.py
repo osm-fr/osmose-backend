@@ -41,7 +41,7 @@ on the wiki. Add a node or add tags if already existing.''')
             title = T_('{0} parking integration suggestion', 'BNLS'),
             detail = doc_detail,
             trap = T_(
-'''It is not street parking, it is only closed (with or without fee, for all or not...)'''))
+'''It is not street parking, it is off-road parking (with or without fee, for all or not...)'''))
         self.update_official = self.def_class(item = 8132, id = 54, level = 3, tags = ['merge', 'parking', 'fix:chair', 'fix:survey'],
             title = T_('{0} parking  update', 'BNLS'),
             detail = doc_detail)
