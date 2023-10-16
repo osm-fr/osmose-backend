@@ -21,8 +21,8 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .formatters.IRVEChecker import IRVE_checker
 from .Analyser_Merge import Analyser_Merge_Point, Source, CSV, Load_XY, Conflate, Select, Mapping
+import re
 
 
 class Analyser_Merge_Charging_station_FR(Analyser_Merge_Point):
@@ -52,7 +52,82 @@ class Analyser_Merge_Charging_station_FR(Analyser_Merge_Point):
                                        tags=['merge', 'fix:imagery', 'fix:survey', 'fix:picture'],
                                        title=T_('Car charging station update'), **doc)
 
+    def remove_trailing_zeros(input_string):
+        """
+        Removes dot and zeros at the end of a floating number typed in string
+        """
+        return str(input_string).replace('.00', '').replace('.0', '')
 
+    def is_float(str):
+        """
+        Returns True if the input string can be converted to a float, False otherwise.
+        """
+        pattern = r"^-?\d+(\.\d+)?$"
+        return bool(re.match(pattern, str))
+
+    def socket_output_find_correspondances(power: str):
+        """
+           convert the number of Watts to kiloWatts
+           output example:
+           - "400 kW"
+           - "7 kW"
+           - "50.6 kW"
+        """
+        power = power.replace(',', '.')
+
+        # remove extremely high values or the ones containing letters
+        max_output_kw = 1999
+        detection_watts = 2000
+        # we take an upper limit of 400 kW
+        max_kw = 401
+
+        # values under the max expected kW are used as is,
+        # upper values are Watts, which we should divide by 1000 to get kW
+
+        if not power:
+            return ''
+        if re.search(r"[a-zA-Z]+", power):
+            return ''
+
+        if not is_float(power) and int(power) > detection_watts:
+            power = int(power) / 1000
+
+        if not is_float(power) or float(power) < 1:
+            return ''
+
+        if float(power) < max_output_kw:
+            return '{0} kW'.format(remove_trailing_zeros(str(round(float(power), 2))))
+
+        else:
+            if float(power) > (max_kw * 1000):
+                return ''
+
+        # clean the values of power
+        cleanedPower = remove_trailing_zeros(power)
+        converted_power = (float(cleanedPower)) or 0
+
+        if "." in str(converted_power):
+            if '.0' in str(converted_power) or '.00' in str(converted_power):
+                str_power = str(converted_power).replace('.0', '')
+                converted_power = int(str_power)
+
+        if converted_power > detection_watts and converted_power < (max_kw * 1000):
+            converted_power = remove_trailing_zeros(converted_power / 1000)
+            if float(converted_power) > max_output_kw:
+                return '';
+            else:
+                if float(converted_power) > max_kw:
+                    return '{0} kW'.format(remove_trailing_zeros(converted_power / 1000))
+        else:
+            converted_power = converted_power / 1000
+
+        if float(converted_power) > max_kw:
+            return ''
+
+        if converted_power != 0:
+            return '{0} kW'.format(converted_power)
+        else:
+            return ''
 
 
 self.init(
@@ -84,7 +159,8 @@ self.init(
                 "operator:email": "contact_operateur",
                 "start_date": "date_mise_en_service",
                 "capacity": "nbre_pdc",
-                "charging_station:output": lambda fields: IRVE_checker.socket_output_find_correspondances(fields['puissance_nominale']) if fields["puissance_nominale"] else None,
+                "charging_station:output": lambda fields: self.socket_output_find_correspondances(
+                    fields['puissance_nominale']) if fields["puissance_nominale"] else None,
                 "bicycle": lambda fields: "yes" if fields["station_deux_roues"] == "true" else None,
                 "motorcycle": lambda fields: "yes" if fields["station_deux_roues"] == "true" else None,
                 "moped": lambda fields: "yes" if fields["station_deux_roues"] == "true" else None,
@@ -117,31 +193,32 @@ self.init(
 import unittest
 from analysers.formatters.IRVEChecker import IRVE_checker
 
+
 class Test(unittest.TestCase):
     def test_output_kw_bad_input(self):
-        self.assertEqual(IRVE_checker.socket_output_find_correspondances('bonjour'), '')
-        self.assertEqual(IRVE_checker.socket_output_find_correspondances('0'), '')
-        self.assertEqual(IRVE_checker.socket_output_find_correspondances(''), '')
-        self.assertEqual(IRVE_checker.socket_output_find_correspondances('Non applicable'), '')
-        self.assertEqual(IRVE_checker.socket_output_find_correspondances('132456789'), '')
+        self.assertEqual(Analyser_Merge_Charging_station_FR.socket_output_find_correspondances('bonjour'), '')
+        self.assertEqual(Analyser_Merge_Charging_station_FR.socket_output_find_correspondances('0'), '')
+        self.assertEqual(Analyser_Merge_Charging_station_FR.socket_output_find_correspondances(''), '')
+        self.assertEqual(Analyser_Merge_Charging_station_FR.socket_output_find_correspondances('Non applicable'), '')
+        self.assertEqual(Analyser_Merge_Charging_station_FR.socket_output_find_correspondances('132456789'), '')
 
     def test_output_watts(self):
-        # self.assertEqual(IRVE_checker.socket_output_find_correspondances('3600'), '3.6 kW')
-        self.assertEqual(IRVE_checker.socket_output_find_correspondances('3600'), '3.6 kW')
-        self.assertEqual(IRVE_checker.socket_output_find_correspondances('50000'), '50 kW')
-        self.assertEqual(IRVE_checker.socket_output_find_correspondances('400000'), '400 kW')
+        # self.assertEqual(Analyser_Merge_Charging_station_FR.socket_output_find_correspondances('3600'), '3.6 kW')
+        self.assertEqual(Analyser_Merge_Charging_station_FR.socket_output_find_correspondances('3600'), '3.6 kW')
+        self.assertEqual(Analyser_Merge_Charging_station_FR.socket_output_find_correspondances('50000'), '50 kW')
+        self.assertEqual(Analyser_Merge_Charging_station_FR.socket_output_find_correspondances('400000'), '400 kW')
 
     def test_output_kw_round(self):
-        self.assertEqual(IRVE_checker.socket_output_find_correspondances('150'), '150 kW')
-        self.assertEqual(IRVE_checker.socket_output_find_correspondances('300'), '300 kW')
-        self.assertEqual(IRVE_checker.socket_output_find_correspondances('50'), '50 kW')
+        self.assertEqual(Analyser_Merge_Charging_station_FR.socket_output_find_correspondances('150'), '150 kW')
+        self.assertEqual(Analyser_Merge_Charging_station_FR.socket_output_find_correspondances('300'), '300 kW')
+        self.assertEqual(Analyser_Merge_Charging_station_FR.socket_output_find_correspondances('50'), '50 kW')
 
     def test_output_kw_float(self):
-        self.assertEqual(IRVE_checker.socket_output_find_correspondances('50.7'), '50.7 kW')
-        self.assertEqual(IRVE_checker.socket_output_find_correspondances('50.0'), '50 kW')
-        self.assertEqual(IRVE_checker.socket_output_find_correspondances('50.00'), '50 kW')
-        self.assertEqual(IRVE_checker.socket_output_find_correspondances('1.00'), '1 kW')
-        self.assertEqual(IRVE_checker.socket_output_find_correspondances('1.0'), '1 kW')
-        self.assertEqual(IRVE_checker.socket_output_find_correspondances('1'), '1 kW')
-        self.assertEqual(IRVE_checker.socket_output_find_correspondances('7.4'), '7.4 kW')
-        self.assertEqual(IRVE_checker.socket_output_find_correspondances('3.6'), '3.6 kW')
+        self.assertEqual(Analyser_Merge_Charging_station_FR.socket_output_find_correspondances('50.7'), '50.7 kW')
+        self.assertEqual(Analyser_Merge_Charging_station_FR.socket_output_find_correspondances('50.0'), '50 kW')
+        self.assertEqual(Analyser_Merge_Charging_station_FR.socket_output_find_correspondances('50.00'), '50 kW')
+        self.assertEqual(Analyser_Merge_Charging_station_FR.socket_output_find_correspondances('1.00'), '1 kW')
+        self.assertEqual(Analyser_Merge_Charging_station_FR.socket_output_find_correspondances('1.0'), '1 kW')
+        self.assertEqual(Analyser_Merge_Charging_station_FR.socket_output_find_correspondances('1'), '1 kW')
+        self.assertEqual(Analyser_Merge_Charging_station_FR.socket_output_find_correspondances('7.4'), '7.4 kW')
+        self.assertEqual(Analyser_Merge_Charging_station_FR.socket_output_find_correspondances('3.6'), '3.6 kW')
