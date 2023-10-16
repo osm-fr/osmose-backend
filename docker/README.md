@@ -91,7 +91,7 @@ docker-compose -f docker-compose.yml -f docker-compose-dev.yml run --rm backend
 
 On the first execution only, compile the OSM PBF parser:
 ```
-cd modules/osm_pbf_parser/ && make && cd -
+cd ../modules/osm_pbf_parser/ && make && cd -
 ```
 
 Note: when exiting the backend, the dependency Database container will still be
