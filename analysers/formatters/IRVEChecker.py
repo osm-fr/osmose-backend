@@ -39,11 +39,9 @@ class IRVE_checker():
         # values under the max expected kW are used as is,
         # upper values are Watts, which we should divide by 1000 to get kW
 
-        print("input: ", power)
         if not power:
             return ''
         if re.search(r"[a-zA-Z]+", power):
-            print("The string contains letters.")
             return ''
 
         if not is_float(power) and int(power) > detection_watts:
@@ -64,15 +62,12 @@ class IRVE_checker():
         converted_power = (float(cleanedPower)) or 0
 
         if "." in str(converted_power):
-            # print("contient une partie décimale")
             if '.0' in str(converted_power) or '.00' in str(converted_power):
                 str_power = str(converted_power).replace('.0', '')
                 converted_power = int(str_power)
 
-        print('converted_power', converted_power)
         if converted_power > detection_watts and converted_power < (max_kw * 1000):
             converted_power = remove_trailing_zeros(converted_power / 1000)
-            print('power is in watt, converted gives:', converted_power)
             if float(converted_power) > max_output_kw:
                 return '';
             else:
