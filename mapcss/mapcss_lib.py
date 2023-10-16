@@ -333,7 +333,7 @@ def _tag_capture(stock, index, tags, key_name):
                         return str_value(stock_index[1])
                     return str_value(tags[k])
             # No match found, store the regex
-            stock_index[0] = key_name.pattern
+            stock_index[0] = key_name.pattern_letters
     return None_value
 
 def _value_capture(stock, index, value):

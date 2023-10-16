@@ -21,6 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
+from .formatters.IRVEChecker import IRVE_checker
 from .Analyser_Merge import Analyser_Merge_Point, Source, CSV, Load_XY, Conflate, Select, Mapping
 
 
@@ -51,26 +52,7 @@ class Analyser_Merge_Charging_station_FR(Analyser_Merge_Point):
                                        tags=['merge', 'fix:imagery', 'fix:survey', 'fix:picture'],
                                        title=T_('Car charging station update'), **doc)
 
-    @property
-    def socket_output_find_correspondances(power: str):
-        """
-           convert the number of Watts to kiloWatts
-           output example: "50.6 kW"
-        """
-        # clean the values of power
-        power = int(float(power.replace(',', '.').replace('.00', '')))
-        converted_power = 0
-        max_output = 401
 
-        # we take an upper limit of 400 kW
-        if (power > max_output):
-            converted_power = power + ' kW'
-
-        else:
-            if (power > 1000 and power > max_output):
-                converted_power = power / 1000
-
-        return converted_power + ' kW'
 
 
 self.init(
@@ -102,7 +84,7 @@ self.init(
                 "operator:email": "contact_operateur",
                 "start_date": "date_mise_en_service",
                 "capacity": "nbre_pdc",
-                "charging_station:output": lambda fields: self.socket_output_find_correspondances(fields['puissance_nominale']) if fields["puissance_nominale"] else None,
+                "charging_station:output": lambda fields: IRVE_checker.socket_output_find_correspondances(fields['puissance_nominale']) if fields["puissance_nominale"] else None,
                 "bicycle": lambda fields: "yes" if fields["station_deux_roues"] == "true" else None,
                 "motorcycle": lambda fields: "yes" if fields["station_deux_roues"] == "true" else None,
                 "moped": lambda fields: "yes" if fields["station_deux_roues"] == "true" else None,
