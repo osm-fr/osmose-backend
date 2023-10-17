@@ -76,42 +76,39 @@ class Analyser_Merge_Charging_station_FR(Analyser_Merge_Point):
         if not self.is_float(power) or float(power) < 1:
             return ''
 
+        # clean the values of power
+        string_power = str(round(float(power), 2))
+        cleaned_power = (self.remove_trailing_zeros(string_power))
         if float(power) < max_output_kw:
-            return '{0} kW'.format(
-                self.remove_trailing_zeros(str(round(float(power), 2))))
+            return '{0} kW'.format(cleaned_power)
 
         else:
             if float(power) > (max_kw * 1000):
                 return ''
+        if "." in str(cleaned_power):
+            if '.0' in str(cleaned_power) or '.00' in str(cleaned_power):
+                str_power = str(cleaned_power).replace('.0', '')
+                cleaned_power = int(str_power)
 
-        # clean the values of power
-        cleanedPower = self.remove_trailing_zeros(power)
-        converted_power = (float(cleanedPower)) or 0
-
-        if "." in str(converted_power):
-            if '.0' in str(converted_power) or '.00' in str(converted_power):
-                str_power = str(converted_power).replace('.0', '')
-                converted_power = int(str_power)
-
-        if converted_power > detection_watts and converted_power < (
+        if float(cleaned_power) > detection_watts and float(cleaned_power) < (
                 max_kw * 1000):
-            converted_power = self.remove_trailing_zeros(
-                converted_power / 1000)
-            if float(converted_power) > max_output_kw:
+            cleaned_power = self.remove_trailing_zeros(
+                float(cleaned_power) / 1000)
+            if float(cleaned_power) > max_output_kw:
                 return ''
             else:
-                if float(converted_power) > max_kw:
+                if float(cleaned_power) > max_kw:
                     return '{0} kW'.format(
                         self.remove_trailing_zeros(
-                            converted_power / 1000))
+                            float(cleaned_power) / 1000))
         else:
-            converted_power = converted_power / 1000
+            cleaned_power = float(cleaned_power) / 1000
 
-        if float(converted_power) > max_kw:
+        if float(cleaned_power) > max_kw:
             return ''
 
-        if converted_power != 0:
-            return '{0} kW'.format(converted_power)
+        if cleaned_power != 0:
+            return '{0} kW'.format(cleaned_power)
         else:
             return ''
 
@@ -204,28 +201,28 @@ class Analyser_Merge_Charging_station_FR(Analyser_Merge_Point):
                         "fee": lambda fields: "yes" if fields["gratuit_grouped"] == "false" else (
                             "no" if fields["gratuit_grouped"] == "true" else None),
                         "authentication:none": lambda fields: "yes" if fields[
-                            "paiement_acte_grouped"] == "true" else None,
+                                                                           "paiement_acte_grouped"] == "true" else None,
                         "payment:credit_cards": lambda fields: "yes" if fields["paiement_cb_grouped"] == "true" else (
                             "no" if fields["paiement_cb_grouped"] == "false" else None),
                         "reservation": lambda fields: "yes" if fields["reservation_grouped"] == "true" else None,
                         "wheelchair": lambda fields: "yes" if fields[
-                            "accessibilite_pmr_grouped"] == "Accessible mais non réservé PMR" else (
+                                                                  "accessibilite_pmr_grouped"] == "Accessible mais non réservé PMR" else (
                             "no" if fields["accessibilite_pmr_grouped"] == "Non accessible" else None),
                         "socket:typee": lambda fields: fields["nb_EF_grouped"] if fields[
-                            "nb_EF_grouped"] != "0" else None,
+                                                                                      "nb_EF_grouped"] != "0" else None,
                         "socket:type2": lambda fields: fields["nb_T2_grouped"] if fields[
-                            "nb_T2_grouped"] != "0" else None,
+                                                                                      "nb_T2_grouped"] != "0" else None,
                         "socket:type2_cable": lambda fields: fields["cable_t2_attache"] if fields[
-                            "cable_t2_attache"] == "1" else None,
+                                                                                               "cable_t2_attache"] == "1" else None,
                         "socket:type2_combo": lambda fields: fields["nb_combo_ccs_grouped"] if fields[
-                            "nb_combo_ccs_grouped"] != "0" else None,
+                                                                                                   "nb_combo_ccs_grouped"] != "0" else None,
                         "socket:chademo": lambda fields: fields["nb_chademo_grouped"] if fields[
-                            "nb_chademo_grouped"] != "0" else None
+                                                                                             "nb_chademo_grouped"] != "0" else None
                     },
                     text=lambda tags, fields: {
                         "en": "{0}, {1}, {2}".format(fields["nom_station"], fields["adresse_station"],
                                                      fields["observations"] if fields[
-                            "observations"] != "null" else "-")}
+                                                                                   "observations"] != "null" else "-")}
                 )
             )
         )
