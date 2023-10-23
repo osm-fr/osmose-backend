@@ -23,6 +23,18 @@
 from modules.OsmoseTranslation import T_
 from .Analyser_Osmosis import Analyser_Osmosis
 
+sql10 = """
+-- From https://wiki.postgresql.org/wiki/Array_reverse
+-- Inverts the sequence of the elements in an array
+CREATE OR REPLACE FUNCTION array_reverse(anyarray) RETURNS anyarray AS $$
+SELECT ARRAY(
+    SELECT $1[i]
+    FROM generate_subscripts($1,1) AS s(i)
+    ORDER BY i DESC
+);
+$$ LANGUAGE 'sql' STRICT IMMUTABLE;
+"""
+
 sql20 = """
 SELECT
     wid,
@@ -77,8 +89,10 @@ sql30 = """
 CREATE TEMP TABLE oneway_highway AS
 SELECT
   id,
-  nodes,
-  tags?'oneway' AND tags->'oneway' = '-1' AS oneway_reverse,
+  CASE -- If oneway=-1, pretent the way is the other way around
+    WHEN tags?'oneway' AND tags->'oneway' = '-1' THEN array_reverse(nodes)
+    ELSE nodes
+  END AS nodes,
   linestring,
   array_length(nodes, 1) AS length,
   generate_subscripts(nodes, 1) AS nid_index
@@ -178,10 +192,7 @@ SELECT DISTINCT ON (nid)
   oneway.id AS wid,
   terminal.id AS nid,
   terminal.geom AS geom,
-  CASE
-    WHEN oneway_reverse THEN terminal.id = oneway.nodes[1]
-    ELSE terminal.id = oneway.nodes[oneway.length]
-  END AS is_oneway_last_node
+  terminal.id = oneway.nodes[oneway.length] AS is_oneway_last_node
 FROM
   oneway_highway AS oneway
   JOIN nodes AS terminal ON
@@ -215,17 +226,8 @@ FROM
     (
       array_length(array_positions(other_highway.nodes, oneway_terminal.nid), 1) != 1 OR -- end node of loop/self-intersecting way that also occurs elsewhere
       (
-        other_highway.oneway_reverse AND
-        (
-          (NOT oneway_terminal.is_oneway_last_node AND oneway_terminal.nid != other_highway.nodes[other_highway.length]) OR
-          (oneway_terminal.is_oneway_last_node AND oneway_terminal.nid != other_highway.nodes[1])
-        )
-      ) OR (
-        NOT other_highway.oneway_reverse AND
-        (
-          (oneway_terminal.is_oneway_last_node AND oneway_terminal.nid != other_highway.nodes[other_highway.length]) OR
-          (NOT oneway_terminal.is_oneway_last_node AND oneway_terminal.nid != other_highway.nodes[1])
-        )
+        (oneway_terminal.is_oneway_last_node AND oneway_terminal.nid != other_highway.nodes[other_highway.length]) OR
+        (NOT oneway_terminal.is_oneway_last_node AND oneway_terminal.nid != other_highway.nodes[1])
       )
     )
 WHERE
@@ -244,10 +246,7 @@ FROM (
     id AS wid,
     nid_index,
     length,
-    CASE
-      WHEN oneway_reverse THEN nodes[length - nid_index + 1]
-      ELSE nodes[nid_index]
-    END AS nid
+    nodes[nid_index] AS nid
   FROM
     oneway_highway
   ) AS t
@@ -423,6 +422,7 @@ Ensure that `service=drive-through` is the correct tag.''')),
         elif not boundary_relation:
           boundary_relation = "(0)"
 
+        self.run(sql10)
         self.run(sql30)
         self.run(sql31)
         self.run(sql32.format(boundary_ids=boundary_relation))

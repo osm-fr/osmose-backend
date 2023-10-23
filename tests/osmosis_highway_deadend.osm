@@ -155,6 +155,14 @@
   <node id='150' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85233092156' lon='5.83730267008' />
   <node id='151' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85556437347' lon='5.82683739266' />
   <node id='152' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85556585241' lon='5.82696669393' />
+  <node id='153' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84930613215' lon='5.83702217775'>
+    <tag k='entrance' v='garage' />
+  </node>
+  <node id='154' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84910293273' lon='5.83724538949' />
+  <node id='155' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84929161794' lon='5.83745685324' />
+  <node id='156' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84913023756' lon='5.83769227449'>
+    <tag k='entrance' v='garage' />
+  </node>
   <way id='1000' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='1' />
     <nd ref='2' />
@@ -713,5 +721,23 @@
     <tag k='highway' v='service' />
     <tag k='name' v='Class 5 good' />
     <tag k='service' v='drive-through' />
+  </way>
+  <way id='1081' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='153' />
+    <nd ref='154' />
+    <tag k='highway' v='residential' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1082' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='155' />
+    <nd ref='154' />
+    <tag k='highway' v='residential' />
+    <tag k='oneway' v='-1' />
+  </way>
+  <way id='1083' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='155' />
+    <nd ref='156' />
+    <tag k='highway' v='residential' />
+    <tag k='oneway' v='yes' />
   </way>
 </osm>
