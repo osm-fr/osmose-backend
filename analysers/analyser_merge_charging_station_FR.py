@@ -3,7 +3,8 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Noémie Lehuby 2020, Baptiste Lemoine 2023                  ##
+## Copyrights Noémie Lehuby 2020                                         ##
+##            Baptiste Lemoine 2023                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -26,14 +27,15 @@ from .Analyser_Merge import Analyser_Merge_Point, Source, CSV, Load_XY, Conflate
 import re
 
 
-WIKIDATA_MAP = {
-    "ionity": "Q42717773",
-    "bouygues": "Q3046208",
-    "freshmile": "Q111209120",
-    "lidl": "Q115764851",
-}
 
 class Analyser_Merge_Charging_station_FR(Analyser_Merge_Point):
+
+    WIKIDATA_MAP = {
+        "ionity": "Q42717773",
+        "bouygues": "Q3046208",
+        "freshmile": "Q111209120",
+        "lidl": "Q115764851",
+    }
 
     def remove_trailing_zeros(input_string):
         """
@@ -61,7 +63,7 @@ class Analyser_Merge_Charging_station_FR(Analyser_Merge_Point):
         Returns:
             str: The Wikidata reference to the charging station network, or an empty string if no match was found.
         """
-        wikidata_item = WIKIDATA_MAP.get(str.lower(), "")
+        wikidata_item = self.WIKIDATA_MAP.get(str.lower(), "")
         return wikidata_item
 
     @staticmethod
