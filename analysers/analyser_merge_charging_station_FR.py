@@ -112,10 +112,6 @@ class Analyser_Merge_Charging_station_FR(Analyser_Merge_Point):
         else:
             if float(power) > (max_kw * 1000):
                 return ''
-        if "." in str(cleaned_power):
-            if '.0' in str(cleaned_power) or '.00' in str(cleaned_power):
-                str_power = str(cleaned_power).replace('.0', '')
-                cleaned_power = int(str_power)
 
         if float(cleaned_power) > detection_watts and float(cleaned_power) < (
                 max_kw * 1000):
