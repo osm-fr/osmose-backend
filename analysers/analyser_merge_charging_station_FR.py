@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Noémie Lehuby 2020                                         ##
+## Copyrights Noémie Lehuby 2020, Baptiste Lemoine 2023                  ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -26,16 +26,43 @@ from .Analyser_Merge import Analyser_Merge_Point, Source, CSV, Load_XY, Conflate
 import re
 
 
+WIKIDATA_MAP = {
+    "ionity": "Q42717773",
+    "bouygues": "Q3046208",
+    "freshmile": "Q111209120",
+    "lidl": "Q115764851",
+}
+
 class Analyser_Merge_Charging_station_FR(Analyser_Merge_Point):
+
     def remove_trailing_zeros(input_string):
         """
-        Removes dot and zeros at the end of a floating number typed in string
+        Removes all trailing zeros from a string.
+
+        Args:
+            input_string (str): The input string to remove trailing zeros from.
+
+        Returns:
+            str: The input string with all trailing zeros removed.
         """
-        return str(input_string).replace('.00', '').replace('.0', '')
+        input_string = str(input_string).replace(',', '.').replace('  ', '')
+        return re.sub(r'[.,]0+$', '', input_string)
 
+
+
+    @staticmethod
     def map_wikidata_from_operator(self, str):
+        """
+        Returns a Wikidata reference to a charging station network if found in the input string.
 
-        return str
+        Args:
+            str (str): The input string to search for a charging station network.
+
+        Returns:
+            str: The Wikidata reference to the charging station network, or an empty string if no match was found.
+        """
+        wikidata_item = WIKIDATA_MAP.get(str.lower(), "")
+        return wikidata_item
 
     @staticmethod
     def is_float(str):
@@ -217,7 +244,9 @@ class Analyser_Merge_Charging_station_FR(Analyser_Merge_Point):
                         "socket:type2_combo": lambda fields: fields["nb_combo_ccs_grouped"] if fields[
                                                                                                    "nb_combo_ccs_grouped"] != "0" else None,
                         "socket:chademo": lambda fields: fields["nb_chademo_grouped"] if fields[
-                                                                                             "nb_chademo_grouped"] != "0" else None
+                                                                                             "nb_chademo_grouped"] != "0" else None,
+                        "wikimedia:network": lambda fields: self.map_wikidata_from_operator( fields["nom_enseigne"]) if fields[
+                                                                                             "nom_enseigne"] != "0" else None
                     },
                     text=lambda tags, fields: {
                         "en": "{0}, {1}, {2}".format(fields["nom_station"], fields["adresse_station"],
@@ -280,6 +309,12 @@ class Test(unittest.TestCase):
                 Analyser_Merge_Charging_station_FR, '50.7'), '50.7 kW')
         self.assertEqual(
             Analyser_Merge_Charging_station_FR.socket_output_find_correspondances(
+                Analyser_Merge_Charging_station_FR, '1001.000'), '1001 kW')
+        self.assertEqual(
+            Analyser_Merge_Charging_station_FR.socket_output_find_correspondances(
+                Analyser_Merge_Charging_station_FR, '100.01'), '100.01 kW')
+        self.assertEqual(
+            Analyser_Merge_Charging_station_FR.socket_output_find_correspondances(
                 Analyser_Merge_Charging_station_FR, '50.0'), '50 kW')
         self.assertEqual(
             Analyser_Merge_Charging_station_FR.socket_output_find_correspondances(
@@ -304,3 +339,17 @@ class Test(unittest.TestCase):
         self.assertEqual(
             Analyser_Merge_Charging_station_FR.socket_output_find_correspondances(
                 Analyser_Merge_Charging_station_FR, '3.6'), '3.6 kW')
+
+    def test_wikimedia_network(self):
+        self.assertEqual(
+            Analyser_Merge_Charging_station_FR.map_wikidata_from_operator(
+                Analyser_Merge_Charging_station_FR, 'ionity'), 'Q42717773')
+        self.assertEqual(
+            Analyser_Merge_Charging_station_FR.map_wikidata_from_operator(
+                Analyser_Merge_Charging_station_FR, 'IONITY'), 'Q42717773')
+        self.assertEqual(
+            Analyser_Merge_Charging_station_FR.map_wikidata_from_operator(
+                Analyser_Merge_Charging_station_FR, 'liDL'), 'Q115764851')
+        self.assertEqual(
+            Analyser_Merge_Charging_station_FR.map_wikidata_from_operator(
+                Analyser_Merge_Charging_station_FR, 'le père noël'), '')
