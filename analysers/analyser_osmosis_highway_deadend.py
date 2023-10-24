@@ -105,7 +105,7 @@ WHERE
 """
 
 sql31 = """
-CREATE INDEX idx_oneway_highway_linestring ON oneway_highway USING GIST(linestring);
+CREATE INDEX idx_oneway_highway_linestring ON oneway_highway USING GIST(linestring) WHERE nid_index=1;
 """
 
 sql32 = """
@@ -116,7 +116,7 @@ SELECT DISTINCT
 FROM
   ways
 WHERE
-  ways.tags != '' AND
+  ways.tags != ''::hstore AND
   (
     (ways.tags?'amenity' AND ways.tags->'amenity' = 'parking') OR
     (ways.tags?'railway' AND ways.tags->'railway' = 'platform') OR
@@ -128,7 +128,7 @@ SELECT
 FROM
   nodes
 WHERE
-  tags != '' AND
+  tags != ''::hstore AND
   (
     (tags?'amenity'  AND tags->'amenity' = 'parking_entrance') OR
     (tags?'entrance' AND tags->'entrance' IN ('garage', 'emergency'))
@@ -177,7 +177,8 @@ FROM
   allowed_end_nodes
   JOIN oneway_highway ON
     -- Note that we cannot literally only get the first and last node, as i.e. in a looped oneway the 'oneway-entrance/exit node' might be in the middle
-    allowed_end_nodes.id = ANY(oneway_highway.nodes)
+    allowed_end_nodes.id = ANY(oneway_highway.nodes) AND
+    oneway_highway.nid_index = 1 -- no need to compare length(nodes) times
 """
 
 sql35 = """
@@ -190,23 +191,19 @@ sql36 = """
 CREATE TEMP TABLE oneway_terminal AS
 SELECT DISTINCT ON (nid)
   oneway.id AS wid,
-  terminal.id AS nid,
-  terminal.geom AS geom,
-  terminal.id = oneway.nodes[oneway.length] AS is_oneway_last_node
+  oneway.nodes[oneway.nid_index] AS nid,
+  (SELECT geom FROM nodes WHERE id = oneway.nodes[oneway.nid_index]) AS geom,
+  oneway.nid_index = oneway.length AS is_oneway_last_node
 FROM
   oneway_highway AS oneway
-  JOIN nodes AS terminal ON
-    (
-      terminal.id = oneway.nodes[1] OR
-      terminal.id = oneway.nodes[oneway.length]
-    )
   LEFT JOIN allowed_oneway_end_nodes ON
-    terminal.id = allowed_oneway_end_nodes.id
+    oneway.nodes[oneway.nid_index] = allowed_oneway_end_nodes.id
 WHERE
+  oneway.nid_index IN (1, oneway.length) AND
   allowed_oneway_end_nodes IS NULL AND
-  array_length(array_positions(oneway.nodes, terminal.id), 1) = 1 -- exclude end nodes folding back into the same way, e.g. in P or O-shaped ways
+  array_length(array_positions(oneway.nodes, oneway.nodes[oneway.nid_index]), 1) = 1 -- exclude end nodes folding back into the same way, e.g. in P or O-shaped ways
 ORDER BY
-  terminal.id,
+  nid,
   oneway.id
 """
 
@@ -222,6 +219,7 @@ FROM
   LEFT JOIN oneway_highway AS other_highway ON
     oneway_terminal.nid = ANY(other_highway.nodes) AND
     oneway_terminal.geom && other_highway.linestring AND -- much faster than comparison with nid
+    other_highway.nid_index = 1 AND -- no need to compare length(nodes) times
     oneway_terminal.wid != other_highway.id AND
     (
       array_length(array_positions(other_highway.nodes, oneway_terminal.nid), 1) != 1 OR -- end node of loop/self-intersecting way that also occurs elsewhere
