@@ -189,22 +189,28 @@ DROP TABLE allowed_end_nodes;
 sql36 = """
 -- All end nodes of oneway streets
 CREATE TEMP TABLE oneway_terminal AS
-SELECT DISTINCT ON (nid)
-  oneway.id AS wid,
-  oneway.nodes[oneway.nid_index] AS nid,
-  (SELECT geom FROM nodes WHERE id = oneway.nodes[oneway.nid_index]) AS geom,
-  oneway.nid_index = oneway.length AS is_oneway_last_node
-FROM
-  oneway_highway AS oneway
-  LEFT JOIN allowed_oneway_end_nodes ON
-    oneway.nodes[oneway.nid_index] = allowed_oneway_end_nodes.id
-WHERE
-  oneway.nid_index IN (1, oneway.length) AND
-  allowed_oneway_end_nodes IS NULL AND
-  array_length(array_positions(oneway.nodes, oneway.nodes[oneway.nid_index]), 1) = 1 -- exclude end nodes folding back into the same way, e.g. in P or O-shaped ways
-ORDER BY
-  nid,
-  oneway.id
+SELECT
+  t.*,
+  geom
+FROM (
+  SELECT DISTINCT ON (nid)
+    oneway.id AS wid,
+    oneway.nodes[oneway.nid_index] AS nid,
+    oneway.nid_index = oneway.length AS is_oneway_last_node
+  FROM
+    oneway_highway AS oneway
+    LEFT JOIN allowed_oneway_end_nodes ON
+      oneway.nodes[oneway.nid_index] = allowed_oneway_end_nodes.id
+  WHERE
+    oneway.nid_index IN (1, oneway.length) AND
+    allowed_oneway_end_nodes IS NULL AND
+    array_length(array_positions(oneway.nodes, oneway.nodes[oneway.nid_index]), 1) = 1 -- exclude end nodes folding back into the same way, e.g. in P or O-shaped ways
+  ORDER BY
+    nid,
+    oneway.id
+  ) AS t
+  JOIN nodes ON
+    id = nid
 """
 
 sql37 = """
@@ -332,9 +338,11 @@ FROM (
   SELECT
     wid,
     nid,
-    (SELECT geom FROM nodes WHERE id = nid) AS geom
+    geom
   FROM
     results_recursive
+    JOIN nodes ON
+      nodes.id = results_recursive.nid
 ) AS t
 ORDER BY
   nid,
