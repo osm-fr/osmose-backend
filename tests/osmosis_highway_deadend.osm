@@ -66,7 +66,7 @@
   <node id='60' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85087001185' lon='5.83813418247' />
   <node id='61' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85087001185' lon='5.83761765118' />
   <node id='62' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85103301305' lon='5.83784784447' />
-  <node id='63' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85342247358' lon='5.83319906287' />
+  <node id='63' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.8504719855' lon='5.83444584376' />
   <node id='64' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85187279705' lon='5.83383133115' />
   <node id='65' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85186194549' lon='5.83451380738' />
   <node id='66' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85204140432' lon='5.83450929137' />
@@ -83,8 +83,86 @@
   <node id='77' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85536371943' lon='5.82689960204' />
   <node id='78' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.8552634216' lon='5.82729637275' />
   <node id='79' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85536226544' lon='5.82729731998' />
-  <node id='80' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85556437347' lon='5.82683739266' />
-  <node id='81' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85556585241' lon='5.82696669393' />
+  <node id='80' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85023345128' lon='5.83400713838' />
+  <node id='81' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85046218988' lon='5.83368649808' />
+  <node id='82' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85026412479' lon='5.83331620168' />
+  <node id='83' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85003538518' lon='5.83363684198' />
+  <node id='84' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85026125888' lon='5.83612908765' />
+  <node id='85' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85048859837' lon='5.83573017223' />
+  <node id='86' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85023562373' lon='5.83535234653' />
+  <node id='87' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85000828297' lon='5.83575126195' />
+  <node id='88' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.8528034534' lon='5.83505070482' />
+  <node id='89' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85281003242' lon='5.8341153924' />
+  <node id='90' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85281655224' lon='5.83318849507' />
+  <node id='91' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85316601494' lon='5.83412195539' />
+  <node id='92' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85316780979' lon='5.8338667865' />
+  <node id='93' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85316366588' lon='5.83445591569' />
+  <node id='94' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85023413996' lon='5.8344480093' />
+  <node id='95' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85047590338' lon='5.83474785195' />
+  <node id='96' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85023464736' lon='5.83474795711' />
+  <node id='97' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85065249137' lon='5.83444420029' />
+  <node id='98' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85065583997' lon='5.83474777351' />
+  <node id='99' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85002114194' lon='5.83474805018' />
+  <node id='100' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85002496339' lon='5.8344499138' />
+  <node id='101' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84987371675' lon='5.83474832251' />
+  <node id='102' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84987371675' lon='5.83444709241' />
+  <node id='103' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85046346117' lon='5.83788287583' />
+  <node id='104' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85024956181' lon='5.83789057597' />
+  <node id='105' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85067735952' lon='5.83787517568' />
+  <node id='106' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85045870467' lon='5.83753660206' />
+  <node id='107' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85046821768' lon='5.8382291496' />
+  <node id='108' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85097768992' lon='5.83475221856' />
+  <node id='109' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85111849826' lon='5.83475483871' />
+  <node id='110' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85112031458' lon='5.83449902273' />
+  <node id='111' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85097950624' lon='5.83449640259' />
+  <node id='112' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85119498122' lon='5.83499817832' />
+  <node id='113' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85127397966' lon='5.83495091632' />
+  <node id='114' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85298218618' lon='5.83740033563' />
+  <node id='115' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85298218618' lon='5.83713342864' />
+  <node id='116' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85281274282' lon='5.83713342864' />
+  <node id='117' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85281274282' lon='5.83740033563' />
+  <node id='118' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85281274282' lon='5.83771172711' />
+  <node id='119' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85298218618' lon='5.83771172711' />
+  <node id='120' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85302225199' lon='5.8370722708' />
+  <node id='121' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85152128532' lon='5.8346478629' />
+  <node id='122' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85143541605' lon='5.83458113615' />
+  <node id='123' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85144572037' lon='5.83475907414' />
+  <node id='124' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85140793785' lon='5.83487028539' />
+  <node id='125' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85019098107' lon='5.8376225058' />
+  <node id='126' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85019927485' lon='5.83723761428' />
+  <node id='127' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85005945392' lon='5.83722971835' />
+  <node id='128' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85005646202' lon='5.83736856345' />
+  <node id='129' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85019628297' lon='5.83737645937' />
+  <node id='130' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85034658292' lon='5.8373892145' />
+  <node id='131' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84976479214' lon='5.83785205739'>
+    <tag k='amenity' v='parking_entrance' />
+  </node>
+  <node id='132' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84976307327' lon='5.8373964906' />
+  <node id='133' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84964209548' lon='5.83739768681' />
+  <node id='134' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.8496428894' lon='5.8376081051' />
+  <node id='135' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84976386718' lon='5.83760690889' />
+  <node id='136' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84960820292' lon='5.83736384474' />
+  <node id='137' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85007412959' lon='5.83789033095' />
+  <node id='138' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85007875878' lon='5.83826596142' />
+  <node id='139' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85014477313' lon='5.83810701073' />
+  <node id='140' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85007696375' lon='5.83810904357' />
+  <node id='141' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84999049234' lon='5.83810808606' />
+  <node id='142' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85249840029' lon='5.83773533993' />
+  <node id='143' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85260805587' lon='5.83767364981' />
+  <node id='147' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84970483707' lon='5.83749903043' />
+  <node id='148' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85246990716' lon='5.83727205663' />
+  <node id='149' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85236117697' lon='5.83706388515' />
+  <node id='150' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85233092156' lon='5.83730267008' />
+  <node id='151' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85556437347' lon='5.82683739266' />
+  <node id='152' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85556585241' lon='5.82696669393' />
+  <node id='153' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84930613215' lon='5.83702217775'>
+    <tag k='entrance' v='garage' />
+  </node>
+  <node id='154' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84910293273' lon='5.83724538949' />
+  <node id='155' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84929161794' lon='5.83745685324' />
+  <node id='156' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84913023756' lon='5.83769227449'>
+    <tag k='entrance' v='garage' />
+  </node>
   <way id='1000' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='1' />
     <nd ref='2' />
@@ -148,7 +226,7 @@
     <nd ref='18' />
     <tag k='highway' v='residential' />
   </way>
-  <way id='1009' action='modify' timestamp='2014-03-31T22:00:00Z' version='1'>
+  <way id='1009' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='23' />
     <nd ref='20' />
     <nd ref='21' />
@@ -157,6 +235,7 @@
   </way>
   <way id='1010' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='24' />
+    <nd ref='142' />
     <nd ref='29' />
     <nd ref='30' />
     <nd ref='25' />
@@ -188,6 +267,7 @@
   <way id='1014' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='33' />
     <nd ref='28' />
+    <nd ref='143' />
     <nd ref='32' />
     <nd ref='34' />
     <tag k='highway' v='service' />
@@ -346,11 +426,318 @@
   </way>
   <way id='1036' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='80' />
-    <nd ref='70' />
     <nd ref='81' />
+    <nd ref='82' />
+    <tag k='highway' v='residential' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1037' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='80' />
+    <nd ref='83' />
+    <nd ref='82' />
+    <tag k='highway' v='residential' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1038' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='84' />
+    <nd ref='87' />
+    <nd ref='86' />
+    <tag k='highway' v='residential' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1039' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='86' />
+    <nd ref='96' />
+    <nd ref='94' />
+    <nd ref='80' />
+    <tag k='highway' v='residential' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1040' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='84' />
+    <nd ref='85' />
+    <nd ref='86' />
+    <tag k='highway' v='residential' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1041' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='81' />
+    <nd ref='63' />
+    <nd ref='95' />
+    <nd ref='85' />
+    <tag k='highway' v='residential' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1042' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='87' />
+    <nd ref='99' />
+    <nd ref='100' />
+    <nd ref='83' />
+    <tag k='highway' v='residential' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1043' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='88' />
+    <nd ref='89' />
+    <nd ref='90' />
+    <tag k='highway' v='residential' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1044' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='89' />
+    <nd ref='91' />
+    <tag k='highway' v='residential' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1045' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='92' />
+    <nd ref='91' />
+    <nd ref='93' />
+    <tag k='highway' v='residential' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1046' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='88' />
+    <nd ref='93' />
+    <tag k='highway' v='residential' />
+  </way>
+  <way id='1047' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='94' />
+    <nd ref='63' />
+    <tag k='highway' v='residential' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1048' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='95' />
+    <nd ref='98' />
+    <tag k='highway' v='residential' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1049' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='97' />
+    <nd ref='63' />
+    <tag k='highway' v='residential' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1050' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='95' />
+    <nd ref='96' />
+    <tag k='highway' v='residential' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1051' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='101' />
+    <nd ref='99' />
+    <nd ref='96' />
+    <tag k='highway' v='residential' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1052' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='94' />
+    <nd ref='100' />
+    <nd ref='102' />
+    <tag k='highway' v='residential' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1053' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='103' />
+    <nd ref='104' />
+    <tag k='highway' v='residential' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1054' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='103' />
+    <nd ref='105' />
+    <tag k='highway' v='residential' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1055' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='106' />
+    <nd ref='104' />
+    <nd ref='107' />
+    <nd ref='105' />
+    <nd ref='106' />
+    <tag k='highway' v='residential' />
+  </way>
+  <way id='1056' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='106' />
+    <nd ref='103' />
+    <tag k='highway' v='residential' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1057' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='107' />
+    <nd ref='103' />
+    <tag k='highway' v='residential' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1058' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='108' />
+    <nd ref='109' />
+    <nd ref='110' />
+    <tag k='highway' v='residential' />
+    <tag k='note' v='Inaccessible: no entry ways' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1059' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='110' />
+    <nd ref='111' />
+    <nd ref='108' />
+    <tag k='highway' v='residential' />
+    <tag k='note' v='Inaccessible: no entry ways' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1060' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='109' />
+    <nd ref='112' />
+    <tag k='highway' v='residential' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1061' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='113' />
+    <nd ref='112' />
+    <tag k='highway' v='residential' />
+  </way>
+  <way id='1062' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='114' />
+    <nd ref='115' />
+    <nd ref='116' />
+    <nd ref='117' />
+    <nd ref='118' />
+    <nd ref='119' />
+    <nd ref='114' />
+    <nd ref='117' />
+    <tag k='highway' v='residential' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1063' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='115' />
+    <nd ref='120' />
+    <tag k='highway' v='residential' />
+  </way>
+  <way id='1064' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='121' />
+    <nd ref='122' />
+    <nd ref='123' />
+    <nd ref='121' />
+    <tag k='highway' v='residential' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1065' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='123' />
+    <nd ref='124' />
+    <tag k='highway' v='residential' />
+  </way>
+  <way id='1066' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='125' />
+    <nd ref='129' />
+    <nd ref='126' />
+    <nd ref='127' />
+    <nd ref='128' />
+    <nd ref='129' />
+    <tag k='highway' v='residential' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1067' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='129' />
+    <nd ref='130' />
+    <tag k='highway' v='residential' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1068' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='130' />
+    <nd ref='125' />
+    <tag k='highway' v='residential' />
+  </way>
+  <way id='1069' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='131' />
+    <nd ref='135' />
+    <nd ref='132' />
+    <nd ref='133' />
+    <nd ref='134' />
+    <nd ref='135' />
+    <tag k='highway' v='residential' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1070' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='133' />
+    <nd ref='136' />
+    <tag k='highway' v='residential' />
+  </way>
+  <way id='1071' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='137' />
+    <nd ref='140' />
+    <nd ref='138' />
+    <nd ref='139' />
+    <nd ref='140' />
+    <tag k='highway' v='residential' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1072' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='141' />
+    <nd ref='140' />
+    <tag k='highway' v='residential' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1073' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='137' />
+    <nd ref='141' />
+    <nd ref='138' />
+    <tag k='highway' v='residential' />
+  </way>
+  <way id='1074' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='142' />
+    <nd ref='143' />
+    <tag k='highway' v='service' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1077' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='132' />
+    <nd ref='147' />
+    <tag k='highway' v='service' />
+    <tag k='oneway' v='yes' />
+    <tag k='vehicle' v='destination' />
+  </way>
+  <way id='1078' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='147' />
+    <nd ref='134' />
+    <tag k='highway' v='path' />
+    <tag k='oneway' v='yes' />
+    <tag k='vehicle' v='destination' />
+  </way>
+  <way id='1079' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='148' />
+    <nd ref='149' />
+    <nd ref='150' />
+    <nd ref='148' />
+    <tag k='highway' v='raceway' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1080' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='151' />
+    <nd ref='70' />
+    <nd ref='152' />
+    <nd ref='151' />
     <tag k='highway' v='service' />
     <tag k='name' v='Class 5 good' />
     <tag k='service' v='drive-through' />
+  </way>
+  <way id='1081' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='153' />
+    <nd ref='154' />
+    <tag k='highway' v='residential' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1082' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='155' />
+    <nd ref='154' />
+    <tag k='highway' v='residential' />
+    <tag k='oneway' v='-1' />
+  </way>
+  <way id='1083' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='155' />
+    <nd ref='156' />
+    <tag k='highway' v='residential' />
+    <tag k='oneway' v='yes' />
   </way>
 </osm>
