@@ -186,7 +186,7 @@ BEGIN
                 SELECT
                     *,
                     ST_Transform(poly, {1}) AS poly_proj,
-                    ST_IsValid(poly) AS is_valid
+                    ST_IsValid(poly) AND ST_IsValid(ST_Transform(poly, {1})) AS is_valid -- see #2058 sometimes poly is considered valid but poly_proj not
                 FROM
                     multi;
             END IF;
