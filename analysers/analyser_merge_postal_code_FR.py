@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge_Point, SourceOpenDataSoft, CSV, Load_XY, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, Source, CSV, Load_XY, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Postal_Code_FR(Analyser_Merge_Point):
@@ -33,11 +33,11 @@ class Analyser_Merge_Postal_Code_FR(Analyser_Merge_Point):
             title = T_('Postal code, integration suggestion'))
 
         self.init(
-            "https://datanova.legroupe.laposte.fr/explore/dataset/laposte_hexasmal",
+            "https://datanova.laposte.fr/datasets/laposte-hexasmal",
             "Base officielle des codes postaux",
-            CSV(SourceOpenDataSoft(
+            CSV(Source( # Portal "data-fair", no specific source implemented yet
                 attribution="La Poste",
-                url="https://datanova.legroupe.laposte.fr/explore/dataset/laposte_hexasmal"),
+                fileUrl="https://datanova.laposte.fr/data-fair/api/v1/datasets/laposte-hexasmal/data-files/019HexaSmal-full.csv"),
                 srid = False),
             Load_XY(),
             Conflate(
