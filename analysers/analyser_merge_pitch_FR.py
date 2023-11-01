@@ -55,7 +55,7 @@ class SubAnalyser_Merge_Pitch_FR(SubAnalyser_Merge_Dynamic):
             CSV(SourceOpenDataSoft(
                 attribution = "Le ministère de la ville, de la jeunesse et des sports",
                 url = "https://equipements-sgsocialgouv.opendatasoft.com/explore/dataset/data-es/"),
-                fields=["Longitude (WGS84)", "Latitude (WGS84)", "Type d'équipement sportif", "Numéro de l'installation sportive", "Nom de l'installation sportive", "Nom du bâtiment", "Nature du sol"]),
+                fields=["Longitude (WGS84)", "Latitude (WGS84)", "Type d'équipement sportif", "Numéro de l'installation sportive", "Nom de l'installation sportive", "Nom de l'équipement sportif", "Nature du sol"]),
             Load_XY("Longitude (WGS84)", "Latitude (WGS84)",
                 select = {"Type d'équipement sportif": topic},
                 where = lambda row: self.validLatLon(row)),
@@ -68,7 +68,7 @@ class SubAnalyser_Merge_Pitch_FR(SubAnalyser_Merge_Dynamic):
                     static1 = dict(dict(**osmTags), **defaultTags),
                     static2 = {"source": self.source},
                     mapping1 = {"surface": self.surface},
-                text = lambda tags, fields: {"en": ", ".join(filter(lambda i: i != "None", [fields["Numéro de l'installation sportive"], fields["Type d'équipement sportif"], fields["Nom de l'installation sportive"], fields["Nom du bâtiment"]]))} )))
+                text = lambda tags, fields: {"en": ", ".join(filter(lambda i: i != "None", [fields["Numéro de l'installation sportive"], fields["Type d'équipement sportif"], fields["Nom de l'installation sportive"], fields["Nom de l'équipement sportif"]]))} )))
 
     def validLatLon(self, row):
         if abs(float(row["Longitude (WGS84)"])) <= 180 and abs(float(row["Latitude (WGS84)"])) <= 90:
