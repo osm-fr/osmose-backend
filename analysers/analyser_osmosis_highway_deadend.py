@@ -116,11 +116,12 @@ SELECT DISTINCT
 FROM
   ways
 WHERE
-  ways.tags != ''::hstore AND
+  tags != ''::hstore AND
   (
-    (ways.tags?'amenity' AND ways.tags->'amenity' = 'parking') OR
-    (ways.tags?'railway' AND ways.tags->'railway' = 'platform') OR
-    (ways.tags?'aeroway' AND ways.tags->'aeroway' = 'taxiway')
+    (tags?'amenity' AND tags->'amenity' = 'parking') OR
+    (tags?'railway' AND tags->'railway' = 'platform') OR
+    (tags?'aeroway' AND tags->'aeroway' = 'taxiway') OR
+    (tags?'aerialway' AND tags->'aerialway' IN ('station', 'zip_line'))
   )
 UNION ALL
 SELECT
@@ -131,7 +132,8 @@ WHERE
   tags != ''::hstore AND
   (
     (tags?'amenity'  AND tags->'amenity' = 'parking_entrance') OR
-    (tags?'entrance' AND tags->'entrance' IN ('garage', 'emergency'))
+    (tags?'entrance' AND tags->'entrance' IN ('garage', 'emergency')) OR
+    (tags?'aerialway' AND tags->'aerialway' = 'station')
   )
 UNION ALL
 SELECT DISTINCT
