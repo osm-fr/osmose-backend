@@ -28,24 +28,24 @@ msgstr "Відсутній режим транспортування, зміні
 msgid ""
 "Missing public_transport:version tag on a public_transport route relation"
 msgstr ""
-"Відсутній теґ public_transport:version на зв'язку маршруту громадського "
+"Відсутній теґ public_transport:version на звʼязку маршруту громадського "
 "транспорту"
 
 #: ../transport.validator.mapcss:100
 msgid "Missing network tag on a public_transport relation"
-msgstr "Відсутній теґ network на зв'язку public_transport"
+msgstr "Відсутній теґ network на звʼязку public_transport"
 
 #: ../transport.validator.mapcss:109
 msgid "Missing operator tag on a public_transport relation"
-msgstr "Відсутній теґ operator у зв'язку громадського транспорту"
+msgstr "Відсутній теґ operator у звʼязку громадського транспорту"
 
 #: ../transport.validator.mapcss:118
 msgid "Missing ref tag for line number on a public_transport relation"
-msgstr "Відсутній теґ ref для номеру лінії на зв'язку public_transport"
+msgstr "Відсутній теґ ref для номеру лінії на звʼязку public_transport"
 
 #: ../transport.validator.mapcss:127
 msgid "Missing from/to tag on a public_transport route relation"
-msgstr "Відсутній теґ from/to у зв'язку маршруту громадського транспорту"
+msgstr "Відсутній теґ from/to у звʼязку маршруту громадського транспорту"
 
 #: ../transport.validator.mapcss:184
 msgid "The stops may not be in the right order"
@@ -81,12 +81,12 @@ msgid ""
 "The line variant does not belong to any line, add it to the route_master "
 "relation"
 msgstr ""
-"Варіант лінії не належить жодній лінії, додайте його до зв'язку route_master"
+"Варіант лінії не належить жодній лінії, додайте його до звʼязку route_master"
 
 #: ../transport.validator.mapcss:297
 msgid "The stop is not served by any line, add it to a route relation"
 msgstr ""
-"Зупинка не обслуговується жодною лінією, додайте її до зв'язку маршруту"
+"Зупинка не обслуговується жодною лінією, додайте її до звʼязку маршруту"
 
 #: ../transport.validator.mapcss:222 ../transport.validator.mapcss:233
 msgid "Missing public_transport tag on a public transport stop"
@@ -216,4 +216,4 @@ msgid ""
 "The station entrance should be in part of a station: add it to a stop_area "
 "relation"
 msgstr ""
-"Вхід до станції має бути частиною станції: додайте його до зв'язку stop_area"
+"Вхід до станції має бути частиною станції: додайте його до звʼязку stop_area"
