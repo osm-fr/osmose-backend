@@ -29,8 +29,8 @@ SELECT
     ways.id,
     ST_AsText(way_locate(ways.linestring)) AS geom
 FROM
-    {1}highways AS ways
-    JOIN {2}highways AS conns ON
+    highways AS ways
+    JOIN highways AS conns ON
         conns.linestring && ways.linestring AND
         conns.nodes && ways.nodes AND
         conns.id != ways.id AND
@@ -65,8 +65,8 @@ SELECT
   nodes.id,
   ST_AsText(nodes.geom)
 FROM
-  highways AS roundabouts
-  JOIN nodes ON
+  {0}highways AS roundabouts
+  JOIN {1}nodes AS nodes ON
     roundabouts.linestring && nodes.geom AND
     nodes.id = ANY(roundabouts.nodes) AND
     nodes.tags != ''::hstore AND
@@ -88,7 +88,7 @@ class Analyser_Osmosis_Roundabout(Analyser_Osmosis):
         Analyser_Osmosis.__init__(self, config, logger)
         if not "proj" in self.config.options:
             return
-        self.classs_change[1] = self.def_class(item = 2010, level = 1, tags = ['highway', 'roundabout', 'fix:imagery'],
+        self.classs[1] = self.def_class(item = 2010, level = 1, tags = ['highway', 'roundabout', 'fix:imagery'],
             title = T_('Missing `junction=roundabout`'),
             detail = T_(
 '''This looks like a roundabout, but the tag `junction=roundabout` is not
@@ -103,7 +103,7 @@ on the right, and remove the tag `oneway=yes` if present.'''),
 survey.
 
 Ensure the traffic on the roundabout has right of way. If not, use `junction=circular` instead.'''))
-        self.classs[2] = self.def_class(item = 2010, level = 2, tags = ['highway', 'roundabout', 'fix:imagery'],
+        self.classs_change[2] = self.def_class(item = 2010, level = 2, tags = ['highway', 'roundabout', 'fix:imagery'],
             title = T_('Roundabout without right of way'),
             detail = T_(
 '''A highway with `junction=roundabout` must by definition have the right of way.
@@ -122,16 +122,17 @@ If the node with `highway=traffic_signals`, `give_way` or `stop` is actually for
                 [{"+": {"junction":"circular"}}, {"+": {"junction":"roundabout"}}] if country and country.startswith("JP") else
                 {"+": {"junction":"roundabout"}})
         }
+        self.callback20 = lambda res: {"class":2, "data":[self.way_full, self.node_full, self.positionAsText]}
 
     def analyser_osmosis_full(self):
-        self.run(sql10.format(self.config.options.get("proj"), "", ""), self.callback10)
+        self.run(sql20.format("", ""), self.callback20)
 
     def analyser_osmosis_diff(self):
-        self.run(sql10.format(self.config.options.get("proj"), "touched_", ""), self.callback10)
-        self.run(sql10.format(self.config.options.get("proj"), "not_touched_", "touched_"), self.callback10)
+        self.run(sql20.format("touched_", ""), self.callback20)
+        self.run(sql20.format("not_touched_", "touched_"), self.callback20)
 
     def analyser_osmosis_common(self):
-        self.run(sql20, lambda res: {"class":2, "data":[self.way_full, self.node_full, self.positionAsText]})
+        self.run(sql10.format(self.config.options.get("proj")), self.callback10)
 
 
 
