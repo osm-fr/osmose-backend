@@ -133,12 +133,12 @@ FROM
         ways.tags->'waterway' AS waterway,
         ways.tags->'building' AS building
     FROM
-        {0}relations AS relations
+        relations
         JOIN relation_members ON
             relation_members.relation_id = relations.id AND
             relation_members.member_type = 'W' AND
             relation_members.member_role IN ('', 'outer')
-        JOIN {1}ways AS ways ON
+        JOIN ways ON
             ways.id = relation_members.member_id
     WHERE
         relations.tags?'type' AND
@@ -213,7 +213,7 @@ as `inner` role.'''))
             detail = T_(
 '''Multipolygon defines a nature that is different from that specified in
 the outers roles.'''))
-        self.classs_change[3] = self.def_class(item = 1170, level = 2, tags = ['relation', 'fix:chair', 'multipolygon'],
+        self.classs[3] = self.def_class(item = 1170, level = 2, tags = ['relation', 'fix:chair', 'multipolygon'],
             title = T_('Inconsistent multipolygon member nature'),
             detail = T_(
 '''Multipolygon does not define nature, several found on the outer role
@@ -237,12 +237,14 @@ a polygon or a part of a multipolygon as outer role.'''),
             "text": {"en": u", ".join(map(lambda k: "{0}={1}".format(*k), filter(lambda k: k[1], (("area",res[2]), ("landuse",res[3]), ("natural",res[4]), ("waterway",res[5]), ("leisure",res[6]), ("amenity",res[7]), ("building",res[8])))))}
         }
 
+    def analyser_osmosis_common(self):
+        self.run(sql30, self.callback30)
+
     def analyser_osmosis_full(self):
         self.run(sql10)
         self.run(sql11)
         self.run(sql12.format("", "", ""), self.callback10)
         self.run(sql20.format("", ""), self.callback20)
-        self.run(sql30.format("", ""), self.callback30)
         self.run(sql40.format(""), self.callback40)
 
     def analyser_osmosis_diff(self):
@@ -254,6 +256,4 @@ a polygon or a part of a multipolygon as outer role.'''),
         self.run(sql12.format("not_touched_", "not_touched_", "touched_"), self.callback10)
         self.run(sql20.format("touched_", ""), self.callback20)
         self.run(sql20.format("not_touched_", "touched_"), self.callback20)
-        self.run(sql30.format("touched_", ""), self.callback30)
-        self.run(sql30.format("not_touched_", "touched_"), self.callback30)
         self.run(sql40.format("touched_"), self.callback40)
