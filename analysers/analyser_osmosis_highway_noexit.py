@@ -29,10 +29,10 @@ SELECT
     ST_AsText(nodes.geom),
     COUNT(*) > 1
 FROM
-    {1}highways AS ways
+    highways AS ways
     JOIN way_nodes ON
       way_nodes.way_id = ways.id
-    JOIN {0}nodes AS nodes ON
+    JOIN nodes ON
       nodes.id = way_nodes.node_id AND
       nodes.tags != ''::hstore AND
       nodes.tags?'noexit' AND
@@ -82,11 +82,10 @@ HAVING
 class Analyser_Osmosis_Highway_Noexit(Analyser_Osmosis):
 
     requires_tables_full = ['highways']
-    requires_tables_diff = ['highways', 'touched_highways', 'not_touched_highways']
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = self.def_class(item = 3210, level = 2, tags = ['highway', 'tag', 'fix:chair'],
+        self.classs[1] = self.def_class(item = 3210, level = 2, tags = ['highway', 'tag', 'fix:chair'],
             title = T_('Noexit on node with exit'))
         self.classs[2] = self.def_class(item = 3210, level = 2, tags = ['highway', 'tag', 'fix:chair'],
             title = T_('Noexit on way with multiple exits'))
@@ -94,14 +93,9 @@ class Analyser_Osmosis_Highway_Noexit(Analyser_Osmosis):
         self.callback20 = lambda res: {"class":2, "data":[self.way_full, self.positionAsText], "fix":{"-":["noexit"]} }
 
     def analyser_osmosis_common(self):
+        self.run(sql10, self.callback10)
         self.run(sql20, self.callback20)
 
-    def analyser_osmosis_full(self):
-        self.run(sql10.format("", ""), self.callback10)
-
-    def analyser_osmosis_diff(self):
-        self.run(sql10.format("touched_", "not_touched_"), self.callback10)
-        self.run(sql10.format("", "touched_"), self.callback10)
 
 ###########################################################################
 
