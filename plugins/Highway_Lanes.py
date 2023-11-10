@@ -239,12 +239,12 @@ or right (for `only_left`) side of the lane to which changing is possible.'''),
         stars = list(set(stars))
 
         for star in stars:
-            l = star + '' in tags_lanes
-            lf = star + ':forward' in tags_lanes
-            lb = star + ':backward' in tags_lanes
-            l2 = star + ':both_ways' in tags_lanes
+            l = star + ':lanes' in tags_lanes
+            lf = star + ':lanes:forward' in tags_lanes
+            lb = star + ':lanes:backward' in tags_lanes
+            l2 = star + ':lanes:both_ways' in tags_lanes
             if l and (lf or lb or l2):
-                err.append({"class": 31603, "subclass": 0 + stablehash64(star), "text": {"en": star + ":*"}})
+                err.append({"class": 31603, "subclass": 0 + stablehash64(star), "text": {"en": star + ":lanes:*"}})
 
         if err != []:
             return err
@@ -255,7 +255,6 @@ or right (for `only_left`) side of the lane to which changing is possible.'''),
                 try:
                     n = int(tags_lanes[tag])
                     parts = tag.split(':')
-                    direction = ''
                     if len(parts) == 1:
                         number['lanes'][''] = n
                     elif len(parts) == 2 and parts[1] in ['forward', 'backward', 'both_ways']:
@@ -353,7 +352,8 @@ class Test(TestPluginCommon):
         a = Highway_Lanes(None)
         a.init(None)
 
-        for t in [{"highway": "residential", "lanes": "2", "destination:lanes": "*", "destination:lanes:backward": "*"},
+        for t in [{"highway": "residential", "destination:lanes": "x|y", "destination:lanes:backward": "y"},
+                  {"highway": "residential", "lanes": "2", "destination:lanes": "*"},
                   {"highway": "residential", "hgv:lanes": "2"},
                   {"highway": "residential", "lanes": "r"},
                   {"highway": "residential", "lanes:hgv": "r"},
