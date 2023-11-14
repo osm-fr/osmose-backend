@@ -49,7 +49,7 @@ class Date(Plugin):
     def convert2date(self, string):
         try:
             date = dateutil.parser.parse(string, default=self.default_date)
-            if date.year != 9999:
+            if date.year < 3000:
                 return date
         except (ValueError, TypeError, OverflowError):
             pass
@@ -59,11 +59,11 @@ class Date(Plugin):
         if len(string) == 0:
             return True
         if string[0] == '~':
-            return self.check(string[1:])
+            return len(string) > 1 and self.check(string[1:])
         if string[-1] == 's':
-            return self.check(string[:-1])
+            return len(string) > 1 and self.check(string[:-1])
         if string[-3:] == ' BC' or string[-3:] == ' AD':
-            return self.check(string[:-3])
+            return len(string) > 3 and self.check(string[:-3])
         if len(string) == 4 and self.Year.match(string):
             return True
         if len(string) == 10 and (self.Day1.match(string) or self.Day2.match(string)):
@@ -111,7 +111,7 @@ class Test(TestPluginCommon):
 
         assert not a.node(None, {"date":"yes", "amenity":"clock"}), ("date=yes")
 
-        for d in ["yes", "XVI", "p", "0000", "9999", "Ca9", "1914..9999", "2014..Ca09"]:
+        for d in ["yes", "XVI", "p", "0000", "9999", "Ca9", "1914..9999", "2014..Ca09", "7000", "~"]:
             self.check_err(a.node(None, {"date":d}), ("date={0}".format(d)))
             self.check_err(a.way(None, {"date":d}, None), ("date={0}".format(d)))
             self.check_err(a.relation(None, {"date":d}, None), ("date={0}".format(d)))
