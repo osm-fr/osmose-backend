@@ -57,7 +57,6 @@ class Analyser_Merge_Public_Transport_FR_sillages(Analyser_Merge_Point):
                     mapping1 = {
                         "ref:FR:SILLAGES": lambda res: res["stop_code"],
                         "name": lambda res: self.replace(res['stop_name'].title()),
-                        "addr:city": lambda res: res["city_name"].title(),
                         "wheelchair": lambda res: 'yes' if res["wheelchair_boarding"] == '1' else 'no' if res["wheelchair_boarding"] == '0' else None,
                     },
                     text = lambda tags, fields: T_(f"{place} stop of {fields['stop_name']}")) ))
