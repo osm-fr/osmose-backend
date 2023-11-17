@@ -98,8 +98,8 @@ SELECT
   barrier.id,
   ST_AsText(barrier.geom)
 FROM
-  highways
-  JOIN nodes AS barrier ON
+  {0}highways as highways
+  JOIN {1}nodes AS barrier ON
     barrier.tags != ''::hstore AND
     barrier.id = ANY(highways.nodes) AND
     barrier.geom && highways.linestring AND
@@ -181,7 +181,7 @@ class Analyser_Osmosis_HighwayAreaAccess(Analyser_Osmosis):
 '''Sometimes a barrier can exist on an (otherwise uninterrupted) highway to prevent vehicles from using it for purposes other than destination traffic.'''),
             fix = T_(
 '''Copy the appropriate access tag to the barrier node.'''))
-        self.classs[3] = self.def_class(item = 2130, level = 2, tags = ['highway', 'routing'],
+        self.classs_change[3] = self.def_class(item = 2130, level = 2, tags = ['highway', 'routing'],
             title = T_('Barrier blocking major highway'),
             detail = T_(
 '''A barrier is blocking a major highway. Typically, major highways (`tertiary` and above) are meant for passing traffic.'''),
@@ -213,6 +213,7 @@ In the top example, the kerb is located next to the road, and only pedestrians t
 In the bottom example, cars will also have to drive over the kerb. Usually, kerbs are not located on the road, but alongsides.'''))
         self.callback10 = lambda res: {"class":1, "data":[self.node_full, self.way_full, self.positionAsText],
             "text": T_("Inconsistent motor_vehicle values ('{0}'!='{1}')", res[3] if res[3] else '', res[4] if res[4] else '') }
+        self.callback31 = lambda res: {"class": 3, "data":[self.way, self.node_full, self.positionAsText] }
 
     def analyser_osmosis_common(self):
         self.run(sql20.format(barriertype='bollard'))
@@ -228,19 +229,19 @@ In the bottom example, cars will also have to drive over the kerb. Usually, kerb
                 "data": [self.way_full, self.node_full, self.positionAsText],
                 "text": T_("Inconsistent {0} access: '{1}' on highway, not set on barrier", vehicle, res[3])})
 
-        self.run(sql31, lambda res: {
-            "class": 3, "data":[self.way, self.node_full, self.positionAsText]
-        })
         self.run(sql41, lambda res: {
             "class": 4, "data":[self.node_full, self.positionAsText]
         })
 
     def analyser_osmosis_full(self):
         self.run(sql10.format("", ""), self.callback10)
+        self.run(sql31.format("", ""), self.callback31)
 
     def analyser_osmosis_diff(self):
         self.run(sql10.format("touched_", "not_touched_"), self.callback10)
         self.run(sql10.format("", "touched_"), self.callback10)
+        self.run(sql31.format("touched_", "not_touched_"), self.callback31)
+        self.run(sql31.format("", "touched_"), self.callback31)
 
 
 
