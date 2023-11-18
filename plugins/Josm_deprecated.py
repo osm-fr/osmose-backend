@@ -125,6 +125,81 @@ class Josm_deprecated(PluginMapCSS):
         # *[natural=marsh]
         # Rule Blacklisted (id: 1459865523)
 
+        # *[landuse=reservoir][!reservoir_type]
+        # *[landuse=reservoir][reservoir_type=water_storage]
+        if ('landuse' in keys) or ('landuse' in keys and 'reservoir_type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'landuse') == mapcss._value_capture(capture_tags, 0, 'reservoir')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'reservoir_type')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'landuse') == mapcss._value_capture(capture_tags, 0, 'reservoir')) and (mapcss._tag_capture(capture_tags, 1, tags, 'reservoir_type') == mapcss._value_capture(capture_tags, 1, 'water_storage')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"natural=water + water=reservoir"
+                # fixAdd:"natural=water"
+                # fixRemove:"reservoir_type"
+                # fixAdd:"water=reservoir"
+                err.append({'class': 9002001, 'subclass': 679700887, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['natural','water'],
+                    ['water','reservoir']]),
+                    '-': ([
+                    'reservoir_type'])
+                }})
+
+        # *[landuse=reservoir][reservoir_type=tailings]
+        if ('landuse' in keys and 'reservoir_type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'landuse') == mapcss._value_capture(capture_tags, 0, 'reservoir')) and (mapcss._tag_capture(capture_tags, 1, tags, 'reservoir_type') == mapcss._value_capture(capture_tags, 1, 'tailings')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"man_made=tailings_pond"
+                # fixAdd:"man_made=tailings_pond"
+                # fixRemove:"reservoir_type"
+                # fixRemove:"reservoir_type"
+                err.append({'class': 9002001, 'subclass': 1670540885, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['man_made','tailings_pond']]),
+                    '-': ([
+                    'reservoir_type',
+                    'reservoir_type'])
+                }})
+
+        # *[landuse=reservoir][reservoir_type=evaporator]
+        if ('landuse' in keys and 'reservoir_type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'landuse') == mapcss._value_capture(capture_tags, 0, 'reservoir')) and (mapcss._tag_capture(capture_tags, 1, tags, 'reservoir_type') == mapcss._value_capture(capture_tags, 1, 'evaporator')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"basin=evaporation or landuse=salt_pond"
+                err.append({'class': 9002001, 'subclass': 1494361034, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # *[landuse=reservoir][reservoir_type=sewage]
+        if ('landuse' in keys and 'reservoir_type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'landuse') == mapcss._value_capture(capture_tags, 0, 'reservoir')) and (mapcss._tag_capture(capture_tags, 1, tags, 'reservoir_type') == mapcss._value_capture(capture_tags, 1, 'sewage')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"natural=water + water=wastewater or landuse=basin + basin=settling or man_made=basin + basin=settling"
+                err.append({'class': 9002001, 'subclass': 833262066, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
         # *[highway=byway]
         # Rule Blacklisted (id: 1844620979)
 
@@ -3150,6 +3225,7 @@ class Josm_deprecated(PluginMapCSS):
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated for {1}","{0.key}","{1.tag}")
                 # suggestAlternative:"design"
+                # suggestAlternative:"line_arrangement"
                 # suggestAlternative:"line_attachment"
                 # suggestAlternative:"line_management"
                 # suggestAlternative:"structure"
@@ -3318,6 +3394,7 @@ class Josm_deprecated(PluginMapCSS):
             if match:
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated for {1}","{0.key}","{1.tag}")
+                # suggestAlternative:"line_arrangement"
                 # suggestAlternative:"line_attachment"
                 # suggestAlternative:"line_management"
                 err.append({'class': 9002001, 'subclass': 1513543887, 'text': mapcss.tr('{0} is deprecated for {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
@@ -4347,6 +4424,81 @@ class Josm_deprecated(PluginMapCSS):
 
         # *[natural=marsh]
         # Rule Blacklisted (id: 1459865523)
+
+        # *[landuse=reservoir][!reservoir_type]
+        # *[landuse=reservoir][reservoir_type=water_storage]
+        if ('landuse' in keys) or ('landuse' in keys and 'reservoir_type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'landuse') == mapcss._value_capture(capture_tags, 0, 'reservoir')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'reservoir_type')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'landuse') == mapcss._value_capture(capture_tags, 0, 'reservoir')) and (mapcss._tag_capture(capture_tags, 1, tags, 'reservoir_type') == mapcss._value_capture(capture_tags, 1, 'water_storage')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"natural=water + water=reservoir"
+                # fixAdd:"natural=water"
+                # fixRemove:"reservoir_type"
+                # fixAdd:"water=reservoir"
+                err.append({'class': 9002001, 'subclass': 679700887, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['natural','water'],
+                    ['water','reservoir']]),
+                    '-': ([
+                    'reservoir_type'])
+                }})
+
+        # *[landuse=reservoir][reservoir_type=tailings]
+        if ('landuse' in keys and 'reservoir_type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'landuse') == mapcss._value_capture(capture_tags, 0, 'reservoir')) and (mapcss._tag_capture(capture_tags, 1, tags, 'reservoir_type') == mapcss._value_capture(capture_tags, 1, 'tailings')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"man_made=tailings_pond"
+                # fixAdd:"man_made=tailings_pond"
+                # fixRemove:"reservoir_type"
+                # fixRemove:"reservoir_type"
+                err.append({'class': 9002001, 'subclass': 1670540885, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['man_made','tailings_pond']]),
+                    '-': ([
+                    'reservoir_type',
+                    'reservoir_type'])
+                }})
+
+        # *[landuse=reservoir][reservoir_type=evaporator]
+        if ('landuse' in keys and 'reservoir_type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'landuse') == mapcss._value_capture(capture_tags, 0, 'reservoir')) and (mapcss._tag_capture(capture_tags, 1, tags, 'reservoir_type') == mapcss._value_capture(capture_tags, 1, 'evaporator')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"basin=evaporation or landuse=salt_pond"
+                err.append({'class': 9002001, 'subclass': 1494361034, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # *[landuse=reservoir][reservoir_type=sewage]
+        if ('landuse' in keys and 'reservoir_type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'landuse') == mapcss._value_capture(capture_tags, 0, 'reservoir')) and (mapcss._tag_capture(capture_tags, 1, tags, 'reservoir_type') == mapcss._value_capture(capture_tags, 1, 'sewage')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"natural=water + water=wastewater or landuse=basin + basin=settling or man_made=basin + basin=settling"
+                err.append({'class': 9002001, 'subclass': 833262066, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # *[highway=byway]
         # Rule Blacklisted (id: 1844620979)
@@ -7547,6 +7699,7 @@ class Josm_deprecated(PluginMapCSS):
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated for {1}","{0.key}","{1.tag}")
                 # suggestAlternative:"design"
+                # suggestAlternative:"line_arrangement"
                 # suggestAlternative:"line_attachment"
                 # suggestAlternative:"line_management"
                 # suggestAlternative:"structure"
@@ -7563,6 +7716,7 @@ class Josm_deprecated(PluginMapCSS):
             if match:
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated for {1}","{0.key}","{1.tag}")
+                # suggestAlternative:"line_arrangement"
                 # suggestAlternative:"line_attachment"
                 # suggestAlternative:"line_management"
                 err.append({'class': 9002001, 'subclass': 1513543887, 'text': mapcss.tr('{0} is deprecated for {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
@@ -8673,6 +8827,81 @@ class Josm_deprecated(PluginMapCSS):
 
         # *[natural=marsh]
         # Rule Blacklisted (id: 1459865523)
+
+        # *[landuse=reservoir][!reservoir_type]
+        # *[landuse=reservoir][reservoir_type=water_storage]
+        if ('landuse' in keys) or ('landuse' in keys and 'reservoir_type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'landuse') == mapcss._value_capture(capture_tags, 0, 'reservoir')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'reservoir_type')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'landuse') == mapcss._value_capture(capture_tags, 0, 'reservoir')) and (mapcss._tag_capture(capture_tags, 1, tags, 'reservoir_type') == mapcss._value_capture(capture_tags, 1, 'water_storage')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"natural=water + water=reservoir"
+                # fixAdd:"natural=water"
+                # fixRemove:"reservoir_type"
+                # fixAdd:"water=reservoir"
+                err.append({'class': 9002001, 'subclass': 679700887, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['natural','water'],
+                    ['water','reservoir']]),
+                    '-': ([
+                    'reservoir_type'])
+                }})
+
+        # *[landuse=reservoir][reservoir_type=tailings]
+        if ('landuse' in keys and 'reservoir_type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'landuse') == mapcss._value_capture(capture_tags, 0, 'reservoir')) and (mapcss._tag_capture(capture_tags, 1, tags, 'reservoir_type') == mapcss._value_capture(capture_tags, 1, 'tailings')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"man_made=tailings_pond"
+                # fixAdd:"man_made=tailings_pond"
+                # fixRemove:"reservoir_type"
+                # fixRemove:"reservoir_type"
+                err.append({'class': 9002001, 'subclass': 1670540885, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['man_made','tailings_pond']]),
+                    '-': ([
+                    'reservoir_type',
+                    'reservoir_type'])
+                }})
+
+        # *[landuse=reservoir][reservoir_type=evaporator]
+        if ('landuse' in keys and 'reservoir_type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'landuse') == mapcss._value_capture(capture_tags, 0, 'reservoir')) and (mapcss._tag_capture(capture_tags, 1, tags, 'reservoir_type') == mapcss._value_capture(capture_tags, 1, 'evaporator')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"basin=evaporation or landuse=salt_pond"
+                err.append({'class': 9002001, 'subclass': 1494361034, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # *[landuse=reservoir][reservoir_type=sewage]
+        if ('landuse' in keys and 'reservoir_type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'landuse') == mapcss._value_capture(capture_tags, 0, 'reservoir')) and (mapcss._tag_capture(capture_tags, 1, tags, 'reservoir_type') == mapcss._value_capture(capture_tags, 1, 'sewage')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"natural=water + water=wastewater or landuse=basin + basin=settling or man_made=basin + basin=settling"
+                err.append({'class': 9002001, 'subclass': 833262066, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # *[highway=byway]
         # Rule Blacklisted (id: 1844620979)
@@ -11452,6 +11681,7 @@ class Josm_deprecated(PluginMapCSS):
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated for {1}","{0.key}","{1.tag}")
                 # suggestAlternative:"design"
+                # suggestAlternative:"line_arrangement"
                 # suggestAlternative:"line_attachment"
                 # suggestAlternative:"line_management"
                 # suggestAlternative:"structure"
@@ -11468,6 +11698,7 @@ class Josm_deprecated(PluginMapCSS):
             if match:
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated for {1}","{0.key}","{1.tag}")
+                # suggestAlternative:"line_arrangement"
                 # suggestAlternative:"line_attachment"
                 # suggestAlternative:"line_management"
                 err.append({'class': 9002001, 'subclass': 1513543887, 'text': mapcss.tr('{0} is deprecated for {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
