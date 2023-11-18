@@ -44,6 +44,15 @@ class MapCSSListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by MapCSSParser#parent_child_selector_operator.
+    def enterParent_child_selector_operator(self, ctx:MapCSSParser.Parent_child_selector_operatorContext):
+        pass
+
+    # Exit a parse tree produced by MapCSSParser#parent_child_selector_operator.
+    def exitParent_child_selector_operator(self, ctx:MapCSSParser.Parent_child_selector_operatorContext):
+        pass
+
+
     # Enter a parse tree produced by MapCSSParser#simple_selector_operator.
     def enterSimple_selector_operator(self, ctx:MapCSSParser.Simple_selector_operatorContext):
         pass
