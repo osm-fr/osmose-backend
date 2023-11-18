@@ -156,11 +156,13 @@ rule_
 selector
     : simple_selector
     | simple_selector simple_selector
-    | simple_selector OP_GT (link_selector | pseudo_class_selector)* simple_selector
+    | simple_selector parent_child_selector_operator (link_selector | pseudo_class_selector)* simple_selector
     | simple_selector simple_selector_operator simple_selector
     ;
 
-simple_selector_operator : OP_LT | OP_INCLUDED_IN | OP_INTERSECTS | OP_SUBSET | OP_SUPERSET | OP_NOSUBSET | OP_NOSUPERSET;
+parent_child_selector_operator : OP_GT | OP_LT;
+
+simple_selector_operator : OP_INCLUDED_IN | OP_INTERSECTS | OP_SUBSET | OP_SUPERSET | OP_NOSUBSET | OP_NOSUPERSET;
 
 link_selector
     : LBRACKET cssident /* ROLE */ valueOperator valueExpression RBRACKET
