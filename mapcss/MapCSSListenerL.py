@@ -39,7 +39,7 @@ class MapCSSListenerL(MapCSSListener):
             'type': 'selector',
             'text': ctx.getText(),
             'simple_selectors': self.simple_selectors,
-            'operator': (ctx.simple_selector_operator() and ctx.simple_selector_operator().getText()) or (ctx.OP_GT() and ctx.OP_GT().getText()),
+            'operator': (ctx.simple_selector_operator() and ctx.simple_selector_operator().getText()) or (ctx.parent_child_selector_operator() and ctx.parent_child_selector_operator().getText()),
             'link_selectors': self.link_selectors,
             'pseudo_class': self.pseudo_class})
 
