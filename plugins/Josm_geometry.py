@@ -610,11 +610,12 @@ class Josm_geometry(PluginMapCSS):
         # way[voltage:secondary]
         # way[voltage:tertiary]
         # way[transformer]
+        # way[line_arrangement]
         # way[line_attachment]
         # way[line_management]
         # way[entrance]
         # way[door]
-        if ('door' in keys) or ('entrance' in keys) or ('line_attachment' in keys) or ('line_management' in keys) or ('transformer' in keys) or ('voltage:primary' in keys) or ('voltage:secondary' in keys) or ('voltage:tertiary' in keys):
+        if ('door' in keys) or ('entrance' in keys) or ('line_arrangement' in keys) or ('line_attachment' in keys) or ('line_management' in keys) or ('transformer' in keys) or ('voltage:primary' in keys) or ('voltage:secondary' in keys) or ('voltage:tertiary' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -634,6 +635,10 @@ class Josm_geometry(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'line_arrangement')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'line_attachment')))
                 except mapcss.RuleAbort: pass
             if not match:
@@ -650,7 +655,7 @@ class Josm_geometry(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} on a way. Should be used on a node.","{0.key}")
-                err.append({'class': 9003007, 'subclass': 685282689, 'text': mapcss.tr('{0} on a way. Should be used on a node.', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                err.append({'class': 9003007, 'subclass': 1380324691, 'text': mapcss.tr('{0} on a way. Should be used on a node.', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # way[restriction][restriction=~/^(no_right_turn|no_left_turn|no_u_turn|no_straight_on|only_right_turn|only_left_turn|only_straight_on|no_entry|no_exit)$/]
         # way[type=multipolygon]
