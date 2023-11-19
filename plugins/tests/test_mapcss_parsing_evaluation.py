@@ -34,6 +34,7 @@ class test_mapcss_parsing_evaluation(PluginMapCSS):
         self.errors[19] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test #1303 {0}', mapcss._tag_uncapture(capture_tags, '{2.key}')))
         self.errors[20] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test #1742 - {0}', mapcss._tag_uncapture(capture_tags, '{1.tag}')))
         self.errors[21] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test {0}{1}', 'text', mapcss._tag_uncapture(capture_tags, '{0.key}')))
+        self.errors[96] = self.def_class(item = 4, level = 3, tags = [], title = mapcss.tr('I support supports {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
         self.errors[97] = self.def_class(item = 4, level = 1, tags = mapcss.list_('osmose_rules'), title = mapcss.tr('test'), trap = mapcss.tr('Don\'t do this!'), detail = mapcss.tr('More {0}.', '`info`'), example = {"en": 'Look at me, I haven\'t lost my apostrophe'}, fix = {"en": 'This may fix it.'}, resource = 'https://wiki.openstreetmap.org/wiki/Useful_Page')
         self.errors[98] = self.def_class(item = 4030, level = 2, tags = mapcss.list_('fix:survey'), title = {'en': 'test #1740'})
         self.errors[99] = self.def_class(item = 4, level = 1, tags = mapcss.list_('osmose_rules'), title = mapcss.tr('test'), trap = mapcss.tr('Don\'t do this!'), detail = mapcss.tr('More {0}.', '`info`'), example = {"en": 'Look at me, I haven\'t lost my apostrophe'}, fix = {"en": 'This may fix it.'}, resource = 'https://wiki.openstreetmap.org/wiki/Useful_Page')
@@ -49,7 +50,7 @@ class test_mapcss_parsing_evaluation(PluginMapCSS):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_a = set_b = False
+        set_a = set_b = set_supportsSet = False
 
         # node[x=0]
         if ('x' in keys):
@@ -450,6 +451,34 @@ class test_mapcss_parsing_evaluation(PluginMapCSS):
                 # assertMatch:"node a=1"
                 err.append({'class': 12, 'subclass': 2101484523, 'text': mapcss.tr('test concat {0}', mapcss.concat(mapcss.tag(tags, 'b'), mapcss.tag(tags, 'c')))})
 
+        # node[x]
+        if ('x' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'x')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseItemClassLevel:"4/96:0/3"
+                # throwWarning:tr("I support supports {0}","{0.tag}")
+                # assertMatch:"node x=2"
+                err.append({'class': 96, 'subclass': 0, 'text': mapcss.tr('I support supports {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # node[x]
+        if ('x' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'x')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # set .supportsSet
+                # -osmoseItemClassLevel:"4/96:1/3"
+                # throwWarning:tr("I support supports {0}","{0.tag}")
+                # assertMatch:"node x=2"
+                set_supportsSet = True
+                err.append({'class': 96, 'subclass': 1, 'text': mapcss.tr('I support supports {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
         # node[URL_decode("M%C3%A1rio Leopoldo Pereira da C%C3%A2mara")=="Mário Leopoldo Pereira da Câmara"]
         if True:
             match = False
@@ -468,7 +497,7 @@ class test_mapcss_parsing_evaluation(PluginMapCSS):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_a = set_b = False
+        set_a = set_b = set_supportsSet = False
 
         # way[x~=C1]
         if ('x' in keys):
@@ -871,7 +900,7 @@ class test_mapcss_parsing_evaluation(PluginMapCSS):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_a = set_b = False
+        set_a = set_b = set_supportsSet = False
 
         # *[parking][amenity!~/^(parking|motorcycle_parking)$/]
         if ('parking' in keys):
@@ -1164,6 +1193,8 @@ class Test(TestPluginMapcss):
         self.check_err(n.node(data, {'a': '1', 'b': '2', 'c': 'c'}), expected={'class': 12, 'subclass': 2101484523})
         self.check_err(n.node(data, {'a': '1', 'b': '2'}), expected={'class': 12, 'subclass': 2101484523})
         self.check_err(n.node(data, {'a': '1'}), expected={'class': 12, 'subclass': 2101484523})
+        self.check_err(n.node(data, {'x': '2'}), expected={'class': 96, 'subclass': 0})
+        self.check_err(n.node(data, {'x': '2'}), expected={'class': 96, 'subclass': 1})
         self.check_err(n.node(data, {'x': 'abcde'}), expected={'class': 6, 'subclass': 1303771934})
         self.check_err(n.way(data, {'x': 'C00;C1;C22'}, [0]), expected={'class': 13, 'subclass': 1785050832})
         self.check_err(n.way(data, {'x': 'C1'}, [0]), expected={'class': 13, 'subclass': 1785050832})

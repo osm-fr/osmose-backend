@@ -46,7 +46,7 @@ class Josm_transport(PluginMapCSS):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_pt_route = set_pt_route_master = False
+        set_pt_route = set_pt_route_master = set_pt_route_probably_v2 = False
 
         # node[highway=bus_stop][amenity=bus_station]
         if ('amenity' in keys and 'highway' in keys):
@@ -186,7 +186,7 @@ class Josm_transport(PluginMapCSS):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_pt_route = set_pt_route_master = False
+        set_pt_route = set_pt_route_master = set_pt_route_probably_v2 = False
 
         # way[highway=bus_stop]
         if ('highway' in keys):
@@ -222,7 +222,7 @@ class Josm_transport(PluginMapCSS):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_pt_route = set_pt_route_master = False
+        set_pt_route = set_pt_route_master = set_pt_route_probably_v2 = False
 
         # relation[type=route][!route][!disused:route]
         if ('type' in keys):
@@ -284,6 +284,14 @@ class Josm_transport(PluginMapCSS):
             if match:
                 # set pt_route_master
                 set_pt_route_master = True
+
+        # relation.route_in_master.pt_route
+        if True:
+            match = False
+            # Skip selector using undeclared class pt_route, route_in_master
+            if match:
+                # set pt_route_probably_v2
+                set_pt_route_probably_v2 = True
 
         # relation.pt_route[!public_transport:version]
         if True:
