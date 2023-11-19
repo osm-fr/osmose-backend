@@ -89,10 +89,10 @@ World Heritage.'''))
                 attribution="Ministère de la Culture",
                 url="https://data.culture.gouv.fr/explore/dataset/liste-des-immeubles-proteges-au-titre-des-monuments-historiques",
                 filter=lambda s: reduce(lambda a, v: a.replace(v, ''), SKIP, (u'' + s).encode('utf-8').replace(b'l\u92', b"l'").replace(b'\x85)', b"...)").decode('utf-8', 'ignore')))),
-            Load_XY("p_coordonnees", "p_coordonnees",
+            Load_XY("coordonnees_au_format_WGS84", "coordonnees_au_format_WGS84",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0],
-                select = {"Date de protection": True}),
+                select = {"Date_et_typologie_de_la_protection": True}),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways", "relations"],
@@ -107,8 +107,8 @@ World Heritage.'''))
                     static1 = {"heritage:operator": "mhs"},
                     static2 = {"source:heritage": self.source},
                     mapping1 = {
-                        "ref:mhs": "Référence",
-                        "mhs:inscription_date": lambda res: parseDPRO(res["Date de protection"]),
-                        "heritage": lambda res: 2 if res["Précision protection"] and "classement par arrêté" in res["Précision protection"] else 3 if res["Précision protection"] and "inscription par arrêté" in res["Précision protection"] else None},
-                    mapping2 = {"name": lambda res: res["Appellation courante"] if res["Appellation courante"] not in BLACK_WORDS else None},
-                    text = lambda tags, fields: T_("Historical monument: {0}", ", ".join(filter(lambda x: x, [fields["Date de Protection"], fields["Adresse"], fields["Commune"]]))) )))
+                        "ref:mhs": "Reference",
+                        "mhs:inscription_date": lambda res: parseDPRO(res["Date_et_typologie_de_la_protection"]),
+                        "heritage": lambda res: 2 if res["Precision_de_la_protection"] and "classement par arrêté" in res["Precision_de_la_protection"] else 3 if res["Precision_de_la_protection"] and "inscription par arrêté" in res["Precision_de_la_protection"] else None},
+                    mapping2 = {"name": lambda res: res["Titre_editorial_de_la_notice"] if res["Titre_editorial_de_la_notice"] not in BLACK_WORDS else None},
+                    text = lambda tags, fields: T_("Historical monument: {0}", ", ".join(filter(lambda x: x and x != "None", [fields["Date_et_typologie_de_la_protection"], fields["Adresse_forme_index"], fields["Commune_forme_index"]]))) )))
