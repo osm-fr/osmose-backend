@@ -80,6 +80,11 @@ OP_NOT: '!'; // NOTE: boolean not -> !(expr)
 
 SET: ('s' | 'S') ('e' | 'E') ('t' | 'T');
 IMPORT: '@' ('i' | 'I') ('m' | 'M') ('p' | 'P') ('o' | 'O')('r' | 'R') ('t' | 'T');
+SUPPORTS: '@' ('s' | 'S') ('u' | 'U') ('p' | 'P') ('p' | 'P') ('o' | 'O') ('r' | 'R') ('t' | 'T') ('s' | 'S');
+
+SUPPORTS_NOT: ('n' | 'N') ('o' | 'O') ('t' | 'T') WS;
+SUPPORTS_AND: ('a' | 'A') ('n' | 'N') ('d' | 'D') WS;
+SUPPORTS_OR: ('o' | 'O') ('r' | 'R') WS;
 
 fragment DIGIT:  '0'..'9';
 fragment CHAR: 'a'..'z' | 'A'..'Z';
@@ -146,6 +151,7 @@ stylesheet
 
 entry
     : rule_
+    | supports_block
 /*    | import_statement*/
     ;
 
@@ -262,6 +268,32 @@ single_value
 /*    | declaration_value_function*/
     /* make sure these are the last alternatives in this rule */
     | osmtag
+    ;
+
+
+/* ------------------------------------------------------------------------------------------ */
+/* @supports condition rules                                                                  */
+/* ------------------------------------------------------------------------------------------ */
+
+supports_block: supports_rule LBRACE rule_* RBRACE;
+
+supports_rule: SUPPORTS supports_condition;
+
+supports_condition
+    : SUPPORTS_NOT supports_in_parens
+    | supports_in_parens (SUPPORTS_AND supports_in_parens)*
+    | supports_in_parens (SUPPORTS_OR supports_in_parens)*
+    ;
+
+supports_in_parens
+    : PAR_OPEN supports_condition PAR_CLOSE
+    | PAR_OPEN supports_declaration PAR_CLOSE
+    ;
+
+supports_declaration /* simplified, not re-using declaration_value here to not mess with the actual rule parsing */
+    : cssident COLON POSITIVE_INT /* min|max-josm-version: number */
+    | cssident COLON NCOMPONENT /* user-agent: text */
+    | cssident /* does-property-exist */
     ;
 
 /* ------------------------------------------------------------------------------------------ */
