@@ -429,6 +429,28 @@ node[a][concat(tag("a"), "bc", tag("d")) == "1bc"] {
   assertMatch: "node a=1";
 }
 
+@supports (min-josm-version: 12345) {
+  node[x] {
+    throwWarning: tr("I support supports {0}", "{0.tag}");
+    -osmoseItemClassLevel: "4/96:0/3";
+    assertMatch: "node x=2";
+  }
+}
+@supports not ((min-josm-version: 12345) and ((random-key) or (user-agent: josm))) {
+  node[x] {
+    throwWarning: tr("I support supports {0}", "{0.tag}");
+    -osmoseItemClassLevel: "4/96:1/3";
+    assertMatch: "node x=2";
+    set .supportsSet;
+  }
+  node[y] {
+    throwWarning: "I should be dropped!"; 
+    /* no -osmoseItemClassLevel so we don't know if this rule is safe for Osmose */
+    assertNoMatch: "node y=2";
+    set .thisSetShouldNotBeDefined;
+  }
+}
+
 node[URL_decode("M%C3%A1rio Leopoldo Pereira da C%C3%A2mara") == "Mário Leopoldo Pereira da Câmara"] {
   throwWarning: "test";
   assertMatch: "node x=abcde";
