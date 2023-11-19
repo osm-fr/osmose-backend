@@ -606,6 +606,15 @@ def filter_typeselector_rules(rules):
         rules
     )))
 
+def filter_support_rules(rules):
+    # We don't parse the actual values of @supports
+    # Assume all rules within @supports {} are unsafe unless -osmoseItemClassLevel is set
+    return list(filter(lambda rule:
+        rule.get('_meta') or
+        not rule.get('in_supports_declaration') or
+        next(filter(lambda declaration: declaration.get('property') == '-osmoseItemClassLevel', rule['declarations']), None),
+        rules))
+
 
 class_map: Dict[Optional[str], int] = {}
 class_index = 0
@@ -898,6 +907,7 @@ def compile(inputfile, class_name, mapcss_url = None, only_for = [], not_for = [
     tree = filter_non_productive_rules(tree)
     tree = filter_osmose_none_rules(tree)
     tree = filter_typeselector_rules(tree)
+    tree = filter_support_rules(tree)
     selectors_type = segregate_selectors_type(tree)
 
     global class_, tests, regex_store, set_store
