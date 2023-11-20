@@ -53,6 +53,4 @@ class Analyser_Merge_Public_Equipment_FR_Nantes_Toilets(Analyser_Merge_Point):
                         "amenity": "toilets",
                         "access": "yes"},
                     static2 = {"source": self.source},
-                    mapping1 = {
-                        "name": 'Nom',
-                        "ref": 'Identifiant'} )))
+                    mapping1 = {"name": 'nom'} )))
