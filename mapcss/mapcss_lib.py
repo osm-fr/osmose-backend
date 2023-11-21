@@ -85,7 +85,7 @@ class str_value_(str):
         else:
             return NotImplemented
 
-    def __rdiv__(self, o):
+    def __rtruediv__(self, o):
         if self.none:
             return None_value
         elif o.__class__ == int:
