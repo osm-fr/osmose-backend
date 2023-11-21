@@ -59,7 +59,7 @@ class str_value_(str):
         elif o.__class__ == int:
             return str_value(o - self.to_n())
         else:
-            raise NotImplementedError
+            return NotImplemented
 
     def __sub__(self, o):
         if self.none:
@@ -67,7 +67,7 @@ class str_value_(str):
         elif o.__class__ == int:
             return str_value(self.to_n() - o)
         else:
-            raise NotImplementedError
+            return NotImplemented
 
     def __rmul__(self, o):
         if self.none:
@@ -75,7 +75,7 @@ class str_value_(str):
         elif o.__class__ == int:
             return str_value(o * self.to_n())
         else:
-            raise NotImplementedError
+            return NotImplemented
 
     def __mul__(self, o):
         if self.none:
@@ -83,15 +83,15 @@ class str_value_(str):
         elif o.__class__ == int:
             return str_value(self.to_n() * o)
         else:
-            raise NotImplementedError
+            return NotImplemented
 
-    def __rdiv__(self, o):
+    def __rtruediv__(self, o):
         if self.none:
             return None_value
         elif o.__class__ == int:
             return str_value(float(o) / self.to_n())
         else:
-            raise NotImplementedError
+            return NotImplemented
 
     def __truediv__(self, o):
         if self.none:
@@ -99,7 +99,7 @@ class str_value_(str):
         elif o.__class__ == int:
             return str_value(float(self.to_n()) / o)
         else:
-            raise NotImplementedError
+            return NotImplemented
 
     def __lt__(self, o):
         if self.none:
