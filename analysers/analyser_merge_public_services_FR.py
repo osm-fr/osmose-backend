@@ -227,9 +227,7 @@ class Public_Services_Source(Source):
                 elem["name"] = None
             elem["contact:phone"] = None
             if feature.get("telephone"):
-                phone_number = feature["telephone"][0]["valeur"]
-                if len(phone_number) > 9 and phone_number.startswith("0") and '(' not in phone_number:
-                    elem["contact:phone"] = "+33 " + phone_number[1:]
+                elem["contact:phone"] = retreat_phone_number(feature["code_insee_commune"], feature["telephone"][0]["valeur"])
             elem["contact:website"] = None
             if feature.get("site_internet"):
                 elem["contact:website"] = feature.get("site_internet")[0]["valeur"]
@@ -274,6 +272,10 @@ def parse_opening_hours(txt):
 
     opening_hours = ""
     for plage in txt:
+        if not plage["nom_jour_fin"] or not plage["nom_jour_debut"]:
+            return
+        if not plage["valeur_heure_debut_1"] or not plage["valeur_heure_fin_1"]:
+            return
         opening_hours += osm_days[plage["nom_jour_debut"]]
         if plage["nom_jour_debut"] != plage["nom_jour_fin"]:
             opening_hours += "-{}".format(osm_days[plage["nom_jour_fin"]])
@@ -287,33 +289,36 @@ def parse_opening_hours(txt):
 
 def _retreat_name(official_name):
     zz = official_name.split(" - ")
-    if len(zz) == 1:
+    if len(zz) != 2:
         return
     city_name = zz[1]
 
     if city_name.startswith("A"):
-        return
+        return official_name.replace(" - ", " d'")
     if city_name.startswith("E"):
-        return
+        return official_name.replace(" - ", " d'")
     if city_name.startswith("I"):
-        return
+        return official_name.replace(" - ", " d'")
     if city_name.startswith("O"):
-        return
+        return official_name.replace(" - ", " d'")
     if city_name.startswith("U"):
-        return
+        return official_name.replace(" - ", " d'")
     if city_name.startswith("É"):
-        return
+        return official_name.replace(" - ", " d'")
     if city_name.startswith("È"):
-        return
+        return official_name.replace(" - ", " d'")
     if city_name.startswith("Ê"):
-        return
+        return official_name.replace(" - ", " d'")
     if city_name.startswith("Î"):
-        return
+        return official_name.replace(" - ", " d'")
     if city_name.startswith("Le "):
-        return
+        return official_name.replace(" - Le ", " du ")
     if city_name.startswith("Les "):
-        return
+        return official_name.replace(" - Les ", " des ")
+    if city_name.startswith("H"):
+        return official_name.replace(" - ", " d'")
     return official_name.replace(" - ", " de ")
+
 
 def retreat_sous_prefecture_name(official_name):
     name = _retreat_name(official_name)
@@ -354,3 +359,34 @@ def retreat_Urssaf_name(official_name):
     if not official_name.startswith("Urssaf"):
         return
     return official_name.split(" - ")[0]
+
+def retreat_phone_number(insee, phone_number):
+    if len(phone_number) < 9:
+        return
+    if '(' in phone_number:
+        return
+    if not phone_number.startswith("0"):
+        return
+    if insee.startswith("971"):
+        return "+590 " + phone_number[1:]
+    if insee.startswith("972"):
+        return "+596 " + phone_number[1:]
+    if insee.startswith("973"):
+        return "+594 " + phone_number[1:]
+    if insee.startswith("974"):
+        return "+262 " + phone_number[1:]
+    if insee.startswith("975"):
+        return "+508 " + phone_number[1:]
+    if insee.startswith("976"):
+        return "+262 " + phone_number[1:]
+    if insee.startswith("977"):
+        return "+590 " + phone_number[1:]
+    if insee.startswith("978"):
+        return "+590 " + phone_number[1:]
+    if insee.startswith("986"):
+        return "+681 " + phone_number[1:]
+    if insee.startswith("987"):
+        return "+689 " + phone_number[1:]
+    if insee.startswith("988"):
+        return "+687 " + phone_number[1:]
+    return "+33 " + phone_number[1:]
