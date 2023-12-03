@@ -187,7 +187,7 @@ class Analyser_Merge_POI_FR(Analyser_Merge_Dynamic):
             level = 3,
             title = T_('Menhir not integrated'),
             select = {'nature': 'Mégalithe', 'nature_detaillee': 'Menhir'},
-            tags = {'historic': 'archaeological_site', 'site_type': 'megalith', 'megalith_type': 'menhir'},
+            tags = {'historic': 'archaeological_site', 'archaeological_site': 'megalith', 'megalith_type': 'menhir'},
         ),
         dict(
             #   1601 Dolmen
@@ -196,7 +196,7 @@ class Analyser_Merge_POI_FR(Analyser_Merge_Dynamic):
             level = 3,
             title = T_('Dolmen not integrated'),
             select = {'nature': 'Mégalithe', 'nature_detaillee': 'Dolmen'},
-            tags = {'historic': 'archaeological_site', 'site_type': 'megalith', 'megalith_type': 'dolmen'},
+            tags = {'historic': 'archaeological_site', 'archaeological_site': 'megalith', 'megalith_type': 'dolmen'},
         ),
         dict(
             #    377 Tumulus
@@ -205,7 +205,7 @@ class Analyser_Merge_POI_FR(Analyser_Merge_Dynamic):
             level = 3,
             title = T_('Tumulus not integrated'),
             select = {'nature': 'Mégalithe', 'nature_detaillee': 'Tumulus'},
-            tags = {'historic': 'archaeological_site', 'site_type': 'tumulus'},
+            tags = {'historic': 'archaeological_site', 'archaeological_site': 'tumulus'},
         ),
         dict(
             #    188 Allée couverte
@@ -214,7 +214,7 @@ class Analyser_Merge_POI_FR(Analyser_Merge_Dynamic):
             level = 3,
             title = T_('Passage grave not integrated'),
             select = {'nature': 'Mégalithe', 'nature_detaillee': 'Allée couverte'},
-            tags = {'historic': 'archaeological_site', 'site_type': 'megalith', 'megalith_type': 'passage_grave'},
+            tags = {'historic': 'archaeological_site', 'archaeological_site': 'megalith', 'megalith_type': 'passage_grave'},
         ),
             #     61 Cairn
             #     55 Cromlech
