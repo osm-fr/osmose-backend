@@ -136,11 +136,12 @@ way[covered][highway=~/^(motorway_link|trunk_link|primary|primary_link|secondary
 }
 
 
-relation[!type] {
+relation[!type][!/^[a-z]+:type$/] {
     throwWarning: tr("Missing relation type");
     assertMatch: "relation";
     -osmoseItemClassLevel: "2110/21102/2";
     -osmoseDetail: tr("The relation is missing a `type` tag to define what it represents.");
+    assertNoMatch: "relation disused:type=route";
 }
 
 

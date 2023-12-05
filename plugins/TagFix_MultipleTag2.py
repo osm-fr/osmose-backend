@@ -29,6 +29,7 @@ class TagFix_MultipleTag2(PluginMapCSS):
         self.errors[303211] = self.def_class(item = 3032, level = 3, tags = mapcss.list_('tag'), title = mapcss.tr('suspicious tag combination'))
 
         self.re_2ae49e65 = re.compile(r'^(motorway_link|trunk_link|primary|primary_link|secondary|secondary_link)$')
+        self.re_5816aa9b = re.compile(r'^[a-z]+:type$')
         self.re_5955bda1 = re.compile(r'^(no|informal)$')
 
 
@@ -490,17 +491,18 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 # throwWarning:tr("Suspicious name for a container")
                 err.append({'class': 32302, 'subclass': 0, 'text': mapcss.tr('Suspicious name for a container')})
 
-        # relation[!type]
+        # relation[!type][!/^[a-z]+:type$/]
         if True:
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((not mapcss._tag_capture(capture_tags, 0, tags, 'type')))
+                try: match = ((not mapcss._tag_capture(capture_tags, 0, tags, 'type')) and (not mapcss._tag_capture(capture_tags, 1, tags, self.re_5816aa9b)))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseDetail:tr("The relation is missing a `type` tag to define what it represents.")
                 # -osmoseItemClassLevel:"2110/21102/2"
                 # throwWarning:tr("Missing relation type")
+                # assertNoMatch:"relation disused:type=route"
                 # assertMatch:"relation"
                 err.append({'class': 21102, 'subclass': 0, 'text': mapcss.tr('Missing relation type')})
 
@@ -577,4 +579,5 @@ class Test(TestPluginMapcss):
         self.check_err(n.way(data, {'highway': 'primary', 'tunnel': 'yes'}, [0]), expected={'class': 71301, 'subclass': 0})
         self.check_not_err(n.way(data, {'bridge': 'yes', 'tunnel': 'no'}, [0]), expected={'class': 40303, 'subclass': 0})
         self.check_err(n.way(data, {'bridge': 'yes', 'tunnel': 'yes'}, [0]), expected={'class': 40303, 'subclass': 0})
+        self.check_not_err(n.relation(data, {'disused:type': 'route'}, []), expected={'class': 21102, 'subclass': 0})
         self.check_err(n.relation(data, {}, []), expected={'class': 21102, 'subclass': 0})
