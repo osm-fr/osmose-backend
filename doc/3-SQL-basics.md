@@ -114,6 +114,7 @@ The available value for the `data`, mapping OSM object id are:
 
 From array of (type: N/W/R, ids):
 * `array_full`
+* `array_id`
 
 Without the `_full` suffix, only the id is kept in the Osmose issue, not the tags and other attributes.
 
