@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='1' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84904121444' lon='5.84167543397' />
+  <node id='2' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84565606741' lon='5.84194492855' />
+  <node id='3' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84571156367' lon='5.84446021135' />
+  <node id='4' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84589995006' lon='5.84699939213' />
+  <node id='5' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84592769805' lon='5.85045790597' />
+  <node id='6' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84914634897' lon='5.84870619117' />
+  <way id='1000' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='1' />
+    <nd ref='2' />
+    <nd ref='3' />
+    <nd ref='1' />
+  </way>
+  <way id='1' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='4' />
+    <nd ref='5' />
+    <nd ref='6' />
+    <nd ref='4' />
+  </way>
+  <relation id='10000' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <member type='way' ref='1000' role='outer' />
+    <member type='way' ref='1' role='outer' />
+    <tag k='building' v='yes' />
+    <tag k='name' v='Proper relation' />
+    <tag k='type' v='multipolygon' />
+  </relation>
+  <relation id='10001' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <member type='way' ref='1' role='outer' />
+    <member type='way' ref='1000' role='outer' />
+    <member type='way' ref='1' role='outer' />
+    <tag k='building' v='yes' />
+    <tag k='name' v='Duplicate member' />
+    <tag k='type' v='multipolygon' />
+  </relation>
+  <relation id='10002' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <member type='way' ref='1' role='outer' />
+    <member type='node' ref='1' role='outer' />
+    <tag k='building' v='yes' />
+    <tag k='name' v='Same id, different object' />
+    <tag k='type' v='site' />
+  </relation>
+</osm>
