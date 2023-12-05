@@ -622,6 +622,10 @@ WHERE
         for type, id in map(lambda r: (r[0], r[1:]), res):
             self.typeMapping[type](int(id))
 
+    def array_id(self, res):
+        for type, id in map(lambda r: (r[0], r[1:]), res):
+            self.typeMapping_id_only[type](int(id))
+
     re_points = re.compile(r"[\(,][^\(,\)]*[\),]")
 
     def get_points(self, text):
