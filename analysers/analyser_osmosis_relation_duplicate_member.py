@@ -27,11 +27,13 @@ sql10 = """
 SELECT
   id,
   ST_AsText(relation_locate(id)),
-  array_agg(duplicate)
+  array_agg(duplicate_typeid ORDER BY duplicate_typeid), -- sequence doesn't matter as long as it's constant until relation changes
+  array_agg(duplicate_string ORDER BY duplicate_string) -- keep same sequence as line above
 FROM (
   SELECT
     id,
-    member_type || member_id || ' (' || COUNT(*) || ')' AS duplicate
+    member_type || member_id AS duplicate_typeid,
+    member_type || member_id || ' (' || COUNT(*) || ')' AS duplicate_string
   FROM
     {0}relations AS relations
     JOIN relation_members ON
@@ -63,7 +65,7 @@ class Analyser_Osmosis_Relation_Duplicate_Member(Analyser_Osmosis):
             fix = T_(
 '''Remove the duplicate members until only unique members remain.'''))
 
-        self.callback10 = lambda res: {"class": 3, "data": [self.relation, self.positionAsText], "text": {"en": ', '.join(res[2]).lower()}}
+        self.callback10 = lambda res: {"class": 3, "data": [self.relation, self.positionAsText, self.array_id], "text": {"en": ', '.join(res[3]).lower()}}
 
     def analyser_osmosis_full(self):
         self.run(sql10.format(""), self.callback10)
@@ -90,5 +92,5 @@ class Test(TestAnalyserOsmosis):
             a.analyser()
 
         self.root_err = self.load_errors()
-        self.check_err(cl="3", elems=[("relation", "10001")])
+        self.check_err(cl="3", elems=[("relation", "10001"), ("way", "1")])
         self.check_num_err(1)
