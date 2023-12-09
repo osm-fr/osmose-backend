@@ -32,8 +32,6 @@ class TagFix_MultipleTag(Plugin):
 
         self.errors[30323] = self.def_class(item = 3032, level = 3, tags = ['tag', 'fix:chair'],
             title = T_('Watch multiple tags'))
-        self.errors[303210] = self.def_class(item = 3032, level = 3, tags = ['tag', 'highway', 'fix:chair'],
-            title = T_('Fence with `material` tag, also add `fence_type`'))
         self.errors[20803] = self.def_class(item = 2080, level = 2, tags = ['tag', 'highway', 'fix:chair'],
             title = T_('Tag highway missing for tracktype or lanes'))
         self.errors[21101] = self.def_class(item = 2110, level = 2, tags = ['tag'],
@@ -101,9 +99,6 @@ For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:acces
         if tags.get("name") and len(key_set & self.name_parent) == 0 and tags.get("naptan:verified") != "no":
             err.append({"class": 21101, "subclass": 1})
 
-        if tags.get("barrier") == "fence" and "fence_type" not in tags and "material" in tags:
-            err.append({"class": 303210})
-
         return err
 
     def node(self, data, tags):
@@ -170,5 +165,3 @@ class Test(TestPluginCommon):
 
         assert a.way(None, {"tracktype": "foo"}, None)
         assert not a.way(None, {"tracktype": "foo", "leisure": "track"}, None)
-
-        assert a.node(None, {"barrier": "fence", "material": "wood"})
