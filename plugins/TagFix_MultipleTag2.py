@@ -26,6 +26,7 @@ class TagFix_MultipleTag2(PluginMapCSS):
         self.errors[40201] = self.def_class(item = 4020, level = 1, tags = mapcss.list_('tag') + mapcss.list_('fix:chair', 'highway', 'roundabout'), title = mapcss.tr('Roundabout as area'))
         self.errors[40303] = self.def_class(item = 4030, level = 1, tags = mapcss.list_('tag') + mapcss.list_('fix:chair'), title = mapcss.tr('Tag conflict'), trap = mapcss.tr('Sometimes the object needs both tags.'), detail = mapcss.tr('The object contains two incompatible tags.'))
         self.errors[71301] = self.def_class(item = 7130, level = 3, tags = mapcss.list_('tag') + mapcss.list_('highway', 'maxheight', 'fix:survey'), title = mapcss.tr('Missing maxheight tag'), detail = mapcss.tr('Missing `maxheight=*` or `maxheight:physical=*` for a tunnel or a way under a bridge.'))
+        self.errors[303210] = self.def_class(item = 3032, level = 3, tags = mapcss.list_('tag'), title = mapcss.tr('Fence with {0} tag, also add {1}', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.key}')))
         self.errors[303211] = self.def_class(item = 3032, level = 3, tags = mapcss.list_('tag'), title = mapcss.tr('suspicious tag combination'))
 
         self.re_2ae49e65 = re.compile(r'^(motorway_link|trunk_link|primary|primary_link|secondary|secondary_link)$')
@@ -168,6 +169,20 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 # -osmoseItemClassLevel:"4030/40303:2/1"
                 # throwWarning:tr("{0} together with {1}. A picnic site rarely consists of only one single picnic table","{0.tag}","{1.tag}")
                 err.append({'class': 40303, 'subclass': 2, 'text': mapcss.tr('{0} together with {1}. A picnic site rarely consists of only one single picnic table', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+
+        # *[barrier=fence][material][!fence_type]
+        if ('barrier' in keys and 'material' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'barrier') == mapcss._value_capture(capture_tags, 0, 'fence')) and (mapcss._tag_capture(capture_tags, 1, tags, 'material')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'fence_type')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseItemClassLevel:"3032/303210/3"
+                # throwWarning:tr("Fence with {0} tag, also add {1}","{1.key}","{2.key}")
+                # assertNoMatch:"node barrier=fence material=metal fence_type=chain_link"
+                # assertMatch:"node barrier=fence material=wood"
+                err.append({'class': 303210, 'subclass': 0, 'text': mapcss.tr('Fence with {0} tag, also add {1}', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.key}'))})
 
         # node[tunnel][!highway][!area:highway][!railway][!waterway][!piste:type][type!=tunnel][public_transport!=platform][route!=ferry][man_made!=pipeline][man_made!=goods_conveyor][man_made!=wildlife_crossing][man_made!=tunnel][power!=cable]
         if ('tunnel' in keys):
@@ -422,6 +437,18 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 # throwWarning:tr("{0} together with {1}. {0} should be used for the area containing the attraction, {1} for the actual tracks","{0.tag}","{1.tag}")
                 err.append({'class': 40303, 'subclass': 3, 'text': mapcss.tr('{0} together with {1}. {0} should be used for the area containing the attraction, {1} for the actual tracks', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
+        # *[barrier=fence][material][!fence_type]
+        if ('barrier' in keys and 'material' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'barrier') == mapcss._value_capture(capture_tags, 0, 'fence')) and (mapcss._tag_capture(capture_tags, 1, tags, 'material')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'fence_type')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseItemClassLevel:"3032/303210/3"
+                # throwWarning:tr("Fence with {0} tag, also add {1}","{1.key}","{2.key}")
+                err.append({'class': 303210, 'subclass': 0, 'text': mapcss.tr('Fence with {0} tag, also add {1}', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.key}'))})
+
         return err
 
     def relation(self, data, tags, members):
@@ -536,6 +563,18 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 # throwWarning:tr("{0} together with {1}. A picnic site rarely consists of only one single picnic table","{0.tag}","{1.tag}")
                 err.append({'class': 40303, 'subclass': 2, 'text': mapcss.tr('{0} together with {1}. A picnic site rarely consists of only one single picnic table', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
+        # *[barrier=fence][material][!fence_type]
+        if ('barrier' in keys and 'material' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'barrier') == mapcss._value_capture(capture_tags, 0, 'fence')) and (mapcss._tag_capture(capture_tags, 1, tags, 'material')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'fence_type')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseItemClassLevel:"3032/303210/3"
+                # throwWarning:tr("Fence with {0} tag, also add {1}","{1.key}","{2.key}")
+                err.append({'class': 303210, 'subclass': 0, 'text': mapcss.tr('Fence with {0} tag, also add {1}', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.key}'))})
+
         return err
 
 
@@ -560,6 +599,8 @@ class Test(TestPluginMapcss):
         self.check_err(n.node(data, {'amenity': 'recycling', 'name': 'My nice awesome container', 'recycling_type': 'container'}), expected={'class': 32302, 'subclass': 0})
         self.check_err(n.node(data, {'crossing': 'no', 'highway': 'crossing'}), expected={'class': 40303, 'subclass': 1})
         self.check_not_err(n.node(data, {'crossing': 'uncontrolled', 'highway': 'crossing'}), expected={'class': 40303, 'subclass': 1})
+        self.check_not_err(n.node(data, {'barrier': 'fence', 'fence_type': 'chain_link', 'material': 'metal'}), expected={'class': 303210, 'subclass': 0})
+        self.check_err(n.node(data, {'barrier': 'fence', 'material': 'wood'}), expected={'class': 303210, 'subclass': 0})
         self.check_err(n.way(data, {'amenity': 'fuel', 'building': 'roof'}, [0]), expected={'class': 30322, 'subclass': 0})
         self.check_not_err(n.way(data, {'amenity': 'parking', 'building': 'roof', 'parking': 'rooftop'}, [0]), expected={'class': 30322, 'subclass': 0})
         self.check_err(n.way(data, {'fee': 'yes', 'highway': 'primary'}, [0]), expected={'class': 30320, 'subclass': 1000})
