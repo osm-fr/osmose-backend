@@ -199,6 +199,14 @@ way[attraction=roller_coaster][roller_coaster=track] {
 }
 
 
+*[barrier=fence][material][!fence_type] {
+    throwWarning: tr("Fence with {0} tag, also add {1}", "{1.key}", "{2.key}");
+    assertMatch: "node barrier=fence material=wood";
+    assertNoMatch: "node barrier=fence material=metal fence_type=chain_link";
+    -osmoseItemClassLevel: "3032/303210/3";
+}
+
+
 /* Workaround for issue #1766 */
 node[tunnel][!highway][!area:highway][!railway][!waterway][!piste:type][type!=tunnel][public_transport!=platform][route!=ferry][man_made!=pipeline][man_made!=goods_conveyor][man_made!=wildlife_crossing][man_made!=tunnel][power!=cable] {
     throwWarning: tr("{0} on suspicious object", "{0.key}");
