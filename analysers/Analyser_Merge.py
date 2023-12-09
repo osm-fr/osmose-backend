@@ -879,7 +879,7 @@ class Load(object):
                 res = self.map(res)
                 geom = self.geomFunction(res['_geom'])
                 res = {k: v for k, v in res.items() if k not in ['_geom', 'geom', 'geometry']}
-                if geom:
+                if geom and geom[0] and geom[1]:
                     for k in res.keys():
                         try:
                             res[k] = mult_space.sub(' ', res[k].strip()) # Strip and remove duplicate space
