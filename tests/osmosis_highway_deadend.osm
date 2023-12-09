@@ -163,6 +163,15 @@
   <node id='156' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84913023756' lon='5.83769227449'>
     <tag k='entrance' v='garage' />
   </node>
+  <node id='157' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85110620921' lon='5.83892209608'>
+    <tag k='noexit' v='yes' />
+  </node>
+  <node id='158' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85093105188' lon='5.83892209608' />
+  <node id='159' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85092317963' lon='5.83920884205' />
+  <node id='160' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85110030505' lon='5.83919928385' />
+  <node id='161' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85082280825' lon='5.83932035437' />
+  <node id='162' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85114753837' lon='5.83916742319' />
+  <node id='163' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85114753837' lon='5.83923114451' />
   <way id='1000' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='1' />
     <nd ref='2' />
@@ -739,5 +748,33 @@
     <nd ref='156' />
     <tag k='highway' v='residential' />
     <tag k='oneway' v='yes' />
+  </way>
+  <way id='1084' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='157' />
+    <nd ref='158' />
+    <tag k='highway' v='tertiary' />
+  </way>
+  <way id='1085' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='159' />
+    <nd ref='158' />
+    <tag k='route' v='ferry' />
+  </way>
+  <way id='1086' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='160' />
+    <nd ref='159' />
+    <tag k='highway' v='cycleway' />
+  </way>
+  <way id='1087' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='161' />
+    <nd ref='159' />
+    <tag k='highway' v='cycleway' />
+    <tag k='name' v='Class 1 bad' />
+  </way>
+  <way id='1088' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='162' />
+    <nd ref='160' />
+    <nd ref='163' />
+    <nd ref='162' />
+    <tag k='amenity' v='bicycle_parking' />
   </way>
 </osm>
