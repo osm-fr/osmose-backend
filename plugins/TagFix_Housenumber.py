@@ -64,7 +64,7 @@ and `potential`.'''))
         elif country == 'IT':
             # Allow "snc" (Senza numero civico) in Italy
             self.housenumber = re.compile(r"(:?^[1-9])|(^snc$)")
-        elif country == 'NL':
+        elif country in ('NL', 'CW'):
             # Baseline:
             #   https://imbag.github.io/catalogus/hoofdstukken/attributen--relaties#734-huisnummertoevoeging
             #   (7.3.2 huisnummer, 7.3.3 huisletter and 7.3.4 huisnummertoevoeging)
