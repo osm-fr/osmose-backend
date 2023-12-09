@@ -32,8 +32,8 @@ class TagFix_MultipleTag(Plugin):
 
         self.errors[30323] = self.def_class(item = 3032, level = 3, tags = ['tag', 'fix:chair'],
             title = T_('Watch multiple tags'))
-        self.errors[303210] = self.def_class(item = 3032, level = 1, tags = ['tag', 'highway', 'fix:chair'],
-            title = T_('Fence with material tag, better use fence_type tag'))
+        self.errors[303210] = self.def_class(item = 3032, level = 3, tags = ['tag', 'highway', 'fix:chair'],
+            title = T_('Fence with `material` tag, also add `fence_type`'))
         self.errors[20803] = self.def_class(item = 2080, level = 2, tags = ['tag', 'highway', 'fix:chair'],
             title = T_('Tag highway missing for tracktype or lanes'))
         self.errors[21101] = self.def_class(item = 2110, level = 2, tags = ['tag'],
