@@ -36,10 +36,42 @@ $$ LANGUAGE 'sql' STRICT IMMUTABLE;
 """
 
 sql20 = """
+CREATE TEMP TABLE ferry AS
+SELECT
+    linestring,
+    nodes
+FROM
+    ways
+WHERE
+    tags != ''::hstore AND
+    tags?'route' AND
+    tags->'route' = 'ferry'
+"""
+
+sql21 = """
+CREATE TEMP TABLE bicycle_parking AS
+SELECT
+    linestring,
+    nodes
+FROM
+    ways
+WHERE
+    tags != ''::hstore AND
+    tags?'amenity' AND
+    tags->'amenity' = 'bicycle_parking'
+"""
+
+sql22 = """
+CREATE INDEX idx_ferry_linestring ON ferry USING GIST(linestring);
+CREATE INDEX idx_bicycle_parking_linestring ON bicycle_parking USING GIST(linestring);
+"""
+
+sql23 = """
+CREATE TEMP TABLE unconnected_highways AS
 SELECT
     wid,
     nid,
-    ST_AsText(geom),
+    geom,
     highway
 FROM (
 SELECT
@@ -66,21 +98,37 @@ GROUP BY
 HAVING
     COUNT(*) = 1
 ) AS t
-    LEFT JOIN ways AS ferry ON
+    LEFT JOIN ferry ON
         ferry.linestring && t.geom AND
-        t.nid = ANY(ferry.nodes) AND
-        ferry.tags != ''::hstore AND
-        ferry.tags?'route' AND
-        ferry.tags->'route' = 'ferry'
-    LEFT JOIN ways AS bicycle_parking ON
-        bicycle_parking.linestring && t.geom AND
-        t.nid = ANY(bicycle_parking.nodes) AND
-        bicycle_parking.tags != ''::hstore AND
-        bicycle_parking.tags?'amenity' AND
-        bicycle_parking.tags->'amenity' = 'bicycle_parking'
+        t.nid = ANY(ferry.nodes)
 WHERE
-    ferry.id IS NULL AND
-    bicycle_parking.id IS NULL
+    ferry IS NULL
+"""
+
+sql24 = """
+SELECT
+    wid,
+    nid,
+    ST_AsText(geom)
+FROM
+    unconnected_highways
+    LEFT JOIN bicycle_parking ON
+        bicycle_parking.linestring && unconnected_highways.geom AND
+        unconnected_highways.nid = ANY(bicycle_parking.nodes)
+WHERE
+    highway = 'cycleway' AND
+    bicycle_parking IS NULL
+"""
+
+sql25 = """
+SELECT
+    wid,
+    nid,
+    ST_AsText(geom)
+FROM
+    unconnected_highways
+WHERE
+    highway != 'cycleway'
 """
 
 
@@ -421,7 +469,8 @@ Ensure that `service=drive-through` is the correct tag.''')),
 '''Review the type of the service road or draw the local road network.'''),
             resource = 'https://wiki.openstreetmap.org/wiki/Tag:service%3Ddrive-through')
 
-        self.callback20 = lambda res: {"class":1 if res[3] == 'cycleway' else 2, "data":[self.way_full, self.node_full, self.positionAsText]}
+        self.callback21 = lambda res: {"class": 1, "data": [self.way_full, self.node_full, self.positionAsText]}
+        self.callback22 = lambda res: {"class": 2, "data": [self.way_full, self.node_full, self.positionAsText]}
 
     def analyser_osmosis_common(self):
         boundary_relation = self.config.polygon_id # Either a number, None or (number, number, ...)
@@ -448,10 +497,20 @@ Ensure that `service=drive-through` is the correct tag.''')),
         self.run(sql50, lambda res: {"class":5, "data":[self.way_full, self.node, self.positionAsText]})
 
     def analyser_osmosis_full(self):
-        self.run(sql20.format(''), self.callback20)
+        self.run(sql20)
+        self.run(sql21)
+        self.run(sql22)
+        self.run(sql23.format(''))
+        self.run(sql24, self.callback21)
+        self.run(sql25, self.callback22)
 
     def analyser_osmosis_diff(self):
-        self.run(sql20.format('touched_'), self.callback20)
+        self.run(sql20)
+        self.run(sql21)
+        self.run(sql22)
+        self.run(sql23.format('touched_'))
+        self.run(sql24, self.callback21)
+        self.run(sql25, self.callback22)
 
 
 ###########################################################################
@@ -472,6 +531,7 @@ class Test(TestAnalyserOsmosis):
             a.analyser()
 
         self.root_err = self.load_errors()
+        self.check_err(cl="1", elems=[("node", "161"), ("way", "1087")])
         self.check_err(cl="2", elems=[("node", "59"), ("way", "1026")])
         self.check_err(cl="2", elems=[("node", "55"), ("way", "1024")])
 
@@ -499,4 +559,4 @@ class Test(TestAnalyserOsmosis):
 
         self.check_err(cl="5", elems=[("node", "73"), ("way", "1031")])
 
-        self.check_num_err(21)
+        self.check_num_err(22)
