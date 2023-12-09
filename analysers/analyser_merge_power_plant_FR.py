@@ -71,6 +71,7 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge_Point):
         "Autre": {
             None: "",
             "Gaz": "",
+            "Fioul": "oil",
         },
         "Bioénergies": {
             None: "",
