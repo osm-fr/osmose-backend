@@ -1270,7 +1270,7 @@ verification of this data.'''))
                         tags::jsonb
                     FROM
                         {from_}
-                        LEFT JOIN LATERAL regexp_split_to_table(tags->'{ref}', ';') a(ref) ON true
+                        LEFT JOIN LATERAL (SELECT DISTINCT ref FROM regexp_split_to_table(tags->'{ref}', ';') AS a(ref)) a(ref) ON true
                     WHERE""" + ("""
                         {geomSelect} IS NOT NULL AND""" if self.parser.imported_srid() else "") + ("""
                         ST_Transform(ST_Expand(ST_SetSRID(ST_GeomFromText('{bbox}'), {proj}), {distance}), 4326) && {geomSelect} AND""" if self.load.bbox and self.parser.imported_srid() else "") + """
@@ -1464,7 +1464,7 @@ open data and OSM.'''))
                     count_invalid_osm_ref = count_invalid_osm_ref + 1
                     return {
                         "class": self.missing_osm['id'],
-                        "subclass": str(stablehash64(res[5])) if self.conflate.osmRef != "NULL" else None,
+                        "subclass": str(stablehash64("{0}{1}{2}".format(res[0], res[1], res[5]))) if self.conflate.osmRef != "NULL" else None,
                         "data": [self.typeMapping[res[1]], None, self.positionAsText]
                     }
                 self.run(sql23.format(official = table, joinClause = joinClause), ret_invalid)
