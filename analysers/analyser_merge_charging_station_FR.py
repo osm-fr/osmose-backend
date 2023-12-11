@@ -47,7 +47,7 @@ class Analyser_Merge_Charging_station_FR(Analyser_Merge_Point):
         Returns:
             str: The input string with all trailing zeros removed.
         """
-        input_string = str(input_string).replace(',', '.').replace('  ', '')
+        input_string = str(input_string).replace(',', '.').replace(' ', '').strip()
         return re.sub(r'[.,]0+$', '', input_string)
 
 
@@ -63,8 +63,7 @@ class Analyser_Merge_Charging_station_FR(Analyser_Merge_Point):
         Returns:
             str: The Wikidata reference to the charging station network, or an empty string if no match was found.
         """
-        wikidata_item = self.WIKIDATA_MAP.get(str.lower(), "")
-        return wikidata_item
+        return self.WIKIDATA_MAP.get(str.lower(), None)
 
     @staticmethod
     def is_float(str):
@@ -87,7 +86,6 @@ class Analyser_Merge_Charging_station_FR(Analyser_Merge_Point):
 
         # remove extremely high values or the ones containing letters
         max_output_kw = 1999
-        detection_watts = 2000
         # we take an upper limit of 400 kW
         max_kw = 401
 
@@ -95,64 +93,63 @@ class Analyser_Merge_Charging_station_FR(Analyser_Merge_Point):
         # upper values are Watts, which we should divide by 1000 to get kW
 
         if not power:
-            return ''
+            return None
         if re.search(r"[a-zA-Z]+", power):
-            return ''
+            return None
 
-        if not self.is_float(power) and int(power) > detection_watts:
+        if not self.is_float(power) and int(power) > max_output_kw:
             power = int(power) / 1000
 
         if not self.is_float(power) or float(power) < 1:
-            return ''
+            return None
 
         # clean the values of power
         string_power = str(round(float(power), 2))
-        cleaned_power = (self.remove_trailing_zeros(string_power))
+        cleaned_power = self.remove_trailing_zeros(string_power)
         if float(power) < max_output_kw:
             return '{0} kW'.format(cleaned_power)
 
         else:
             if float(power) > (max_kw * 1000):
-                return ''
+                return None
 
-        if float(cleaned_power) > detection_watts and float(cleaned_power) < (
+        if float(cleaned_power) > max_output_kw and float(cleaned_power) < (
                 max_kw * 1000):
             cleaned_power = self.remove_trailing_zeros(
                 float(cleaned_power) / 1000)
             if float(cleaned_power) > max_output_kw:
-                return ''
+                return None
             else:
                 if float(cleaned_power) > max_kw:
                     return '{0} kW'.format(
-                        self.remove_trailing_zeros(
-                            float(cleaned_power) / 1000))
+                        self.remove_trailing_zeros(float(power) / 1000))
         else:
             cleaned_power = float(cleaned_power) / 1000
 
         if float(cleaned_power) > max_kw:
-            return ''
+            return None
 
         if cleaned_power != 0:
             return '{0} kW'.format(cleaned_power)
         else:
-            return ''
+            return None
 
     def __init__(self, config, logger=None):
         Analyser_Merge_Point.__init__(self, config, logger)
         doc = dict(
             detail=T_(
                 '''A car charging station may be here but is not mapped. The list of the
-                charging stations comes from a database published by Etalab. This database
-                brings together information published by the various local authorities and
-                networks in France.'''),
+charging stations comes from a database published by Etalab. This database
+brings together information published by the various local authorities and
+networks in France.'''),
             fix=T_(
                 '''See [the
-                mapping](https://wiki.openstreetmap.org/wiki/France/data.gouv.fr/Bornes_de_Recharge_pour_V%C3%A9hicules_%C3%89lectriques)
-                on the  wiki. Add a node or add tags if already existing.'''),
+mapping](https://wiki.openstreetmap.org/wiki/France/data.gouv.fr/Bornes_de_Recharge_pour_V%C3%A9hicules_%C3%89lectriques)
+on the  wiki. Add a node or add tags if already existing.'''),
             trap=T_(
                 '''The initial information corresponds to recharging pools and devices and not to
-                stations, so some values are worth checking in the field. For instance, an open data point
-                with `capacity=6` can sometimes match to 3 charging station with `capacity=2`'''))
+stations, so some values are worth checking in the field. For instance, an open data point
+with `capacity=6` can sometimes match to 3 charging station with `capacity=2`'''))
         self.def_class_missing_official(
             item=8410,
             id=1,
@@ -205,17 +202,17 @@ class Analyser_Merge_Charging_station_FR(Analyser_Merge_Point):
                         "motorcar": "yes"},
                     static2={"source": self.source},
                     mapping1={
-                        "operator": "nom_operateur",
-                        "network": "nom_enseigne",
-                        "owner": "nom_amenageur",
-                        "ref:EU:EVSE": "id_station_itinerance"
+                        "operator": lambda fields: fields["nom_operateur"] if fields["nom_operateur"] else None,
+                        "network": lambda fields: fields["nom_enseigne"] if fields["nom_enseigne"] else None,
+                        "owner": lambda fields: fields["nom_amenageur"] if fields["nom_amenageur"] else None,
+                        "ref:EU:EVSE": lambda fields: fields["id_station_itinerance"] if fields["id_station_itinerance"] else None,
                     },
                     mapping2={
-                        "email": "contact_operateur",
-                        "operator:phone": "telephone_operateur",
-                        "operator:email": "contact_operateur",
-                        "start_date": "date_mise_en_service",
-                        "capacity": "nbre_pdc",
+                        "email": lambda fields: fields["contact_operateur"] if fields["contact_operateur"] else None,
+                        "operator:phone": lambda fields: fields["telephone_operateur"] if fields["telephone_operateur"] else None,
+                        "operator:email": lambda fields: fields["contact_operateur"] if fields["contact_operateur"] else None,
+                        "start_date": lambda fields: fields["date_mise_en_service"] if fields["date_mise_en_service"] else None,
+                        "capacity": lambda fields: fields["nbre_pdc"] if fields["nbre_pdc"] else None,
                         "charging_station:output": lambda fields: self.socket_output_find_correspondances(
                             fields["puissance_nominale"]) if fields["puissance_nominale"] else None,
                         "bicycle": lambda fields: "yes" if fields["station_deux_roues"] == "true" else None,
@@ -225,8 +222,7 @@ class Analyser_Merge_Charging_station_FR(Analyser_Merge_Point):
                         "opening_hours": "horaires_grouped",
                         "fee": lambda fields: "yes" if fields["gratuit_grouped"] == "false" else (
                             "no" if fields["gratuit_grouped"] == "true" else None),
-                        "authentication:none": lambda fields: "yes" if fields[
-                                                                           "paiement_acte_grouped"] == "true" else None,
+                        "authentication:none": lambda fields: "yes" if fields["paiement_acte_grouped"] == "true" else None,
                         "payment:credit_cards": lambda fields: "yes" if fields["paiement_cb_grouped"] == "true" else (
                             "no" if fields["paiement_cb_grouped"] == "false" else None),
                         "reservation": lambda fields: "yes" if fields["reservation_grouped"] == "true" else None,
@@ -262,27 +258,24 @@ class Test(unittest.TestCase):
     def test_output_kw_bad_input(self):
         self.assertEqual(
             Analyser_Merge_Charging_station_FR.socket_output_find_correspondances(
-                Analyser_Merge_Charging_station_FR, 'bonjour'), '')
+                Analyser_Merge_Charging_station_FR, 'bonjour'), None)
         self.assertEqual(
             Analyser_Merge_Charging_station_FR.socket_output_find_correspondances(
-                Analyser_Merge_Charging_station_FR, '0'), '')
+                Analyser_Merge_Charging_station_FR, '0'), None)
         self.assertEqual(
             Analyser_Merge_Charging_station_FR.socket_output_find_correspondances(
-                Analyser_Merge_Charging_station_FR, ''), '')
+                Analyser_Merge_Charging_station_FR, ''), None)
         self.assertEqual(
             Analyser_Merge_Charging_station_FR.socket_output_find_correspondances(
-                Analyser_Merge_Charging_station_FR, 'Non applicable'), '')
+                Analyser_Merge_Charging_station_FR, 'Non applicable'), None)
         self.assertEqual(
             Analyser_Merge_Charging_station_FR.socket_output_find_correspondances(
-                Analyser_Merge_Charging_station_FR, '132456789'), '')
+                Analyser_Merge_Charging_station_FR, '132456789'), None)
 
     def test_output_watts(self):
         self.assertEqual(
             Analyser_Merge_Charging_station_FR.socket_output_find_correspondances(
-                Analyser_Merge_Charging_station_FR, '3600'), '3.6 kW')
-        self.assertEqual(
-            Analyser_Merge_Charging_station_FR.socket_output_find_correspondances(
-                Analyser_Merge_Charging_station_FR, '3600'), '3.6 kW')
+                Analyser_Merge_Charging_station_FR, '3,6'), '3.6 kW')
         self.assertEqual(
             Analyser_Merge_Charging_station_FR.socket_output_find_correspondances(
                 Analyser_Merge_Charging_station_FR, '50000'), '50 kW')
@@ -328,7 +321,7 @@ class Test(unittest.TestCase):
                 Analyser_Merge_Charging_station_FR, '1'), '1 kW')
         self.assertEqual(
             Analyser_Merge_Charging_station_FR.socket_output_find_correspondances(
-                Analyser_Merge_Charging_station_FR, '7.4'), '7.4 kW')
+                Analyser_Merge_Charging_station_FR, '7.40'), '7.4 kW')
         self.assertEqual(
             Analyser_Merge_Charging_station_FR.socket_output_find_correspondances(
                 Analyser_Merge_Charging_station_FR,
@@ -350,4 +343,4 @@ class Test(unittest.TestCase):
                 Analyser_Merge_Charging_station_FR, 'liDL'), 'Q115764851')
         self.assertEqual(
             Analyser_Merge_Charging_station_FR.map_wikidata_from_operator(
-                Analyser_Merge_Charging_station_FR, 'le père noël'), '')
+                Analyser_Merge_Charging_station_FR, 'le père noël'), None)
