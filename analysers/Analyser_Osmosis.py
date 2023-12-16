@@ -135,7 +135,7 @@ BEGIN
             JOIN relation_members ON
                 relation_members.relation_id = relations.id AND
                 relation_members.member_type = 'W' AND
-                relation_members.member_role IN ('outer', 'inner')
+                relation_members.member_role IN ('outer', 'inner', '')
             LEFT JOIN ways ON
                 ways.id = relation_members.member_id
         WHERE
