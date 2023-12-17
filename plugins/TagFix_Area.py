@@ -28,7 +28,7 @@ class TagFix_Area(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.area_yes_good = set(('aerialway', 'aeroway', 'amenity', 'barrier', 'highway', 'historic', 'leisure', 'man_made', 'military', 'playground', 'power', 'public_transport', 'sport', 'tourism', 'traffic_calming', 'waterway'))
-        self.area_yes_default = set(('boundary', 'building', 'craft', 'geological', 'indoor', 'landuse', 'natural', 'office', 'place', 'shop'))
+        self.area_yes_default = set(('area:highway', 'boundary', 'building', 'cemetery', 'craft', 'geological', 'indoor', 'landuse', 'natural', 'office', 'place', 'shop'))
         self.errors[32002] = self.def_class(item = 3200, level = 3, tags = ['tag', 'fix:chair'],
             title = T_('Untagged area object'),
             detail = T_('The object is missing any tag which defines what kind of feature it is. This is unexpected for something tagged with `area=yes`.'),
