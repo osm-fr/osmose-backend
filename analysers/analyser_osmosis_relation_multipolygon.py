@@ -68,7 +68,7 @@ WHERE
 """
 
 sql20 = """
-SELECT
+SELECT DISTINCT
     relations.id,
     ways.id,
     ST_AsText(way_locate(ways.linestring)),
@@ -94,25 +94,27 @@ WHERE
     relations.tags->'type' = 'multipolygon' AND
     ways.tags != ''::hstore AND
     (
-        relations.tags?'landuse' AND
-        ways.tags?'landuse' AND
-        ways.tags->'landuse' != (relations.tags->'landuse')
-    ) OR (
-        relations.tags?'natural' AND
-        relations.tags->'natural' IN ('bay', 'beach', 'fell', 'grassland', 'glacier', 'heath', 'mud', 'sand', 'scree', 'scrub', 'sinkhole', 'water', 'wetland', 'wood') AND
-        ways.tags?'natural' AND
-        ways.tags->'natural' IN ('bay', 'beach', 'fell', 'grassland', 'glacier', 'heath', 'mud', 'sand', 'scree', 'scrub', 'sinkhole', 'water', 'wetland', 'wood') AND
-        ways.tags->'natural' != (relations.tags->'natural')
-    ) OR (
-        relations.tags?'waterway' AND
-        relations.tags->'waterway' IN ('boatyard', 'dock', 'riverbank') AND
-        ways.tags?'waterway' AND
-        ways.tags->'waterway' IN ('boatyard', 'dock', 'riverbank') AND
-        ways.tags->'waterway' != (relations.tags->'waterway')
-    ) OR (
-        relations.tags?'building' AND
-        ways.tags?'building' AND
-        ways.tags->'building' != (relations.tags->'building')
+        (
+            relations.tags?'landuse' AND
+            ways.tags?'landuse' AND
+            ways.tags->'landuse' != (relations.tags->'landuse')
+        ) OR (
+            relations.tags?'natural' AND
+            relations.tags->'natural' IN ('bay', 'beach', 'fell', 'grassland', 'glacier', 'heath', 'mud', 'sand', 'scree', 'scrub', 'sinkhole', 'water', 'wetland', 'wood') AND
+            ways.tags?'natural' AND
+            ways.tags->'natural' IN ('bay', 'beach', 'fell', 'grassland', 'glacier', 'heath', 'mud', 'sand', 'scree', 'scrub', 'sinkhole', 'water', 'wetland', 'wood') AND
+            ways.tags->'natural' != (relations.tags->'natural')
+        ) OR (
+            relations.tags?'waterway' AND
+            relations.tags->'waterway' IN ('boatyard', 'dock', 'riverbank') AND
+            ways.tags?'waterway' AND
+            ways.tags->'waterway' IN ('boatyard', 'dock', 'riverbank') AND
+            ways.tags->'waterway' != (relations.tags->'waterway')
+        ) OR (
+            relations.tags?'building' AND
+            ways.tags?'building' AND
+            ways.tags->'building' != (relations.tags->'building')
+        )
     )
 """
 
