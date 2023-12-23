@@ -957,63 +957,6 @@ class Josm_combinations(PluginMapCSS):
                 # throwWarning:tr("alternative name without {0}","{1.key}")
                 err.append({'class': 9001001, 'subclass': 1822630838, 'text': mapcss.tr('alternative name without {0}', mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
-        # *[unisex=yes][female=yes][male!=yes][shop=hairdresser]
-        # *[unisex=yes][male=yes][female!=yes][shop=hairdresser]
-        if ('female' in keys and 'shop' in keys and 'unisex' in keys) or ('male' in keys and 'shop' in keys and 'unisex' in keys):
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'unisex') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'female') == mapcss._value_capture(capture_tags, 1, 'yes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'male') != mapcss._value_const_capture(capture_tags, 2, 'yes', 'yes')) and (mapcss._tag_capture(capture_tags, 3, tags, 'shop') == mapcss._value_capture(capture_tags, 3, 'hairdresser')))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'unisex') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'male') == mapcss._value_capture(capture_tags, 1, 'yes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'female') != mapcss._value_const_capture(capture_tags, 2, 'yes', 'yes')) and (mapcss._tag_capture(capture_tags, 3, tags, 'shop') == mapcss._value_capture(capture_tags, 3, 'hairdresser')))
-                except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("suspicious tag combination")
-                # throwWarning:tr("{0} together with {1}","{0.tag}","{1.tag}")
-                err.append({'class': 9001002, 'subclass': 1043941827, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
-
-        # *[unisex=yes][female=yes][male=yes][shop=hairdresser]
-        if ('female' in keys and 'male' in keys and 'shop' in keys and 'unisex' in keys):
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'unisex') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'female') == mapcss._value_capture(capture_tags, 1, 'yes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'male') == mapcss._value_capture(capture_tags, 2, 'yes')) and (mapcss._tag_capture(capture_tags, 3, tags, 'shop') == mapcss._value_capture(capture_tags, 3, 'hairdresser')))
-                except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("suspicious tag combination")
-                # throwWarning:tr("{0} together with {1} and {2}. Remove {1} and {2}","{0.tag}","{1.tag}","{2.tag}")
-                # fixRemove:"female"
-                # fixRemove:"male"
-                err.append({'class': 9001002, 'subclass': 408307546, 'text': mapcss.tr('{0} together with {1} and {2}. Remove {1} and {2}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{2.tag}')), 'allow_fix_override': True, 'fix': {
-                    '-': ([
-                    'female',
-                    'male'])
-                }})
-
-        # *[female=yes][male=yes][!unisex][shop=hairdresser]
-        if ('female' in keys and 'male' in keys and 'shop' in keys):
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'female') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'male') == mapcss._value_capture(capture_tags, 1, 'yes')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'unisex')) and (mapcss._tag_capture(capture_tags, 3, tags, 'shop') == mapcss._value_capture(capture_tags, 3, 'hairdresser')))
-                except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("suspicious tag combination")
-                # throwWarning:tr("{0} together with {1}","{0.tag}","{1.tag}")
-                # suggestAlternative:"unisex=yes"
-                # fixRemove:"female"
-                # fixRemove:"male"
-                # fixAdd:"unisex=yes"
-                err.append({'class': 9001002, 'subclass': 831595594, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}')), 'allow_fix_override': True, 'fix': {
-                    '+': dict([
-                    ['unisex','yes']]),
-                    '-': ([
-                    'female',
-                    'male'])
-                }})
-
         # node[leisure=park][natural=tree]
         if ('leisure' in keys and 'natural' in keys):
             match = False
@@ -2812,63 +2755,6 @@ class Josm_combinations(PluginMapCSS):
         # way[waterway][layer][layer=~/^(-1|-2|-3|-4|-5)$/][!tunnel][culvert!=yes][covered!=yes][pipeline!=yes][location!=underground][eval(waylength())>400]
         # Part of rule not implemented
 
-        # *[unisex=yes][female=yes][male!=yes][shop=hairdresser]
-        # *[unisex=yes][male=yes][female!=yes][shop=hairdresser]
-        if ('female' in keys and 'shop' in keys and 'unisex' in keys) or ('male' in keys and 'shop' in keys and 'unisex' in keys):
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'unisex') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'female') == mapcss._value_capture(capture_tags, 1, 'yes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'male') != mapcss._value_const_capture(capture_tags, 2, 'yes', 'yes')) and (mapcss._tag_capture(capture_tags, 3, tags, 'shop') == mapcss._value_capture(capture_tags, 3, 'hairdresser')))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'unisex') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'male') == mapcss._value_capture(capture_tags, 1, 'yes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'female') != mapcss._value_const_capture(capture_tags, 2, 'yes', 'yes')) and (mapcss._tag_capture(capture_tags, 3, tags, 'shop') == mapcss._value_capture(capture_tags, 3, 'hairdresser')))
-                except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("suspicious tag combination")
-                # throwWarning:tr("{0} together with {1}","{0.tag}","{1.tag}")
-                err.append({'class': 9001002, 'subclass': 1043941827, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
-
-        # *[unisex=yes][female=yes][male=yes][shop=hairdresser]
-        if ('female' in keys and 'male' in keys and 'shop' in keys and 'unisex' in keys):
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'unisex') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'female') == mapcss._value_capture(capture_tags, 1, 'yes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'male') == mapcss._value_capture(capture_tags, 2, 'yes')) and (mapcss._tag_capture(capture_tags, 3, tags, 'shop') == mapcss._value_capture(capture_tags, 3, 'hairdresser')))
-                except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("suspicious tag combination")
-                # throwWarning:tr("{0} together with {1} and {2}. Remove {1} and {2}","{0.tag}","{1.tag}","{2.tag}")
-                # fixRemove:"female"
-                # fixRemove:"male"
-                err.append({'class': 9001002, 'subclass': 408307546, 'text': mapcss.tr('{0} together with {1} and {2}. Remove {1} and {2}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{2.tag}')), 'allow_fix_override': True, 'fix': {
-                    '-': ([
-                    'female',
-                    'male'])
-                }})
-
-        # *[female=yes][male=yes][!unisex][shop=hairdresser]
-        if ('female' in keys and 'male' in keys and 'shop' in keys):
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'female') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'male') == mapcss._value_capture(capture_tags, 1, 'yes')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'unisex')) and (mapcss._tag_capture(capture_tags, 3, tags, 'shop') == mapcss._value_capture(capture_tags, 3, 'hairdresser')))
-                except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("suspicious tag combination")
-                # throwWarning:tr("{0} together with {1}","{0.tag}","{1.tag}")
-                # suggestAlternative:"unisex=yes"
-                # fixRemove:"female"
-                # fixRemove:"male"
-                # fixAdd:"unisex=yes"
-                err.append({'class': 9001002, 'subclass': 831595594, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}')), 'allow_fix_override': True, 'fix': {
-                    '+': dict([
-                    ['unisex','yes']]),
-                    '-': ([
-                    'female',
-                    'male'])
-                }})
-
         # way[water][natural!~/water|bay|strait/][water!=intermittent][amenity!=lavoir]!:closed
         # area[water][natural!~/water|bay|strait/][water!=intermittent][amenity!=lavoir]:closed
         if ('water' in keys):
@@ -4302,63 +4188,6 @@ class Josm_combinations(PluginMapCSS):
             if match:
                 # throwWarning:tr("{0} on a relation without {1}","{0.key}","{1.tag}")
                 err.append({'class': 9001003, 'subclass': 1921058011, 'text': mapcss.tr('{0} on a relation without {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
-
-        # *[unisex=yes][female=yes][male!=yes][shop=hairdresser]
-        # *[unisex=yes][male=yes][female!=yes][shop=hairdresser]
-        if ('female' in keys and 'shop' in keys and 'unisex' in keys) or ('male' in keys and 'shop' in keys and 'unisex' in keys):
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'unisex') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'female') == mapcss._value_capture(capture_tags, 1, 'yes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'male') != mapcss._value_const_capture(capture_tags, 2, 'yes', 'yes')) and (mapcss._tag_capture(capture_tags, 3, tags, 'shop') == mapcss._value_capture(capture_tags, 3, 'hairdresser')))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'unisex') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'male') == mapcss._value_capture(capture_tags, 1, 'yes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'female') != mapcss._value_const_capture(capture_tags, 2, 'yes', 'yes')) and (mapcss._tag_capture(capture_tags, 3, tags, 'shop') == mapcss._value_capture(capture_tags, 3, 'hairdresser')))
-                except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("suspicious tag combination")
-                # throwWarning:tr("{0} together with {1}","{0.tag}","{1.tag}")
-                err.append({'class': 9001002, 'subclass': 1043941827, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
-
-        # *[unisex=yes][female=yes][male=yes][shop=hairdresser]
-        if ('female' in keys and 'male' in keys and 'shop' in keys and 'unisex' in keys):
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'unisex') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'female') == mapcss._value_capture(capture_tags, 1, 'yes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'male') == mapcss._value_capture(capture_tags, 2, 'yes')) and (mapcss._tag_capture(capture_tags, 3, tags, 'shop') == mapcss._value_capture(capture_tags, 3, 'hairdresser')))
-                except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("suspicious tag combination")
-                # throwWarning:tr("{0} together with {1} and {2}. Remove {1} and {2}","{0.tag}","{1.tag}","{2.tag}")
-                # fixRemove:"female"
-                # fixRemove:"male"
-                err.append({'class': 9001002, 'subclass': 408307546, 'text': mapcss.tr('{0} together with {1} and {2}. Remove {1} and {2}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{2.tag}')), 'allow_fix_override': True, 'fix': {
-                    '-': ([
-                    'female',
-                    'male'])
-                }})
-
-        # *[female=yes][male=yes][!unisex][shop=hairdresser]
-        if ('female' in keys and 'male' in keys and 'shop' in keys):
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'female') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'male') == mapcss._value_capture(capture_tags, 1, 'yes')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'unisex')) and (mapcss._tag_capture(capture_tags, 3, tags, 'shop') == mapcss._value_capture(capture_tags, 3, 'hairdresser')))
-                except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("suspicious tag combination")
-                # throwWarning:tr("{0} together with {1}","{0.tag}","{1.tag}")
-                # suggestAlternative:"unisex=yes"
-                # fixRemove:"female"
-                # fixRemove:"male"
-                # fixAdd:"unisex=yes"
-                err.append({'class': 9001002, 'subclass': 831595594, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}')), 'allow_fix_override': True, 'fix': {
-                    '+': dict([
-                    ['unisex','yes']]),
-                    '-': ([
-                    'female',
-                    'male'])
-                }})
 
         # area[water][natural!~/water|bay|strait/][water!=intermittent][amenity!=lavoir]:closed
         if ('type' in keys and 'water' in keys):
