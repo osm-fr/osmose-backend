@@ -27,7 +27,7 @@ class Josm_geometry(PluginMapCSS):
         self.errors[9003013] = self.def_class(item = 9003, level = 3, tags = ["geom"], title = mapcss.tr('{0} is the tag for the linear waterway. To tag the water area use {1} + {2} instead.', mapcss._tag_uncapture(capture_tags, '{1.tag}'), 'natural=water', 'water=*'))
 
         self.re_22f56734 = re.compile(r'^(no_right_turn|no_left_turn|no_u_turn|no_straight_on|only_right_turn|only_left_turn|only_straight_on|no_entry|no_exit)$')
-        self.re_3fa2f9f1 = re.compile(r'^(water|wetland|coastline)$')
+        self.re_76b0146b = re.compile(r'^(water|wetland)$')
 
 
     def node(self, data, tags):
@@ -694,14 +694,14 @@ class Josm_geometry(PluginMapCSS):
                 # throwWarning:tr("{0} on a closed way. Should be used on an unclosed way.","{1.tag}")
                 err.append({'class': 9003011, 'subclass': 2100265426, 'text': mapcss.tr('{0} on a closed way. Should be used on an unclosed way.', mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
-        # area[natural=~/^(water|wetland|coastline)$/]
+        # area[natural=~/^(water|wetland)$/]
         # area[waterway=riverbank]
         # area[landuse=reservoir]
         if ('landuse' in keys) or ('natural' in keys) or ('waterway' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_3fa2f9f1), mapcss._tag_capture(capture_tags, 0, tags, 'natural'))) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_76b0146b), mapcss._tag_capture(capture_tags, 0, tags, 'natural'))) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -778,14 +778,14 @@ class Josm_geometry(PluginMapCSS):
                     mapcss._tag_uncapture(capture_tags, '{0.key}')])
                 }})
 
-        # area[natural=~/^(water|wetland|coastline)$/]
+        # area[natural=~/^(water|wetland)$/]
         # area[waterway=riverbank]
         # area[landuse=reservoir]
         if ('landuse' in keys and 'type' in keys) or ('natural' in keys and 'type' in keys) or ('type' in keys and 'waterway' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_3fa2f9f1), mapcss._tag_capture(capture_tags, 0, tags, 'natural'))) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_76b0146b), mapcss._tag_capture(capture_tags, 0, tags, 'natural'))) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
