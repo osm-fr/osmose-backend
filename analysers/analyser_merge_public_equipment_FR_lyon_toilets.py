@@ -43,10 +43,10 @@ class Analyser_Merge_Public_Equipment_FR_Lyon_Toilets(Analyser_Merge_Point):
             title = T_('{0} toilets update', 'Grand Lyon'))
 
         self.init(
-            "https://data.grandlyon.com/jeux-de-donnees/toilettes-publiques-metropole-lyon-v2/info",
+            "https://data.grandlyon.com/portail/fr/jeux-de-donnees/toilettes-publiques-metropole-lyon-v2/info",
             "Toilettes publiques de la Métropole de Lyon",
-            GeoJSON(Source(attribution = "Métropole de Lyon", millesime = "06/2022",
-                    fileUrl = "https://download.data.grandlyon.com/wfs/grandlyon?SERVICE=WFS&VERSION=2.0.0&request=GetFeature&typename=adr_voie_lieu.adrtoilettepublique_latest&outputFormat=application/json;%20subtype=geojson&SRSNAME=EPSG:4171"),
+            GeoJSON(Source(attribution = "Métropole de Lyon", millesime = "02/2022",
+                    fileUrl = "https://data.grandlyon.com/geoserver/metropole-de-lyon/ows?SERVICE=WFS&VERSION=2.0.0&request=GetFeature&typename=metropole-de-lyon:adr_voie_lieu.adrtoilettepublique_latest&outputFormat=application/json&SRSNAME=EPSG:4326&sortBy=gid"),
                 extractor = lambda geojson: geojson),
             Load_XY("geom_x", "geom_y",
                  where = lambda res: 'Open Street Map' not in res['provenance']),
