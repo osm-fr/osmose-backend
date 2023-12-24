@@ -22,7 +22,7 @@
 
 import re
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge_Point, SourceOpenDataSoft, CSV, Load_XY, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, SourceDataFair, CSV, Load_XY, Conflate, Select, Mapping
 
 
 # http://wiki.openstreetmap.org/wiki/WikiProject_France/data.gouv.fr/Import_des_points_de_contact_postaux
@@ -42,12 +42,14 @@ class Analyser_Merge_Poste_FR(Analyser_Merge_Point):
         self.APBP = re.compile(' (AP|BP|RP)$')
 
         self.init(
-            "https://datanova.legroupe.laposte.fr/explore/dataset/laposte_poincont",
+            "https://datanova.laposte.fr/datasets/laposte-poincont",
             "Liste des services disponibles en bureaux de poste, agences postales et relais poste",
             CSV(
-                SourceOpenDataSoft(
-                    attribution="LaPoste",
-                    url="https://datanova.legroupe.laposte.fr/explore/dataset/laposte_poincont")),
+                SourceDataFair(
+                    attribution="La Poste",
+                    url="https://datanova.laposte.fr/datasets/laposte-poincont", file_name="011PoinCont.csv",
+                    encoding="LATIN1"),
+                separator = ";"),
             Load_XY("Longitude", "Latitude"),
             Conflate(
                 select = Select(
@@ -63,7 +65,7 @@ class Analyser_Merge_Poste_FR(Analyser_Merge_Point):
                         # "brand:wikidata": "Q373724", # non-consensual
                         "brand:wikipedia": "fr:La Poste (entreprise française)"},
                     mapping1 = {
-                        "ref:FR:LaPoste": "#Identifiant_du_site",
+                        "ref:FR:LaPoste": "#Identifiant_A",
                         "post_office": lambda res:
                             "post_annex" if res["Libellé_du_site"].endswith(" AP") else # Bureau de poste annexe
                             "post_partner" if res["Libellé_du_site"].endswith(" RP") else # Relais poste commerçant
@@ -92,6 +94,6 @@ class Analyser_Merge_Poste_FR(Analyser_Merge_Point):
                         "name": lambda res: re.sub(self.APBP, "", res["Libellé_du_site"]),
                         "change_machine": lambda res: self.bool[res["Changeur_de_monnaie"]],
                         "phone": lambda res: ("+33" + res["Numéro_de_téléphone"][1:]) if res["Numéro_de_téléphone"] != "3631" else None},
-                text = lambda tags, fields: {"en": "Post office {0}".format(", ".join(filter(lambda x: x, [fields["Précision_du_géocodage"].lower(), fields["Adresse"], fields["Complément_d_adresse"], fields["Lieu_dit"], fields["Code postal"], fields["Localité"]])))} )))
+                text = lambda tags, fields: {"en": "Post office {0}".format(", ".join(filter(lambda x: x and x != 'None', [fields["Précision_du_géocodage"].lower(), fields["Adresse"], fields["Complement_d_adresse"], fields["Lieu_dit"], fields["Code_postal"], fields["localité"]])))} )))
 
     bool = {"Non": None, "Oui": "yes"}

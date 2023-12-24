@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge_Point, Source, CSV, Load_XY, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, SourceDataFair, CSV, Load_XY, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Postal_Code_FR(Analyser_Merge_Point):
@@ -35,9 +35,10 @@ class Analyser_Merge_Postal_Code_FR(Analyser_Merge_Point):
         self.init(
             "https://datanova.laposte.fr/datasets/laposte-hexasmal",
             "Base officielle des codes postaux",
-            CSV(Source( # Portal "data-fair", no specific source implemented yet
+            CSV(SourceDataFair(
                 attribution="La Poste",
-                fileUrl="https://datanova.laposte.fr/data-fair/api/v1/datasets/laposte-hexasmal/data-files/019HexaSmal-full.csv"),
+                url="https://datanova.laposte.fr/datasets/laposte-hexasmal", file_name="019HexaSmal.csv",
+                encoding="LATIN1"),
                 srid = False),
             Load_XY(),
             Conflate(
@@ -52,6 +53,6 @@ class Analyser_Merge_Postal_Code_FR(Analyser_Merge_Point):
                 mapping = Mapping(
                     static2 = {"source:postal_code": self.source},
                     mapping1 = {
-                        "ref:INSEE": "Code_commune_INSEE",
+                        "ref:INSEE": "#Code_commune_INSEE",
                         "postal_code": "Code_postal"},
-                text = lambda tags, fields: {"en": "Postal code {0} for {1} (INSEE:{2})".format(fields["Code_postal"], (fields["Nom_commune"] or "").strip(), fields["Code_commune_INSEE"])} )))
+                text = lambda tags, fields: {"en": "Postal code {0} for {1} (INSEE:{2})".format(fields["Code_postal"], (fields["Nom_de_la_commune"] or "").strip(), fields["#Code_commune_INSEE"])} )))

@@ -497,6 +497,24 @@ class SourceOpenDataSoft(Source):
         response.raise_for_status()
         return datetime.datetime.fromisoformat(response.json()["metas"]["data_processed"])
 
+class SourceDataFair(Source):
+    def __init__(self,
+                 url: str,
+                 file_name: str,
+                 format: str = "csv",
+                 **kwargs):
+        self.url_base = url.replace("/datasets/", "/data-fair/api/v1/datasets/")
+        self.file_name = file_name
+        kwargs.update({
+            "fileUrl": self.url_base + "/data-files/" + file_name,
+            "millesime": None,
+        })
+        super().__init__(**kwargs)
+
+    def get_millesime(self) -> datetime.datetime:
+        response = downloader.request_get(self.url_base + "/data-files")
+        response.raise_for_status()
+        return datetime.datetime.fromisoformat(next(filter(lambda f: f["name"] == self.file_name, response.json()))["updatedAt"][0:10])
 
 class SourceHttpLastModified(Source):
     """Get URL from Last-Modified HTTP headers"""

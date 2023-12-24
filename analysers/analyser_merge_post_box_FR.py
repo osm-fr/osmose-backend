@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge_Point, SourceOpenDataSoft, CSV, Load_XY, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, SourceDataFair, CSV, Load_XY, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Post_box_FR(Analyser_Merge_Point):
@@ -35,14 +35,12 @@ class Analyser_Merge_Post_box_FR(Analyser_Merge_Point):
             title = T_('Post box, integration suggestion'))
 
         self.init(
-            "https://datanova.legroupe.laposte.fr/explore/dataset/laposte_boiterue",
-            "Liste des boîtes aux lettres de rue France métropolitaine et DOM",
-            CSV(SourceOpenDataSoft(
+            "https://datanova.laposte.fr/datasets/laposte-boiterue",
+            "Liste des boîtes aux lettres de rue - France métropolitaine et DOM avec heure limite de dépôt",
+            CSV(SourceDataFair(
                 attribution = "data.gouv.fr:LaPoste",
-                url="https://datanova.legroupe.laposte.fr/explore/dataset/laposte_boiterue")),
-            Load_XY("Latlong", "Latlong",
-                xFunction = lambda x: x and x.split(',')[1],
-                yFunction = lambda y: y and y.split(',')[0]),
+                url="https://datanova.laposte.fr/datasets/laposte-boiterue", file_name="BAL_de_rue_0923.csv")),
+            Load_XY("VA_COORD_ADR_X", "VA_COORD_ADR_Y"),
             Conflate(
                 select = Select(
                     types = ["nodes"],
