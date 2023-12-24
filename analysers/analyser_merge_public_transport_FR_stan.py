@@ -37,7 +37,7 @@ class Analyser_Merge_Public_Transport_FR_stan(Analyser_Merge_Point):
             "https://www.data.gouv.fr/fr/datasets/arrets-horaires-et-parcours-theoriques-du-reseau-stan-gtfs/",
             "Arrêts, horaires et parcours théoriques du réseau STAN | GTFS",
             GTFS(SourceDataGouv(attribution = "Métropole du Grand Nancy",
-                    dataset = "5aa94714c751df666fefc80f", resource = "e7e78cd7-e186-4923-a272-9713fbc28b45")),
+                    dataset = "5aa94714c751df666fefc80f", resource = "22ff00b8-aa07-4f01-af47-8f198964bb1a")),
             Load_XY("stop_lon", "stop_lat"),
             Conflate(
                 select = Select(
