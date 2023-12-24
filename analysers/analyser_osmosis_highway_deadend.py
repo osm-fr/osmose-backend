@@ -179,7 +179,7 @@ FROM
 WHERE
   tags != ''::hstore AND
   (
-    (tags?'amenity'  AND tags->'amenity' = 'parking_entrance') OR
+    (tags?'amenity'  AND tags->'amenity' IN ('parking_entrance', 'parking')) OR
     (tags?'entrance' AND tags->'entrance' IN ('garage', 'emergency')) OR
     (tags?'aerialway' AND tags->'aerialway' = 'station')
   )
