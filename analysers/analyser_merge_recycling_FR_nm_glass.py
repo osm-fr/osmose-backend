@@ -40,7 +40,8 @@ class Analyser_Merge_Recycling_FR_nm_glass(Analyser_Merge_Point):
             GeoJSON(SourceOpenDataSoft(
                 attribution="Nantes Métropole {0}",
                 url="https://data.nantesmetropole.fr/explore/dataset/244400404_colonnes-aeriennes-nantes-metropole",
-                format="geojson")),
+                format="geojson",
+                filter=lambda text: text.replace("\\b", "") )),  # Remove invalid control char, as \b in json
             Load_XY(
                 "geom_x", "geom_y",
                 select={"type_dechet": "Verre"}),
