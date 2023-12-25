@@ -4,6 +4,7 @@
 ###########################################################################
 ##                                                                       ##
 ## Copyrights Noémie Lehuby 2020                                         ##
+##            Baptiste Lemoine 2023                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -25,6 +26,14 @@ from .Analyser_Merge import Analyser_Merge_Point, Source, CSV, Load_XY, Conflate
 
 
 class Analyser_Merge_Charging_station_FR(Analyser_Merge_Point):
+
+    WIKIDATA_MAP = {
+        "ionity": "Q42717773",
+        "bouygues": "Q3046208",
+        "freshmile": "Q111209120",
+        "lidl": "Q115764851",
+    }
+
     def __init__(self, config, logger=None):
         Analyser_Merge_Point.__init__(self, config, logger)
         doc = dict(
@@ -73,7 +82,9 @@ with `capacity=6` can sometimes match to 3 charging station with `capacity=2`'''
                     },
                     mapping2={
                         "email": "contact_operateur",
-                        "phone": "telephone_operateur",
+                        "operator:phone": "telephone_operateur",
+                        "operator:email": "contact_operateur",
+                        "start_date": "date_mise_en_service",
                         "capacity": "nbre_pdc",
                         "bicycle": lambda fields: "yes" if fields["station_deux_roues"] == "true" else None,
                         "motorcycle": lambda fields: "yes" if fields["station_deux_roues"] == "true" else None,
@@ -88,6 +99,7 @@ with `capacity=6` can sometimes match to 3 charging station with `capacity=2`'''
                         "socket:typee": lambda fields: fields["nb_EF_grouped"] if fields["nb_EF_grouped"] != "0" else None,
                         "socket:type2": lambda fields: fields["nb_T2_grouped"] if fields["nb_T2_grouped"] != "0" else None,
                         "socket:type2_combo": lambda fields: fields["nb_combo_ccs_grouped"] if fields["nb_combo_ccs_grouped"] != "0" else None,
-                        "socket:chademo": lambda fields: fields["nb_chademo_grouped"] if fields["nb_chademo_grouped"] != "0" else None
+                        "socket:chademo": lambda fields: fields["nb_chademo_grouped"] if fields["nb_chademo_grouped"] != "0" else None,
+                        "wikimedia:network": lambda fields: self.WIKIDATA_MAP.get(fields["nom_enseigne"].lower(), None) if fields["nom_enseigne"] != "0" else None,
                     },
                     text=lambda tags, fields: {"en": "{0}, {1}, {2}".format(fields["nom_station"], fields["adresse_station"], fields["observations"] if fields["observations"] != "null" else "-")})))
