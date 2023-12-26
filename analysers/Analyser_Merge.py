@@ -532,7 +532,7 @@ class SourceIGN(Source):
         if len(str(dep_code)) == 2:
             dep_code = f"0{dep_code}"
         match = re.search(
-            f"https://wxs.ign.fr/859x8t863h6a09o9o6fy4v60/telechargement/prepackage/BDTOPOV3-TOUSTHEMES-DEPARTEMENT_GPKG_PACK_233\$BDTOPO_3-[0-9]+_TOUSTHEMES_GPKG_[A-Z0-9]+_D{dep_code}_[-0-9]+/file/BDTOPO_3-[0-9]+_TOUSTHEMES_GPKG_[A-Z0-9]+_D{dep_code}_([-0-9]+)\.7z",
+            fr"https://wxs.ign.fr/859x8t863h6a09o9o6fy4v60/telechargement/prepackage/BDTOPOV3-TOUSTHEMES-DEPARTEMENT_GPKG_PACK_233\$BDTOPO_3-[0-9]+_TOUSTHEMES_GPKG_[A-Z0-9]+_D{dep_code}_[-0-9]+/file/BDTOPO_3-[0-9]+_TOUSTHEMES_GPKG_[A-Z0-9]+_D{dep_code}_([-0-9]+)\.7z",
             response.text
         )
         url, date = match[0], match[1]
