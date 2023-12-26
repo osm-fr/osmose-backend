@@ -137,6 +137,7 @@ sql70 = """
 SELECT
    DISTINCT ON (b2.id)
    b2.id,
+   b1.id,
    ST_AsText(way_locate(b2.linestring))
 FROM
    {0}buildings AS b1
@@ -145,6 +146,7 @@ FROM
        b1.tags->'building' = b2.tags->'building' AND
        b1.wall = b2.wall AND
        ST_Intersects(b1.polygon_proj, b2.polygon_proj) AND
+       ST_Dimension(ST_Intersection(b1.polygon_proj, b2.polygon_proj)) > 0 AND
        b2.npoints = 4
 WHERE
    NOT b1.relation AND
@@ -153,6 +155,8 @@ WHERE
    NOT b2.layer AND
    b1.polygon_proj IS NOT NULL AND
    b2.polygon_proj IS NOT NULL
+ORDER BY
+   b2.id
 """
 
 class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
@@ -200,7 +204,7 @@ If geometry is correct and there's some vertical difference then make use of the
         self.callback50 = lambda res: {"class":4, "data":[self.way, self.way, self.positionAsText]}
         self.callback60 = lambda res: {"class":5, "subclass": stablehash64(res[0]), "data":[self.positionAsText]}
         if self.FR:
-            self.callback70 = lambda res: {"class":6, "data":[self.way, self.positionAsText]}
+            self.callback70 = lambda res: {"class":6, "data":[self.way, self.way, self.positionAsText]}
 
     def analyser_osmosis_full(self):
         self.run(sql20)
