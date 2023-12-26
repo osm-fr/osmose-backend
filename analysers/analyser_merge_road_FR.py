@@ -26,16 +26,6 @@ from .Analyser_Merge_Network import Analyser_Merge_Network, ConflateNetwork
 
 
 class Analyser_Merge_Road_FR(Analyser_Merge_Network):
-    dep_proj = {
-        "971": "RGAF09UTM20",
-        "972": "RGAF09UTM20",
-        "973": "UTM22RGFG95",
-        "974": "RGR92UTM40S",
-        "976": "RGM04UTM38S",
-        "977": "RGAF09UTM20",
-        "978": "RGAF09UTM20",
-    }
-
     def __init__(self, config, logger = None):
         Analyser_Merge_Network.__init__(self, config, logger)
         self.def_class_missing_official(item = 7170, id = 13, level = 2, tags = ['merge', 'highway', 'fix:survey', 'fix:imagery'],
@@ -44,15 +34,12 @@ class Analyser_Merge_Road_FR(Analyser_Merge_Network):
         dep_code = config.options.get('dep_code') or config.options.get('country').split('-')[1]
         if len(str(dep_code)) == 2:
             dep_code = f"0{dep_code}"
-        proj = self.dep_proj.get(str(dep_code), "LAMB93")
         self.init(
             "https://ign.fr",
             "IGN-troncon_de_route",
-            GPKG(SourceIGN(attribution = "IGN",
-                    fileUrl = f"http://files.opendatarchives.fr/professionnels.ign.fr/bdtopo/latest/BDTOPO_3-0_TOUSTHEMES_GPKG_{proj}_D{dep_code}_2022-06-15.7z",
-                    extract = f"BDTOPO_3-0_TOUSTHEMES_GPKG_{proj}_D{dep_code}_2022-06-15/BDTOPO/1_DONNEES_LIVRAISON_2022-06-00173/BDT_3-0_GPKG_{proj}_D{dep_code}-ED2022-06-15/BDT_3-0_GPKG_{proj}_D{dep_code}-ED2022-06-15.gpkg"),
+            GPKG(SourceIGN(dep_code = config.options.get('dep_code') or config.options.get('country').split('-')[1]),
                 layer = "troncon_de_route",
-                fields = ['importance', 'fictif', 'etat_de_l_objet', 'nature', 'nom_1_gauche', 'nom_1_droite', 'nom_2_gauche', 'nom_2_droite']),
+                fields = ['importance', 'fictif', 'etat_de_l_objet', 'nature', 'nom_collaboratif_gauche', 'nom_collaboratif_droite', 'alias_gauche', 'alias_droit']),
             Load('geom',
                 table_name = 'road_fr_' + config.options['country'].replace("-", "_"),
                 # Ignore : 'Chemin', 'Bac ou liaison maritime', 'Sentier'
@@ -68,7 +55,7 @@ class Analyser_Merge_Road_FR(Analyser_Merge_Network):
                     'importance': ['1', '2', '3', '4', '5'],
                     'fictif': 'false',
                     'etat_de_l_objet': 'En service',
-                    'nom_1_gauche': {'like': '_%'},
+                    'nom_collaboratif_gauche': {'like': '_%'},
                     # 'Bretelle', 'Rond-point', 'Route à 1 chaussée', 'Route à 2 chaussées', 'Type autoroutier', 'Piste cyclable'
                     'nature': ['Escalier', 'Route empierrée'] }] ),
             ConflateNetwork(
@@ -80,4 +67,4 @@ class Analyser_Merge_Road_FR(Analyser_Merge_Network):
                 mapping = Mapping(
                     static1 = {'highway': 'road'},
                     static2 = {'source': self.source},
-                    text = lambda tags, fields: {'en': ', '.join(filter(lambda x: x and x != 'None', set([fields['nature'], fields['nom_1_gauche'], fields['nom_1_droite'], fields['nom_2_gauche'], fields['nom_2_droite']]) ))} )))
+                    text = lambda tags, fields: {'en': ', '.join(filter(lambda x: x and x != 'None', set([fields['nature'], fields['nom_collaboratif_gauche'], fields['nom_collaboratif_droite'], fields['alias_gauche'], fields['alias_droit']]) ))} )))

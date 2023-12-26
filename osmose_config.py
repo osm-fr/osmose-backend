@@ -282,6 +282,12 @@ france_departement = gen_country('europe', 'france', download_repo=OSMFR, langua
     'osmosis_highway_zone',
     'merge_milestone_FR_metropole',
     'merge_shop_FR',
+    'merge_cemetery_FR',
+    'merge_man_made_FR',
+    'merge_poi_FR',
+    'merge_natural_FR',
+    'merge_reservoir_FR',
+    'merge_water_FR',
     'merge_road_FR',
 ], **{'addr:city-admin_level': '8,9'})
 
@@ -611,12 +617,6 @@ france_local_db.analyser["merge_carpool_FR"] = "xxx"
 france_local_db.analyser["merge_charging_station_FR"] = "xxx"
 france_local_db.analyser["merge_parking_FR_BNLS"] = "xxx"
 france_local_db.analyser["merge_tourism_FR"] = "xxx"
-france_local_db.analyser["merge_cemetery_FR"] = "xxx"
-france_local_db.analyser["merge_man_made_FR"] = "xxx"
-france_local_db.analyser["merge_poi_FR"] = "xxx"
-france_local_db.analyser["merge_natural_FR"] = "xxx"
-france_local_db.analyser["merge_reservoir_FR"] = "xxx"
-france_local_db.analyser["merge_water_FR"] = "xxx"
 france_local_db.analyser["merge_defibrillators_FR"] = "xxx"
 france_local_db.analyser["merge_defibrillators_FR_aedmap"] = "xxx"
 

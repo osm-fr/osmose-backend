@@ -37,6 +37,7 @@ import re
 import fnmatch
 import shutil
 import subprocess
+import pathlib
 from typing import Optional, Dict, Union, Callable
 from collections import defaultdict
 from .Analyser_Osmosis import Analyser_Osmosis
@@ -403,7 +404,7 @@ class Source:
             with libarchive.public.memory_reader(f.read()) as archive:
                 f = io.BytesIO()
                 for entry in archive:
-                    if entry.pathname == self.extract:
+                    if pathlib.Path(entry.pathname).match(self.extract):
                         for block in entry.get_blocks():
                             f.write(block)
                         break
@@ -525,11 +526,23 @@ class SourceHttpLastModified(Source):
         )
 
 class SourceIGN(Source):
-    """Get millesime from IGN BDTOPO MetaData"""
-    def get_millesime(self) -> datetime.datetime:
-        response = downloader.request_get("https://files.opendatarchives.fr/professionnels.ign.fr/bdtopo/latest/geopackage/meta.json")
+    def __init__(self, dep_code, **kwargs):
+        response = downloader.request_get("https://geoservices.ign.fr/bdtopo")
         response.raise_for_status()
-        return datetime.datetime.fromisoformat(response.json()["millesime"])
+        if len(str(dep_code)) == 2:
+            dep_code = f"0{dep_code}"
+        match = re.search(
+            f"https://wxs.ign.fr/859x8t863h6a09o9o6fy4v60/telechargement/prepackage/BDTOPOV3-TOUSTHEMES-DEPARTEMENT_GPKG_PACK_233\$BDTOPO_3-[0-9]+_TOUSTHEMES_GPKG_[A-Z0-9]+_D{dep_code}_[-0-9]+/file/BDTOPO_3-[0-9]+_TOUSTHEMES_GPKG_[A-Z0-9]+_D{dep_code}_([-0-9]+)\.7z",
+            response.text
+        )
+        url, date = match[0], match[1]
+        kwargs.update({
+            "fileUrl": url,
+            "millesime": date,
+            "extract": "**/*.gpkg",
+            "attribution": "IGN",
+        })
+        super().__init__(**kwargs)
 
 class Parser:
     def __init__(self, srid: Optional[int] = None):

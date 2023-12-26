@@ -71,8 +71,8 @@ class SubAnalyser_Merge_Reservoir_FR(SubAnalyser_Merge_Dynamic):
         self.init(
             "https://ign.fr",
             "IGN-Construction ponctuelle",
-            GPKG(SourceIGN(attribution = "IGN", gzip = True,
-                    fileUrl = "http://files.opendatarchives.fr/professionnels.ign.fr/bdtopo/latest/geopackage/reservoir.gpkg.gz")),
+            GPKG(SourceIGN(dep_code = config.options.get('dep_code') or config.options.get('country').split('-')[1]),
+                layer = "reservoir"),
             LoadGeomCentroid(
                 select = select),
             Conflate(

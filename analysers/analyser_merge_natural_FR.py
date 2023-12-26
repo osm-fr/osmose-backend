@@ -275,8 +275,8 @@ class SubAnalyser_Merge_Orography_FR(SubAnalyser_Merge_Dynamic):
         self.init(
             "https://ign.fr",
             "IGN-Détail orographique",
-            GPKG(SourceIGN(attribution = "IGN", gzip = True,
-                    fileUrl = "http://files.opendatarchives.fr/professionnels.ign.fr/bdtopo/latest/geopackage/detail_orographique.gpkg.gz")),
+            GPKG(SourceIGN(dep_code = config.options.get('dep_code') or config.options.get('country').split('-')[1]),
+                layer = "detail_orographique"),
             LoadGeomCentroid(
                 select = select),
             Conflate(
