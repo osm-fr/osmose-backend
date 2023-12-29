@@ -41,60 +41,79 @@ CREATE INDEX park_highway_linestring_idx ON park_highway USING gist(linestring)
 """
 
 sql12 = """
+CREATE TEMP TABLE parkings AS
 SELECT
-  pr.id,
-  ST_AsText(ST_Centroid(pr.linestring)),
-  pr.tags->'park_ride' != 'no',
-  ST_Length(ST_Transform(pr.linestring, {proj})) / ST_Area(ST_MakePolygon(ST_Transform(pr.linestring, {proj})))
-FROM
-  ways AS pr
-  LEFT JOIN park_highway AS highway ON
-    ST_Intersects(pr.linestring, highway.linestring)
+  *
+FROM (
+  SELECT
+    'W' || id AS type_id,
+    tags,
+    ST_MakePolygon(ways.linestring) AS poly
+  FROM
+    ways
+  WHERE
+    is_polygon AND
+    tags != ''::hstore
+  UNION ALL
+    SELECT
+      'R' || id AS type_id,
+      tags,
+      poly
+    FROM
+      multipolygons
+    WHERE
+      is_valid
+) AS t
 WHERE
-  pr.is_polygon AND
-  pr.tags != ''::hstore AND
-  pr.tags?'amenity' AND
-  pr.tags->'amenity' = 'parking' AND
-  (NOT pr.tags?'parking' OR pr.tags->'parking' NOT IN ('street_side', 'lane')) AND
+  tags?'amenity' AND
+  tags->'amenity' = 'parking' AND
+  (NOT tags?'parking' OR tags->'parking' NOT IN ('street_side', 'lane'))
+"""
+
+sql13 = """
+SELECT
+  pr.type_id,
+  ST_AsText(ST_PointOnSurface(pr.poly)),
+  pr.tags->'park_ride' != 'no',
+  ST_Perimeter(ST_Transform(pr.poly, {proj})) / ST_Area(ST_Transform(pr.poly, {proj}))
+FROM
+  parkings AS pr
+  LEFT JOIN park_highway AS highway ON
+    ST_Intersects(pr.poly, highway.linestring)
+WHERE
   highway.id IS NULL
 """
 
 
 sql20 = """
 SELECT
-  parking.id,
+  parking.type_id,
   array_agg('W' || parking_way.id),
-  ST_AsText(ST_Centroid(parking.linestring)),
+  ST_AsText(ST_PointOnSurface(parking.poly)),
   array_agg(parking_way.access),
   parking.tags->'access'
 FROM
-  ways AS parking
+  parkings AS parking
   JOIN park_highway AS parking_way ON
-    ST_Intersects(parking.linestring, parking_way.linestring) AND
-    NOT ST_Contains(ST_MakePolygon(parking.linestring), parking_way.linestring)
+    ST_Intersects(parking.poly, parking_way.linestring) AND
+    NOT ST_Contains(parking.poly, parking_way.linestring)
 WHERE
-  parking.is_polygon AND
-  parking.tags != ''::hstore AND
-  parking.tags?'amenity' AND
-  parking.tags->'amenity' = 'parking' AND
-  (NOT parking.tags?'parking' OR parking.tags->'parking' NOT IN ('street_side', 'lane')) AND
+  NOT parking.tags?'access' OR
   (
-    NOT parking.tags?'access' OR
-    (
-      parking.tags->'access' NOT IN ('private', 'permit', 'delivery', 'customers', 'no') AND
-      parking.tags->'access' NOT LIKE '%;%'
-    )
+    parking.tags->'access' NOT IN ('private', 'permit', 'delivery', 'customers', 'no') AND
+    parking.tags->'access' NOT LIKE '%;%'
   )
 GROUP BY
-  parking.id,
-  parking.tags
+  parking.type_id,
+  parking.tags,
+  parking.poly
 HAVING
   array_agg(parking_way.access) <@ array['private', 'permit', 'delivery', 'customers']
 """
 
 class Analyser_Osmosis_Parking_highway(Analyser_Osmosis):
 
-    requires_tables_common = ['highways']
+    requires_tables_common = ['highways', 'multipolygons']
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
@@ -118,17 +137,18 @@ As a result, this public parking space can only be reached via limited-access ro
             trap = T_('A parking may be partially publicly accessible and partially private.'))
 
     def analyser_osmosis_common(self):
-        self.run(sql10.format(""))
-        self.run(sql11.format(""))
-        self.run(sql12.format(proj=self.config.options["proj"]), lambda res: {
+        self.run(sql10)
+        self.run(sql11)
+        self.run(sql12)
+        self.run(sql13.format(proj=self.config.options["proj"]), lambda res: {
             "class": 1 if res[2] else 2,
-            "data": [self.way_full, self.positionAsText],
+            "data": [self.any_full, self.positionAsText],
             # Street side parkings typically have a perimeter/area ratio > 0.1
             "fix": {"+": {"parking": "street_side"}} if res[3] > 0.1 else None,
         })
         self.run(sql20, lambda res: {
             "class": 3,
-            "data": [self.way_full, self.array_full, self.positionAsText],
+            "data": [self.any_full, self.array_full, self.positionAsText],
             "text": T_("highway: `access={0}` - parking: `access={1}`", '/'.join(set(res[3])), res[4] if res[4] else '')
         })
 
