@@ -242,11 +242,6 @@ ANALYZE {0}.buildings;
         self.classs = {}
         self.classs_change = {}
         self.explain_sql = False
-        self.FixTypeTable = {
-            self.node:"node", self.node_full:"node", self.node_new:"node", self.node_position:"node",
-            self.way:"way", self.way_full:"way",
-            self.relation:"relation", self.relation_full:"relation",
-        }
         self.typeMapping = {'N': self.node_full, 'W': self.way_full, 'R': self.relation_full}
         self.typeMapping_id_only = {'N': self.node, 'W': self.way, 'R': self.relation}
         self.resume_from_timestamp = None
@@ -564,10 +559,13 @@ WHERE
                     res = ret["self"](res)
                 if "data" in ret:
                     self.geom = defaultdict(list)
+                    ret["fixType"] = []
                     for (i, d) in enumerate(ret["data"]):
                         if d is not None:
                             d(res[i])
-                    ret["fixType"] = list(map(lambda datai: self.FixTypeTable[datai] if datai is not None and datai in self.FixTypeTable else None, ret["data"]))
+                            ret["fixType"].append(self._typeFromCallback(d, res[i]))
+                            if d in (self.any_full, self.any_id):
+                                res[i] = int(res[i][1:])
                 self.error_file.error(
                     ret["class"],
                     ret.get("subclass"),
@@ -585,6 +583,17 @@ WHERE
             self.logger.log("{0}:{1} sql".format(os.path.basename(caller.filename), caller.lineno))
             self.run00(sql)
 
+    def _typeFromCallback(self, fn, input=None):
+        if fn in (self.node, self.node_full, self.node_new, self.node_position):
+            return "node"
+        if fn in (self.way, self.way_full):
+            return "way"
+        if fn in (self.relation, self.relation_full):
+            return "relation"
+        if fn == self.any_full:
+            return self._typeFromCallback(self.typeMapping[input[0]])
+        if fn == self.any_id:
+            return self._typeFromCallback(self.typeMapping_id_only[input[0]])
 
     def node(self, res):
         self.geom["node"].append({"id":res, "tag":{}})
