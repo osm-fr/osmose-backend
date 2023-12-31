@@ -37,6 +37,7 @@ import re
 import fnmatch
 import shutil
 import subprocess
+import string
 import pathlib
 from typing import Optional, Dict, Union, Callable
 from collections import defaultdict
@@ -359,6 +360,17 @@ class Source:
         if self.attribution and "{0}" in self.attribution:
             self.attribution_re = re.compile(self.attribution.replace("{0}", ".*"))
 
+    def signature(self):
+        if self.file:
+            i = self.file
+            n = self.file.split('/')[-1].split('.')[0]
+        elif self.fileUrl:
+            i = self.fileUrl
+            n = self.fileUrl.split('/')[-1].split('?')[0].split('.')[0]
+        i = ''.join(filter(lambda ii: ii is not None, [i, self.zip, self.extract]))
+        n = ''.join(filter(lambda c: c in string.ascii_letters or c in string.digits, n))
+        return n[0:7] + hexastablehash(i)[0:7]
+
     def zipFile(self):
         if not self.zip:
             return None
@@ -545,11 +557,13 @@ class SourceIGN(Source):
         super().__init__(**kwargs)
 
 class Parser:
-    def __init__(self, srid: Optional[int] = None):
+    def __init__(self, srid: Optional[int] = None, source = None):
         """
         @param srid: overwrite the projection of geometry, by default projection comes from parsed content, or if no fallback to 4326.
+        @param source: source file reader
         """
         self._srid = srid
+        self.source = source
 
     def header(self):
         pass
@@ -580,8 +594,7 @@ class CSV(Parser):
         @param skip_first_lines: skip lines before reading CSV content
         @param fields: array of fields to load. Default to All. Usefull for big dataset.
         """
-        super().__init__(srid = srid)
-        self.source = source
+        super().__init__(srid = srid, source = source)
         self.separator = separator
         self.null = null
         self.have_header = header
@@ -671,8 +684,7 @@ class JSON(Parser):
         @param source: source file reader
         @param extractor: lambda returning an interable
         """
-        super().__init__(srid = srid)
-        self.source = source
+        super().__init__(srid = srid, source = source)
         self.extractor = extractor
 
         self.json = None
@@ -700,8 +712,7 @@ class GeoJSON(Parser):
         @param source: source file reader
         @param extractor: lambda returning an interable
         """
-        super().__init__(srid = 4326)
-        self.source = source
+        super().__init__(srid = 4326, source = source)
         self.extractor = extractor
 
         self.json = self.extractor(json.loads(self.source.open().read()))
@@ -753,8 +764,7 @@ class GDAL(Parser):
         @param layer: layer to use when source is multi-layer.
         @param fields: array of fields to load. Default to All. Usefull for big dataset.
         """
-        super().__init__(srid = srid)
-        self.source = source
+        super().__init__(srid = srid, source = source)
         self.zip = zip
         self.layer = layer
         self.fields = fields
@@ -1276,7 +1286,7 @@ verification of this data.'''))
     def analyser_osmosis_common(self):
         self.run("SET search_path TO {0}".format(self.config.db_schema_path or ','.join([self.config.db_user, self.config.db_schema, 'public'])))
         self.load.parser = self.parser
-        table = self.load.run(self, self.conflate, self.config.db_user, self.__class__.__name__.lower()[15:], self.analyser_version())
+        table = self.load.run(self, self.conflate, self.config.db_user, self.load.parser.source.signature(), self.analyser_version())
         if not table:
             self.logger.log(u"Empty bbox, abort")
             return None
