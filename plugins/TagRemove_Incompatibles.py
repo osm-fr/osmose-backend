@@ -75,6 +75,7 @@ class TagRemove_Incompatibles(Plugin):
                 ['service', 'amenity', 'weighbridge'],
                 ['service', 'leisure', 'slipway'],
                 ['corridor', 'aeroway', 'jet_bridge'],
+                ['crossing', 'railway', 'tram_crossing'],
             ],
             'natural': [
                 ['water', 'leisure', 'marina'],
