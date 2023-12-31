@@ -769,6 +769,16 @@ class GDAL(Parser):
         self.layer = layer
         self.fields = fields
 
+    def __del__(self):
+        try:
+            os.remove(self.tmp_file.name)
+        except:
+            pass
+
+    def header(self):
+        return True
+
+    def import_(self, table, osmosis):
         try:
             self.tmp_file = tempfile.NamedTemporaryFile(suffix = '.zip' if self.zip else '', mode = 'wb', delete = False)
             shutil.copyfileobj(self.source.open(binary = True), self.tmp_file, 20*1024*1024)
@@ -797,16 +807,6 @@ class GDAL(Parser):
             os.remove(self.tmp_file.name)
             raise e
 
-    def __del__(self):
-        try:
-            os.remove(self.tmp_file.name)
-        except:
-            pass
-
-    def header(self):
-        return True
-
-    def import_(self, table, osmosis):
         wkt = PointInPolygon.PointInPolygon(self.polygon_id).polygon.as_simplified_wkt(self.source_srid(), self.proj) if self.polygon_id else None
 
         select = "-select '{}'".format(','.join(self.fields)) if self.fields else ''
