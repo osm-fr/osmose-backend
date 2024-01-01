@@ -369,7 +369,7 @@ class Source:
             n = self.fileUrl.split('/')[-1].split('?')[0].split('.')[0]
         i = ''.join(filter(lambda ii: ii is not None, [i, self.zip, self.extract]))
         n = ''.join(filter(lambda c: c in string.ascii_letters or c in string.digits, n))
-        return n[0:7] + hexastablehash(i)[0:7]
+        return "_" + n[0:7] + hexastablehash(i)[0:7]
 
     def zipFile(self):
         if not self.zip:
