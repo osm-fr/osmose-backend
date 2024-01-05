@@ -36,8 +36,8 @@ class _Analyser_Merge_Public_Transport_FR_IdFM(Analyser_Merge_Point):
         self.init(
             "https://data.iledefrance-mobilites.fr/explore/dataset/referentiel-arret-tc-idf",
             "Référentiel des arrêts : fichiers SIG",
-            SHP(Source(attribution = 'Île-de-France Mobilités', millesime = '03/2022',
-                    fileUrl = 'https://eu.ftp.opendatasoft.com/stif/Reflex/REF_ZDE.zip'),
+            SHP(Source(attribution = 'Île-de-France Mobilités', millesime = '01/2024',
+                    fileUrl = 'https://eu.ftp.opendatasoft.com/stif/Reflex/REF_ArR.zip'),
                 zip = '*.shp'),
             LoadGeomCentroid(
                 select = {"type_arret": select}),
