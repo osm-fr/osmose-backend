@@ -25,10 +25,12 @@ class TagFix_MultipleTag2(PluginMapCSS):
         self.errors[40106] = self.def_class(item = 4010, level = 3, tags = mapcss.list_('tag') + mapcss.list_('tree', 'fix:chair', 'deprecated'), title = mapcss.tr('Deprecated tag'))
         self.errors[40201] = self.def_class(item = 4020, level = 1, tags = mapcss.list_('tag') + mapcss.list_('fix:chair', 'highway', 'roundabout'), title = mapcss.tr('Roundabout as area'))
         self.errors[40303] = self.def_class(item = 4030, level = 1, tags = mapcss.list_('tag') + mapcss.list_('fix:chair'), title = mapcss.tr('Tag conflict'), trap = mapcss.tr('Sometimes the object needs both tags.'), detail = mapcss.tr('The object contains two incompatible tags.'))
+        self.errors[40401] = self.def_class(item = 4040, level = 2, tags = mapcss.list_('tag') + mapcss.list_('fix:chair', 'name', 'tourism'), title = mapcss.tr('{0} with {1}, likely this is a single pitch instead', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}')), detail = mapcss.tr('The camping site has a numeric name. Numeric identifiers are much more common for a single pitch (`tourism=camp_pitch`) within a camping site. Possibly the two were interchanged?'))
         self.errors[71301] = self.def_class(item = 7130, level = 3, tags = mapcss.list_('tag') + mapcss.list_('highway', 'maxheight', 'fix:survey'), title = mapcss.tr('Missing maxheight tag'), detail = mapcss.tr('Missing `maxheight=*` or `maxheight:physical=*` for a tunnel or a way under a bridge.'))
         self.errors[303210] = self.def_class(item = 3032, level = 3, tags = mapcss.list_('tag'), title = mapcss.tr('Fence with {0} tag, also add {1}', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.key}')))
         self.errors[303211] = self.def_class(item = 3032, level = 3, tags = mapcss.list_('tag'), title = mapcss.tr('suspicious tag combination'))
 
+        self.re_066203d3 = re.compile(r'^[0-9]+$')
         self.re_2ae49e65 = re.compile(r'^(motorway_link|trunk_link|primary|primary_link|secondary|secondary_link)$')
         self.re_5955bda1 = re.compile(r'^(no|informal)$')
 
@@ -183,6 +185,35 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 # assertNoMatch:"node barrier=fence material=metal fence_type=chain_link"
                 # assertMatch:"node barrier=fence material=wood"
                 err.append({'class': 303210, 'subclass': 0, 'text': mapcss.tr('Fence with {0} tag, also add {1}', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.key}'))})
+
+        # node[tourism=camp_site][name][name=~/^[0-9]+$/][!ref][!building]
+        # node[tourism=caravan_site][name][name=~/^[0-9]+$/][!ref][!building]
+        if ('name' in keys and 'tourism' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tourism') == mapcss._value_capture(capture_tags, 0, 'camp_site')) and (mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_066203d3), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (not mapcss._tag_capture(capture_tags, 3, tags, 'ref')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'building')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tourism') == mapcss._value_capture(capture_tags, 0, 'caravan_site')) and (mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_066203d3), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (not mapcss._tag_capture(capture_tags, 3, tags, 'ref')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'building')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseTags:list("fix:chair","name","tourism")
+                # -osmoseDetail:tr("The camping site has a numeric name. Numeric identifiers are much more common for a single pitch (`tourism=camp_pitch`) within a camping site. Possibly the two were interchanged?")
+                # -osmoseItemClassLevel:"4040/40401:0/2"
+                # throwWarning:tr("{0} with {1}, likely this is a single pitch instead","{0.tag}","{1.tag}")
+                # fixChangeKey:"name=>ref"
+                # fixAdd:"tourism=camp_pitch"
+                # assertMatch:"node tourism=camp_site name=24"
+                # assertNoMatch:"node tourism=camp_site name=24tents"
+                err.append({'class': 40401, 'subclass': 0, 'text': mapcss.tr('{0} with {1}, likely this is a single pitch instead', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['ref', mapcss.tag(tags, 'name')],
+                    ['tourism','camp_pitch']]),
+                    '-': ([
+                    'name'])
+                }})
 
         # node[tunnel][!highway][!area:highway][!railway][!waterway][!piste:type][type!=tunnel][public_transport!=platform][route!=ferry][man_made!=pipeline][man_made!=goods_conveyor][man_made!=wildlife_crossing][man_made!=tunnel][power!=cable]
         if ('tunnel' in keys):
@@ -449,6 +480,33 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 # throwWarning:tr("Fence with {0} tag, also add {1}","{1.key}","{2.key}")
                 err.append({'class': 303210, 'subclass': 0, 'text': mapcss.tr('Fence with {0} tag, also add {1}', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.key}'))})
 
+        # area[tourism=camp_site][name][name=~/^[0-9]+$/][!ref][!building]
+        # area[tourism=caravan_site][name][name=~/^[0-9]+$/][!ref][!building]
+        if ('name' in keys and 'tourism' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tourism') == mapcss._value_capture(capture_tags, 0, 'camp_site')) and (mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_066203d3), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (not mapcss._tag_capture(capture_tags, 3, tags, 'ref')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'building')) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tourism') == mapcss._value_capture(capture_tags, 0, 'caravan_site')) and (mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_066203d3), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (not mapcss._tag_capture(capture_tags, 3, tags, 'ref')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'building')) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseTags:list("fix:chair","name","tourism")
+                # -osmoseDetail:tr("The camping site has a numeric name. Numeric identifiers are much more common for a single pitch (`tourism=camp_pitch`) within a camping site. Possibly the two were interchanged?")
+                # -osmoseItemClassLevel:"4040/40401:0/2"
+                # throwWarning:tr("{0} with {1}, likely this is a single pitch instead","{0.tag}","{1.tag}")
+                # fixChangeKey:"name=>ref"
+                # fixAdd:"tourism=camp_pitch"
+                err.append({'class': 40401, 'subclass': 0, 'text': mapcss.tr('{0} with {1}, likely this is a single pitch instead', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['ref', mapcss.tag(tags, 'name')],
+                    ['tourism','camp_pitch']]),
+                    '-': ([
+                    'name'])
+                }})
+
         return err
 
     def relation(self, data, tags, members):
@@ -575,6 +633,33 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 # throwWarning:tr("Fence with {0} tag, also add {1}","{1.key}","{2.key}")
                 err.append({'class': 303210, 'subclass': 0, 'text': mapcss.tr('Fence with {0} tag, also add {1}', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.key}'))})
 
+        # area[tourism=camp_site][name][name=~/^[0-9]+$/][!ref][!building]
+        # area[tourism=caravan_site][name][name=~/^[0-9]+$/][!ref][!building]
+        if ('name' in keys and 'tourism' in keys and 'type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tourism') == mapcss._value_capture(capture_tags, 0, 'camp_site')) and (mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_066203d3), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (not mapcss._tag_capture(capture_tags, 3, tags, 'ref')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'building')) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tourism') == mapcss._value_capture(capture_tags, 0, 'caravan_site')) and (mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_066203d3), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (not mapcss._tag_capture(capture_tags, 3, tags, 'ref')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'building')) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseTags:list("fix:chair","name","tourism")
+                # -osmoseDetail:tr("The camping site has a numeric name. Numeric identifiers are much more common for a single pitch (`tourism=camp_pitch`) within a camping site. Possibly the two were interchanged?")
+                # -osmoseItemClassLevel:"4040/40401:0/2"
+                # throwWarning:tr("{0} with {1}, likely this is a single pitch instead","{0.tag}","{1.tag}")
+                # fixChangeKey:"name=>ref"
+                # fixAdd:"tourism=camp_pitch"
+                err.append({'class': 40401, 'subclass': 0, 'text': mapcss.tr('{0} with {1}, likely this is a single pitch instead', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['ref', mapcss.tag(tags, 'name')],
+                    ['tourism','camp_pitch']]),
+                    '-': ([
+                    'name'])
+                }})
+
         return err
 
 
@@ -601,6 +686,8 @@ class Test(TestPluginMapcss):
         self.check_not_err(n.node(data, {'crossing': 'uncontrolled', 'highway': 'crossing'}), expected={'class': 40303, 'subclass': 1})
         self.check_not_err(n.node(data, {'barrier': 'fence', 'fence_type': 'chain_link', 'material': 'metal'}), expected={'class': 303210, 'subclass': 0})
         self.check_err(n.node(data, {'barrier': 'fence', 'material': 'wood'}), expected={'class': 303210, 'subclass': 0})
+        self.check_err(n.node(data, {'name': '24', 'tourism': 'camp_site'}), expected={'class': 40401, 'subclass': 0})
+        self.check_not_err(n.node(data, {'name': '24tents', 'tourism': 'camp_site'}), expected={'class': 40401, 'subclass': 0})
         self.check_err(n.way(data, {'amenity': 'fuel', 'building': 'roof'}, [0]), expected={'class': 30322, 'subclass': 0})
         self.check_not_err(n.way(data, {'amenity': 'parking', 'building': 'roof', 'parking': 'rooftop'}, [0]), expected={'class': 30322, 'subclass': 0})
         self.check_err(n.way(data, {'fee': 'yes', 'highway': 'primary'}, [0]), expected={'class': 30320, 'subclass': 1000})

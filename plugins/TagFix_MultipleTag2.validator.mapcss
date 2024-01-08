@@ -207,6 +207,21 @@ way[attraction=roller_coaster][roller_coaster=track] {
 }
 
 
+node[tourism=camp_site][name][name=~/^[0-9]+$/][!ref][!building],
+area[tourism=camp_site][name][name=~/^[0-9]+$/][!ref][!building],
+node[tourism=caravan_site][name][name=~/^[0-9]+$/][!ref][!building],
+area[tourism=caravan_site][name][name=~/^[0-9]+$/][!ref][!building] {
+  throwWarning: tr("{0} with {1}, likely this is a single pitch instead", "{0.tag}", "{1.tag}");
+  fixAdd: "tourism=camp_pitch";
+  fixChangeKey: "name=>ref";
+  assertMatch: "node tourism=camp_site name=24";
+  assertNoMatch: "node tourism=camp_site name=24tents";
+  -osmoseItemClassLevel: "4040/40401:0/2";
+  -osmoseTags: list("fix:chair", "name", "tourism");
+  -osmoseDetail: tr("The camping site has a numeric name. Numeric identifiers are much more common for a single pitch (`tourism=camp_pitch`) within a camping site. Possibly the two were interchanged?");
+}
+
+
 /* Workaround for issue #1766 */
 node[tunnel][!highway][!area:highway][!railway][!waterway][!piste:type][type!=tunnel][public_transport!=platform][route!=ferry][man_made!=pipeline][man_made!=goods_conveyor][man_made!=wildlife_crossing][man_made!=tunnel][power!=cable] {
     throwWarning: tr("{0} on suspicious object", "{0.key}");
