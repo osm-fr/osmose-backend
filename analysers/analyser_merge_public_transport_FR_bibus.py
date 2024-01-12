@@ -28,9 +28,9 @@ class Analyser_Merge_Public_Transport_FR_bibus(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
         Analyser_Merge_Point.__init__(self, config, logger)
         place = "Bibus"
-        self.def_class_missing_official(item = 8040, id = 1, level = 3, tags = ['merge', 'public transport', 'fix:survey', 'fix:picture'],
+        self.def_class_missing_official(item = 8040, id = 151, level = 3, tags = ['merge', 'public transport', 'fix:survey', 'fix:picture'],
             title = T_('{0} stop not integrated', place))
-        self.def_class_possible_merge(item = 8041, id = 3, level = 3, tags = ['merge', 'public transport', 'fix:chair'],
+        self.def_class_possible_merge(item = 8041, id = 153, level = 3, tags = ['merge', 'public transport', 'fix:chair'],
             title = T_('{0} stop, integration suggestion', place))
 
         self.init(
