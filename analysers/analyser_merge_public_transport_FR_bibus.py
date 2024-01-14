@@ -44,7 +44,7 @@ class Analyser_Merge_Public_Transport_FR_bibus(Analyser_Merge_Point):
                     static1 = {"public_transport": "platform"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "ref:Bibus": "stop_id",
+                        "ref:FR:Bibus": "stop_id",
                         "wheelchair": lambda fields: self.wheelchair_boarding[fields.get("wheelchair_boarding")]},
                     mapping2 = {"name": "stop_name"},
                     text = lambda tags, fields: T_("{0} stop {1}", place, fields["stop_name"])),
@@ -55,7 +55,7 @@ class Analyser_Merge_Public_Transport_FR_bibus(Analyser_Merge_Point):
                             {"aerialway": "station", "public_transport": "platform"}
                             ]),
                 conflationDistance = 10,
-                osmRef = "ref:Bibus"))
+                osmRef = "ref:FR:Bibus"))
 
     wheelchair_boarding = {
         None: None,
