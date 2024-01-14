@@ -250,14 +250,19 @@ or right (for `only_left`) side of the lane to which changing is possible.'''),
         for tag in tags_lanes:
             if tag == 'lanes' or tag.startswith('lanes:'):
                 try:
-                    n = int(tags_lanes[tag])
+                    if tag.endswith(':conditional'):
+                        n = int(tags_lanes[tag].split('@', 1)[0].rstrip())
+                    else:
+                        n = int(tags_lanes[tag])
+                    if n < 0:
+                        err.append({"class": 31601, "subclass": 1 + stablehash64(tag), "text": T_("{0}={1} is not a positive integer", tag, tags_lanes[tag])})
                     parts = tag.split(':')
                     if len(parts) == 1:
                         number['lanes'][''] = n
                     elif len(parts) == 2 and parts[1] in ['forward', 'backward', 'both_ways']:
                         number['lanes'][':'+parts[1]] = n
                 except ValueError:
-                    err.append({"class": 31601, "subclass": 0 + stablehash64(tag), "text": T_("lanes={0} is not an integer", tags_lanes[tag])})
+                    err.append({"class": 31601, "subclass": 0 + stablehash64(tag), "text": T_("{0}={1} is not a positive integer", tag, tags_lanes[tag])})
 
         # Count the number of lanes in *:lanes tags
         for star in stars:
@@ -359,6 +364,7 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "lanes": "2", "destination:lanes": "*"},
                   {"highway": "residential", "hgv:lanes": "2"},
                   {"highway": "residential", "lanes": "r"},
+                  {"highway": "residential", "lanes:forward": "-1"},
                   {"highway": "residential", "lanes:hgv": "r"},
                   {"highway": "another", "lanes": "1", "destination:lanes": "a|b"},
                   {"highway": "another", "lanes": "1", "destination:lanes:backward": "a", "oneway": "yes"},
@@ -391,6 +397,7 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "lanes": "3", "lanes:forward": "2", "lanes:psv:backward": "1", "oneway": "yes", "oneway:psv": "no"},
                   {"highway": "motorway", "lanes": "3", "lanes:backward": "2", "lanes:forward": "1", "oneway": "no"},
                   {"highway": "secondary", "lanes": "3", "lanes:both_ways": "1"},
+                  {"highway": "secondary", "lanes": "3", "lanes:bus:conditional": "1 @ (Mo-Fr 07:00-19:00)", "bus:lanes:conditional": "||designated @ (Mo-Fr 07:00-19:00)"},
                   {"highway": "secondary", "lanes": "2", "change:lanes": "no|no|no|no", "bicycle:lanes": "|designated||designated", "cycleway": "lane"},
                   {"highway": "secondary", "lanes": "1", "width:lanes": "3|1.5|1.5", "access:lanes": "yes|no|no", "bicycle:lanes": "yes|designated|designated"},
                   {"highway": "tertiary", "lanes": "6", "lanes:forward": "4", "lanes:backward": "2", "bus:lanes:backward": "yes|designated", "bicycle:lanes:backward": "yes|designated", "cycleway": "opposite_share_busway"},
