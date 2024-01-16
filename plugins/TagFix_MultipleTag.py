@@ -90,6 +90,8 @@ For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:acces
             name_parent.append("removed:" + i)
             name_parent.append("razed:" + i)
             name_parent.append("was:" + i)
+            name_parent.append("ruins:" + i)
+            name_parent.append("destroyed:" + i)
             name_parent.append(i + ":backward")
             name_parent.append(i + ":forward")
         self.name_parent = set(name_parent)
