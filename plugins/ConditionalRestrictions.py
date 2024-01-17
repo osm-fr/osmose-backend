@@ -40,7 +40,7 @@ class ConditionalRestrictions(Plugin):
     self.ReMonthDayOpeningH = re.compile(r'\w\w\w[\s-]\d') # i.e. sep 1
     self.ReTimeOpeningH = re.compile(r'\d\D[\d-]|sun[sr][ei][ts]') # i.e. 5:30 or 5h30 or 5h-8h
     # Workaround https://bugs.kde.org/show_bug.cgi?id=452236
-    self.kOpeningHours452236 = re.compile(r'(20\d\d [A-Z][a-z][a-z] \d\d?\s?-\s?)20\d\d ([A-Z][a-z][a-z] \d\d?)')
+    self.kOpeningHours452236 = re.compile(r'((?P<yyyy>20\d\d) [A-Z][a-z][a-z] \d\d?\s?-\s?)(?P=yyyy) ([A-Z][a-z][a-z] \d\d?)')
 
     self.getDuplicatesFromList = lambda lst: [x for x in set(lst) if lst.count(x) > 1]
 
@@ -195,7 +195,7 @@ The first condition can be removed. The simplified rule would be:
         for c in set(allANDsplittedConditions):
           # Validate time-based conditionals
           if self.isLikelyOpeningHourSyntax(c):
-            sanitized = self.sanitize_openinghours(self.kOpeningHours452236.sub(r"\1\2", c))
+            sanitized = self.sanitize_openinghours(self.kOpeningHours452236.sub(r"\1\3", c))
             if not sanitized['isValid']:
               if "fix" in sanitized:
                 err.append({"class": 33504, "subclass": 6 + stablehash64(tag + '|' + tag_value + '|' + c), "text": T_("Involves \"{0}\" in \"{1}\". Consider using \"{2}\"", c, tag, sanitized['fix'])})
@@ -289,6 +289,7 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "access:conditional": "no @ 2099"},
                   {"highway": "residential", "access:conditional": "no @ (weight >= 12020 AND length < 20200)"},
                   {"highway": "residential", "access:conditional": "no @ (2099 May 22-2099 Oct 07 Mo-Su 09:00-18:00)"},
+                  {"highway": "residential", "access:conditional": "no @ (2098 May 22-2099 May 27 Mo-Su 09:00-18:00)"},
                   {"highway": "residential", "access:conditional": "no @ (2010 May 22-2099 Oct 07)"},
                   {"highway": "residential", "turn:lanes:forward:conditional": "left|through|through;right @ (Mo-Fr 06:00-09:00)"},
                   {"highway": "service", "access:conditional": 'customers @ (Mo-Fr || "by appointment and >5 persons")'},
