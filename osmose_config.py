@@ -561,9 +561,33 @@ france_com = gen_country(None, country_base='france', download_repo=OSMFR, langu
     'merge_radio_support_FR',
 ], **{'addr:city-admin_level': '8,9'})
 
-france_com(["central-america", "saint_barthelemy"], 537967, "FR-BL", proj=2969, phone_code="590", country="saintbarthelemy")
-france_com(["central-america", "saint_martin"], 1891583, "FR-MF", proj=2969, phone_code="590", country="saintmartin")
-france_com(["north-america", "saint_pierre_et_miquelon"], 3406826, "FR-PM", proj=32621, phone_code="508", country="saintpierreetmiquelon")
+france_com(["central-america", "saint_barthelemy"], 537967, "FR-BL", dep_code=977, proj=2969, phone_code="590", country="saintbarthelemy", include=[
+    'merge_cemetery_FR',
+    'merge_man_made_FR',
+    'merge_poi_FR',
+    'merge_natural_FR',
+    'merge_reservoir_FR',
+    'merge_water_FR',
+    'merge_road_FR',
+])
+france_com(["central-america", "saint_martin"], 1891583, "FR-MF", dep_code=978, proj=2969, phone_code="590", country="saintmartin", include=[
+    'merge_cemetery_FR',
+    'merge_man_made_FR',
+    'merge_poi_FR',
+    'merge_natural_FR',
+    'merge_reservoir_FR',
+    'merge_water_FR',
+    'merge_road_FR',
+])
+france_com(["north-america", "saint_pierre_et_miquelon"], 3406826, "FR-PM", dep_code=975, proj=32621, phone_code="508", country="saintpierreetmiquelon", include=[
+    'merge_cemetery_FR',
+    'merge_man_made_FR',
+    'merge_poi_FR',
+    'merge_natural_FR',
+    'merge_reservoir_FR',
+    'merge_water_FR',
+    'merge_road_FR',
+])
 france_com(["oceania", "wallis_et_futuna"], 290162, "FR-WF", proj=32701, phone_code="681", country="wallisetfutuna")
 france_com(["oceania", "polynesie"], 3412620, "FR-PF", language='fr_PF', proj=32706, phone_code="689", phone_format=None, phone_len=8, phone_len_short=6, phone_local_prefix=None, phone_international='00')
 france_com(["australia-oceania", "new-caledonia"], 3407643, "NC", download_repo=GEOFABRIK, proj=3163, country="nouvellecaledonie",
