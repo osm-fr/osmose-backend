@@ -413,7 +413,7 @@ def functionExpression_runtime(t, c):
     Add runtime python parameter and function name
     """
     if t['name'] == 'osm_id':
-        return "dada['id']"
+        return "data['id']"
     elif t['name'] == 'number_of_tags':
         return "len(tags)"
     else:
