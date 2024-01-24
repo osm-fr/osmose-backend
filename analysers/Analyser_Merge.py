@@ -182,13 +182,13 @@ SELECT
     END,
     osm_item.tags,
     osm_item.geom,
-    osm_item.shape
+    osm_item.shape,
+    osm_item.ref
 FROM
     osm_item
     LEFT JOIN {official} AS official ON
         {joinClause}
 WHERE
-    osm_item.ref IS NULL AND
     official.ref IS NULL
 """
 
@@ -198,26 +198,6 @@ CREATE INDEX missing_osm_index_shape ON missing_osm USING GIST(shape)
 
 sql22 = """
 SELECT * FROM missing_osm
-"""
-
-sql23 = """
-SELECT
-    osm_item.id,
-    osm_item.type,
-    CASE
-        WHEN osm_item.geom IS NOT NULL THEN ST_AsText(ST_Transform(osm_item.geom, 4326))
-        ELSE ST_AsText(any_locate(osm_item.type, osm_item.id))
-    END,
-    osm_item.tags,
-    osm_item.geom,
-    osm_item.ref
-FROM
-    osm_item
-    LEFT JOIN {official} AS official ON
-        {joinClause}
-WHERE
-    osm_item.ref IS NOT NULL AND
-    official.ref IS NULL
 """
 
 sql30 = """
@@ -1481,25 +1461,20 @@ open data and OSM.'''))
             if self.missing_osm:
                 # Missing OSM
                 count_missing_osm = 0
-                def ret_missing(res):
-                    nonlocal count_missing_osm
-                    count_missing_osm = count_missing_osm + 1
-                    return {
-                        "class": self.missing_osm['id'],
-                        "data": [self.typeMapping[res[1]], None, self.positionAsText]
-                    }
-                self.run(sql22, ret_missing)
-                # Invalid OSM
                 count_invalid_osm_ref = 0
-                def ret_invalid(res):
+                def osm_missing(res):
+                    nonlocal count_missing_osm
                     nonlocal count_invalid_osm_ref
-                    count_invalid_osm_ref = count_invalid_osm_ref + 1
+                    if res['ref'] is not None:
+                        count_missing_osm = count_missing_osm + 1
+                    else:
+                        count_invalid_osm_ref = count_invalid_osm_ref + 1
                     return {
                         "class": self.missing_osm['id'],
-                        "subclass": str(stablehash64("{0}{1}{2}".format(res[0], res[1], res[5]))) if self.conflate.osmRef != "NULL" else None,
+                        "subclass": str(stablehash64("{0}{1}{2}".format(res[0], res[1], res[5]))) if res['ref'] is None else None,
                         "data": [self.typeMapping[res[1]], None, self.positionAsText]
                     }
-                self.run(sql23.format(official = table, joinClause = joinClause), ret_invalid)
+                self.run(sql22, osm_missing)
 
             # Possible merge
             count_possible_merge = None
