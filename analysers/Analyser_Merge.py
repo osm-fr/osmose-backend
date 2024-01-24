@@ -260,8 +260,8 @@ sql41 = """
         id::bigint AS osm_id,
         type::varchar AS osm_type,
         tags::jsonb,
-        ST_X(geom)::float AS lon,
-        ST_Y(geom)::float AS lat
+        ST_X(ST_Transform(geom, 4326))::float AS lon,
+        ST_Y(ST_Transform(geom, 4326))::float AS lat
     FROM
         match
 ) UNION ALL (
@@ -269,8 +269,8 @@ sql41 = """
         NULL::bigint AS osm_id,
         NULL::varchar AS osm_type,
         tags::jsonb,
-        ST_X(geom)::float AS lon,
-        ST_Y(geom)::float AS lat
+        ST_X(ST_Transform(geom, 4326))::float AS lon,
+        ST_Y(ST_Transform(geom, 4326))::float AS lat
     FROM
         missing_official
 ) UNION ALL (
@@ -278,8 +278,8 @@ sql41 = """
         id::bigint AS osm_id,
         type::varchar AS osm_type,
         tags::jsonb,
-        ST_X(geom)::float AS lon,
-        ST_Y(geom)::float AS lat
+        ST_X(ST_Transform(geom, 4326))::float AS lon,
+        ST_Y(ST_Transform(geom, 4326))::float AS lat
     FROM
         missing_osm
 )
