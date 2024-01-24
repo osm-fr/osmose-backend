@@ -201,6 +201,7 @@ SELECT * FROM missing_osm
 """
 
 sql30 = """
+CREATE TEMP TABLE possible_merge AS
 SELECT
     DISTINCT ON (id)
     missing_osm.id,
@@ -219,6 +220,10 @@ FROM
 ORDER BY
     missing_osm.id
     {orderBy}
+"""
+
+sql31 = """
+SELECT * FROM possible_merge
 """
 
 sql40 = """
@@ -1456,10 +1461,10 @@ open data and OSM.'''))
         count_missing_osm = None
         count_invalid_osm_ref = None
         if self.conflate.osmRef != "NULL":
+            # Missing OSM
             self.run(sql20.format(official = table, joinClause = joinClause))
             self.run(sql21)
             if self.missing_osm:
-                # Missing OSM
                 count_missing_osm = 0
                 count_invalid_osm_ref = 0
                 def osm_missing(res):
@@ -1478,15 +1483,16 @@ open data and OSM.'''))
 
             # Possible merge
             count_possible_merge = None
+            possible_merge_joinClause = []
+            possible_merge_orderBy = ""
+            if self.parser.imported_srid():
+                possible_merge_joinClause.append("ST_DWithin(missing_official.geom, missing_osm.shape, {0})".format(self.conflate.conflationDistance))
+                possible_merge_orderBy = ", ST_Distance(missing_official.geom, missing_osm.shape) ASC"
+            if self.conflate.extraJoin:
+                possible_merge_joinClause.append("missing_official.tags->'{tag}' = missing_osm.tags->'{tag}'".format(tag=self.conflate.extraJoin))
+            possible_merge_joinClause = " AND\n".join(possible_merge_joinClause) + "\n"
+            self.run(sql30.format(joinClause = possible_merge_joinClause, orderBy = possible_merge_orderBy))
             if self.possible_merge:
-                possible_merge_joinClause = []
-                possible_merge_orderBy = ""
-                if self.parser.imported_srid():
-                    possible_merge_joinClause.append("ST_DWithin(missing_official.geom, missing_osm.shape, {0})".format(self.conflate.conflationDistance))
-                    possible_merge_orderBy = ", ST_Distance(missing_official.geom, missing_osm.shape) ASC"
-                if self.conflate.extraJoin:
-                    possible_merge_joinClause.append("missing_official.tags->'{tag}' = missing_osm.tags->'{tag}'".format(tag=self.conflate.extraJoin))
-                possible_merge_joinClause = " AND\n".join(possible_merge_joinClause) + "\n"
                 count_possible_merge = 0
                 def ret(res):
                     nonlocal count_possible_merge
@@ -1500,7 +1506,7 @@ open data and OSM.'''))
                         "text": self.conflate.mapping.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[4])),
                         "fix": self.mergeTags(res[5], res[3], self.conflate.osmRef, self.conflate.tag_keep_multiple_values),
                     }
-                self.run(sql30.format(joinClause = possible_merge_joinClause, orderBy = possible_merge_orderBy), ret)
+                self.run(sql31, ret)
 
             self.dumpCSV("SELECT ST_X(geom::geometry) AS lon, ST_Y(geom::geometry) AS lat, tags FROM {0}".format(table), "", ["lon","lat"], lambda r, cc:
                 list((r['lon'], r['lat'])) + cc
