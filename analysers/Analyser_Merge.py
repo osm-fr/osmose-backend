@@ -1565,11 +1565,12 @@ open data and OSM.'''))
 
         self.giscurs.execute("SELECT array_agg(key) FROM (SELECT key, count(*) FROM DUMP, LATERAL jsonb_object_keys(tags) key GROUP BY key ORDER BY count(*) DESC) AS t(key)")
         column = self.giscurs.fetchone()[0]
-        column = list(filter(lambda a: a != self.conflate.osmRef and not a in self.conflate.select.tags[0], column))
-        column = [self.conflate.osmRef] + list(self.conflate.select.tags[0].keys()) + column
+        if column is not None:
+            column = list(filter(lambda a: a != self.conflate.osmRef and not a in self.conflate.select.tags[0], column))
+            column = [self.conflate.osmRef] + list(self.conflate.select.tags[0].keys()) + column
         buffer = io.StringIO()
         writer = csv.writer(buffer, lineterminator=u'\n')
-        writer.writerow(head + column)
+        writer.writerow(head + (column or []))
 
         self.giscurs.execute("SELECT * FROM dump")
         while True:
