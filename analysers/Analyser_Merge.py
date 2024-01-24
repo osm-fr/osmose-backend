@@ -223,6 +223,10 @@ ORDER BY
 """
 
 sql31 = """
+CREATE INDEX possible_merge_index_id_type ON possible_merge(id, type)
+"""
+
+sql32 = """
 SELECT * FROM possible_merge
 """
 
@@ -231,7 +235,7 @@ CREATE TEMP TABLE match AS
 SELECT
     osm_item.id,
     osm_item.type,
-    osm_item.tags,
+    official.tags || official.tags1 || osm_item.tags AS tags,
     ST_Transform(osm_item.geom, 4326) AS geom
 FROM
     osm_item
@@ -242,6 +246,7 @@ FROM
 sql41 = """
 (
     SELECT
+        'osm+opendata' AS osmose,
         id::bigint AS osm_id,
         type::varchar AS osm_type,
         tags::jsonb,
@@ -251,6 +256,7 @@ sql41 = """
         match
 ) UNION ALL (
     SELECT
+        'opendata' AS osmose,
         NULL::bigint AS osm_id,
         NULL::varchar AS osm_type,
         tags::jsonb,
@@ -260,13 +266,25 @@ sql41 = """
         missing_official
 ) UNION ALL (
     SELECT
-        id::bigint AS osm_id,
-        type::varchar AS osm_type,
-        tags::jsonb,
-        ST_X(ST_Transform(geom, 4326))::float AS lon,
-        ST_Y(ST_Transform(geom, 4326))::float AS lat
+        CASE
+            WHEN possible_merge.id IS NOT NULL THEN 'osm~opendata'
+            ELSE 'osm'
+        END AS osmose,
+        missing_osm.id::bigint AS osm_id,
+        missing_osm.type::varchar AS osm_type,
+        CASE
+            WHEN possible_merge.id IS NOT NULL THEN possible_merge.official_tags || possible_merge.osm_tags || missing_osm.tags
+            ELSE missing_osm.tags
+        END AS tags,
+        ST_X(ST_Transform(missing_osm.geom, 4326))::float AS lon,
+        ST_Y(ST_Transform(missing_osm.geom, 4326))::float AS lat
     FROM
         missing_osm
+        LEFT JOIN possible_merge ON
+            possible_merge.id = missing_osm.id AND
+            possible_merge.type = missing_osm.type
+    ORDER BY
+        possible_merge.id IS NULL
 )
 """
 
@@ -1492,6 +1510,7 @@ open data and OSM.'''))
                 possible_merge_joinClause.append("missing_official.tags->'{tag}' = missing_osm.tags->'{tag}'".format(tag=self.conflate.extraJoin))
             possible_merge_joinClause = " AND\n".join(possible_merge_joinClause) + "\n"
             self.run(sql30.format(joinClause = possible_merge_joinClause, orderBy = possible_merge_orderBy))
+            self.run(sql31)
             if self.possible_merge:
                 count_possible_merge = 0
                 def ret(res):
@@ -1506,15 +1525,15 @@ open data and OSM.'''))
                         "text": self.conflate.mapping.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[4])),
                         "fix": self.mergeTags(res[5], res[3], self.conflate.osmRef, self.conflate.tag_keep_multiple_values),
                     }
-                self.run(sql31, ret)
+                self.run(sql32, ret)
 
             self.dumpCSV("SELECT ST_X(geom::geometry) AS lon, ST_Y(geom::geometry) AS lat, tags FROM {0}".format(table), "", ["lon","lat"], lambda r, cc:
                 list((r['lon'], r['lat'])) + cc
             )
 
             self.run(sql40.format(official = table, joinClause = joinClause))
-            self.dumpCSV(sql41, ".byOSM", ["osm_id","osm_type","lon","lat"], lambda r, cc:
-                list((r['osm_id'], r['osm_type'], r['lon'], r['lat'])) + cc
+            self.dumpCSV(sql41, ".byOSM", ["osmose","osm_id","osm_type","lon","lat"], lambda r, cc:
+                list((r['osmose'], r['osm_id'], r['osm_type'], r['lon'], r['lat'])) + cc
             )
 
             file = io.open("{0}/{1}.metainfo.csv".format(self.config.dst_dir, self.name), "w", encoding="utf8")
