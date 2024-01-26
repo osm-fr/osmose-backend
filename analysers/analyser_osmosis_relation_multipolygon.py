@@ -43,7 +43,7 @@ CREATE INDEX rel_poly_linestring_idx ON rel_poly USING gist(linestring)
 """
 
 sql12 = """
-SELECT
+SELECT DISTINCT
     relations.id,
     w1.id,
     w2.id,
