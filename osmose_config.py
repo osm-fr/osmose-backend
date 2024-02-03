@@ -471,7 +471,9 @@ france_departement("picardie/somme", 7463, "FR-80")
 
 france_departement("poitou_charentes/charente", 7428, "FR-16")
 france_departement("poitou_charentes/charente_maritime", 7431, "FR-17")
-france_departement("poitou_charentes/deux_sevres", 7455, "FR-79")
+france_departement("poitou_charentes/deux_sevres", 7455, "FR-79", include=[
+    'merge_bicycle_parking_FR_niort',
+])
 france_departement("poitou_charentes/vienne", 7377, "FR-86")
 
 france_departement("provence_alpes_cote_d_azur/alpes_de_haute_provence", 7380, "FR-04")
