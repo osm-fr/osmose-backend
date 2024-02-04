@@ -153,7 +153,7 @@ class Josm_DutchSpecific(PluginMapCSS):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_abbrname = set_addrOnBuilding = set_altLivingStreet = set_badPhoneNumber = set_completedSurfacePavingStonesNumber = set_multipleGsigns = set_steps = False
+        set_abbrname = set_addrOnBuilding = set_altLivingStreet = set_badPhoneNumber = set_completedSurfacePavingStonesNumber = set_housenameWithFix = set_multipleGsigns = set_steps = False
 
         # node[traffic_sign~="NL:L2"][crossing!=zebra][crossing!=uncontrolled][crossing!=marked][highway=crossing][crossing!=traffic_signals][crossing_ref!=zebra]
         # node[traffic_sign~="NL:L02"][crossing!=zebra][crossing!=uncontrolled][crossing!=marked][highway=crossing][crossing!=traffic_signals][crossing_ref!=zebra]
@@ -684,7 +684,7 @@ class Josm_DutchSpecific(PluginMapCSS):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_abbrname = set_addrOnBuilding = set_altLivingStreet = set_badPhoneNumber = set_completedSurfacePavingStonesNumber = set_multipleGsigns = set_steps = False
+        set_abbrname = set_addrOnBuilding = set_altLivingStreet = set_badPhoneNumber = set_completedSurfacePavingStonesNumber = set_housenameWithFix = set_multipleGsigns = set_steps = False
 
         # way[highway=cycleway][traffic_sign~="NL:G11"][moped][moped=~/^(yes|designated)$/]
         # way[highway=cycleway][traffic_sign~="NL:G12a"][moped][moped=~/^(no|use_sidepath)$/]
@@ -2188,23 +2188,73 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # suggestAlternative:"passenger_lines=* if the tracks are already drawn separately"
                 err.append({'class': 90202, 'subclass': 379490980, 'text': mapcss.tr('Railway lines should be drawn as separate ways per track, rather than one way with {0}', mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
-        # area[addr:housename][/^building(:part)?$/][inside("NL")]
-        # area[building:name][/^building(:part)?$/][inside("NL")]
+        # area[addr:housename][/^building(:part)?$/][inside("NL")][!name]
+        # area[building:name][/^building(:part)?$/][inside("NL")][!name]
         if ('addr:housename' in keys) or ('building:name' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'addr:housename')) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_550ffc74)) and (mapcss.inside(self.father.config.options, 'NL')) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'addr:housename')) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_550ffc74)) and (mapcss.inside(self.father.config.options, 'NL')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'name')) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building:name')) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_550ffc74)) and (mapcss.inside(self.father.config.options, 'NL')) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building:name')) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_550ffc74)) and (mapcss.inside(self.father.config.options, 'NL')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'name')) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # set .housenameWithFix
+                # group:tr("NL deprecated features")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
+                # suggestAlternative:"name=*"
+                # fixChangeKey:"{0.key}=>name"
+                set_housenameWithFix = True
+                err.append({'class': 90202, 'subclass': 797359946, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    [(mapcss._tag_uncapture(capture_tags, '{0.key}=>name')).split('=>', 1)[1].strip(), mapcss.tag(tags, (mapcss._tag_uncapture(capture_tags, '{0.key}=>name')).split('=>', 1)[0].strip())]]),
+                    '-': ([
+                    (mapcss._tag_uncapture(capture_tags, '{0.key}=>name')).split('=>', 1)[0].strip()])
+                }})
+
+        # area[addr:housename][/^building(:part)?$/][inside("NL")][name=*"addr:housename"]!.housenameWithFix
+        # area[building:name][/^building(:part)?$/][inside("NL")][name=*"building:name"]!.housenameWithFix
+        if ('addr:housename' in keys and 'name' in keys) or ('building:name' in keys and 'name' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_housenameWithFix) and (mapcss._tag_capture(capture_tags, 0, tags, 'addr:housename')) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_550ffc74)) and (mapcss.inside(self.father.config.options, 'NL')) and (mapcss._tag_capture(capture_tags, 3, tags, 'name') == mapcss._value_capture(capture_tags, 3, mapcss.tag(tags, 'addr:housename'))) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_housenameWithFix) and (mapcss._tag_capture(capture_tags, 0, tags, 'building:name')) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_550ffc74)) and (mapcss.inside(self.father.config.options, 'NL')) and (mapcss._tag_capture(capture_tags, 3, tags, 'name') == mapcss._value_capture(capture_tags, 3, mapcss.tag(tags, 'building:name'))) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # set .housenameWithFix
+                # group:tr("NL deprecated features")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
+                # suggestAlternative:"name=*"
+                # fixRemove:"{0.key}"
+                set_housenameWithFix = True
+                err.append({'class': 90202, 'subclass': 464057822, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '-': ([
+                    mapcss._tag_uncapture(capture_tags, '{0.key}')])
+                }})
+
+        # area[addr:housename][/^building(:part)?$/][inside("NL")][name]!.housenameWithFix
+        # area[building:name][/^building(:part)?$/][inside("NL")][name]!.housenameWithFix
+        if ('addr:housename' in keys and 'name' in keys) or ('building:name' in keys and 'name' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_housenameWithFix) and (mapcss._tag_capture(capture_tags, 0, tags, 'addr:housename')) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_550ffc74)) and (mapcss.inside(self.father.config.options, 'NL')) and (mapcss._tag_capture(capture_tags, 3, tags, 'name')) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_housenameWithFix) and (mapcss._tag_capture(capture_tags, 0, tags, 'building:name')) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_550ffc74)) and (mapcss.inside(self.father.config.options, 'NL')) and (mapcss._tag_capture(capture_tags, 3, tags, 'name')) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("NL deprecated features")
                 # throwWarning:tr("{0} is deprecated","{0.key}")
                 # suggestAlternative:"name=*"
-                err.append({'class': 90202, 'subclass': 1996175244, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                err.append({'class': 90202, 'subclass': 1635606421, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # *[/.:covid19$/][inside("NL")]
         if True:
@@ -2808,7 +2858,7 @@ class Josm_DutchSpecific(PluginMapCSS):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_abbrname = set_addrOnBuilding = set_altLivingStreet = set_badPhoneNumber = set_completedSurfacePavingStonesNumber = set_multipleGsigns = set_steps = False
+        set_abbrname = set_addrOnBuilding = set_altLivingStreet = set_badPhoneNumber = set_completedSurfacePavingStonesNumber = set_housenameWithFix = set_multipleGsigns = set_steps = False
 
         # *[contact:phone=~/^(00|\+)31 ?0( ?[0-9]){7,}/]
         # *[contact:mobile=~/^(00|\+)31 ?0( ?[0-9]){7,}/]
@@ -3005,23 +3055,73 @@ class Josm_DutchSpecific(PluginMapCSS):
                     mapcss._tag_uncapture(capture_tags, '{0.key}')])
                 }})
 
-        # area[addr:housename][/^building(:part)?$/][inside("NL")]
-        # area[building:name][/^building(:part)?$/][inside("NL")]
+        # area[addr:housename][/^building(:part)?$/][inside("NL")][!name]
+        # area[building:name][/^building(:part)?$/][inside("NL")][!name]
         if ('addr:housename' in keys and 'type' in keys) or ('building:name' in keys and 'type' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'addr:housename')) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_550ffc74)) and (mapcss.inside(self.father.config.options, 'NL')) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'addr:housename')) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_550ffc74)) and (mapcss.inside(self.father.config.options, 'NL')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'name')) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building:name')) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_550ffc74)) and (mapcss.inside(self.father.config.options, 'NL')) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building:name')) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_550ffc74)) and (mapcss.inside(self.father.config.options, 'NL')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'name')) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # set .housenameWithFix
+                # group:tr("NL deprecated features")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
+                # suggestAlternative:"name=*"
+                # fixChangeKey:"{0.key}=>name"
+                set_housenameWithFix = True
+                err.append({'class': 90202, 'subclass': 797359946, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    [(mapcss._tag_uncapture(capture_tags, '{0.key}=>name')).split('=>', 1)[1].strip(), mapcss.tag(tags, (mapcss._tag_uncapture(capture_tags, '{0.key}=>name')).split('=>', 1)[0].strip())]]),
+                    '-': ([
+                    (mapcss._tag_uncapture(capture_tags, '{0.key}=>name')).split('=>', 1)[0].strip()])
+                }})
+
+        # area[addr:housename][/^building(:part)?$/][inside("NL")][name=*"addr:housename"]!.housenameWithFix
+        # area[building:name][/^building(:part)?$/][inside("NL")][name=*"building:name"]!.housenameWithFix
+        if ('addr:housename' in keys and 'name' in keys and 'type' in keys) or ('building:name' in keys and 'name' in keys and 'type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_housenameWithFix) and (mapcss._tag_capture(capture_tags, 0, tags, 'addr:housename')) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_550ffc74)) and (mapcss.inside(self.father.config.options, 'NL')) and (mapcss._tag_capture(capture_tags, 3, tags, 'name') == mapcss._value_capture(capture_tags, 3, mapcss.tag(tags, 'addr:housename'))) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_housenameWithFix) and (mapcss._tag_capture(capture_tags, 0, tags, 'building:name')) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_550ffc74)) and (mapcss.inside(self.father.config.options, 'NL')) and (mapcss._tag_capture(capture_tags, 3, tags, 'name') == mapcss._value_capture(capture_tags, 3, mapcss.tag(tags, 'building:name'))) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # set .housenameWithFix
+                # group:tr("NL deprecated features")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
+                # suggestAlternative:"name=*"
+                # fixRemove:"{0.key}"
+                set_housenameWithFix = True
+                err.append({'class': 90202, 'subclass': 464057822, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '-': ([
+                    mapcss._tag_uncapture(capture_tags, '{0.key}')])
+                }})
+
+        # area[addr:housename][/^building(:part)?$/][inside("NL")][name]!.housenameWithFix
+        # area[building:name][/^building(:part)?$/][inside("NL")][name]!.housenameWithFix
+        if ('addr:housename' in keys and 'name' in keys and 'type' in keys) or ('building:name' in keys and 'name' in keys and 'type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_housenameWithFix) and (mapcss._tag_capture(capture_tags, 0, tags, 'addr:housename')) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_550ffc74)) and (mapcss.inside(self.father.config.options, 'NL')) and (mapcss._tag_capture(capture_tags, 3, tags, 'name')) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_housenameWithFix) and (mapcss._tag_capture(capture_tags, 0, tags, 'building:name')) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_550ffc74)) and (mapcss.inside(self.father.config.options, 'NL')) and (mapcss._tag_capture(capture_tags, 3, tags, 'name')) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("NL deprecated features")
                 # throwWarning:tr("{0} is deprecated","{0.key}")
                 # suggestAlternative:"name=*"
-                err.append({'class': 90202, 'subclass': 1996175244, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                err.append({'class': 90202, 'subclass': 1635606421, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # *[/.:covid19$/][inside("NL")]
         if True:
