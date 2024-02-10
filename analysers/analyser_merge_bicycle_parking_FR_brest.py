@@ -30,7 +30,7 @@ class Analyser_Merge_Bicycle_Parking_FR_Brest(Analyser_Merge_Point):
             title = T_('Bicycle parking not integrated'))
         self.def_class_possible_merge(item = 8151, id = 3, level = 3, tags = ['merge'],
             title = T_('Bicycle parking integration suggestion'))
-        self.def_class_update_official(item = 8412, id = 4, level = 3, tags = ['merge'],
+        self.def_class_update_official(item = 8152, id = 4, level = 3, tags = ['merge'],
             title = T_('Bicycle parking update'))
         self.init(
             "https://www.data.gouv.fr/fr/datasets/stationnement-velos-1/",
