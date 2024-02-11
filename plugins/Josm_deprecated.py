@@ -2649,9 +2649,6 @@ class Josm_deprecated(PluginMapCSS):
         # *[escalator]
         # Rule Blacklisted (id: 967271828)
 
-        # *[fenced]
-        # Rule Blacklisted (id: 1141285220)
-
         # *[historic_name][!old_name]
         # Rule Blacklisted (id: 1034538127)
 
@@ -7123,9 +7120,6 @@ class Josm_deprecated(PluginMapCSS):
         # *[escalator]
         # Rule Blacklisted (id: 967271828)
 
-        # *[fenced]
-        # Rule Blacklisted (id: 1141285220)
-
         # *[historic_name][!old_name]
         # Rule Blacklisted (id: 1034538127)
 
@@ -11104,9 +11098,6 @@ class Josm_deprecated(PluginMapCSS):
 
         # *[escalator]
         # Rule Blacklisted (id: 967271828)
-
-        # *[fenced]
-        # Rule Blacklisted (id: 1141285220)
 
         # *[historic_name][!old_name]
         # Rule Blacklisted (id: 1034538127)
