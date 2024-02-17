@@ -71,7 +71,8 @@ WHERE
   buildings.area > 36 AND
   (NOT buildings.tags?'location' OR buildings.tags->'location' != 'underground')
 ORDER BY
-  poly_landuse.type_id
+  poly_landuse.type_id,
+  buildings.area DESC
 """
 
 
