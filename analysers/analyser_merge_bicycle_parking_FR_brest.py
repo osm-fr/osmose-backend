@@ -80,7 +80,7 @@ class Analyser_Merge_Bicycle_Parking_FR_Brest(Analyser_Merge_Point):
         'Arceau abri': 'stands',
         'Autre': None,
         'Box': None,
-        'Rack provisoire': None,
+        'Rack provisoire': 'stands',
         'Ratelier': 'wall_loops',
         'Ratelier couvert': 'wall_loops',
     }
