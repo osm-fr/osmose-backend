@@ -50,7 +50,8 @@ class Analyser_Merge_Post_box_FR(Analyser_Merge_Point):
                 mapping = Mapping(
                     static1 = {
                         "amenity": "post_box",
-                        "operator": "La Poste"},
+                        "operator": "La Poste",
+                        "operator:wikidata": "Q373724"},
                     static2 = {"source": self.source},
                     mapping1 = {"ref": "CO_MUP"},
                 text = lambda tags, fields: {"en": ", ".join(filter(lambda x: x, [fields["VA_NO_VOIE"], fields["LB_EXTENSION"], fields["LB_VOIE_EXT"], fields["CO_POSTAL"], fields["LB_COM"]]))} )))
