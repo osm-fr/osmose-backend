@@ -1,4 +1,5 @@
 .git
 .mypy_cache
 docker/work
+.venv
 venv
