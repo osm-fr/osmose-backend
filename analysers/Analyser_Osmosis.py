@@ -44,7 +44,7 @@ SELECT
     is_polygon,
     tags->'highway' LIKE '%_link' AS is_link,
     (tags?'junction' AND tags->'junction' = 'roundabout') AS is_roundabout,
-    ((tags->'highway' = 'motorway' AND tags->'oneway' != 'no') OR (tags?'oneway' AND tags->'oneway' IN ('yes', 'true', '1', '-1'))) AS is_oneway,
+    ((tags->'highway' = 'motorway' AND NOT tags?'oneway') OR (tags?'oneway' AND tags->'oneway' IN ('yes', 'true', '1', '-1'))) AS is_oneway,
     CASE
       WHEN tags?'area' THEN tags->'area' != 'no'
       ELSE (is_polygon AND tags->'highway' = 'pedestrian')
