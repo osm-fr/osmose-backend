@@ -191,10 +191,11 @@ FROM
 WHERE
   -- Non-oneway highways are valid input nodes for oneways
   (NOT is_oneway AND NOT is_roundabout) OR
+  -- Force motorways as valid input nodes
   -- Raceways are commonly isolated from the main network
   -- Escape (emergency stop) ways are supposed to be not used / dead-ended
   -- Footway can lead to anything (attraction entrances, ...) so exclude them even if oneway
-  highway IN ('raceway', 'escape', 'footway') OR
+  highway IN ('motorway', 'raceway', 'escape', 'footway') OR
   -- Construction roads are usually temporary, the connections are likely access=no or similar
   is_construction
 UNION ALL
