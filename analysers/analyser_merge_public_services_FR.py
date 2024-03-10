@@ -57,6 +57,7 @@ class _Generic_Analyser_Merge_Public_Services_FR_(Analyser_Merge_Point):
                         "contact:website": "contact:website",
                         "ref:FR:SIRET": "ref:FR:SIRET",
                         "branch": "branch",
+                        "addr:full": "address_txt",
                         "opening_hours": "opening_hours",
                         "contact:phone":  "contact:phone"
                     }),
@@ -247,7 +248,7 @@ class Public_Services_Source(Source):
                 feature_address["numero_voie"],
                 feature_address["code_postal"],
                 feature_address["nom_commune"],
-            )
+            ).strip()
             elem["wheelchair"] = wheelchair_mapping[feature_address["accessibilite"]]
             elem["wheelchair:description"] = feature_address["note_accessibilite"]
 
