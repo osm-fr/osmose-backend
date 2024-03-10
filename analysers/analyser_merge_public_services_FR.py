@@ -88,11 +88,11 @@ class Analyser_Merge_ServicePublic_FR_CIJ(_Generic_Analyser_Merge_Public_Service
             {"amenity": "social_facility", "social_facility:for": "juvenile"},
             {"amenity": "social_facility", "social_facility:for": "juvenile", "social_facility": "outreach"})
 
-class Analyser_Merge_ServicePublic_FR_Pole_Emploi(_Generic_Analyser_Merge_Public_Services_FR_):
+class Analyser_Merge_ServicePublic_FR_France_Travail(_Generic_Analyser_Merge_Public_Services_FR_):
     def __init__(self, config, logger = None):
-        _Generic_Analyser_Merge_Public_Services_FR_.__init__(self, config, logger, 5, "pole_emploi",
-            {"office": "employment_agency"},
-            {"office": "employment_agency", "brand": "Pôle Emploi", "brand:wikidata": "Q8901192"})
+        _Generic_Analyser_Merge_Public_Services_FR_.__init__(self, config, logger, 5, "france_travail",
+            {"office": "government", "government": "employment_agency"},
+            {"office": "government", "government": "employment_agency", "brand": "France Travail", "old_name": "Pôle Emploi", "brand:wikidata": "Q8901192"})
 
 class Analyser_Merge_ServicePublic_FR_Tribunal(_Generic_Analyser_Merge_Public_Services_FR_):
     def __init__(self, config, logger = None):
@@ -214,8 +214,8 @@ class Public_Services_Source(Source):
                 elem["name"] = retreat_PMI_name(feature["nom"])
             elif elem["categorie"] in ["mission_locale"]:
                 elem["name"] = retreat_Mission_Locale_name(feature["nom"])
-            elif elem["categorie"] in ["pole_emploi"]:
-                elem["name"], elem["branch"] = retreat_Pole_Emploi_name(feature["nom"])
+            elif elem["categorie"] in ["france_travail"]:
+                elem["name"], elem["branch"] = retreat_France_Travail_name(feature["nom"])
             elif elem["categorie"] in ["msap"]:
                 elem["name"], elem["branch"] = retreat_France_Services_name(feature["nom"])
             elif elem["categorie"] in ["ti", "tribunal_commerce", "tgi",
@@ -350,8 +350,8 @@ def retreat_CIO_name(official_name):
 def retreat_Mission_Locale_name(official_name):
     return official_name.replace("Mission locale pour l'insertion professionnelle et sociale des jeunes (16-25 ans)", "Mission locale").split(" - ")[0]
 
-def retreat_Pole_Emploi_name(official_name):
-    return "Pôle Emploi", official_name.replace("Pôle emploi - ", "")
+def retreat_France_Travail_name(official_name):
+    return "France Travail", official_name.replace("France Travail - ", "")
 
 def retreat_France_Services_name(official_name):
     return "France Services", official_name.replace("France Services - ", "")
