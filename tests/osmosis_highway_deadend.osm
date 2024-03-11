@@ -350,7 +350,7 @@
     <nd ref='62' />
     <nd ref='56' />
     <tag k='highway' v='motorway' />
-    <tag k='name' v='Class 3 good, class 2 bad' />
+    <tag k='name' v='Class 2 and 3 bad' />
   </way>
   <way id='1025' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='57' />
