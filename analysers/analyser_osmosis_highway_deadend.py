@@ -191,11 +191,10 @@ FROM
 WHERE
   -- Non-oneway highways are valid input nodes for oneways
   (NOT is_oneway AND NOT is_roundabout) OR
-  -- Force motorways as valid input nodes
   -- Raceways are commonly isolated from the main network
   -- Escape (emergency stop) ways are supposed to be not used / dead-ended
   -- Footway can lead to anything (attraction entrances, ...) so exclude them even if oneway
-  highway IN ('motorway', 'raceway', 'escape', 'footway') OR
+  highway IN ('raceway', 'escape', 'footway') OR
   -- Construction roads are usually temporary, the connections are likely access=no or similar
   is_construction
 UNION ALL
@@ -541,6 +540,7 @@ class Test(TestAnalyserOsmosis):
         self.check_err(cl="3", elems=[("node", "9"), ("way", "1003")])
         self.check_err(cl="3", elems=[("node", "14"), ("way", "1005")])
         self.check_err(cl="3", elems=[("node", "15"), ("way", "1006")]) # way 1006 or 1007 are both fine
+        self.check_err(cl="3", elems=[("node", "55"), ("way", "1024")])
         self.check_err(cl="3", elems=[("node", "65"), ("way", "1028")])
         self.check_err(cl="3", elems=[("node", "82"), ("way", "1036")]) # way 1036 or 1037 are both fine
         self.check_err(cl="3", elems=[("node", "84"), ("way", "1038")]) # way 1038 or 1040 are both fine
@@ -559,4 +559,4 @@ class Test(TestAnalyserOsmosis):
 
         self.check_err(cl="5", elems=[("node", "73"), ("way", "1031")])
 
-        self.check_num_err(22)
+        self.check_num_err(23)
