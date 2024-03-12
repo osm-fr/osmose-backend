@@ -169,7 +169,8 @@ WHERE
     (tags?'amenity' AND tags->'amenity' = 'parking') OR
     (tags?'railway' AND tags->'railway' = 'platform') OR
     (tags?'aeroway' AND tags->'aeroway' = 'taxiway') OR
-    (tags?'aerialway' AND tags->'aerialway' IN ('station', 'zip_line'))
+    (tags?'aerialway' AND tags->'aerialway' IN ('station', 'zip_line')) OR
+    (tags?'route' AND tags->'route' = 'ferry')
   )
 UNION ALL
 SELECT
