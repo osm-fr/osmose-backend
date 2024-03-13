@@ -170,7 +170,7 @@ WHERE
     (tags?'railway' AND tags->'railway' = 'platform') OR
     (tags?'aeroway' AND tags->'aeroway' = 'taxiway') OR
     (tags?'aerialway' AND tags->'aerialway' IN ('station', 'zip_line'))
-)
+  )
 UNION ALL
 SELECT
   id
