@@ -169,9 +169,8 @@ WHERE
     (tags?'amenity' AND tags->'amenity' = 'parking') OR
     (tags?'railway' AND tags->'railway' = 'platform') OR
     (tags?'aeroway' AND tags->'aeroway' = 'taxiway') OR
-    (tags?'aerialway' AND tags->'aerialway' IN ('station', 'zip_line')) OR
-    (tags?'route' AND tags->'route' = 'ferry')
-  )
+    (tags?'aerialway' AND tags->'aerialway' IN ('station', 'zip_line'))
+    )
 UNION ALL
 SELECT
   id
@@ -182,7 +181,8 @@ WHERE
   (
     (tags?'amenity'  AND tags->'amenity' IN ('parking_entrance', 'parking')) OR
     (tags?'entrance' AND tags->'entrance' IN ('garage', 'emergency')) OR
-    (tags?'aerialway' AND tags->'aerialway' = 'station')
+    (tags?'aerialway' AND tags->'aerialway' = 'station') OR
+    (tags?'amenity' AND tags->'amenity' = 'ferry_terminal')
   )
 UNION ALL
 SELECT DISTINCT
