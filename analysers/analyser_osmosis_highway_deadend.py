@@ -179,11 +179,9 @@ FROM
 WHERE
   tags != ''::hstore AND
   (
-    (tags?'amenity'  AND tags->'amenity' IN ('parking_entrance', 'parking')) OR
+    (tags?'amenity'  AND tags->'amenity' IN ('parking_entrance', 'parking', 'ferry_terminal')) OR
     (tags?'entrance' AND tags->'entrance' IN ('garage', 'emergency')) OR
-    (tags?'aerialway' AND tags->'aerialway' = 'station') OR
-    (tags?'amenity' AND tags->'amenity' = 'ferry_terminal')
-
+    (tags?'aerialway' AND tags->'aerialway' = 'station')
   )
 UNION ALL
 SELECT DISTINCT
