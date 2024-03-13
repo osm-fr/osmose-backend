@@ -174,9 +174,11 @@
   <node id='163' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85114753837' lon='5.83923114451' />
   <node id='164' timestamp='2014-03-31T22:00:00Z' visible='true' version='1' lat='51.85135092517' lon='5.83901345193' />
     <tag k='amenity' v='ferry_terminal' />
+  </node>
   <node id='165' timestamp='2014-03-31T22:00:00Z' visible='true' version='1' lat='51.85160938691' lon='5.83921729982' />
   <node id='166' timestamp='2014-03-31T22:00:00Z' visible='true' version='1' lat='51.85160938691' lon='5.83877205312' />
     <tag k='amenity' v='ferry_terminal' />
+  </node>
   <way id='1000' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='1' />
     <nd ref='2' />
