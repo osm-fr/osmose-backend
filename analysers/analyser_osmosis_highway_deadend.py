@@ -182,8 +182,9 @@ WHERE
     (tags?'amenity'  AND tags->'amenity' IN ('parking_entrance', 'parking')) OR
     (tags?'entrance' AND tags->'entrance' IN ('garage', 'emergency')) OR
     (tags?'aerialway' AND tags->'aerialway' = 'station') OR
-    (tags?'aerialway' AND tags->'aerialway' IN ('station', 'zip_line'))
-    )
+    (tags?'amenity' AND tags->'amenity' = 'ferry_terminal')
+
+  )
 UNION ALL
 SELECT DISTINCT
   unnest(nodes) AS id
