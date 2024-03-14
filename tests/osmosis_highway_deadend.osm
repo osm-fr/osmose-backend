@@ -172,6 +172,13 @@
   <node id='161' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85082280825' lon='5.83932035437' />
   <node id='162' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85114753837' lon='5.83916742319' />
   <node id='163' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85114753837' lon='5.83923114451' />
+  <node id='164' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85135092517' lon='5.83901345193' >
+    <tag k='amenity' v='ferry_terminal' />
+  </node>
+  <node id='165' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85160938691' lon='5.83921729982' />
+  <node id='166' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85160938691' lon='5.83877205312' >
+    <tag k='amenity' v='ferry_terminal' />
+  </node>
   <way id='1000' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='1' />
     <nd ref='2' />
@@ -776,5 +783,24 @@
     <nd ref='163' />
     <nd ref='162' />
     <tag k='amenity' v='bicycle_parking' />
+  </way>
+  <way id='1089' timestamp='2014-03-31T22:00:00Z' visible='true' version='1'>
+    <nd ref='164' />
+    <nd ref='165' />
+    <tag k='highway' v='trunk_link' />
+    <tag k='name' v='Class 2 and 3 good' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1090' timestamp='2014-03-31T22:00:00Z' visible='true' version='1'>
+    <nd ref='165' />
+    <nd ref='166' />
+    <tag k='highway' v='trunk_link' />
+    <tag k='name' v='Class 2 and 3 good' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1091' timestamp='2014-03-31T22:00:00Z' visible='true' version='1'>
+    <nd ref='166' />
+    <nd ref='164' />
+    <tag k='route' v='ferry' />
   </way>
 </osm>
