@@ -162,7 +162,7 @@ SELECT
         WHEN ways.nodes[1] = ANY (roundabout.nodes) THEN ARRAY[ways.nodes[2], ways.nodes[3], ways.nodes[4]]
         WHEN ways.nodes[array_length(ways.nodes,1)] = ANY (roundabout.nodes) THEN ARRAY[ways.nodes[array_length(ways.nodes,1)], ways.nodes[array_length(ways.nodes,1)-1], ways.nodes[array_length(ways.nodes,1)-2]]
     END AS n_ids,
-    (ways.tags?'oneway' AND ways.tags->'oneway' IN ('yes', 'true', '-1', '1')) AS oneway
+    ways.is_oneway
 FROM
     roundabout
     JOIN highways AS ways ON
@@ -190,7 +190,7 @@ FROM
         ra1.a_id != ra2.a_id
 WHERE
     ra1.n_ids && ra2.n_ids AND
-    NOT ra1.oneway
+    NOT ra1.is_oneway
 GROUP BY
     ra1.a_id,
     COALESCE(ra1.n_ids[2], ra1.n_ids[1])
