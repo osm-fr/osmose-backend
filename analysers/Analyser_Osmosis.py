@@ -167,7 +167,7 @@ BEGIN
                         id, tags,
                         ST_BuildArea(ST_Collect(
                             ST_ExteriorRing(poly),
-                            (SELECT ST_Union(ST_InteriorRingN(poly, n)) FROM generate_series(1, ST_NumInteriorRings(poly)) AS t(n))
+                            (SELECT ST_Union(ST_MakePolygon(ST_InteriorRingN(poly, n))) FROM generate_series(1, ST_NumInteriorRings(poly)) AS t(n)) -- ST_MakePolygon is needed to union touching inner rings #2169
                         )) AS poly
                     FROM
                         unary
