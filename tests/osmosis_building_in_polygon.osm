@@ -35,6 +35,19 @@
   <node id='39' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.8518246492' lon='5.8384224473' />
   <node id='40' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.8518368087' lon='5.83866014013' />
   <node id='41' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85195473029' lon='5.83861477038' />
+  <node id='42' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85164195273' lon='5.83953024459' />
+  <node id='43' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85166492752' lon='5.84133415867' />
+  <node id='44' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85210718988' lon='5.84038880851' />
+  <node id='45' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85174342462' lon='5.83993628023' />
+  <node id='46' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85175108287' lon='5.84091262548' />
+  <node id='47' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85174712005' lon='5.84040740831' />
+  <node id='48' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85200571881' lon='5.84044150016' />
+  <node id='49' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85178745952' lon='5.84046319672' />
+  <node id='50' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85179128864' lon='5.84075455054' />
+  <node id='51' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85233884937' lon='5.84040120654' />
+  <node id='52' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85165459992' lon='5.83961526124' />
+  <node id='53' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85166675947' lon='5.83985295407' />
+  <node id='54' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.8517846815' lon='5.83980758432' />
   <way id='100' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='1' />
     <nd ref='2' />
@@ -113,10 +126,56 @@
     <tag k='building' v='barn' />
     <tag k='note' v='Should not warn: not the biggest building' />
   </way>
+  <way id='112' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='51' />
+    <nd ref='42' />
+    <nd ref='43' />
+    <nd ref='51' />
+  </way>
+  <way id='113' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='44' />
+    <nd ref='45' />
+    <nd ref='47' />
+    <nd ref='44' />
+    <tag k='landuse' v='industrial' />
+    <tag k='note' v='Touching inners are allowed in OSM, not in OGC' />
+  </way>
+  <way id='114' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='47' />
+    <nd ref='46' />
+    <nd ref='44' />
+    <nd ref='47' />
+    <tag k='landuse' v='residential' />
+    <tag k='note' v='Touching inners are allowed in OSM, not in OGC' />
+  </way>
+  <way id='115' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='48' />
+    <nd ref='49' />
+    <nd ref='50' />
+    <nd ref='48' />
+    <tag k='building' v='house' />
+    <tag k='note' v='Shouldn&apos;t warn, inside (touching) inners' />
+  </way>
+  <way id='116' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='52' />
+    <nd ref='53' />
+    <nd ref='54' />
+    <nd ref='52' />
+    <tag k='building' v='barn' />
+    <tag k='note' v='Biggest building INSIDE the multipolygon, should warn. Polygon should not be dropped altogether' />
+  </way>
   <relation id='1000' timestamp='2014-03-31T22:00:00Z' version='1'>
     <member type='way' ref='106' role='inner' />
     <member type='way' ref='105' role='outer' />
     <tag k='landuse' v='vineyard' />
+    <tag k='type' v='multipolygon' />
+  </relation>
+  <relation id='1001' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <member type='way' ref='114' role='inner' />
+    <member type='way' ref='113' role='inner' />
+    <member type='way' ref='112' role='outer' />
+    <tag k='landuse' v='farmland' />
+    <tag k='note' v='Relation with touching inners, here OSM differs from OGC' />
     <tag k='type' v='multipolygon' />
   </relation>
 </osm>
