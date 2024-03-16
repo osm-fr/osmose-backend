@@ -55,12 +55,6 @@ CREATE INDEX idx_bicycle_parking_linestring ON bicycle_parking USING GIST(linest
 sql23 = """
 CREATE TEMP TABLE unconnected_highways AS
 SELECT
-    wid,
-    nid,
-    geom,
-    highway
-FROM (
-SELECT
     MIN(way_ends.id) AS wid,
     nodes.id AS nid,
     nodes.geom,
@@ -83,7 +77,6 @@ GROUP BY
     nodes.geom
 HAVING
     COUNT(*) = 1
-) AS t
 """
 
 sql24 = """
