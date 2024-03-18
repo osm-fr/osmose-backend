@@ -182,6 +182,10 @@
   <node id='167' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.8494018404' lon='5.83792167126' />
   <node id='168' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84951205558' lon='5.83804274178' />
   <node id='169' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84939593601' lon='5.83815744017' />
+  <node id='170' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85202027009' lon='5.83873182267' />
+  <node id='171' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85202358367' lon='5.83921193808' />
+  <node id='172' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85178500585' lon='5.83895981044' />
+  <node id='173' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85202027009' lon='5.83973182267' />
   <way id='1000' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='1' />
     <nd ref='2' />
@@ -822,5 +826,22 @@
     <nd ref='169' />
     <nd ref='167' />
     <tag k='highway' v='trunk' />
+  </way>
+  <way id='1095' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='170' />
+    <nd ref='171' />
+    <nd ref='173' />
+    <tag k='highway' v='construction' />
+  </way>
+  <way id='1096' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='170' />
+    <nd ref='172' />
+    <tag k='highway' v='trunk' />
+  </way>
+  <way id='1097' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='171' />
+    <nd ref='172' />
+    <tag k='highway' v='trunk' />
+    <tag k='oneway' v='yes' />
   </way>
 </osm>
