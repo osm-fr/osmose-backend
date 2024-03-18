@@ -63,8 +63,7 @@ FROM
     {0}highway_ends AS way_ends
     JOIN highways ON
         highways.linestring && way_ends.linestring AND
-        way_ends.nid = ANY(highways.nodes) AND
-        NOT highways.is_construction
+        way_ends.nid = ANY(highways.nodes)
     JOIN nodes ON
         nodes.id = way_ends.nid AND
         (NOT nodes.tags?'amenity' OR nodes.tags->'amenity' NOT IN ('bicycle_parking', 'ferry_terminal')) AND
