@@ -35,19 +35,6 @@ SELECT ARRAY(
 $$ LANGUAGE 'sql' STRICT IMMUTABLE;
 """
 
-sql20 = """
-CREATE TEMP TABLE ferry AS
-SELECT
-    linestring,
-    nodes
-FROM
-    ways
-WHERE
-    tags != ''::hstore AND
-    tags?'route' AND
-    tags->'route' = 'ferry'
-"""
-
 sql21 = """
 CREATE TEMP TABLE bicycle_parking AS
 SELECT
@@ -62,18 +49,11 @@ WHERE
 """
 
 sql22 = """
-CREATE INDEX idx_ferry_linestring ON ferry USING GIST(linestring);
 CREATE INDEX idx_bicycle_parking_linestring ON bicycle_parking USING GIST(linestring);
 """
 
 sql23 = """
 CREATE TEMP TABLE unconnected_highways AS
-SELECT
-    wid,
-    nid,
-    geom,
-    highway
-FROM (
 SELECT
     MIN(way_ends.id) AS wid,
     nodes.id AS nid,
@@ -87,7 +67,7 @@ FROM
         NOT highways.is_construction
     JOIN nodes ON
         nodes.id = way_ends.nid AND
-        (NOT nodes.tags?'amenity' OR nodes.tags->'amenity' != 'bicycle_parking') AND
+        (NOT nodes.tags?'amenity' OR nodes.tags->'amenity' NOT IN ('bicycle_parking', 'ferry_terminal')) AND
         (NOT nodes.tags?'entrance' OR nodes.tags->'entrance' = 'no') AND
         (NOT nodes.tags?'noexit' OR nodes.tags->'noexit' = 'no')
 WHERE
@@ -97,12 +77,6 @@ GROUP BY
     nodes.geom
 HAVING
     COUNT(*) = 1
-) AS t
-    LEFT JOIN ferry ON
-        ferry.linestring && t.geom AND
-        t.nid = ANY(ferry.nodes)
-WHERE
-    ferry IS NULL
 """
 
 sql24 = """
@@ -496,7 +470,6 @@ Ensure that `service=drive-through` is the correct tag.''')),
         self.run(sql50, lambda res: {"class":5, "data":[self.way_full, self.node, self.positionAsText]})
 
     def analyser_osmosis_full(self):
-        self.run(sql20)
         self.run(sql21)
         self.run(sql22)
         self.run(sql23.format(''))
@@ -504,7 +477,6 @@ Ensure that `service=drive-through` is the correct tag.''')),
         self.run(sql25, self.callback22)
 
     def analyser_osmosis_diff(self):
-        self.run(sql20)
         self.run(sql21)
         self.run(sql22)
         self.run(sql23.format('touched_'))
