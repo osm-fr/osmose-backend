@@ -110,7 +110,8 @@ WHERE
 ANALYZE {0}.highway_ends;
 """
 
-    # Multipolygons table is not complete. It does not contain multipolygons across extract border or invalid ones.
+    # Multipolygons table is not complete. It does not contain multipolygons across extract border,
+    # (some) invalid ones, and some where ST_BuildArea fails to build the full polygon with all inners
     sql_create_multipolygons = """
 DO $$
 DECLARE
@@ -150,7 +151,9 @@ BEGIN
             ST_NPoints(ST_Collect(ways.linestring)) < 100000
     ) LOOP
         BEGIN
-            IF ST_BuildArea(mp.linestrings) IS NOT NULL AND NOT ST_IsEmpty(ST_BuildArea(mp.linestrings)) THEN
+            IF ST_BuildArea(mp.linestrings) IS NOT NULL AND NOT ST_IsEmpty(ST_BuildArea(mp.linestrings))
+            -- Ensure no linestrings are dropped by ST_BuildArea, which would result in e.g. missing inners (see #2169)
+            AND ST_CoveredBy(ST_Points(mp.linestrings), ST_Points(ST_BuildArea(mp.linestrings))) THEN
                 WITH
                 unary AS (
                     SELECT
