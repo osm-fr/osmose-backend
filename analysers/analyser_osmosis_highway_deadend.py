@@ -368,11 +368,11 @@ FROM (
     results_recursive
     JOIN nodes ON
       nodes.id = results_recursive.nid
-) AS final_result
-JOIN oneway_highway ON final_result.wid = oneway_highway.id
+) AS t
+JOIN oneway_highway ON wid = oneway_highway.id
 ORDER BY
-  final_result.nid,
-  final_result.wid
+  nid,
+  wid
 """
 
 sql50 = """
