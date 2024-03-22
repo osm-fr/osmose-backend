@@ -350,7 +350,7 @@ SELECT DISTINCT ON(nid)
   wid,
   nid,
   ST_AsText(geom),
-  highways.tags->'highway'
+  highways.highway
 FROM (
   SELECT
     wid,
