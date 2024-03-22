@@ -449,7 +449,7 @@ Ensure that `service=drive-through` is the correct tag.''')),
         self.callback22 = lambda res: {
             "class": 2,
             "data": [self.way_full, self.node_full, self.positionAsText],
-            "text": {"en": "Unconnected highway: {}".format(res[3])}
+            "text": {"en": res[3]}
         }
         self.callback43 = lambda res: {
             "class": 3,
