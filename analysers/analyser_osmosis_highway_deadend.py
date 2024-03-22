@@ -450,12 +450,12 @@ Ensure that `service=drive-through` is the correct tag.''')),
             "class": 2,
             "data": [self.way_full, self.node_full, self.positionAsText],
             "text": {"en": "Unconnected highway: {}".format(res[3])}
-}
+        }
         self.callback43 = lambda res: {
             "class": 3,
             "data": [self.way_full, self.node_full, self.positionAsText],
             "text": {"en": "Oneway inaccessible: {}".format(res[3])}
-}
+        }
     def analyser_osmosis_common(self):
         boundary_relation = self.config.polygon_id # Either a number, None or (number, number, ...)
         if isinstance(boundary_relation, int):
