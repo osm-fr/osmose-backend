@@ -117,8 +117,7 @@ SELECT
   END AS nodes,
   linestring,
   array_length(nodes, 1) AS length,
-  generate_subscripts(nodes, 1) AS nid_index,
-  highway
+  generate_subscripts(nodes, 1) AS nid_index
 FROM
   highways
 WHERE
@@ -351,7 +350,7 @@ SELECT DISTINCT ON(nid)
   wid,
   nid,
   ST_AsText(geom),
-  oneway_highway.highway
+  highways.tags->'highway'
 FROM (
   SELECT
     wid,
@@ -369,7 +368,7 @@ FROM (
     JOIN nodes ON
       nodes.id = results_recursive.nid
 ) AS t
-JOIN oneway_highway ON wid = oneway_highway.id
+JOIN highways ON wid = id
 ORDER BY
   nid,
   wid
