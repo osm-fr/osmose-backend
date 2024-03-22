@@ -118,7 +118,7 @@ SELECT
   linestring,
   array_length(nodes, 1) AS length,
   generate_subscripts(nodes, 1) AS nid_index,
-  tags->'highway' AS highway_tag
+  highway
 FROM
   highways
 WHERE
@@ -351,7 +351,7 @@ SELECT DISTINCT ON(nid)
   wid,
   nid,
   ST_AsText(geom),
-  oneway_highway.highway_tag
+  oneway_highway.highway
 FROM (
   SELECT
     wid,
