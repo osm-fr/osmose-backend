@@ -58,8 +58,7 @@ SELECT
     MIN(way_ends.id) AS wid,
     nodes.id AS nid,
     nodes.geom,
-    MIN(way_ends.highway) AS highway,
-    MIN(highways.tags->'highway') AS highway_tag
+    MIN(way_ends.highway) AS highway
 FROM
     {0}highway_ends AS way_ends
     JOIN highways ON
@@ -99,7 +98,7 @@ SELECT
     wid,
     nid,
     ST_AsText(geom),
-    highway_tag
+    highway
 FROM
     unconnected_highways
 WHERE
