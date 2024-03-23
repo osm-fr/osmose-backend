@@ -446,16 +446,8 @@ Ensure that `service=drive-through` is the correct tag.''')),
             resource = 'https://wiki.openstreetmap.org/wiki/Tag:service%3Ddrive-through')
 
         self.callback21 = lambda res: {"class": 1, "data": [self.way_full, self.node_full, self.positionAsText]}
-        self.callback22 = lambda res: {
-            "class": 2,
-            "data": [self.way_full, self.node_full, self.positionAsText],
-            "text": T_("Unconnected highway: {0}", res[3])
-        }
-        self.callback43 = lambda res: {
-            "class": 3,
-            "data": [self.way_full, self.node_full, self.positionAsText],
-            "text": T_("Oneway inaccessible: {0}", res[3])
-        }
+        self.callback22 = lambda res: {"class": 2, "data": [self.way_full, self.node_full, self.positionAsText], "text": T_("Unconnected highway: {0}", res[3])}
+
     def analyser_osmosis_common(self):
         boundary_relation = self.config.polygon_id # Either a number, None or (number, number, ...)
         if isinstance(boundary_relation, int):
