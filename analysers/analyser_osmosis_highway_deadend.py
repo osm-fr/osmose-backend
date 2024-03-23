@@ -469,7 +469,7 @@ Ensure that `service=drive-through` is the correct tag.''')),
         self.run(sql40)
         self.run(sql41)
         self.run(sql42)
-        self.run(sql43, self.callback43)
+        self.run(sql43, lambda res: {"class":3, "data":[self.way_full, self.node_full, self.positionAsText], "text": T_("Oneway inaccessible: {0}", res[3])})
         self.run(sql50, lambda res: {"class":5, "data":[self.way_full, self.node, self.positionAsText]})
 
     def analyser_osmosis_full(self):
