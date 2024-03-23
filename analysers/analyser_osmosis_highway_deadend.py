@@ -368,7 +368,8 @@ FROM (
     JOIN nodes ON
       nodes.id = results_recursive.nid
 ) AS t
-JOIN highways ON wid = id
+  JOIN highways ON
+    wid = id
 ORDER BY
   nid,
   wid
