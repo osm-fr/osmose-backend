@@ -97,7 +97,8 @@ sql25 = """
 SELECT
     wid,
     nid,
-    ST_AsText(geom)
+    ST_AsText(geom),
+    highway
 FROM
     unconnected_highways
 WHERE
@@ -348,7 +349,8 @@ sql43 = """
 SELECT DISTINCT ON(nid)
   wid,
   nid,
-  ST_AsText(geom)
+  ST_AsText(geom),
+  highways.highway
 FROM (
   SELECT
     wid,
@@ -366,6 +368,8 @@ FROM (
     JOIN nodes ON
       nodes.id = results_recursive.nid
 ) AS t
+  JOIN highways ON
+    wid = id
 ORDER BY
   nid,
   wid
@@ -442,7 +446,7 @@ Ensure that `service=drive-through` is the correct tag.''')),
             resource = 'https://wiki.openstreetmap.org/wiki/Tag:service%3Ddrive-through')
 
         self.callback21 = lambda res: {"class": 1, "data": [self.way_full, self.node_full, self.positionAsText]}
-        self.callback22 = lambda res: {"class": 2, "data": [self.way_full, self.node_full, self.positionAsText]}
+        self.callback22 = lambda res: {"class": 2, "data": [self.way_full, self.node_full, self.positionAsText], "text": T_("Unconnected highway: {0}", res[3])}
 
     def analyser_osmosis_common(self):
         boundary_relation = self.config.polygon_id # Either a number, None or (number, number, ...)
@@ -465,7 +469,7 @@ Ensure that `service=drive-through` is the correct tag.''')),
         self.run(sql40)
         self.run(sql41)
         self.run(sql42)
-        self.run(sql43, lambda res: {"class":3, "data":[self.way_full, self.node_full, self.positionAsText]})
+        self.run(sql43, lambda res: {"class":3, "data":[self.way_full, self.node_full, self.positionAsText], "text": T_("Oneway inaccessible: {0}", res[3])})
         self.run(sql50, lambda res: {"class":5, "data":[self.way_full, self.node, self.positionAsText]})
 
     def analyser_osmosis_full(self):
