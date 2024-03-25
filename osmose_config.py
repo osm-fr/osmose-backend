@@ -305,7 +305,9 @@ include_aquitaine = [
     'merge_library_FR_aquitaine',
     'merge_winery_FR_aquitaine',
 ]
-france_departement("aquitaine/dordogne", 7375, "FR-24", include=include_aquitaine)
+france_departement("aquitaine/dordogne", 7375, "FR-24", include=include_aquitaine + [
+    'merge_power_pole_FR_gracethd_dordogne'
+])
 france_departement("aquitaine/gironde", 7405, "FR-33", include=include_aquitaine + [
     # Bordeaux
     'merge_recycling_FR_bm',
