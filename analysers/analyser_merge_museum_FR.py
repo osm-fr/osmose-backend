@@ -40,11 +40,12 @@ class Analyser_Merge_Museum_FR(Analyser_Merge_Point):
             CSV(
                 SourceDataGouv(
                     attribution="Ministère de la Culture - Muséofile",
+                    encoding="utf-8-sig",
                     dataset="5d12ee8206e3e762c0c89a4c",
                     resource="5ccd6238-4fb0-4b2c-b14a-581909489320"),
                 separator=';'),
-            Load_XY("geolocalisation_latlong", "geolocalisation_latlong",
-                 where = lambda row: row["geolocalisation_latlong"],
+            Load_XY("coordonnees", "coordonnees",
+                 where = lambda row: row["coordonnees"],
                  xFunction = lambda x: x and x.split(',')[1],
                  yFunction = lambda y: y and y.split(',')[0]),
             Conflate(
@@ -56,10 +57,9 @@ class Analyser_Merge_Museum_FR(Analyser_Merge_Point):
                 mapping = Mapping(
                     static1 = {"tourism": "museum"},
                     static2 = {"source": self.source},
-                    mapping1 = {"ref:FR:museofile": "ref"},
+                    mapping1 = {"ref:FR:museofile": "identifiant"},
                     mapping2 = {
-                        "website": lambda res: None if not res["url_m"] else res["url_m"] if res["url_m"].startswith('http') else 'http://' + res["url_m"],
-                        "phone": lambda res: "+33 " + res["tel_m"][1:] if res["tel_m"] and re_phone.match(res["tel_m"]) else None,
-                        "name": lambda res: res["autnom"][0].upper() + res["autnom"][1:] if res["autnom"] else res["nomoff"][0].upper() + res["nomoff"][1:] if res["nomoff"] else None,
-                        "official_name": lambda res: res["nomoff"][0].upper() + res["nomoff"][1:] if res["autnom"] and res["nomoff"].lower() != res["autnom"].lower() else None},
+                        "website": lambda res: None if not res["url"] else res["url"] if res["url"].startswith('http') else 'http://' + res["url"],
+                        "phone": lambda res: "+33 " + res["telephone"][1:] if res["telephone"] and re_phone.match(res["telephone"]) else None,
+                        "name": lambda res: res["nom_officiel"][0].upper() + res["nom_officiel"][1:] if res["nom_officiel"] else res["nom_officiel"][0].upper() + res["nom_officiel"][1:] if res["nom_officiel"] else None},
                     text = lambda tags, fields: {"en": ' '.join(filter(lambda x: x, [fields["adrl1_m"], fields["cp_m"], fields["ville_m"]]))} )))

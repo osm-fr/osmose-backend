@@ -55,7 +55,7 @@ on the wiki. Add a node or add tags if already existing.''')
                     encoding="utf-8-sig",
                     dataset="5ea1add4a5a7dac3af82310a",
                     resource="e32f7675-913b-4e01-b8c8-0a29733e4407"),
-                separator = ','),
+                separator = ';'),
             Load_XY("Xlong", "Ylat",
                 xFunction = Load_XY.float_comma,
                 yFunction = Load_XY.float_comma),
