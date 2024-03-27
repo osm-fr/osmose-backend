@@ -118,12 +118,12 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 # throwWarning:tr("The tag `{0}` is deprecated in favour of {1}","{1.key}","`leaf_type`")
                 err.append({'class': 40106, 'subclass': 0, 'text': mapcss.tr('The tag `{0}` is deprecated in favour of {1}', mapcss._tag_uncapture(capture_tags, '{1.key}'), '`leaf_type`')})
 
-        # *[bridge=yes][tunnel=yes]
+        # *[bridge][tunnel][bridge!=no][tunnel!=no]
         if ('bridge' in keys and 'tunnel' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'bridge') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'tunnel') == mapcss._value_capture(capture_tags, 1, 'yes')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'bridge')) and (mapcss._tag_capture(capture_tags, 1, tags, 'tunnel')) and (mapcss._tag_capture(capture_tags, 2, tags, 'bridge') != mapcss._value_const_capture(capture_tags, 2, 'no', 'no')) and (mapcss._tag_capture(capture_tags, 3, tags, 'tunnel') != mapcss._value_const_capture(capture_tags, 3, 'no', 'no')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Tag conflict")
@@ -418,12 +418,12 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 # assertMatch:"way highway=primary tunnel=yes"
                 err.append({'class': 71301, 'subclass': 0, 'text': mapcss.tr('Missing maxheight tag')})
 
-        # *[bridge=yes][tunnel=yes]
+        # *[bridge][tunnel][bridge!=no][tunnel!=no]
         if ('bridge' in keys and 'tunnel' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'bridge') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'tunnel') == mapcss._value_capture(capture_tags, 1, 'yes')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'bridge')) and (mapcss._tag_capture(capture_tags, 1, tags, 'tunnel')) and (mapcss._tag_capture(capture_tags, 2, tags, 'bridge') != mapcss._value_const_capture(capture_tags, 2, 'no', 'no')) and (mapcss._tag_capture(capture_tags, 3, tags, 'tunnel') != mapcss._value_const_capture(capture_tags, 3, 'no', 'no')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Tag conflict")
@@ -589,12 +589,12 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 # assertMatch:"relation"
                 err.append({'class': 21102, 'subclass': 0, 'text': mapcss.tr('Missing relation type')})
 
-        # *[bridge=yes][tunnel=yes]
+        # *[bridge][tunnel][bridge!=no][tunnel!=no]
         if ('bridge' in keys and 'tunnel' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'bridge') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'tunnel') == mapcss._value_capture(capture_tags, 1, 'yes')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'bridge')) and (mapcss._tag_capture(capture_tags, 1, tags, 'tunnel')) and (mapcss._tag_capture(capture_tags, 2, tags, 'bridge') != mapcss._value_const_capture(capture_tags, 2, 'no', 'no')) and (mapcss._tag_capture(capture_tags, 3, tags, 'tunnel') != mapcss._value_const_capture(capture_tags, 3, 'no', 'no')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Tag conflict")
