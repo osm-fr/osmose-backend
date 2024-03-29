@@ -66,6 +66,8 @@ administrative schools for a single physical school.''')
             title = T_('School update'),
             trap = trap)
 
+
+
         self.init(
             "https://data.education.gouv.fr/explore/dataset/fr-en-adresse-et-geolocalisation-etablissements-premier-et-second-degre",
             "Adresse et géolocalisation des établissements d'enseignement du premier et second degrés - " + officialName,
@@ -73,9 +75,9 @@ administrative schools for a single physical school.''')
                 attribution="Ministère de l'Éducation nationale et de la Jeunesse",
                 url="https://data.education.gouv.fr/explore/dataset/fr-en-adresse-et-geolocalisation-etablissements-premier-et-second-degre",
                 filter=lambda t: t.replace("Ecole", "École").replace("ecole", "école").replace("Saint ", "Saint-").replace("Sainte ", "Sainte-").replace("élementaire", "élémentaire").replace("elementaire", "élémentaire").replace("Elémentaire", "Élémentaire").replace("elémentaire", "élémentaire").replace("College", "Collège"))),
-            Load_XY("Longitude", "Latitude",
-                select = {"Code état établissement": ["1", "3"]},
-                where = lambda res: res["Code postal"] and self.is_in(res["Code postal"])),
+            Load_XY("longitude", "latitude",
+                select = {"etat_etablissement": ["1", "3"]},
+                where = lambda res: res["code_postal_uai"] and self.is_in(res["code_postal_uai"])),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways", "relations"],
@@ -87,17 +89,17 @@ administrative schools for a single physical school.''')
                         "source": self.source,
                         "amenity": "school"},
                     mapping1 = {
-                        "ref:UAI": "Code établissement",
-                        "school:FR": lambda res: self.School_FR_nature_uai[res["Code nature"]],
-                        "operator:type": lambda res: "private" if res["Secteur Public/Privé"] == "Privé" else "public" if res["Secteur Public/Privé"] == "Public" else None},
-                    mapping2 = {"name": lambda res: res["Appellation officielle"].replace("ECOLE", "École").replace("ELEMENTAIRE", "élémentaire") if res["Appellation officielle"] not in [None, "A COMPLETER", "École primaire", "École Primaire", "ECOLE PRIMAIRE", "École PRIMAIRE", "ECOLE Primaire", "école primaire", "École primaire publique", "ECOLE PRIMAIRE PUBLIQUE", "École Primaire Publique", "École PRIMAIRE publique", "École primaire privée", "ECOLE PRIMAIRE PRIVÉE", "École primaire intercommunale", "École primaire Intercommunale", "École Primaire Intercommunale", "École élémentaire", "École Élémentaire", "ECOLE ELEMENTAIRE", "École ELEMENTAIRE", "École Elementaire", "école élémentaire", "École élémentaire publique", "École élémentaire Publique", "ECOLE ELEMENTAIRE PUBLIQUE", "École élémentaire privée", "École élémentaire intercommunale", "École élémentaire école publique", "École maternelle", "ECOLE MATERNELLE", "École Maternelle", "École MATERNELLE", "École Maternelle", "école maternelle", "École maternelle publique", "ECOLE MATERNELLE PUBLIQUE", "École Maternelle Publique", "École maternelle Publique", "école maternelle publique", "École maternelle intercommunale", "École maternelle Intercommunale", "Collège"] else None},
+                        "ref:UAI": "numero_uai",
+                        "school:FR": lambda res: self.School_FR_nature_uai[res["nature_uai"]],
+                        "operator:type": lambda res: "private" if res["secteur_public_prive_libe"] == "Privé" else "public" if res["secteur_public_prive_libe"] == "Public" else None},
+                    mapping2 = {"name": lambda res: res["appellation_officielle"].replace("ECOLE", "École").replace("ELEMENTAIRE", "élémentaire") if res["appellation_officielle"] not in [None, "A COMPLETER", "École primaire", "École Primaire", "ECOLE PRIMAIRE", "École PRIMAIRE", "ECOLE Primaire", "école primaire", "École primaire publique", "ECOLE PRIMAIRE PUBLIQUE", "École Primaire Publique", "École PRIMAIRE publique", "École primaire privée", "ECOLE PRIMAIRE PRIVÉE", "École primaire intercommunale", "École primaire Intercommunale", "École Primaire Intercommunale", "École élémentaire", "École Élémentaire", "ECOLE ELEMENTAIRE", "École ELEMENTAIRE", "École Elementaire", "école élémentaire", "École élémentaire publique", "École élémentaire Publique", "ECOLE ELEMENTAIRE PUBLIQUE", "École élémentaire privée", "École élémentaire intercommunale", "École élémentaire école publique", "École maternelle", "ECOLE MATERNELLE", "École Maternelle", "École MATERNELLE", "École Maternelle", "école maternelle", "École maternelle publique", "ECOLE MATERNELLE PUBLIQUE", "École Maternelle Publique", "École maternelle Publique", "école maternelle publique", "École maternelle intercommunale", "École maternelle Intercommunale", "Collège"] else None},
                     text = self.text)))
 
     def text(self, tags, fields):
-        lib = ', '.join(filter(lambda x: x and x != "None", [fields["Appellation officielle"], fields["Adresse"], fields["Lieu dit"], fields["Boite postale"], fields["Code postal"], fields["Localite d'acheminement"], fields["Commune"]]))
+        lib = ', '.join(filter(lambda x: x and x != "None", [fields["appellation_officielle"], fields["adresse_uai"], fields["lieu_dit_uai"], fields["boite_postale_uai"], fields["code_postal_uai"], fields["localite_acheminement_uai"], fields["libelle_commune"]]))
         return {
-            "en": lib + " (positioned: {0}, matching: {1})".format(self.School_FR_loc[fields["Localisation"]]["en"], self.School_FR_app[fields["Qualité d'appariement"]]["en"]),
-            "fr": lib + " (position : {0}, appariement : {1})".format(self.School_FR_loc[fields["Localisation"]]["fr"], self.School_FR_app[fields["Qualité d'appariement"]]["fr"]),
+            "en": lib + " (positioned: {0}, matching: {1})".format(self.School_FR_loc[fields["localisation"]]["en"], self.School_FR_app[fields["appariement"]]["en"]),
+            "fr": lib + " (position : {0}, appariement : {1})".format(self.School_FR_loc[fields["localisation"]]["fr"], self.School_FR_app[fields["appariement"]]["fr"]),
         }
 
     School_FR_loc = {
