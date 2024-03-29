@@ -1503,7 +1503,7 @@ open data and OSM.'''))
             count_possible_merge = None
             possible_merge_joinClause = []
             possible_merge_orderBy = ""
-            if self.parser.imported_srid():
+            if self.parser.imported_srid() and self.conflate.conflationDistance:
                 possible_merge_joinClause.append("ST_DWithin(missing_official.geom, missing_osm.shape, {0})".format(self.conflate.conflationDistance))
                 possible_merge_orderBy = ", ST_Distance(missing_official.geom, missing_osm.shape) ASC"
             if self.conflate.extraJoin:
