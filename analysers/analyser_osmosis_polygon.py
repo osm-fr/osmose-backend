@@ -26,8 +26,8 @@ from .Analyser_Osmosis import Analyser_Osmosis
 sql10 = """
 SELECT
     id,
-    regexp_replace(ST_IsValidReason(ST_MakePolygon(linestring)), '[^[]+\\[([^]]+).*', 'POINT(\\1)'),
-    ST_IsValidReason(ST_MakePolygon(linestring)) AS detail
+    ST_AsText((ST_IsValidDetail(ST_MakePolygon(linestring))).location),
+    (ST_IsValidDetail(ST_MakePolygon(linestring))).reason
 FROM
     {0}ways
 WHERE
@@ -64,15 +64,15 @@ GROUP BY
 sql21 = """
 SELECT
     id,
-    regexp_replace(ST_IsValidReason(ST_MakePolygon(linestring)), '[^[]+\\[([^]]+).*', 'POINT(\\1)') AS detail,
-    ST_IsValidReason(ST_MakePolygon(linestring)) AS detail
+    ST_AsText((ST_IsValidDetail(ST_MakePolygon(linestring))).location),
+    (ST_IsValidDetail(ST_MakePolygon(linestring))).reason
 FROM
     {0}_{1}_relation_linestrings
 WHERE
     (ST_NumGeometries(linestring) IS NULL OR ST_NumGeometries(linestring) = 1) AND
     ST_NumPoints(linestring) > 3 AND
     ST_IsClosed(linestring) AND
-   NOT ST_IsValid(ST_MakePolygon(linestring))
+    NOT ST_IsValid(ST_MakePolygon(linestring))
 """
 
 
@@ -106,8 +106,7 @@ changing the order of these nodes, by adding new nodes or by creating
 multiple polygons.'''),
             trap = T_(
 '''Make sure the nodes to move do not belong to other way.'''),
-            example = T_(
-'''![](https://wiki.openstreetmap.org/w/images/9/9a/Osmose-eg-error-1040.png)'''))
+            example = {"en": "![](https://wiki.openstreetmap.org/w/images/9/9a/Osmose-eg-error-1040.png)"})
         self.classs_change[1] = self.def_class(item = 1040, level = 1, tags = ['geom', 'fix:chair'], title = T_('Invalid polygon'), **doc)
         self.classs_change[2] = self.def_class(item = 1040, level = 1, tags = ['geom', 'fix:chair'], title = T_('Invalid multipolygon'), **doc)
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "text": {"en": res[2]}}
