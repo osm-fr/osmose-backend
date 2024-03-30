@@ -75,7 +75,23 @@ WHERE
    NOT ST_IsValid(ST_MakePolygon(linestring))
 """
 
+
+sql30 = """
+SELECT
+    id,
+    ST_AsText((ST_IsValidDetail(poly)).location),
+    (ST_IsValidDetail(poly)).reason
+FROM
+    {0}multipolygons
+WHERE
+    NOT is_valid
+"""
+
+
 class Analyser_Osmosis_Polygon(Analyser_Osmosis):
+
+    requires_tables_full = ['multipolygons']
+    requires_tables_diff = ['touched_multipolygons']
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
@@ -95,12 +111,14 @@ multiple polygons.'''),
         self.classs_change[1] = self.def_class(item = 1040, level = 1, tags = ['geom', 'fix:chair'], title = T_('Invalid polygon'), **doc)
         self.classs_change[2] = self.def_class(item = 1040, level = 1, tags = ['geom', 'fix:chair'], title = T_('Invalid multipolygon'), **doc)
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "text": {"en": res[2]}}
-        self.callback20 = lambda res: {"class":2, "data":[self.relation, self.positionAsText], "text": {"en": res[2]}}
+        self.callback20 = lambda res: {"class":2, "subclass": 0, "data":[self.relation, self.positionAsText], "text": {"en": res[2]}}
+        self.callback30 = lambda res: {"class":2, "subclass": 1, "data":[self.relation, self.positionAsText], "text": {"en": res[2]}}
 
     def analyser_osmosis_full(self):
         self.run(sql10.format(""), self.callback10)
         self.run(sql20.format("", ""))
         self.run(sql21.format("", ""), self.callback20)
+        self.run(sql30.format(""), self.callback30)
 
     def analyser_osmosis_diff(self):
         self.run(sql10.format("touched_"), self.callback10)
@@ -108,3 +126,4 @@ multiple polygons.'''),
         self.run(sql21.format("touched_", ""), self.callback20)
         self.run(sql20.format("not_touched_", "touched_"))
         self.run(sql21.format("not_touched_", "touched_"), self.callback20)
+        self.run(sql30.format("touched_"), self.callback30)
