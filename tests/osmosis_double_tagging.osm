@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='1' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84580700591' lon='5.83446459065' />
+  <node id='2' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84108958902' lon='5.84560370017' />
+  <node id='3' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84381435885' lon='5.8391699169'>
+    <tag k='amenity' v='bicycle_parking' />
+  </node>
+  <node id='4' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84996902205' lon='5.84488504795' />
+  <node id='5' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84602898982' lon='5.84793931991' />
+  <node id='6' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84908115756' lon='5.85252072786' />
+  <node id='7' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85263251041' lon='5.86887006603' />
+  <node id='8' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84636196363' lon='5.86177337529' />
+  <node id='9' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84608448562' lon='5.87758372429' />
+  <node id='10' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.8517543834' lon='5.86878356022' />
+  <node id='11' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84691272679' lon='5.86334875275' />
+  <node id='12' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84659363084' lon='5.87549846697' />
+  <node id='13' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85167115015' lon='5.86950221245'>
+    <tag k='leisure' v='track' />
+  </node>
+  <node id='14' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84870239693' lon='5.86873864446'>
+    <tag k='leisure' v='track' />
+    <tag k='note' v='I&apos;m fine' />
+  </node>
+  <node id='15' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84995096187' lon='5.86862635505' />
+  <node id='16' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84802260813' lon='5.87080476961' />
+  <node id='17' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84873015707' lon='5.8480324547'>
+    <tag k='amenity' v='parking' />
+  </node>
+  <node id='18' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84842240535' lon='5.85153189202' />
+  <node id='19' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84715362775' lon='5.86266928655' />
+  <node id='20' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84824256916' lon='5.87400061157' />
+  <node id='21' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.84746183172' lon='5.87505628692' />
+  <way id='1000' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='1' />
+    <nd ref='3' />
+    <nd ref='2' />
+    <tag k='amenity' v='bicycle_parking' />
+  </way>
+  <way id='1001' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='4' />
+    <nd ref='5' />
+    <nd ref='18' />
+    <nd ref='6' />
+    <nd ref='4' />
+    <tag k='amenity' v='parking' />
+  </way>
+  <way id='1002' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='7' />
+    <nd ref='19' />
+    <nd ref='8' />
+    <nd ref='9' />
+    <nd ref='7' />
+  </way>
+  <way id='1003' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='10' />
+    <nd ref='11' />
+    <nd ref='12' />
+    <nd ref='10' />
+  </way>
+  <way id='1004' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='15' />
+    <nd ref='16' />
+    <tag k='leisure' v='track' />
+    <tag k='note' v='I&apos;m fine' />
+  </way>
+  <way id='1005' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='18' />
+    <nd ref='8' />
+    <nd ref='19' />
+    <nd ref='6' />
+    <nd ref='18' />
+    <tag k='amenity' v='parking' />
+    <tag k='leisure' v='track' />
+    <tag k='note' v='Touching should not trigger error' />
+  </way>
+  <way id='1006' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='8' />
+    <nd ref='9' />
+    <nd ref='7' />
+    <nd ref='8' />
+    <tag k='area' v='no' />
+    <tag k='leisure' v='track' />
+  </way>
+  <way id='1007' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='20' />
+    <nd ref='21' />
+    <tag k='leisure' v='track' />
+  </way>
+  <relation id='10000' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <member type='way' ref='1001' role='' />
+    <tag k='amenity' v='parking' />
+    <tag k='type' v='site' />
+  </relation>
+  <relation id='10001' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <member type='way' ref='1002' role='outer' />
+    <member type='way' ref='1003' role='inner' />
+    <tag k='leisure' v='track' />
+    <tag k='type' v='multipolygon' />
+  </relation>
+</osm>
