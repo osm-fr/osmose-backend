@@ -26,7 +26,7 @@ from .Analyser_Merge import Analyser_Merge_Point, CSV, Load_XY, Conflate, Select
 
 
 class Analyser_Merge_street_lamp_FR_eclext (Analyser_Merge_Point):
-    def __init__(self, config, source_url, dataset_name, source, srid, osmRef, classs, logger = None):
+    def __init__(self, config, source_url, dataset_name, source, srid, classs, logger = None):
         Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8490, id = classs + 1, level = 3, tags = ['merge', 'street_lamp', 'fix:chair', 'fix:survey'],
             title = T_('Street light not integrated'))
@@ -44,7 +44,6 @@ class Analyser_Merge_street_lamp_FR_eclext (Analyser_Merge_Point):
                 select = Select(
                     types = ['nodes'],
                     tags = {'highway': 'street_lamp'}),
-                osmRef = osmRef,
                 conflationDistance = 20,
                 mapping = Mapping(
                     static1 = {'highway': 'street_lamp', 'operator': 'Syane'},
