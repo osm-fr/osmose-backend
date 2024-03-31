@@ -43,7 +43,6 @@ class Analyser_Merge_power_pole_FR_gracethd (Analyser_Merge_Point):
                 select = Select(
                     types = ['nodes'],
                     tags = {'power': 'pole'}),
-                osmRef = 'ref',
                 conflationDistance = conflationDistance,
                 mapping = Mapping(
                     static1 = {'power': 'pole'},

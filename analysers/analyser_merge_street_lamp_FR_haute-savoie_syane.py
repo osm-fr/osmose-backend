@@ -34,6 +34,5 @@ class Analyser_Merge_Eclext_FR_Syane(Analyser_Merge_street_lamp_FR_eclext):
                 dataset="6447bfe8709c0b4a2b88355a",
                 resource="011aa541-8510-4caf-8a00-43d7efbe7543"),
             srid = 2154,
-            osmRef='ref',
             classs=1000,
             logger=logger)
