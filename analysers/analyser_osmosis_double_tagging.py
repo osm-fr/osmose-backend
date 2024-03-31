@@ -166,3 +166,28 @@ the tags.'''),
         ret = {"nodes_alb": self.node_full, "ways_alb": self.way_full, "relations_alb": self.relation_full}
         for c in [["ways_alb", "nodes_alb", 1], ["relations_alb", "ways_alb", 2], ["relations_alb", "nodes_alb", 3]]:
             callback(c[0], c[1], ret[c[0]], ret[c[1]], c[2])
+
+
+from .Analyser_Osmosis import TestAnalyserOsmosis
+
+class Test(TestAnalyserOsmosis):
+    @classmethod
+    def setup_class(cls):
+        from modules import config
+        TestAnalyserOsmosis.setup_class()
+        cls.analyser_conf = cls.load_osm("tests/osmosis_double_tagging.osm",
+                                         config.dir_tmp + "/tests/osmosis_double_tagging.test.xml",
+                                         {"proj": 23032})
+
+    def test_classes(self):
+        with Analyser_Osmosis_Double_Tagging(self.analyser_conf, self.logger) as a:
+            a.analyser()
+
+        self.root_err = self.load_errors()
+        self.check_err(cl="1", elems=[("way", "1000"), ("node", "3")])
+        self.check_err(cl="2", elems=[("relation", "10000"), ("way", "1001")])
+        self.check_err(cl="2", elems=[("relation", "10001"), ("way", "1006")])
+        self.check_err(cl="2", elems=[("relation", "10001"), ("way", "1007")])
+        self.check_err(cl="3", elems=[("relation", "10000"), ("node", "17")])
+        self.check_err(cl="3", elems=[("relation", "10001"), ("node", "13")])
+        self.check_num_err(6)
