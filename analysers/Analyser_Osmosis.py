@@ -651,7 +651,11 @@ WHERE
         if res is None:
             self.logger.warn("NULL location provided")
             return []
-        for loc in self.get_points(res):
+        points = self.get_points(res)
+        if points == []:
+            self.logger.err("Invalid location provided")
+            return []
+        for loc in points:
             self.geom["position"].append(loc)
 
 #    def positionWay(self, res):
