@@ -33,8 +33,7 @@ class Structural_UnclosedArea(Plugin):
             fix = T_(
 '''If the object is not a surface, remove the tag `area=yes`, otherwise
 ensure that the way is a loop.'''),
-            example = T_(
-'''![](https://wiki.openstreetmap.org/w/images/c/cc/Osmose-eg-error-1100.png)'''))
+            example = {"en": "![](https://wiki.openstreetmap.org/w/images/c/cc/Osmose-eg-error-1100.png)"})
 
     def way(self, data, tags, nds):
         if "area" not in tags or tags["area"] == "no":
