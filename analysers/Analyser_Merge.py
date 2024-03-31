@@ -1500,46 +1500,47 @@ open data and OSM.'''))
                 self.run(sql22, osm_missing)
 
             # Possible merge
-            count_possible_merge = None
-            possible_merge_joinClause = []
-            possible_merge_orderBy = ""
-            if self.parser.imported_srid() and self.conflate.conflationDistance:
-                possible_merge_joinClause.append("ST_DWithin(missing_official.geom, missing_osm.shape, {0})".format(self.conflate.conflationDistance))
-                possible_merge_orderBy = ", ST_Distance(missing_official.geom, missing_osm.shape) ASC"
-            if self.conflate.extraJoin:
-                possible_merge_joinClause.append("missing_official.tags->'{tag}' = missing_osm.tags->'{tag}'".format(tag=self.conflate.extraJoin))
-            possible_merge_joinClause = " AND\n".join(possible_merge_joinClause) + "\n"
-            self.run(sql30.format(joinClause = possible_merge_joinClause, orderBy = possible_merge_orderBy))
-            self.run(sql31)
-            if self.possible_merge:
-                count_possible_merge = 0
-                def ret(res):
-                    nonlocal count_possible_merge
-                    count_possible_merge = count_possible_merge + 1
-                    return {
-                        "class": self.possible_merge['id'],
-                        "subclass": str(stablehash64("{0}{1}".format(
-                            res[0],
-                            sorted(self.conflate.subclass_hash(res[3]).items())) )),
-                        "data": [self.typeMapping[res[1]], None, self.positionAsText],
-                        "text": self.conflate.mapping.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[4])),
-                        "fix": self.mergeTags(res[5], res[3], self.conflate.osmRef, self.conflate.tag_keep_multiple_values),
-                    }
-                self.run(sql32, ret)
+            if self.conflate.conflationDistance or self.conflate.extraJoin:
+                count_possible_merge = None
+                possible_merge_joinClause = []
+                possible_merge_orderBy = ""
+                if self.parser.imported_srid() and self.conflate.conflationDistance:
+                    possible_merge_joinClause.append("ST_DWithin(missing_official.geom, missing_osm.shape, {0})".format(self.conflate.conflationDistance))
+                    possible_merge_orderBy = ", ST_Distance(missing_official.geom, missing_osm.shape) ASC"
+                if self.conflate.extraJoin:
+                    possible_merge_joinClause.append("missing_official.tags->'{tag}' = missing_osm.tags->'{tag}'".format(tag=self.conflate.extraJoin))
+                possible_merge_joinClause = " AND\n".join(possible_merge_joinClause) + "\n"
+                self.run(sql30.format(joinClause = possible_merge_joinClause, orderBy = possible_merge_orderBy))
+                self.run(sql31)
+                if self.possible_merge:
+                    count_possible_merge = 0
+                    def ret(res):
+                        nonlocal count_possible_merge
+                        count_possible_merge = count_possible_merge + 1
+                        return {
+                            "class": self.possible_merge['id'],
+                            "subclass": str(stablehash64("{0}{1}".format(
+                                res[0],
+                                sorted(self.conflate.subclass_hash(res[3]).items())) )),
+                            "data": [self.typeMapping[res[1]], None, self.positionAsText],
+                            "text": self.conflate.mapping.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[4])),
+                            "fix": self.mergeTags(res[5], res[3], self.conflate.osmRef, self.conflate.tag_keep_multiple_values),
+                        }
+                    self.run(sql32, ret)
 
-            self.dumpCSV("SELECT ST_X(geom::geometry) AS lon, ST_Y(geom::geometry) AS lat, tags FROM {0}".format(table), "", ["lon","lat"], lambda r, cc:
-                list((r['lon'], r['lat'])) + cc
-            )
+                self.dumpCSV("SELECT ST_X(geom::geometry) AS lon, ST_Y(geom::geometry) AS lat, tags FROM {0}".format(table), "", ["lon","lat"], lambda r, cc:
+                    list((r['lon'], r['lat'])) + cc
+                )
 
-            self.run(sql40.format(official = table, joinClause = joinClause))
-            self.dumpCSV(sql41, ".byOSM", ["osmose","osm_id","osm_type","lon","lat"], lambda r, cc:
-                list((r['osmose'], r['osm_id'], r['osm_type'], r['lon'], r['lat'])) + cc
-            )
+                self.run(sql40.format(official = table, joinClause = joinClause))
+                self.dumpCSV(sql41, ".byOSM", ["osmose","osm_id","osm_type","lon","lat"], lambda r, cc:
+                    list((r['osmose'], r['osm_id'], r['osm_type'], r['lon'], r['lat'])) + cc
+                )
 
-            file = io.open("{0}/{1}.metainfo.csv".format(self.config.dst_dir, self.name), "w", encoding="utf8")
-            file.write("file,origin,osm_date,count_official,count_osm,count_missing_official_in_osm,count_missing_osm_in_official,count_invalid_osm_ref,count_possible_merge\n")
-            file.write(f"\"{self.name}\",\"{self.parser.source.fileUrl or self.url}\",FIXME,{count_official},{count_osm},{count_missing_official},{count_missing_osm},{count_invalid_osm_ref},{count_possible_merge}\n")
-            file.close()
+                file = io.open("{0}/{1}.metainfo.csv".format(self.config.dst_dir, self.name), "w", encoding="utf8")
+                file.write("file,origin,osm_date,count_official,count_osm,count_missing_official_in_osm,count_missing_osm_in_official,count_invalid_osm_ref,count_possible_merge\n")
+                file.write(f"\"{self.name}\",\"{self.parser.source.fileUrl or self.url}\",FIXME,{count_official},{count_osm},{count_missing_official},{count_missing_osm},{count_invalid_osm_ref},{count_possible_merge}\n")
+                file.close()
 
         # Moved official
         if self.moved_official:
