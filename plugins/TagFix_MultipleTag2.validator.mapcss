@@ -67,7 +67,7 @@ meta[lang=en] { /* lang=en, unused, only to use tr() to catch string for transla
 }
 
 
-way[highway][fee][!amenity][!leisure] {
+way[highway][fee][!amenity][!leisure][highway!=trailhead] {
     throwWarning: tr("Use tag \"toll\" instead of \"fee\"");
     group: tr("Watch multiple tags");
     assertMatch: "way highway=primary fee=yes";
