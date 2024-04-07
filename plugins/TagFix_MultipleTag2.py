@@ -298,12 +298,12 @@ class TagFix_MultipleTag2(PluginMapCSS):
                 # throwWarning:tr("Suspicious name for a container")
                 err.append({'class': 32302, 'subclass': 0, 'text': mapcss.tr('Suspicious name for a container')})
 
-        # way[highway][fee][!amenity][!leisure]
+        # way[highway][fee][!amenity][!leisure][highway!=trailhead]
         if ('fee' in keys and 'highway' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'fee')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'amenity')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'leisure')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'fee')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'amenity')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'leisure')) and (mapcss._tag_capture(capture_tags, 4, tags, 'highway') != mapcss._value_const_capture(capture_tags, 4, 'trailhead', 'trailhead')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Watch multiple tags")
