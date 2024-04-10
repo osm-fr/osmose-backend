@@ -382,7 +382,7 @@ france_departement("corse/haute_corse", 76931, "FR-2B")
 france_departement("franche_comte/doubs", 7462, "FR-25")
 france_departement("franche_comte/jura", 7460, "FR-39", include=[
     'merge_hydrants_FR_SDIS_39',
-     'merge_power_pole_FR_gracethd_jura'
+    'merge_power_pole_FR_gracethd_jura'
 ])
 france_departement("franche_comte/haute_saone", 7423, "FR-70")
 france_departement("franche_comte/territoire_de_belfort", 7410, "FR-90")
