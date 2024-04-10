@@ -344,19 +344,23 @@ france_departement("bourgogne/saone_et_loire", 7397, "FR-71", include=[
 ])
 france_departement("bourgogne/yonne", 7392, "FR-89")
 
-france_departement("bretagne/cotes_d_armor", 7398, "FR-22")
-france_departement("bretagne/ille_et_vilaine", 7465, "FR-35", include=[
+include_bretagne = [
+    # Bretagne
+    'merge_power_pole_FR_gracethd_bretagne'
+]
+france_departement("bretagne/cotes_d_armor", 7398, "FR-22", include=include_bretagne)
+france_departement("bretagne/ille_et_vilaine", 7465, "FR-35", include=include_bretagne + [
     # Rennes
     'merge_public_equipment_FR_rennes_toilets',
     'merge_public_transport_FR_star',
     'merge_defibrillators_FR_montfort',
     'merge_defibrillators_FR_saintmalo',
 ])
-france_departement("bretagne/finistere", 102430, "FR-29", include=[
+france_departement("bretagne/finistere", 102430, "FR-29", include=include_bretagne + [
     'merge_public_transport_FR_bibus',
     'merge_bicycle_parking_FR_brest',
 ])
-france_departement("bretagne/morbihan", 7447, "FR-56", include=[
+france_departement("bretagne/morbihan", 7447, "FR-56", include=include_bretagne + [
     'merge_defibrillators_FR_lorient',
 ])
 
@@ -378,6 +382,7 @@ france_departement("corse/haute_corse", 76931, "FR-2B")
 france_departement("franche_comte/doubs", 7462, "FR-25")
 france_departement("franche_comte/jura", 7460, "FR-39", include=[
     'merge_hydrants_FR_SDIS_39',
+    'merge_power_pole_FR_gracethd_jura'
 ])
 france_departement("franche_comte/haute_saone", 7423, "FR-70")
 france_departement("franche_comte/territoire_de_belfort", 7410, "FR-90")
