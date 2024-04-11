@@ -36,11 +36,12 @@ class Structural_Multipolygon(Plugin):
             detail = T_(
 '''Members must be ways.'''))
         self.errors[11703] = self.def_class(item = 1170, level = 1, tags = ['relation', 'multipolygon', 'fix:imagery'],
-            title = T_('Missing outer role for multipolygon'),
+            title = T_('Missing outer way with role `outer` for multipolygon'),
             detail = T_(
 '''At least one outer ring must be present.'''),
             fix = T_(
-'''Find the way outside, it may be deleted, check the history.'''))
+'''Find the outer way, and add it to the relation with role `outer`. Multiple outer ways are also possible as long as they form one or more closed rings.
+The previous outer way may have been deleted, check the history.'''))
         self.errors[11704] = self.def_class(item = 1170, level = 2, tags = ['relation', 'multipolygon', 'fix:chair'],
             title = T_('This multipolygon is a simple polygon'),
             detail = T_(
