@@ -138,6 +138,8 @@
   <node id='175' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82188764589' lon='5.92684902751' />
   <node id='176' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.81909375438' lon='5.92556846439' />
   <node id='177' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82106700151' lon='5.92696119385' />
+  <node id='178' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82586172981' lon='5.92318385657' />
+  <node id='179' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82545353166' lon='5.9285813642' />
   <way id='1000' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='1' />
     <nd ref='2' />
@@ -472,6 +474,11 @@
     <nd ref='176' />
     <tag k='aeroway' v='runway' />
     <tag k='note' v='mini-intersection' />
+  </way>
+  <way id='1067' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='178' />
+    <nd ref='179' />
+    <tag k='highway' v='trunk' />
   </way>
   <relation id='10000' timestamp='2014-03-31T22:00:00Z' version='1'>
     <member type='way' ref='1045' role='inner' />
