@@ -78,6 +78,12 @@ For example, use `no @ (weight > 5 AND wet)` rather than `no@weight>5 and wet`.'
 The first condition can be removed. The simplified rule would be:
 `maxspeed:conditional = 40 @ (12:00-24:00); 60 @ (00:00-12:00)`.'''),
         resource="https://wiki.openstreetmap.org/wiki/Conditional_restrictions")
+    self.errors[33506] = self.def_class(item = 3350, level = 3, tags = ['highway', 'fix:chair'],
+        title = T_('Equal conditional and unconditional tag value'),
+        detail = T_('''The conditional tag has the same value as the same tag without the conditional restriction.'''),
+        fix = T_('''Check if the value applies at all times. If so, remove the tag with `:conditional`.
+Otherwise, remove the tag without `:conditional`.'''),
+        example = T_('''`bicycle=yes` together with `bicycle:conditional = yes @ (12:00-24:00)` means the same as just `bicycle=yes`.'''))
 
   def way(self, data, tags, nds):
     # Get the relevant tags with *:conditional
@@ -213,6 +219,12 @@ The first condition can be removed. The simplified rule would be:
       if bad_tag:
         continue
 
+      # Find conditionals where the (only) conditional value equals the non-conditional tag value
+      if len(conditions) == 1:
+        tag_without_conditional = tag.replace(":conditional", '')
+        if tag_without_conditional in tags and tags[tag_without_conditional] == tag_value.split("@", 1)[0].strip():
+          err.append({"class": 33506, "subclass": 0 + stablehash64(tag + '|' + tag_value), "text": T_("Tag `{0}` has the same value as `{1}`, without restrictions", tag_without_conditional, tag)})
+
       # Find outdated conditional restrictions, i.e. temporary road closures
       for condition in set(conditions):
         years_str = re.findall(self.ReYear, condition)
@@ -294,6 +306,9 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "turn:lanes:forward:conditional": "left|through|through;right @ (Mo-Fr 06:00-09:00)"},
                   {"highway": "service", "access:conditional": 'customers @ (Mo-Fr || "by appointment and >5 persons")'},
                   {"highway": "residential", "maxspeed:conditional": "20 @ (06:00-19:00); 40 @ (06:00-19:00 AND length < 2)"},
+                  {"highway": "residential", "vehicle": "yes", "vehicle:conditional": "no @ (06:00-19:00)"},
+                  {"highway": "secondary", "maxspeed": "50", "maxspeed:conditional": "80 @ (10:00-18:00); 50 @ (length > 5)"},
+                  {"highway": "secondary", "maxspeed": "50", "maxspeed:conditional": "50 @ (00:00-12:00); 80 @ (12:00-24:00)"}, # suboptimal, assume maxspeed is a fallback tag
                  ]:
           assert not a.way(None, t, None), a.way(None, t, None)
 
@@ -356,6 +371,7 @@ class Test(TestPluginCommon):
                     {"highway": "residential", "access:conditional": "no @ wet AND Sep-Apr"},
                     {"highway": "residential", "access:conditional": "no @ wet; no @ snow"},
                     {"highway": "residential", "access:conditional": "no @ wet; no @ (20:00-22:00)"},
+                    {"highway": "residential", "fee": "yes", "fee:conditional": "yes @ (sunrise-sunset)"},
                  ]:
           assert a.way(None, t, None), a.way(None, t, None)
 
