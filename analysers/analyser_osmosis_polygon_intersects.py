@@ -169,7 +169,7 @@ WHERE
     (
       -- Special case as highway=* vs. natural=water _ways_ are already included in item 1070 class 4
       landusevalue = 'water' AND
-      (mobility_way_type != 'highway' OR substring(landusage_tid,1,1) = 'R')
+      (mobility_way_type != 'highway' OR substring(landusage_tid, 1, 1) = 'R')
     )
   )
 ORDER BY
