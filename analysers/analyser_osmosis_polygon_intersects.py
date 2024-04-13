@@ -77,7 +77,7 @@ sql11 = """
 -- Collect all landuse=* and natural=*, closed ways and multipolygons
 CREATE TEMP TABLE landusage AS
 SELECT
-  'W' || id AS id,
+  'W' || id AS tid,
   ST_MakePolygon(linestring) AS poly_full,
   ST_Subdivide(ST_Buffer(ST_Transform(ST_MakePolygon(linestring), {proj}), -2.0), 1000) AS poly_proj_buffer_fragment,
   CASE
@@ -93,7 +93,7 @@ WHERE
   (tags?'natural' OR tags?'landuse')
 UNION ALL
 SELECT
-  'R' || id AS id,
+  'R' || id AS tid,
   poly AS poly_full,
   ST_Subdivide(ST_Buffer(poly_proj, -2.0), 1000) AS poly_proj_buffer_fragment,
   CASE
@@ -120,7 +120,7 @@ SELECT
   mobility_ways.id AS mobility_way_id,
   mobility_ways.linestring AS mobility_way_linestring,
   mobility_ways.type AS mobility_way_type,
-  landusage.id AS landusage_id,
+  landusage.tid AS landusage_tid,
   landusage.poly_full AS landusage_poly,
   landusage.landusekey,
   landusage.tags->landusage.landusekey AS landusevalue,
@@ -150,9 +150,9 @@ FROM
 sql14 = """
 -- Intersections with railway, aeroway or highway
 SELECT
-  DISTINCT ON (mobility_way_id, landusage_id)
+  DISTINCT ON (mobility_way_id, landusage_tid)
   mobility_way_id,
-  landusage_id,
+  landusage_tid,
   ST_AsText(ST_PointOnSurface(ST_Intersection(landusage_poly, mobility_way_linestring))),
   mobility_way_type,
   tag_way,
@@ -167,14 +167,14 @@ WHERE
     landusekey = 'natural' AND
     landusevalue IN ('bay', 'cliff', 'scrub', 'shrubbery', 'sinkhole', 'tree_group', 'wetland', 'wood') OR
     (
-      -- Special case as highway=* vs. natural=water is already included in item 1070 class 4/5
+      -- Special case as highway=* vs. natural=water _ways_ are already included in item 1070 class 4
       landusevalue = 'water' AND
-      mobility_way_type != 'highway'
+      (mobility_way_type != 'highway' OR substring(landusage_tid, 1, 1) = 'R')
     )
   )
 ORDER BY
   mobility_way_id,
-  landusage_id,
+  landusage_tid,
   mobility_way_type,
   tag_way,
   tag_polygon
@@ -258,9 +258,10 @@ class Test(TestAnalyserOsmosis):
         self.check_err(cl=str(a.classIndex["highway"]), elems=[("way", "1027"), ("way", "1023")])
         self.check_err(cl=str(a.classIndex["highway"]), elems=[("way", "1036"), ("way", "1035")])
         self.check_err(cl=str(a.classIndex["highway"]), elems=[("way", "1049"), ("relation", "10002")])
+        self.check_err(cl=str(a.classIndex["highway"]), elems=[("way", "1067"), ("relation", "10001")])
         self.check_err(cl=str(a.classIndex["railway"]), elems=[("way", "1050"), ("relation", "10001")])
         self.check_err(cl=str(a.classIndex["railway"]), elems=[("way", "1063"), ("relation", "10001")])
         self.check_err(cl=str(a.classIndex["aeroway"]), elems=[("way", "1064"), ("relation", "10001")])
         self.check_err(cl=str(a.classIndex["railway"]), elems=[("way", "1055"), ("relation", "10003")])
         self.check_err(cl=str(a.classIndex["highway"]), elems=[("way", "1062"), ("way", "1059")])
-        self.check_num_err(16)
+        self.check_num_err(17)
