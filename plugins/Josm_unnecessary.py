@@ -34,7 +34,6 @@ class Josm_unnecessary(PluginMapCSS):
         self.re_33dfa05b = re.compile(r'^(?i)(church|église|biserica)$')
         self.re_3ad2c525 = re.compile(r'^(?i)(école primaire)$')
         self.re_3b098aea = re.compile(r'^gpx:')
-        self.re_480c7ba6 = re.compile(r'^(?i)(building|bangunan)$')
         self.re_480ecdbb = re.compile(r'^(?i)(école élémentaire)$')
         self.re_519078ac = re.compile(r'^(?i)(collège)$')
         self.re_5276c7e0 = re.compile(r'^(?i)(house|maison|rumah|vivienda)$')
@@ -45,6 +44,7 @@ class Josm_unnecessary(PluginMapCSS):
         self.re_644827a8 = re.compile(r'^(?i)(jalan)$')
         self.re_6aa1e101 = re.compile(r'^gpxd:')
         self.re_6d34128b = re.compile(r'^(?i)(АГЗС|АЗС)$')
+        self.re_6ff82ee6 = re.compile(r'^(?i)(building|bangunan|bâtiment|batiment)$')
         self.re_702b1034 = re.compile(r'^(?i)(path)$')
         self.re_73411d88 = re.compile(r'^(?i)(mosque|cami|masjid|مسجد)$')
         self.re_740e0d70 = re.compile(r'^(?i)(école maternelle)$')
@@ -192,7 +192,7 @@ class Josm_unnecessary(PluginMapCSS):
         # *[name][name=~/^(?i)(toilets?)$/][amenity=toilets]
         # *[name][name=~/^(?i)(playground|spielplatz)$/][leisure=playground]
         # *[name][name=~/^(?i)(shop|boutique)$/][shop][shop!=no]
-        # *[name][name=~/^(?i)(building|bangunan)$/][building][building!=no]
+        # *[name][name=~/^(?i)(building|bangunan|bâtiment|batiment)$/][building][building!=no]
         # *[name][name=~/^(?i)(house|maison|rumah|vivienda)$/][building=house]
         # *[name][name=~/^(?i)(casa)$/][building=house][outside("FR")]
         # *[name][name=~/^(?i)(kiosk)$/][shop=kiosk][outside("NL")]
@@ -259,7 +259,7 @@ class Josm_unnecessary(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_480c7ba6), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'building')) and (mapcss._tag_capture(capture_tags, 3, tags, 'building') != mapcss._value_const_capture(capture_tags, 3, 'no', 'no')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_6ff82ee6), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'building')) and (mapcss._tag_capture(capture_tags, 3, tags, 'building') != mapcss._value_const_capture(capture_tags, 3, 'no', 'no')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -344,7 +344,7 @@ class Josm_unnecessary(PluginMapCSS):
                 # assertMatch:"node name=parking amenity=parking"
                 # assertNoMatch:"node name=shop shop=no"
                 # assertMatch:"node name=shop shop=whatever"
-                err.append({'class': 9010003, 'subclass': 773913345, 'text': mapcss.tr('{0}', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9010003, 'subclass': 1290552712, 'text': mapcss.tr('{0}', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
                     '-': ([
                     'name'])
                 }})
@@ -634,7 +634,7 @@ class Josm_unnecessary(PluginMapCSS):
         # *[name][name=~/^(?i)(toilets?)$/][amenity=toilets]
         # *[name][name=~/^(?i)(playground|spielplatz)$/][leisure=playground]
         # *[name][name=~/^(?i)(shop|boutique)$/][shop][shop!=no]
-        # *[name][name=~/^(?i)(building|bangunan)$/][building][building!=no]
+        # *[name][name=~/^(?i)(building|bangunan|bâtiment|batiment)$/][building][building!=no]
         # *[name][name=~/^(?i)(house|maison|rumah|vivienda)$/][building=house]
         # *[name][name=~/^(?i)(casa)$/][building=house][outside("FR")]
         # *[name][name=~/^(?i)(kiosk)$/][shop=kiosk][outside("NL")]
@@ -701,7 +701,7 @@ class Josm_unnecessary(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_480c7ba6), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'building')) and (mapcss._tag_capture(capture_tags, 3, tags, 'building') != mapcss._value_const_capture(capture_tags, 3, 'no', 'no')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_6ff82ee6), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'building')) and (mapcss._tag_capture(capture_tags, 3, tags, 'building') != mapcss._value_const_capture(capture_tags, 3, 'no', 'no')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -795,7 +795,7 @@ class Josm_unnecessary(PluginMapCSS):
                 # assertNoMatch:"way name=parking"
                 # assertNoMatch:"way name=shop leisure=playground"
                 # assertMatch:"way name=silo man_made=silo"
-                err.append({'class': 9010003, 'subclass': 773913345, 'text': mapcss.tr('{0}', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9010003, 'subclass': 1290552712, 'text': mapcss.tr('{0}', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
                     '-': ([
                     'name'])
                 }})
@@ -987,7 +987,7 @@ class Josm_unnecessary(PluginMapCSS):
         # *[name][name=~/^(?i)(toilets?)$/][amenity=toilets]
         # *[name][name=~/^(?i)(playground|spielplatz)$/][leisure=playground]
         # *[name][name=~/^(?i)(shop|boutique)$/][shop][shop!=no]
-        # *[name][name=~/^(?i)(building|bangunan)$/][building][building!=no]
+        # *[name][name=~/^(?i)(building|bangunan|bâtiment|batiment)$/][building][building!=no]
         # *[name][name=~/^(?i)(house|maison|rumah|vivienda)$/][building=house]
         # *[name][name=~/^(?i)(casa)$/][building=house][outside("FR")]
         # *[name][name=~/^(?i)(kiosk)$/][shop=kiosk][outside("NL")]
@@ -1054,7 +1054,7 @@ class Josm_unnecessary(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_480c7ba6), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'building')) and (mapcss._tag_capture(capture_tags, 3, tags, 'building') != mapcss._value_const_capture(capture_tags, 3, 'no', 'no')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_6ff82ee6), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'building')) and (mapcss._tag_capture(capture_tags, 3, tags, 'building') != mapcss._value_const_capture(capture_tags, 3, 'no', 'no')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -1135,7 +1135,7 @@ class Josm_unnecessary(PluginMapCSS):
                 # assertMatch:"relation name=PLAYGROUND leisure=playground type=multipolygon"
                 # assertMatch:"relation name=Parking amenity=parking type=multipolygon"
                 # assertMatch:"relation name=parking amenity=parking type=multipolygon"
-                err.append({'class': 9010003, 'subclass': 773913345, 'text': mapcss.tr('{0}', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9010003, 'subclass': 1290552712, 'text': mapcss.tr('{0}', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
                     '-': ([
                     'name'])
                 }})
@@ -1217,13 +1217,13 @@ class Test(TestPluginMapcss):
 
         self.check_not_err(n.node(data, {'gnis:Class': 'Populated Place', 'place': 'locality'}), expected={'class': 9010001, 'subclass': 1667787383})
         self.check_err(n.node(data, {'gnis:Class': 'Populated Place', 'place': 'village'}), expected={'class': 9010001, 'subclass': 1667787383})
-        self.check_not_err(n.node(data, {'amenity': 'parking', 'name': 'Megaparking'}), expected={'class': 9010003, 'subclass': 773913345})
-        self.check_err(n.node(data, {'leisure': 'playground', 'name': 'PLaYGrOUNd'}), expected={'class': 9010003, 'subclass': 773913345})
-        self.check_err(n.node(data, {'amenity': 'parking', 'name': 'Parking'}), expected={'class': 9010003, 'subclass': 773913345})
-        self.check_not_err(n.node(data, {'amenity': 'parking', 'name': 'Parking_with_suffix'}), expected={'class': 9010003, 'subclass': 773913345})
-        self.check_err(n.node(data, {'amenity': 'parking', 'name': 'parking'}), expected={'class': 9010003, 'subclass': 773913345})
-        self.check_not_err(n.node(data, {'name': 'shop', 'shop': 'no'}), expected={'class': 9010003, 'subclass': 773913345})
-        self.check_err(n.node(data, {'name': 'shop', 'shop': 'whatever'}), expected={'class': 9010003, 'subclass': 773913345})
+        self.check_not_err(n.node(data, {'amenity': 'parking', 'name': 'Megaparking'}), expected={'class': 9010003, 'subclass': 1290552712})
+        self.check_err(n.node(data, {'leisure': 'playground', 'name': 'PLaYGrOUNd'}), expected={'class': 9010003, 'subclass': 1290552712})
+        self.check_err(n.node(data, {'amenity': 'parking', 'name': 'Parking'}), expected={'class': 9010003, 'subclass': 1290552712})
+        self.check_not_err(n.node(data, {'amenity': 'parking', 'name': 'Parking_with_suffix'}), expected={'class': 9010003, 'subclass': 1290552712})
+        self.check_err(n.node(data, {'amenity': 'parking', 'name': 'parking'}), expected={'class': 9010003, 'subclass': 1290552712})
+        self.check_not_err(n.node(data, {'name': 'shop', 'shop': 'no'}), expected={'class': 9010003, 'subclass': 1290552712})
+        self.check_err(n.node(data, {'name': 'shop', 'shop': 'whatever'}), expected={'class': 9010003, 'subclass': 1290552712})
         self.check_err(n.node(data, {'gpx:time': '2018-01-01T12:00:00Z'}), expected={'class': 9010001, 'subclass': 690304391})
         self.check_err(n.node(data, {'gpxd:color': '#FF0000'}), expected={'class': 9010001, 'subclass': 690304391})
         self.check_not_err(n.node(data, {'source': 'gpx:foo'}), expected={'class': 9010001, 'subclass': 690304391})
@@ -1232,22 +1232,22 @@ class Test(TestPluginMapcss):
         self.check_err(n.way(data, {'layer': '0'}, [0]), expected={'class': 9010001, 'subclass': 1306695721})
         self.check_not_err(n.way(data, {'emergency': 'designated'}, [0]), expected={'class': 9010002, 'subclass': 325672362})
         self.check_err(n.way(data, {'emergency': 'permissive'}, [0]), expected={'class': 9010002, 'subclass': 325672362})
-        self.check_err(n.way(data, {'amenity': 'grave_yard', 'name': 'Cmentarz'}, [0]), expected={'class': 9010003, 'subclass': 773913345})
-        self.check_err(n.way(data, {'building': 'house', 'name': 'Rumah'}, [0]), expected={'class': 9010003, 'subclass': 773913345})
-        self.check_not_err(n.way(data, {'building': 'yes', 'name': 'Rumah'}, [0]), expected={'class': 9010003, 'subclass': 773913345})
-        self.check_not_err(n.way(data, {'building': 'silo', 'name': 'Silo'}, [0]), expected={'class': 9010003, 'subclass': 773913345})
-        self.check_err(n.way(data, {'building': 'silo', 'man_made': 'silo', 'name': 'Silo'}, [0]), expected={'class': 9010003, 'subclass': 773913345})
-        self.check_err(n.way(data, {'building': 'house', 'name': 'building'}, [0]), expected={'class': 9010003, 'subclass': 773913345})
-        self.check_err(n.way(data, {'building': 'yes', 'name': 'building'}, [0]), expected={'class': 9010003, 'subclass': 773913345})
-        self.check_err(n.way(data, {'amenity': 'grave_yard', 'name': 'cemetery'}, [0]), expected={'class': 9010003, 'subclass': 773913345})
-        self.check_err(n.way(data, {'building': 'house', 'name': 'house'}, [0]), expected={'class': 9010003, 'subclass': 773913345})
-        self.check_not_err(n.way(data, {'building': 'yes', 'name': 'house'}, [0]), expected={'class': 9010003, 'subclass': 773913345})
-        self.check_not_err(n.way(data, {'amenity': 'grave_yard', 'name': 'kiosk'}, [0]), expected={'class': 9010003, 'subclass': 773913345})
-        self.check_err(n.way(data, {'building': 'yes', 'name': 'kiosk', 'shop': 'kiosk'}, [0]), expected={'class': 9010003, 'subclass': 773913345})
-        self.check_not_err(n.way(data, {'building': 'yes', 'name': 'kiosk'}, [0]), expected={'class': 9010003, 'subclass': 773913345})
-        self.check_not_err(n.way(data, {'name': 'parking'}, [0]), expected={'class': 9010003, 'subclass': 773913345})
-        self.check_not_err(n.way(data, {'leisure': 'playground', 'name': 'shop'}, [0]), expected={'class': 9010003, 'subclass': 773913345})
-        self.check_err(n.way(data, {'man_made': 'silo', 'name': 'silo'}, [0]), expected={'class': 9010003, 'subclass': 773913345})
+        self.check_err(n.way(data, {'amenity': 'grave_yard', 'name': 'Cmentarz'}, [0]), expected={'class': 9010003, 'subclass': 1290552712})
+        self.check_err(n.way(data, {'building': 'house', 'name': 'Rumah'}, [0]), expected={'class': 9010003, 'subclass': 1290552712})
+        self.check_not_err(n.way(data, {'building': 'yes', 'name': 'Rumah'}, [0]), expected={'class': 9010003, 'subclass': 1290552712})
+        self.check_not_err(n.way(data, {'building': 'silo', 'name': 'Silo'}, [0]), expected={'class': 9010003, 'subclass': 1290552712})
+        self.check_err(n.way(data, {'building': 'silo', 'man_made': 'silo', 'name': 'Silo'}, [0]), expected={'class': 9010003, 'subclass': 1290552712})
+        self.check_err(n.way(data, {'building': 'house', 'name': 'building'}, [0]), expected={'class': 9010003, 'subclass': 1290552712})
+        self.check_err(n.way(data, {'building': 'yes', 'name': 'building'}, [0]), expected={'class': 9010003, 'subclass': 1290552712})
+        self.check_err(n.way(data, {'amenity': 'grave_yard', 'name': 'cemetery'}, [0]), expected={'class': 9010003, 'subclass': 1290552712})
+        self.check_err(n.way(data, {'building': 'house', 'name': 'house'}, [0]), expected={'class': 9010003, 'subclass': 1290552712})
+        self.check_not_err(n.way(data, {'building': 'yes', 'name': 'house'}, [0]), expected={'class': 9010003, 'subclass': 1290552712})
+        self.check_not_err(n.way(data, {'amenity': 'grave_yard', 'name': 'kiosk'}, [0]), expected={'class': 9010003, 'subclass': 1290552712})
+        self.check_err(n.way(data, {'building': 'yes', 'name': 'kiosk', 'shop': 'kiosk'}, [0]), expected={'class': 9010003, 'subclass': 1290552712})
+        self.check_not_err(n.way(data, {'building': 'yes', 'name': 'kiosk'}, [0]), expected={'class': 9010003, 'subclass': 1290552712})
+        self.check_not_err(n.way(data, {'name': 'parking'}, [0]), expected={'class': 9010003, 'subclass': 1290552712})
+        self.check_not_err(n.way(data, {'leisure': 'playground', 'name': 'shop'}, [0]), expected={'class': 9010003, 'subclass': 1290552712})
+        self.check_err(n.way(data, {'man_made': 'silo', 'name': 'silo'}, [0]), expected={'class': 9010003, 'subclass': 1290552712})
         self.check_not_err(n.way(data, {'building': 'house', 'name': 'Rumah'}, [0]), expected={'class': 9010003, 'subclass': 2140357823})
         self.check_err(n.way(data, {'building': 'yes', 'name': 'Rumah'}, [0]), expected={'class': 9010003, 'subclass': 2140357823})
         self.check_err(n.way(data, {'building': 'silo', 'name': 'Silo'}, [0]), expected={'class': 9010003, 'subclass': 2140357823})
@@ -1255,6 +1255,6 @@ class Test(TestPluginMapcss):
         self.check_not_err(n.way(data, {'building': 'yes', 'name': 'building'}, [0]), expected={'class': 9010003, 'subclass': 2140357823})
         self.check_not_err(n.way(data, {'building': 'house', 'name': 'house'}, [0]), expected={'class': 9010003, 'subclass': 2140357823})
         self.check_err(n.way(data, {'building': 'yes', 'name': 'house'}, [0]), expected={'class': 9010003, 'subclass': 2140357823})
-        self.check_err(n.relation(data, {'leisure': 'playground', 'name': 'PLAYGROUND', 'type': 'multipolygon'}, []), expected={'class': 9010003, 'subclass': 773913345})
-        self.check_err(n.relation(data, {'amenity': 'parking', 'name': 'Parking', 'type': 'multipolygon'}, []), expected={'class': 9010003, 'subclass': 773913345})
-        self.check_err(n.relation(data, {'amenity': 'parking', 'name': 'parking', 'type': 'multipolygon'}, []), expected={'class': 9010003, 'subclass': 773913345})
+        self.check_err(n.relation(data, {'leisure': 'playground', 'name': 'PLAYGROUND', 'type': 'multipolygon'}, []), expected={'class': 9010003, 'subclass': 1290552712})
+        self.check_err(n.relation(data, {'amenity': 'parking', 'name': 'Parking', 'type': 'multipolygon'}, []), expected={'class': 9010003, 'subclass': 1290552712})
+        self.check_err(n.relation(data, {'amenity': 'parking', 'name': 'parking', 'type': 'multipolygon'}, []), expected={'class': 9010003, 'subclass': 1290552712})
