@@ -4350,6 +4350,78 @@ class Josm_deprecated(PluginMapCSS):
         # *[historic=archaeological_site][site_type]
         # Rule Blacklisted (id: 595008939)
 
+        # *[gnis:id][!gnis:feature_id]
+        # *[tiger:PLACENS][!gnis:feature_id]
+        # *[NHD:GNIS_ID][!gnis:feature_id]
+        # *[nhd:gnis_id][!gnis:feature_id]
+        # *[ref:gnis][!gnis:feature_id]
+        if ('NHD:GNIS_ID' in keys) or ('gnis:id' in keys) or ('nhd:gnis_id' in keys) or ('ref:gnis' in keys) or ('tiger:PLACENS' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'gnis:id')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'gnis:feature_id')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tiger:PLACENS')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'gnis:feature_id')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'NHD:GNIS_ID')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'gnis:feature_id')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'nhd:gnis_id')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'gnis:feature_id')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:gnis')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'gnis:feature_id')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
+                # suggestAlternative:"{1.key}={0.value}"
+                # fixChangeKey:"{0.key} => {1.key}"
+                err.append({'class': 9002001, 'subclass': 1709459447, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    [(mapcss._tag_uncapture(capture_tags, '{0.key} => {1.key}')).split('=>', 1)[1].strip(), mapcss.tag(tags, (mapcss._tag_uncapture(capture_tags, '{0.key} => {1.key}')).split('=>', 1)[0].strip())]]),
+                    '-': ([
+                    (mapcss._tag_uncapture(capture_tags, '{0.key} => {1.key}')).split('=>', 1)[0].strip()])
+                }})
+
+        # *[gnis:id][gnis:feature_id]
+        # *[tiger:PLACENS][gnis:feature_id]
+        # *[NHD:GNIS_ID][gnis:feature_id]
+        # *[nhd:gnis_id][gnis:feature_id]
+        # *[ref:gnis][gnis:feature_id]
+        if ('NHD:GNIS_ID' in keys and 'gnis:feature_id' in keys) or ('gnis:feature_id' in keys and 'gnis:id' in keys) or ('gnis:feature_id' in keys and 'nhd:gnis_id' in keys) or ('gnis:feature_id' in keys and 'ref:gnis' in keys) or ('gnis:feature_id' in keys and 'tiger:PLACENS' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'gnis:id')) and (mapcss._tag_capture(capture_tags, 1, tags, 'gnis:feature_id')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tiger:PLACENS')) and (mapcss._tag_capture(capture_tags, 1, tags, 'gnis:feature_id')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'NHD:GNIS_ID')) and (mapcss._tag_capture(capture_tags, 1, tags, 'gnis:feature_id')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'nhd:gnis_id')) and (mapcss._tag_capture(capture_tags, 1, tags, 'gnis:feature_id')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:gnis')) and (mapcss._tag_capture(capture_tags, 1, tags, 'gnis:feature_id')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
+                # suggestAlternative:"{1.key}"
+                err.append({'class': 9002001, 'subclass': 1736205096, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+
         return err
 
     def way(self, data, tags, nds):
@@ -8758,6 +8830,78 @@ class Josm_deprecated(PluginMapCSS):
                 # suggestAlternative:"{1.key}={1.value}"
                 err.append({'class': 9002001, 'subclass': 488242503, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
+        # *[gnis:id][!gnis:feature_id]
+        # *[tiger:PLACENS][!gnis:feature_id]
+        # *[NHD:GNIS_ID][!gnis:feature_id]
+        # *[nhd:gnis_id][!gnis:feature_id]
+        # *[ref:gnis][!gnis:feature_id]
+        if ('NHD:GNIS_ID' in keys) or ('gnis:id' in keys) or ('nhd:gnis_id' in keys) or ('ref:gnis' in keys) or ('tiger:PLACENS' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'gnis:id')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'gnis:feature_id')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tiger:PLACENS')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'gnis:feature_id')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'NHD:GNIS_ID')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'gnis:feature_id')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'nhd:gnis_id')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'gnis:feature_id')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:gnis')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'gnis:feature_id')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
+                # suggestAlternative:"{1.key}={0.value}"
+                # fixChangeKey:"{0.key} => {1.key}"
+                err.append({'class': 9002001, 'subclass': 1709459447, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    [(mapcss._tag_uncapture(capture_tags, '{0.key} => {1.key}')).split('=>', 1)[1].strip(), mapcss.tag(tags, (mapcss._tag_uncapture(capture_tags, '{0.key} => {1.key}')).split('=>', 1)[0].strip())]]),
+                    '-': ([
+                    (mapcss._tag_uncapture(capture_tags, '{0.key} => {1.key}')).split('=>', 1)[0].strip()])
+                }})
+
+        # *[gnis:id][gnis:feature_id]
+        # *[tiger:PLACENS][gnis:feature_id]
+        # *[NHD:GNIS_ID][gnis:feature_id]
+        # *[nhd:gnis_id][gnis:feature_id]
+        # *[ref:gnis][gnis:feature_id]
+        if ('NHD:GNIS_ID' in keys and 'gnis:feature_id' in keys) or ('gnis:feature_id' in keys and 'gnis:id' in keys) or ('gnis:feature_id' in keys and 'nhd:gnis_id' in keys) or ('gnis:feature_id' in keys and 'ref:gnis' in keys) or ('gnis:feature_id' in keys and 'tiger:PLACENS' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'gnis:id')) and (mapcss._tag_capture(capture_tags, 1, tags, 'gnis:feature_id')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tiger:PLACENS')) and (mapcss._tag_capture(capture_tags, 1, tags, 'gnis:feature_id')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'NHD:GNIS_ID')) and (mapcss._tag_capture(capture_tags, 1, tags, 'gnis:feature_id')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'nhd:gnis_id')) and (mapcss._tag_capture(capture_tags, 1, tags, 'gnis:feature_id')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:gnis')) and (mapcss._tag_capture(capture_tags, 1, tags, 'gnis:feature_id')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
+                # suggestAlternative:"{1.key}"
+                err.append({'class': 9002001, 'subclass': 1736205096, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+
         return err
 
     def relation(self, data, tags, members):
@@ -12553,6 +12697,78 @@ class Josm_deprecated(PluginMapCSS):
                 # suggestAlternative:"{1.key}={0.value}"
                 # suggestAlternative:"{1.key}={1.value}"
                 err.append({'class': 9002001, 'subclass': 488242503, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # *[gnis:id][!gnis:feature_id]
+        # *[tiger:PLACENS][!gnis:feature_id]
+        # *[NHD:GNIS_ID][!gnis:feature_id]
+        # *[nhd:gnis_id][!gnis:feature_id]
+        # *[ref:gnis][!gnis:feature_id]
+        if ('NHD:GNIS_ID' in keys) or ('gnis:id' in keys) or ('nhd:gnis_id' in keys) or ('ref:gnis' in keys) or ('tiger:PLACENS' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'gnis:id')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'gnis:feature_id')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tiger:PLACENS')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'gnis:feature_id')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'NHD:GNIS_ID')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'gnis:feature_id')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'nhd:gnis_id')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'gnis:feature_id')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:gnis')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'gnis:feature_id')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
+                # suggestAlternative:"{1.key}={0.value}"
+                # fixChangeKey:"{0.key} => {1.key}"
+                err.append({'class': 9002001, 'subclass': 1709459447, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    [(mapcss._tag_uncapture(capture_tags, '{0.key} => {1.key}')).split('=>', 1)[1].strip(), mapcss.tag(tags, (mapcss._tag_uncapture(capture_tags, '{0.key} => {1.key}')).split('=>', 1)[0].strip())]]),
+                    '-': ([
+                    (mapcss._tag_uncapture(capture_tags, '{0.key} => {1.key}')).split('=>', 1)[0].strip()])
+                }})
+
+        # *[gnis:id][gnis:feature_id]
+        # *[tiger:PLACENS][gnis:feature_id]
+        # *[NHD:GNIS_ID][gnis:feature_id]
+        # *[nhd:gnis_id][gnis:feature_id]
+        # *[ref:gnis][gnis:feature_id]
+        if ('NHD:GNIS_ID' in keys and 'gnis:feature_id' in keys) or ('gnis:feature_id' in keys and 'gnis:id' in keys) or ('gnis:feature_id' in keys and 'nhd:gnis_id' in keys) or ('gnis:feature_id' in keys and 'ref:gnis' in keys) or ('gnis:feature_id' in keys and 'tiger:PLACENS' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'gnis:id')) and (mapcss._tag_capture(capture_tags, 1, tags, 'gnis:feature_id')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tiger:PLACENS')) and (mapcss._tag_capture(capture_tags, 1, tags, 'gnis:feature_id')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'NHD:GNIS_ID')) and (mapcss._tag_capture(capture_tags, 1, tags, 'gnis:feature_id')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'nhd:gnis_id')) and (mapcss._tag_capture(capture_tags, 1, tags, 'gnis:feature_id')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:gnis')) and (mapcss._tag_capture(capture_tags, 1, tags, 'gnis:feature_id')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
+                # suggestAlternative:"{1.key}"
+                err.append({'class': 9002001, 'subclass': 1736205096, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         return err
 
