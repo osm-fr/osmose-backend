@@ -27,6 +27,8 @@ import re
 
 class TagFix_Postcode(Plugin):
 
+    not_for = ("EG") # Egypt is transitioning to a new format. At 2024-04-15 there were still 2.4M entries in OSM in the old format
+
     def parse_format(self, reline, format):
         format = format.replace('optionally ', '')
         if format[-1] == ')':
