@@ -63,7 +63,7 @@ be used if the value is valid.''')
             resource = "https://wiki.openstreetmap.org/wiki/Map_features/Units"
         )
 
-        self.tag_number = ["diameter", "distance", "ele", "height", "length", "width"]
+        self.tag_number = ["diameter", "distance", "ele", "height", "length", "width", "diameter_crown", "circumference", "depth"]
         self.tag_number_integer = ["admin_level", "capital", "heritage", "population", "step_count"] # Only positive integers (no units) allowed
         tag_number_directional = ["maxaxleload", "maxheight", "maxheight:physical", "maxlength", "maxspeed", "maxspeed:advisory", "maxweight", "maxwidth", "minspeed"]
 
