@@ -36,7 +36,7 @@ class Analyser_Merge_Bicycle_Rental_FR_bm(Analyser_Merge_Point):
 
         self.init(
             'https://opendata.bordeaux-metropole.fr/explore/dataset/ci_vcub_p',
-            'Station VCUB en temps réel',
+            'Station Le Vélo en temps réel',
             GeoJSON(SourceOpenDataSoft(
                 attribution="Bordeaux Métropole",
                 url="https://opendata.bordeaux-metropole.fr/explore/dataset/ci_vcub_p",
@@ -51,12 +51,14 @@ class Analyser_Merge_Bicycle_Rental_FR_bm(Analyser_Merge_Point):
                 mapping = Mapping(
                     static1 = {
                         "amenity": "bicycle_rental",
-                        "network": "VCUB",
+                        "bicycle_rental": "docking_station",
+                        "network": "Le Vélo",
+                        "operator": "TBM",
                         "vending": "subscription"},
                     static2 = {"source": self.source},
                     mapping1 = {
                         "ref": "ident",
                         # "capacity": lambda res: int(res["nbplaces"]) + int(res["nbvelos"]),
-                        "description": lambda res: "VCUB+" if res["type"] == "VLS+" else None},
+                    },
                     mapping2 = {
                         "name": "nom"} )))
