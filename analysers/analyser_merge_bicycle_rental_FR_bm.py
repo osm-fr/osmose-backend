@@ -59,6 +59,6 @@ class Analyser_Merge_Bicycle_Rental_FR_bm(Analyser_Merge_Point):
                     mapping1 = {
                         "ref": "ident",
                         # "capacity": lambda res: int(res["nbplaces"]) + int(res["nbvelos"]),
-                    }
+                    },
                     mapping2 = {
                         "name": "nom"} )))
