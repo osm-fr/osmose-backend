@@ -39,8 +39,6 @@ class ConditionalRestrictions(Plugin):
     self.ReWeekdayMonthOpeningH = re.compile(r'\b[A-Z][a-z]+') # i.e. Mar or Mo
     self.ReMonthDayOpeningH = re.compile(r'\w\w\w[\s-]\d') # i.e. sep 1
     self.ReTimeOpeningH = re.compile(r'\d\D[\d-]|sun[sr][ei][ts]') # i.e. 5:30 or 5h30 or 5h-8h
-    # Workaround https://bugs.kde.org/show_bug.cgi?id=452236
-    self.kOpeningHours452236 = re.compile(r'((?P<yyyy>20\d\d) [A-Z][a-z][a-z] \d\d?\s?-\s?)(?P=yyyy) ([A-Z][a-z][a-z] \d\d?)')
 
     self.getDuplicatesFromList = lambda lst: [x for x in set(lst) if lst.count(x) > 1]
 
@@ -201,7 +199,7 @@ Otherwise, remove the tag without `:conditional`.'''),
         for c in set(allANDsplittedConditions):
           # Validate time-based conditionals
           if self.isLikelyOpeningHourSyntax(c):
-            sanitized = self.sanitize_openinghours(self.kOpeningHours452236.sub(r"\1\3", c))
+            sanitized = self.sanitize_openinghours(c)
             if not sanitized['isValid']:
               if "fix" in sanitized:
                 err.append({"class": 33504, "subclass": 6 + stablehash64(tag + '|' + tag_value + '|' + c), "text": T_("Involves \"{0}\" in \"{1}\". Consider using \"{2}\"", c, tag, sanitized['fix'])})
