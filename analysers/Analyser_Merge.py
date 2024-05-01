@@ -789,11 +789,13 @@ class GDAL(Parser):
                 self.source_layer.append(f"'{self.layer}'")
 
             if not self._srid:
-                match = re.search('EPSG:([0-9]+)', subprocess.run(["gdalsrsinfo", "-e", self.source_layer[0]], stdout=subprocess.PIPE).stdout.decode('utf-8'))
-                if not match and len(self.source_layer) >= 2:
-                    match = re.search('EPSG:([0-9]+)', subprocess.run(["gdalsrsinfo", "-e", *self.source_layer], stdout=subprocess.PIPE).stdout.decode('utf-8'))
-                if match:
-                    self._srid = int(match.group(1))
+                projjson = json.loads(subprocess.run(["gdalsrsinfo", "-e", "-o", "PROJJSON", self.source_layer[0]], stdout=subprocess.PIPE).stdout.decode('utf-8'))
+                if not projjson and len(self.source_layer) >= 2:
+                    projjson = json.loads(subprocess.run(["gdalsrsinfo", "-e", "-o", "PROJJSON", *self.source_layer], stdout=subprocess.PIPE).stdout.decode('utf-8'))
+                if projjson['id']['authority'] == 'EPSG':
+                    self._srid = int(projjson['id']['code'])
+                elif projjson['id']['authority'] == 'IGNF' and projjson['id']['code'] == 'LAMB93':
+                    self._srid = 2154
         except Exception as e:
             os.remove(self.tmp_file.name)
             raise e
