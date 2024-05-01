@@ -4,19 +4,13 @@ Docker
 osmose-backend can be run in a Docker container. This avoids setting
 up and configuring Python, Java and PostgreSQL on your system.
 
-Note : A PostgreSQL docker is automatically installed and run by 
-docker-compose and doesn't need be installed manually. 
+Note : A PostgreSQL docker is automatically installed and run by
+docker-compose and doesn't need be installed manually.
 The osmose-frontend docker may also be run but is not mandatory.
 
 
 Setup
 -----
-
-Install Docker and docker-compose. Due to known bugs, use at least
-version 1.19.0 of docker-compose. It's always recommended to use a recent
-version.
-
-Confirmed to be working with docker `18.09.1` and docker-compose `1.23.2`.
 
 To build the docker image run this command from the docker folder:
 ```
