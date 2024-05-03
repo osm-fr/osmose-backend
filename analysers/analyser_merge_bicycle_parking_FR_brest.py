@@ -60,6 +60,7 @@ class Analyser_Merge_Bicycle_Parking_FR_Brest(Analyser_Merge_Point):
                         "start_date": "DATE_POSE",
                         "covered": lambda res: self.covered.get(res.get("TYPE_STAT")),
                         "operator": lambda res: "Brest Métropole" if res.get("DOM_PRIVE") == "Public" else None,
+                        "image": lambda res: res.get("LIEN_IMAGE").replace('\\','/') if res.get("LIEN_IMAGE") else None,
                     })))
 
     covered = {
