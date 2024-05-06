@@ -45,6 +45,7 @@ class Josm_de_openrailwaymap(PluginMapCSS):
         self.errors[9016029] = self.def_class(item = 9016, level = 2, tags = ["tag", "railway"], title = {'en': 'workrules: separate country and ruleset by : , not by -'})
         self.errors[9016030] = self.def_class(item = 9016, level = 2, tags = ["tag", "railway"], title = {'en': mapcss._tag_uncapture(capture_tags, '{1.value} signals only exist as light signals')})
         self.errors[9016031] = self.def_class(item = 9016, level = 2, tags = ["tag", "railway"], title = {'en': mapcss._tag_uncapture(capture_tags, 'workrules={1.value} is deprecated, change to workrules=DE:{1.value}')})
+        self.errors[9016032] = self.def_class(item = 9016, level = 2, tags = ["tag", "railway"], title = {'en': 'It is not possible that a main or combined signal both has a substitute signal and has no substitute signal.'})
 
         self.re_057dc3df = re.compile(r'^Kursbuchstrecke [0-9]*.*')
         self.re_103aec5a = re.compile(r'^DE-ESO:')
@@ -52,6 +53,7 @@ class Josm_de_openrailwaymap(PluginMapCSS):
         self.re_27c794aa = re.compile(r'^[0-9]{3}\.[0-9]{1,2}[-.][0-9]{1,2}$')
         self.re_36ee52ff = re.compile(r'^[0-9]{4}-[0-9]+')
         self.re_38b81466 = re.compile(r'^([1-9]0|1[0-6]0|off|\?)(;([1-9]0|1[0-6]0|off|\?))*$')
+        self.re_3b196b7c = re.compile(r';no|no;')
         self.re_480b052a = re.compile(r'^VzG [0-9]*.*')
         self.re_48fcc4a9 = re.compile(r'^[0-9]{3}$')
         self.re_4fd6fb40 = re.compile(r'^KBS [0-9]*.*')
@@ -449,6 +451,27 @@ class Josm_de_openrailwaymap(PluginMapCSS):
                 # assertMatch:"node railway=signal railway:signal:speed_limit=\"DE-ESO:db:zs10\" railway:signal:speed_limit:form=light"
                 # assertNoMatch:"node railway=signal railway:signal:speed_limit=\"DE-ESO:db:zs10\" railway:signal:speed_limit:form=sign"
                 err.append({'class': 9016016, 'subclass': 1437297810, 'text': {'en': 'It is unclear if Zs10 light signals have ever been placed, please double check.'}})
+
+        # node[railway=signal]["railway:signal:main:substitute_signal"=~/;no|no;/]
+        # node[railway=signal]["railway:signal:combined:substitute_signal"=~/;no|no;/]
+        if ('railway' in keys and 'railway:signal:combined:substitute_signal' in keys) or ('railway' in keys and 'railway:signal:main:substitute_signal' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3b196b7c), mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:main:substitute_signal'))))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3b196b7c), mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:combined:substitute_signal'))))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwError:"It is not possible that a main or combined signal both has a substitute signal and has no substitute signal."
+                # assertMatch:"node railway=signal railway:signal:main:substitute_signal=\";no\""
+                # assertMatch:"node railway=signal railway:signal:main:substitute_signal=\"?;no\""
+                # assertMatch:"node railway=signal railway:signal:main:substitute_signal=\"DE-ESO:zs1;no\""
+                # assertMatch:"node railway=signal railway:signal:main:substitute_signal=\"no;?\""
+                # assertNoMatch:"node railway=signal railway:signal:main:substitute_signal=no"
+                err.append({'class': 9016032, 'subclass': 1068560505, 'text': {'en': 'It is not possible that a main or combined signal both has a substitute signal and has no substitute signal.'}})
 
         return err
 
@@ -855,6 +878,11 @@ class Test(TestPluginMapcss):
         self.check_not_err(n.node(data, {'railway': 'signal', 'railway:signal:speed_limit': 'DE-ESO:db:zs1', 'railway:signal:speed_limit:form': 'light'}), expected={'class': 9016016, 'subclass': 1437297810})
         self.check_err(n.node(data, {'railway': 'signal', 'railway:signal:speed_limit': 'DE-ESO:db:zs10', 'railway:signal:speed_limit:form': 'light'}), expected={'class': 9016016, 'subclass': 1437297810})
         self.check_not_err(n.node(data, {'railway': 'signal', 'railway:signal:speed_limit': 'DE-ESO:db:zs10', 'railway:signal:speed_limit:form': 'sign'}), expected={'class': 9016016, 'subclass': 1437297810})
+        self.check_err(n.node(data, {'railway': 'signal', 'railway:signal:main:substitute_signal': ';no'}), expected={'class': 9016032, 'subclass': 1068560505})
+        self.check_err(n.node(data, {'railway': 'signal', 'railway:signal:main:substitute_signal': '?;no'}), expected={'class': 9016032, 'subclass': 1068560505})
+        self.check_err(n.node(data, {'railway': 'signal', 'railway:signal:main:substitute_signal': 'DE-ESO:zs1;no'}), expected={'class': 9016032, 'subclass': 1068560505})
+        self.check_err(n.node(data, {'railway': 'signal', 'railway:signal:main:substitute_signal': 'no;?'}), expected={'class': 9016032, 'subclass': 1068560505})
+        self.check_not_err(n.node(data, {'railway': 'signal', 'railway:signal:main:substitute_signal': 'no'}), expected={'class': 9016032, 'subclass': 1068560505})
         self.check_err(n.way(data, {'name': 'Kursbuchstrecke 710.1', 'railway': 'light_rail'}, [0]), expected={'class': 9016017, 'subclass': 460679615})
         self.check_not_err(n.way(data, {'railway': 'light_rail', 'ref': 'Kursbuchstrecke 710.1'}, [0]), expected={'class': 9016017, 'subclass': 460679615})
         self.check_err(n.way(data, {'name': 'KBS 258', 'railway': 'rail'}, [0]), expected={'class': 9016017, 'subclass': 460679615})

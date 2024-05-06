@@ -56,6 +56,7 @@ class Josm_openrailwaymap(PluginMapCSS):
         self.errors[9015044] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = mapcss.tr('{0}={1} without name', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{0.value}')))
         self.errors[9015045] = self.def_class(item = 9015, level = 2, tags = ["tag", "railway"], title = {'en': 'track numbers inside a station should be railway:track_ref, not ref'})
         self.errors[9015046] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = {'en': 'Wrong tag for railway station building'})
+        self.errors[9015047] = self.def_class(item = 9015, level = 2, tags = ["tag", "railway"], title = {'en': 'workrules should be used on ways and not on nodes.'})
 
         self.re_066203d3 = re.compile(r'^[0-9]+$')
         self.re_0e3375d5 = re.compile(r'[Vv]iadu[ck]t')
@@ -91,6 +92,18 @@ class Josm_openrailwaymap(PluginMapCSS):
                 # assertNoMatch:"node railway=milestone railway:position=42.0"
                 # assertMatch:"node railway=milestone"
                 err.append({'class': 9015028, 'subclass': 1237934683, 'text': {'en': 'Milestone without position, add railway:position=*'}})
+
+        # node[railway][workrules]
+        if ('railway' in keys and 'workrules' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'workrules')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwError:"workrules should be used on ways and not on nodes."
+                # assertMatch:"node railway=rail workrules=EBO"
+                err.append({'class': 9015047, 'subclass': 1912633428, 'text': {'en': 'workrules should be used on ways and not on nodes.'}})
 
         # node[railway=level_crossing][supervised]
         # node[railway=crossing][supervised]
@@ -1798,6 +1811,7 @@ class Test(TestPluginMapcss):
 
         self.check_not_err(n.node(data, {'railway': 'milestone', 'railway:position': '42.0'}), expected={'class': 9015028, 'subclass': 1237934683})
         self.check_err(n.node(data, {'railway': 'milestone'}), expected={'class': 9015028, 'subclass': 1237934683})
+        self.check_err(n.node(data, {'railway': 'rail', 'workrules': 'EBO'}), expected={'class': 9015047, 'subclass': 1912633428})
         self.check_err(n.node(data, {'railway:signal:direction': 'forward'}), expected={'class': 9015030, 'subclass': 908641862})
         self.check_err(n.node(data, {'railway': 'level_crossing', 'railway:signal:position': 'right'}), expected={'class': 9015030, 'subclass': 908641862})
         self.check_not_err(n.node(data, {'railway': 'signal', 'railway:signal:position': 'right'}), expected={'class': 9015030, 'subclass': 908641862})
