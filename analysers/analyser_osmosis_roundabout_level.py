@@ -159,9 +159,12 @@ SELECT
     roundabout.id AS ra_id,
     ways.id AS a_id,
     CASE
-        WHEN ways.nodes[1] = ANY (roundabout.nodes) THEN ARRAY[ways.nodes[2], ways.nodes[3], ways.nodes[4]]
-        WHEN ways.nodes[array_length(ways.nodes,1)] = ANY (roundabout.nodes) THEN ARRAY[ways.nodes[array_length(ways.nodes,1)-1], ways.nodes[array_length(ways.nodes,1)-2], ways.nodes[array_length(ways.nodes,1)-3]]
-    END AS n_ids,
+        -- Get the (up to) 100m of linestring directly after the roundabout, excluding the connection itself (0.1m)
+        WHEN ways.nodes[1] = ANY(roundabout.nodes) THEN
+            ST_Transform(ST_LineSubString(ways.linestring_proj, 0.1/ST_Length(ways.linestring_proj), LEAST(1, 100/ST_Length(ways.linestring_proj))), 4326)
+        WHEN ways.nodes[array_length(ways.nodes,1)] = ANY(roundabout.nodes) THEN
+            ST_Transform(ST_LineSubString(ways.linestring_proj, 1-LEAST(1, 100/ST_Length(ways.linestring_proj)), 1-0.1/ST_Length(ways.linestring_proj)), 4326)
+    END AS connection_sublinestring,
     ways.is_oneway
 FROM
     roundabout
@@ -171,7 +174,8 @@ FROM
         roundabout.id != ways.id AND
         NOT ways.is_construction
 WHERE
-    ways.highway IN ('primary', 'secondary', 'tertiary', 'unclassified', 'residential', 'road')
+    ways.highway IN ('primary', 'secondary', 'tertiary', 'unclassified', 'residential', 'road') AND
+    ST_Length(ways.linestring_proj) > 0.1
 """
 
 sql21 = """
@@ -181,19 +185,15 @@ CREATE INDEX roundabout_access_idx ON roundabout_access(ra_id)
 sql22 = """
 SELECT
     ra1.a_id,
-    COALESCE(ra1.n_ids[2], ra1.n_ids[1]),
-    COALESCE(ra1.n_ids[2], ra1.n_ids[1])
+    ST_AsText(ST_Intersection(ra1.connection_sublinestring, ra2.connection_sublinestring))
 FROM
     roundabout_access AS ra1
     JOIN roundabout_access AS ra2 ON
         ra1.ra_id = ra2.ra_id AND
         ra1.a_id != ra2.a_id
 WHERE
-    ra1.n_ids && ra2.n_ids AND
+    ST_Intersects(ra1.connection_sublinestring, ra2.connection_sublinestring) AND
     NOT ra1.is_oneway
-GROUP BY
-    ra1.a_id,
-    COALESCE(ra1.n_ids[2], ra1.n_ids[1])
 """
 
 sql30 = """
@@ -258,6 +258,9 @@ class Analyser_Osmosis_Roundabout_Level(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
+        if not "proj" in self.config.options:
+            return
+
         self.classs[1] = self.def_class(item = 3010, level = 2, tags = ['highway', 'roundabout', 'fix:chair'],
             title = T_('Wrong highway on roundabout'),
             detail = T_(
@@ -312,7 +315,7 @@ traffic.'''),
         self.run(sql17, lambda res: {"class":1, "subclass":res[2], "data":[self.way_full, self.positionAsText]} )
         self.run(sql20)
         self.run(sql21)
-        self.run(sql22, lambda res: {"class":2, "data":[self.way_full, self.node, self.node_position]} )
+        self.run(sql22, lambda res: {"class":2, "data":[self.way_full, self.positionAsText]} )
         self.run(sql30)
         self.run(sql31, lambda res: {"class":3, "data":[self.way_full, self.positionAsText]} )
         self.run(sql40, lambda res: {"class":4, "data":[self.way_full, self.way_full, self.positionAsText]} )
