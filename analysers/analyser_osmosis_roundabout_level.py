@@ -319,3 +319,35 @@ traffic.'''),
         self.run(sql30)
         self.run(sql31, lambda res: {"class":3, "data":[self.way_full, self.positionAsText]} )
         self.run(sql40, lambda res: {"class":4, "data":[self.way_full, self.way_full, self.positionAsText]} )
+
+
+###########################################################################
+
+from .Analyser_Osmosis import TestAnalyserOsmosis
+
+class Test(TestAnalyserOsmosis):
+    @classmethod
+    def setup_class(cls):
+        from modules import config
+        TestAnalyserOsmosis.setup_class()
+        cls.analyser_conf = cls.load_osm("tests/osmosis_roundabout_level.osm",
+                                         config.dir_tmp + "/tests/osmosis_roundabout_level.test.xml",
+                                         {"proj": 2154}) # Random proj to satisfy highway table generation
+
+    def test_classes(self):
+        with Analyser_Osmosis_Roundabout_Level(self.analyser_conf, self.logger) as a:
+            a.analyser()
+
+        self.root_err = self.load_errors()
+        self.check_err(cl="1", elems=[("way", "1000")])
+        self.check_err(cl="2", elems=[("way", "1002")])
+        self.check_err(cl="2", elems=[("way", "1003")])
+        self.check_err(cl="2", elems=[("way", "1005")])
+        self.check_err(cl="2", elems=[("way", "1012")])
+        self.check_err(cl="2", elems=[("way", "1013")])
+        self.check_err(cl="2", elems=[("way", "1017")])
+        self.check_err(cl="2", elems=[("way", "1018")])
+        self.check_err(cl="3", elems=[("way", "1000")])
+        #self.check_err(cl="4", elems=[("way", "1000"), ("way", "1010")]) disabled until fix of #2219
+
+        self.check_num_err(9)
