@@ -247,8 +247,8 @@ FROM
         roundabout.nodes && ways.nodes[2:array_length(ways.nodes,1)-1]
 WHERE
     NOT ways.is_construction AND
-    ways.highway NOT IN ('footway') AND
-    ways.tags->'access' NOT IN ('no', 'psv', 'private') AND
+    ways.highway NOT IN ('footway', 'path', 'busway', 'bus_guideway') AND
+    (NOT ways.tags?'access' OR ways.tags->'access' NOT IN ('no', 'psv', 'private')) AND
     NOT is_area
 """
 
@@ -348,6 +348,6 @@ class Test(TestAnalyserOsmosis):
         self.check_err(cl="2", elems=[("way", "1017")])
         self.check_err(cl="2", elems=[("way", "1018")])
         self.check_err(cl="3", elems=[("way", "1000")])
-        #self.check_err(cl="4", elems=[("way", "1000"), ("way", "1010")]) disabled until fix of #2219
+        self.check_err(cl="4", elems=[("way", "1000"), ("way", "1010")])
 
-        self.check_num_err(9)
+        self.check_num_err(10)
