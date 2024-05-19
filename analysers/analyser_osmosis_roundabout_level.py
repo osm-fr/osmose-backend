@@ -183,7 +183,7 @@ CREATE INDEX roundabout_access_idx ON roundabout_access(ra_id)
 """
 
 sql22 = """
-SELECT
+SELECT DISTINCT ON (ra1.a_id)
     ra1.a_id,
     ST_AsText(ST_Intersection(ra1.connection_sublinestring, ra2.connection_sublinestring))
 FROM
@@ -194,6 +194,9 @@ FROM
 WHERE
     ST_Intersects(ra1.connection_sublinestring, ra2.connection_sublinestring) AND
     NOT ra1.is_oneway
+ORDER BY
+    ra1.a_id,
+    ra2.a_id
 """
 
 sql30 = """
@@ -347,7 +350,8 @@ class Test(TestAnalyserOsmosis):
         self.check_err(cl="2", elems=[("way", "1013")])
         self.check_err(cl="2", elems=[("way", "1017")])
         self.check_err(cl="2", elems=[("way", "1018")])
+        self.check_err(cl="2", elems=[("way", "1021")])
         self.check_err(cl="3", elems=[("way", "1000")])
         self.check_err(cl="4", elems=[("way", "1000"), ("way", "1010")])
 
-        self.check_num_err(10)
+        self.check_num_err(11)
