@@ -66,7 +66,8 @@ WHERE
   relations.tags?'type' AND
   relations.tags->'type' = 'route' AND
   relations.tags?'route' AND
-  relations.tags->'route' = '{2}'
+  relations.tags->'route' = '{2}' AND
+  (NOT relations.tags?'state' OR relations.tags->'state' != 'proposed')
 GROUP BY
   ways.id,
   relations.id,
