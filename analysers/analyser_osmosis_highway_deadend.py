@@ -70,7 +70,8 @@ FROM
         (NOT nodes.tags?'entrance' OR nodes.tags->'entrance' = 'no') AND
         (NOT nodes.tags?'noexit' OR nodes.tags->'noexit' = 'no')
 WHERE
-    way_ends.level < 3 OR way_ends.highway = 'cycleway'
+    way_ends.level < 3 OR way_ends.highway = 'cycleway' AND
+    array_length(array_positions(way_ends.nodes, way_ends.nid), 1) = 1 -- exclude the intersecting node in P-shaped ways
 GROUP BY
     nodes.id,
     nodes.geom
