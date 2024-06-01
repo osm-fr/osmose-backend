@@ -193,6 +193,7 @@ FROM
         ra1.a_id != ra2.a_id
 WHERE
     ST_Intersects(ra1.connection_sublinestring, ra2.connection_sublinestring) AND
+    ST_NPoints(ST_Intersection(ra1.connection_sublinestring, ra2.connection_sublinestring)) = 1 AND
     NOT ra1.is_oneway
 ORDER BY
     ra1.a_id,
