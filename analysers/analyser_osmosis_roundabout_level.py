@@ -185,7 +185,7 @@ CREATE INDEX roundabout_access_idx ON roundabout_access(ra_id)
 sql22 = """
 SELECT DISTINCT ON (ra1.a_id)
     ra1.a_id,
-    ST_AsText(ST_Intersection(ra1.connection_sublinestring, ra2.connection_sublinestring))
+    ST_AsText(ST_PointOnSurface(ST_Intersection(ra1.connection_sublinestring, ra2.connection_sublinestring))) -- see #2230: intersection can be multipoint or (with illegal overlap) even (multi)linestring
 FROM
     roundabout_access AS ra1
     JOIN roundabout_access AS ra2 ON
@@ -193,7 +193,6 @@ FROM
         ra1.a_id != ra2.a_id
 WHERE
     ST_Intersects(ra1.connection_sublinestring, ra2.connection_sublinestring) AND
-    ST_NPoints(ST_Intersection(ra1.connection_sublinestring, ra2.connection_sublinestring)) = 1 AND
     NOT ra1.is_oneway
 ORDER BY
     ra1.a_id,
