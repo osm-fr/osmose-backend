@@ -25,23 +25,33 @@ class test_mapcss_parsing_evaluation(PluginMapCSS):
         self.errors[10] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test closed rewrite {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
         self.errors[11] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test any {0} {1}', mapcss.any_(mapcss.tag(tags, 'b'), ''), mapcss.any_(mapcss.tag(tags, 'c'), mapcss.tag(tags, 'd'), '')))
         self.errors[12] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test concat {0}', mapcss.concat(mapcss.tag(tags, 'b'), mapcss.tag(tags, 'c'))))
-        self.errors[13] = self.def_class(item = 0, level = 3, tags = [], title = {'en': 'test #1610'})
-        self.errors[14] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test #1603 - {0}{1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}')))
-        self.errors[15] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test righthandtraffic'))
-        self.errors[16] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test lefthandtraffic'))
-        self.errors[17] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
-        self.errors[18] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test #1303, #1742 {0}', mapcss._tag_uncapture(capture_tags, '{2.key}')))
-        self.errors[19] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test #1303 {0}', mapcss._tag_uncapture(capture_tags, '{2.key}')))
-        self.errors[20] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test #1742 - {0}', mapcss._tag_uncapture(capture_tags, '{1.tag}')))
-        self.errors[21] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test {0}{1}', 'text', mapcss._tag_uncapture(capture_tags, '{0.key}')))
+        self.errors[13] = self.def_class(item = 0, level = 3, tags = [], title = {'en': 'test regexp_match'})
+        self.errors[14] = self.def_class(item = 0, level = 3, tags = [], title = {'en': 'test #1610'})
+        self.errors[15] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test #1603 - {0}{1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}')))
+        self.errors[16] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test righthandtraffic'))
+        self.errors[17] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test lefthandtraffic'))
+        self.errors[18] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
+        self.errors[19] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test #1303, #1742 {0}', mapcss._tag_uncapture(capture_tags, '{2.key}')))
+        self.errors[20] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test #1303 {0}', mapcss._tag_uncapture(capture_tags, '{2.key}')))
+        self.errors[21] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test #1742 - {0}', mapcss._tag_uncapture(capture_tags, '{1.tag}')))
+        self.errors[22] = self.def_class(item = 0, level = 3, tags = [], title = mapcss.tr('test {0}{1}', 'text', mapcss._tag_uncapture(capture_tags, '{0.key}')))
         self.errors[96] = self.def_class(item = 4, level = 3, tags = [], title = mapcss.tr('I support supports {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
         self.errors[97] = self.def_class(item = 4, level = 1, tags = mapcss.list_('osmose_rules'), title = mapcss.tr('test'), trap = mapcss.tr('Don\'t do this!'), detail = mapcss.tr('More {0}.', '`info`'), example = {"en": 'Look at me, I haven\'t lost my apostrophe'}, fix = {"en": 'This may fix it.'}, resource = 'https://wiki.openstreetmap.org/wiki/Useful_Page')
         self.errors[98] = self.def_class(item = 4030, level = 2, tags = mapcss.list_('fix:survey'), title = {'en': 'test #1740'})
         self.errors[99] = self.def_class(item = 4, level = 1, tags = mapcss.list_('osmose_rules'), title = mapcss.tr('test'), trap = mapcss.tr('Don\'t do this!'), detail = mapcss.tr('More {0}.', '`info`'), example = {"en": 'Look at me, I haven\'t lost my apostrophe'}, fix = {"en": 'This may fix it.'}, resource = 'https://wiki.openstreetmap.org/wiki/Useful_Page')
 
+        self.re_0ee8c178 = re.compile(r'abcd')
+        self.re_108d3bad = re.compile(r'^a(b.)+(d)')
+        self.re_119887a5 = re.compile(r'^abcd')
+        self.re_325180cb = re.compile(r'^a(b(c+)?)(d)')
+        self.re_3323f744 = re.compile(r'^a(bc)?d')
         self.re_3d3faeb5 = re.compile(r'(?i).*Straße.*')
         self.re_49048f80 = re.compile(r'd')
         self.re_4961c1fa = re.compile(r'abc')
+        self.re_55ca9e50 = re.compile(r'^a(b(c)?)(d+)')
+        self.re_6554eaec = re.compile(r'^a(b(c))?(d)')
+        self.re_65fe451d = re.compile(r'^a(b(c))?d')
+        self.re_72ebe575 = re.compile(r'^a(bc)+(d)')
         self.re_75974701 = re.compile(r'^(parking|motorcycle_parking)$')
         self.re_7f42aaa6 = re.compile(r'def')
 
@@ -491,6 +501,152 @@ class test_mapcss_parsing_evaluation(PluginMapCSS):
                 # assertMatch:"node x=abcde"
                 err.append({'class': 6, 'subclass': 1303771934, 'text': {'en': 'test'}})
 
+        # node[get(regexp_match("^a(b(c))?d",tag("x")),1)="bc"]
+        if True:
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss.get(mapcss.regexp_match(self.re_65fe451d, mapcss.tag(tags, 'x')), 1) == 'bc'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:"test regexp_match"
+                # assertMatch:"node x=abcd"
+                # assertNoMatch:"node x=ad"
+                err.append({'class': 13, 'subclass': 815754511, 'text': {'en': 'test regexp_match'}})
+
+        # node[get(regexp_match("^a(b(c))?d",tag("x")),1+1)="c"]
+        if True:
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss.get(mapcss.regexp_match(self.re_65fe451d, mapcss.tag(tags, 'x')), 1+1) == 'c'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:"test regexp_match"
+                # assertMatch:"node x=abcd"
+                # assertNoMatch:"node x=ad"
+                err.append({'class': 13, 'subclass': 1128311206, 'text': {'en': 'test regexp_match'}})
+
+        # node[get(regexp_match("^a(b(c))?(d)",tag("x")),1+1+1)="d"]
+        if True:
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss.get(mapcss.regexp_match(self.re_6554eaec, mapcss.tag(tags, 'x')), 1+1+1) == 'd'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:"test regexp_match"
+                # assertNoMatch:"node x=abc"
+                # assertMatch:"node x=abcd"
+                # assertMatch:"node x=ad"
+                err.append({'class': 13, 'subclass': 715183081, 'text': {'en': 'test regexp_match'}})
+
+        # node[get(regexp_match("^a(b(c)?)(d+)",tag("x")),2*1+1)="dd"]
+        if True:
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss.get(mapcss.regexp_match(self.re_55ca9e50, mapcss.tag(tags, 'x')), 2*1+1) == 'dd'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:"test regexp_match"
+                # assertNoMatch:"node x=abc"
+                # assertMatch:"node x=abcdd"
+                # assertMatch:"node x=abdd"
+                # assertNoMatch:"node x=add"
+                err.append({'class': 13, 'subclass': 9040932, 'text': {'en': 'test regexp_match'}})
+
+        # node[get(regexp_match("^a(bc)?d",tag("x")),5-4)="bc"]
+        if True:
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss.get(mapcss.regexp_match(self.re_3323f744, mapcss.tag(tags, 'x')), 5-4) == 'bc'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:"test regexp_match"
+                # assertMatch:"node x=abcd"
+                # assertNoMatch:"node x=ad"
+                # assertNoMatch:"node x=x"
+                # assertNoMatch:"node y=z"
+                err.append({'class': 13, 'subclass': 1236742709, 'text': {'en': 'test regexp_match'}})
+
+        # node[get(regexp_match("^a(bc)?d",tag("x")),0)=tag("x")]
+        if True:
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss.get(mapcss.regexp_match(self.re_3323f744, mapcss.tag(tags, 'x')), 0) == mapcss.tag(tags, 'x')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:"test regexp_match"
+                # assertNoMatch:"node x=abc"
+                # assertMatch:"node x=abcd"
+                # assertMatch:"node x=ad"
+                err.append({'class': 13, 'subclass': 1309955623, 'text': {'en': 'test regexp_match'}})
+
+        # node[get(regexp_match("^a(bc)+(d)",tag("x")),2)="d"]
+        if True:
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss.get(mapcss.regexp_match(self.re_72ebe575, mapcss.tag(tags, 'x')), 2) == 'd'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:"test regexp_match"
+                # assertMatch:"node x=abcbcbcd"
+                # assertMatch:"node x=abcd"
+                err.append({'class': 13, 'subclass': 1771087889, 'text': {'en': 'test regexp_match'}})
+
+        # node[get(regexp_match("^a(b.)+(d)",tag("x")),1)="be"]
+        if True:
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss.get(mapcss.regexp_match(self.re_108d3bad, mapcss.tag(tags, 'x')), 1) == 'be'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:"test regexp_match"
+                # assertMatch:"node x=abcbdbed"
+                err.append({'class': 13, 'subclass': 115943260, 'text': {'en': 'test regexp_match'}})
+
+        # node[get(regexp_match("^abcd",tag("x")),0)="abcd"]
+        if True:
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss.get(mapcss.regexp_match(self.re_119887a5, mapcss.tag(tags, 'x')), 0) == 'abcd'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:"test regexp_match"
+                # assertMatch:"node x=abcd"
+                err.append({'class': 13, 'subclass': 279180352, 'text': {'en': 'test regexp_match'}})
+
+        # node[get(regexp_match("^a(b(c+)?)(d)",tag("x")),0)="abccd"][get(regexp_match("^a(b(c+)?)(d)",tag("x")),1)="bcc"][get(regexp_match("^a(b(c+)?)(d)",tag("x")),2)="cc"][get(regexp_match("^a(b(c+)?)(d)",tag("x")),3)="d"]
+        if True:
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss.get(mapcss.regexp_match(self.re_325180cb, mapcss.tag(tags, 'x')), 0) == 'abccd') and (mapcss.get(mapcss.regexp_match(self.re_325180cb, mapcss.tag(tags, 'x')), 1) == 'bcc') and (mapcss.get(mapcss.regexp_match(self.re_325180cb, mapcss.tag(tags, 'x')), 2) == 'cc') and (mapcss.get(mapcss.regexp_match(self.re_325180cb, mapcss.tag(tags, 'x')), 3) == 'd'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:"test regexp_match"
+                # assertMatch:"node x=abccd"
+                err.append({'class': 13, 'subclass': 1420114028, 'text': {'en': 'test regexp_match'}})
+
+        # node[any(regexp_match("abcd",tag("x")),"no match")!="no match"]
+        if True:
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss.any_(mapcss.regexp_match(self.re_0ee8c178, mapcss.tag(tags, 'x')), 'no match') != 'no match'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:"test regexp_match"
+                # assertMatch:"node x=abcd"
+                # assertNoMatch:"node x=abcdabcd"
+                err.append({'class': 13, 'subclass': 438256796, 'text': {'en': 'test regexp_match'}})
+
         return err
 
     def way(self, data, tags, nds):
@@ -511,7 +667,7 @@ class test_mapcss_parsing_evaluation(PluginMapCSS):
                 # assertMatch:"way x=C00;C1;C22"
                 # assertMatch:"way x=C1"
                 # assertNoMatch:"way x=C12"
-                err.append({'class': 13, 'subclass': 1785050832, 'text': {'en': 'test #1610'}})
+                err.append({'class': 14, 'subclass': 1785050832, 'text': {'en': 'test #1610'}})
 
         # way:righthandtraffic[x=y][z?]
         if ('x' in keys and 'z' in keys):
@@ -523,7 +679,7 @@ class test_mapcss_parsing_evaluation(PluginMapCSS):
             if match:
                 # throwWarning:tr("test #1603 - {0}{1}","{1.tag}","{2.tag}")
                 # -osmoseAssertMatchWithContext:list("way x=y z=yes","inside=NL")
-                err.append({'class': 14, 'subclass': 169712264, 'text': mapcss.tr('test #1603 - {0}{1}', mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{2.tag}'))})
+                err.append({'class': 15, 'subclass': 169712264, 'text': mapcss.tr('test #1603 - {0}{1}', mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{2.tag}'))})
 
         # way[x=y][z?]:righthandtraffic
         if ('x' in keys and 'z' in keys):
@@ -535,7 +691,7 @@ class test_mapcss_parsing_evaluation(PluginMapCSS):
             if match:
                 # throwWarning:tr("test #1603 - {0}{1}","{0.tag}","{1.tag}")
                 # -osmoseAssertMatchWithContext:list("way x=y z=yes","inside=NL")
-                err.append({'class': 14, 'subclass': 2074848923, 'text': mapcss.tr('test #1603 - {0}{1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+                err.append({'class': 15, 'subclass': 2074848923, 'text': mapcss.tr('test #1603 - {0}{1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
         # *[parking][amenity!~/^(parking|motorcycle_parking)$/]
         if ('parking' in keys):
@@ -601,7 +757,7 @@ class test_mapcss_parsing_evaluation(PluginMapCSS):
                 # throwWarning:tr("test righthandtraffic")
                 # -osmoseAssertNoMatchWithContext:list("way","driving_side=left")
                 # -osmoseAssertMatchWithContext:list("way","driving_side=right")
-                err.append({'class': 15, 'subclass': 529680562, 'text': mapcss.tr('test righthandtraffic')})
+                err.append({'class': 16, 'subclass': 529680562, 'text': mapcss.tr('test righthandtraffic')})
 
         # way!:righthandtraffic
         if True:
@@ -614,7 +770,7 @@ class test_mapcss_parsing_evaluation(PluginMapCSS):
                 # throwWarning:tr("test lefthandtraffic")
                 # -osmoseAssertMatchWithContext:list("way","driving_side=left")
                 # -osmoseAssertNoMatchWithContext:list("way","driving_side=right")
-                err.append({'class': 16, 'subclass': 877255184, 'text': mapcss.tr('test lefthandtraffic')})
+                err.append({'class': 17, 'subclass': 877255184, 'text': mapcss.tr('test lefthandtraffic')})
 
         # way[count(uniq_list(tag_regex("abc")))==2]
         if True:
@@ -660,7 +816,7 @@ class test_mapcss_parsing_evaluation(PluginMapCSS):
                 # assertNoMatch:"way oneway=no"
                 # assertMatch:"way oneway=yes"
                 # assertNoMatch:"way x=y"
-                err.append({'class': 17, 'subclass': 1489464739, 'text': mapcss.tr('test {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                err.append({'class': 18, 'subclass': 1489464739, 'text': mapcss.tr('test {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # way[oneway?!]
         if ('oneway' in keys):
@@ -675,7 +831,7 @@ class test_mapcss_parsing_evaluation(PluginMapCSS):
                 # assertMatch:"way oneway=no"
                 # assertNoMatch:"way oneway=yes"
                 # assertNoMatch:"way x=y"
-                err.append({'class': 17, 'subclass': 722694187, 'text': mapcss.tr('test {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                err.append({'class': 18, 'subclass': 722694187, 'text': mapcss.tr('test {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # way[name*=Trigger][tag("building")=="chapel"||tag("amenity")=="place_of_worship"][x]
         if ('name' in keys and 'x' in keys):
@@ -690,7 +846,7 @@ class test_mapcss_parsing_evaluation(PluginMapCSS):
                 # assertMatch:"way amenity=place_of_worship name=OsmoseRuleTrigger x=yes"
                 # assertNoMatch:"way amenity=place_of_worship name=Westminster x=yes"
                 # assertMatch:"way building=chapel name=OsmoseRuleTrigger x=yes"
-                err.append({'class': 18, 'subclass': 1095325051, 'text': mapcss.tr('test #1303, #1742 {0}', mapcss._tag_uncapture(capture_tags, '{2.key}'))})
+                err.append({'class': 19, 'subclass': 1095325051, 'text': mapcss.tr('test #1303, #1742 {0}', mapcss._tag_uncapture(capture_tags, '{2.key}'))})
 
         # way[name*=Trigger][tag("building")=="chapel"&&tag("amenity")=="place_of_worship"][x]
         if ('name' in keys and 'x' in keys):
@@ -705,7 +861,7 @@ class test_mapcss_parsing_evaluation(PluginMapCSS):
                 # assertNoMatch:"way amenity=place_of_worship building=chapel name=Westminster x=yes"
                 # assertNoMatch:"way amenity=place_of_worship name=OsmoseRuleTrigger x=yes"
                 # assertNoMatch:"way building=chapel name=OsmoseRuleTrigger x=yes"
-                err.append({'class': 19, 'subclass': 1140742172, 'text': mapcss.tr('test #1303 {0}', mapcss._tag_uncapture(capture_tags, '{2.key}'))})
+                err.append({'class': 20, 'subclass': 1140742172, 'text': mapcss.tr('test #1303 {0}', mapcss._tag_uncapture(capture_tags, '{2.key}'))})
 
         # way[inside(FR)][x]
         if ('x' in keys):
@@ -717,7 +873,7 @@ class test_mapcss_parsing_evaluation(PluginMapCSS):
             if match:
                 # throwWarning:tr("test #1742 - {0}","{1.tag}")
                 # -osmoseAssertMatchWithContext:list("way x=y","inside=FR")
-                err.append({'class': 20, 'subclass': 1132689531, 'text': mapcss.tr('test #1742 - {0}', mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+                err.append({'class': 21, 'subclass': 1132689531, 'text': mapcss.tr('test #1742 - {0}', mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
         # *[a][a=*b]
         if ('a' in keys):
@@ -799,7 +955,7 @@ class test_mapcss_parsing_evaluation(PluginMapCSS):
                 # assertNoMatch:"way maxspeed=5000"
                 # assertNoMatch:"way maxspeed=default"
                 # assertNoMatch:"way"
-                err.append({'class': 21, 'subclass': 2063115534, 'text': mapcss.tr('test {0}{1}', 'text', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                err.append({'class': 22, 'subclass': 2063115534, 'text': mapcss.tr('test {0}{1}', 'text', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # way[tag(a)>tag(b)]
         if True:
@@ -1196,25 +1352,50 @@ class Test(TestPluginMapcss):
         self.check_err(n.node(data, {'x': '2'}), expected={'class': 96, 'subclass': 0})
         self.check_err(n.node(data, {'x': '2'}), expected={'class': 96, 'subclass': 1})
         self.check_err(n.node(data, {'x': 'abcde'}), expected={'class': 6, 'subclass': 1303771934})
-        self.check_err(n.way(data, {'x': 'C00;C1;C22'}, [0]), expected={'class': 13, 'subclass': 1785050832})
-        self.check_err(n.way(data, {'x': 'C1'}, [0]), expected={'class': 13, 'subclass': 1785050832})
-        self.check_not_err(n.way(data, {'x': 'C12'}, [0]), expected={'class': 13, 'subclass': 1785050832})
+        self.check_err(n.node(data, {'x': 'abcd'}), expected={'class': 13, 'subclass': 815754511})
+        self.check_not_err(n.node(data, {'x': 'ad'}), expected={'class': 13, 'subclass': 815754511})
+        self.check_err(n.node(data, {'x': 'abcd'}), expected={'class': 13, 'subclass': 1128311206})
+        self.check_not_err(n.node(data, {'x': 'ad'}), expected={'class': 13, 'subclass': 1128311206})
+        self.check_not_err(n.node(data, {'x': 'abc'}), expected={'class': 13, 'subclass': 715183081})
+        self.check_err(n.node(data, {'x': 'abcd'}), expected={'class': 13, 'subclass': 715183081})
+        self.check_err(n.node(data, {'x': 'ad'}), expected={'class': 13, 'subclass': 715183081})
+        self.check_not_err(n.node(data, {'x': 'abc'}), expected={'class': 13, 'subclass': 9040932})
+        self.check_err(n.node(data, {'x': 'abcdd'}), expected={'class': 13, 'subclass': 9040932})
+        self.check_err(n.node(data, {'x': 'abdd'}), expected={'class': 13, 'subclass': 9040932})
+        self.check_not_err(n.node(data, {'x': 'add'}), expected={'class': 13, 'subclass': 9040932})
+        self.check_err(n.node(data, {'x': 'abcd'}), expected={'class': 13, 'subclass': 1236742709})
+        self.check_not_err(n.node(data, {'x': 'ad'}), expected={'class': 13, 'subclass': 1236742709})
+        self.check_not_err(n.node(data, {'x': 'x'}), expected={'class': 13, 'subclass': 1236742709})
+        self.check_not_err(n.node(data, {'y': 'z'}), expected={'class': 13, 'subclass': 1236742709})
+        self.check_not_err(n.node(data, {'x': 'abc'}), expected={'class': 13, 'subclass': 1309955623})
+        self.check_err(n.node(data, {'x': 'abcd'}), expected={'class': 13, 'subclass': 1309955623})
+        self.check_err(n.node(data, {'x': 'ad'}), expected={'class': 13, 'subclass': 1309955623})
+        self.check_err(n.node(data, {'x': 'abcbcbcd'}), expected={'class': 13, 'subclass': 1771087889})
+        self.check_err(n.node(data, {'x': 'abcd'}), expected={'class': 13, 'subclass': 1771087889})
+        self.check_err(n.node(data, {'x': 'abcbdbed'}), expected={'class': 13, 'subclass': 115943260})
+        self.check_err(n.node(data, {'x': 'abcd'}), expected={'class': 13, 'subclass': 279180352})
+        self.check_err(n.node(data, {'x': 'abccd'}), expected={'class': 13, 'subclass': 1420114028})
+        self.check_err(n.node(data, {'x': 'abcd'}), expected={'class': 13, 'subclass': 438256796})
+        self.check_not_err(n.node(data, {'x': 'abcdabcd'}), expected={'class': 13, 'subclass': 438256796})
+        self.check_err(n.way(data, {'x': 'C00;C1;C22'}, [0]), expected={'class': 14, 'subclass': 1785050832})
+        self.check_err(n.way(data, {'x': 'C1'}, [0]), expected={'class': 14, 'subclass': 1785050832})
+        self.check_not_err(n.way(data, {'x': 'C12'}, [0]), expected={'class': 14, 'subclass': 1785050832})
         with with_options(n, {'country': 'NL'}):
-            self.check_err(n.way(data, {'x': 'y', 'z': 'yes'}, [0]), expected={'class': 14, 'subclass': 169712264})
+            self.check_err(n.way(data, {'x': 'y', 'z': 'yes'}, [0]), expected={'class': 15, 'subclass': 169712264})
         with with_options(n, {'country': 'NL'}):
-            self.check_err(n.way(data, {'x': 'y', 'z': 'yes'}, [0]), expected={'class': 14, 'subclass': 2074848923})
+            self.check_err(n.way(data, {'x': 'y', 'z': 'yes'}, [0]), expected={'class': 15, 'subclass': 2074848923})
         self.check_not_err(n.way(data, {'a': 'b', 'c': 'd'}, [0]), expected={'class': 3, 'subclass': 1004069731})
         self.check_err(n.way(data, {'a': 'b'}, [0]), expected={'class': 3, 'subclass': 1004069731})
         self.check_not_err(n.way(data, {'b': 'a', 'd': 'c'}, [0]), expected={'class': 3, 'subclass': 1004069731})
         self.check_err(n.way(data, {'b': 'c'}, [0]), expected={'class': 3, 'subclass': 1004069731})
         with with_options(n, {'driving_side': 'left'}):
-            self.check_not_err(n.way(data, {}, [0]), expected={'class': 15, 'subclass': 529680562})
+            self.check_not_err(n.way(data, {}, [0]), expected={'class': 16, 'subclass': 529680562})
         with with_options(n, {'driving_side': 'right'}):
-            self.check_err(n.way(data, {}, [0]), expected={'class': 15, 'subclass': 529680562})
+            self.check_err(n.way(data, {}, [0]), expected={'class': 16, 'subclass': 529680562})
         with with_options(n, {'driving_side': 'left'}):
-            self.check_err(n.way(data, {}, [0]), expected={'class': 16, 'subclass': 877255184})
+            self.check_err(n.way(data, {}, [0]), expected={'class': 17, 'subclass': 877255184})
         with with_options(n, {'driving_side': 'right'}):
-            self.check_not_err(n.way(data, {}, [0]), expected={'class': 16, 'subclass': 877255184})
+            self.check_not_err(n.way(data, {}, [0]), expected={'class': 17, 'subclass': 877255184})
         self.check_not_err(n.way(data, {'abc': 'def', 'abcdef': 'def'}, [0]), expected={'class': 6, 'subclass': 346020981})
         self.check_err(n.way(data, {'abc': 'def', 'abcd': 'ghi', 'abcdef': 'ghi'}, [0]), expected={'class': 6, 'subclass': 346020981})
         self.check_err(n.way(data, {'abc': 'def', 'abcdef': 'ghi'}, [0]), expected={'class': 6, 'subclass': 346020981})
@@ -1223,33 +1404,33 @@ class Test(TestPluginMapcss):
         self.check_err(n.way(data, {'abc': 'def', 'abcd': 'ghi', 'abcdef': 'ghi'}, [0]), expected={'class': 6, 'subclass': 57938147})
         self.check_err(n.way(data, {'abc': 'def', 'abcdef': 'ghi'}, [0]), expected={'class': 6, 'subclass': 57938147})
         self.check_not_err(n.way(data, {'abc': 'def', 'def': 'def'}, [0]), expected={'class': 6, 'subclass': 57938147})
-        self.check_err(n.way(data, {'oneway': '1'}, [0]), expected={'class': 17, 'subclass': 1489464739})
-        self.check_not_err(n.way(data, {'oneway': '4.0'}, [0]), expected={'class': 17, 'subclass': 1489464739})
-        self.check_not_err(n.way(data, {'oneway': 'no'}, [0]), expected={'class': 17, 'subclass': 1489464739})
-        self.check_err(n.way(data, {'oneway': 'yes'}, [0]), expected={'class': 17, 'subclass': 1489464739})
-        self.check_not_err(n.way(data, {'x': 'y'}, [0]), expected={'class': 17, 'subclass': 1489464739})
-        self.check_err(n.way(data, {'oneway': '0'}, [0]), expected={'class': 17, 'subclass': 722694187})
-        self.check_err(n.way(data, {'oneway': 'no'}, [0]), expected={'class': 17, 'subclass': 722694187})
-        self.check_not_err(n.way(data, {'oneway': 'yes'}, [0]), expected={'class': 17, 'subclass': 722694187})
-        self.check_not_err(n.way(data, {'x': 'y'}, [0]), expected={'class': 17, 'subclass': 722694187})
-        self.check_err(n.way(data, {'amenity': 'place_of_worship', 'building': 'chapel', 'name': 'OsmoseRuleTrigger', 'x': 'yes'}, [0]), expected={'class': 18, 'subclass': 1095325051})
-        self.check_err(n.way(data, {'amenity': 'place_of_worship', 'name': 'OsmoseRuleTrigger', 'x': 'yes'}, [0]), expected={'class': 18, 'subclass': 1095325051})
-        self.check_not_err(n.way(data, {'amenity': 'place_of_worship', 'name': 'Westminster', 'x': 'yes'}, [0]), expected={'class': 18, 'subclass': 1095325051})
-        self.check_err(n.way(data, {'building': 'chapel', 'name': 'OsmoseRuleTrigger', 'x': 'yes'}, [0]), expected={'class': 18, 'subclass': 1095325051})
-        self.check_err(n.way(data, {'amenity': 'place_of_worship', 'building': 'chapel', 'name': 'OsmoseRuleTrigger', 'x': 'yes'}, [0]), expected={'class': 19, 'subclass': 1140742172})
-        self.check_not_err(n.way(data, {'amenity': 'place_of_worship', 'building': 'chapel', 'name': 'Westminster', 'x': 'yes'}, [0]), expected={'class': 19, 'subclass': 1140742172})
-        self.check_not_err(n.way(data, {'amenity': 'place_of_worship', 'name': 'OsmoseRuleTrigger', 'x': 'yes'}, [0]), expected={'class': 19, 'subclass': 1140742172})
-        self.check_not_err(n.way(data, {'building': 'chapel', 'name': 'OsmoseRuleTrigger', 'x': 'yes'}, [0]), expected={'class': 19, 'subclass': 1140742172})
+        self.check_err(n.way(data, {'oneway': '1'}, [0]), expected={'class': 18, 'subclass': 1489464739})
+        self.check_not_err(n.way(data, {'oneway': '4.0'}, [0]), expected={'class': 18, 'subclass': 1489464739})
+        self.check_not_err(n.way(data, {'oneway': 'no'}, [0]), expected={'class': 18, 'subclass': 1489464739})
+        self.check_err(n.way(data, {'oneway': 'yes'}, [0]), expected={'class': 18, 'subclass': 1489464739})
+        self.check_not_err(n.way(data, {'x': 'y'}, [0]), expected={'class': 18, 'subclass': 1489464739})
+        self.check_err(n.way(data, {'oneway': '0'}, [0]), expected={'class': 18, 'subclass': 722694187})
+        self.check_err(n.way(data, {'oneway': 'no'}, [0]), expected={'class': 18, 'subclass': 722694187})
+        self.check_not_err(n.way(data, {'oneway': 'yes'}, [0]), expected={'class': 18, 'subclass': 722694187})
+        self.check_not_err(n.way(data, {'x': 'y'}, [0]), expected={'class': 18, 'subclass': 722694187})
+        self.check_err(n.way(data, {'amenity': 'place_of_worship', 'building': 'chapel', 'name': 'OsmoseRuleTrigger', 'x': 'yes'}, [0]), expected={'class': 19, 'subclass': 1095325051})
+        self.check_err(n.way(data, {'amenity': 'place_of_worship', 'name': 'OsmoseRuleTrigger', 'x': 'yes'}, [0]), expected={'class': 19, 'subclass': 1095325051})
+        self.check_not_err(n.way(data, {'amenity': 'place_of_worship', 'name': 'Westminster', 'x': 'yes'}, [0]), expected={'class': 19, 'subclass': 1095325051})
+        self.check_err(n.way(data, {'building': 'chapel', 'name': 'OsmoseRuleTrigger', 'x': 'yes'}, [0]), expected={'class': 19, 'subclass': 1095325051})
+        self.check_err(n.way(data, {'amenity': 'place_of_worship', 'building': 'chapel', 'name': 'OsmoseRuleTrigger', 'x': 'yes'}, [0]), expected={'class': 20, 'subclass': 1140742172})
+        self.check_not_err(n.way(data, {'amenity': 'place_of_worship', 'building': 'chapel', 'name': 'Westminster', 'x': 'yes'}, [0]), expected={'class': 20, 'subclass': 1140742172})
+        self.check_not_err(n.way(data, {'amenity': 'place_of_worship', 'name': 'OsmoseRuleTrigger', 'x': 'yes'}, [0]), expected={'class': 20, 'subclass': 1140742172})
+        self.check_not_err(n.way(data, {'building': 'chapel', 'name': 'OsmoseRuleTrigger', 'x': 'yes'}, [0]), expected={'class': 20, 'subclass': 1140742172})
         with with_options(n, {'country': 'FR'}):
-            self.check_err(n.way(data, {'x': 'y'}, [0]), expected={'class': 20, 'subclass': 1132689531})
+            self.check_err(n.way(data, {'x': 'y'}, [0]), expected={'class': 21, 'subclass': 1132689531})
         self.check_err(n.way(data, {'x': 'yes'}, [0]), expected={'class': 97, 'subclass': 2})
         self.check_not_err(n.way(data, {'y': 'yes'}, [0]), expected={'class': 97, 'subclass': 2})
         self.check_err(n.way(data, {'x': 'yes'}, [0]), expected={'class': 99, 'subclass': 2})
         self.check_not_err(n.way(data, {'y': 'yes'}, [0]), expected={'class': 99, 'subclass': 2})
-        self.check_err(n.way(data, {'maxspeed': '10000'}, [0]), expected={'class': 21, 'subclass': 2063115534})
-        self.check_not_err(n.way(data, {'maxspeed': '5000'}, [0]), expected={'class': 21, 'subclass': 2063115534})
-        self.check_not_err(n.way(data, {'maxspeed': 'default'}, [0]), expected={'class': 21, 'subclass': 2063115534})
-        self.check_not_err(n.way(data, {}, [0]), expected={'class': 21, 'subclass': 2063115534})
+        self.check_err(n.way(data, {'maxspeed': '10000'}, [0]), expected={'class': 22, 'subclass': 2063115534})
+        self.check_not_err(n.way(data, {'maxspeed': '5000'}, [0]), expected={'class': 22, 'subclass': 2063115534})
+        self.check_not_err(n.way(data, {'maxspeed': 'default'}, [0]), expected={'class': 22, 'subclass': 2063115534})
+        self.check_not_err(n.way(data, {}, [0]), expected={'class': 22, 'subclass': 2063115534})
         self.check_not_err(n.way(data, {'a': '0', 'b': '1'}, [0]), expected={'class': 6, 'subclass': 384294833})
         self.check_not_err(n.way(data, {'a': '0', 'b': 'yes'}, [0]), expected={'class': 6, 'subclass': 384294833})
         self.check_err(n.way(data, {'a': '1', 'b': '0'}, [0]), expected={'class': 6, 'subclass': 384294833})
