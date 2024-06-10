@@ -172,9 +172,6 @@ class str_value_(str):
 
 None_value = str_value(None)
 
-def flatten(z):
-    return [x for y in z for x in y]
-
 uncapture_param_re = re.compile(r'\{([0-9]+\.[a-z]+)\}')
 def _uncapture_param(capture, a):
     i, ty = a.split('.', 1)
@@ -466,9 +463,10 @@ def regexp_match(regexp, string):
     if regexp is None or string is None:
         return False
     else:
-        a = regexp.findall(string)
-        if a:
-            a = [string] + flatten(a)
+        a = regexp.fullmatch(string)
+        if not a:
+            return None_value
+        a = [string] + list(a.groups())
         return list(map(str_value, a))
 
 #regexp_match(regexp, string, flags)
