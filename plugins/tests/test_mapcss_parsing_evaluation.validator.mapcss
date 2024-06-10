@@ -461,3 +461,63 @@ way[x] > node[x] {throwWarning: "I should be dropped!"; assertNoMatch: "way x=1"
 node[x] < way[x] {throwWarning: "I should be dropped!"; assertNoMatch: "way x=1"; assertNoMatch: "node x=1";}
 way[x] >[index!=4] node[x] {throwWarning: "I should be dropped!"; assertNoMatch: "way x=1"; assertNoMatch: "node x=1";}
 node[x] <[index!=4] way[x] {throwWarning: "I should be dropped!"; assertNoMatch: "way x=1"; assertNoMatch: "node x=1";}
+
+
+node[get(regexp_match("^a(b(c))?d", tag("x")), 1) = "bc"] {
+  throwWarning: "test regexp_match";
+  assertMatch: "node x=abcd";
+  assertNoMatch: "node x=ad";
+}
+node[get(regexp_match("^a(b(c))?d", tag("x")), 1+1) = "c"] {
+  throwWarning: "test regexp_match";
+  assertMatch: "node x=abcd";
+  assertNoMatch: "node x=ad";
+}
+node[get(regexp_match("^a(b(c))?(d)", tag("x")), 1+1+1) = "d"] {
+  throwWarning: "test regexp_match";
+  assertMatch: "node x=abcd";
+  assertMatch: "node x=ad";
+  assertNoMatch: "node x=abc";
+}
+node[get(regexp_match("^a(b(c)?)(d+)", tag("x")), 2*1+1) = "dd"] {
+  throwWarning: "test regexp_match";
+  assertMatch: "node x=abcdd";
+  assertMatch: "node x=abdd";
+  assertNoMatch: "node x=add";
+  assertNoMatch: "node x=abc";
+}
+node[get(regexp_match("^a(bc)?d", tag("x")), 5 - 4) = "bc"] {
+  throwWarning: "test regexp_match";
+  assertMatch: "node x=abcd";
+  assertNoMatch: "node x=ad";
+  assertNoMatch: "node x=x";
+  assertNoMatch: "node y=z";
+}
+node[get(regexp_match("^a(bc)?d", tag("x")), 0) = tag("x")] {
+  throwWarning: "test regexp_match";
+  assertMatch: "node x=abcd";
+  assertMatch: "node x=ad";
+  assertNoMatch: "node x=abc";
+}
+node[get(regexp_match("^a(bc)+(d)", tag("x")), 2) = "d"] {
+  throwWarning: "test regexp_match";
+  assertMatch: "node x=abcd";
+  assertMatch: "node x=abcbcbcd";
+}
+node[get(regexp_match("^a(b.)+(d)", tag("x")), 1) = "be"] {
+  throwWarning: "test regexp_match";
+  assertMatch: "node x=abcbdbed";
+}
+node[get(regexp_match("^abcd", tag("x")), 0) = "abcd"] {
+  throwWarning: "test regexp_match";
+  assertMatch: "node x=abcd";
+}
+node[get(regexp_match("^a(b(c+)?)(d)", tag("x")), 0) = "abccd"][get(regexp_match("^a(b(c+)?)(d)", tag("x")), 1) = "bcc"][get(regexp_match("^a(b(c+)?)(d)", tag("x")), 2) = "cc"][get(regexp_match("^a(b(c+)?)(d)", tag("x")), 3) = "d"] {
+  throwWarning: "test regexp_match";
+  assertMatch: "node x=abccd";
+}
+node[any(regexp_match("abcd", tag("x")), "no match") != "no match"] {
+  throwWarning: "test regexp_match";
+  assertMatch: "node x=abcd";
+  assertNoMatch: "node x=abcdabcd";
+}
