@@ -521,3 +521,33 @@ node[any(regexp_match("abcd", tag("x")), "no match") != "no match"] {
   assertMatch: "node x=abcd";
   assertNoMatch: "node x=abcdabcd";
 }
+
+node[x!="a\\b"] {
+  throwWarning: tr("test #2236 - {0} {1}", "{0.key}", "{0.value}");
+  assertMatch: "node x=25";
+}
+node[x="a\\b"] {
+  throwWarning: tr("test #2236 - {0} {1}", "{0.key}", "{0.value}");
+  assertNoMatch: "node x=a\\x08";
+  assertNoMatch: "node x=a\\\\x08";
+}
+node[/\d/] {
+  throwWarning: tr("test #2236 - {0} {1}", "{0.key}", "{0.value}");
+  assertMatch: "node x2=25";
+  assertNoMatch: "node d=25";
+}
+node[x=~/\d/] {
+  throwWarning: tr("test #2236 - {0} {1}", "{0.key}", "{0.value}");
+  assertMatch: "node x=25";
+  assertNoMatch: "node x=d";
+}
+node[x!~/\d/] {
+  throwWarning: tr("test #2236 - {0} {1}", "{0.key}", "{0.value}");
+  assertNoMatch: "node x=25";
+  assertMatch: "node x=d";
+}
+node[x!~/It's\sworking/] {
+  throwWarning: tr("test #2236 - {0} {1}", "{0.key}", "{0.value}");
+  assertMatch: "node x=\"It\\\\'s working\"";
+  assertNoMatch: "node x=\"It's working\"";
+}
