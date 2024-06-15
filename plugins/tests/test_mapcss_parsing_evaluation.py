@@ -727,6 +727,30 @@ class test_mapcss_parsing_evaluation(PluginMapCSS):
                 # assertMatch:"node x=\"It\\\\'s working\""
                 err.append({'class': 14, 'subclass': 1474979323, 'text': mapcss.tr('test #2236 - {0} {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{0.value}'))})
 
+        # node[to_int("-3")+to_short("4")*to_long("2")=5]
+        if True:
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss.to_int('-3')+mapcss.to_short('4')*mapcss.to_long('2') == 5))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:"test"
+                # assertMatch:"node x=y"
+                err.append({'class': 6, 'subclass': 560627145, 'text': {'en': 'test'}})
+
+        # node[to_float("3.14e1")=31.4][to_double("3.1415e1")=31.415]
+        if True:
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss.to_float('3.14e1') == 31.4) and (mapcss.to_double('3.1415e1') == 31.415))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:"test"
+                # assertMatch:"node x=y"
+                err.append({'class': 6, 'subclass': 931844076, 'text': {'en': 'test'}})
+
         return err
 
     def way(self, data, tags, nds):
@@ -1468,6 +1492,8 @@ class Test(TestPluginMapcss):
         self.check_err(n.node(data, {'x': 'd'}), expected={'class': 14, 'subclass': 877576641})
         self.check_not_err(n.node(data, {'x': 'It\'s working'}), expected={'class': 14, 'subclass': 1474979323})
         self.check_err(n.node(data, {'x': 'It\\\\\'s working'}), expected={'class': 14, 'subclass': 1474979323})
+        self.check_err(n.node(data, {'x': 'y'}), expected={'class': 6, 'subclass': 560627145})
+        self.check_err(n.node(data, {'x': 'y'}), expected={'class': 6, 'subclass': 931844076})
         self.check_err(n.way(data, {'x': 'C00;C1;C22'}, [0]), expected={'class': 15, 'subclass': 1785050832})
         self.check_err(n.way(data, {'x': 'C1'}, [0]), expected={'class': 15, 'subclass': 1785050832})
         self.check_not_err(n.way(data, {'x': 'C12'}, [0]), expected={'class': 15, 'subclass': 1785050832})
