@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights osmose project 2024                                        ##
+## Copyrights Osmose project 2024                                        ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -52,13 +52,6 @@ class TagFix_Tree(Plugin):
         Plugin.init(self, logger)
 
         self.errors[31201] = self.def_class(item = 3120, level = 3, tags = ['tree', 'natural', 'fix:chair'],
-            title = T_('Missing tree properties'),
-            detail = T_(
-'''The leaf type and/or leaf cycle can be added based on the species.'''),
-            fix = T_(
-'''Verify that the species is correct, before adding the leaf properties.'''),
-            resource = 'https://wiki.openstreetmap.org/wiki/Tag:natural%3Dtree/List_of_Species')
-        self.errors[31202] = self.def_class(item = 3120, level = 3, tags = ['tree', 'natural', 'fix:chair'],
             title = T_('Conflicting tree properties'),
             detail = T_(
 '''The leaf type and/or leaf cycle does not match with the species.'''),
@@ -80,24 +73,16 @@ class TagFix_Tree(Plugin):
                 # and unclear difference between semi_evergreen and semi_deciduous, see #2224 first comment
                 expected_tags = {x: expected_tags[x] for x in filter(lambda x: x != "leaf_cycle", expected_tags)}
 
-            # Wiki doesn't match all tags. Don't check for wikidata (handled in item 3031)
+            # The tags do not match with the data on the wiki. Don't check for wikidata (handled in item 3031)
             mismatches = set(filter(lambda t: t in tags and expected_tags[t] != tags[t] and t != "species:wikidata", expected_tags.keys()))
             if len(mismatches) > 0:
                 err.append({
-                    "class": 31202,
+                    "class": 31201,
                     "text": T_("Conflict between `{0}` and `{1}`", "`, `".join(mismatches), "species"),
                     "fix": [
                         {"~": {x: expected_tags[x] for x in mismatches}, "+": {x: expected_tags[x] for x in list(filter(lambda t: t not in tags, expected_tags.keys()))}},
                         {"-": ["species"]}
                 ]})
-
-            # Missing tags that can be added based on the wiki. Don't check for wikidata explicitly (handled in item 3031)
-            # Using elif, because if there's a conflict, it may also be the `species` tag that's wrong
-            elif not all(key in tags for key in list(filter(lambda t: t != "species:wikidata", expected_tags.keys()))):
-                err.append({
-                    "class": 31201,
-                    "fix": {"+": {x: expected_tags[x] for x in list(filter(lambda t: t not in tags, expected_tags.keys()))}}
-                })
 
         return err
 
@@ -138,12 +123,5 @@ class Test(TestPluginCommon):
                   {"natural": "tree", "leaf_cycle": "evergreen", "leaf_type": "broadleaved", "species": "Acer buergerianum", "species:wikidata": "Q941891"},
                   {"natural": "tree", "leaf_cycle": "evergreen", "leaf_type": "needleleaved", "species": "Acer buergerianum"},
                   {"natural": "tree", "leaf_cycle": "evergreen", "species": "Acer buergerianum"},
-                 ]:
-            assert a.node(None, t), a.node(None, t)
-
-        # Missing properties
-        for t in [{"natural": "tree", "species": "Acer buergerianum"},
-                  {"natural": "tree", "leaf_type": "broadleaved", "species": "Acer buergerianum"},
-                  {"natural": "tree", "leaf_cycle": "deciduous", "species": "Acer buergerianum"},
                  ]:
             assert a.node(None, t), a.node(None, t)
