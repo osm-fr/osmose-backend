@@ -655,7 +655,7 @@ class test_mapcss_parsing_evaluation(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'x') != mapcss._value_const_capture(capture_tags, 0, 'a\b', 'a\b')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'x') != mapcss._value_const_capture(capture_tags, 0, 'a\\b', 'a\\b')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("test #2236 - {0} {1}","{0.key}","{0.value}")
@@ -667,7 +667,7 @@ class test_mapcss_parsing_evaluation(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'x') == mapcss._value_capture(capture_tags, 0, 'a\b')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'x') == mapcss._value_capture(capture_tags, 0, 'a\\b')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("test #2236 - {0} {1}","{0.key}","{0.value}")
@@ -706,7 +706,7 @@ class test_mapcss_parsing_evaluation(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 0, self.re_1a9cf135, '\d'), mapcss._tag_capture(capture_tags, 0, tags, 'x'))))
+                try: match = ((not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 0, self.re_1a9cf135, '\\d'), mapcss._tag_capture(capture_tags, 0, tags, 'x'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("test #2236 - {0} {1}","{0.key}","{0.value}")
@@ -719,7 +719,7 @@ class test_mapcss_parsing_evaluation(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 0, self.re_3689ede8, 'It\'s\sworking'), mapcss._tag_capture(capture_tags, 0, tags, 'x'))))
+                try: match = ((not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 0, self.re_3689ede8, 'It\'s\\sworking'), mapcss._tag_capture(capture_tags, 0, tags, 'x'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("test #2236 - {0} {1}","{0.key}","{0.value}")
@@ -1458,8 +1458,8 @@ class Test(TestPluginMapcss):
         self.check_err(n.node(data, {'x': 'abcd'}), expected={'class': 13, 'subclass': 438256796})
         self.check_not_err(n.node(data, {'x': 'abcdabcd'}), expected={'class': 13, 'subclass': 438256796})
         self.check_err(n.node(data, {'x': '25'}), expected={'class': 14, 'subclass': 862284822})
+        self.check_not_err(n.node(data, {'x': 'a\\\\x08'}), expected={'class': 14, 'subclass': 1745755712})
         self.check_not_err(n.node(data, {'x': 'a\\x08'}), expected={'class': 14, 'subclass': 1745755712})
-        self.check_not_err(n.node(data, {'x': 'a\x08'}), expected={'class': 14, 'subclass': 1745755712})
         self.check_not_err(n.node(data, {'d': '25'}), expected={'class': 14, 'subclass': 1947789792})
         self.check_err(n.node(data, {'x2': '25'}), expected={'class': 14, 'subclass': 1947789792})
         self.check_err(n.node(data, {'x': '25'}), expected={'class': 14, 'subclass': 2053382697})
@@ -1467,7 +1467,7 @@ class Test(TestPluginMapcss):
         self.check_not_err(n.node(data, {'x': '25'}), expected={'class': 14, 'subclass': 877576641})
         self.check_err(n.node(data, {'x': 'd'}), expected={'class': 14, 'subclass': 877576641})
         self.check_not_err(n.node(data, {'x': 'It\'s working'}), expected={'class': 14, 'subclass': 1474979323})
-        self.check_err(n.node(data, {'x': 'It\\\'s working'}), expected={'class': 14, 'subclass': 1474979323})
+        self.check_err(n.node(data, {'x': 'It\\\\\'s working'}), expected={'class': 14, 'subclass': 1474979323})
         self.check_err(n.way(data, {'x': 'C00;C1;C22'}, [0]), expected={'class': 15, 'subclass': 1785050832})
         self.check_err(n.way(data, {'x': 'C1'}, [0]), expected={'class': 15, 'subclass': 1785050832})
         self.check_not_err(n.way(data, {'x': 'C12'}, [0]), expected={'class': 15, 'subclass': 1785050832})
