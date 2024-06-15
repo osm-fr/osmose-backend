@@ -551,3 +551,13 @@ node[x!~/It's\sworking/] {
   assertMatch: "node x=\"It\\\\'s working\"";
   assertNoMatch: "node x=\"It's working\"";
 }
+
+node[to_int("-3") + to_short("4") * to_long("2") = 5] {
+  throwWarning: "test";
+  assertMatch: "node x=y";
+}
+
+node[to_float("3.14e1") = 31.4][to_double("3.1415e1") = 31.415] {
+  throwWarning: "test";
+  assertMatch: "node x=y";
+}
