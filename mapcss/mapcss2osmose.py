@@ -814,7 +814,7 @@ def to_p(t):
     elif t['type'] == 'zoom_selector':
         return "" # Ignore
     elif t['type'] == 'quoted':
-        return "'" + t['value'].replace("'", "\\'") + "'"
+        return "'" + t['value'].replace('\\', '\\\\').replace("'", "\\'") + "'"
     elif t['type'] == 'osmtag':
         return "'" + t['value'] + "'"
     elif t['type'] == 'regexExpression':
