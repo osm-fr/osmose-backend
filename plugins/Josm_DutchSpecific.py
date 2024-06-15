@@ -599,7 +599,7 @@ class Josm_DutchSpecific(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((not set_abbrname) and (mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss._tag_capture(capture_tags, 1, tags, 'place')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_293c2706), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_2f938f56, '^(Adr|Anth?|Chr?|Corn|Fred|Hub|Jacq?|Joh|Jos|Mac|Nic|Ph|Th)\.'), mapcss._tag_capture(capture_tags, 3, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'NL')))
+                try: match = ((not set_abbrname) and (mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss._tag_capture(capture_tags, 1, tags, 'place')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_293c2706), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_2f938f56, '^(Adr|Anth?|Chr?|Corn|Fred|Hub|Jacq?|Joh|Jos|Mac|Nic|Ph|Th)\\.'), mapcss._tag_capture(capture_tags, 3, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'NL')))
                 except mapcss.RuleAbort: pass
             if match:
                 # set .abbrname
@@ -1479,11 +1479,11 @@ class Josm_DutchSpecific(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:forward'), mapcss._value_capture(capture_tags, 1, 'NL:C3'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'oneway') != mapcss._value_const_capture(capture_tags, 2, 'yes', 'yes')) and (mapcss.regexp_test(self.re_4d17a717, mapcss.join_list('', mapcss.tag_regex(tags, self.re_3894ceb2)))) and (mapcss._tag_capture(capture_tags, 4, tags, 'highway') != mapcss._value_const_capture(capture_tags, 4, 'construction', 'construction')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 5, self.re_1d478f9e, '\bNL:C0?2\b'), mapcss._tag_capture(capture_tags, 5, tags, 'traffic_sign:backward'))))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:forward'), mapcss._value_capture(capture_tags, 1, 'NL:C3'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'oneway') != mapcss._value_const_capture(capture_tags, 2, 'yes', 'yes')) and (mapcss.regexp_test(self.re_4d17a717, mapcss.join_list('', mapcss.tag_regex(tags, self.re_3894ceb2)))) and (mapcss._tag_capture(capture_tags, 4, tags, 'highway') != mapcss._value_const_capture(capture_tags, 4, 'construction', 'construction')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 5, self.re_1d478f9e, '\\bNL:C0?2\\b'), mapcss._tag_capture(capture_tags, 5, tags, 'traffic_sign:backward'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:forward'), mapcss._value_capture(capture_tags, 1, 'NL:C03'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'oneway') != mapcss._value_const_capture(capture_tags, 2, 'yes', 'yes')) and (mapcss.regexp_test(self.re_4d17a717, mapcss.join_list('', mapcss.tag_regex(tags, self.re_3894ceb2)))) and (mapcss._tag_capture(capture_tags, 4, tags, 'highway') != mapcss._value_const_capture(capture_tags, 4, 'construction', 'construction')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 5, self.re_1d478f9e, '\bNL:C0?2\b'), mapcss._tag_capture(capture_tags, 5, tags, 'traffic_sign:backward'))))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:forward'), mapcss._value_capture(capture_tags, 1, 'NL:C03'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'oneway') != mapcss._value_const_capture(capture_tags, 2, 'yes', 'yes')) and (mapcss.regexp_test(self.re_4d17a717, mapcss.join_list('', mapcss.tag_regex(tags, self.re_3894ceb2)))) and (mapcss._tag_capture(capture_tags, 4, tags, 'highway') != mapcss._value_const_capture(capture_tags, 4, 'construction', 'construction')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 5, self.re_1d478f9e, '\\bNL:C0?2\\b'), mapcss._tag_capture(capture_tags, 5, tags, 'traffic_sign:backward'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -2046,11 +2046,11 @@ class Josm_DutchSpecific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'footway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'cycleway')) and (mapcss._tag_capture(capture_tags, 2, tags, 'cycleway') != mapcss._value_const_capture(capture_tags, 2, 'no', 'no')) and (mapcss._tag_capture(capture_tags, 3, tags, 'cycleway') != mapcss._value_const_capture(capture_tags, 3, 'lane', 'lane')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 4, self.re_7537ca1e, '\bNL:G0?7\b'), mapcss._tag_capture(capture_tags, 4, tags, 'traffic_sign'))) and (mapcss.inside(self.father.config.options, 'NL')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'footway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'cycleway')) and (mapcss._tag_capture(capture_tags, 2, tags, 'cycleway') != mapcss._value_const_capture(capture_tags, 2, 'no', 'no')) and (mapcss._tag_capture(capture_tags, 3, tags, 'cycleway') != mapcss._value_const_capture(capture_tags, 3, 'lane', 'lane')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 4, self.re_7537ca1e, '\\bNL:G0?7\\b'), mapcss._tag_capture(capture_tags, 4, tags, 'traffic_sign'))) and (mapcss.inside(self.father.config.options, 'NL')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'footway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'segregated') == mapcss._value_capture(capture_tags, 1, 'yes')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_7537ca1e, '\bNL:G0?7\b'), mapcss._tag_capture(capture_tags, 2, tags, 'traffic_sign'))) and (mapcss.inside(self.father.config.options, 'NL')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'footway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'segregated') == mapcss._value_capture(capture_tags, 1, 'yes')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_7537ca1e, '\\bNL:G0?7\\b'), mapcss._tag_capture(capture_tags, 2, tags, 'traffic_sign'))) and (mapcss.inside(self.father.config.options, 'NL')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("NL German style tagging")
@@ -2406,7 +2406,7 @@ class Josm_DutchSpecific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'cycleway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'vehicle') == mapcss._value_capture(capture_tags, 1, 'no')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'bicycle')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_5f649d1b, '\bNL:(C0?1|C0?9|C14|C15|D103|D104)\b'), mapcss._tag_capture(capture_tags, 3, tags, 'traffic_sign'))) and (not mapcss._tag_capture(capture_tags, 4, tags, 'vehicle:conditional')) and (not mapcss._tag_capture(capture_tags, 5, tags, 'bicycle:conditional')) and (mapcss.inside(self.father.config.options, 'NL')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'cycleway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'vehicle') == mapcss._value_capture(capture_tags, 1, 'no')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'bicycle')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_5f649d1b, '\\bNL:(C0?1|C0?9|C14|C15|D103|D104)\\b'), mapcss._tag_capture(capture_tags, 3, tags, 'traffic_sign'))) and (not mapcss._tag_capture(capture_tags, 4, tags, 'vehicle:conditional')) and (not mapcss._tag_capture(capture_tags, 5, tags, 'bicycle:conditional')) and (mapcss.inside(self.father.config.options, 'NL')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("NL unusual values")
@@ -2540,7 +2540,7 @@ class Josm_DutchSpecific(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((not set_abbrname) and (mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss._tag_capture(capture_tags, 1, tags, 'highway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_293c2706), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_2f938f56, '^(Adr|Anth?|Chr?|Corn|Fred|Hub|Jacq?|Joh|Jos|Mac|Nic|Ph|Th)\.'), mapcss._tag_capture(capture_tags, 3, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'NL')))
+                try: match = ((not set_abbrname) and (mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss._tag_capture(capture_tags, 1, tags, 'highway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_293c2706), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_2f938f56, '^(Adr|Anth?|Chr?|Corn|Fred|Hub|Jacq?|Joh|Jos|Mac|Nic|Ph|Th)\\.'), mapcss._tag_capture(capture_tags, 3, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'NL')))
                 except mapcss.RuleAbort: pass
             if match:
                 # set .abbrname
@@ -2564,7 +2564,7 @@ class Josm_DutchSpecific(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((not set_abbrname) and (mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss._tag_capture(capture_tags, 1, tags, 'place')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_293c2706), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_2f938f56, '^(Adr|Anth?|Chr?|Corn|Fred|Hub|Jacq?|Joh|Jos|Mac|Nic|Ph|Th)\.'), mapcss._tag_capture(capture_tags, 3, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'NL')))
+                try: match = ((not set_abbrname) and (mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss._tag_capture(capture_tags, 1, tags, 'place')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_293c2706), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_2f938f56, '^(Adr|Anth?|Chr?|Corn|Fred|Hub|Jacq?|Joh|Jos|Mac|Nic|Ph|Th)\\.'), mapcss._tag_capture(capture_tags, 3, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'NL')))
                 except mapcss.RuleAbort: pass
             if match:
                 # set .abbrname
@@ -3400,7 +3400,7 @@ class Josm_DutchSpecific(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((not set_abbrname) and (mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss._tag_capture(capture_tags, 1, tags, 'place')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_293c2706), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_2f938f56, '^(Adr|Anth?|Chr?|Corn|Fred|Hub|Jacq?|Joh|Jos|Mac|Nic|Ph|Th)\.'), mapcss._tag_capture(capture_tags, 3, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'NL')))
+                try: match = ((not set_abbrname) and (mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss._tag_capture(capture_tags, 1, tags, 'place')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_293c2706), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_2f938f56, '^(Adr|Anth?|Chr?|Corn|Fred|Hub|Jacq?|Joh|Jos|Mac|Nic|Ph|Th)\\.'), mapcss._tag_capture(capture_tags, 3, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'NL')))
                 except mapcss.RuleAbort: pass
             if match:
                 # set .abbrname
