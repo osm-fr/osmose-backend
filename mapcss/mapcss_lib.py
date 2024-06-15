@@ -585,18 +585,43 @@ def tag_regex(tags, regex):
 
 #to_short(str)
 #    returns the string argument as a short [since r16110]
+def to_short(string):
+    try:
+        return int(string)
+    except:
+        return None
 
 #to_int(str)
 #    returns the string argument as a int [since r16110]
+def to_int(string):
+    try:
+        return int(string)
+    except:
+        return None
 
 #to_long(str)
 #    returns the string argument as a long [since r16110]
+def to_long(string):
+    try:
+        return int(string)
+    except:
+        return None
 
 #to_float(str)
 #    returns the string argument as a float [since r16110]
+def to_float(string):
+    try:
+        return float(string)
+    except:
+        return None
 
 #to_double(str)
 #    returns the string argument as a double [since r16110]
+def to_double(string):
+    try:
+        return float(string)
+    except:
+        return None
 
 #uniq(str1, str2, str3, ...)
 #    returns a list of strings that only have unique values from an array of strings [since r15323]
