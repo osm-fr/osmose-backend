@@ -34,10 +34,10 @@ FROM
     relation_members.member_id = ways.id
   LEFT JOIN relations ON
     relations.id = relation_members.relation_id AND
-    relations.tags ?| ARRAY['noref', 'ref', 'nat_ref', 'int_ref']
+    relations.tags ?| ARRAY['noref', 'ref', 'nat_ref', 'int_ref', 'unsigned_ref']
 WHERE
   ways.highway = 'motorway' AND
-  NOT ways.tags ?| ARRAY['noref', 'ref', 'nat_ref', 'int_ref'] AND
+  NOT ways.tags ?| ARRAY['noref', 'ref', 'nat_ref', 'int_ref', 'unsigned_ref'] AND
   relations.id IS NULL
 """
 
