@@ -7,7 +7,7 @@ services:
         source: ../osmose_config_password-example.py
         target: /opt/osmose-backend/osmose_config_password.py
     environment:
-      - URL_FRONTEND_UPDATE=http://frontend:20009/control/send-update
+      - URL_FRONTEND_UPDATE=http://api:20009/control/send-update
     networks:
       - osmose-frontend
 

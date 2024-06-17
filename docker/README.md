@@ -198,4 +198,4 @@ To upload the results of the analysis to the frontend, use:
 docker-compose -f docker-compose.yml -f docker-compose-dev.yml -f docker-compose-frontend.yml run --rm backend bash
 ```
 
-The result will be available at: http://localhost:20009/map?useDev=all
+The result will be available at: http://127.0.0.1:8080/fr/issues/open?item=xxxx&useDevItem=all
