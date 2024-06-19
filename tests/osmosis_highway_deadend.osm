@@ -186,6 +186,18 @@
   <node id='171' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85202358367' lon='5.83921193808' />
   <node id='172' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85178500585' lon='5.83895981044' />
   <node id='173' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85202027009' lon='5.83973182267' />
+  <node id='174' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85098226429' lon='5.83920565367' />
+  <node id='175' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85098624888' lon='5.83964351795' />
+  <node id='176' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85103617971' lon='5.83964232713' />
+  <node id='177' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85103357782' lon='5.83935640558' />
+  <node id='178' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85098364698' lon='5.8393575964' />
+  <node id='179' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85103058105' lon='5.83920304636' />
+  <node id='180' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85102846995' lon='5.83903679606' />
+  <node id='181' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85106783112' lon='5.83906228459' />
+  <node id='182' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85102925854' lon='5.83909889811' />
+  <node id='183' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.85099304486' lon='5.83909892435'>
+    <tag k='amenity' v='bicycle_parking' />
+  </node>
   <way id='1000' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='1' />
     <nd ref='2' />
@@ -775,6 +787,8 @@
   </way>
   <way id='1086' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='160' />
+    <nd ref='179' />
+    <nd ref='174' />
     <nd ref='159' />
     <tag k='highway' v='cycleway' />
   </way>
@@ -843,5 +857,27 @@
     <nd ref='172' />
     <tag k='highway' v='trunk' />
     <tag k='oneway' v='yes' />
+  </way>
+  <way id='1098' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='174' />
+    <nd ref='178' />
+    <nd ref='175' />
+    <nd ref='176' />
+    <nd ref='177' />
+    <nd ref='178' />
+    <tag k='highway' v='cycleway' />
+  </way>
+  <way id='1099' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='179' />
+    <nd ref='182' />
+    <nd ref='180' />
+    <nd ref='181' />
+    <nd ref='182' />
+    <tag k='highway' v='cycleway' />
+  </way>
+  <way id='1100' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='183' />
+    <nd ref='182' />
+    <tag k='highway' v='cycleway' />
   </way>
 </osm>
