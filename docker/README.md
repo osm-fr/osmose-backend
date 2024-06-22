@@ -180,12 +180,22 @@ then run `osmose-run` again. You can add the `--skip-init` parameter to speed up
 
 ### Showing the results on the Osmose Frontend Map
 
-Quick Osmose Frontend setup:
+Quick Osmose Frontend setup.
+
+First time build
 ```
 git clone https://github.com/osm-fr/osmose-frontend.git
 cd osmose-frontend/docker
 curl https://osmose.openstreetmap.fr/export/osmose-menu.sql.bz2 | bzcat > osmose-menu.sql
 docker-compose build
+docker-compose -f docker-compose.yml -f docker-compose-test.yml up -d postgres
+# Wait fwe seconds for postgres ready
+docker-compose -f docker-compose.yml -f docker-compose-test.yml run --rm api bash -c "cd web_api/static && npm run build"
+docker-compose -f docker-compose.yml -f docker-compose-test.yml stop postgres
+```
+
+Run the frontend
+```
 docker-compose -f docker-compose.yml -f docker-compose-test.yml up
 ```
 
@@ -198,4 +208,4 @@ To upload the results of the analysis to the frontend, use:
 docker-compose -f docker-compose.yml -f docker-compose-dev.yml -f docker-compose-frontend.yml run --rm backend bash
 ```
 
-The result will be available at: http://127.0.0.1:8080/fr/issues/open?item=xxxx&useDevItem=all
+The result will be available at: http://127.0.0.1:8080/en/issues/open?item=xxxx&useDevItem=all
