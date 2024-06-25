@@ -42,7 +42,7 @@ class Analyser_Merge_Police_FR_gn(Analyser_Merge_Point):
                 SourceDataGouv(
                     attribution="data.gouv.fr:Ministère de l'Intérieur",
                     dataset="5369993fa3a729239d2051cd",
-                    resource="d6a43ef2-d302-4456-90e9-ff2c47cac562"),
+                    resource="17320fe6-a896-4686-93e6-502be2ad23f2"),
                 separator = ";"),
             Load_XY("geocodage_x_GPS", "geocodage_y_GPS",
                 where = lambda row: "Centre d'information et de recrutement" not in row["service"] and "motorisé" not in row["service"] ),
