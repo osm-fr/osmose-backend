@@ -70,5 +70,4 @@ class Analyser_Merge_Public_Equipment_FR_Lyon_Toilets(Analyser_Merge_Point):
                         "male": lambda res: 'yes' if res and res['hommes'] == 'true' else None,
                         "female": lambda res: 'yes' if res and res['femmes'] == 'true' else None,
                         "unisex": lambda res: 'yes' if res and res['unisexe'] == 'true' else None,
-                        "child": lambda res: 'yes' if res and res['enfants'] == 'true' else None,
                         "website": lambda res: res['web'] if res and res['web'] else None } )))
