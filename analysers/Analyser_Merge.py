@@ -197,7 +197,12 @@ CREATE INDEX missing_osm_index_shape ON missing_osm USING GIST(shape)
 """
 
 sql22 = """
-SELECT * FROM missing_osm
+SELECT DISTINCT ON(id, type)
+    *
+FROM
+    missing_osm
+ORDER BY
+    id, type
 """
 
 sql30 = """
