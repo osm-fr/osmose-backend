@@ -206,6 +206,39 @@ CREATE INDEX idx_multipolygons_tags ON {0}.multipolygons USING gist (tags);
 ANALYZE {0}.multipolygons;
 """
 
+    sql_create_polygons = """
+CREATE UNLOGGED TABLE {0}.polygons AS
+SELECT
+    'R' AS type,
+    id,
+    tags,
+    poly,
+    poly_proj
+FROM
+    {0}.multipolygons
+WHERE
+    is_valid
+UNION ALL
+SELECT
+    'W' AS type,
+    id,
+    tags,
+    ST_MakePolygon(linestring) AS poly,
+    ST_MakePolygon(ST_Transform(linestring, {1})) AS poly_proj
+FROM
+    ways
+WHERE
+    tags != ''::hstore AND
+    is_polygon AND
+    ST_IsValid(ST_MakePolygon(ST_Transform(linestring, {1})))
+;
+
+CREATE INDEX idx_polygons ON {0}.polygons USING gist(poly);
+CREATE INDEX idx_polygons_proj ON {0}.polygons USING gist(poly_proj);
+CREATE INDEX idx_polygons_tags ON {0}.polygons USING gist(tags);
+ANALYZE {0}.polygons;
+"""
+
     sql_create_buildings = """
 CREATE UNLOGGED TABLE {0}.buildings AS
 SELECT
@@ -368,6 +401,15 @@ ANALYZE {0}.buildings;
                 elif table == 'touched_multipolygons':
                     self.requires_tables_build(['multipolygons'])
                     self.create_view_touched('multipolygons', 'R')
+                elif table == 'polygons':
+                    self.requires_tables_build(["multipolygons"])
+                    self.giscurs.execute(self.sql_create_polygons.format(self.config.db_schema.split(',')[0], self.config.options.get("proj")))
+                elif table == 'touched_polygons':
+                    self.requires_tables_build(["polygons"])
+                    self.create_view_touched('polygons', ['W', 'R'])
+                elif table == 'not_touched_polygons':
+                    self.requires_tables_build(["polygons"])
+                    self.create_view_not_touched('polygons', ['W', 'R'])
                 elif table == 'buildings':
                     self.giscurs.execute(self.sql_create_buildings.format(self.config.db_schema.split(',')[0], self.config.options.get("proj")))
                 elif table == 'touched_buildings':
@@ -497,10 +539,11 @@ SELECT
 FROM
     {0}
     JOIN transitive_touched ON
-        transitive_touched.data_type = '{1}' AND
-        {0}.{2} = transitive_touched.id
+        transitive_touched.data_type = ANY(%s) AND
+        {0}.{1} = transitive_touched.id
 """
-        self.giscurs.execute(sql.format(table, type, id))
+        type = type if isinstance(type, (list, tuple)) else [type]
+        self.giscurs.execute(sql.format(table, id), (type, ))
 
     def create_view_not_touched(self, table, type, id = 'id'):
         """
@@ -513,12 +556,13 @@ SELECT
 FROM
     {0}
     LEFT JOIN transitive_touched ON
-        transitive_touched.data_type = '{1}' AND
-        {0}.{2} = transitive_touched.id
+        transitive_touched.data_type = ANY(%s) AND
+        {0}.{1} = transitive_touched.id
 WHERE
     transitive_touched.id IS NULL
 """
-        self.giscurs.execute(sql.format(table, type, id))
+        type = type if isinstance(type, (list, tuple)) else [type]
+        self.giscurs.execute(sql.format(table, id), (type, ))
 
     def run00(self, sql, callback = None):
         if self.explain_sql:
