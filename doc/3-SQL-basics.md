@@ -173,6 +173,7 @@ The available common tables are (see full definition in [Analyser_Osmosis.py](ht
 * `highway_ends`: the start and ends of all highways ways.
 * `buildings`: from ways (and not from multipolygon relations), with tags normalization and re-projected in local country _projection_ as _polygons_.
 * `multipolygons`: multipolygon relations with relation id, relation tags, geometry and projected geometry, and whether the multipolygon is valid.
+* `polygons`: valid polygons from relations and ways with osm object type, id, tags, geometry and projected geometry
 
 The dependencie on this common tables should be declared in the analyzer class:
 ```python
