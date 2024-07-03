@@ -1071,7 +1071,7 @@ class Select:
     def __init__(self, types = [], tags = {}):
         """
         On witch OSM we try to join data set.
-        @param types: object types, array of "relations", "ways" and "nodes"
+        @param types: object types, array of "relations", "ways", "nodes" and "polygons"
         @param tags: dict of tags or array of dicts, array mean "OR"
         """
         self.types = types
@@ -1273,12 +1273,12 @@ verification of this data.'''))
         return SourceVersion.version(self.parser.source.time(), self.__class__)
 
     def typeGeom(self):
-        typeSelect = {'N': 'geom', 'W': 'linestring', 'R': 'relation_locate(id)'}
-        typeGeom = {'N': 'geom', 'W': 'linestring', 'R': 'relation_locate(id)'}
+        typeSelect = {'N': 'geom', 'W': 'linestring', 'R': 'relation_locate(id)', 'P': 'poly'}
+        typeGeom = {'N': 'geom', 'W': 'linestring', 'R': 'relation_locate(id)', 'P': 'poly'}
         if self.conflate.osmRef == "NULL" or self.possible_merge:
-            typeShape = {'N': 'geom', 'W': 'linestring', 'R': 'relation_shape(id)'}
+            typeShape = {'N': 'geom', 'W': 'linestring', 'R': 'relation_shape(id)', 'P': 'poly'}
         else:
-            typeShape = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
+            typeShape = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL', 'P': 'NULL'}
         return [typeSelect, typeGeom, typeShape]
 
     def analyser_osmosis_common(self):
@@ -1293,9 +1293,9 @@ verification of this data.'''))
         if self.parser.imported_srid():
             typeSelect, typeGeom, typeShape = self.typeGeom()
         else:
-            typeSelect = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
-            typeGeom = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
-            typeShape = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
+            typeSelect = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL', 'P': 'NULL'}
+            typeGeom = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL', 'P': 'NULL'}
+            typeShape = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL', 'P': 'NULL'}
 
         self.logger.log(u"Retrieve OSM item")
         where = Select.where_tags(self.conflate.select.tags)
@@ -1431,12 +1431,12 @@ open data and OSM.'''))
             self.update_official = None
 
     def typeGeom(self):
-        typeSelect = {'N': 'geom', 'W': 'linestring', 'R': 'relation_locate(id)'}
-        typeGeom = {'N': 'geom', 'W': 'way_locate(linestring)', 'R': 'relation_locate(id)'}
+        typeSelect = {'N': 'geom', 'W': 'linestring', 'R': 'relation_locate(id)', 'P': 'poly'}
+        typeGeom = {'N': 'geom', 'W': 'way_locate(linestring)', 'R': 'relation_locate(id)', 'P': 'poly'}
         if self.conflate.osmRef == "NULL" or self.possible_merge:
-            typeShape = {'N': 'geom', 'W': 'ST_Envelope(linestring)', 'R': 'relation_shape(id)'}
+            typeShape = {'N': 'geom', 'W': 'ST_Envelope(linestring)', 'R': 'relation_shape(id)', 'P': 'poly'}
         else:
-            typeShape = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
+            typeShape = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL', 'P': 'NULL'}
         return [typeSelect, typeGeom, typeShape]
 
     def analyser_osmosis_common(self):
