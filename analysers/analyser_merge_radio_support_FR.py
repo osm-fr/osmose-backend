@@ -35,7 +35,7 @@ class _Analyser_Merge_Radio_Support_FR(Analyser_Merge_Point):
             title = T_('Radio support ({0}) update', title))
 
         self.communeNameIndexedByInsee = {}
-        with open("dictionaries/FR/BddCommunes", "r", encoding="utf-8") as f:
+        with open("dictionaries/Lang_fr/BddCommunes", "r", encoding="utf-8") as f:
             for x in f:
                 x = x.split("\t")
                 code_insee = x[0]

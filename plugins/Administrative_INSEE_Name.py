@@ -62,7 +62,7 @@ information from local authorities / ground usage.'''))
             title = T_('Municipality name does not match INSEE code'),
             **doc)
 
-        lst = self.father.ToolsReadList("dictionaries/FR/BddCommunes")
+        lst = self.father.ToolsReadList("dictionaries/Lang_fr/BddCommunes")
         self.communeNameIndexedByInsee = {}
 
         for x in lst:

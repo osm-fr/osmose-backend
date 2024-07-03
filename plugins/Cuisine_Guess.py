@@ -39,7 +39,7 @@ class Cuisine_Guess(Plugin):
             title = T_('Suggestion of `cuisine` value'),
             detail = T_(detail))
 
-        self.taster = Cuisine_Guess_lib.Cuisine('dictionaries/FR/cuisine.csv')
+        self.taster = Cuisine_Guess_lib.Cuisine('dictionaries/Lang_fr/cuisine.csv')
 
     def node(self, data, tags):
         if 'name' not in tags or tags.get('amenity') not in ('restaurant', 'fast_food'):
