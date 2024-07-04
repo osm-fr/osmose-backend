@@ -155,7 +155,8 @@ WHERE
   (
     (tags?'amenity'  AND tags->'amenity' IN ('parking_entrance', 'parking', 'ferry_terminal')) OR
     (tags?'entrance' AND tags->'entrance' IN ('garage', 'emergency', 'yes')) OR
-    (tags?'aerialway' AND tags->'aerialway' = 'station')
+    (tags?'aerialway' AND tags->'aerialway' = 'station') OR
+    (tags?'noexit' AND tags->'noexit' = 'yes')
   )
 UNION ALL
 SELECT DISTINCT
