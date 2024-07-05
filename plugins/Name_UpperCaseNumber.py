@@ -25,7 +25,7 @@ from plugins.Plugin import Plugin
 
 class Name_UpperCaseNumber(Plugin):
 
-    only_for = ["fr", "es", "it", "pt"]
+    only_for = ["fr", "ES", "it", "pt"] # languages fr, it, pt worldwide, Spanish (es) only for Iberian Spain (ES), hence country code
 
     def init(self, logger):
         Plugin.init(self, logger)
