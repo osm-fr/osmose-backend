@@ -2,6 +2,7 @@
 from urllib.parse import unquote
 import re
 from modules.OsmoseTranslation import T_
+from pint import UnitRegistry
 
 # Utils
 
@@ -631,6 +632,29 @@ def to_double(string):
 def uniq_list(l):
     return set(l)
 
+# siunit_length(str)
+#    convert length units to meter (fault tolerant, ignoring white space)
+_ureg = UnitRegistry()
+_ftin_re = re.compile("^(-?)(?:(\\d+(?:\\.\\d+)?)(ft|'))? ?(?:(\\d+(?:\\.\\d+)?)(in|\"))?$")
+def siunit_length(string):
+    if not string:
+        return None_value
+    string = string.replace(',', '.', 1)
+    try:
+        m_ftin = re.match(_ftin_re, string)
+        if m_ftin and (m_ftin.group(2) or m_ftin.group(4)):
+            # Pint can't handle feet'inch" directly
+            parsed = _ureg.Quantity(m_ftin.group(1) + (m_ftin.group(2) or "0") + 'ft') + _ureg.Quantity(m_ftin.group(1) + (m_ftin.group(4) or "0") + 'in')
+        else:
+            parsed = _ureg.Quantity(string)
+        if parsed.dimensionless:
+            parsed = parsed * _ureg.meter # default = meter
+        parsed = float(parsed.to(_ureg.meter).magnitude)
+        if not 'e' in str(parsed): # Not sure how to deal with 10^x numbers, but they're rare. Just leave them as is
+            parsed = round(parsed, 5) # Round to avoid Python float precision limitation giving numbers with decimals 0000001 or 999998 or so
+        return str_value(parsed)
+    except:
+        return None_value
 
 # Other functions
 
