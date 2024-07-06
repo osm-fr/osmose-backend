@@ -561,3 +561,27 @@ node[to_float("3.14e1") = 31.4][to_double("3.1415e1") = 31.415] {
   throwWarning: "test";
   assertMatch: "node x=y";
 }
+
+node[tag_length][siunit_length(tag(tag_length)) == "1.2"] {
+  throwWarning: tr("test unit conversion {0} -> {1}", "{0.value}", siunit_length(tag(tag_length)));
+  assertMatch: "node tag_length=1.2";
+}
+node[tag_length][siunit_length(tag(tag_length)) == tag(b)] {
+  throwWarning: tr("test unit conversion {0} -> {1}", "{0.value}", siunit_length(tag(tag_length)));
+  assertMatch: "node tag_length=\"  1,3 m \" b=1.3";
+  assertMatch: "node tag_length=1.4m         b=1.4";
+  assertMatch: "node tag_length=150cm        b=1.5";
+  assertMatch: "node tag_length=1600.0mm     b=1.6";
+  assertMatch: "node tag_length=1.7km        b=1700.0";
+  assertMatch: "node tag_length=-1.8km       b=-1800.0";
+  assertMatch: "node tag_length=10ft         b=3.048";
+  assertMatch: "node tag_length=20'          b=6.096";
+  assertMatch: "node tag_length=100in        b=2.54";
+  assertMatch: "node tag_length=200\"        b=5.08";
+  assertMatch: "node tag_length=1nmi         b=1852.0";
+  assertMatch: "node tag_length=1mi          b=1609.344";
+  assertMatch: "node tag_length=\"10ft 1in\" b=3.0734";
+  assertMatch: "node tag_length=20'2\"       b=6.1468";
+  assertMatch: "node tag_length=-20'2\"      b=-6.1468";
+  assertNoMatch: "node tag_length=Hello      b=0.0";
+}
