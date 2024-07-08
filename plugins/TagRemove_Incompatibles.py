@@ -30,7 +30,9 @@ class TagRemove_Incompatibles(Plugin):
         self.errors[900] = self.def_class(item = 4030, level = 1, tags = ['tag', 'fix:chair'],
             title = T_('Tag conflict'),
             detail = T_(
-'''The object contains two incompatible tags.'''),
+'''This object has two tags that represent different features. According to the principle of
+[one feature, one OSM element](https://wiki.openstreetmap.org/wiki/One_feature,_one_OSM_element),
+these should be mapped as two separate objects.'''),
             trap = T_(
 '''Sometimes the object needs both tags.'''))
 
