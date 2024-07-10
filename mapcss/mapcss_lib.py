@@ -2,6 +2,7 @@
 from urllib.parse import unquote
 import re
 from modules.OsmoseTranslation import T_
+from plugins.modules.units import convertToUnit
 
 # Utils
 
@@ -631,6 +632,21 @@ def to_double(string):
 def uniq_list(l):
     return set(l)
 
+# siunit_length(str)
+#    convert length units to meter (fault tolerant, ignoring white space)
+def siunit_length(string):
+    if not string:
+        return None_value
+    string = string.replace(',', '.', 1).replace(' ', '')
+    try:
+        val = convertToUnit(string, 'm')
+        if val is None:
+            return None_value
+        if not 'e' in str(val): # Not sure how to deal with 10^x numbers, but they're rare. Just leave them as is
+            val = round(val, 5) # Round to avoid Python float precision limitation giving numbers with decimals 0000001 or 999998 or so
+        return str_value(val)
+    except:
+        return None_value
 
 # Other functions
 
