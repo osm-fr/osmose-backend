@@ -507,6 +507,7 @@ france_departement("rhone_alpes/loire", 7420, "FR-42")
 france_departement("rhone_alpes/rhone", 7378, "FR-69", include=[
     # Lyon
     'merge_public_equipment_FR_lyon_toilets',
+    'merge_bicycle_parking_FR_lyon',
 ])
 france_departement("rhone_alpes/savoie", 7425, "FR-73")
 france_departement("rhone_alpes/haute_savoie", 7407, "FR-74", include=[
