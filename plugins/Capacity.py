@@ -21,7 +21,8 @@ from modules.Stablehash import stablehash64
 from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 from plugins.Plugin import TestPluginCommon
-
+from plugins.modules.units import parseNumberUnitString
+import re
 
 class Capacity(Plugin):
     def init(self, logger):
@@ -32,7 +33,7 @@ class Capacity(Plugin):
             level=2,
             tags=["tag"],
             title=T_("Invalid capacity value"),
-            detail=T_("""Capacity tags should be positive integers."""),
+            detail=T_("""Capacity tags should be positive integers. For some objects it can also be used to indicate the effective volume of that object (by default in m³)."""),
             resource="https://wiki.openstreetmap.org/wiki/Key:capacity",
         )
         self.errors[30913] = self.def_class(
@@ -44,38 +45,72 @@ class Capacity(Plugin):
             resource="https://wiki.openstreetmap.org/wiki/Key:capacity",
         )
 
+        # Officially only m³ and l are supported
+        self.re_volumeUnits = re.compile(r'''
+            \w[3³]$ # Assume anything that ends with a 3 is a volume
+            |^cu(bic)?\s # Anything that starts with cu(bic) is a volume
+            |^([mcdhkMGT]|da|milli|centi|deci|deca|hecto|kilo|mega|tera)?[lL](it(er|re)s?)?$ # liter
+            |\b[gG]al(lon)?s?$ # gallons
+            |\bbar(rels?)?$ # barrels
+            |^(k|M{1,2}|G)?(bbl|cf)$ # imperial abbreviations with k, M, MM, G prefixes
+        ''', re.X)
+
     def node(self, data, tags):
         errors = []
         if ("capacity" not in tags
                 # Ignore errors that should be reported by generic analysers
-                or tags["capacity"] == ""):
+                or tags["capacity"] in ("", "unknown")):
             return []
-        # capacity (non-round number in cubic meters or liters) is also for volumes: storage_tank, reservoir_covered, water_tower
-        if "man_made" in tags or ("amenity" in tags and tags["amenity"] in ("waste_disposal", "recycling")):
-            return []
-        try:
-            total_capacity = int(tags["capacity"])
-            if total_capacity < 0:
-                return [{
-                    "class": 30913,
-                    "subclass": stablehash64('5capacity'),
-                    "text": T_('"{0}" value "{1}" is negative', "capacity", total_capacity),
-                }]
-        except ValueError:
+
+        c = parseNumberUnitString(tags["capacity"])
+        if c is None:
+            # Not parseable as a numeric value
+            return [{
+                "class": 30912,
+                "subclass": stablehash64('6capacity'),
+                "text": T_('"{0}" value "{1}" is not an integer nor a volume', "capacity", tags["capacity"]),
+            }]
+
+        if c["value"] < 0:
+            # Whether volume or integer, capacity should never be < 0
             errors.append({
                 "class": 30912,
-                "subclass": stablehash64('4capacity'),
-                "text": T_('"{0}" value "{1}" is not an integer', "capacity", tags["capacity"]),
+                "subclass": stablehash64('5capacity'),
+                "text": T_('"{0}" value "{1}" is negative', "capacity", tags["capacity"]),
             })
-            total_capacity = None
+
+        # Exclude tags that are likely volumes. Volumes don't have to be integers and can be unitless (meaning m³, the default)
+        if "man_made" in tags or "water" in tags or ("amenity" in tags and tags["amenity"] in ("waste_disposal", "recycling", "grit_bin", "waste_basket")):
+            return errors
+
+        if c["unit"] is not None:
+            # If a unit is specified it should be a volume. Tags like "capacity=1 bus" are bad, they should be capacity:bus=1
+            if not re.search(self.re_volumeUnits, c["unit"]):
+                errors.append({
+                    "class": 30912,
+                    "subclass": stablehash64('7capacity'),
+                    "text": T_('"{0}" value "{1}" is not an integer nor a volume', "capacity", tags["capacity"]),
+                })
+            return errors
+
+        total_capacity = None
+        if errors == []:
+            try:
+                # Not using c["value"] (a float) here because int(30.000) won't error, but int("30.000") will
+                total_capacity = int(tags["capacity"])
+            except:
+                errors.append({
+                    "class": 30912,
+                    "subclass": stablehash64('4capacity'),
+                    "text": T_('"{0}" value "{1}" is not an integer', "capacity", tags["capacity"]),
+                })
 
         for key, value in tags.items():
             if (
                 not key.startswith("capacity:")
                 # Ignore errors that should be reported by generic prefix analysers
                 or key == "capacity:"
-                or value == ""
-                or value in ("yes", "no")
+                or value in ("", "yes", "no", "unknown")
             ):
                 continue
 
@@ -121,21 +156,34 @@ class Test(TestPluginCommon):
         a = Capacity(None)
         a.init(None)
 
-        self.check_err(a.node(None, {"capacity": "a"}), {"class": 30912, "subclass": 4})
-        self.check_err(
-            a.node(None, {"capacity": "-1"}), {"class": 30912, "subclass": 5}
-        )
+        self.check_err(a.node(None, {"capacity": "a"}), expected={"class": 30912})
+        self.check_err(a.node(None, {"capacity": "3 ducks"}), expected={"class": 30912})
+        self.check_err(a.node(None, {"capacity": "-2 L"}), expected={"class": 30912})
+        self.check_err(a.node(None, {"capacity": "-1"}), expected={"class": 30912})
+        self.check_err(a.node(None, {"capacity": "-0.1"}), expected={"class": 30912})
         self.check_err(
             a.node(None, {"capacity": "1", "capacity:disabled": "-1"}),
-            {"class": 30912, "subclass": 5},
+            expected={"class": 30912},
         )
         self.check_err(
             a.node(None, {"capacity": "1", "capacity:disabled": "a", "amenity": "parking"}),
-            {"class": 30912, "subclass": 5},
+            expected={"class": 30912},
         )
         self.check_err(
             a.node(None, {"capacity": "1", "capacity:disabled": "2"}),
-            {"class": 30913, "subclass": 1},
+            expected={"class": 30913},
+        )
+        self.check_err(
+            a.node(None, {"capacity": "3", "capacity:disabled": "2.5"}),
+            expected={"class": 30912},
+        )
+        self.check_err(
+            a.node(None, {"capacity": "1.8", "amenity": "parking"}),
+            expected={"class": 30912},
+        )
+        self.check_err(
+            a.node(None, {"capacity": "30.000", "leisure": "stadium"}),
+            expected={"class": 30912},
         )
 
         assert not a.node(None, {"amenity": "restaurant"})
@@ -149,5 +197,7 @@ class Test(TestPluginCommon):
         assert not a.node(None, {"capacity": "1", "capacity:": "a"})
         assert not a.node(None, {"capacity:wheelchair": "1"})
 
+        assert not a.node(None, {"capacity": "123.45 l", "new_tag": "something_storage_related_not_whitelisted_yet"})
+        assert not a.node(None, {"capacity": "123.45 m³", "new_tag": "something_storage_related_not_whitelisted_yet"})
         assert not a.node(None, {"capacity": "123.45 m³", "man_made": "water_tower"})
         assert not a.node(None, {"capacity": "123.45", "amenity": "waste_disposal"})
