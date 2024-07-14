@@ -36,6 +36,7 @@ class Josm_numeric(PluginMapCSS):
         self.errors[9006030] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr('suspicious tag combination'))
         self.errors[9006031] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr('unusual value of {0}: use \'\' for foot and " for inches, no spaces', mapcss._tag_uncapture(capture_tags, '{0.key}')))
         self.errors[9006032] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr('unusual value of {0}: meters is default; only positive values; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, '{0.key}')))
+        self.errors[9006033] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr('Unusually large value of {0} in meters, possibly centimeter units are meant?', mapcss._tag_uncapture(capture_tags, '{0.key}')))
 
         self.re_066203d3 = re.compile(r'^[0-9]+$')
         self.re_09e9525d = re.compile(r'^[0-9]+,[0-9][0-9]?( (t|kg|st|lbs))?$')
@@ -1022,6 +1023,22 @@ class Josm_numeric(PluginMapCSS):
                 # assertMatch:"node maxstay=something"
                 # assertNoMatch:"node maxstay=unlimited"
                 err.append({'class': 9006028, 'subclass': 1976092293, 'text': mapcss.tr('unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit', mapcss._tag_uncapture(capture_tags, '{0.key}'), 'minutes', 'hours')})
+
+        # node[natural=tree][circumference][siunit_length(tag(circumference))>45]
+        if ('circumference' in keys and 'natural' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'natural') == mapcss._value_capture(capture_tags, 0, 'tree')) and (mapcss._tag_capture(capture_tags, 1, tags, 'circumference')) and (mapcss.siunit_length(mapcss.tag(tags, 'circumference')) > 45))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("Unusually large value of {0} in meters, possibly centimeter units are meant?","{0.key}")
+                # assertNoMatch:"node natural=tree circumference=\"100 cm\""
+                # assertNoMatch:"node natural=tree circumference=18.4"
+                # assertMatch:"node natural=tree circumference=200"
+                # assertNoMatch:"node natural=tree circumference=43"
+                # assertMatch:"node natural=tree circumference=82.4"
+                err.append({'class': 9006033, 'subclass': 556959007, 'text': mapcss.tr('Unusually large value of {0} in meters, possibly centimeter units are meant?', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         return err
 
@@ -2833,6 +2850,11 @@ class Test(TestPluginMapcss):
         self.check_not_err(n.node(data, {'maxstay': 'no'}), expected={'class': 9006028, 'subclass': 1976092293})
         self.check_err(n.node(data, {'maxstay': 'something'}), expected={'class': 9006028, 'subclass': 1976092293})
         self.check_not_err(n.node(data, {'maxstay': 'unlimited'}), expected={'class': 9006028, 'subclass': 1976092293})
+        self.check_not_err(n.node(data, {'circumference': '100 cm', 'natural': 'tree'}), expected={'class': 9006033, 'subclass': 556959007})
+        self.check_not_err(n.node(data, {'circumference': '18.4', 'natural': 'tree'}), expected={'class': 9006033, 'subclass': 556959007})
+        self.check_err(n.node(data, {'circumference': '200', 'natural': 'tree'}), expected={'class': 9006033, 'subclass': 556959007})
+        self.check_not_err(n.node(data, {'circumference': '43', 'natural': 'tree'}), expected={'class': 9006033, 'subclass': 556959007})
+        self.check_err(n.node(data, {'circumference': '82.4', 'natural': 'tree'}), expected={'class': 9006033, 'subclass': 556959007})
         self.check_err(n.way(data, {'123': 'foo'}, [0]), expected={'class': 9006001, 'subclass': 750700308})
         self.check_not_err(n.way(data, {'ref.1': 'foo'}, [0]), expected={'class': 9006001, 'subclass': 750700308})
         self.check_err(n.way(data, {'maxspeed': '-50'}, [0]), expected={'class': 9006026, 'subclass': 683878293})

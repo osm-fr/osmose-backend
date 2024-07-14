@@ -75,7 +75,6 @@ class Josm_combinations(PluginMapCSS):
         self.re_7346b495 = re.compile(r':backward')
         self.re_734e4397 = re.compile(r'^(yes|stepping_stones)$')
         self.re_78efbab0 = re.compile(r'(^|;)manual(;|$)')
-        self.re_7d1b2fa8 = re.compile(r'^((7[0-4]|[1-6]?[0-9])(\.[0-9]*)?( m)?|(2(4[0-5]|[0-3][0-9])|1?[0-9]?[0-9])((\.[0-9]*)?( ft|\')|\'(11|10|[0-9])(\.[0-9]*)?\"))$')
 
 
     def node(self, data, tags):
@@ -1189,12 +1188,12 @@ class Josm_combinations(PluginMapCSS):
                 # throwWarning:tr("{0} without {1} or {2}","{0.key}","maxspeed","maxspeed:*")
                 err.append({'class': 9001001, 'subclass': 480030366, 'text': mapcss.tr('{0} without {1} or {2}', mapcss._tag_uncapture(capture_tags, '{0.key}'), 'maxspeed', 'maxspeed:*')})
 
-        # *[man_made=communications_tower][height][height=~/^((7[0-4]|[1-6]?[0-9])(\.[0-9]*)?( m)?|(2(4[0-5]|[0-3][0-9])|1?[0-9]?[0-9])((\.[0-9]*)?( ft|\')|\'(11|10|[0-9])(\.[0-9]*)?\"))$/]
+        # *[man_made=communications_tower][height][siunit_length(tag(height))<75]
         if ('height' in keys and 'man_made' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'man_made') == mapcss._value_capture(capture_tags, 0, 'communications_tower')) and (mapcss._tag_capture(capture_tags, 1, tags, 'height')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_7d1b2fa8), mapcss._tag_capture(capture_tags, 2, tags, 'height'))))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'man_made') == mapcss._value_capture(capture_tags, 0, 'communications_tower')) and (mapcss._tag_capture(capture_tags, 1, tags, 'height')) and (mapcss.siunit_length(mapcss.tag(tags, 'height')) < 75))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
@@ -1211,7 +1210,7 @@ class Josm_combinations(PluginMapCSS):
                 # assertNoMatch:"node man_made=communications_tower height=4358'8\""
                 # assertMatch:"node man_made=communications_tower height=58"
                 # assertNoMatch:"node man_made=communications_tower height=75.72"
-                err.append({'class': 9001002, 'subclass': 467978856, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+                err.append({'class': 9001002, 'subclass': 1533608671, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
         # *[fixme][count(split(" ",tag("fixme")))==1][has_tag_key(tag("fixme"))]
         # *[FIXME][count(split(" ",tag("FIXME")))==1][has_tag_key(tag("FIXME"))]
@@ -3198,18 +3197,18 @@ class Josm_combinations(PluginMapCSS):
                 # throwWarning:tr("{0} without {1} or {2}","{0.key}","maxspeed","maxspeed:*")
                 err.append({'class': 9001001, 'subclass': 480030366, 'text': mapcss.tr('{0} without {1} or {2}', mapcss._tag_uncapture(capture_tags, '{0.key}'), 'maxspeed', 'maxspeed:*')})
 
-        # *[man_made=communications_tower][height][height=~/^((7[0-4]|[1-6]?[0-9])(\.[0-9]*)?( m)?|(2(4[0-5]|[0-3][0-9])|1?[0-9]?[0-9])((\.[0-9]*)?( ft|\')|\'(11|10|[0-9])(\.[0-9]*)?\"))$/]
+        # *[man_made=communications_tower][height][siunit_length(tag(height))<75]
         if ('height' in keys and 'man_made' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'man_made') == mapcss._value_capture(capture_tags, 0, 'communications_tower')) and (mapcss._tag_capture(capture_tags, 1, tags, 'height')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_7d1b2fa8), mapcss._tag_capture(capture_tags, 2, tags, 'height'))))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'man_made') == mapcss._value_capture(capture_tags, 0, 'communications_tower')) and (mapcss._tag_capture(capture_tags, 1, tags, 'height')) and (mapcss.siunit_length(mapcss.tag(tags, 'height')) < 75))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
                 # throwWarning:tr("{0} together with {1}","{0.tag}","{1.tag}")
                 # suggestAlternative:"man_made=tower + tower:type=communication + height"
-                err.append({'class': 9001002, 'subclass': 467978856, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+                err.append({'class': 9001002, 'subclass': 1533608671, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
         # *[fixme][count(split(" ",tag("fixme")))==1][has_tag_key(tag("fixme"))]
         # *[FIXME][count(split(" ",tag("FIXME")))==1][has_tag_key(tag("FIXME"))]
@@ -4450,18 +4449,18 @@ class Josm_combinations(PluginMapCSS):
                 # throwWarning:tr("{0} without {1} or {2}","{0.key}","maxspeed","maxspeed:*")
                 err.append({'class': 9001001, 'subclass': 480030366, 'text': mapcss.tr('{0} without {1} or {2}', mapcss._tag_uncapture(capture_tags, '{0.key}'), 'maxspeed', 'maxspeed:*')})
 
-        # *[man_made=communications_tower][height][height=~/^((7[0-4]|[1-6]?[0-9])(\.[0-9]*)?( m)?|(2(4[0-5]|[0-3][0-9])|1?[0-9]?[0-9])((\.[0-9]*)?( ft|\')|\'(11|10|[0-9])(\.[0-9]*)?\"))$/]
+        # *[man_made=communications_tower][height][siunit_length(tag(height))<75]
         if ('height' in keys and 'man_made' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'man_made') == mapcss._value_capture(capture_tags, 0, 'communications_tower')) and (mapcss._tag_capture(capture_tags, 1, tags, 'height')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_7d1b2fa8), mapcss._tag_capture(capture_tags, 2, tags, 'height'))))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'man_made') == mapcss._value_capture(capture_tags, 0, 'communications_tower')) and (mapcss._tag_capture(capture_tags, 1, tags, 'height')) and (mapcss.siunit_length(mapcss.tag(tags, 'height')) < 75))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
                 # throwWarning:tr("{0} together with {1}","{0.tag}","{1.tag}")
                 # suggestAlternative:"man_made=tower + tower:type=communication + height"
-                err.append({'class': 9001002, 'subclass': 467978856, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+                err.append({'class': 9001002, 'subclass': 1533608671, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
         # *[fixme][count(split(" ",tag("fixme")))==1][has_tag_key(tag("fixme"))]
         # *[FIXME][count(split(" ",tag("FIXME")))==1][has_tag_key(tag("FIXME"))]
@@ -4545,17 +4544,17 @@ class Test(TestPluginMapcss):
         self.check_not_err(n.node(data, {'amenity': 'recycling', 'collection_times': 'Sa[2,4] 8:00-11:00'}), expected={'class': 9001002, 'subclass': 1009884322})
         self.check_not_err(n.node(data, {'addr:housenumber': '42', 'source:addr': 'postman'}), expected={'class': 9001001, 'subclass': 886065920})
         self.check_err(n.node(data, {'source:addr': 'postman'}), expected={'class': 9001001, 'subclass': 886065920})
-        self.check_not_err(n.node(data, {'height': '4358\''}), expected={'class': 9001002, 'subclass': 467978856})
-        self.check_err(n.node(data, {'height': '245\'', 'man_made': 'communications_tower'}), expected={'class': 9001002, 'subclass': 467978856})
-        self.check_err(n.node(data, {'height': '224.22 ft', 'man_made': 'communications_tower'}), expected={'class': 9001002, 'subclass': 467978856})
-        self.check_not_err(n.node(data, {'height': '328.22 ft', 'man_made': 'communications_tower'}), expected={'class': 9001002, 'subclass': 467978856})
-        self.check_err(n.node(data, {'height': '74 m', 'man_made': 'communications_tower'}), expected={'class': 9001002, 'subclass': 467978856})
-        self.check_not_err(n.node(data, {'height': '75 m', 'man_made': 'communications_tower'}), expected={'class': 9001002, 'subclass': 467978856})
-        self.check_err(n.node(data, {'height': '0.8', 'man_made': 'communications_tower'}), expected={'class': 9001002, 'subclass': 467978856})
-        self.check_err(n.node(data, {'height': '231\'10.22"', 'man_made': 'communications_tower'}), expected={'class': 9001002, 'subclass': 467978856})
-        self.check_not_err(n.node(data, {'height': '4358\'8"', 'man_made': 'communications_tower'}), expected={'class': 9001002, 'subclass': 467978856})
-        self.check_err(n.node(data, {'height': '58', 'man_made': 'communications_tower'}), expected={'class': 9001002, 'subclass': 467978856})
-        self.check_not_err(n.node(data, {'height': '75.72', 'man_made': 'communications_tower'}), expected={'class': 9001002, 'subclass': 467978856})
+        self.check_not_err(n.node(data, {'height': '4358\''}), expected={'class': 9001002, 'subclass': 1533608671})
+        self.check_err(n.node(data, {'height': '245\'', 'man_made': 'communications_tower'}), expected={'class': 9001002, 'subclass': 1533608671})
+        self.check_err(n.node(data, {'height': '224.22 ft', 'man_made': 'communications_tower'}), expected={'class': 9001002, 'subclass': 1533608671})
+        self.check_not_err(n.node(data, {'height': '328.22 ft', 'man_made': 'communications_tower'}), expected={'class': 9001002, 'subclass': 1533608671})
+        self.check_err(n.node(data, {'height': '74 m', 'man_made': 'communications_tower'}), expected={'class': 9001002, 'subclass': 1533608671})
+        self.check_not_err(n.node(data, {'height': '75 m', 'man_made': 'communications_tower'}), expected={'class': 9001002, 'subclass': 1533608671})
+        self.check_err(n.node(data, {'height': '0.8', 'man_made': 'communications_tower'}), expected={'class': 9001002, 'subclass': 1533608671})
+        self.check_err(n.node(data, {'height': '231\'10.22"', 'man_made': 'communications_tower'}), expected={'class': 9001002, 'subclass': 1533608671})
+        self.check_not_err(n.node(data, {'height': '4358\'8"', 'man_made': 'communications_tower'}), expected={'class': 9001002, 'subclass': 1533608671})
+        self.check_err(n.node(data, {'height': '58', 'man_made': 'communications_tower'}), expected={'class': 9001002, 'subclass': 1533608671})
+        self.check_not_err(n.node(data, {'height': '75.72', 'man_made': 'communications_tower'}), expected={'class': 9001002, 'subclass': 1533608671})
         self.check_not_err(n.way(data, {'bicycle:forward': 'destination', 'oneway': '-1', 'oneway:bicycle': 'no'}, [0]), expected={'class': 9001002, 'subclass': 1751419774})
         self.check_not_err(n.way(data, {'bicycle:backward:conditional': 'yes @ (Mo-Fr)', 'oneway': 'yes', 'oneway:bicycle:conditional': 'no @ (Mo-Fr)'}, [0]), expected={'class': 9001002, 'subclass': 1751419774})
         self.check_not_err(n.way(data, {'bicycle:backward': 'destination', 'oneway': 'yes', 'oneway:bicycle': 'no'}, [0]), expected={'class': 9001002, 'subclass': 1751419774})
