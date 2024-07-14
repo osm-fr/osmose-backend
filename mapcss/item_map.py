@@ -351,6 +351,7 @@ item_map = \
  'numeric': {'class': {'Airport tagging': 9006022,
                        'Definition of {0} is unclear': 9006027,
                        'Unnecessary amount of decimal places': 9006021,
+                       'Unusually large value of {0} in meters, possibly centimeter units are meant?': 9006033,
                        'imprecise value of {0}': 9006029,
                        'negative {0} value': 9006023,
                        'numerical key': 9006001,
