@@ -86,7 +86,7 @@ FROM
 """
 
 sql30 = """
-SELECT
+SELECT DISTINCT
     relations.id,
     relation_members.relation_id,
     ST_AsText(relation_locate(relations.id))
