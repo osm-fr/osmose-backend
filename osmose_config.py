@@ -289,6 +289,7 @@ france_departement = gen_country('europe', 'france', download_repo=OSMFR, langua
     'merge_reservoir_FR',
     'merge_water_FR',
     'merge_road_FR',
+    'merge_forest_compartment_FR',
 ], **{'addr:city-admin_level': '8,9'})
 
 france_departement("alsace/bas_rhin", 7415, "FR-67", include=[
@@ -550,6 +551,7 @@ france_departement_dom = gen_country(None, country_base='france', download_repo=
     'merge_reservoir_FR',
     'merge_water_FR',
     'merge_road_FR',
+    'merge_forest_compartment_FR',
 ], **{'addr:city-admin_level': '8,9'})
 
 france_departement_dom(["central-america", "guadeloupe"], 1401835, "FR-GP", dep_code=971, proj=32620, phone_code="590")
