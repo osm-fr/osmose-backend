@@ -52,12 +52,12 @@ class Analyser_Merge_Bicycle_Parking_FR_Lyon(Analyser_Merge_Point):
                     mapping1 = {
                         "capacity": "capacite",
                         "bicycle_parking": lambda res: self.bicycle_parking.get(res.get("mobiliervelo")),
-                        "covered": lambda res: "yes" if res.get("abrite") else "no",
+                        "covered": lambda res: "yes" if res.get("abrite") == "true" else "no",
                     },
                     mapping2 = {
                         "start_date": "anneerealisation",
                         "ref:FR:GrandLyon": "nom",
-                        "operator": lambda res: None if res.get("gestionaire") == "Autre" else res.get("gestionaire"),
+                        "operator": lambda res: None if res.get("gestionnaire") == "Autre" else res.get("gestionnaire"),
                     })))
 
     bicycle_parking = {
