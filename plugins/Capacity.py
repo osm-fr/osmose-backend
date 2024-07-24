@@ -108,8 +108,8 @@ class Capacity(Plugin):
         for key, value in tags.items():
             if (
                 not key.startswith("capacity:")
-                # Ignore errors that should be reported by generic prefix analysers
-                or key == "capacity:"
+                # Ignore errors that should be reported by generic prefix analysers, and note/fixme/source tags
+                or key.lower().endswith((":", ":note", ":fixme", ":source"))
                 or value in ("", "yes", "no", "unknown")
             ):
                 continue
@@ -193,8 +193,9 @@ class Test(TestPluginCommon):
         assert not a.node(None, {"capacity:": "1"})
         assert not a.node(None, {"capacity:": ""})
         assert not a.node(None, {"capacity": ""})
-
         assert not a.node(None, {"capacity": "1", "capacity:": "a"})
+        assert not a.node(None, {"capacity": "1", "capacity:note": "Only for blue cars"})
+
         assert not a.node(None, {"capacity:wheelchair": "1"})
 
         assert not a.node(None, {"capacity": "123.45 l", "new_tag": "something_storage_related_not_whitelisted_yet"})
