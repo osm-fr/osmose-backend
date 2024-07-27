@@ -24,8 +24,8 @@
 
 import re
 
-_ftin_re = re.compile("^(-?)(?:(\\d+(?:\\.\\d+)?)(ft|')) ?(?:(\\d+(?:\\.\\d+)?)(in|\"))$") # Regex for combined feet/inch measures
-_numunit_re = re.compile(r"^(-?\d+(?:\.\d+)?) ?(\D.*)?$") # Regex for any number followed by an optional unit
+_ftin_re = re.compile("^(-?)(?:([0-9]+(?:\\.[0-9]+)?)(ft|')) ?(?:([0-9]+(?:\\.[0-9]+)?)(in|\"))$") # Regex for combined feet/inch measures
+_numunit_re = re.compile(r"^(-?[0-9]+(?:\.[0-9]+)?) ?([^0-9].*)?$") # Regex for any number followed by an optional unit
 _si_prefixes = {
     "n": 1E-9, "u": 1E-6, "µ": 1E-6, "m": 0.001, "c": 0.01, "d": 0.1, "da": 10, "h": 100, "k": 1000, "M": 1E6, "G": 1E9, "T": 1E12,
     "nano": 1E-9, "micro": 1E-6, "milli": 0.001, "centi": 0.01, "deci": 0.1, "deca": 10, "hecto": 100, "kilo": 1000, "mega": 1E6, "giga": 1E9, "tera": 1E12,
@@ -41,7 +41,7 @@ _si_prefixes = {
 #   Otherwise a dict with keys:
 #       value [float] - the number in the string
 #       unit [string or None] - the unit
-# For a string with multiple numbers/units, it converts it to a float of the largest unit (e.g. 3'4" becomes 3.33 ft)
+# For a string with multiple numbers/units, it converts it to a float of the largest unit (e.g. 3'4" becomes 3.33')
 def parseNumberUnitString(string, defaultUnit = None):
     if not string or not isinstance(string, str):
         return None
@@ -52,7 +52,7 @@ def parseNumberUnitString(string, defaultUnit = None):
     if m:
         return {
             "value": float(m.group(1) + m.group(2)) + float(m.group(1) + m.group(4))/12,
-            "unit": "ft"
+            "unit": "'"
         }
     # Regular numbers with optional unit
     m = re.fullmatch(_numunit_re, string)
@@ -69,7 +69,7 @@ def parseNumberUnitString(string, defaultUnit = None):
 # Input:
 #   x: either a string with a number + optional unit to parse, or a dict with value:[float] and unit:[string] keys
 #   convertTo: the unit to convert the x-input to (the abbreviation)
-#   If x is a string without unit, it assumes the default unit equals the unit of convertTo
+#   If x has no unit, it assumes the default unit equals the unit of convertTo
 # Returns:
 #   None if the input was None or the string couldn't be parsed into a number + optional unit
 #   The value [float] converted to convertTo units otherwise
@@ -81,7 +81,7 @@ def convertToUnit(x, convertTo):
         x = parseNumberUnitString(x, convertTo)
     if not x:
         return None
-    if x["unit"] == convertTo:
+    if x["unit"] is None or x["unit"] == convertTo:
         return x["value"]
 
     # Length based conversions
