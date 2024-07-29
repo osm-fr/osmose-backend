@@ -44,7 +44,7 @@ class Analyser_Merge_Bicycle_Parking_FR_Lyon(Analyser_Merge_Point):
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {"amenity": "bicycle_parking"}),
-                conflationDistance = 10,
+                conflationDistance = 15,
                 mapping = Mapping(
                     static1 = {"amenity": "bicycle_parking"},
                     static2 = {"source": self.source,
