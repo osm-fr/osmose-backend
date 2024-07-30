@@ -54,7 +54,7 @@ FROM
             nodes.id = way_nodes.node_id AND
             nodes.tags != ''::hstore AND
             nodes.tags ?| ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building', 'man_made'] AND
-            not (node.tags?'aeroway' AND node.tags->'aeroway' = 'parking_position') and
+            not (nodes.tags?'aeroway' AND nodes.tags->'aeroway' = 'parking_position') and
             NOT nodes.tags ?| ARRAY['proposed', 'construction']
     ORDER BY
       1 -- Just to force the query planner to does not merge sub and main request
