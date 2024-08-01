@@ -46,7 +46,7 @@ Sometimes, a small white line perpendicular to the road on the emergency stop st
             SHP(SourceDataGouv(
                 attribution="data.gouv.fr:Ministère de la Transition écologique",
                 dataset="57a837e2c751df5b90bb5dd4",
-                resource="92d86944-52e8-44c1-b4cc-b17ac82d70ed"),
+                resource="90a65602-3ca4-41d7-bf7c-23d435c916e1"),
                 zip='BORNAGE_TOUT.shp'),
             LoadGeomCentroid(
                 where = lambda row: (
