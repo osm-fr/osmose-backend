@@ -22,9 +22,19 @@
 from modules.OsmoseTranslation import T_
 from .Analyser_Merge import Analyser_Merge_Point, SourceDataGouv, SHP, LoadGeomCentroid, Conflate, Select, Mapping
 
-class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge_Point):
+class Analyser_Merge_Milestone_FR(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
         Analyser_Merge_Point.__init__(self, config, logger)
+
+        country = self.config.options.get("country")
+        if country and country.startswith('FR-GF'):
+            resource = 'e9288a97-faf1-4638-b3df-571ceae401f8'
+        elif country and country.startswith('FR-PM'):
+            resource = '9425939b-13f5-460d-a635-fcde0e05ade5'
+        elif country and country.startswith('FR-YT'):
+            resource = '65060ce7-acc5-4546-a1ce-b9b47b40383f'
+        else:
+            resource = '90a65602-3ca4-41d7-bf7c-23d435c916e1'
 
         doc = dict(
             detail = T_(
@@ -46,7 +56,7 @@ Sometimes, a small white line perpendicular to the road on the emergency stop st
             SHP(SourceDataGouv(
                 attribution="data.gouv.fr:Ministère de la Transition écologique",
                 dataset="57a837e2c751df5b90bb5dd4",
-                resource="90a65602-3ca4-41d7-bf7c-23d435c916e1"),
+                resource=resource),
                 zip='BORNAGE_TOUT.shp'),
             LoadGeomCentroid(
                 where = lambda row: (
@@ -72,4 +82,4 @@ Sometimes, a small white line perpendicular to the road on the emergency stop st
             return False
         else:
             # Filter only real milestone (not logical as DRD, FRG, CS etc...)
-            return row['nom_plo'][2:4] == 'PR'
+            return row['nom_plo'][2:4] == 'PR' or row['nom_plo'][3:5] == 'PR'
