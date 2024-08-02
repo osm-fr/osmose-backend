@@ -3,6 +3,11 @@
 ###########################################################################
 ##                                                                       ##
 ## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
+##              #-*- coding: utf-8 -*-
+
+###########################################################################
+##                                                                       ##
+## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -555,9 +560,11 @@ france_departement_dom = gen_country(None, country_base='france', download_repo=
 ], **{'addr:city-admin_level': '8,9'})
 
 france_departement_dom(["central-america", "guadeloupe"], 1401835, "FR-GP", dep_code=971, proj=32620, phone_code="590")
-france_departement_dom(["south-america", "guyane"], 1260551, "FR-GF", dep_code=973, language='fr_GF', proj=2972, phone_code="594")
+france_departement_dom(["south-america", "guyane"], 1260551, "FR-GF", dep_code=973, language='fr_GF', proj=2972, phone_code="594", include=[
+    'merge_milestone_FR_guyane',])
 france_departement_dom(["central-america", "martinique"], 1891495, "FR-MQ", dep_code=972, proj=32620, phone_code="596")
-france_departement_dom(["africa", "mayotte"], 1259885, "FR-YT", dep_code=976, proj=32738, phone_code="262")
+france_departement_dom(["africa", "mayotte"], 1259885, "FR-YT", dep_code=976, proj=32738, phone_code="262", include=[
+    'merge_milestone_FR_mayotte',])
 france_departement_dom(["africa", "reunion"], 1785276, "FR-RE", dep_code=974, proj=2975, phone_code="262")
 
 france_com = gen_country(None, country_base='france', download_repo=OSMFR, language='fr', municipality_ref='ref:INSEE',
@@ -597,6 +604,7 @@ france_com(["north-america", "saint_pierre_et_miquelon"], 3406826, "FR-PM", dep_
     'merge_natural_FR',
     'merge_reservoir_FR',
     'merge_water_FR',
+    'merge_milestone_FR_saint_pierre_et_miquelon',
     'merge_road_FR',
 ])
 france_com(["oceania", "wallis_et_futuna"], 290162, "FR-WF", proj=32701, phone_code="681", country="wallisetfutuna")
