@@ -23,7 +23,7 @@ termcolor
 pylama
 mypy
 types-certifi
-types-pkg_resources
+types-setuptools
 types-python-dateutil
 types-requests
 types-termcolor

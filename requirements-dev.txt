@@ -3,10 +3,3 @@ notebook
 pandas
 ipyleaflet
 scipy
-
-types-certifi
-types-pkg_resources
-types-python-dateutil
-types-requests
-types-termcolor
-types-toml
