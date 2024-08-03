@@ -36,7 +36,7 @@ class Josm_numeric(PluginMapCSS):
         self.errors[9006030] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr('suspicious tag combination'))
         self.errors[9006031] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr('unusual value of {0}: use \'\' for foot and " for inches, no spaces', mapcss._tag_uncapture(capture_tags, '{0.key}')))
         self.errors[9006032] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr('unusual value of {0}: meters is default; only positive values; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, '{0.key}')))
-        self.errors[9006033] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr('Unusually large value of {0} in meters, possibly centimeter units are meant?', mapcss._tag_uncapture(capture_tags, '{0.key}')))
+        self.errors[9006033] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr('Unusually large value of {0}, possibly centimeter units are meant?', mapcss._tag_uncapture(capture_tags, '{1.key}')))
 
         self.re_066203d3 = re.compile(r'^[0-9]+$')
         self.re_09e9525d = re.compile(r'^[0-9]+,[0-9][0-9]?( (t|kg|st|lbs))?$')
@@ -56,7 +56,6 @@ class Josm_numeric(PluginMapCSS):
         self.re_2b84c9ab = re.compile(r'^[0-9]+,[0-9][0-9]?$')
         self.re_330da7b0 = re.compile(r'^([1-9][0-9]*(\.[0-9]+)? hr)$')
         self.re_33ecb9da = re.compile(r'^((14(?:3[0-4]|[4-9])|(?:14[0-2]|(?:1[0-3]|9)[0-9])[0-9]?|143|(?:[2-7][0-9]|1[5-9])[0-9]|8(?:[0-8][0-9]|9[0-9]?));?)+$')
-        self.re_3c02ab12 = re.compile(r'^0*(\.0*)?( (m|ft))?$')
         self.re_40277cab = re.compile(r'^(([1-9][0-9]*(\.[0-9]+)?( m)?)|([0-9]+\'(([0-9]|10|11)(\.[0-9]*)?\")?)|none|default|below_default)$')
         self.re_41726192 = re.compile(r'^(([0-9]+(\.[0-9]+)?( (m|km|mi|nmi))?)|([0-9]+\'([0-9]+(\.[0-9]+)?\")?))$')
         self.re_43c55ce5 = re.compile(r'(.*[A-Za-z].*)|.*,.*|.*( ).*')
@@ -200,12 +199,12 @@ class Josm_numeric(PluginMapCSS):
                 # assertMatch:"node level=one"
                 err.append({'class': 9006004, 'subclass': 1292315112, 'text': mapcss.tr('{0} should have numbers only with optional .5 increments', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
-        # *[roof:height][roof:height=~/^0*(\.0*)?( (m|ft))?$/][roof:shape=flat]
+        # *[roof:height][siunit_length(tag("roof:height"))==0][roof:shape=flat]
         if ('roof:height' in keys and 'roof:shape' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'roof:height')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3c02ab12), mapcss._tag_capture(capture_tags, 1, tags, 'roof:height'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'roof:shape') == mapcss._value_capture(capture_tags, 2, 'flat')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'roof:height')) and (mapcss.siunit_length(mapcss.tag(tags, 'roof:height')) == 0) and (mapcss._tag_capture(capture_tags, 2, tags, 'roof:shape') == mapcss._value_capture(capture_tags, 2, 'flat')))
                 except mapcss.RuleAbort: pass
             if match:
                 # set zero_roof_height_flat
@@ -217,7 +216,7 @@ class Josm_numeric(PluginMapCSS):
                 # assertMatch:"node roof:shape=flat roof:height=\"00.00000 ft\" roof:shape=flat"
                 # assertNoMatch:"node roof:shape=flat roof:height=2 m roof:shape=flat"
                 set_zero_roof_height_flat = True
-                err.append({'class': 9006025, 'subclass': 1379670484, 'text': mapcss.tr('{0} is unnecessary for {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{2.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9006025, 'subclass': 301901487, 'text': mapcss.tr('{0} is unnecessary for {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{2.tag}')), 'allow_fix_override': True, 'fix': {
                     '-': ([
                     mapcss._tag_uncapture(capture_tags, '{0.key}')])
                 }})
@@ -1032,13 +1031,13 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'natural') == mapcss._value_capture(capture_tags, 0, 'tree')) and (mapcss._tag_capture(capture_tags, 1, tags, 'circumference')) and (mapcss.siunit_length(mapcss.tag(tags, 'circumference')) > 45))
                 except mapcss.RuleAbort: pass
             if match:
-                # throwWarning:tr("Unusually large value of {0} in meters, possibly centimeter units are meant?","{0.key}")
+                # throwWarning:tr("Unusually large value of {0}, possibly centimeter units are meant?","{1.key}")
                 # assertNoMatch:"node natural=tree circumference=\"100 cm\""
                 # assertNoMatch:"node natural=tree circumference=18.4"
                 # assertMatch:"node natural=tree circumference=200"
                 # assertNoMatch:"node natural=tree circumference=43"
                 # assertMatch:"node natural=tree circumference=82.4"
-                err.append({'class': 9006033, 'subclass': 556959007, 'text': mapcss.tr('Unusually large value of {0} in meters, possibly centimeter units are meant?', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                err.append({'class': 9006033, 'subclass': 556959007, 'text': mapcss.tr('Unusually large value of {0}, possibly centimeter units are meant?', mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
         return err
 
@@ -1116,12 +1115,12 @@ class Josm_numeric(PluginMapCSS):
                 # throwWarning:tr("{0} should have numbers only with optional .5 increments","{0.key}")
                 err.append({'class': 9006004, 'subclass': 1292315112, 'text': mapcss.tr('{0} should have numbers only with optional .5 increments', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
-        # *[roof:height][roof:height=~/^0*(\.0*)?( (m|ft))?$/][roof:shape=flat]
+        # *[roof:height][siunit_length(tag("roof:height"))==0][roof:shape=flat]
         if ('roof:height' in keys and 'roof:shape' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'roof:height')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3c02ab12), mapcss._tag_capture(capture_tags, 1, tags, 'roof:height'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'roof:shape') == mapcss._value_capture(capture_tags, 2, 'flat')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'roof:height')) and (mapcss.siunit_length(mapcss.tag(tags, 'roof:height')) == 0) and (mapcss._tag_capture(capture_tags, 2, tags, 'roof:shape') == mapcss._value_capture(capture_tags, 2, 'flat')))
                 except mapcss.RuleAbort: pass
             if match:
                 # set zero_roof_height_flat
@@ -1129,7 +1128,7 @@ class Josm_numeric(PluginMapCSS):
                 # throwWarning:tr("{0} is unnecessary for {1}","{0.tag}","{2.tag}")
                 # fixRemove:"{0.key}"
                 set_zero_roof_height_flat = True
-                err.append({'class': 9006025, 'subclass': 1379670484, 'text': mapcss.tr('{0} is unnecessary for {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{2.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9006025, 'subclass': 301901487, 'text': mapcss.tr('{0} is unnecessary for {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{2.tag}')), 'allow_fix_override': True, 'fix': {
                     '-': ([
                     mapcss._tag_uncapture(capture_tags, '{0.key}')])
                 }})
@@ -1943,12 +1942,12 @@ class Josm_numeric(PluginMapCSS):
                 # throwWarning:tr("{0} should have numbers only with optional .5 increments","{0.key}")
                 err.append({'class': 9006004, 'subclass': 1292315112, 'text': mapcss.tr('{0} should have numbers only with optional .5 increments', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
-        # *[roof:height][roof:height=~/^0*(\.0*)?( (m|ft))?$/][roof:shape=flat]
+        # *[roof:height][siunit_length(tag("roof:height"))==0][roof:shape=flat]
         if ('roof:height' in keys and 'roof:shape' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'roof:height')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3c02ab12), mapcss._tag_capture(capture_tags, 1, tags, 'roof:height'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'roof:shape') == mapcss._value_capture(capture_tags, 2, 'flat')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'roof:height')) and (mapcss.siunit_length(mapcss.tag(tags, 'roof:height')) == 0) and (mapcss._tag_capture(capture_tags, 2, tags, 'roof:shape') == mapcss._value_capture(capture_tags, 2, 'flat')))
                 except mapcss.RuleAbort: pass
             if match:
                 # set zero_roof_height_flat
@@ -1956,7 +1955,7 @@ class Josm_numeric(PluginMapCSS):
                 # throwWarning:tr("{0} is unnecessary for {1}","{0.tag}","{2.tag}")
                 # fixRemove:"{0.key}"
                 set_zero_roof_height_flat = True
-                err.append({'class': 9006025, 'subclass': 1379670484, 'text': mapcss.tr('{0} is unnecessary for {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{2.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9006025, 'subclass': 301901487, 'text': mapcss.tr('{0} is unnecessary for {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{2.tag}')), 'allow_fix_override': True, 'fix': {
                     '-': ([
                     mapcss._tag_uncapture(capture_tags, '{0.key}')])
                 }})
@@ -2584,10 +2583,10 @@ class Test(TestPluginMapcss):
         self.check_not_err(n.node(data, {'level': '1;1.5'}), expected={'class': 9006004, 'subclass': 1292315112})
         self.check_err(n.node(data, {'level': '2.3'}), expected={'class': 9006004, 'subclass': 1292315112})
         self.check_err(n.node(data, {'level': 'one'}), expected={'class': 9006004, 'subclass': 1292315112})
-        self.check_err(n.node(data, {'roof:height': '0', 'roof:shape': 'flat'}), expected={'class': 9006025, 'subclass': 1379670484})
-        self.check_not_err(n.node(data, {'roof:height': '0', 'roof:shape': 'gabled'}), expected={'class': 9006025, 'subclass': 1379670484})
-        self.check_err(n.node(data, {'roof:height': '00.00000 ft', 'roof:shape': 'flat'}), expected={'class': 9006025, 'subclass': 1379670484})
-        self.check_not_err(n.node(data, {'roof:height': '2 m', 'roof:shape': 'flat'}), expected={'class': 9006025, 'subclass': 1379670484})
+        self.check_err(n.node(data, {'roof:height': '0', 'roof:shape': 'flat'}), expected={'class': 9006025, 'subclass': 301901487})
+        self.check_not_err(n.node(data, {'roof:height': '0', 'roof:shape': 'gabled'}), expected={'class': 9006025, 'subclass': 301901487})
+        self.check_err(n.node(data, {'roof:height': '00.00000 ft', 'roof:shape': 'flat'}), expected={'class': 9006025, 'subclass': 301901487})
+        self.check_not_err(n.node(data, {'roof:height': '2 m', 'roof:shape': 'flat'}), expected={'class': 9006025, 'subclass': 301901487})
         self.check_not_err(n.node(data, {'height': '2 m'}), expected={'class': 9006024, 'subclass': 1245344673})
         self.check_err(n.node(data, {'height': '2m'}), expected={'class': 9006024, 'subclass': 1245344673})
         self.check_err(n.node(data, {'height': '5  metre'}), expected={'class': 9006024, 'subclass': 1245344673})

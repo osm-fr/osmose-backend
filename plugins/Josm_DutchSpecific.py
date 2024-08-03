@@ -27,7 +27,6 @@ class Josm_DutchSpecific(PluginMapCSS):
         self.errors[90209] = self.def_class(item = 9020, level = 3, tags = [], title = mapcss.tr('NL unusual values'))
 
         self.re_011bedaa = re.compile(r'^hgv(:forward|:backward|:both_ways)?(:conditional)?$')
-        self.re_023db19d = re.compile(r'^(motor_)?vehicle(:backward|:both_ways)?(:conditional)?$')
         self.re_033b234a = re.compile(r'^bicycle(:forward|:both_ways)?(:conditional)?$')
         self.re_0660931d = re.compile(r'(?i)(oplaad|laadpunt|laadpaal)')
         self.re_06bae8ee = re.compile(r'^maxspeed:advisory(:forward|:backward|:both_ways)?(:conditional)?$')
@@ -50,6 +49,7 @@ class Josm_DutchSpecific(PluginMapCSS):
         self.re_19b1af6a = re.compile(r'^paving_stones:([1-9])0$')
         self.re_1aa298e1 = re.compile(r'^maxheight(:backward|:both_ways)?(:conditional)?$')
         self.re_1cc9227a = re.compile(r'^maxspeed(:backward|:both_ways)?(:conditional)?$')
+        self.re_1cfba619 = re.compile(r'^(access|vehicle|motor_vehicle)(:forward|:both_ways)?(:conditional)?$')
         self.re_1d0c9a01 = re.compile(r'^NL:zone[36]0$')
         self.re_1d478f9e = re.compile(r'\bNL:C0?2\b')
         self.re_1d614d5c = re.compile(r'^maxspeed(:forward|:backward|:both_ways)?$')
@@ -59,7 +59,6 @@ class Josm_DutchSpecific(PluginMapCSS):
         self.re_2441139b = re.compile(r'(?i)\b(aansl|empl|goed|ind|inhaalsp|opstel|overloopw|racc|rang|terr)\b')
         self.re_251abd6a = re.compile(r'^(residential|unclassified|tertiary|secondary|primary|trunk|motorway|busway)(_link)?$')
         self.re_252a5d6c = re.compile(r'forward')
-        self.re_25a62b9d = re.compile(r'^(motor_)?vehicle(:forward|:backward|:both_ways)?(:conditional)?$')
         self.re_26516863 = re.compile(r'.:covid19$')
         self.re_26ae994a = re.compile(r'^motorcycle(:forward|:backward|:both_ways)?(:conditional)?$')
         self.re_26e04b1e = re.compile(r'\b(([Aa]f)?gesloten|[Gg]eopend)\b')
@@ -77,6 +76,7 @@ class Josm_DutchSpecific(PluginMapCSS):
         self.re_33af5199 = re.compile(r'^motorcycle(:backward|:both_ways)?(:conditional)?$')
         self.re_33fbfa8d = re.compile(r'(?i)post\W?nl$')
         self.re_345ec50a = re.compile(r'^maxweight(:forward|:backward|:both_ways)?(:conditional)?$')
+        self.re_374703cf = re.compile(r'^(access|vehicle|motor_vehicle)(:backward|:both_ways)?(:conditional)?$')
         self.re_3894ceb2 = re.compile(r'^oneway:')
         self.re_39064d44 = re.compile(r'^(motorway(_link)?|trunk(_link)?|cycleway|service|busway|construction|proposed|raceway)$')
         self.re_3b2cb1d7 = re.compile(r'(?i)(uit?laa[dt]|honden.*wandel|los.?loop)')
@@ -125,7 +125,7 @@ class Josm_DutchSpecific(PluginMapCSS):
         self.re_63f5f8f1 = re.compile(r'^maxheight(:forward|:both_ways)?(:conditional)?$')
         self.re_640dd184 = re.compile(r'^trailer(:backward|:both_ways)?(:conditional)?$')
         self.re_6454d3f5 = re.compile(r'stenen$|^hout$|\bbestraa?t(ing)?$|grond$|^puin$|^grind$|zand$')
-        self.re_65dfbf19 = re.compile(r'^(motor_)?vehicle(:forward|:both_ways)?(:conditional)?$')
+        self.re_6460cbf8 = re.compile(r'^(trunk|motorway|busway|path|busway|bridleway|footway|pedestrian)(_link)?$')
         self.re_676d2c9e = re.compile(r'\b(Adm|Br|Burg|Cmdt|Dr|Drs|Ds|Gebr|Gen|Ing|Ir|Jhr|Kard|Kon|Luit|Mej|Mevr|Mgr|Min|Mr|Past|Pr|Pres|Prof|St|Vr|Weth|Zr)\.? [A-Za-z]')
         self.re_682234cc = re.compile(r'^foot(:forward|:backward|:both_ways)?(:conditional)?$')
         self.re_68a71d57 = re.compile(r'backward')
@@ -135,6 +135,7 @@ class Josm_DutchSpecific(PluginMapCSS):
         self.re_6cd83c9e = re.compile(r'(?i)^gratis\s|gratis\)')
         self.re_6e264741 = re.compile(r'(?i)^(Geldmaat|ABN.?AMRO|ING|Rabobank|SNS)\b')
         self.re_7087ae0d = re.compile(r'^trailer(:forward|:backward|:both_ways)?(:conditional)?$')
+        self.re_70e165b6 = re.compile(r'^(access|vehicle|motor_vehicle)(:forward|:backward|:both_ways)?(:conditional)?$')
         self.re_7184e9bc = re.compile(r'^sidewalk:(left|right|both)$')
         self.re_71a0b33c = re.compile(r'(?i)(drinkwater|\swater|kraan)')
         self.re_7372291c = re.compile(r'^bicycle(:forward|:backward|:both_ways)?(:conditional)?$')
@@ -157,7 +158,7 @@ class Josm_DutchSpecific(PluginMapCSS):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_abbrname = set_addrOnBuilding = set_altLivingStreet = set_badPhoneNumber = set_completedSurfacePavingStonesNumber = set_housenameWithFix = set_markedSteps = set_multipleGsigns = set_stepsWithBicycleRamp = False
+        set_abbrname = set_addrOnBuilding = set_altLivingStreet = set_badPhoneNumber = set_completedSurfacePavingStonesNumber = set_hasAddMofaPositive = set_housenameWithFix = set_markedSteps = set_multipleGsigns = set_stepsWithBicycleRamp = False
 
         # node[traffic_sign~="NL:L2"][crossing!=zebra][crossing!=uncontrolled][crossing!=marked][highway=crossing][crossing!=traffic_signals][crossing_ref!=zebra]
         # node[traffic_sign~="NL:L02"][crossing!=zebra][crossing!=uncontrolled][crossing!=marked][highway=crossing][crossing!=traffic_signals][crossing_ref!=zebra]
@@ -488,25 +489,25 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # assertNoMatch:"node motor_vehicle=designated amenity=parking_entrance"
                 err.append({'class': 90209, 'subclass': 1720314934, 'text': mapcss.tr('{0} on a node, such a traffic sign does not exist. Possibly a typo for destination?', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
-        # node[natural=tree][circumference][circumference>10.32][inside("NL")]
-        # node[natural=tree][height][height>61.32][inside("NL")]
+        # node[natural=tree][circumference][siunit_length(tag("circumference"))>10.32][siunit_length(tag("circumference"))<=45][inside("NL")]
+        # node[natural=tree][height][siunit_length(tag("height"))>61.32][inside("NL")]
         if ('circumference' in keys and 'natural' in keys) or ('height' in keys and 'natural' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'natural') == mapcss._value_capture(capture_tags, 0, 'tree')) and (mapcss._tag_capture(capture_tags, 1, tags, 'circumference')) and (mapcss._tag_capture(capture_tags, 2, tags, 'circumference') > mapcss._value_capture(capture_tags, 2, 10.32)) and (mapcss.inside(self.father.config.options, 'NL')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'natural') == mapcss._value_capture(capture_tags, 0, 'tree')) and (mapcss._tag_capture(capture_tags, 1, tags, 'circumference')) and (mapcss.siunit_length(mapcss.tag(tags, 'circumference')) > 10.32) and (mapcss.siunit_length(mapcss.tag(tags, 'circumference')) <= 45) and (mapcss.inside(self.father.config.options, 'NL')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'natural') == mapcss._value_capture(capture_tags, 0, 'tree')) and (mapcss._tag_capture(capture_tags, 1, tags, 'height')) and (mapcss._tag_capture(capture_tags, 2, tags, 'height') > mapcss._value_capture(capture_tags, 2, 61.32)) and (mapcss.inside(self.father.config.options, 'NL')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'natural') == mapcss._value_capture(capture_tags, 0, 'tree')) and (mapcss._tag_capture(capture_tags, 1, tags, 'height')) and (mapcss.siunit_length(mapcss.tag(tags, 'height')) > 61.32) and (mapcss.inside(self.father.config.options, 'NL')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("NL unusual values")
-                # throwWarning:tr("Unusually large value of {0} ({1} m), did you mean `{1} cm` or `{1} mm`?","{1.key}","{1.value}")
+                # throwWarning:tr("Unusually large value of {0} ({1} m), did you mean `{1} cm` or `{1} mm`?","{1.key}",siunit_length("{1.value}"))
                 # assertNoMatch:"node natural=tree circumference=8.6"
                 # assertNoMatch:"node natural=tree height=\"288 cm\""
                 # assertNoMatch:"node natural=tree height=51"
-                err.append({'class': 90209, 'subclass': 909637297, 'text': mapcss.tr('Unusually large value of {0} ({1} m), did you mean `{1} cm` or `{1} mm`?', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{1.value}'))})
+                err.append({'class': 90209, 'subclass': 68044720, 'text': mapcss.tr('Unusually large value of {0} ({1} m), did you mean `{1} cm` or `{1} mm`?', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss.siunit_length(mapcss._tag_uncapture(capture_tags, '{1.value}')))})
 
         # node[name][highway][name=~/(?i)^(lift)$/]
         # node[name][amenity=drinking_water][name=~/(?i)(drinkwater|\swater|kraan)/]
@@ -714,7 +715,7 @@ class Josm_DutchSpecific(PluginMapCSS):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_abbrname = set_addrOnBuilding = set_altLivingStreet = set_badPhoneNumber = set_completedSurfacePavingStonesNumber = set_housenameWithFix = set_markedSteps = set_multipleGsigns = set_stepsWithBicycleRamp = False
+        set_abbrname = set_addrOnBuilding = set_altLivingStreet = set_badPhoneNumber = set_completedSurfacePavingStonesNumber = set_hasAddMofaPositive = set_housenameWithFix = set_markedSteps = set_multipleGsigns = set_stepsWithBicycleRamp = False
 
         # way[highway=cycleway][traffic_sign~="NL:G11"][moped][moped=~/^(yes|designated)$/]
         # way[highway=cycleway][traffic_sign~="NL:G12a"][moped][moped=~/^(no|use_sidepath)$/]
@@ -1040,18 +1041,18 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # throwWarning:tr("{0} without {1}","{1.tag}","cyclestreet=yes")
                 err.append({'class': 90205, 'subclass': 1438158018, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{1.tag}'), 'cyclestreet=yes')})
 
-        # way[highway][traffic_sign~="NL:C1"][!vehicle][!/^(motor_)?vehicle(:forward|:backward|:both_ways)?(:conditional)?$/][!/^access(:forward|:backward|:both_ways)?(:conditional)?$/][highway!=construction]
-        # way[highway][traffic_sign:forward~="NL:C1"][!vehicle:forward][!/^(motor_)?vehicle(:forward|:both_ways)?(:conditional)?$/][!/^access(:forward|:both_ways)?(:conditional)?$/][highway!=construction]
-        # way[highway][traffic_sign:backward~="NL:C1"][!vehicle:backward][!/^(motor_)?vehicle(:backward|:both_ways)?(:conditional)?$/][!/^access(:backward|:both_ways)?(:conditional)?$/][highway!=construction][oneway!=yes]
-        # way[highway][traffic_sign~="NL:C01"][!vehicle][!/^(motor_)?vehicle(:forward|:backward|:both_ways)?(:conditional)?$/][!/^access(:forward|:backward|:both_ways)?(:conditional)?$/][highway!=construction]
-        # way[highway][traffic_sign:forward~="NL:C01"][!vehicle:forward][!/^(motor_)?vehicle(:forward|:both_ways)?(:conditional)?$/][!/^access(:forward|:both_ways)?(:conditional)?$/][highway!=construction]
-        # way[highway][traffic_sign:backward~="NL:C01"][!vehicle:backward][!/^(motor_)?vehicle(:backward|:both_ways)?(:conditional)?$/][!/^access(:backward|:both_ways)?(:conditional)?$/][highway!=construction][oneway!=yes]
-        # way[highway][traffic_sign~="NL:C6"][!motor_vehicle][!/^(motor_)?vehicle(:forward|:backward|:both_ways)?(:conditional)?$/][!/^access(:forward|:backward|:both_ways)?(:conditional)?$/][highway!=construction]
-        # way[highway][traffic_sign:forward~="NL:C6"][!motor_vehicle:forward][!/^(motor_)?vehicle(:forward|:both_ways)?(:conditional)?$/][!/^access(:forward|:both_ways)?(:conditional)?$/][highway!=construction]
-        # way[highway][traffic_sign:backward~="NL:C6"][!motor_vehicle:backward][!/^(motor_)?vehicle(:backward|:both_ways)?(:conditional)?$/][!/^access(:backward|:both_ways)?(:conditional)?$/][highway!=construction][oneway!=yes][oneway:motor_vehicle!=yes]
-        # way[highway][traffic_sign~="NL:C06"][!motor_vehicle][!/^(motor_)?vehicle(:forward|:backward|:both_ways)?(:conditional)?$/][!/^access(:forward|:backward|:both_ways)?(:conditional)?$/][highway!=construction]
-        # way[highway][traffic_sign:forward~="NL:C06"][!motor_vehicle:forward][!/^(motor_)?vehicle(:forward|:both_ways)?(:conditional)?$/][!/^access(:forward|:both_ways)?(:conditional)?$/][highway!=construction]
-        # way[highway][traffic_sign:backward~="NL:C06"][!motor_vehicle:backward][!/^(motor_)?vehicle(:backward|:both_ways)?(:conditional)?$/][!/^access(:backward|:both_ways)?(:conditional)?$/][highway!=construction][oneway!=yes][oneway:motor_vehicle!=yes]
+        # way[highway][traffic_sign~="NL:C1"][!vehicle][!/^(access|vehicle|motor_vehicle)(:forward|:backward|:both_ways)?(:conditional)?$/][highway!=construction]
+        # way[highway][traffic_sign:forward~="NL:C1"][!vehicle:forward][!/^(access|vehicle|motor_vehicle)(:forward|:both_ways)?(:conditional)?$/][highway!=construction]
+        # way[highway][traffic_sign:backward~="NL:C1"][!vehicle:backward][!/^(access|vehicle|motor_vehicle)(:backward|:both_ways)?(:conditional)?$/][highway!=construction][oneway!=yes]
+        # way[highway][traffic_sign~="NL:C01"][!vehicle][!/^(access|vehicle|motor_vehicle)(:forward|:backward|:both_ways)?(:conditional)?$/][highway!=construction]
+        # way[highway][traffic_sign:forward~="NL:C01"][!vehicle:forward][!/^(access|vehicle|motor_vehicle)(:forward|:both_ways)?(:conditional)?$/][highway!=construction]
+        # way[highway][traffic_sign:backward~="NL:C01"][!vehicle:backward][!/^(access|vehicle|motor_vehicle)(:backward|:both_ways)?(:conditional)?$/][highway!=construction][oneway!=yes]
+        # way[highway][traffic_sign~="NL:C6"][!motor_vehicle][!/^(access|vehicle|motor_vehicle)(:forward|:backward|:both_ways)?(:conditional)?$/][highway!=construction]
+        # way[highway][traffic_sign:forward~="NL:C6"][!motor_vehicle:forward][!/^(access|vehicle|motor_vehicle)(:forward|:both_ways)?(:conditional)?$/][highway!=construction]
+        # way[highway][traffic_sign:backward~="NL:C6"][!motor_vehicle:backward][!/^(access|vehicle|motor_vehicle)(:backward|:both_ways)?(:conditional)?$/][highway!=construction][oneway!=yes][oneway:motor_vehicle!=yes]
+        # way[highway][traffic_sign~="NL:C06"][!motor_vehicle][!/^(access|vehicle|motor_vehicle)(:forward|:backward|:both_ways)?(:conditional)?$/][highway!=construction]
+        # way[highway][traffic_sign:forward~="NL:C06"][!motor_vehicle:forward][!/^(access|vehicle|motor_vehicle)(:forward|:both_ways)?(:conditional)?$/][highway!=construction]
+        # way[highway][traffic_sign:backward~="NL:C06"][!motor_vehicle:backward][!/^(access|vehicle|motor_vehicle)(:backward|:both_ways)?(:conditional)?$/][highway!=construction][oneway!=yes][oneway:motor_vehicle!=yes]
         # way[highway][traffic_sign~="NL:C7"][!hgv][!/^hgv(:forward|:backward|:both_ways)?(:conditional)?$/][highway!=construction]
         # way[highway][traffic_sign:forward~="NL:C7"][!hgv:forward][!/^hgv(:forward|:both_ways)?(:conditional)?$/][highway!=construction]
         # way[highway][traffic_sign:backward~="NL:C7"][!hgv:backward][!/^hgv(:backward|:both_ways)?(:conditional)?$/][highway!=construction][oneway:hgv!=yes]
@@ -1076,9 +1077,9 @@ class Josm_DutchSpecific(PluginMapCSS):
         # way[highway][traffic_sign~="NL:C11"][!motorcycle][!/^motorcycle(:forward|:backward|:both_ways)?(:conditional)?$/][highway!=construction]
         # way[highway][traffic_sign:forward~="NL:C11"][!motorcycle:forward][!/^motorcycle(:forward|:both_ways)?(:conditional)?$/][highway!=construction]
         # way[highway][traffic_sign:backward~="NL:C11"][!motorcycle:backward][!/^motorcycle(:backward|:both_ways)?(:conditional)?$/][highway!=construction][oneway:motorcycle!=yes]
-        # way[highway][traffic_sign~="NL:C12"][!motor_vehicle][!/^(motor_)?vehicle(:forward|:backward|:both_ways)?(:conditional)?$/][!/^access(:forward|:backward|:both_ways)?(:conditional)?$/][highway!=construction]
-        # way[highway][traffic_sign:forward~="NL:C12"][!motor_vehicle:forward][!/^(motor_)?vehicle(:forward|:both_ways)?(:conditional)?$/][!/^access(:forward|:both_ways)?(:conditional)?$/][highway!=construction]
-        # way[highway][traffic_sign:backward~="NL:C12"][!motor_vehicle:backward][!/^(motor_)?vehicle(:backward|:both_ways)?(:conditional)?$/][!/^access(:backward|:both_ways)?(:conditional)?$/][highway!=construction][oneway!=yes][oneway:motor_vehicle!=yes]
+        # way[highway][traffic_sign~="NL:C12"][!motor_vehicle][!/^(access|vehicle|motor_vehicle)(:forward|:backward|:both_ways)?(:conditional)?$/][highway!=construction]
+        # way[highway][traffic_sign:forward~="NL:C12"][!motor_vehicle:forward][!/^(access|vehicle|motor_vehicle)(:forward|:both_ways)?(:conditional)?$/][highway!=construction]
+        # way[highway][traffic_sign:backward~="NL:C12"][!motor_vehicle:backward][!/^(access|vehicle|motor_vehicle)(:backward|:both_ways)?(:conditional)?$/][highway!=construction][oneway!=yes][oneway:motor_vehicle!=yes]
         # way[highway][traffic_sign~="NL:C13"][!moped][!/^moped(:forward|:backward|:both_ways)?(:conditional)?$/][highway!=construction][highway!=footway]
         # way[highway][traffic_sign:forward~="NL:C13"][!moped:forward][!/^moped(:forward|:both_ways)?(:conditional)?$/][highway!=construction][highway!=footway]
         # way[highway][traffic_sign:backward~="NL:C13"][!moped:backward][!/^moped(:backward|:both_ways)?(:conditional)?$/][highway!=construction][oneway:moped!=yes][highway!=footway]
@@ -1098,51 +1099,51 @@ class Josm_DutchSpecific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign'), mapcss._value_capture(capture_tags, 1, 'NL:C1'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'vehicle')) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_25a62b9d)) and (not mapcss._tag_capture(capture_tags, 4, tags, self.re_3cd0133e)) and (mapcss._tag_capture(capture_tags, 5, tags, 'highway') != mapcss._value_const_capture(capture_tags, 5, 'construction', 'construction')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign'), mapcss._value_capture(capture_tags, 1, 'NL:C1'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'vehicle')) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_70e165b6)) and (mapcss._tag_capture(capture_tags, 4, tags, 'highway') != mapcss._value_const_capture(capture_tags, 4, 'construction', 'construction')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:forward'), mapcss._value_capture(capture_tags, 1, 'NL:C1'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'vehicle:forward')) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_65dfbf19)) and (not mapcss._tag_capture(capture_tags, 4, tags, self.re_4cfe628c)) and (mapcss._tag_capture(capture_tags, 5, tags, 'highway') != mapcss._value_const_capture(capture_tags, 5, 'construction', 'construction')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:forward'), mapcss._value_capture(capture_tags, 1, 'NL:C1'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'vehicle:forward')) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_1cfba619)) and (mapcss._tag_capture(capture_tags, 4, tags, 'highway') != mapcss._value_const_capture(capture_tags, 4, 'construction', 'construction')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:backward'), mapcss._value_capture(capture_tags, 1, 'NL:C1'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'vehicle:backward')) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_023db19d)) and (not mapcss._tag_capture(capture_tags, 4, tags, self.re_4d87e9ab)) and (mapcss._tag_capture(capture_tags, 5, tags, 'highway') != mapcss._value_const_capture(capture_tags, 5, 'construction', 'construction')) and (mapcss._tag_capture(capture_tags, 6, tags, 'oneway') != mapcss._value_const_capture(capture_tags, 6, 'yes', 'yes')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:backward'), mapcss._value_capture(capture_tags, 1, 'NL:C1'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'vehicle:backward')) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_374703cf)) and (mapcss._tag_capture(capture_tags, 4, tags, 'highway') != mapcss._value_const_capture(capture_tags, 4, 'construction', 'construction')) and (mapcss._tag_capture(capture_tags, 5, tags, 'oneway') != mapcss._value_const_capture(capture_tags, 5, 'yes', 'yes')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign'), mapcss._value_capture(capture_tags, 1, 'NL:C01'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'vehicle')) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_25a62b9d)) and (not mapcss._tag_capture(capture_tags, 4, tags, self.re_3cd0133e)) and (mapcss._tag_capture(capture_tags, 5, tags, 'highway') != mapcss._value_const_capture(capture_tags, 5, 'construction', 'construction')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign'), mapcss._value_capture(capture_tags, 1, 'NL:C01'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'vehicle')) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_70e165b6)) and (mapcss._tag_capture(capture_tags, 4, tags, 'highway') != mapcss._value_const_capture(capture_tags, 4, 'construction', 'construction')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:forward'), mapcss._value_capture(capture_tags, 1, 'NL:C01'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'vehicle:forward')) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_65dfbf19)) and (not mapcss._tag_capture(capture_tags, 4, tags, self.re_4cfe628c)) and (mapcss._tag_capture(capture_tags, 5, tags, 'highway') != mapcss._value_const_capture(capture_tags, 5, 'construction', 'construction')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:forward'), mapcss._value_capture(capture_tags, 1, 'NL:C01'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'vehicle:forward')) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_1cfba619)) and (mapcss._tag_capture(capture_tags, 4, tags, 'highway') != mapcss._value_const_capture(capture_tags, 4, 'construction', 'construction')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:backward'), mapcss._value_capture(capture_tags, 1, 'NL:C01'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'vehicle:backward')) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_023db19d)) and (not mapcss._tag_capture(capture_tags, 4, tags, self.re_4d87e9ab)) and (mapcss._tag_capture(capture_tags, 5, tags, 'highway') != mapcss._value_const_capture(capture_tags, 5, 'construction', 'construction')) and (mapcss._tag_capture(capture_tags, 6, tags, 'oneway') != mapcss._value_const_capture(capture_tags, 6, 'yes', 'yes')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:backward'), mapcss._value_capture(capture_tags, 1, 'NL:C01'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'vehicle:backward')) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_374703cf)) and (mapcss._tag_capture(capture_tags, 4, tags, 'highway') != mapcss._value_const_capture(capture_tags, 4, 'construction', 'construction')) and (mapcss._tag_capture(capture_tags, 5, tags, 'oneway') != mapcss._value_const_capture(capture_tags, 5, 'yes', 'yes')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign'), mapcss._value_capture(capture_tags, 1, 'NL:C6'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'motor_vehicle')) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_25a62b9d)) and (not mapcss._tag_capture(capture_tags, 4, tags, self.re_3cd0133e)) and (mapcss._tag_capture(capture_tags, 5, tags, 'highway') != mapcss._value_const_capture(capture_tags, 5, 'construction', 'construction')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign'), mapcss._value_capture(capture_tags, 1, 'NL:C6'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'motor_vehicle')) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_70e165b6)) and (mapcss._tag_capture(capture_tags, 4, tags, 'highway') != mapcss._value_const_capture(capture_tags, 4, 'construction', 'construction')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:forward'), mapcss._value_capture(capture_tags, 1, 'NL:C6'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'motor_vehicle:forward')) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_65dfbf19)) and (not mapcss._tag_capture(capture_tags, 4, tags, self.re_4cfe628c)) and (mapcss._tag_capture(capture_tags, 5, tags, 'highway') != mapcss._value_const_capture(capture_tags, 5, 'construction', 'construction')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:forward'), mapcss._value_capture(capture_tags, 1, 'NL:C6'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'motor_vehicle:forward')) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_1cfba619)) and (mapcss._tag_capture(capture_tags, 4, tags, 'highway') != mapcss._value_const_capture(capture_tags, 4, 'construction', 'construction')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:backward'), mapcss._value_capture(capture_tags, 1, 'NL:C6'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'motor_vehicle:backward')) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_023db19d)) and (not mapcss._tag_capture(capture_tags, 4, tags, self.re_4d87e9ab)) and (mapcss._tag_capture(capture_tags, 5, tags, 'highway') != mapcss._value_const_capture(capture_tags, 5, 'construction', 'construction')) and (mapcss._tag_capture(capture_tags, 6, tags, 'oneway') != mapcss._value_const_capture(capture_tags, 6, 'yes', 'yes')) and (mapcss._tag_capture(capture_tags, 7, tags, 'oneway:motor_vehicle') != mapcss._value_const_capture(capture_tags, 7, 'yes', 'yes')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:backward'), mapcss._value_capture(capture_tags, 1, 'NL:C6'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'motor_vehicle:backward')) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_374703cf)) and (mapcss._tag_capture(capture_tags, 4, tags, 'highway') != mapcss._value_const_capture(capture_tags, 4, 'construction', 'construction')) and (mapcss._tag_capture(capture_tags, 5, tags, 'oneway') != mapcss._value_const_capture(capture_tags, 5, 'yes', 'yes')) and (mapcss._tag_capture(capture_tags, 6, tags, 'oneway:motor_vehicle') != mapcss._value_const_capture(capture_tags, 6, 'yes', 'yes')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign'), mapcss._value_capture(capture_tags, 1, 'NL:C06'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'motor_vehicle')) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_25a62b9d)) and (not mapcss._tag_capture(capture_tags, 4, tags, self.re_3cd0133e)) and (mapcss._tag_capture(capture_tags, 5, tags, 'highway') != mapcss._value_const_capture(capture_tags, 5, 'construction', 'construction')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign'), mapcss._value_capture(capture_tags, 1, 'NL:C06'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'motor_vehicle')) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_70e165b6)) and (mapcss._tag_capture(capture_tags, 4, tags, 'highway') != mapcss._value_const_capture(capture_tags, 4, 'construction', 'construction')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:forward'), mapcss._value_capture(capture_tags, 1, 'NL:C06'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'motor_vehicle:forward')) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_65dfbf19)) and (not mapcss._tag_capture(capture_tags, 4, tags, self.re_4cfe628c)) and (mapcss._tag_capture(capture_tags, 5, tags, 'highway') != mapcss._value_const_capture(capture_tags, 5, 'construction', 'construction')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:forward'), mapcss._value_capture(capture_tags, 1, 'NL:C06'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'motor_vehicle:forward')) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_1cfba619)) and (mapcss._tag_capture(capture_tags, 4, tags, 'highway') != mapcss._value_const_capture(capture_tags, 4, 'construction', 'construction')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:backward'), mapcss._value_capture(capture_tags, 1, 'NL:C06'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'motor_vehicle:backward')) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_023db19d)) and (not mapcss._tag_capture(capture_tags, 4, tags, self.re_4d87e9ab)) and (mapcss._tag_capture(capture_tags, 5, tags, 'highway') != mapcss._value_const_capture(capture_tags, 5, 'construction', 'construction')) and (mapcss._tag_capture(capture_tags, 6, tags, 'oneway') != mapcss._value_const_capture(capture_tags, 6, 'yes', 'yes')) and (mapcss._tag_capture(capture_tags, 7, tags, 'oneway:motor_vehicle') != mapcss._value_const_capture(capture_tags, 7, 'yes', 'yes')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:backward'), mapcss._value_capture(capture_tags, 1, 'NL:C06'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'motor_vehicle:backward')) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_374703cf)) and (mapcss._tag_capture(capture_tags, 4, tags, 'highway') != mapcss._value_const_capture(capture_tags, 4, 'construction', 'construction')) and (mapcss._tag_capture(capture_tags, 5, tags, 'oneway') != mapcss._value_const_capture(capture_tags, 5, 'yes', 'yes')) and (mapcss._tag_capture(capture_tags, 6, tags, 'oneway:motor_vehicle') != mapcss._value_const_capture(capture_tags, 6, 'yes', 'yes')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -1242,15 +1243,15 @@ class Josm_DutchSpecific(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign'), mapcss._value_capture(capture_tags, 1, 'NL:C12'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'motor_vehicle')) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_25a62b9d)) and (not mapcss._tag_capture(capture_tags, 4, tags, self.re_3cd0133e)) and (mapcss._tag_capture(capture_tags, 5, tags, 'highway') != mapcss._value_const_capture(capture_tags, 5, 'construction', 'construction')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign'), mapcss._value_capture(capture_tags, 1, 'NL:C12'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'motor_vehicle')) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_70e165b6)) and (mapcss._tag_capture(capture_tags, 4, tags, 'highway') != mapcss._value_const_capture(capture_tags, 4, 'construction', 'construction')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:forward'), mapcss._value_capture(capture_tags, 1, 'NL:C12'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'motor_vehicle:forward')) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_65dfbf19)) and (not mapcss._tag_capture(capture_tags, 4, tags, self.re_4cfe628c)) and (mapcss._tag_capture(capture_tags, 5, tags, 'highway') != mapcss._value_const_capture(capture_tags, 5, 'construction', 'construction')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:forward'), mapcss._value_capture(capture_tags, 1, 'NL:C12'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'motor_vehicle:forward')) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_1cfba619)) and (mapcss._tag_capture(capture_tags, 4, tags, 'highway') != mapcss._value_const_capture(capture_tags, 4, 'construction', 'construction')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:backward'), mapcss._value_capture(capture_tags, 1, 'NL:C12'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'motor_vehicle:backward')) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_023db19d)) and (not mapcss._tag_capture(capture_tags, 4, tags, self.re_4d87e9ab)) and (mapcss._tag_capture(capture_tags, 5, tags, 'highway') != mapcss._value_const_capture(capture_tags, 5, 'construction', 'construction')) and (mapcss._tag_capture(capture_tags, 6, tags, 'oneway') != mapcss._value_const_capture(capture_tags, 6, 'yes', 'yes')) and (mapcss._tag_capture(capture_tags, 7, tags, 'oneway:motor_vehicle') != mapcss._value_const_capture(capture_tags, 7, 'yes', 'yes')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:backward'), mapcss._value_capture(capture_tags, 1, 'NL:C12'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'motor_vehicle:backward')) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_374703cf)) and (mapcss._tag_capture(capture_tags, 4, tags, 'highway') != mapcss._value_const_capture(capture_tags, 4, 'construction', 'construction')) and (mapcss._tag_capture(capture_tags, 5, tags, 'oneway') != mapcss._value_const_capture(capture_tags, 5, 'yes', 'yes')) and (mapcss._tag_capture(capture_tags, 6, tags, 'oneway:motor_vehicle') != mapcss._value_const_capture(capture_tags, 6, 'yes', 'yes')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -1327,24 +1328,24 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # assertNoMatch:"way highway=service traffic_sign=\"NL:C01;NL:OB51;NL:OB54\" motor_vehicle=no"
                 # assertNoMatch:"way highway=track traffic_sign:backward=\"NL:C12\" oneway=yes oneway:bicycle=no"
                 # assertNoMatch:"way highway=track traffic_sign=\"NL:C12\" motor_vehicle=no"
-                err.append({'class': 90205, 'subclass': 1181284851, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{2.key}=no/private/destination/...'))})
+                err.append({'class': 90205, 'subclass': 767847379, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{2.key}=no/private/destination/...'))})
 
-        # way[traffic_sign][traffic_sign=~/(^|; ?)NL:C22(\[[A-E]\])?(;|$)/][!/^hazmat(:[A-E])?(:forward|:backward|:both_ways)?(:conditional)?$/][!/^(motor_)?vehicle(:forward|:backward|:both_ways)?(:conditional)?$/][!/^access(:forward|:backward|:both_ways)?(:conditional)?$/][highway!=construction][highway]
-        # way[traffic_sign:forward][traffic_sign:forward=~/(^|; ?)NL:C22(\[[A-E]\])?(;|$)/][!/^hazmat(:[A-E])?(:forward|:both_ways)?(:conditional)?$/][!/^(motor_)?vehicle(:forward|:both_ways)?(:conditional)?$/][!/^access(:forward|:both_ways)?(:conditional)?$/][highway!=construction][highway]
-        # way[traffic_sign:backward][traffic_sign:backward=~/(^|; ?)NL:C22(\[[A-E]\])?(;|$)/][!/^hazmat(:[A-E])?(:backward|:both_ways)?(:conditional)?$/][!/^(motor_)?vehicle(:backward|:both_ways)?(:conditional)?$/][!/^access(:backward|:both_ways)?(:conditional)?$/][highway!=construction][highway][/^oneway:hazmat/!~/^yes$/]
+        # way[traffic_sign][traffic_sign=~/(^|; ?)NL:C22(\[[A-E]\])?(;|$)/][!/^hazmat(:[A-E])?(:forward|:backward|:both_ways)?(:conditional)?$/][!/^(access|vehicle|motor_vehicle)(:forward|:backward|:both_ways)?(:conditional)?$/][highway!=construction][highway]
+        # way[traffic_sign:forward][traffic_sign:forward=~/(^|; ?)NL:C22(\[[A-E]\])?(;|$)/][!/^hazmat(:[A-E])?(:forward|:both_ways)?(:conditional)?$/][!/^(access|vehicle|motor_vehicle)(:forward|:both_ways)?(:conditional)?$/][highway!=construction][highway]
+        # way[traffic_sign:backward][traffic_sign:backward=~/(^|; ?)NL:C22(\[[A-E]\])?(;|$)/][!/^hazmat(:[A-E])?(:backward|:both_ways)?(:conditional)?$/][!/^(access|vehicle|motor_vehicle)(:backward|:both_ways)?(:conditional)?$/][highway!=construction][highway][/^oneway:hazmat/!~/^yes$/]
         if ('highway' in keys and 'traffic_sign' in keys) or ('highway' in keys and 'traffic_sign:backward' in keys) or ('highway' in keys and 'traffic_sign:forward' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'traffic_sign')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_619cd3d8), mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign'))) and (not mapcss._tag_capture(capture_tags, 2, tags, self.re_229e1925)) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_25a62b9d)) and (not mapcss._tag_capture(capture_tags, 4, tags, self.re_3cd0133e)) and (mapcss._tag_capture(capture_tags, 5, tags, 'highway') != mapcss._value_const_capture(capture_tags, 5, 'construction', 'construction')) and (mapcss._tag_capture(capture_tags, 6, tags, 'highway')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'traffic_sign')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_619cd3d8), mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign'))) and (not mapcss._tag_capture(capture_tags, 2, tags, self.re_229e1925)) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_70e165b6)) and (mapcss._tag_capture(capture_tags, 4, tags, 'highway') != mapcss._value_const_capture(capture_tags, 4, 'construction', 'construction')) and (mapcss._tag_capture(capture_tags, 5, tags, 'highway')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'traffic_sign:forward')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_619cd3d8), mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:forward'))) and (not mapcss._tag_capture(capture_tags, 2, tags, self.re_0e042431)) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_65dfbf19)) and (not mapcss._tag_capture(capture_tags, 4, tags, self.re_4cfe628c)) and (mapcss._tag_capture(capture_tags, 5, tags, 'highway') != mapcss._value_const_capture(capture_tags, 5, 'construction', 'construction')) and (mapcss._tag_capture(capture_tags, 6, tags, 'highway')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'traffic_sign:forward')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_619cd3d8), mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:forward'))) and (not mapcss._tag_capture(capture_tags, 2, tags, self.re_0e042431)) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_1cfba619)) and (mapcss._tag_capture(capture_tags, 4, tags, 'highway') != mapcss._value_const_capture(capture_tags, 4, 'construction', 'construction')) and (mapcss._tag_capture(capture_tags, 5, tags, 'highway')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'traffic_sign:backward')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_619cd3d8), mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:backward'))) and (not mapcss._tag_capture(capture_tags, 2, tags, self.re_617e36ee)) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_023db19d)) and (not mapcss._tag_capture(capture_tags, 4, tags, self.re_4d87e9ab)) and (mapcss._tag_capture(capture_tags, 5, tags, 'highway') != mapcss._value_const_capture(capture_tags, 5, 'construction', 'construction')) and (mapcss._tag_capture(capture_tags, 6, tags, 'highway')) and (not mapcss.regexp_test(self.re_51f98600, mapcss._match_regex(tags, self.re_75b7dc3e))))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'traffic_sign:backward')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_619cd3d8), mapcss._tag_capture(capture_tags, 1, tags, 'traffic_sign:backward'))) and (not mapcss._tag_capture(capture_tags, 2, tags, self.re_617e36ee)) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_374703cf)) and (mapcss._tag_capture(capture_tags, 4, tags, 'highway') != mapcss._value_const_capture(capture_tags, 4, 'construction', 'construction')) and (mapcss._tag_capture(capture_tags, 5, tags, 'highway')) and (not mapcss.regexp_test(self.re_51f98600, mapcss._match_regex(tags, self.re_75b7dc3e))))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("NL traffic signs")
@@ -1359,7 +1360,7 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # assertNoMatch:"way highway=service traffic_sign=\"NL:C22\" hazmat=no"
                 # assertMatch:"way highway=service traffic_sign=\"NL:C22\""
                 # assertNoMatch:"way highway=service traffic_sign=\"NL:C22a\""
-                err.append({'class': 90205, 'subclass': 85894353, 'text': mapcss.tr('{0} without {1} or {2}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), 'hazmat=no/private/destination/...', 'hazmat:A-E=no/private/destination/...')})
+                err.append({'class': 90205, 'subclass': 326989948, 'text': mapcss.tr('{0} without {1} or {2}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), 'hazmat=no/private/destination/...', 'hazmat:A-E=no/private/destination/...')})
 
         # way[traffic_sign][traffic_sign=~/(^|; ?)NL:C17\b/][!maxlength][!/^maxlength(:forward|:backward|:both_ways)?(:conditional)?$/][highway]
         # way[traffic_sign:forward][traffic_sign:forward=~/(^|; ?)NL:C17\b/][!maxlength:forward][!/^maxlength(:forward|:both_ways)?(:conditional)?$/][highway]
@@ -2951,23 +2952,23 @@ class Josm_DutchSpecific(PluginMapCSS):
                     (mapcss._tag_uncapture(capture_tags, '{1.key}={0.value}')).split('=', 1)])
                 }})
 
-        # way[bicycle:forward][moped:forward][bicycle:forward=*"moped:forward"][!mofa][!mofa:forward][bicycle:forward!=designated][bicycle:forward!=yes][inside("NL")]
-        # way[bicycle:backward][moped:backward][bicycle:backward=*"moped:backward"][!mofa][!mofa:backward][bicycle:backward!=designated][bicycle:backward!=yes][inside("NL")]
-        # way[bicycle:both_ways][moped:both_ways][bicycle:both_ways=*"moped:both_ways"][!mofa][!mofa:both_ways][bicycle:both_ways!=designated][bicycle:both_ways!=yes][inside("NL")]
+        # way[bicycle:forward][moped:forward][bicycle:forward=*"moped:forward"][!mofa:forward][!mofa][!mofa:both_ways][bicycle:forward!=designated][bicycle:forward!=yes][inside("NL")]
+        # way[bicycle:backward][moped:backward][bicycle:backward=*"moped:backward"][!mofa:backward][!mofa][!mofa:both_ways][bicycle:backward!=designated][bicycle:backward!=yes][inside("NL")]
+        # way[bicycle:both_ways][moped:both_ways][bicycle:both_ways=*"moped:both_ways"][!mofa:both_ways][!mofa][bicycle:both_ways!=designated][bicycle:both_ways!=yes][inside("NL")]
         # way[bicycle][moped][bicycle=*moped][!mofa][bicycle!=designated][bicycle!=yes][inside("NL")]
         if ('bicycle' in keys and 'moped' in keys) or ('bicycle:backward' in keys and 'moped:backward' in keys) or ('bicycle:both_ways' in keys and 'moped:both_ways' in keys) or ('bicycle:forward' in keys and 'moped:forward' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'bicycle:forward')) and (mapcss._tag_capture(capture_tags, 1, tags, 'moped:forward')) and (mapcss._tag_capture(capture_tags, 2, tags, 'bicycle:forward') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'moped:forward'))) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mofa')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'mofa:forward')) and (mapcss._tag_capture(capture_tags, 5, tags, 'bicycle:forward') != mapcss._value_const_capture(capture_tags, 5, 'designated', 'designated')) and (mapcss._tag_capture(capture_tags, 6, tags, 'bicycle:forward') != mapcss._value_const_capture(capture_tags, 6, 'yes', 'yes')) and (mapcss.inside(self.father.config.options, 'NL')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'bicycle:forward')) and (mapcss._tag_capture(capture_tags, 1, tags, 'moped:forward')) and (mapcss._tag_capture(capture_tags, 2, tags, 'bicycle:forward') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'moped:forward'))) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mofa:forward')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'mofa')) and (not mapcss._tag_capture(capture_tags, 5, tags, 'mofa:both_ways')) and (mapcss._tag_capture(capture_tags, 6, tags, 'bicycle:forward') != mapcss._value_const_capture(capture_tags, 6, 'designated', 'designated')) and (mapcss._tag_capture(capture_tags, 7, tags, 'bicycle:forward') != mapcss._value_const_capture(capture_tags, 7, 'yes', 'yes')) and (mapcss.inside(self.father.config.options, 'NL')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'bicycle:backward')) and (mapcss._tag_capture(capture_tags, 1, tags, 'moped:backward')) and (mapcss._tag_capture(capture_tags, 2, tags, 'bicycle:backward') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'moped:backward'))) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mofa')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'mofa:backward')) and (mapcss._tag_capture(capture_tags, 5, tags, 'bicycle:backward') != mapcss._value_const_capture(capture_tags, 5, 'designated', 'designated')) and (mapcss._tag_capture(capture_tags, 6, tags, 'bicycle:backward') != mapcss._value_const_capture(capture_tags, 6, 'yes', 'yes')) and (mapcss.inside(self.father.config.options, 'NL')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'bicycle:backward')) and (mapcss._tag_capture(capture_tags, 1, tags, 'moped:backward')) and (mapcss._tag_capture(capture_tags, 2, tags, 'bicycle:backward') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'moped:backward'))) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mofa:backward')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'mofa')) and (not mapcss._tag_capture(capture_tags, 5, tags, 'mofa:both_ways')) and (mapcss._tag_capture(capture_tags, 6, tags, 'bicycle:backward') != mapcss._value_const_capture(capture_tags, 6, 'designated', 'designated')) and (mapcss._tag_capture(capture_tags, 7, tags, 'bicycle:backward') != mapcss._value_const_capture(capture_tags, 7, 'yes', 'yes')) and (mapcss.inside(self.father.config.options, 'NL')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'bicycle:both_ways')) and (mapcss._tag_capture(capture_tags, 1, tags, 'moped:both_ways')) and (mapcss._tag_capture(capture_tags, 2, tags, 'bicycle:both_ways') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'moped:both_ways'))) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mofa')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'mofa:both_ways')) and (mapcss._tag_capture(capture_tags, 5, tags, 'bicycle:both_ways') != mapcss._value_const_capture(capture_tags, 5, 'designated', 'designated')) and (mapcss._tag_capture(capture_tags, 6, tags, 'bicycle:both_ways') != mapcss._value_const_capture(capture_tags, 6, 'yes', 'yes')) and (mapcss.inside(self.father.config.options, 'NL')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'bicycle:both_ways')) and (mapcss._tag_capture(capture_tags, 1, tags, 'moped:both_ways')) and (mapcss._tag_capture(capture_tags, 2, tags, 'bicycle:both_ways') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'moped:both_ways'))) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mofa:both_ways')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'mofa')) and (mapcss._tag_capture(capture_tags, 5, tags, 'bicycle:both_ways') != mapcss._value_const_capture(capture_tags, 5, 'designated', 'designated')) and (mapcss._tag_capture(capture_tags, 6, tags, 'bicycle:both_ways') != mapcss._value_const_capture(capture_tags, 6, 'yes', 'yes')) and (mapcss.inside(self.father.config.options, 'NL')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -2977,7 +2978,78 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # group:tr("NL mofa tagging")
                 # throwWarning:tr("{0} and {1} without {2}","{0.tag}","{1.tag}","{3.key}={0.value}")
                 # fixAdd:"{3.key}={0.value}"
-                err.append({'class': 90208, 'subclass': 1929817175, 'text': mapcss.tr('{0} and {1} without {2}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{3.key}={0.value}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 90208, 'subclass': 1770062845, 'text': mapcss.tr('{0} and {1} without {2}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{3.key}={0.value}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss._tag_uncapture(capture_tags, '{3.key}={0.value}')).split('=', 1)])
+                }})
+
+        # way[bicycle:forward][moped:forward][bicycle:forward=*"moped:forward"][!mofa:forward][/^(access|vehicle|motor_vehicle)(:forward|:both_ways)?(:conditional)?$/][!mofa][!mofa:both_ways][bicycle:forward=~/^(yes|designated)$/][join_list(";",uniq_list(tag_regex("^(access|vehicle|motor_vehicle)(:forward|:both_ways)?(:conditional)?$")))!=tag("bicycle:forward")][inside("NL")]
+        # way[bicycle:backward][moped:backward][bicycle:backward=*"moped:backward"][!mofa:backward][/^(access|vehicle|motor_vehicle)(:backward|:both_ways)?(:conditional)?$/][!mofa][!mofa:both_ways][bicycle:backward=~/^(yes|designated)$/][join_list(";",uniq_list(tag_regex("^(access|vehicle|motor_vehicle)(:backward|:both_ways)?(:conditional)?$")))!=tag("bicycle:backward")][inside("NL")]
+        # way[bicycle][moped][bicycle=*moped][!mofa][/^(access|vehicle|motor_vehicle)(:forward|:backward|:both_ways)?(:conditional)?$/][!mofa][!mofa:both_ways][bicycle=~/^(yes|designated)$/][join_list(";",uniq_list(tag_regex("^(access|vehicle|motor_vehicle)(:forward|:backward|:both_ways)?(:conditional)?$")))!=tag("bicycle")][inside("NL")]
+        if ('bicycle' in keys and 'moped' in keys) or ('bicycle:backward' in keys and 'moped:backward' in keys) or ('bicycle:forward' in keys and 'moped:forward' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'bicycle:forward')) and (mapcss._tag_capture(capture_tags, 1, tags, 'moped:forward')) and (mapcss._tag_capture(capture_tags, 2, tags, 'bicycle:forward') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'moped:forward'))) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mofa:forward')) and (mapcss._tag_capture(capture_tags, 4, tags, self.re_1cfba619)) and (not mapcss._tag_capture(capture_tags, 5, tags, 'mofa')) and (not mapcss._tag_capture(capture_tags, 6, tags, 'mofa:both_ways')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 7, self.re_47aaa0f7), mapcss._tag_capture(capture_tags, 7, tags, 'bicycle:forward'))) and (mapcss.join_list(';', mapcss.uniq_list(mapcss.tag_regex(tags, self.re_1cfba619))) != mapcss.tag(tags, 'bicycle:forward')) and (mapcss.inside(self.father.config.options, 'NL')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'bicycle:backward')) and (mapcss._tag_capture(capture_tags, 1, tags, 'moped:backward')) and (mapcss._tag_capture(capture_tags, 2, tags, 'bicycle:backward') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'moped:backward'))) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mofa:backward')) and (mapcss._tag_capture(capture_tags, 4, tags, self.re_374703cf)) and (not mapcss._tag_capture(capture_tags, 5, tags, 'mofa')) and (not mapcss._tag_capture(capture_tags, 6, tags, 'mofa:both_ways')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 7, self.re_47aaa0f7), mapcss._tag_capture(capture_tags, 7, tags, 'bicycle:backward'))) and (mapcss.join_list(';', mapcss.uniq_list(mapcss.tag_regex(tags, self.re_374703cf))) != mapcss.tag(tags, 'bicycle:backward')) and (mapcss.inside(self.father.config.options, 'NL')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'bicycle')) and (mapcss._tag_capture(capture_tags, 1, tags, 'moped')) and (mapcss._tag_capture(capture_tags, 2, tags, 'bicycle') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'moped'))) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mofa')) and (mapcss._tag_capture(capture_tags, 4, tags, self.re_70e165b6)) and (not mapcss._tag_capture(capture_tags, 5, tags, 'mofa')) and (not mapcss._tag_capture(capture_tags, 6, tags, 'mofa:both_ways')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 7, self.re_47aaa0f7), mapcss._tag_capture(capture_tags, 7, tags, 'bicycle'))) and (mapcss.join_list(';', mapcss.uniq_list(mapcss.tag_regex(tags, self.re_70e165b6))) != mapcss.tag(tags, 'bicycle')) and (mapcss.inside(self.father.config.options, 'NL')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # set .hasAddMofaPositive
+                # group:tr("NL mofa tagging")
+                # throwWarning:tr("{0}, {1} and {2} without {3}","{0.tag}","{1.tag}","{4.tag}","{3.key}={0.value}")
+                # fixAdd:"{3.key}={0.value}"
+                set_hasAddMofaPositive = True
+                err.append({'class': 90208, 'subclass': 2117550924, 'text': mapcss.tr('{0}, {1} and {2} without {3}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{4.tag}'), mapcss._tag_uncapture(capture_tags, '{3.key}={0.value}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss._tag_uncapture(capture_tags, '{3.key}={0.value}')).split('=', 1)])
+                }})
+
+        # way[bicycle:forward][moped:forward][bicycle:forward=*"moped:forward"][!mofa:forward][!mofa][!mofa:both_ways][bicycle:forward=~/^(yes|designated)$/][highway=~/^(trunk|motorway|busway|path|busway|bridleway|footway|pedestrian)(_link)?$/][inside("NL")]!.hasAddMofaPositive
+        # way[bicycle:backward][moped:backward][bicycle:backward=*"moped:backward"][!mofa:backward][!mofa][!mofa:both_ways][bicycle:backward=~/^(yes|designated)$/][highway=~/^(trunk|motorway|busway|path|busway|bridleway|footway|pedestrian)(_link)?$/][inside("NL")]!.hasAddMofaPositive
+        # way[bicycle][moped][bicycle=*moped][!mofa][!mofa][!mofa:both_ways][bicycle=~/^(yes|designated)$/][highway=~/^(trunk|motorway|busway|path|busway|bridleway|footway|pedestrian)(_link)?$/][inside("NL")]!.hasAddMofaPositive
+        # way[bicycle:forward][moped:forward][bicycle:forward=*"moped:forward"][!mofa:forward][!mofa][!mofa:both_ways][bicycle:forward=~/^(yes|designated)$/][!highway][inside("NL")]!.hasAddMofaPositive
+        # way[bicycle:backward][moped:backward][bicycle:backward=*"moped:backward"][!mofa:backward][!mofa][!mofa:both_ways][bicycle:backward=~/^(yes|designated)$/][!highway][inside("NL")]!.hasAddMofaPositive
+        # way[bicycle][moped][bicycle=*moped][!mofa][!mofa][!mofa:both_ways][bicycle=~/^(yes|designated)$/][!highway][inside("NL")]!.hasAddMofaPositive
+        if ('bicycle' in keys and 'highway' in keys and 'moped' in keys) or ('bicycle' in keys and 'moped' in keys) or ('bicycle:backward' in keys and 'highway' in keys and 'moped:backward' in keys) or ('bicycle:backward' in keys and 'moped:backward' in keys) or ('bicycle:forward' in keys and 'highway' in keys and 'moped:forward' in keys) or ('bicycle:forward' in keys and 'moped:forward' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_hasAddMofaPositive) and (mapcss._tag_capture(capture_tags, 0, tags, 'bicycle:forward')) and (mapcss._tag_capture(capture_tags, 1, tags, 'moped:forward')) and (mapcss._tag_capture(capture_tags, 2, tags, 'bicycle:forward') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'moped:forward'))) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mofa:forward')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'mofa')) and (not mapcss._tag_capture(capture_tags, 5, tags, 'mofa:both_ways')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 6, self.re_47aaa0f7), mapcss._tag_capture(capture_tags, 6, tags, 'bicycle:forward'))) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 7, self.re_6460cbf8), mapcss._tag_capture(capture_tags, 7, tags, 'highway'))) and (mapcss.inside(self.father.config.options, 'NL')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_hasAddMofaPositive) and (mapcss._tag_capture(capture_tags, 0, tags, 'bicycle:backward')) and (mapcss._tag_capture(capture_tags, 1, tags, 'moped:backward')) and (mapcss._tag_capture(capture_tags, 2, tags, 'bicycle:backward') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'moped:backward'))) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mofa:backward')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'mofa')) and (not mapcss._tag_capture(capture_tags, 5, tags, 'mofa:both_ways')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 6, self.re_47aaa0f7), mapcss._tag_capture(capture_tags, 6, tags, 'bicycle:backward'))) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 7, self.re_6460cbf8), mapcss._tag_capture(capture_tags, 7, tags, 'highway'))) and (mapcss.inside(self.father.config.options, 'NL')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_hasAddMofaPositive) and (mapcss._tag_capture(capture_tags, 0, tags, 'bicycle')) and (mapcss._tag_capture(capture_tags, 1, tags, 'moped')) and (mapcss._tag_capture(capture_tags, 2, tags, 'bicycle') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'moped'))) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mofa')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'mofa')) and (not mapcss._tag_capture(capture_tags, 5, tags, 'mofa:both_ways')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 6, self.re_47aaa0f7), mapcss._tag_capture(capture_tags, 6, tags, 'bicycle'))) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 7, self.re_6460cbf8), mapcss._tag_capture(capture_tags, 7, tags, 'highway'))) and (mapcss.inside(self.father.config.options, 'NL')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_hasAddMofaPositive) and (mapcss._tag_capture(capture_tags, 0, tags, 'bicycle:forward')) and (mapcss._tag_capture(capture_tags, 1, tags, 'moped:forward')) and (mapcss._tag_capture(capture_tags, 2, tags, 'bicycle:forward') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'moped:forward'))) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mofa:forward')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'mofa')) and (not mapcss._tag_capture(capture_tags, 5, tags, 'mofa:both_ways')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 6, self.re_47aaa0f7), mapcss._tag_capture(capture_tags, 6, tags, 'bicycle:forward'))) and (not mapcss._tag_capture(capture_tags, 7, tags, 'highway')) and (mapcss.inside(self.father.config.options, 'NL')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_hasAddMofaPositive) and (mapcss._tag_capture(capture_tags, 0, tags, 'bicycle:backward')) and (mapcss._tag_capture(capture_tags, 1, tags, 'moped:backward')) and (mapcss._tag_capture(capture_tags, 2, tags, 'bicycle:backward') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'moped:backward'))) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mofa:backward')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'mofa')) and (not mapcss._tag_capture(capture_tags, 5, tags, 'mofa:both_ways')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 6, self.re_47aaa0f7), mapcss._tag_capture(capture_tags, 6, tags, 'bicycle:backward'))) and (not mapcss._tag_capture(capture_tags, 7, tags, 'highway')) and (mapcss.inside(self.father.config.options, 'NL')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_hasAddMofaPositive) and (mapcss._tag_capture(capture_tags, 0, tags, 'bicycle')) and (mapcss._tag_capture(capture_tags, 1, tags, 'moped')) and (mapcss._tag_capture(capture_tags, 2, tags, 'bicycle') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'moped'))) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mofa')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'mofa')) and (not mapcss._tag_capture(capture_tags, 5, tags, 'mofa:both_ways')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 6, self.re_47aaa0f7), mapcss._tag_capture(capture_tags, 6, tags, 'bicycle'))) and (not mapcss._tag_capture(capture_tags, 7, tags, 'highway')) and (mapcss.inside(self.father.config.options, 'NL')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # set .hasAddMofaPositive
+                # group:tr("NL mofa tagging")
+                # throwWarning:tr("{0} and {1} without {2}","{0.tag}","{1.tag}","{3.key}={0.value}")
+                # fixAdd:"{3.key}={0.value}"
+                set_hasAddMofaPositive = True
+                err.append({'class': 90208, 'subclass': 1512003599, 'text': mapcss.tr('{0} and {1} without {2}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{3.key}={0.value}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     (mapcss._tag_uncapture(capture_tags, '{3.key}={0.value}')).split('=', 1)])
                 }})
@@ -2988,7 +3060,7 @@ class Josm_DutchSpecific(PluginMapCSS):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_abbrname = set_addrOnBuilding = set_altLivingStreet = set_badPhoneNumber = set_completedSurfacePavingStonesNumber = set_housenameWithFix = set_markedSteps = set_multipleGsigns = set_stepsWithBicycleRamp = False
+        set_abbrname = set_addrOnBuilding = set_altLivingStreet = set_badPhoneNumber = set_completedSurfacePavingStonesNumber = set_hasAddMofaPositive = set_housenameWithFix = set_markedSteps = set_multipleGsigns = set_stepsWithBicycleRamp = False
 
         # *[contact:phone=~/^(00|\+)31 ?0( ?[0-9]){7,}/]
         # *[contact:mobile=~/^(00|\+)31 ?0( ?[0-9]){7,}/]
@@ -3545,9 +3617,9 @@ class Test(TestPluginMapcss):
         self.check_not_err(n.node(data, {'addr:city': 'XXX', 'addr:postcode': '1234AB', 'addr:street': 'XXX', 'proposed:addr:housenumber': '123'}), expected={'class': 90201, 'subclass': 509151640})
         self.check_not_err(n.node(data, {'amenity': 'charging_station', 'motor_vehicle': 'designated'}), expected={'class': 90209, 'subclass': 1720314934})
         self.check_not_err(n.node(data, {'amenity': 'parking_entrance', 'motor_vehicle': 'designated'}), expected={'class': 90209, 'subclass': 1720314934})
-        self.check_not_err(n.node(data, {'circumference': '8.6', 'natural': 'tree'}), expected={'class': 90209, 'subclass': 909637297})
-        self.check_not_err(n.node(data, {'height': '288 cm', 'natural': 'tree'}), expected={'class': 90209, 'subclass': 909637297})
-        self.check_not_err(n.node(data, {'height': '51', 'natural': 'tree'}), expected={'class': 90209, 'subclass': 909637297})
+        self.check_not_err(n.node(data, {'circumference': '8.6', 'natural': 'tree'}), expected={'class': 90209, 'subclass': 68044720})
+        self.check_not_err(n.node(data, {'height': '288 cm', 'natural': 'tree'}), expected={'class': 90209, 'subclass': 68044720})
+        self.check_not_err(n.node(data, {'height': '51', 'natural': 'tree'}), expected={'class': 90209, 'subclass': 68044720})
         self.check_err(n.node(data, {'amenity': 'drinking_water', 'name': 'kraanwater'}), expected={'class': 90203, 'subclass': 1470133234})
         self.check_err(n.node(data, {'amenity': 'parking_entrance', 'name': 'parkeerplaats voor bezoekers'}), expected={'class': 90203, 'subclass': 1470133234})
         self.check_err(n.node(data, {'leisure': 'pitch', 'name': 'voetbalveld'}), expected={'class': 90203, 'subclass': 1470133234})
@@ -3579,28 +3651,28 @@ class Test(TestPluginMapcss):
         self.check_not_err(n.way(data, {'highway': 'steps', 'traffic_sign': 'NL:G13; NL:L301-B'}, [0]), expected={'class': 90205, 'subclass': 932689435})
         self.check_not_err(n.way(data, {'highway': 'steps', 'ramp:bicycle': 'yes', 'traffic_sign': 'NL:G13'}, [0]), expected={'class': 90205, 'subclass': 932689435})
         self.check_not_err(n.way(data, {'highway': 'steps', 'traffic_sign': 'NL:G13;NL:L301-B'}, [0]), expected={'class': 90205, 'subclass': 932689435})
-        self.check_not_err(n.way(data, {'foot': 'no', 'hgv:backward': 'no', 'highway': 'service', 'traffic_sign:backward': 'NL:C07;NL:C16'}, [0]), expected={'class': 90205, 'subclass': 1181284851})
-        self.check_not_err(n.way(data, {'foot': 'no', 'hgv': 'no', 'highway': 'service', 'traffic_sign:backward': 'NL:C07;NL:C16'}, [0]), expected={'class': 90205, 'subclass': 1181284851})
-        self.check_not_err(n.way(data, {'highway': 'service', 'oneway:bicycle': 'yes', 'traffic_sign:backward': 'NL:C14'}, [0]), expected={'class': 90205, 'subclass': 1181284851})
-        self.check_not_err(n.way(data, {'bicycle:backward': 'destination', 'highway': 'service', 'oneway': 'yes', 'oneway:bicycle': 'no', 'traffic_sign:backward': 'NL:C14'}, [0]), expected={'class': 90205, 'subclass': 1181284851})
-        self.check_err(n.way(data, {'highway': 'service', 'oneway': 'yes', 'oneway:bicycle': 'no', 'traffic_sign:backward': 'NL:C14'}, [0]), expected={'class': 90205, 'subclass': 1181284851})
-        self.check_err(n.way(data, {'access:backward': 'no', 'highway': 'service', 'traffic_sign:backward': 'NL:C1', 'traffic_sign:forward': 'NL:C9;NL:OB58'}, [0]), expected={'class': 90205, 'subclass': 1181284851})
-        self.check_err(n.way(data, {'highway': 'service', 'traffic_sign:forward': 'NL:C9;NL:OB58'}, [0]), expected={'class': 90205, 'subclass': 1181284851})
-        self.check_err(n.way(data, {'highway': 'service', 'traffic_sign': 'NL:C01'}, [0]), expected={'class': 90205, 'subclass': 1181284851})
-        self.check_not_err(n.way(data, {'access': 'no', 'highway': 'service', 'traffic_sign': 'NL:C01;NL:C16'}, [0]), expected={'class': 90205, 'subclass': 1181284851})
-        self.check_not_err(n.way(data, {'highway': 'service', 'motor_vehicle': 'no', 'traffic_sign': 'NL:C01;NL:OB51;NL:OB54'}, [0]), expected={'class': 90205, 'subclass': 1181284851})
-        self.check_not_err(n.way(data, {'highway': 'track', 'oneway': 'yes', 'oneway:bicycle': 'no', 'traffic_sign:backward': 'NL:C12'}, [0]), expected={'class': 90205, 'subclass': 1181284851})
-        self.check_not_err(n.way(data, {'highway': 'track', 'motor_vehicle': 'no', 'traffic_sign': 'NL:C12'}, [0]), expected={'class': 90205, 'subclass': 1181284851})
-        self.check_not_err(n.way(data, {'hazmat:A:backward': 'no', 'highway': 'service', 'traffic_sign:backward': 'NL:C22[A]'}, [0]), expected={'class': 90205, 'subclass': 85894353})
-        self.check_not_err(n.way(data, {'highway': 'service', 'oneway:hazmat': 'yes', 'traffic_sign:backward': 'NL:C22[A]'}, [0]), expected={'class': 90205, 'subclass': 85894353})
-        self.check_err(n.way(data, {'highway': 'service', 'oneway': 'yes', 'oneway:hazmat': 'no', 'traffic_sign:backward': 'NL:C22[A]'}, [0]), expected={'class': 90205, 'subclass': 85894353})
-        self.check_not_err(n.way(data, {'highway': 'service', 'oneway:hazmat:C': 'yes', 'traffic_sign:backward': 'NL:C22[C]'}, [0]), expected={'class': 90205, 'subclass': 85894353})
-        self.check_err(n.way(data, {'highway': 'service', 'traffic_sign:forward': 'NL:C16; NL:C22[A]; NL:OB58'}, [0]), expected={'class': 90205, 'subclass': 85894353})
-        self.check_err(n.way(data, {'highway': 'service', 'traffic_sign:forward': 'NL:C22[A];NL:OB58'}, [0]), expected={'class': 90205, 'subclass': 85894353})
-        self.check_not_err(n.way(data, {'access': 'no', 'highway': 'service', 'traffic_sign': 'NL:C22'}, [0]), expected={'class': 90205, 'subclass': 85894353})
-        self.check_not_err(n.way(data, {'hazmat': 'no', 'highway': 'service', 'traffic_sign': 'NL:C22'}, [0]), expected={'class': 90205, 'subclass': 85894353})
-        self.check_err(n.way(data, {'highway': 'service', 'traffic_sign': 'NL:C22'}, [0]), expected={'class': 90205, 'subclass': 85894353})
-        self.check_not_err(n.way(data, {'highway': 'service', 'traffic_sign': 'NL:C22a'}, [0]), expected={'class': 90205, 'subclass': 85894353})
+        self.check_not_err(n.way(data, {'foot': 'no', 'hgv:backward': 'no', 'highway': 'service', 'traffic_sign:backward': 'NL:C07;NL:C16'}, [0]), expected={'class': 90205, 'subclass': 767847379})
+        self.check_not_err(n.way(data, {'foot': 'no', 'hgv': 'no', 'highway': 'service', 'traffic_sign:backward': 'NL:C07;NL:C16'}, [0]), expected={'class': 90205, 'subclass': 767847379})
+        self.check_not_err(n.way(data, {'highway': 'service', 'oneway:bicycle': 'yes', 'traffic_sign:backward': 'NL:C14'}, [0]), expected={'class': 90205, 'subclass': 767847379})
+        self.check_not_err(n.way(data, {'bicycle:backward': 'destination', 'highway': 'service', 'oneway': 'yes', 'oneway:bicycle': 'no', 'traffic_sign:backward': 'NL:C14'}, [0]), expected={'class': 90205, 'subclass': 767847379})
+        self.check_err(n.way(data, {'highway': 'service', 'oneway': 'yes', 'oneway:bicycle': 'no', 'traffic_sign:backward': 'NL:C14'}, [0]), expected={'class': 90205, 'subclass': 767847379})
+        self.check_err(n.way(data, {'access:backward': 'no', 'highway': 'service', 'traffic_sign:backward': 'NL:C1', 'traffic_sign:forward': 'NL:C9;NL:OB58'}, [0]), expected={'class': 90205, 'subclass': 767847379})
+        self.check_err(n.way(data, {'highway': 'service', 'traffic_sign:forward': 'NL:C9;NL:OB58'}, [0]), expected={'class': 90205, 'subclass': 767847379})
+        self.check_err(n.way(data, {'highway': 'service', 'traffic_sign': 'NL:C01'}, [0]), expected={'class': 90205, 'subclass': 767847379})
+        self.check_not_err(n.way(data, {'access': 'no', 'highway': 'service', 'traffic_sign': 'NL:C01;NL:C16'}, [0]), expected={'class': 90205, 'subclass': 767847379})
+        self.check_not_err(n.way(data, {'highway': 'service', 'motor_vehicle': 'no', 'traffic_sign': 'NL:C01;NL:OB51;NL:OB54'}, [0]), expected={'class': 90205, 'subclass': 767847379})
+        self.check_not_err(n.way(data, {'highway': 'track', 'oneway': 'yes', 'oneway:bicycle': 'no', 'traffic_sign:backward': 'NL:C12'}, [0]), expected={'class': 90205, 'subclass': 767847379})
+        self.check_not_err(n.way(data, {'highway': 'track', 'motor_vehicle': 'no', 'traffic_sign': 'NL:C12'}, [0]), expected={'class': 90205, 'subclass': 767847379})
+        self.check_not_err(n.way(data, {'hazmat:A:backward': 'no', 'highway': 'service', 'traffic_sign:backward': 'NL:C22[A]'}, [0]), expected={'class': 90205, 'subclass': 326989948})
+        self.check_not_err(n.way(data, {'highway': 'service', 'oneway:hazmat': 'yes', 'traffic_sign:backward': 'NL:C22[A]'}, [0]), expected={'class': 90205, 'subclass': 326989948})
+        self.check_err(n.way(data, {'highway': 'service', 'oneway': 'yes', 'oneway:hazmat': 'no', 'traffic_sign:backward': 'NL:C22[A]'}, [0]), expected={'class': 90205, 'subclass': 326989948})
+        self.check_not_err(n.way(data, {'highway': 'service', 'oneway:hazmat:C': 'yes', 'traffic_sign:backward': 'NL:C22[C]'}, [0]), expected={'class': 90205, 'subclass': 326989948})
+        self.check_err(n.way(data, {'highway': 'service', 'traffic_sign:forward': 'NL:C16; NL:C22[A]; NL:OB58'}, [0]), expected={'class': 90205, 'subclass': 326989948})
+        self.check_err(n.way(data, {'highway': 'service', 'traffic_sign:forward': 'NL:C22[A];NL:OB58'}, [0]), expected={'class': 90205, 'subclass': 326989948})
+        self.check_not_err(n.way(data, {'access': 'no', 'highway': 'service', 'traffic_sign': 'NL:C22'}, [0]), expected={'class': 90205, 'subclass': 326989948})
+        self.check_not_err(n.way(data, {'hazmat': 'no', 'highway': 'service', 'traffic_sign': 'NL:C22'}, [0]), expected={'class': 90205, 'subclass': 326989948})
+        self.check_err(n.way(data, {'highway': 'service', 'traffic_sign': 'NL:C22'}, [0]), expected={'class': 90205, 'subclass': 326989948})
+        self.check_not_err(n.way(data, {'highway': 'service', 'traffic_sign': 'NL:C22a'}, [0]), expected={'class': 90205, 'subclass': 326989948})
         self.check_not_err(n.way(data, {'highway': 'residential', 'maxweight:backward': '2.1', 'traffic_sign:backward': 'NL:C21[2.1]'}, [0]), expected={'class': 90205, 'subclass': 991745921})
         self.check_err(n.way(data, {'highway': 'residential', 'traffic_sign:forward': 'NL:C19[2.1]'}, [0]), expected={'class': 90205, 'subclass': 991745921})
         self.check_err(n.way(data, {'highway': 'residential', 'traffic_sign:forward': 'NL:C21[2.1]'}, [0]), expected={'class': 90205, 'subclass': 991745921})
