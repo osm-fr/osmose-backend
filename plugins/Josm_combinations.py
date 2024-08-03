@@ -27,7 +27,6 @@ class Josm_combinations(PluginMapCSS):
         self.re_0889a956 = re.compile(r'^(basin|reservoir)$')
         self.re_088b0835 = re.compile(r'^addr:')
         self.re_0aef1f28 = re.compile(r'^cycleway(:|$)')
-        self.re_0fb2a009 = re.compile(r'^[0-9]+(\.[0-9]+)?( m)?$')
         self.re_12ce6b85 = re.compile(r':forward')
         self.re_143f11c5 = re.compile(r'^(no|use_sidepath)$')
         self.re_19e33301 = re.compile(r'^no$')
@@ -2893,12 +2892,12 @@ class Josm_combinations(PluginMapCSS):
                 # throwWarning:tr("{0} together with {1}","{0.tag}","{1.tag}")
                 err.append({'class': 9001002, 'subclass': 1711273436, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
-        # way[highway=pedestrian][width][width<3]
+        # way[highway=pedestrian][width][siunit_length(tag(width))<3]
         if ('highway' in keys and 'width' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'pedestrian')) and (mapcss._tag_capture(capture_tags, 1, tags, 'width')) and (mapcss._tag_capture(capture_tags, 2, tags, 'width') < mapcss._value_capture(capture_tags, 2, 3)))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'pedestrian')) and (mapcss._tag_capture(capture_tags, 1, tags, 'width')) and (mapcss.siunit_length(mapcss.tag(tags, 'width')) < 3))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
@@ -2909,7 +2908,7 @@ class Josm_combinations(PluginMapCSS):
                 # assertMatch:"way highway=pedestrian width=1"
                 # assertNoMatch:"way highway=pedestrian width=3"
                 # assertNoMatch:"way highway=pedestrian width=5.5"
-                err.append({'class': 9001002, 'subclass': 867332242, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9001002, 'subclass': 1277186295, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     ['highway','footway']])
                 }})
@@ -3414,13 +3413,13 @@ class Josm_combinations(PluginMapCSS):
                 # throwWarning:tr("{0} is lower than {1} on {2}.","{1.key}","{0.key}","{2.tag}")
                 err.append({'class': 9001002, 'subclass': 1175862429, 'text': mapcss.tr('{0} is lower than {1} on {2}.', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{2.tag}'))})
 
-        # area[/^(building|building:part)$/][height=~/^[0-9]+(\.[0-9]+)?( m)?$/][min_height=~/^[0-9]+(\.[0-9]+)?( m)?$/][get(split(" ",tag(height)),0)<=get(split(" ",tag(min_height)),0)]
+        # area[/^(building|building:part)$/][height][min_height][siunit_length(tag(height))<=siunit_length(tag(min_height))]
         # area[/^(building|building:part)$/][building:levels][building:min_level][tag("building:levels")<=tag("building:min_level")]
         if ('building:levels' in keys and 'building:min_level' in keys) or ('height' in keys and 'min_height' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, self.re_390b8c0f)) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_0fb2a009), mapcss._tag_capture(capture_tags, 1, tags, 'height'))) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0fb2a009), mapcss._tag_capture(capture_tags, 2, tags, 'min_height'))) and (mapcss.get(mapcss.split(' ', mapcss.tag(tags, 'height')), 0) <= mapcss.get(mapcss.split(' ', mapcss.tag(tags, 'min_height')), 0)) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, self.re_390b8c0f)) and (mapcss._tag_capture(capture_tags, 1, tags, 'height')) and (mapcss._tag_capture(capture_tags, 2, tags, 'min_height')) and (mapcss.siunit_length(mapcss.tag(tags, 'height')) <= mapcss.siunit_length(mapcss.tag(tags, 'min_height'))) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -3429,7 +3428,7 @@ class Josm_combinations(PluginMapCSS):
             if match:
                 # group:tr("suspicious tag combination")
                 # throwWarning:tr("{0} is lower or equal to {1} on {2}","{1.key}","{2.key}","{0.key}")
-                err.append({'class': 9001002, 'subclass': 836405855, 'text': mapcss.tr('{0} is lower or equal to {1} on {2}', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.key}'), mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                err.append({'class': 9001002, 'subclass': 1399744513, 'text': mapcss.tr('{0} is lower or equal to {1} on {2}', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.key}'), mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         return err
 
@@ -4491,13 +4490,13 @@ class Josm_combinations(PluginMapCSS):
                 # throwWarning:tr("{0} is lower than {1} on {2}.","{1.key}","{0.key}","{2.tag}")
                 err.append({'class': 9001002, 'subclass': 1175862429, 'text': mapcss.tr('{0} is lower than {1} on {2}.', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{2.tag}'))})
 
-        # area[/^(building|building:part)$/][height=~/^[0-9]+(\.[0-9]+)?( m)?$/][min_height=~/^[0-9]+(\.[0-9]+)?( m)?$/][get(split(" ",tag(height)),0)<=get(split(" ",tag(min_height)),0)]
+        # area[/^(building|building:part)$/][height][min_height][siunit_length(tag(height))<=siunit_length(tag(min_height))]
         # area[/^(building|building:part)$/][building:levels][building:min_level][tag("building:levels")<=tag("building:min_level")]
         if ('building:levels' in keys and 'building:min_level' in keys and 'type' in keys) or ('height' in keys and 'min_height' in keys and 'type' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, self.re_390b8c0f)) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_0fb2a009), mapcss._tag_capture(capture_tags, 1, tags, 'height'))) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0fb2a009), mapcss._tag_capture(capture_tags, 2, tags, 'min_height'))) and (mapcss.get(mapcss.split(' ', mapcss.tag(tags, 'height')), 0) <= mapcss.get(mapcss.split(' ', mapcss.tag(tags, 'min_height')), 0)) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, self.re_390b8c0f)) and (mapcss._tag_capture(capture_tags, 1, tags, 'height')) and (mapcss._tag_capture(capture_tags, 2, tags, 'min_height')) and (mapcss.siunit_length(mapcss.tag(tags, 'height')) <= mapcss.siunit_length(mapcss.tag(tags, 'min_height'))) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -4506,7 +4505,7 @@ class Josm_combinations(PluginMapCSS):
             if match:
                 # group:tr("suspicious tag combination")
                 # throwWarning:tr("{0} is lower or equal to {1} on {2}","{1.key}","{2.key}","{0.key}")
-                err.append({'class': 9001002, 'subclass': 836405855, 'text': mapcss.tr('{0} is lower or equal to {1} on {2}', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.key}'), mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                err.append({'class': 9001002, 'subclass': 1399744513, 'text': mapcss.tr('{0} is lower or equal to {1} on {2}', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.key}'), mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         return err
 
@@ -4571,10 +4570,10 @@ class Test(TestPluginMapcss):
         self.check_err(n.way(data, {'highway': 'primary', 'turn:lanes:forward': 'left|right'}, [0]), expected={'class': 9001001, 'subclass': 1407445006})
         self.check_not_err(n.way(data, {'highway': 'primary', 'lanes': '2', 'turn:lanes': 'left|right'}, [0]), expected={'class': 9001001, 'subclass': 1407445006})
         self.check_err(n.way(data, {'highway': 'primary', 'turn:lanes': 'left|right'}, [0]), expected={'class': 9001001, 'subclass': 1407445006})
-        self.check_err(n.way(data, {'highway': 'pedestrian', 'width': '0.8'}, [0]), expected={'class': 9001002, 'subclass': 867332242})
-        self.check_err(n.way(data, {'highway': 'pedestrian', 'width': '1'}, [0]), expected={'class': 9001002, 'subclass': 867332242})
-        self.check_not_err(n.way(data, {'highway': 'pedestrian', 'width': '3'}, [0]), expected={'class': 9001002, 'subclass': 867332242})
-        self.check_not_err(n.way(data, {'highway': 'pedestrian', 'width': '5.5'}, [0]), expected={'class': 9001002, 'subclass': 867332242})
+        self.check_err(n.way(data, {'highway': 'pedestrian', 'width': '0.8'}, [0]), expected={'class': 9001002, 'subclass': 1277186295})
+        self.check_err(n.way(data, {'highway': 'pedestrian', 'width': '1'}, [0]), expected={'class': 9001002, 'subclass': 1277186295})
+        self.check_not_err(n.way(data, {'highway': 'pedestrian', 'width': '3'}, [0]), expected={'class': 9001002, 'subclass': 1277186295})
+        self.check_not_err(n.way(data, {'highway': 'pedestrian', 'width': '5.5'}, [0]), expected={'class': 9001002, 'subclass': 1277186295})
         self.check_not_err(n.way(data, {'building': 'house', 'construction:building': 'house'}, [0]), expected={'class': 9001001, 'subclass': 1239539337})
         self.check_not_err(n.way(data, {'construction': 'house', 'construction:building': 'house'}, [0]), expected={'class': 9001001, 'subclass': 1239539337})
         self.check_err(n.way(data, {'construction:building': 'house'}, [0]), expected={'class': 9001001, 'subclass': 1239539337})
