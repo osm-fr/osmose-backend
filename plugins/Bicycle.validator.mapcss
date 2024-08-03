@@ -46,8 +46,8 @@ way[cycleway][cycleway:right][cycleway:left] {
     assertMatch: "way cycleway=a cycleway:right=b cycleway:left=c";
 }
 
-way[footway=sidewalk][highway!~/footway|construction/][highway] {
-    throwWarning: tr("{0} without {1}", "footway=sidewalk", "highway=footway|construction");
+way[footway=sidewalk][highway!~/footway|construction|proposed/][highway] {
+    throwWarning: tr("{0} without {1}", "footway=sidewalk", "highway=footway|construction|proposed");
     -osmoseItemClassLevel: "2080/20805/3";
     -osmoseTags: list("footway", "fix:chair");
 
@@ -55,6 +55,7 @@ way[footway=sidewalk][highway!~/footway|construction/][highway] {
     assertNoMatch: "way footway=sidewalk highway=footway";
     assertNoMatch: "way footway=sidewalk area:highway=footway";
     assertNoMatch: "way footway=sidewalk highway=construction construction=footway";
+    assertNoMatch: "way footway=sidewalk highway=proposed proposed=footway";
 }
 
 way[highway=service][service=psv][psv!=yes] {
