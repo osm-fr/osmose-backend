@@ -15,13 +15,13 @@ class Bicycle(PluginMapCSS):
         tags = capture_tags = {} # noqa
         self.errors[20301] = self.def_class(item = 2030, level = 1, tags = mapcss.list_('tag', 'highway') + mapcss.list_('cycleway', 'fix:survey'), title = mapcss.tr('Opposite cycleway without oneway'))
         self.errors[20302] = self.def_class(item = 2030, level = 1, tags = mapcss.list_('tag', 'highway') + mapcss.list_('cycleway', 'fix:survey'), title = mapcss.tr('Opposite or opposite lane in the same way of the oneway'))
-        self.errors[20805] = self.def_class(item = 2080, level = 3, tags = mapcss.list_('tag', 'highway') + mapcss.list_('footway', 'fix:chair'), title = mapcss.tr('{0} without {1}', 'footway=sidewalk', 'highway=footway|construction'))
+        self.errors[20805] = self.def_class(item = 2080, level = 3, tags = mapcss.list_('tag', 'highway') + mapcss.list_('footway', 'fix:chair'), title = mapcss.tr('{0} without {1}', 'footway=sidewalk', 'highway=footway|construction|proposed'))
         self.errors[30328] = self.def_class(item = 3032, level = 2, tags = mapcss.list_('tag', 'highway') + mapcss.list_('cycleway', 'fix:chair'), title = mapcss.tr('{0} with {1}', 'highway=cycleway', 'cycleway=track'))
         self.errors[30329] = self.def_class(item = 3032, level = 2, tags = mapcss.list_('tag', 'highway') + mapcss.list_('fix:chair'), title = mapcss.tr('{0} with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}')))
         self.errors[40101] = self.def_class(item = 4010, level = 2, tags = mapcss.list_('tag', 'highway') + mapcss.list_('fix:chair'), title = mapcss.tr('{0} is preferred to {1}', 'psv', 'service=psv'))
         self.errors[40301] = self.def_class(item = 4030, level = 2, tags = mapcss.list_('tag', 'highway') + mapcss.list_('cycleway', 'fix:chair'), title = mapcss.tr('{0} with {1} and {2}', 'cycleway', 'cycleway:right', 'cycleway:left'))
 
-        self.re_1825c777 = re.compile(r'footway|construction')
+        self.re_000d3400 = re.compile(r'footway|construction|proposed')
         self.re_5b286a0d = re.compile(r'no|use_sidepath')
         self.re_6781a1fd = re.compile(r'no|none|separate')
         self.re_67b51e41 = re.compile(r'opposite|opposite_lane')
@@ -47,22 +47,23 @@ class Bicycle(PluginMapCSS):
                 # assertMatch:"way cycleway=a cycleway:right=b cycleway:left=c"
                 err.append({'class': 40301, 'subclass': 0, 'text': mapcss.tr('{0} with {1} and {2}', 'cycleway', 'cycleway:right', 'cycleway:left')})
 
-        # way[footway=sidewalk][highway!~/footway|construction/][highway]
+        # way[footway=sidewalk][highway!~/footway|construction|proposed/][highway]
         if ('footway' in keys and 'highway' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'footway') == mapcss._value_capture(capture_tags, 0, 'sidewalk')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1825c777, 'footway|construction'), mapcss._tag_capture(capture_tags, 1, tags, 'highway'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'highway')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'footway') == mapcss._value_capture(capture_tags, 0, 'sidewalk')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_000d3400, 'footway|construction|proposed'), mapcss._tag_capture(capture_tags, 1, tags, 'highway'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'highway')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("footway","fix:chair")
                 # -osmoseItemClassLevel:"2080/20805/3"
-                # throwWarning:tr("{0} without {1}","footway=sidewalk","highway=footway|construction")
+                # throwWarning:tr("{0} without {1}","footway=sidewalk","highway=footway|construction|proposed")
                 # assertNoMatch:"way footway=sidewalk area:highway=footway"
                 # assertNoMatch:"way footway=sidewalk highway=construction construction=footway"
                 # assertNoMatch:"way footway=sidewalk highway=footway"
                 # assertMatch:"way footway=sidewalk highway=path"
-                err.append({'class': 20805, 'subclass': 0, 'text': mapcss.tr('{0} without {1}', 'footway=sidewalk', 'highway=footway|construction')})
+                # assertNoMatch:"way footway=sidewalk highway=proposed proposed=footway"
+                err.append({'class': 20805, 'subclass': 0, 'text': mapcss.tr('{0} without {1}', 'footway=sidewalk', 'highway=footway|construction|proposed')})
 
         # way[highway=service][service=psv][psv!=yes]
         if ('highway' in keys and 'service' in keys):
@@ -205,6 +206,7 @@ class Test(TestPluginMapcss):
         self.check_not_err(n.way(data, {'construction': 'footway', 'footway': 'sidewalk', 'highway': 'construction'}, [0]), expected={'class': 20805, 'subclass': 0})
         self.check_not_err(n.way(data, {'footway': 'sidewalk', 'highway': 'footway'}, [0]), expected={'class': 20805, 'subclass': 0})
         self.check_err(n.way(data, {'footway': 'sidewalk', 'highway': 'path'}, [0]), expected={'class': 20805, 'subclass': 0})
+        self.check_not_err(n.way(data, {'footway': 'sidewalk', 'highway': 'proposed', 'proposed': 'footway'}, [0]), expected={'class': 20805, 'subclass': 0})
         self.check_err(n.way(data, {'highway': 'service', 'psv': 'no', 'service': 'psv'}, [0]), expected={'class': 40101, 'subclass': 0})
         self.check_not_err(n.way(data, {'highway': 'service', 'psv': 'yes', 'service': 'psv'}, [0]), expected={'class': 40101, 'subclass': 0})
         self.check_not_err(n.way(data, {'bicycle': 'no', 'cycleway:right': 'no'}, [0]), expected={'class': 30329, 'subclass': 0})
