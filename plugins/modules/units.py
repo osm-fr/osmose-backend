@@ -52,7 +52,7 @@ def parseNumberUnitString(string, defaultUnit = None):
     if m:
         return {
             "value": float(m.group(1) + m.group(2)) + float(m.group(1) + m.group(4))/12,
-            "unit": "'"
+            "unit": m.group(3)
         }
     # Regular numbers with optional unit
     m = re.fullmatch(_numunit_re, string)
