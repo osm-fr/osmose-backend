@@ -172,7 +172,7 @@ class Test(TestPluginCommon):
             assert not a.node(None, {"maxspeed":d}), ("maxspeed='{0}'".format(d))
             assert not a.node(None, {"minspeed:forward":d}), ("minspeed:forward='{0}'".format(d))
 
-        for d in ["50 millimeters", "40 metre", "30 feet", "30 in", "10 mile"]:
+        for d in ["50 millimeters", "40 metre", "30 feet", "30 in", "10 mile", "6ft 6in"]:
             self.check_err(a.node(None, {"distance": d}), ("distance='{0}'".format(d)))
 
         assert not a.node(None, {"maxspeed":"1", "waterway": "river"})
