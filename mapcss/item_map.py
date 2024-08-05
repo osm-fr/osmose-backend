@@ -310,6 +310,7 @@ item_map = \
                 'url': 'https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/deprecated.mapcss?format=txt',
                 'url_display': 'https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/deprecated.mapcss'},
  'geometry': {'class': {'Object at Position 0.00E 0.00N. There is nothing at this position except an already mapped weather buoy.': 9003009,
+                        'missing tag': 9003014,
                         '{0} is the tag for the linear waterway. To tag the water area use {1} + {2} instead.': 9003013,
                         '{0} on a closed way. Should be used on an unclosed way.': 9003011,
                         '{0} on a node': 9003006,

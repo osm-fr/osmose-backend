@@ -25,6 +25,7 @@ class Josm_geometry(PluginMapCSS):
         self.errors[9003011] = self.def_class(item = 9003, level = 3, tags = ["geom"], title = mapcss.tr('{0} on a closed way. Should be used on an unclosed way.', mapcss._tag_uncapture(capture_tags, '{1.tag}')))
         self.errors[9003012] = self.def_class(item = 9003, level = 3, tags = ["geom"], title = mapcss.tr('{0} on a relation', mapcss._tag_uncapture(capture_tags, '{0.key}')))
         self.errors[9003013] = self.def_class(item = 9003, level = 3, tags = ["geom"], title = mapcss.tr('{0} is the tag for the linear waterway. To tag the water area use {1} + {2} instead.', mapcss._tag_uncapture(capture_tags, '{1.tag}'), 'natural=water', 'water=*'))
+        self.errors[9003014] = self.def_class(item = 9003, level = 3, tags = ["geom"], title = mapcss.tr('missing tag'))
 
         self.re_22f56734 = re.compile(r'^(no_right_turn|no_left_turn|no_u_turn|no_straight_on|only_right_turn|only_left_turn|only_straight_on|no_entry|no_exit)$')
         self.re_76b0146b = re.compile(r'^(water|wetland)$')
@@ -471,6 +472,15 @@ class Josm_geometry(PluginMapCSS):
                     '-': ([
                     'source:geometry'])
                 }})
+
+        # node.missing_switch_railway_crossing
+        if True:
+            match = False
+            # Skip selector using undeclared class missing_switch_railway_crossing
+            if match:
+                # group:tr("missing tag")
+                # throwWarning:tr("Railways connection node without {0} or {1}","railway=switch","railway=railway_crossing")
+                err.append({'class': 9003014, 'subclass': 1770020640, 'text': mapcss.tr('Railways connection node without {0} or {1}', 'railway=switch', 'railway=railway_crossing')})
 
         return err
 

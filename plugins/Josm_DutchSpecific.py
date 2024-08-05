@@ -42,6 +42,7 @@ class Josm_DutchSpecific(PluginMapCSS):
         self.re_0e900094 = re.compile(r'(^|; ?)NL:C17\b')
         self.re_0ec6b360 = re.compile(r'(?i)^speeltuin(tje)?$')
         self.re_0f9e3c59 = re.compile(r'^foot(:forward|:both_ways)?(:conditional)?$')
+        self.re_110c89a2 = re.compile(r'(^|; ?)mofa(;|$)')
         self.re_143f11c5 = re.compile(r'^(no|use_sidepath)$')
         self.re_1582ff37 = re.compile(r'(?i)bus\s?(baan|strook)')
         self.re_1705b261 = re.compile(r'(?i)(^|\sen\s)((on)?verplicht\s)?(\(?brom\)?)?fietspad$')
@@ -2932,32 +2933,38 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # assertNoMatch:"way highway=unclassified access=permissive note=eigen_weg maxspeed=25"
                 err.append({'class': 90207, 'subclass': 293871183, 'text': mapcss.tr('{0} is a non-standard speed limit. Possibly this is an advisory speed limit instead?', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
-        # way[oneway:bicycle][!oneway:mofa][oneway?][oneway:bicycle=~/^(no|-1|0)$/][mofa!~/^(no|use_sidepath)$/][motor_vehicle!~/^(no|use_sidepath)$/][inside("NL")]
+        # way[oneway:bicycle][!oneway:mofa][oneway?][oneway:bicycle=~/^(no|-1|0)$/][mofa!~/^(no|use_sidepath)$/][motor_vehicle!~/^(no|use_sidepath)$/][mofa:backward!~/^(no|use_sidepath)$/][motor_vehicle:backward!~/^(no|use_sidepath)$/][inside("NL")]
         if ('oneway' in keys and 'oneway:bicycle' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'oneway:bicycle')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'oneway:mofa')) and (mapcss._tag_capture(capture_tags, 2, tags, 'oneway') in ('yes', 'true', '1')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 3, self.re_55879a11), mapcss._tag_capture(capture_tags, 3, tags, 'oneway:bicycle'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 4, self.re_143f11c5, '^(no|use_sidepath)$'), mapcss._tag_capture(capture_tags, 4, tags, 'mofa'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 5, self.re_143f11c5, '^(no|use_sidepath)$'), mapcss._tag_capture(capture_tags, 5, tags, 'motor_vehicle'))) and (mapcss.inside(self.father.config.options, 'NL')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'oneway:bicycle')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'oneway:mofa')) and (mapcss._tag_capture(capture_tags, 2, tags, 'oneway') in ('yes', 'true', '1')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 3, self.re_55879a11), mapcss._tag_capture(capture_tags, 3, tags, 'oneway:bicycle'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 4, self.re_143f11c5, '^(no|use_sidepath)$'), mapcss._tag_capture(capture_tags, 4, tags, 'mofa'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 5, self.re_143f11c5, '^(no|use_sidepath)$'), mapcss._tag_capture(capture_tags, 5, tags, 'motor_vehicle'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 6, self.re_143f11c5, '^(no|use_sidepath)$'), mapcss._tag_capture(capture_tags, 6, tags, 'mofa:backward'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 7, self.re_143f11c5, '^(no|use_sidepath)$'), mapcss._tag_capture(capture_tags, 7, tags, 'motor_vehicle:backward'))) and (mapcss.inside(self.father.config.options, 'NL')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("NL mofa tagging")
                 # throwWarning:tr("{0} without {1}","{0.tag}","{1.key}")
                 # fixAdd:"{1.key}={0.value}"
                 # assertNoMatch:"way highway=residential oneway:bicycle=no oneway=no"
+                # assertNoMatch:"way highway=residential oneway:bicycle=no oneway=yes mofa:backward=no"
                 # assertNoMatch:"way highway=residential oneway:bicycle=no oneway=yes mofa=no"
                 # assertNoMatch:"way highway=residential oneway:bicycle=no oneway=yes oneway:mofa=yes"
                 # assertNoMatch:"way highway=residential oneway:bicycle=yes oneway=yes"
-                err.append({'class': 90208, 'subclass': 1454217287, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.key}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 90208, 'subclass': 45390626, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.key}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     (mapcss._tag_uncapture(capture_tags, '{1.key}={0.value}')).split('=', 1)])
                 }})
 
+        # way[bicycle:conditional][moped:conditional][bicycle:conditional=*"moped:conditional"][!mofa:conditional][inside("NL")]
         # way[bicycle:forward][moped:forward][bicycle:forward=*"moped:forward"][!mofa:forward][!mofa][!mofa:both_ways][bicycle:forward!=designated][bicycle:forward!=yes][inside("NL")]
         # way[bicycle:backward][moped:backward][bicycle:backward=*"moped:backward"][!mofa:backward][!mofa][!mofa:both_ways][bicycle:backward!=designated][bicycle:backward!=yes][inside("NL")]
         # way[bicycle:both_ways][moped:both_ways][bicycle:both_ways=*"moped:both_ways"][!mofa:both_ways][!mofa][bicycle:both_ways!=designated][bicycle:both_ways!=yes][inside("NL")]
         # way[bicycle][moped][bicycle=*moped][!mofa][bicycle!=designated][bicycle!=yes][inside("NL")]
-        if ('bicycle' in keys and 'moped' in keys) or ('bicycle:backward' in keys and 'moped:backward' in keys) or ('bicycle:both_ways' in keys and 'moped:both_ways' in keys) or ('bicycle:forward' in keys and 'moped:forward' in keys):
+        if ('bicycle' in keys and 'moped' in keys) or ('bicycle:backward' in keys and 'moped:backward' in keys) or ('bicycle:both_ways' in keys and 'moped:both_ways' in keys) or ('bicycle:conditional' in keys and 'moped:conditional' in keys) or ('bicycle:forward' in keys and 'moped:forward' in keys):
             match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'bicycle:conditional')) and (mapcss._tag_capture(capture_tags, 1, tags, 'moped:conditional')) and (mapcss._tag_capture(capture_tags, 2, tags, 'bicycle:conditional') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'moped:conditional'))) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mofa:conditional')) and (mapcss.inside(self.father.config.options, 'NL')))
+                except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'bicycle:forward')) and (mapcss._tag_capture(capture_tags, 1, tags, 'moped:forward')) and (mapcss._tag_capture(capture_tags, 2, tags, 'bicycle:forward') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'moped:forward'))) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mofa:forward')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'mofa')) and (not mapcss._tag_capture(capture_tags, 5, tags, 'mofa:both_ways')) and (mapcss._tag_capture(capture_tags, 6, tags, 'bicycle:forward') != mapcss._value_const_capture(capture_tags, 6, 'designated', 'designated')) and (mapcss._tag_capture(capture_tags, 7, tags, 'bicycle:forward') != mapcss._value_const_capture(capture_tags, 7, 'yes', 'yes')) and (mapcss.inside(self.father.config.options, 'NL')))
@@ -2978,14 +2985,14 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # group:tr("NL mofa tagging")
                 # throwWarning:tr("{0} and {1} without {2}","{0.tag}","{1.tag}","{3.key}={0.value}")
                 # fixAdd:"{3.key}={0.value}"
-                err.append({'class': 90208, 'subclass': 1770062845, 'text': mapcss.tr('{0} and {1} without {2}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{3.key}={0.value}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 90208, 'subclass': 643990767, 'text': mapcss.tr('{0} and {1} without {2}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{3.key}={0.value}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     (mapcss._tag_uncapture(capture_tags, '{3.key}={0.value}')).split('=', 1)])
                 }})
 
         # way[bicycle:forward][moped:forward][bicycle:forward=*"moped:forward"][!mofa:forward][/^(access|vehicle|motor_vehicle)(:forward|:both_ways)?(:conditional)?$/][!mofa][!mofa:both_ways][bicycle:forward=~/^(yes|designated)$/][join_list(";",uniq_list(tag_regex("^(access|vehicle|motor_vehicle)(:forward|:both_ways)?(:conditional)?$")))!=tag("bicycle:forward")][inside("NL")]
         # way[bicycle:backward][moped:backward][bicycle:backward=*"moped:backward"][!mofa:backward][/^(access|vehicle|motor_vehicle)(:backward|:both_ways)?(:conditional)?$/][!mofa][!mofa:both_ways][bicycle:backward=~/^(yes|designated)$/][join_list(";",uniq_list(tag_regex("^(access|vehicle|motor_vehicle)(:backward|:both_ways)?(:conditional)?$")))!=tag("bicycle:backward")][inside("NL")]
-        # way[bicycle][moped][bicycle=*moped][!mofa][/^(access|vehicle|motor_vehicle)(:forward|:backward|:both_ways)?(:conditional)?$/][!mofa][!mofa:both_ways][bicycle=~/^(yes|designated)$/][join_list(";",uniq_list(tag_regex("^(access|vehicle|motor_vehicle)(:forward|:backward|:both_ways)?(:conditional)?$")))!=tag("bicycle")][inside("NL")]
+        # way[bicycle][moped][bicycle=*moped][!mofa][/^(access|vehicle|motor_vehicle)(:forward|:backward|:both_ways)?(:conditional)?$/][!mofa:both_ways][bicycle=~/^(yes|designated)$/][join_list(";",uniq_list(tag_regex("^(access|vehicle|motor_vehicle)(:forward|:backward|:both_ways)?(:conditional)?$")))!=tag("bicycle")][inside("NL")]
         if ('bicycle' in keys and 'moped' in keys) or ('bicycle:backward' in keys and 'moped:backward' in keys) or ('bicycle:forward' in keys and 'moped:forward' in keys):
             match = False
             if not match:
@@ -2998,25 +3005,28 @@ class Josm_DutchSpecific(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'bicycle')) and (mapcss._tag_capture(capture_tags, 1, tags, 'moped')) and (mapcss._tag_capture(capture_tags, 2, tags, 'bicycle') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'moped'))) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mofa')) and (mapcss._tag_capture(capture_tags, 4, tags, self.re_70e165b6)) and (not mapcss._tag_capture(capture_tags, 5, tags, 'mofa')) and (not mapcss._tag_capture(capture_tags, 6, tags, 'mofa:both_ways')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 7, self.re_47aaa0f7), mapcss._tag_capture(capture_tags, 7, tags, 'bicycle'))) and (mapcss.join_list(';', mapcss.uniq_list(mapcss.tag_regex(tags, self.re_70e165b6))) != mapcss.tag(tags, 'bicycle')) and (mapcss.inside(self.father.config.options, 'NL')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'bicycle')) and (mapcss._tag_capture(capture_tags, 1, tags, 'moped')) and (mapcss._tag_capture(capture_tags, 2, tags, 'bicycle') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'moped'))) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mofa')) and (mapcss._tag_capture(capture_tags, 4, tags, self.re_70e165b6)) and (not mapcss._tag_capture(capture_tags, 5, tags, 'mofa:both_ways')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 6, self.re_47aaa0f7), mapcss._tag_capture(capture_tags, 6, tags, 'bicycle'))) and (mapcss.join_list(';', mapcss.uniq_list(mapcss.tag_regex(tags, self.re_70e165b6))) != mapcss.tag(tags, 'bicycle')) and (mapcss.inside(self.father.config.options, 'NL')))
                 except mapcss.RuleAbort: pass
             if match:
                 # set .hasAddMofaPositive
                 # group:tr("NL mofa tagging")
                 # throwWarning:tr("{0}, {1} and {2} without {3}","{0.tag}","{1.tag}","{4.tag}","{3.key}={0.value}")
                 # fixAdd:"{3.key}={0.value}"
+                # assertNoMatch:"way bicycle=designated moped=designated highway=residential access=designated"
+                # assertNoMatch:"way bicycle=designated moped=designated highway=residential"
+                # assertNoMatch:"way bicycle=designated moped=designated mofa=designated highway=residential access=no"
                 set_hasAddMofaPositive = True
-                err.append({'class': 90208, 'subclass': 2117550924, 'text': mapcss.tr('{0}, {1} and {2} without {3}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{4.tag}'), mapcss._tag_uncapture(capture_tags, '{3.key}={0.value}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 90208, 'subclass': 2061019359, 'text': mapcss.tr('{0}, {1} and {2} without {3}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{4.tag}'), mapcss._tag_uncapture(capture_tags, '{3.key}={0.value}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     (mapcss._tag_uncapture(capture_tags, '{3.key}={0.value}')).split('=', 1)])
                 }})
 
         # way[bicycle:forward][moped:forward][bicycle:forward=*"moped:forward"][!mofa:forward][!mofa][!mofa:both_ways][bicycle:forward=~/^(yes|designated)$/][highway=~/^(trunk|motorway|busway|path|busway|bridleway|footway|pedestrian)(_link)?$/][inside("NL")]!.hasAddMofaPositive
         # way[bicycle:backward][moped:backward][bicycle:backward=*"moped:backward"][!mofa:backward][!mofa][!mofa:both_ways][bicycle:backward=~/^(yes|designated)$/][highway=~/^(trunk|motorway|busway|path|busway|bridleway|footway|pedestrian)(_link)?$/][inside("NL")]!.hasAddMofaPositive
-        # way[bicycle][moped][bicycle=*moped][!mofa][!mofa][!mofa:both_ways][bicycle=~/^(yes|designated)$/][highway=~/^(trunk|motorway|busway|path|busway|bridleway|footway|pedestrian)(_link)?$/][inside("NL")]!.hasAddMofaPositive
+        # way[bicycle][moped][bicycle=*moped][!mofa][!mofa:both_ways][bicycle=~/^(yes|designated)$/][highway=~/^(trunk|motorway|busway|path|busway|bridleway|footway|pedestrian)(_link)?$/][inside("NL")]!.hasAddMofaPositive
         # way[bicycle:forward][moped:forward][bicycle:forward=*"moped:forward"][!mofa:forward][!mofa][!mofa:both_ways][bicycle:forward=~/^(yes|designated)$/][!highway][inside("NL")]!.hasAddMofaPositive
         # way[bicycle:backward][moped:backward][bicycle:backward=*"moped:backward"][!mofa:backward][!mofa][!mofa:both_ways][bicycle:backward=~/^(yes|designated)$/][!highway][inside("NL")]!.hasAddMofaPositive
-        # way[bicycle][moped][bicycle=*moped][!mofa][!mofa][!mofa:both_ways][bicycle=~/^(yes|designated)$/][!highway][inside("NL")]!.hasAddMofaPositive
+        # way[bicycle][moped][bicycle=*moped][!mofa][!mofa:both_ways][bicycle=~/^(yes|designated)$/][!highway][inside("NL")]!.hasAddMofaPositive
         if ('bicycle' in keys and 'highway' in keys and 'moped' in keys) or ('bicycle' in keys and 'moped' in keys) or ('bicycle:backward' in keys and 'highway' in keys and 'moped:backward' in keys) or ('bicycle:backward' in keys and 'moped:backward' in keys) or ('bicycle:forward' in keys and 'highway' in keys and 'moped:forward' in keys) or ('bicycle:forward' in keys and 'moped:forward' in keys):
             match = False
             if not match:
@@ -3029,7 +3039,7 @@ class Josm_DutchSpecific(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((not set_hasAddMofaPositive) and (mapcss._tag_capture(capture_tags, 0, tags, 'bicycle')) and (mapcss._tag_capture(capture_tags, 1, tags, 'moped')) and (mapcss._tag_capture(capture_tags, 2, tags, 'bicycle') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'moped'))) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mofa')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'mofa')) and (not mapcss._tag_capture(capture_tags, 5, tags, 'mofa:both_ways')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 6, self.re_47aaa0f7), mapcss._tag_capture(capture_tags, 6, tags, 'bicycle'))) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 7, self.re_6460cbf8), mapcss._tag_capture(capture_tags, 7, tags, 'highway'))) and (mapcss.inside(self.father.config.options, 'NL')))
+                try: match = ((not set_hasAddMofaPositive) and (mapcss._tag_capture(capture_tags, 0, tags, 'bicycle')) and (mapcss._tag_capture(capture_tags, 1, tags, 'moped')) and (mapcss._tag_capture(capture_tags, 2, tags, 'bicycle') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'moped'))) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mofa')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'mofa:both_ways')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 5, self.re_47aaa0f7), mapcss._tag_capture(capture_tags, 5, tags, 'bicycle'))) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 6, self.re_6460cbf8), mapcss._tag_capture(capture_tags, 6, tags, 'highway'))) and (mapcss.inside(self.father.config.options, 'NL')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -3041,15 +3051,18 @@ class Josm_DutchSpecific(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((not set_hasAddMofaPositive) and (mapcss._tag_capture(capture_tags, 0, tags, 'bicycle')) and (mapcss._tag_capture(capture_tags, 1, tags, 'moped')) and (mapcss._tag_capture(capture_tags, 2, tags, 'bicycle') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'moped'))) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mofa')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'mofa')) and (not mapcss._tag_capture(capture_tags, 5, tags, 'mofa:both_ways')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 6, self.re_47aaa0f7), mapcss._tag_capture(capture_tags, 6, tags, 'bicycle'))) and (not mapcss._tag_capture(capture_tags, 7, tags, 'highway')) and (mapcss.inside(self.father.config.options, 'NL')))
+                try: match = ((not set_hasAddMofaPositive) and (mapcss._tag_capture(capture_tags, 0, tags, 'bicycle')) and (mapcss._tag_capture(capture_tags, 1, tags, 'moped')) and (mapcss._tag_capture(capture_tags, 2, tags, 'bicycle') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'moped'))) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mofa')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'mofa:both_ways')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 5, self.re_47aaa0f7), mapcss._tag_capture(capture_tags, 5, tags, 'bicycle'))) and (not mapcss._tag_capture(capture_tags, 6, tags, 'highway')) and (mapcss.inside(self.father.config.options, 'NL')))
                 except mapcss.RuleAbort: pass
             if match:
                 # set .hasAddMofaPositive
                 # group:tr("NL mofa tagging")
                 # throwWarning:tr("{0} and {1} without {2}","{0.tag}","{1.tag}","{3.key}={0.value}")
                 # fixAdd:"{3.key}={0.value}"
+                # assertNoMatch:"way bicycle=designated moped=designated highway=residential"
+                # assertNoMatch:"way bicycle=designated moped=designated mofa=designated highway=busway"
+                # assertNoMatch:"way bicycle=designated moped=destination highway=busway"
                 set_hasAddMofaPositive = True
-                err.append({'class': 90208, 'subclass': 1512003599, 'text': mapcss.tr('{0} and {1} without {2}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{3.key}={0.value}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 90208, 'subclass': 1443086133, 'text': mapcss.tr('{0} and {1} without {2}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{3.key}={0.value}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     (mapcss._tag_uncapture(capture_tags, '{3.key}={0.value}')).split('=', 1)])
                 }})
@@ -3557,6 +3570,25 @@ class Josm_DutchSpecific(PluginMapCSS):
                     ['heritage','2']])
                 }})
 
+        # relation[except][except~=bicycle][except~=moped][except!~/(^|; ?)mofa(;|$)/]
+        if ('except' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'except')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 1, tags, 'except'), mapcss._value_capture(capture_tags, 1, 'bicycle'))) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 2, tags, 'except'), mapcss._value_capture(capture_tags, 2, 'moped'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_110c89a2, '(^|; ?)mofa(;|$)'), mapcss._tag_capture(capture_tags, 3, tags, 'except'))))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("NL mofa tagging")
+                # throwWarning:tr("{0} without {1}","{0.tag}","mofa")
+                # suggestAlternative:"{0.tag};mofa"
+                # fixAdd:"{0.key}={0.value};mofa"
+                # assertNoMatch:"relation type=restriction except=bicycle"
+                # assertNoMatch:"relation type=restriction except=bicycle;mofa;moped"
+                err.append({'class': 90208, 'subclass': 92591020, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), 'mofa'), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss._tag_uncapture(capture_tags, '{0.key}={0.value};mofa')).split('=', 1)])
+                }})
+
         return err
 
 
@@ -3781,8 +3813,17 @@ class Test(TestPluginMapcss):
         self.check_not_err(n.way(data, {'highway': 'cycleway', 'maxspeed': '40'}, [0]), expected={'class': 90207, 'subclass': 293871183})
         self.check_not_err(n.way(data, {'highway': 'residential', 'maxspeed': '30'}, [0]), expected={'class': 90207, 'subclass': 293871183})
         self.check_not_err(n.way(data, {'access': 'permissive', 'highway': 'unclassified', 'maxspeed': '25', 'note': 'eigen_weg'}, [0]), expected={'class': 90207, 'subclass': 293871183})
-        self.check_not_err(n.way(data, {'highway': 'residential', 'oneway': 'no', 'oneway:bicycle': 'no'}, [0]), expected={'class': 90208, 'subclass': 1454217287})
-        self.check_not_err(n.way(data, {'highway': 'residential', 'mofa': 'no', 'oneway': 'yes', 'oneway:bicycle': 'no'}, [0]), expected={'class': 90208, 'subclass': 1454217287})
-        self.check_not_err(n.way(data, {'highway': 'residential', 'oneway': 'yes', 'oneway:bicycle': 'no', 'oneway:mofa': 'yes'}, [0]), expected={'class': 90208, 'subclass': 1454217287})
-        self.check_not_err(n.way(data, {'highway': 'residential', 'oneway': 'yes', 'oneway:bicycle': 'yes'}, [0]), expected={'class': 90208, 'subclass': 1454217287})
+        self.check_not_err(n.way(data, {'highway': 'residential', 'oneway': 'no', 'oneway:bicycle': 'no'}, [0]), expected={'class': 90208, 'subclass': 45390626})
+        self.check_not_err(n.way(data, {'highway': 'residential', 'mofa:backward': 'no', 'oneway': 'yes', 'oneway:bicycle': 'no'}, [0]), expected={'class': 90208, 'subclass': 45390626})
+        self.check_not_err(n.way(data, {'highway': 'residential', 'mofa': 'no', 'oneway': 'yes', 'oneway:bicycle': 'no'}, [0]), expected={'class': 90208, 'subclass': 45390626})
+        self.check_not_err(n.way(data, {'highway': 'residential', 'oneway': 'yes', 'oneway:bicycle': 'no', 'oneway:mofa': 'yes'}, [0]), expected={'class': 90208, 'subclass': 45390626})
+        self.check_not_err(n.way(data, {'highway': 'residential', 'oneway': 'yes', 'oneway:bicycle': 'yes'}, [0]), expected={'class': 90208, 'subclass': 45390626})
+        self.check_not_err(n.way(data, {'access': 'designated', 'bicycle': 'designated', 'highway': 'residential', 'moped': 'designated'}, [0]), expected={'class': 90208, 'subclass': 2061019359})
+        self.check_not_err(n.way(data, {'bicycle': 'designated', 'highway': 'residential', 'moped': 'designated'}, [0]), expected={'class': 90208, 'subclass': 2061019359})
+        self.check_not_err(n.way(data, {'access': 'no', 'bicycle': 'designated', 'highway': 'residential', 'mofa': 'designated', 'moped': 'designated'}, [0]), expected={'class': 90208, 'subclass': 2061019359})
+        self.check_not_err(n.way(data, {'bicycle': 'designated', 'highway': 'residential', 'moped': 'designated'}, [0]), expected={'class': 90208, 'subclass': 1443086133})
+        self.check_not_err(n.way(data, {'bicycle': 'designated', 'highway': 'busway', 'mofa': 'designated', 'moped': 'designated'}, [0]), expected={'class': 90208, 'subclass': 1443086133})
+        self.check_not_err(n.way(data, {'bicycle': 'designated', 'highway': 'busway', 'moped': 'destination'}, [0]), expected={'class': 90208, 'subclass': 1443086133})
         self.check_not_err(n.relation(data, {'addr:housename': 'huis', 'building': 'yes', 'type': 'multipolygon'}, []), expected={'class': 90201, 'subclass': 898220522})
+        self.check_not_err(n.relation(data, {'except': 'bicycle', 'type': 'restriction'}, []), expected={'class': 90208, 'subclass': 92591020})
+        self.check_not_err(n.relation(data, {'except': 'bicycle;mofa;moped', 'type': 'restriction'}, []), expected={'class': 90208, 'subclass': 92591020})

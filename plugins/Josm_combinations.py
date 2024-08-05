@@ -2490,7 +2490,7 @@ class Josm_combinations(PluginMapCSS):
                 err.append({'class': 9001001, 'subclass': 1738767711, 'text': mapcss.tr('sport without physical feature')})
 
         # *[building:levels][!building][!building:part]
-        # way[usage][!railway][!waterway][route!=railway][man_made!=pipeline]
+        # way[usage][!railway][!waterway][route!=railway][man_made!=pipeline][!aerialway]
         if ('building:levels' in keys) or ('usage' in keys):
             match = False
             if not match:
@@ -2499,12 +2499,12 @@ class Josm_combinations(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'usage')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'railway')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'waterway')) and (mapcss._tag_capture(capture_tags, 3, tags, 'route') != mapcss._value_const_capture(capture_tags, 3, 'railway', 'railway')) and (mapcss._tag_capture(capture_tags, 4, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 4, 'pipeline', 'pipeline')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'usage')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'railway')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'waterway')) and (mapcss._tag_capture(capture_tags, 3, tags, 'route') != mapcss._value_const_capture(capture_tags, 3, 'railway', 'railway')) and (mapcss._tag_capture(capture_tags, 4, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 4, 'pipeline', 'pipeline')) and (not mapcss._tag_capture(capture_tags, 5, tags, 'aerialway')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
                 # throwWarning:tr("{0} without {1} or {2}","{0.key}","{1.key}","{2.key}")
-                err.append({'class': 9001001, 'subclass': 1032721815, 'text': mapcss.tr('{0} without {1} or {2}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.key}'))})
+                err.append({'class': 9001001, 'subclass': 1552380544, 'text': mapcss.tr('{0} without {1} or {2}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.key}'))})
 
         # *[/_name$/][!name][!old_name][!loc_name][!reg_name][!uic_name][!artist_name][!lock_name][!"osak:municipality_name"][!"osak:street_name"][NHD:subbasin_name!~/^(Des Moines Headwaters|Upper Des Moines|East Fork Des Moines)$/][noname!=yes]
         if True:
