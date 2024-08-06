@@ -67,7 +67,7 @@ FROM (
 WHERE
   tags?'amenity' AND
   tags->'amenity' = 'parking' AND
-  (NOT tags?'parking' OR tags->'parking' NOT IN ('street_side', 'lane'))
+  (NOT tags?'parking' OR tags->'parking' NOT IN ('street_side', 'lane', 'layby'))
 """
 
 sql13 = """
@@ -125,7 +125,7 @@ class Analyser_Osmosis_Parking_highway(Analyser_Osmosis):
             detail = T_(
 '''There should be a `highway` feature leading to this parking facility
 to allow for correct routing. Add a road or check if `parking=*` is
-correct. If it is a street side parking (`parking=street_side`) or lane,
+correct. If it is a street side parking (`parking=street_side`), layby (`parking=layby`) or lane,
 then add appropriate tags.
 
 See [parking](https://wiki.openstreetmap.org/wiki/Key:parking) tag on the wiki.'''))
