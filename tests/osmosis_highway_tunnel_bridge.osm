@@ -1,0 +1,225 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='1' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86655703664' lon='5.88353279395' />
+  <node id='2' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86625541463' lon='5.88354121565' />
+  <node id='3' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86643582039' lon='5.88353617848'>
+    <tag k='note' v='No match class 4/5' />
+  </node>
+  <node id='4' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86643916161' lon='5.8837517583' />
+  <node id='5' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86666971101' lon='5.88367034847' />
+  <node id='6' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.8665084999' lon='5.88367596294' />
+  <node id='7' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86660036776' lon='5.88367276348'>
+    <tag k='note' v='No match class 4/5' />
+  </node>
+  <node id='8' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86659863952' lon='5.88354963736' />
+  <node id='9' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86634902586' lon='5.88407757914'>
+    <tag k='note' v='No match class 4/5' />
+  </node>
+  <node id='10' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86653796864' lon='5.88406616865' />
+  <node id='11' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86642009356' lon='5.88393422859' />
+  <node id='12' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86642876086' lon='5.88424863894' />
+  <node id='13' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86642391683' lon='5.88407305638'>
+    <tag k='note' v='Bad node class 4/5/6/7' />
+  </node>
+  <node id='14' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86628228247' lon='5.88408160984' />
+  <node id='15' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86649376466' lon='5.88398476023' />
+  <node id='16' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.8664980983' lon='5.88422758608' />
+  <node id='17' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86649526357' lon='5.88406874766'>
+    <tag k='note' v='No match class 4/5' />
+  </node>
+  <node id='18' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86611327022' lon='5.88532661728'>
+    <tag k='note' v='No match class 4/5' />
+  </node>
+  <node id='19' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86666797756' lon='5.88531819557'>
+    <tag k='note' v='No match class 4/5' />
+  </node>
+  <node id='20' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86600752836' lon='5.88532661728'>
+    <tag k='note' v='No match class 4/5' />
+  </node>
+  <node id='21' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86677718476' lon='5.88521432787' />
+  <node id='22' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86660901291' lon='5.88531909079'>
+    <tag k='note' v='No match class 4/5' />
+  </node>
+  <node id='23' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86664717616' lon='5.88547259351' />
+  <node id='24' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86657266235' lon='5.88531964268'>
+    <tag k='note' v='No match class 4/5' />
+  </node>
+  <node id='25' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86657090427' lon='5.88519467722' />
+  <node id='26' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86651016597' lon='5.88532059152'>
+    <tag k='note' v='Bad node class 4/5/6/7' />
+  </node>
+  <node id='27' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86651023336' lon='5.88547259351' />
+  <node id='28' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86645996311' lon='5.88521152063' />
+  <node id='29' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86645822965' lon='5.88544732839' />
+  <node id='30' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86645915562' lon='5.88532136597'>
+    <tag k='note' v='Bad node class 4/5/6/7' />
+  </node>
+  <node id='31' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86659170484' lon='5.88580805953' />
+  <node id='32' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86649029774' lon='5.88581086676' />
+  <node id='33' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86653255254' lon='5.88580969703'>
+    <tag k='note' v='No match class 4/5' />
+  </node>
+  <node id='34' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86653255008' lon='5.88584315102' />
+  <node id='35' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86590387912' lon='5.88538653621' />
+  <node id='36' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86098886969' lon='5.88428510546' />
+  <node id='37' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86642573688' lon='5.88526000595' />
+  <node id='38' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86642358994' lon='5.88538517202' />
+  <node id='39' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86642467541' lon='5.88532188946'>
+    <tag k='note' v='Bad node class 4/5/6/7' />
+  </node>
+  <node id='40' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86638278174' lon='5.88519167089' />
+  <node id='41' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86638063642' lon='5.88544876326' />
+  <node id='42' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86639080234' lon='5.88407505621'>
+    <tag k='note' v='Bad node class 4/5/6/7' />
+  </node>
+  <node id='43' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86639246091' lon='5.88412773086' />
+  <way id='1000' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='1' />
+    <nd ref='3' />
+    <nd ref='2' />
+    <tag k='highway' v='pedestrian' />
+    <tag k='tunnel' v='yes' />
+  </way>
+  <way id='1001' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='3' />
+    <nd ref='4' />
+    <tag k='highway' v='footway' />
+    <tag k='incline' v='up' />
+    <tag k='note' v='For example a tunnel under railway platforms where a footway emerges that goes up to the platform. Should technically have cutting, but this is so often omitted' />
+  </way>
+  <way id='1002' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='5' />
+    <nd ref='7' />
+    <nd ref='6' />
+    <tag k='highway' v='footway' />
+    <tag k='tunnel' v='building_passage' />
+  </way>
+  <way id='1003' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='7' />
+    <nd ref='8' />
+    <tag k='covered' v='yes' />
+    <tag k='highway' v='footway' />
+    <tag k='indoor' v='yes' />
+  </way>
+  <way id='1004' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='9' />
+    <nd ref='42' />
+    <nd ref='13' />
+    <nd ref='17' />
+    <nd ref='10' />
+    <tag k='highway' v='tertiary' />
+    <tag k='tunnel' v='yes' />
+  </way>
+  <way id='1005' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='11' />
+    <nd ref='13' />
+    <nd ref='12' />
+    <tag k='highway' v='secondary' />
+  </way>
+  <way id='1006' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='14' />
+    <nd ref='9' />
+    <tag k='highway' v='tertiary' />
+  </way>
+  <way id='1007' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='15' />
+    <nd ref='17' />
+    <nd ref='16' />
+    <tag k='highway' v='secondary' />
+    <tag k='tunnel' v='yes' />
+  </way>
+  <way id='1008' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='18' />
+    <nd ref='39' />
+    <nd ref='30' />
+    <nd ref='26' />
+    <nd ref='24' />
+    <nd ref='22' />
+    <nd ref='19' />
+    <tag k='bridge' v='cantilever' />
+    <tag k='highway' v='secondary' />
+  </way>
+  <way id='1009' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='20' />
+    <nd ref='18' />
+    <tag k='highway' v='secondary' />
+  </way>
+  <way id='1010' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='21' />
+    <nd ref='19' />
+    <tag k='bridge' v='yes' />
+    <tag k='highway' v='secondary' />
+  </way>
+  <way id='1011' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='22' />
+    <nd ref='23' />
+    <tag k='bridge' v='yes' />
+    <tag k='highway' v='tertiary' />
+  </way>
+  <way id='1012' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='24' />
+    <nd ref='25' />
+    <tag k='highway' v='steps' />
+  </way>
+  <way id='1013' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='26' />
+    <nd ref='27' />
+    <tag k='highway' v='tertiary' />
+  </way>
+  <way id='1014' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='28' />
+    <nd ref='30' />
+    <nd ref='29' />
+    <tag k='highway' v='tertiary' />
+  </way>
+  <way id='1015' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='31' />
+    <nd ref='33' />
+    <nd ref='32' />
+    <tag k='bridge' v='boardwalk' />
+    <tag k='highway' v='path' />
+  </way>
+  <way id='1016' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='33' />
+    <nd ref='34' />
+    <tag k='highway' v='path' />
+    <tag k='note' v='Hiking path that may get you wet shoes starting with a jump from the boardwalk' />
+  </way>
+  <way id='1017' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='35' />
+    <nd ref='20' />
+    <tag k='bridge' v='yes' />
+    <tag k='highway' v='secondary' />
+    <tag k='note' v='Class 1 no match' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1018' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='20' />
+    <nd ref='36' />
+    <tag k='bridge' v='yes' />
+    <tag k='highway' v='secondary' />
+    <tag k='note' v='Class 1 match' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='1019' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='37' />
+    <nd ref='39' />
+    <tag k='highway' v='residential' />
+  </way>
+  <way id='1020' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='39' />
+    <nd ref='38' />
+    <tag k='highway' v='residential' />
+  </way>
+  <way id='1021' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='40' />
+    <nd ref='41' />
+    <tag k='highway' v='primary' />
+    <tag k='layer' v='-1' />
+  </way>
+  <way id='1022' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='42' />
+    <nd ref='43' />
+    <tag k='highway' v='tertiary' />
+  </way>
+</osm>
