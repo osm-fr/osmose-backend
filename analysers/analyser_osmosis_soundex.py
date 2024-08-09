@@ -229,14 +229,13 @@ class Analyser_Osmosis_Soundex(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
 
-        # Check langues for country are writen with alphabets
+        # Check languages for country are writen with alphabets
         self.scripts = 'language' in config.options and languages.scripts(config.options['language'])
         if self.scripts and len(self.scripts) == 1 and (self.scripts[0] == 'Latin' or self.scripts[0].startswith('[A-Za-z')):
             self.classs[1] = self.def_class(item = 5050, level = 2, tags = ['name', 'fix:survey'],
-                title = T_('Soundex test'),
+                title = T_('Possibly misspelled name'),
                 detail = T_(
-'''A street name "sounds" similar to that of another street but is
-not spelled the same way.'''),
+'''A name "sounds" similar to that of another but is not spelled the same way.'''),
                 fix = T_(
 '''After you have checked that it is a mistake, change the name.'''),
                 trap = T_(
@@ -271,5 +270,6 @@ his name not need be transformed into "Jean Monnet",
         self.run(sql06, lambda res: {
             "class":1,
             "data":[self.way_full, self.positionAsText],
-            "fix":{"name":res[2].replace(res[3], res[4])}
+            "fix":{"name":res[2].replace(res[3], res[4])},
+            "text": T_("{0} 'sounds' similar to {1} but is spelled differently", res[3], res[4])
         } )
