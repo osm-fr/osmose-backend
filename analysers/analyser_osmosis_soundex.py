@@ -220,7 +220,7 @@ FROM
         phonic_fort.phonic_2oo = phonic_faible.phonic_2oo
 WHERE
     levenshtein(upper(unaccent(phonic_fort.name_2oo)), upper(unaccent(phonic_faible.name_2oo))) <= 1 AND
-    replace(upper(phonic_fort.name_2oo), '-', ' ') <> replace(upper(phonic_faible.name_2oo), '-', ' ')
+    regexp_replace(upper(phonic_fort.name_2oo), '[0-9-]+', ' ') <> regexp_replace(upper(phonic_faible.name_2oo), '[0-9-]+', ' ')
 """
 
 
