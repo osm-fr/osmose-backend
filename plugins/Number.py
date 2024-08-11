@@ -82,10 +82,6 @@ be used if the value is valid.''')
             self.tag_number.extend(list(map(lambda t: (t[0] + i, t[1]), tag_number_directional)))
         self.tag_number.extend(list(map(lambda t: (t, None), self.tag_number_integer)))
 
-        self.units = [# length units via convertToUnit, the others are yet to be implemented there
-                      "km/h", "mph", "knots", # speed
-                      "t", "kg", "st", "lbs", "lt", "cwt"] # weight
-
         self.MaxspeedExtraValue = ["none", "default", "signals", "national", "no", "unposted", "walk", "urban", "variable"]
         self.MaxspeedClassValue = re.compile(u'^[A-Z]*:')
         self.MaxheightExtraValue = ["default", "below_default", "no_indications", "no_sign", "none", "unsigned"]
@@ -118,18 +114,15 @@ be used if the value is valid.''')
                 if tag in self.tag_number_integer and str(int(abs(m["value"]))) != tags[tag]:
                     # Expected: positive integer, found: decimal number or number with unit
                     return {"class": 3093, "subclass": 4, "text": T_("Concerns tag: `{0}`", '='.join([tag, tags[tag]])) }
-                if m["unit"] and not m["unit"] in self.units:
+                if m["unit"]:
                     try:
                         convertToUnit(m, i[1]) # Will throw in case conversion to the default unit (i[1]) isn't possible
                     except NotImplementedError:
                         return {"class": 3094, "subclass": 6, "text": T_("Concerns tag: `{0}`", '='.join([tag, tags[tag]])) }
                 if tag == "height":
-                    try:
-                        if convertToUnit(m, 'm') > 500:
-                            return {"class": 3092, "subclass": 2, "text": T_("`height={0}` is really tall, consider changing to `ele=*`", tags[tag]),
-                                 "fix": {"-": ["height"], "+": {"ele": tags["height"]}} }
-                    except: # E.g. height in speed units; TODO: remove try/except once all units of self.unit are dealt with in convertToUnit
-                        return {"class": 3094, "subclass": 7, "text": T_("Concerns tag: `{0}`", '='.join([tag, tags[tag]])) }
+                    if convertToUnit(m, 'm') > 500:
+                        return {"class": 3092, "subclass": 2, "text": T_("`height={0}` is really tall, consider changing to `ele=*`", tags[tag]),
+                             "fix": {"-": ["height"], "+": {"ele": tags["height"]}} }
                 elif "maxspeed" in tag and m["value"] < 5 and not "waterway" in tags:
                     return {"class": 3092, "subclass": 3, "text": T_('`{0}` is really slow', 'maxspeed=' + tags[tag])}
                 elif tag == "width" and m["value"] <= 0 and "highway" in tags: # seems to be an old iD bug
