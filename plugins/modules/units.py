@@ -107,4 +107,28 @@ def convertToUnit(x, convertTo):
     if convertTo == "nmi": # default for distance over water
         return convertToUnit(x, 'm') / 1852
 
+    # Speed based conversions
+    if convertTo == "km/h": # default for speed
+        if x["unit"] in ('kph', 'kmh', 'kmph'):
+            return x["value"]
+        if x["unit"] == 'mph':
+            return x["value"] * 1.609344
+        if x["unit"] == "knots":
+            return x["value"] * 1.852
+
+    # Weight based conversions
+    if convertTo == "t": # default for weight
+        if x["unit"] in ('st', 'ST', 'T', 'ton', 'tons'):
+            return x["value"] * 0.9071847
+        if x["unit"] == 'lt':
+            return x["value"] * 1.016047
+        if x["unit"] in ('lbs', 'lb'):
+            return x["value"] * 0.00045359237
+        if x["unit"] == 'cwt':
+            return x["value"] * 0.05080
+        if x["unit"].endswith('g'):
+            prefix = x["unit"][0:-1]
+            if prefix in _si_prefixes:
+                return x["value"] * _si_prefixes[prefix] / 1e6
+
     raise NotImplementedError("Unknown conversion: {0} to {1}".format(str(x), convertTo))
