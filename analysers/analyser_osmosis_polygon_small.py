@@ -117,7 +117,7 @@ Usually a park contains grass, other vegetation, walking paths. A park often has
             {'key': 'landuse', 'val': 'forest', 'minarea': 20, 'class': 2}, # 20m2 is roughly 1 big tree of 5m diameter
             {'key': 'landuse', 'val': 'farmland', 'minarea': 100, 'class': 3},
             {'key': 'landuse', 'val': 'village_green', 'minarea': 500, 'class': 4},
-            {'key': 'leisure', 'val': 'park', 'minarea': 10, 'class': 5},
+            {'key': 'leisure', 'val': 'park', 'minarea': 25, 'class': 5},
         ]
 
     def analyser_osmosis_full(self):
