@@ -72,6 +72,7 @@ separator '_' or ':'. See
             "railway:memor2+", "railway:tbl1+",
             "ref:refuges.info", "ref:clochers.org",
             "ref:temples.ru", "ref:sobory.ru",
+            "ref:Aléop",
         ))
     def node(self, data, tags):
         err = []
