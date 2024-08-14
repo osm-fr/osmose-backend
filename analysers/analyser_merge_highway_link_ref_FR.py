@@ -51,7 +51,7 @@ class Analyser_Merge_Highway_Link_Ref_FR(Analyser_Merge_Network):
                     types = ["ways"],
                     tags = [{"highway": ["motorway_link","trunk_link","primary_link","roundabout"]}]),
                 osmRef = "nat_ref",
-                conflationDistance = 150,
+                conflationDistance = 15,
                 minLength = 50,
                 mapping = Mapping(
                     static2 = {"source:nat_ref": self.source},
