@@ -32,7 +32,7 @@ class Analyser_Merge_Highway_Link_Ref_FR(Analyser_Merge_Network):
             trap = T_('''Those nat_ref can only be on `*_link` ways or roundabouts.'''))
 
         self.def_class_possible_merge(item = 8432, id = 47, level = 3, tags = ['merge', 'highway'],
-            title = T_('*_link French métropole nat_ref integration suggestion'), **doc)
+            title = T_('*_link nat_ref integration suggestion'), **doc)
         self.def_class_update_official(item = 8432, id = 48, level = 3, tags = ['merge', 'highway'],
             title = T_('*_link French métropole nat_ref update'), **doc)
         self.init(
@@ -49,7 +49,9 @@ class Analyser_Merge_Highway_Link_Ref_FR(Analyser_Merge_Network):
             ConflateNetwork(
                 select = Select(
                     types = ["ways"],
-                    tags = [{"highway": ["motorway_link","trunk_link","primary_link"],"junction":"roundabout"}]),
+                    tags = [
+                        {"highway": ["motorway_link","trunk_link","primary_link"],
+                         "junction":"roundabout"}]),
                 osmRef = "nat_ref",
                 conflationDistance = 15,
                 minLength = 50,
@@ -63,6 +65,7 @@ class Analyser_Merge_Highway_Link_Ref_FR(Analyser_Merge_Network):
         def is_riu_link(self,row):
             # Filter only DB, FB
             return row['nom_plo_in'][0:2] == 'DB'
+
         def linkplo_isidor(self,row):
-            #plo format isidor
+            # plo format isidor
             return row['lib_rte'] + '_' + row['nom_plo'][2:]  + 'D'
