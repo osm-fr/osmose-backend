@@ -49,7 +49,7 @@ class Analyser_Merge_Highway_Link_Ref_FR(Analyser_Merge_Network):
             ConflateNetwork(
                 select = Select(
                     types = ["ways"],
-                    tags = [{"highway": ["motorway_link","trunk_link","primary_link","roundabout"]}]),
+                    tags = [{"highway": ["motorway_link","trunk_link","primary_link"],"jonction":"roundabout"}]),
                 osmRef = "nat_ref",
                 conflationDistance = 15,
                 minLength = 50,
