@@ -30,7 +30,7 @@ class Analyser_Merge_Highway_Link_Ref_FR(Analyser_Merge_Network):
         doc = dict(
             detail = T_('''The list of road comes from the database "RIU" in France.'''),
             trap = T_('''Those nat_ref can only be on `*_link` ways or roundabout.'''))
-           
+
         self.def_class_possible_merge(item = 8432, id = 47, level = 3, tags = ['merge', 'highway'],
             title = T_('*_link French métropole nat_ref integration suggestion'), **doc)
         self.def_class_update_official(item = 8432, id = 48, level = 3, tags = ['merge', 'highway'],
