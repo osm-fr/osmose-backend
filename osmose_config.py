@@ -289,7 +289,7 @@ france_departement = gen_country('europe', 'france', download_repo=OSMFR, langua
     'merge_reservoir_FR',
     'merge_water_FR',
     'merge_road_FR',
-    'merge_ref_link_FR',        
+	'merge_ref_link_FR',        
     'merge_forest_compartment_FR',
 ], **{'addr:city-admin_level': '8,9'})
 
