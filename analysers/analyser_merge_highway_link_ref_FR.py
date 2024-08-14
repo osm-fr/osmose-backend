@@ -24,7 +24,7 @@ from modules.OsmoseTranslation import T_
 from .Analyser_Merge import SHP, SourceDataGouv, Load, Select, Mapping
 from .Analyser_Merge_Network import Analyser_Merge_Network, ConflateNetwork
 
-class Analyser_Merge_Ref_Link_FR(Analyser_Merge_Network):
+class Analyser_Merge_Highway_Link_Ref_FR(Analyser_Merge_Network):
     def __init__(self, config, logger = None):
         Analyser_Merge_Network.__init__(self, config, logger)
         doc = dict(
