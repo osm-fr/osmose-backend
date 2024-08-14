@@ -28,16 +28,13 @@ class Analyser_Merge_Highway_Link_Ref_FR(Analyser_Merge_Network):
     def __init__(self, config, logger = None):
         Analyser_Merge_Network.__init__(self, config, logger)
         doc = dict(
-            detail = T_(
-'''The list of road comes from the database "RIU" in France.'''),
-            trap = T_(
-'''Those nat_ref can only be on `*_link` ways or roundabout.'''))        
+            detail = T_('''The list of road comes from the database "RIU" in France.'''),
+            trap = T_('''Those nat_ref can only be on `*_link` ways or roundabout.'''))
            
         self.def_class_possible_merge(item = 8432, id = 47, level = 3, tags = ['merge', 'highway'],
             title = T_('*_link French métropole nat_ref integration suggestion'), **doc)
         self.def_class_update_official(item = 8432, id = 48, level = 3, tags = ['merge', 'highway'],
             title = T_('*_link French métropole nat_ref update'), **doc)
-            
         self.init(
             "https://www.data.gouv.fr/fr/datasets/liaisons-du-reseau-routier-national/",
             "Liaisons du réseau routier national",
@@ -48,11 +45,11 @@ class Analyser_Merge_Highway_Link_Ref_FR(Analyser_Merge_Network):
                 zip='VSMAP_TOUT.shp'),
             Load('geom',
                 table_name = 'ref_link_fr_' + config.options['country'].replace("-", "_"),
-                where = lambda row: (self.is_riu_link(row))), 
+                where = lambda row: (self.is_riu_link(row))),
             ConflateNetwork(
                 select = Select(
                     types = ["ways"],
-                    tags = [{"highway": "motorway_link","highway": "trunk_link","highway": "primary_link","highway": "roundabout"}]),
+                    tags = [{"highway": ["motorway_link","trunk_link","primary_link","roundabout"]}]),
                 osmRef = "nat_ref",
                 conflationDistance = 150,
                 minLength = 50,
@@ -62,10 +59,10 @@ class Analyser_Merge_Highway_Link_Ref_FR(Analyser_Merge_Network):
                         "operator": 'gestionnai',
                         "nat_ref": lambda row: (self.linkplo_isidor(row))}
                 )))
-            
+
         def is_riu_link(self,row):
-            # Filter only DB, FB 
-            return row['nom_plo_in'][0:2] == 'DB' 
+            # Filter only DB, FB
+            return row['nom_plo_in'][0:2] == 'DB'
         def linkplo_isidor(self,row):
             #plo format isidor
-            return row['lib_rte'] + '_' + row['nom_plo'][2:]  + 'D'            
+            return row['lib_rte'] + '_' + row['nom_plo'][2:]  + 'D'
