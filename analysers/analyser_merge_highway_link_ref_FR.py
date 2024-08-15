@@ -22,11 +22,11 @@
 
 from modules.OsmoseTranslation import T_
 from .Analyser_Merge import SHP, SourceDataGouv, Load, Select, Mapping
-from .Analyser_Merge_Network import Analyser_Merge_Network, ConflateNetwork
+from .Analyser_Merge_Network_Link import Analyser_Merge_Network_Link, ConflateNetwork
 
-class Analyser_Merge_Highway_Link_Ref_FR(Analyser_Merge_Network):
+class Analyser_Merge_Highway_Link_Ref_FR(Analyser_Merge_Network_Link):
     def __init__(self, config, logger = None):
-        Analyser_Merge_Network.__init__(self, config, logger)
+        Analyser_Merge_Network_Link.__init__(self, config, logger)
         doc = dict(
             detail = T_('''The list of road comes from the database "RIU" in France.'''),
             trap = T_('''Those nat_ref can only be on `*_link` ways or roundabouts.'''))
@@ -45,7 +45,8 @@ class Analyser_Merge_Highway_Link_Ref_FR(Analyser_Merge_Network):
                 zip='VSMAP_TOUT.shp'),
             Load('geom',
                 table_name = 'ref_link_fr_' + config.options['country'].replace("-", "_"),
-                where = lambda row: (self.is_riu_link(row))),
+                select = [{
+                    'nom_plo_in': ['DB1', 'DB2', 'DB3', 'DB4', 'DB5', 'DB6', 'DB7', 'DB8', 'DB9', 'DB10', 'DB11', 'DB12', 'DB13', 'DB14', 'DB15'] }] ),
             ConflateNetwork(
                 select = Select(
                     types = ["ways"],
@@ -62,10 +63,6 @@ class Analyser_Merge_Highway_Link_Ref_FR(Analyser_Merge_Network):
                         "nat_ref": lambda row: (self.linkplo_isidor(row))}
                 )))
 
-        def is_riu_link(self,row):
-            # Filter only DB, FB
-            return row['nom_plo_in'][0:2] == 'DB'
-
-        def linkplo_isidor(self,row):
-            # plo format isidor
-            return row['lib_rte'] + '_' + row['nom_plo'][2:]  + 'D'
+    def linkplo_isidor(self,row):
+        # plo format isidor
+        return row['lib_rte'] + '_' + row['nom_plo_in'][2:]  + 'D'
