@@ -60,7 +60,7 @@ class Analyser_Merge_Highway_Link_Ref_FR(Analyser_Merge_Network_Link):
                     static2 = {"source:nat_ref": self.source},
                     mapping1 = {
                         "operator": 'gestionnai',
-                        "nat_ref": lambda row: (self.linkplo_isidor(row))}
+                        "nat_ref": lambda row: self.linkplo_isidor(row)}
                 )))
 
     def linkplo_isidor(self,row):
