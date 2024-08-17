@@ -38,7 +38,10 @@ class Construction(Plugin):
 been in construction for more than two years or opening data is
 exceeded.'''))
 
-        self.tag_construction = ["highway", "landuse", "building"]
+        # Tags where the value "construction" does not refer to construction work on the object itself
+        # Note that only company=construction is documented
+        self.tag_not_construction = ["company", "craft", "historic", "industrial", "shop"]
+
         self.tag_date = ["opening_date", "open_date", "construction:date", "temporary:date_on", "date_on"]
         self.default_date = datetime.datetime(9999, 12, 1)
         self.today = datetime.datetime.today()
@@ -65,15 +68,14 @@ exceeded.'''))
             pass
 
     def node(self, data, tags):
-        construction_found = False
-        for t in tags:
-            if t == "construction" or (t.startswith("construction:") and t != "construction:date"):
-                construction_found = True
-                break
+        construction_found = "construction" in tags
 
+        if not construction_found and "operational_status" in tags:
+            construction_found = tags.get("operational_status").endswith("construction")
         if not construction_found:
-            for t in self.tag_construction:
-                if tags.get(t) == "construction":
+            for t in tags:
+                if ((t.startswith("construction:") and t != "construction:date")
+                    or (tags.get(t) == "construction" and t not in self.tag_not_construction and ":" not in t)):
                     construction_found = True
                     break
 
@@ -95,7 +97,7 @@ exceeded.'''))
 
         delta = int(self.total_seconds(self.today - end_date))
         if delta > 0:
-            # Change the subclass every 6 months after expiration, re-popup the marker in frontend event if set as false-positive
+            # Change the subclass every 6 months after expiration, re-popup the marker in frontend even if set as false-positive
             return {"class": 4070, "subclass": delta // self.recall}
 
     def way(self, data, tags, nds):
@@ -124,11 +126,16 @@ class Test(TestPluginCommon):
                        {"highway": "construction"},
                        {"landuse": "construction"},
                        {"building": "construction"},
+                       {"operational_status": "under_construction"},
+                       {"railway": "construction"},
                        {"construction:man_made": "water_works"},
                       ]
         other_tags = [{"highway": "primary"},
                       {"landuse": "farm"},
                       {"building": "yes"},
+                      {"company": "construction"},
+                      {"construction:date": "2001-01-01"},
+                      {"removed:landuse": "construction"},
                      ]
 
         correct_dates = ["2010-02-03",
