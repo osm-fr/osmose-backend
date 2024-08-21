@@ -75,11 +75,12 @@ be used if the value is valid.''')
         # Syntax ("tag", "default unit"), except for integer tags (those are converted automatically)
         self.tag_number = [("diameter", 'mm'), ("distance", 'km'), ("ele", 'm'), ("height", 'm'), ("length", 'm'), ("width", 'm'), ("diameter_crown", 'm'), ("circumference", 'm'), ("depth", 'm')]
         self.tag_number_integer = ["admin_level", "capital", "heritage", "population", "step_count"] # Only positive integers (no units) allowed
-        tag_number_directional = [("maxaxleload", 't'), ("maxheight", 'm'), ("maxheight:physical", 'm'), ("maxlength", 'm'), ("maxspeed", 'km/h'), ("maxspeed:advisory", 'km/h'), ("maxweight", 't'), ("maxwidth", 'm'), ("minspeed", 'km/h')]
+        tag_number_directional = [("maxaxleload", 't'), ("maxheight", 'm'), ("maxheight:physical", 'm'), ("maxlength", 'm'), ("maxspeed", 'km/h'), ("maxspeed:advisory", 'km/h'), ("maxweight", 't'), ("maxweightrating", 't'), ("maxwidth", 'm'), ("maxwidth:physical", 'm'), ("minspeed", 'km/h')]
 
         # Add suffixes to the directional tags, add everything to tag_number
         for i in ["", ":forward", ":backward"]:
-            self.tag_number.extend(list(map(lambda t: (t[0] + i, t[1]), tag_number_directional)))
+            for v in ["", ":hgv", ":bus", ":trailer", ":coach", ":motorcar", ":goods", ":motorcycle", ":tilting"]:
+                self.tag_number.extend(list(map(lambda t: (t[0] + v + i, t[1]), tag_number_directional)))
         self.tag_number.extend(list(map(lambda t: (t, None), self.tag_number_integer)))
 
         self.MaxspeedExtraValue = ["none", "default", "signals", "national", "no", "unposted", "walk", "urban", "variable"]
@@ -160,10 +161,14 @@ class Test(TestPluginCommon):
         for d in ["foo", "18kph", "1", "30 c", "30 m", "70;80 km/h", "70-80", "42.5.5"]:
             self.check_err(a.node(None, {"maxspeed":d}), ("maxspeed='{0}'".format(d)))
             self.check_err(a.node(None, {"maxspeed:backward":d}), ("maxspeed:backward='{0}'".format(d)))
+            self.check_err(a.node(None, {"maxspeed:hgv":d}), ("maxspeed:hgv='{0}'".format(d)))
+            self.check_err(a.node(None, {"maxspeed:hgv:forward":d}), ("maxspeed:hgv:forward='{0}'".format(d)))
 
         for d in ["50", "FR:urban", "35 mph", "10 knots", "default"]:
             assert not a.node(None, {"maxspeed":d}), ("maxspeed='{0}'".format(d))
             assert not a.node(None, {"minspeed:forward":d}), ("minspeed:forward='{0}'".format(d))
+            assert not a.node(None, {"minspeed:hgv":d}), ("minspeed:hgv='{0}'".format(d))
+            assert not a.node(None, {"maxspeed:hgv:forward":d}), ("maxspeed:hgv:forward='{0}'".format(d))
 
         for d in ["50 millimeters", "40 metre", "30 feet", "30 in", "10 mile", "6ft 6in"]:
             self.check_err(a.node(None, {"distance": d}), ("distance='{0}'".format(d)))
