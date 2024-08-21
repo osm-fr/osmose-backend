@@ -140,6 +140,7 @@ WHERE
             (NOT bt_connections.tags?'covered' OR bt_connections.tags->'covered' = 'no')
         )
     ) AND
+    NOT bt_ways.is_area AND -- any point of an area can be an end point
     NOT bt_ways.is_construction AND NOT bt_connections.is_construction AND
     -- Below: filter all cases where one would for instance walk from a building directly onto a bridge
     (NOT bt_connections.tags?'indoor' OR bt_connections.tags->'indoor' = 'no') AND
