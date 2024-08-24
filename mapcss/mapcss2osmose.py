@@ -344,6 +344,34 @@ def functionExpression_rule_flags(t, c):
         c['flags'].append('relational')
     return t
 
+specialCountryMap = {
+    # https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#exceptional-reservations
+    # None here simply means 'not yet implemented by us'
+    'AC': None,
+    'CP': None,
+    'CQ': None,
+    'DG': None,
+    'EA': None,
+    'EU': None,
+    'EZ': None,
+    'FX': ['FR-69M', 'FR-69D', 'FR-2A', 'FR-2B'] + list(map(lambda n: 'FR-{:02}'.format(n), range(1,96))),
+    'IC': None,
+    'SU': None,
+    'TA': None,
+    'UK': None,
+    'UN': None,
+}
+def functionExpression_insideoutside(t, c):
+    """
+    type = functionExpression
+    convert unconventional country codes to Osmose equivalent
+    """
+    if t['name'] in ('inside', 'outside'):
+        countries = t["params"][0]["value"].split(',')
+        countries = list(map(lambda x: x if x not in specialCountryMap or (specialCountryMap[x] is None and not print("Warning: special country code not implemented yet: " + x)) else ','.join(specialCountryMap[x]), countries))
+        t["params"][0]["value"] = ','.join(countries)
+    return t
+
 def rule_after_flags(t, c):
     """
     type = rule
@@ -479,6 +507,7 @@ rewrite_rules_change_before = [
     ('booleanExpression', booleanExpression_operator_to_function),
     ('functionExpression', functionExpression_param_regex),
     ('functionExpression', functionExpression_regexp_flags),
+    ('functionExpression', functionExpression_insideoutside),
     ('pseudo_class', pseudo_class_righthandtraffic),
     # Safty
     ('rule', rule_declarations_order),

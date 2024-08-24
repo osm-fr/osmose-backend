@@ -595,3 +595,46 @@ node[any(siunit_length(tag(x)), "no result") == "no result"] {
   assertMatch: "node x=5m*3";
   assertMatch: "node x=1.3.5";
 }
+
+
+node[x][inside("FX,NL")] {
+  throwWarning: "test";
+  -osmoseAssertMatchWithContext:list("node x=1", "inside=NL");
+  -osmoseAssertMatchWithContext:list("node x=1", "inside=FR-02");
+  -osmoseAssertNoMatchWithContext:list("node x=1", "inside=FR");
+  -osmoseAssertNoMatchWithContext:list("node x=1", "inside=FR-GP");
+  -osmoseAssertNoMatchWithContext:list("node x=1", "inside=DE");
+}
+node[x][inside("FX,NL,FR-GF")] {
+  throwWarning: "test";
+  -osmoseAssertMatchWithContext:list("node x=1", "inside=NL");
+  -osmoseAssertMatchWithContext:list("node x=1", "inside=FR-02");
+  -osmoseAssertMatchWithContext:list("node x=1", "inside=FR-GF");
+  -osmoseAssertNoMatchWithContext:list("node x=1", "inside=FR");
+  -osmoseAssertNoMatchWithContext:list("node x=1", "inside=FR-GP");
+  -osmoseAssertNoMatchWithContext:list("node x=1", "inside=DE");
+}
+node[x][inside("FX,NL,FR")] {
+  throwWarning: "test";
+  -osmoseAssertMatchWithContext:list("node x=1", "inside=NL");
+  -osmoseAssertMatchWithContext:list("node x=1", "inside=FR-02");
+  -osmoseAssertMatchWithContext:list("node x=1", "inside=FR-GF");
+  -osmoseAssertMatchWithContext:list("node x=1", "inside=FR");
+  -osmoseAssertMatchWithContext:list("node x=1", "inside=FR-GP");
+  -osmoseAssertNoMatchWithContext:list("node x=1", "inside=DE");
+}
+node[x][inside("NL,FX,DE")][outside("FR-02")] {
+  throwWarning: "test";
+  -osmoseAssertMatchWithContext:list("node x=1", "inside=NL");
+  -osmoseAssertMatchWithContext:list("node x=1", "inside=DE");
+  -osmoseAssertMatchWithContext:list("node x=1", "inside=FR-12");
+  -osmoseAssertNoMatchWithContext:list("node x=1", "inside=FR-02");
+  -osmoseAssertNoMatchWithContext:list("node x=1", "inside=FR-GF");
+  -osmoseAssertNoMatchWithContext:list("node x=1", "inside=FR");
+  -osmoseAssertNoMatchWithContext:list("node x=1", "inside=FR-GP");
+}
+node[x][inside("FR")][outside("FX")] {
+  throwWarning: "test";
+  -osmoseAssertMatchWithContext:list("node x=1", "inside=FR-GF");
+  -osmoseAssertNoMatchWithContext:list("node x=1", "inside=FR-02");
+}
