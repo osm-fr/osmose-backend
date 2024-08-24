@@ -4422,6 +4422,58 @@ class Josm_deprecated(PluginMapCSS):
                 # suggestAlternative:"{1.key}"
                 err.append({'class': 9002001, 'subclass': 1736205096, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
+        # *[natural=landform][landform=esker]
+        if ('landform' in keys and 'natural' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'natural') == mapcss._value_capture(capture_tags, 0, 'landform')) and (mapcss._tag_capture(capture_tags, 1, tags, 'landform') == mapcss._value_capture(capture_tags, 1, 'esker')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} should be replaced by {1}","{1.tag}","geological=esker")
+                # suggestAlternative:"natural=ridge or geological=esker"
+                err.append({'class': 9002001, 'subclass': 1008024827, 'text': mapcss.tr('{0} should be replaced by {1}', mapcss._tag_uncapture(capture_tags, '{1.tag}'), 'geological=esker')})
+
+        # *[natural=landform][landform=moraine]
+        if ('landform' in keys and 'natural' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'natural') == mapcss._value_capture(capture_tags, 0, 'landform')) and (mapcss._tag_capture(capture_tags, 1, tags, 'landform') == mapcss._value_capture(capture_tags, 1, 'moraine')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} should be replaced by {1}","{1.tag}","geological=moraine")
+                # suggestAlternative:"geological=moraine"
+                err.append({'class': 9002001, 'subclass': 1223091758, 'text': mapcss.tr('{0} should be replaced by {1}', mapcss._tag_uncapture(capture_tags, '{1.tag}'), 'geological=moraine')})
+
+        # *[natural=landform][landform=beach]
+        if ('landform' in keys and 'natural' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'natural') == mapcss._value_capture(capture_tags, 0, 'landform')) and (mapcss._tag_capture(capture_tags, 1, tags, 'landform') == mapcss._value_capture(capture_tags, 1, 'beach')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} should be replaced by {1}","{1.tag}","natural=beach")
+                # suggestAlternative:"natural=beach"
+                err.append({'class': 9002001, 'subclass': 2005356131, 'text': mapcss.tr('{0} should be replaced by {1}', mapcss._tag_uncapture(capture_tags, '{1.tag}'), 'natural=beach')})
+
+        # *[natural=landform][landform=tundra_polygon]
+        if ('landform' in keys and 'natural' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'natural') == mapcss._value_capture(capture_tags, 0, 'landform')) and (mapcss._tag_capture(capture_tags, 1, tags, 'landform') == mapcss._value_capture(capture_tags, 1, 'tundra_polygon')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} should be replaced by {1}","{1.tag}","natural=tundra")
+                # suggestAlternative:"natural=tundra or natural=fell"
+                err.append({'class': 9002001, 'subclass': 149743951, 'text': mapcss.tr('{0} should be replaced by {1}', mapcss._tag_uncapture(capture_tags, '{1.tag}'), 'natural=tundra')})
+
         return err
 
     def way(self, data, tags, nds):
@@ -8902,6 +8954,58 @@ class Josm_deprecated(PluginMapCSS):
                 # suggestAlternative:"{1.key}"
                 err.append({'class': 9002001, 'subclass': 1736205096, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
+        # *[natural=landform][landform=esker]
+        if ('landform' in keys and 'natural' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'natural') == mapcss._value_capture(capture_tags, 0, 'landform')) and (mapcss._tag_capture(capture_tags, 1, tags, 'landform') == mapcss._value_capture(capture_tags, 1, 'esker')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} should be replaced by {1}","{1.tag}","geological=esker")
+                # suggestAlternative:"natural=ridge or geological=esker"
+                err.append({'class': 9002001, 'subclass': 1008024827, 'text': mapcss.tr('{0} should be replaced by {1}', mapcss._tag_uncapture(capture_tags, '{1.tag}'), 'geological=esker')})
+
+        # *[natural=landform][landform=moraine]
+        if ('landform' in keys and 'natural' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'natural') == mapcss._value_capture(capture_tags, 0, 'landform')) and (mapcss._tag_capture(capture_tags, 1, tags, 'landform') == mapcss._value_capture(capture_tags, 1, 'moraine')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} should be replaced by {1}","{1.tag}","geological=moraine")
+                # suggestAlternative:"geological=moraine"
+                err.append({'class': 9002001, 'subclass': 1223091758, 'text': mapcss.tr('{0} should be replaced by {1}', mapcss._tag_uncapture(capture_tags, '{1.tag}'), 'geological=moraine')})
+
+        # *[natural=landform][landform=beach]
+        if ('landform' in keys and 'natural' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'natural') == mapcss._value_capture(capture_tags, 0, 'landform')) and (mapcss._tag_capture(capture_tags, 1, tags, 'landform') == mapcss._value_capture(capture_tags, 1, 'beach')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} should be replaced by {1}","{1.tag}","natural=beach")
+                # suggestAlternative:"natural=beach"
+                err.append({'class': 9002001, 'subclass': 2005356131, 'text': mapcss.tr('{0} should be replaced by {1}', mapcss._tag_uncapture(capture_tags, '{1.tag}'), 'natural=beach')})
+
+        # *[natural=landform][landform=tundra_polygon]
+        if ('landform' in keys and 'natural' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'natural') == mapcss._value_capture(capture_tags, 0, 'landform')) and (mapcss._tag_capture(capture_tags, 1, tags, 'landform') == mapcss._value_capture(capture_tags, 1, 'tundra_polygon')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} should be replaced by {1}","{1.tag}","natural=tundra")
+                # suggestAlternative:"natural=tundra or natural=fell"
+                err.append({'class': 9002001, 'subclass': 149743951, 'text': mapcss.tr('{0} should be replaced by {1}', mapcss._tag_uncapture(capture_tags, '{1.tag}'), 'natural=tundra')})
+
         return err
 
     def relation(self, data, tags, members):
@@ -12769,6 +12873,58 @@ class Josm_deprecated(PluginMapCSS):
                 # throwWarning:tr("{0} is deprecated","{0.key}")
                 # suggestAlternative:"{1.key}"
                 err.append({'class': 9002001, 'subclass': 1736205096, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+
+        # *[natural=landform][landform=esker]
+        if ('landform' in keys and 'natural' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'natural') == mapcss._value_capture(capture_tags, 0, 'landform')) and (mapcss._tag_capture(capture_tags, 1, tags, 'landform') == mapcss._value_capture(capture_tags, 1, 'esker')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} should be replaced by {1}","{1.tag}","geological=esker")
+                # suggestAlternative:"natural=ridge or geological=esker"
+                err.append({'class': 9002001, 'subclass': 1008024827, 'text': mapcss.tr('{0} should be replaced by {1}', mapcss._tag_uncapture(capture_tags, '{1.tag}'), 'geological=esker')})
+
+        # *[natural=landform][landform=moraine]
+        if ('landform' in keys and 'natural' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'natural') == mapcss._value_capture(capture_tags, 0, 'landform')) and (mapcss._tag_capture(capture_tags, 1, tags, 'landform') == mapcss._value_capture(capture_tags, 1, 'moraine')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} should be replaced by {1}","{1.tag}","geological=moraine")
+                # suggestAlternative:"geological=moraine"
+                err.append({'class': 9002001, 'subclass': 1223091758, 'text': mapcss.tr('{0} should be replaced by {1}', mapcss._tag_uncapture(capture_tags, '{1.tag}'), 'geological=moraine')})
+
+        # *[natural=landform][landform=beach]
+        if ('landform' in keys and 'natural' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'natural') == mapcss._value_capture(capture_tags, 0, 'landform')) and (mapcss._tag_capture(capture_tags, 1, tags, 'landform') == mapcss._value_capture(capture_tags, 1, 'beach')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} should be replaced by {1}","{1.tag}","natural=beach")
+                # suggestAlternative:"natural=beach"
+                err.append({'class': 9002001, 'subclass': 2005356131, 'text': mapcss.tr('{0} should be replaced by {1}', mapcss._tag_uncapture(capture_tags, '{1.tag}'), 'natural=beach')})
+
+        # *[natural=landform][landform=tundra_polygon]
+        if ('landform' in keys and 'natural' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'natural') == mapcss._value_capture(capture_tags, 0, 'landform')) and (mapcss._tag_capture(capture_tags, 1, tags, 'landform') == mapcss._value_capture(capture_tags, 1, 'tundra_polygon')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} should be replaced by {1}","{1.tag}","natural=tundra")
+                # suggestAlternative:"natural=tundra or natural=fell"
+                err.append({'class': 9002001, 'subclass': 149743951, 'text': mapcss.tr('{0} should be replaced by {1}', mapcss._tag_uncapture(capture_tags, '{1.tag}'), 'natural=tundra')})
 
         return err
 
