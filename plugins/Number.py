@@ -87,7 +87,7 @@ be used if the value is valid.''')
         self.MaxspeedClassValue = re.compile(u'^[A-Z]*:')
         self.MaxheightExtraValue = ["default", "below_default", "no_indications", "no_sign", "none", "unsigned"]
         self.MaxweightExtraValue = ["default", "below_default", "none", "no", "unsigned"]
-    
+
     def node(self, data, tags):
         for i in self.tag_number:
             tag = i[0]
