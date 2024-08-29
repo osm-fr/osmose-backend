@@ -102,7 +102,7 @@ be used if the value is valid.''')
                         self.MaxspeedClassValue.match(tags[tag]) or
                         (tags[tag] == "implicit" and ("traffic_sign" in tags) and "maxspeed" in tags["traffic_sign"].split(";"))
                     )) and
-                    not (tag == "maxheight" and tags[tag] in self.MaxheightExtraValue)
+                    not (tag == "maxheight" and tags[tag] in self.MaxheightExtraValue) and
                     not (tag == "maxweight" and tags[tag] in self.MaxweightExtraValue)
                 ):
                     return {"class": 3091, "subclass": 1, "text": T_("Concerns tag: `{0}`", '='.join([tag, tags[tag]])) }
