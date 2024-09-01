@@ -1,6 +1,11 @@
 #-*- coding: utf-8 -*-
 item_map = \
-{'DutchSpecific': {'class': {None: 0,
+{'Charge': {'class': {'Invalid value of charge': 30916},
+            'prefix': 'Josm_',
+            'tags': ['tag'],
+            'url': 'https://josm.openstreetmap.de/josmfile?page=Rules/ChargeRules&rule',
+            'url_display': 'https://josm.openstreetmap.de/wiki/Rules/ChargeRules'},
+ 'DutchSpecific': {'class': {None: 0,
                              'NL German style tagging': 90206,
                              'NL addresses and contacts': 90201,
                              'NL deprecated features': 90202,
