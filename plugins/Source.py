@@ -51,14 +51,14 @@ the origin.'''),
 `source=*`.'''))
 
     def check(self, tags):
-        if u"source" not in tags and u"ref" not in tags:
+        if "source" not in tags and "ref" not in tags:
             return
 
-        for tag in (u"source", u"ref"):
+        for tag in ("source", "ref"):
             if tag in tags:
                 value = tags[tag].lower()
-                if u"google" in value:
-                    return {"class": 706, "subclass": 2, "text": {"en": u"Google {0}={1}".format(tag, value)}}
+                if any("google" in v and not v.rstrip().endswith("buildings") for v in value.split(';')):
+                    return {"class": 706, "subclass": 2, "text": {"en": "Google {0}: {1}".format(tag, value)}}
 
     def node(self, data, tags):
         return self.check(tags)
@@ -82,12 +82,14 @@ class Test(TestPluginCommon):
             config = _config()
         a.father = father()
         a.init(None)
-        for d in [{u"name": u"Free"},
-                  {u"source": u"Free"},
+        for d in [{"name": "Free"},
+                  {"source": "Free"},
+                  {"source": "esri/google_africa_buildings"}, # ODbL licensed, #2323
+                  {"source": "Google Open Buildings; something else"}, # ODbL licensed, #2323
                  ]:
             assert not a.node(None, d), d
 
-        for d in [{u"source":u"google maps"}]:
+        for d in [{"source": "google maps"}]:
             self.check_err(a.node(None, d), d)
             self.check_err(a.way(None, d, None), d)
             self.check_err(a.relation(None, d, None), d)
