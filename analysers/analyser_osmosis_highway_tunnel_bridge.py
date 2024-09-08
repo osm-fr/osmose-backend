@@ -194,7 +194,7 @@ split the bridge or tunnel and adjust the tags accordingly.'''),
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "fix":[{"+":{"bridge:structure":"beam"}}, {"+":{"bridge:structure":"suspension"}}] }
         #self.callback20 = lambda res: {"class":2, "data":[self.way_full, self.way_full, self.positionAsText] }
         #self.callback30 = lambda res: {"class":3, "data":[self.way_full, self.positionAsText] }
-        self.callback40 = lambda res: {"class": (4 if res[4] == 'bridge' else 5) + (2 if res[5] else 0), "data": [self.node_full, self.way, self.way, self.positionAsText] }
+        self.callback40 = lambda res: {"class": (4 if res[4] == 'bridge' else 5) + (2 if res[5] else 0), "data": [self.node_full, self.way_full, self.way_full, self.positionAsText] }
 
     def analyser_osmosis_full(self):
         self.run(sql10.format(""), self.callback10)
