@@ -86,6 +86,7 @@ be used if the value is valid.''')
         self.MaxspeedExtraValue = ["none", "default", "signals", "national", "no", "unposted", "walk", "urban", "variable"]
         self.MaxspeedClassValue = re.compile(u'^[A-Z]*:')
         self.MaxheightExtraValue = ["default", "below_default", "no_indications", "no_sign", "none", "unsigned"]
+        self.MaxweightExtraValue = ["unsigned"]
 
     def node(self, data, tags):
         for i in self.tag_number:
@@ -101,7 +102,8 @@ be used if the value is valid.''')
                         self.MaxspeedClassValue.match(tags[tag]) or
                         (tags[tag] == "implicit" and ("traffic_sign" in tags) and "maxspeed" in tags["traffic_sign"].split(";"))
                     )) and
-                    not (tag == "maxheight" and tags[tag] in self.MaxheightExtraValue)
+                    not (tag == "maxheight" and tags[tag] in self.MaxheightExtraValue) and
+                    not (tag.split(":", 1)[0] == "maxweight" and tags[tag] in self.MaxweightExtraValue)
                 ):
                     return {"class": 3091, "subclass": 1, "text": T_("Concerns tag: `{0}`", '='.join([tag, tags[tag]])) }
                 if not m:
