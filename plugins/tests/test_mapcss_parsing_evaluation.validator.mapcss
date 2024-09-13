@@ -639,3 +639,12 @@ node[x][inside("FR")][outside("FX")] {
   -osmoseAssertMatchWithContext:list("node x=1", "inside=FR-GF");
   -osmoseAssertNoMatchWithContext:list("node x=1", "inside=FR-02");
 }
+
+
+node[x][join_list("-", trim_list(split(";", tag("x")))) = "a-b-c"] {
+  throwWarning: "test";
+  assertMatch: "node x=a;b;c";
+  assertMatch: "node x=;a;;b;;c;";
+  assertMatch: "node x=\"a;  b; ; c\"";
+  assertNoMatch: "node x=a;b;0;c";
+}
