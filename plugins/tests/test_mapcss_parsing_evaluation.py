@@ -907,6 +907,7 @@ class test_mapcss_parsing_evaluation(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:"test #1610"
+                # assertMatch:"way x=\"C00; C1; C22\""
                 # assertMatch:"way x=C00;C1;C22"
                 # assertMatch:"way x=C1"
                 # assertNoMatch:"way x=C12"
@@ -1709,6 +1710,7 @@ class Test(TestPluginMapcss):
             self.check_not_err(n.node(data, {'x': '1'}), expected={'class': 6, 'subclass': 170749071})
         with with_options(n, {'country': 'FR-GF'}):
             self.check_err(n.node(data, {'x': '1'}), expected={'class': 6, 'subclass': 170749071})
+        self.check_err(n.way(data, {'x': 'C00; C1; C22'}, [0]), expected={'class': 16, 'subclass': 1785050832})
         self.check_err(n.way(data, {'x': 'C00;C1;C22'}, [0]), expected={'class': 16, 'subclass': 1785050832})
         self.check_err(n.way(data, {'x': 'C1'}, [0]), expected={'class': 16, 'subclass': 1785050832})
         self.check_not_err(n.way(data, {'x': 'C12'}, [0]), expected={'class': 16, 'subclass': 1785050832})

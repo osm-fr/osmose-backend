@@ -26,6 +26,7 @@ way[x~=C1] {
   throwWarning: "test #1610";
   assertMatch: "way x=C1";
   assertMatch: "way x=C00;C1;C22";
+  assertMatch: "way x=\"C00; C1; C22\"";
   assertNoMatch: "way x=C12";
 }
 
