@@ -5,7 +5,7 @@
 # Translators:
 # Adrien Pavie <panieravide@riseup.net>, 2020
 # ALEX HO <alexandre.ho.1998_linkedin@m4x.org>, 2021
-# Antonin Curtit, 2020-2021
+# Antonin Del Fabbro, 2020-2021
 # d0eb1b39400ee5b9bc10de527e3c63ec_cfadf65, 2020
 # d0eb1b39400ee5b9bc10de527e3c63ec_cfadf65, 2021
 # bagage <gautier.pelloux@gmail.com>, 2018
