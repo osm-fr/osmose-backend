@@ -33,6 +33,7 @@ class Analyser_Merge_Charging_station_FR(Analyser_Merge_Point):
         "freshmile": "Q111209120",
         "lidl": "Q115764851",
         "Electra": "Q128592938",
+        "TotalEnergies Charging Services": "Q154037",
     }
 
     def __init__(self, config, logger=None):
