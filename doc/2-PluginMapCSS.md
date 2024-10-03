@@ -1,4 +1,4 @@
-# Plugin based on MapCCS - The basics
+# Plugin based on MapCSS - The basics
 
 The MapCSS is easier to understand and write than Python. The [definition of the MapCSS language](https://josm.openstreetmap.de/wiki/Help/Styles/MapCSSImplementation) is from JOSM. The MapCSS code can also be run and [shared with the JOSM validator](https://josm.openstreetmap.de/wiki/Rules).
 
