@@ -3,3 +3,4 @@ notebook
 pandas
 ipyleaflet
 scipy
+pickleshare
