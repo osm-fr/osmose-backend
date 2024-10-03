@@ -1,13 +1,13 @@
 # Analyzer based on SQL query - The basics
 
-The database is a PostgreSQL with PostGIS spatial extension and hstore. It is know as [Osmosis](https://wiki.openstreetmap.org/wiki/Osmosis) schema and loaded by the tool of the same name.
+The database is a PostgreSQL with PostGIS spatial extension and hstore. It is known as [Osmosis](https://wiki.openstreetmap.org/wiki/Osmosis) schema and loaded by the tool of the same name.
 
 
 ## Database schema
 
 There is 3 main tables `nodes`, `ways` and `relations`.
 
-All table have in common:
+All tables have in common:
 * `id`: bigint
 * `version`: integer
 * `user_id`: integer, the value may not be available
@@ -68,9 +68,9 @@ Spatial index must be used to largely improve performance on spatial crossing qu
 
 ### Definition
 
-The analyzer inherit from class `Analyser_Osmosis`. It have to implement `__init__()` for defining Osmose issues classes using method `def_class` (see general documentation about this).
+The analyzer inherit from class `Analyser_Osmosis`. It has to implement `__init__()` for defining Osmose issues classes using method `def_class` (see general documentation about this).
 
-The analyzer also have to implement a non diff mode:
+The analyzer also has to implement a non diff mode:
 * `analyser_osmosis_common()`: run check not supporting diff mode.
 
 Or a diff mode, with this two methods:
