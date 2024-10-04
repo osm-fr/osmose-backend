@@ -38,7 +38,7 @@ class Analyser_Merge_Fuel_FR(Analyser_Merge_Point):
             u"http://www.prix-carburants.economie.gouv.fr/rubrique/opendata/",
             u"Prix des carburants en France",
             GeoJSON(Source(attribution = u"Ministère de l'Economie, de l'Industrie et du Numérique", millesime = "03/2020",
-                    fileUrl = u"https://files.pavie.info/depot/remote/carburants_gouv.geojson"),
+                    fileUrl = u"https://data.openfuelmap.net/carburants_gouv.geojson"),
                 extractor = lambda geojson: geojson),
             Load_XY("geom_x", "geom_y"),
             Conflate(
