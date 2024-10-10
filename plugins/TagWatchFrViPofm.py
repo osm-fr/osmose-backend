@@ -52,7 +52,7 @@ class TagWatchFrViPofm(Plugin):
         self._update_ks_vr = defaultdict(dict)
         self._update_kr_vr = defaultdict(dict)
 
-        reline = re.compile(r"^\|\s*((?:[^|{}]*\s*|\s*\{\{.*?\}\})\s*\|\|\s*){3}((?:[^|{}]*\s*|\s*\{\{.*?\}\})\s*).*") 
+        reline = re.compile(r"^\|\s*((?:[^|{}]*\s*|\s*\{\{.*?\}\})\s*\|\|\s*){3}((?:[^|{}]*\s*|\s*\{\{.*?\}\})\s*).*")
 
         # Obtain the info from https://wiki.openstreetmap.org/index.php?title=Tagging_mistakes
         data = urlread(u"https://wiki.openstreetmap.org/index.php?title=Tagging_mistakes&action=raw", 1)
