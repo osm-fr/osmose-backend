@@ -35,6 +35,7 @@ class Analyser_Merge_Charging_station_FR(Analyser_Merge_Point):
         "Electra": "Q128592938",
         "TotalEnergies Charging Services": "Q154037",
         "Last Mile Solutions": "Q109733858",
+        "Izivia": "Q86671322",
     }
 
     def __init__(self, config, logger=None):
