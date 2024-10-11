@@ -50,17 +50,21 @@ class TagFix_Postcode(Plugin):
         elif len(regexs) == 1:
             return "^"+regexs[0]+"$"
 
+    def clean_line(self, line):
+        # Clean wiki templates and links
+        line = re.sub(self.reWikiTemplate, "", line) # Remove all templates, e.g. {{Date|2000-01-01}}, may contain pipes
+        return re.sub(self.reWikiPageLink, "\\1", line) # Replace all links by their text value, so [[x|y]] and [[y]] both become y
+
     def list_postcode(self):
         reline = re.compile("^[-CAN ]+$")
         # remline = re.compile("^[-CAN ]+ *\([-CAN ]+\)$")
         data = urlread(u"https://en.wikipedia.org/wiki/List_of_postal_codes?action=raw", 1)
-        data = filter(lambda t: len(t) > 2 and (t[1] != "- no codes -" or t[2] != ""), map(lambda x: list(map(lambda y: y.strip(), x.split("|")))[5:8], data.split("|-")[1:-1]))
+        data = filter(lambda t: len(t) > 2 and ("no codes" not in t[1].lower() or t[2] != ""), map(lambda x: list(map(lambda y: y.strip(), self.clean_line(x).split("|")))[3:6], data.split("|-")[1:-1]))
         postcode = {}
         for line in data:
             iso = line[0][0:2]
             format_area = line[1]
             format_street = line[2]
-            # note = line[3]
 
             postcode[iso] = {}
             if format_area != '':
@@ -87,6 +91,8 @@ class TagFix_Postcode(Plugin):
 [Wikipedia](https://en.wikipedia.org/wiki/List_of_postal_codes)'''),
             resource = 'https://en.wikipedia.org/wiki/List_of_postal_codes')
 
+        self.reWikiTemplate = re.compile(r'\{\{[^}]+\}\}')
+        self.reWikiPageLink = re.compile(r'\[\[[^]]*?([^]|]+)\]\]')
         self.Country = None
         if self.father.config.options.get("country"):
             self.Country = self.father.config.options.get("country").split("-")[0]
@@ -227,6 +233,17 @@ class Test(TestPluginCommon):
         assert not a.node(None, {"postal_code":"30318"})
         assert not a.node(None, {"postal_code":"30318-2522"})
 
+    def test_CA(self):
+        a = TagFix_Postcode(None)
+        class _config:
+            options = {"country": "CA", "project": "openstreetmap"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+        assert a.node(None, {"postal_code":"AAA 111"})
+        assert not a.node(None, {"postal_code":"A0B 1C2"})
+
     def test_US(self):
         a = TagFix_Postcode(None)
         class _config:
@@ -248,3 +265,15 @@ class Test(TestPluginCommon):
         a.father = father()
         a.init(None)
         assert not a.node(None, {"addr:postcode":"Y35 WY93"})
+
+    def test_GH(self):
+        a = TagFix_Postcode(None)
+        class _config:
+            options = {"country": "GH", "project": "openstreetmap"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+        assert not a.node(None, {"addr:postcode":"AB123"})
+        assert not a.node(None, {"addr:postcode":"AB1234"})
+        assert not a.node(None, {"addr:postcode":"AB12345"})
