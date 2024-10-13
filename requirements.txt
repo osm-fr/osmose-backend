@@ -15,6 +15,7 @@ protobuf < 4 # 4.x binary not yet compatible with system package, deps of vt2geo
 vt2geojson
 tiletanic
 sentry-sdk
+wikitextparser
 
 # Tests
 pytest == 7.4.4 # In v8 it skips the plugins folder, see our issue #2266 and https://github.com/pytest-dev/pytest/issues/12605
