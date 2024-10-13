@@ -22,6 +22,7 @@
 from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 from modules.downloader import urlread
+from plugins.modules.wikiReader import read_wiki_table
 
 
 class TagFix_Tree(Plugin):
@@ -34,7 +35,7 @@ class TagFix_Tree(Plugin):
         allowed_leaf_cycle = ("evergreen", "deciduous")
 
         data = urlread(u"https://wiki.openstreetmap.org/w/index.php?title=Tag:natural%3Dtree/List_of_Species&action=raw", 1)
-        data = list(map(lambda x: list(filter(lambda z: len(z) > 0, map(lambda y: y.strip(), x.split("|")))), data.split("|-")[1:-1]))
+        data = read_wiki_table(data)
         species_map = {}
         for row in data: # data: list of [species, species:wikidata, leaf_cycle, leaf_type]
             this_species = {}
