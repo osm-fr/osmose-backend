@@ -22,6 +22,7 @@
 from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 from modules.downloader import urlread
+from plugins.modules.wikiReader import read_wiki_table
 import re
 
 
@@ -50,21 +51,18 @@ class TagFix_Postcode(Plugin):
         elif len(regexs) == 1:
             return "^"+regexs[0]+"$"
 
-    def clean_line(self, line):
-        # Clean wiki templates and links
-        line = re.sub(self.reWikiTemplate, "", line) # Remove all templates, e.g. {{Date|2000-01-01}}, may contain pipes
-        return re.sub(self.reWikiPageLink, "\\1", line) # Replace all links by their text value, so [[x|y]] and [[y]] both become y
-
     def list_postcode(self):
         reline = re.compile("^[-CAN ]+$")
-        # remline = re.compile("^[-CAN ]+ *\([-CAN ]+\)$")
         data = urlread(u"https://en.wikipedia.org/wiki/List_of_postal_codes?action=raw", 1)
-        data = filter(lambda t: len(t) > 2 and ("no codes" not in t[1].lower() or t[2] != ""), map(lambda x: list(map(lambda y: y.strip(), self.clean_line(x).split("|")))[3:6], data.split("|-")[1:-1]))
+        data = read_wiki_table(data)
+
         postcode = {}
-        for line in data:
-            iso = line[0][0:2]
-            format_area = line[1]
-            format_street = line[2]
+        for row in data:
+            iso = row[2]
+            format_area = row[3]
+            format_street = row[4]
+            if (not format_area or "no codes" in format_area.lower()) and not format_street:
+                continue
 
             postcode[iso] = {}
             if format_area != '':
@@ -91,8 +89,6 @@ class TagFix_Postcode(Plugin):
 [Wikipedia](https://en.wikipedia.org/wiki/List_of_postal_codes)'''),
             resource = 'https://en.wikipedia.org/wiki/List_of_postal_codes')
 
-        self.reWikiTemplate = re.compile(r'\{\{[^}]+\}\}')
-        self.reWikiPageLink = re.compile(r'\[\[[^]]*?([^]|]+)\]\]')
         self.Country = None
         if self.father.config.options.get("country"):
             self.Country = self.father.config.options.get("country").split("-")[0]
