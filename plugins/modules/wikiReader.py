@@ -23,19 +23,20 @@
 # This module file contains functions to read MediaWiki markup tables, templates, lists, ...
 
 import wikitextparser
+from typing import Union, Optional
 
 # Get a list of lists containing all cells of a table.
 # Parameters:
-#   wikitext (str) - the text of a wikipedia page
-#   tab_index (int) - the index of the table (if there's multiple tables on the wiki)
-#   keep_markup (bool) - if False, everything (except Templates) will be converted to plain text
-#   skip_headers (bool) - if True, header rows are removed. Assumes all headers are on top
+#   wikitext - the text of a wikipedia page
+#   tab_index - the index of the table (if there's multiple tables on the wiki)
+#   keep_markup - if False, everything (except Templates) will be converted to plain text
+#   skip_headers - if True, header rows are removed. Assumes all headers are on top
 # Returns:
 #   The cell contents, specified as a list in a list.
 #   The outer list is the rows, the inner list are the cells in that row
 # Throws:
 #   If the table at the specified index isn't found
-def read_wiki_table(wikitext, tab_index = 0, keep_markup = False, skip_headers = True):
+def read_wiki_table(wikitext: str, tab_index: int = 0, keep_markup: bool = False, skip_headers: bool = True) -> list[list[Optional[str]]]:
     # Drops all markup, such as italics, hyperlinks, ...
     if not keep_markup:
         wikitext = wikitextparser.remove_markup(wikitext, replace_tables=False, replace_templates=False)
@@ -54,14 +55,14 @@ def read_wiki_table(wikitext, tab_index = 0, keep_markup = False, skip_headers =
 
 # Get all instances of a certain wiki template within wikitext
 # Parameters:
-#   wikitext (str) - the text of a wikipedia page
-#   template_name (str or list of str) - the name of the template to locate, e.g. 'Deprecated features/item'
-#   keep_markup (bool) - if False, everything (except Templates) will be converted to plain text
+#   wikitext - the text of a wikipedia page
+#   template_name - the name or names of the template to locate, e.g. 'Deprecated features/item'
+#   keep_markup - if False, everything (except Templates) will be converted to plain text
 # Returns:
 #   A list containing lists of strings with values [template_string, template_name, argument1, argument2, argument3, ...]
 #   Example: ["{{Tag | key | value}}", "Tag", "key", "value"]
 #   (Note that the template_string is affected by the markup removal, so for string replace purposes, use keep_markup=True)
-def read_wiki_templates(wikitext, template_name, keep_markup = False):
+def read_wiki_templates(wikitext: str, template_name: Union[str, list[str]], keep_markup: bool = False) -> list[list[str]]:
     if isinstance(template_name, str):
         template_name = [template_name]
     template_name = list(map(str.lower, template_name))
@@ -78,16 +79,16 @@ def read_wiki_templates(wikitext, template_name, keep_markup = False):
 
 # Get all entries in a list within wikitext
 # Parameters:
-#   wikitext (str) - the text of a wikipedia page
-#   list_index (int) - the index of the list (if there's multiple lists on the wiki)
-#   keep_markup (bool) - if False, everything (except Templates) will be converted to plain text
-#   include_sublists (bool) - if true, include subitems. If false, only include the highest level items
+#   wikitext - the text of a wikipedia page
+#   list_index - the index of the list (if there's multiple lists on the wiki)
+#   keep_markup - if False, everything (except Templates) will be converted to plain text
+#   include_sublists - if true, include subitems. If false, only include the highest level items
 #       When true, the list item symbol (*, **, #, ##, :, ...) will also be included in the output
 # Returns:
 #   A list with all list items
 # Throws:
 #   If the list at index list_index doesn't exist
-def read_wiki_list(wikitext, list_index = 0, keep_markup = False, include_sublists = False):
+def read_wiki_list(wikitext: str, list_index: int = 0, keep_markup: bool = False, include_sublists: bool = False) -> list[str]:
     if not keep_markup:
         wikitext = wikitextparser.remove_markup(wikitext, replace_templates=False)
 
@@ -100,7 +101,7 @@ def read_wiki_list(wikitext, list_index = 0, keep_markup = False, include_sublis
 
 # Get all list entries within wikitext
 # See read_wiki_list for details (excluding list_index)
-def read_all_wiki_lists(wikitext, keep_markup = False, include_sublists = False):
+def read_all_wiki_lists(wikitext: str, keep_markup: bool = False, include_sublists: bool = False) -> list[str]:
     res = []
     if not keep_markup:
         wikitext = wikitextparser.remove_markup(wikitext, replace_templates=False)
@@ -110,18 +111,18 @@ def read_all_wiki_lists(wikitext, keep_markup = False, include_sublists = False)
         while True:
             res.extend(read_wiki_list(wikitext, list_index=list_index, keep_markup=True, include_sublists=include_sublists))
             list_index += 1
-    except:
+    except IndexError:
         return res
 
 
 # Convert all instances of Tag-templates to textual tags, e.g. {{Tag|oneway|yes}} -> "oneway=yes"
 # Parameters:
-#   wikitext (str) - the text of a wikipedia page
-#   quote (bool) - whether the tag should be wrapped in ``
-#   star_value (bool) - whether empty tag values should be represented by *
+#   wikitext - the text of a wikipedia page
+#   quote - whether the tag should be wrapped in ``
+#   star_value - whether empty tag values should be represented by *
 # Returns:
 #   The wikitext with {{Tag|*}} replaced by the textual tag
-def wikitag2text(wikitext, quote = False, star_value = True):
+def wikitag2text(wikitext: str, quote: bool = False, star_value: bool = True) -> str:
     tag_templates = read_wiki_templates(wikitext, ["Tag", "Key"], keep_markup = True)
     for t in tag_templates:
         k = t[2]
