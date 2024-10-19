@@ -31,8 +31,8 @@ meta[lang=fr] {
     description: "Téléphone";
 }
 
-*[phone][contact:phone][contact:phone!=*phone],
-*[fax][contact:fax][contact:fax!=*fax],
+*[phone][contact:phone][replace(tag("contact:phone"), " ", "")!=replace(tag("phone"), " ", "")],
+*[fax][contact:fax][replace(tag("contact:fax"), " ", "")!=replace(tag("fax"), " ", "")],
 *[email][contact:email][contact:email!=*email],
 *[website][contact:website][contact:website!=*website] {
     group: tr("Different value of tag contact:* and *");
@@ -41,4 +41,5 @@ meta[lang=fr] {
 
     assertMatch: "node phone=1 contact:phone=2";
     assertNoMatch: "node website=1 contact:website=1";
+    assertNoMatch: "node phone=\"+31 123 456 789\" contact:phone=\"+31123456789\"";
 }
