@@ -33,6 +33,9 @@ meta[lang=fr] {
 
 *[phone][contact:phone][replace(tag("contact:phone"), " ", "")!=replace(tag("phone"), " ", "")],
 *[fax][contact:fax][replace(tag("contact:fax"), " ", "")!=replace(tag("fax"), " ", "")],
+*[mobile][contact:mobile][replace(tag("contact:mobile"), " ", "")!=replace(tag("mobile"), " ", "")],
+*[instagram][contact:instagram][contact:instagram!=*instagram],
+*[facebook][contact:facebook][contact:facebook!=*facebook],
 *[email][contact:email][contact:email!=*email],
 *[website][contact:website][contact:website!=*website] {
     group: tr("Different value of tag contact:* and *");
