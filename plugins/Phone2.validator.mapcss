@@ -31,9 +31,9 @@ meta[lang=fr] {
     description: "Téléphone";
 }
 
-*[phone][contact:phone][replace(tag("contact:phone"), " ", "")!=replace(tag("phone"), " ", "")],
-*[fax][contact:fax][replace(tag("contact:fax"), " ", "")!=replace(tag("fax"), " ", "")],
-*[mobile][contact:mobile][replace(tag("contact:mobile"), " ", "")!=replace(tag("mobile"), " ", "")],
+*[phone][contact:phone][replace(replace(tag("contact:phone"), "-", ""), " ", "")!=replace(replace(tag("phone"), "-", ""), " ", "")],
+*[fax][contact:fax][replace(replace(tag("contact:fax"), "-", ""), " ", "")!=replace(replace(tag("fax"), "-", ""), " ", "")],
+*[mobile][contact:mobile][replace(replace(tag("contact:mobile"), "-", ""), " ", "")!=replace(replace(tag("mobile"), "-", ""), " ", "")],
 *[instagram][contact:instagram][contact:instagram!=*instagram],
 *[facebook][contact:facebook][contact:facebook!=*facebook],
 *[email][contact:email][contact:email!=*email],
@@ -44,5 +44,5 @@ meta[lang=fr] {
 
     assertMatch: "node phone=1 contact:phone=2";
     assertNoMatch: "node website=1 contact:website=1";
-    assertNoMatch: "node phone=\"+31 123 456 789\" contact:phone=\"+31123456789\"";
+    assertNoMatch: "node phone=\"+31 123-456 789\" contact:phone=\"+31123456789\"";
 }
