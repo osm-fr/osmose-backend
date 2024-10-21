@@ -31,7 +31,7 @@ class TagFix_Postcode(Plugin):
     not_for = ("EG") # Egypt is transitioning to a new format. At 2024-04-15 there were still 2.4M entries in OSM in the old format
 
     def parse_format(self, reline, format):
-        format = format.replace('optionally ', '')
+        format = format.replace('optionally ', '').replace("\n", " ")
         if format[-1] == ')':
             format = map(lambda x: x.strip(), format[:-1].split('('))
         elif ' or ' in format:
@@ -44,7 +44,7 @@ class TagFix_Postcode(Plugin):
         regexs = []
         for f in format:
             if reline.match(f):
-                regexs.append(f.replace(" ", "").replace("-", "").replace(".", "").replace("N", "[0-9]").replace("A", "[A-Z]").replace("CC", "(:?"+self.Country+")?"))
+                regexs.append(f.replace(" ", "").replace("-", "").replace(".", "").replace("N", "[0-9]").replace("A", "[A-Z]").replace("?", "[A-Z0-9]").replace("CC", "(:?"+self.Country+")?"))
 
         if len(regexs) > 1:
             return "^(("+(")|(".join(regexs))+"))$"
@@ -52,7 +52,7 @@ class TagFix_Postcode(Plugin):
             return "^"+regexs[0]+"$"
 
     def list_postcode(self):
-        reline = re.compile("^[-CAN ]+$")
+        reline = re.compile("^[-CAN ?]+$")
         data = urlread(u"https://en.wikipedia.org/wiki/List_of_postal_codes?action=raw", 1)
         data = read_wiki_table(data)
 
@@ -270,6 +270,8 @@ class Test(TestPluginCommon):
             config = _config()
         a.father = father()
         a.init(None)
+        assert a.node(None, {"addr:postcode":"123"})
+        assert a.node(None, {"addr:postcode":"A123"})
         assert not a.node(None, {"addr:postcode":"AB123"})
         assert not a.node(None, {"addr:postcode":"AB1234"})
         assert not a.node(None, {"addr:postcode":"AB12345"})
