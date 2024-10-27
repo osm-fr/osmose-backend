@@ -32,6 +32,8 @@ class TagFix_Access(Plugin):
     for d in ["", ":forward", ":backward", ":both_ways"]:
       self.suffixesWay.append(d)
       self.suffixesWay.append(d + ":conditional")
+      self.suffixesWay.append(":lanes" + d)
+      self.suffixesWay.append(":lanes" + d + ":conditional")
 
     # Note: emergency is excluded as it's also for hospital facilities
     self.accessKeys = ["4wd_only", "access", "agricultural", "atv", "bdouble", "bicycle", "boat", "bus", "canoe", "caravan", "carriage", "coach", "disabled", "dog", "foot", "golf_cart", "goods", "hazmat",
@@ -59,7 +61,6 @@ class TagFix_Access(Plugin):
         trap = T_('''Ensure that the access remains the same and does not conflict with other tags. This is especially likely if access tags are combined with directional and/or conditional access tags, or when transport modes are mixed with regular access values.'''),
         resource="https://wiki.openstreetmap.org/wiki/Key:access")
 
-
   def checkAccessKeys(self, tags, suffixes):
     err = []
     accessTags = {}
@@ -69,34 +70,56 @@ class TagFix_Access(Plugin):
           accessTags[accesskey + suffix] = {"transportMode": accesskey, "value": tags[accesskey + suffix], "suffix": suffix}
 
     for tag in accessTags:
-      values = accessTags[tag]["value"].split(";")
-      isConditional = ":conditional" in tag
-      for accessVal in set(values):
-        accessValue = accessVal
-        if isConditional:
-          if "@" in accessVal:
-            accessValue = accessValue.split("@")[0]
-          else:
-            continue # value was split on a ";" in the condition
-        accessValue = accessValue.strip()
-        transportMode = accessTags[tag]["transportMode"]
-        if transportMode in self.accessValuesSpecial and accessValue in self.accessValuesSpecial[transportMode]:
-          continue
-        if not accessValue in self.accessValuesGeneral:
-          if (accessValue in self.accessKeys or accessValue == "emergency") and accessValue != transportMode:
-            propose = tag + " = ### + " + accessValue + accessTags[tag]["suffix"] + " = yes"
-            if len(values) > 1 or isConditional:
-              propose = propose.replace("###", "...") # i.e. access=bus;destination should become access=destination + bus=yes instead of access=no + bus=yes
-            else:
-              propose = propose.replace("###", "no") # assume 'no' holds for all other transport modes
+        isConditional = accessTags[tag]["suffix"].endswith(":conditional")
+        isLanes = "lanes" in accessTags[tag]["suffix"].split(":")
+        if isLanes:
             if isConditional:
-              propose = propose + " @ (...)" # conditional may need to change
-            err.append({"class": 30405, "subclass": 0 + stablehash64(tag + '|' + accessVal), "text": T_("Access value \"{0}\" for key \"{1}\" is a transport mode. Consider using \"{2}\" instead", accessValue, tag, propose)})
-          else:
-            err.append({"class": 30404, "subclass": 0 + stablehash64(tag + '|' + accessVal), "text": T_("Unknown access value \"{0}\" for key \"{1}\"", accessValue, tag)})
+                # Too difficult, the condition itself may also contain ; and |. Just take the first value
+                values = set(accessTags[tag]["value"].split("@")[0].replace("|", ";").split(";"))
+            else:
+                values = set(accessTags[tag]["value"].replace("|", ";").split(";"))
+        else:
+            values = set(accessTags[tag]["value"].split(";"))
+            if isConditional:
+                # Get the last value per condition. If there's no @, assume the ; was inside a condition
+                values = set(map(lambda v: v.split("@", 1)[0], filter(lambda v: "@" in v, values)))
+
+        # Remove whitespace, and remove the special values 'none' (:lanes/:conditional), 'variable' or '' (:lanes only)
+        values = set(map(str.strip, values))
+        if isLanes or isConditional:
+            values = set(filter(lambda v: (v not in ('', 'variable', 'none') or not isLanes) and (v != 'none' or not isConditional), values))
+
+        for accessVal in values:
+            transportMode = accessTags[tag]["transportMode"]
+            if transportMode in self.accessValuesSpecial and accessVal in self.accessValuesSpecial[transportMode]:
+                continue
+            if not accessVal in self.accessValuesGeneral:
+                if (accessVal in self.accessKeys or accessVal == "emergency") and accessVal != transportMode:
+                    if not isLanes:
+                        propose = tag + " = ### + " + accessVal + accessTags[tag]["suffix"] + " = yes"
+                        if len(values) > 1 or isConditional:
+                            propose = propose.replace("###", "...") # i.e. access=bus;destination should become access=destination + bus=yes instead of access=no + bus=yes
+                        else:
+                            propose = propose.replace("###", "no") # assume 'no' holds for all other transport modes
+                        if isConditional:
+                            propose = propose + " @ (...)" # conditional may need to change
+                    else:
+                        # Not giving explicit fix suggestions, could be e.g. *:lanes = bus;destination|bus|yes or a *:lanes:conditional
+                        propose = tag + " = ... + " + accessVal + accessTags[tag]["suffix"] + " = ..."
+                    err.append({
+                        "class": 30405,
+                        "subclass": 0 + stablehash64(tag + '|' + accessVal),
+                        "text": T_("Access value \"{0}\" for key \"{1}\" is a transport mode. Consider using \"{2}\" instead", accessVal, tag, propose)
+                    })
+                else:
+                    err.append({
+                        "class": 30404,
+                        "subclass": 0 + stablehash64(tag + '|' + accessVal),
+                        "text": T_("Unknown access value \"{0}\" for key \"{1}\"", accessVal, tag)
+                    })
 
     if err != []:
-      return err
+        return err
 
   def way(self, data, tags, nds):
     return self.checkAccessKeys(tags, self.suffixesWay)
@@ -119,40 +142,48 @@ class Test(TestPluginCommon):
         # Valid nodes and ways
         for t in [{"amenity": "parking", "vehicle": "no"},
                   {"amenity": "parking", "vehicle:conditional": "no @ wet"},
+                  {"amenity": "parking", "vehicle:conditional": "no @ (wet); none @ Su"},
                   {"access": "agricultural", "agricultural": "designated"},
                   {"agricultural": "agricultural"},
                   {"highway": "residential", "hgv:conditional": "no @ (Mo-Fr 00:00-12:00;Sa 0:00-19:00); yes @ (Mo-Fr 12:00-24:00;Sa 19:00-24:00)"},
                   {"dog": "leashed", "bicycle": "dismount"},
                  ]:
-          assert not a.way(None, t, None), a.way(None, t, None)
-          assert not a.node(None, t), a.node(None, t)
+            assert not a.way(None, t, None), a.way(None, t, None)
+            assert not a.node(None, t), a.node(None, t)
 
-        # Valid ways with directions
+        # Valid ways with directions or lanes
         for t in [{"highway": "residential", "vehicle:forward": "customers"},
                   {"highway": "residential", "vehicle:backward:conditional": "customers @ (wet); destination @ (snow)"},
                   {"highway": "residential", "vehicle:both_ways": "customers;destination"},
                   {"highway": "residential", "vehicle:both_ways": "customers; destination"},
                   {"highway": "residential", "bicycle:forward:conditional": "dismount@wet"},
+                  {"highway": "residential", "bicycle:forward:lanes": "no|designated|||yes|none||variable|dismount"},
+                  {"highway": "residential", "bicycle:lanes:conditional": "no|designated|yes @ Su"},
+                  {"highway": "residential", "bicycle:lanes:forward:conditional": "none||variable|yes @ (Su;Sa); no|no|yes @ snow"},
                  ]:
-          assert not a.way(None, t, None), a.way(None, t, None)
+            assert not a.way(None, t, None), a.way(None, t, None)
 
         # Invalid nodes and ways
         for t in [{"amenity": "parking", "vehicle": "nope"},
+                  {"amenity": "parking", "vehicle": "none"},
                   {"amenity": "parking", "vehicle:conditional": "nope @ wet"},
                   {"highway": "residential", "canoe:conditional": "no @ (Mo-Fr 06:00-11:00;Sa 03:30-19:00); nope @ (snow)"},
                   {"highway": "residential", "tank:conditional": "dismount @ (Mo-Fr 06:00-11:00;Sa 03:30-19:00); no @ (snow)"},
                   {"bicycle": "leashed"},
                  ]:
-          assert a.way(None, t, None), a.way(None, t, None)
-          assert a.node(None, t), a.node(None, t)
+            self.check_err(a.way(None, t, None), expected = {'class': 30404})
+            self.check_err(a.node(None, t), expected = {'class': 30404})
 
-        # Invalid ways with directions
+        # Invalid ways with directions or lanes
         for t in [{"highway": "residential", "vehicle:forward": "nope"},
                   {"highway": "residential", "vehicle:both_ways:conditional": "nope @ wet"},
                   {"highway": "residential", "horse:backward": "customers;nope"},
                   {"highway": "residential", "horse:backward": "nope; customers"},
+                  {"highway": "residential", "horse:lanes": "yes|nope|yes|nope|"},
+                  {"highway": "residential", "snowmobile:lanes:backward:conditional": "nope|yes @ wet; yes|yes @ snow"},
+                  {"highway": "residential", "hgv:lanes": "no @ (weight>7.5)|yes|yes"},
                  ]:
-          assert a.way(None, t, None), a.way(None, t, None)
+            self.check_err(a.way(None, t, None), expected = {'class': 30404})
 
         # Transport mode as tag value
         for t in [{"highway": "residential", "access": "foot"},
@@ -160,5 +191,7 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "access:forward": "bus;foot"},
                   {"highway": "residential", "access": "bus; destination"},
                   {"highway": "residential", "access": "emergency"},
+                  {"highway": "residential", "access:lanes": "bus|agricultural|yes"},
+                  {"highway": "residential", "access:lanes:forward:conditional": "bus|agricultural|yes @ snow"},
                  ]:
-          assert a.way(None, t, None), a.way(None, t, None)
+            self.check_err(a.way(None, t, None), expected = {'class': 30405})
