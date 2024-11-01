@@ -503,7 +503,10 @@ france_departement("provence_alpes_cote_d_azur/vaucluse", 7445, "FR-84")
 france_departement("rhone_alpes/ain", 7387, "FR-01")
 france_departement("rhone_alpes/ardeche", 7430, "FR-07")
 france_departement("rhone_alpes/drome", 7434, "FR-26")
-france_departement("rhone_alpes/isere", 7437, "FR-38")
+france_departement("rhone_alpes/isere", 7437, "FR-38", include=[
+    # Grenoble
+    'merge_bicycle_parking_FR_grenoble',
+])
 france_departement("rhone_alpes/loire", 7420, "FR-42")
 france_departement("rhone_alpes/rhone", 7378, "FR-69", include=[
     # Lyon
