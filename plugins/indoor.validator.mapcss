@@ -86,6 +86,7 @@ way:closed[indoor=corridor][shop][inside("DE,CH,FR")] {
 *[room][!indoor][!buildingpart] {
     throwWarning: tr("`{0}` without `{1}`", "{0.tag}", "{1.key}");
     -osmoseItemClassLevel: "2120/21202:2/3";
+    -osmoseTrap: tr("For the number of rooms in a facility, use `{0}` instead.", "rooms=*");
     fixAdd: "indoor=room";
     assertMatch: "node room=office";
 }
