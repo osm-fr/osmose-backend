@@ -23,6 +23,7 @@
 # This module file contains functions to read MediaWiki markup tables, templates, lists, ...
 
 import wikitextparser
+import re
 from typing import Union, Optional
 
 # Get a list of lists containing all cells of a table.
@@ -122,14 +123,17 @@ def read_all_wiki_lists(wikitext: str, keep_markup: bool = False, include_sublis
 #   star_value - whether empty tag values should be represented by *
 # Returns:
 #   The wikitext with {{Tag|*}} replaced by the textual tag
+_re_num = re.compile("[1-9]")
 def wikitag2text(wikitext: str, quote: bool = False, star_value: bool = True) -> str:
     tag_templates = read_wiki_templates(wikitext, ["Tag", "Key"], keep_markup = True)
     for t in tag_templates:
         k = t[2]
-        # This part isn't perfect yet, there's special syntax for ;-separated, :-subkeys, :-subvalues, languages, ...
         v = "*" if star_value else ""
         if len(t) > 3:
-            v = "".join(t[3:]) or v
+            subk = ":".join(map(lambda sk: sk.split("=", 1)[1], filter(lambda kt: re.sub(_re_num, "", kt).startswith("subkey=") or (":=" in kt and not "kl:" in kt), t[3:])))
+            if subk:
+                k = k + ":" + subk
+            v = "".join(map(lambda vv: (";" + vv.split("=", 1)[1]) if ";=" in vv else vv, filter(lambda vt: not re.sub(_re_num, "", vt).startswith(("subkey=", "vl=", "kl=", "kl:", "lang", "nocat")) and not ":=" in vt, t[3:]))) or v
         if v:
             v = "=" + v
         wikitext = wikitext.replace(t[0], "{2}{0}{1}{2}".format(k, v, "`" if quote else ""))

@@ -4,7 +4,7 @@ from plugins.modules.wikiReader import read_wiki_table, read_wiki_templates, wik
 
 class Test(TestPluginCommon):
     def test_wikitag2text(self):
-        for k in ["{{tag|abc|def}}", "{{Tag|abc|def}}", "{{ Tag | abc | def }}", "{{Key|abc|def}}", "{{Tag|abc||def}}", ]:
+        for k in ["{{tag|abc|def}}", "{{Tag|abc|def}}", "{{ Tag | abc | def }}", "{{Key|abc|def}}", "{{Tag|abc||def}}", "{{Tag|abc|def|kl=de|vl=de}}", "{{Tag|abc|def|lang=de|nocat=yes}}", ]:
             assert wikitag2text(k) == "abc=def"
 
         for k in ["{{Tag|abc|}}", "{{tag|abc}}", "{{Key|abc}}"]:
@@ -12,6 +12,13 @@ class Test(TestPluginCommon):
             assert wikitag2text(k, star_value=False) == "abc"
 
         assert wikitag2text("{{tag|abc|def}} and {{tag|ghi|jkl}}", quote=True) == "`abc=def` and `ghi=jkl`"
+
+        for k in ["{{Tag|abc:def:ghi|jkl}}", "{{Tag|abc|subkey=def|subkey2=ghi|jkl}}", "{{Tag|abc|:=def|::=ghi|jkl}}", "{{Tag|abc|:=def|::=ghi|jkl|kl::=fr}}", ]:
+            assert wikitag2text(k) == "abc:def:ghi=jkl"
+
+        for k in ["{{Tag|abc||def;ghi}}", "{{Tag|abc|def|;=ghi}}", "{{Tag|abc|def|;=ghi|vl1=nl}}", ]:
+            assert wikitag2text(k) == "abc=def;ghi"
+
 
 
     def test_wikitable(self):
