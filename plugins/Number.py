@@ -74,7 +74,7 @@ be used if the value is valid.''')
 
         # Syntax ("tag", "default unit"), except for integer tags (those are converted automatically)
         self.tag_number = [("diameter", 'mm'), ("distance", 'km'), ("ele", 'm'), ("height", 'm'), ("length", 'm'), ("width", 'm'), ("diameter_crown", 'm'), ("circumference", 'm'), ("depth", 'm')]
-        self.tag_number_integer = ["admin_level", "capital", "heritage", "population", "step_count"] # Only positive integers (no units) allowed
+        self.tag_number_integer = ["admin_level", "capital", "heritage", "population", "rooms", "step_count"] # Only positive integers (no units) allowed
         tag_number_directional = [("maxaxleload", 't'), ("maxheight", 'm'), ("maxheight:physical", 'm'), ("maxlength", 'm'), ("maxspeed", 'km/h'), ("maxspeed:advisory", 'km/h'), ("maxweight", 't'), ("maxweightrating", 't'), ("maxwidth", 'm'), ("maxwidth:physical", 'm'), ("minspeed", 'km/h')]
 
         # Add suffixes to the directional tags, add everything to tag_number
