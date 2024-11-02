@@ -4474,6 +4474,19 @@ class Josm_deprecated(PluginMapCSS):
                 # suggestAlternative:"natural=tundra or natural=fell"
                 err.append({'class': 9002001, 'subclass': 149743951, 'text': mapcss.tr('{0} should be replaced by {1}', mapcss._tag_uncapture(capture_tags, '{1.tag}'), 'natural=tundra')})
 
+        # *[residential=condominium]
+        if ('residential' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'residential') == mapcss._value_capture(capture_tags, 0, 'condominium')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"residential=apartments + condo=*"
+                err.append({'class': 9002001, 'subclass': 1861188094, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
         return err
 
     def way(self, data, tags, nds):
@@ -9006,6 +9019,96 @@ class Josm_deprecated(PluginMapCSS):
                 # suggestAlternative:"natural=tundra or natural=fell"
                 err.append({'class': 9002001, 'subclass': 149743951, 'text': mapcss.tr('{0} should be replaced by {1}', mapcss._tag_uncapture(capture_tags, '{1.tag}'), 'natural=tundra')})
 
+        # way[cycleway=opposite]
+        # way[cycleway:left=opposite]
+        # way[cycleway:right=opposite]
+        # way[cycleway:both=opposite]
+        if ('cycleway' in keys) or ('cycleway:both' in keys) or ('cycleway:left' in keys) or ('cycleway:right' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'cycleway') == mapcss._value_capture(capture_tags, 0, 'opposite')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'cycleway:left') == mapcss._value_capture(capture_tags, 0, 'opposite')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'cycleway:right') == mapcss._value_capture(capture_tags, 0, 'opposite')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'cycleway:both') == mapcss._value_capture(capture_tags, 0, 'opposite')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # fixAdd:"oneway:bicycle=no"
+                # fixRemove:"{0.key}"
+                err.append({'class': 9002001, 'subclass': 1949562705, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['oneway:bicycle','no']]),
+                    '-': ([
+                    mapcss._tag_uncapture(capture_tags, '{0.key}')])
+                }})
+
+        # way[cycleway:left][cycleway:left^=opposite_]
+        # way[cycleway:right][cycleway:right^=opposite_]
+        if ('cycleway:left' in keys) or ('cycleway:right' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'cycleway:left')) and (mapcss.startswith(mapcss._tag_capture(capture_tags, 1, tags, 'cycleway:left'), mapcss._value_capture(capture_tags, 1, 'opposite_'))))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'cycleway:right')) and (mapcss.startswith(mapcss._tag_capture(capture_tags, 1, tags, 'cycleway:right'), mapcss._value_capture(capture_tags, 1, 'opposite_'))))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                err.append({'class': 9002001, 'subclass': 447590287, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # way[cycleway][cycleway^=opposite_]:righthandtraffic
+        if ('cycleway' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'cycleway')) and (mapcss.startswith(mapcss._tag_capture(capture_tags, 1, tags, 'cycleway'), mapcss._value_capture(capture_tags, 1, 'opposite_'))) and (mapcss.setting(self.father.config.options, 'driving_side') != 'left'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"oneway:bicycle=no + cycleway:right=* + cycleway:left=* + cycleway:left:oneway=-1"
+                err.append({'class': 9002001, 'subclass': 430042074, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # way[cycleway][cycleway^=opposite_]!:righthandtraffic
+        if ('cycleway' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'cycleway')) and (mapcss.startswith(mapcss._tag_capture(capture_tags, 1, tags, 'cycleway'), mapcss._value_capture(capture_tags, 1, 'opposite_'))) and (mapcss.setting(self.father.config.options, 'driving_side') == 'left'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"oneway:bicycle=no + cycleway:right=* + cycleway:left=* + cycleway:right:oneway=-1"
+                err.append({'class': 9002001, 'subclass': 50459238, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # *[residential=condominium]
+        if ('residential' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'residential') == mapcss._value_capture(capture_tags, 0, 'condominium')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"residential=apartments + condo=*"
+                err.append({'class': 9002001, 'subclass': 1861188094, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
         return err
 
     def relation(self, data, tags, members):
@@ -12925,6 +13028,19 @@ class Josm_deprecated(PluginMapCSS):
                 # throwWarning:tr("{0} should be replaced by {1}","{1.tag}","natural=tundra")
                 # suggestAlternative:"natural=tundra or natural=fell"
                 err.append({'class': 9002001, 'subclass': 149743951, 'text': mapcss.tr('{0} should be replaced by {1}', mapcss._tag_uncapture(capture_tags, '{1.tag}'), 'natural=tundra')})
+
+        # *[residential=condominium]
+        if ('residential' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'residential') == mapcss._value_capture(capture_tags, 0, 'condominium')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"residential=apartments + condo=*"
+                err.append({'class': 9002001, 'subclass': 1861188094, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         return err
 

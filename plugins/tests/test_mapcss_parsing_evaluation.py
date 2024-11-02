@@ -890,6 +890,21 @@ class test_mapcss_parsing_evaluation(PluginMapCSS):
                 # -osmoseAssertMatchWithContext:list("node x=1","inside=FR-GF")
                 err.append({'class': 6, 'subclass': 170749071, 'text': {'en': 'test'}})
 
+        # node[x][join_list("-",trim_list(split(";",tag("x"))))="a-b-c"]
+        if ('x' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'x')) and (mapcss.join_list('-', mapcss.trim_list(mapcss.split(';', mapcss.tag(tags, 'x')))) == 'a-b-c'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:"test"
+                # assertMatch:"node x=\"a;  b; ; c\""
+                # assertMatch:"node x=;a;;b;;c;"
+                # assertNoMatch:"node x=a;b;0;c"
+                # assertMatch:"node x=a;b;c"
+                err.append({'class': 6, 'subclass': 1298575189, 'text': {'en': 'test'}})
+
         return err
 
     def way(self, data, tags, nds):
@@ -1710,6 +1725,10 @@ class Test(TestPluginMapcss):
             self.check_not_err(n.node(data, {'x': '1'}), expected={'class': 6, 'subclass': 170749071})
         with with_options(n, {'country': 'FR-GF'}):
             self.check_err(n.node(data, {'x': '1'}), expected={'class': 6, 'subclass': 170749071})
+        self.check_err(n.node(data, {'x': 'a;  b; ; c'}), expected={'class': 6, 'subclass': 1298575189})
+        self.check_err(n.node(data, {'x': ';a;;b;;c;'}), expected={'class': 6, 'subclass': 1298575189})
+        self.check_not_err(n.node(data, {'x': 'a;b;0;c'}), expected={'class': 6, 'subclass': 1298575189})
+        self.check_err(n.node(data, {'x': 'a;b;c'}), expected={'class': 6, 'subclass': 1298575189})
         self.check_err(n.way(data, {'x': 'C00; C1; C22'}, [0]), expected={'class': 16, 'subclass': 1785050832})
         self.check_err(n.way(data, {'x': 'C00;C1;C22'}, [0]), expected={'class': 16, 'subclass': 1785050832})
         self.check_err(n.way(data, {'x': 'C1'}, [0]), expected={'class': 16, 'subclass': 1785050832})
