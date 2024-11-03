@@ -59,7 +59,6 @@ class Josm_DutchSpecific(PluginMapCSS):
         self.re_21dc697e = re.compile(r'^maxaxleload(:backward|:both_ways)?(:conditional)?$')
         self.re_229e1925 = re.compile(r'^hazmat(:[A-E])?(:forward|:backward|:both_ways)?(:conditional)?$')
         self.re_2441139b = re.compile(r'(?i)\b(aansl|empl|goed|ind|inhaalsp|opstel|overloopw|racc|rang|terr)\b')
-        self.re_244ff389 = re.compile(r'(; ?|^)[0-9]{0,3}[1-9][0-9]{12}($|;)')
         self.re_251abd6a = re.compile(r'^(residential|unclassified|tertiary|secondary|primary|trunk|motorway|busway)(_link)?$')
         self.re_252a5d6c = re.compile(r'forward')
         self.re_26516863 = re.compile(r'.:covid19$')
@@ -129,6 +128,7 @@ class Josm_DutchSpecific(PluginMapCSS):
         self.re_640dd184 = re.compile(r'^trailer(:backward|:both_ways)?(:conditional)?$')
         self.re_6454d3f5 = re.compile(r'stenen$|^hout$|\bbestraa?t(ing)?$|grond$|^puin$|^grind$|zand$')
         self.re_6460cbf8 = re.compile(r'^(trunk|motorway|busway|path|busway|bridleway|footway|pedestrian)(_link)?$')
+        self.re_6708cc9b = re.compile(r'(; ?|^)([0-9]{0,3}[1-9]|[0-9]{0,2}[1-9][0-9]|[0-9]?[1-9][0-9]{2})[0-9]{12}($|;)')
         self.re_676d2c9e = re.compile(r'\b(Adm|Br|Burg|Cmdt|Dr|Drs|Ds|Gebr|Gen|Ing|Ir|Jhr|Kard|Kon|Luit|Mej|Mevr|Mgr|Min|Mr|Past|Pr|Pres|Prof|St|Vr|Weth|Zr)\.? [A-Za-z]')
         self.re_682234cc = re.compile(r'^foot(:forward|:backward|:both_ways)?(:conditional)?$')
         self.re_68a71d57 = re.compile(r'backward')
@@ -539,17 +539,17 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # assertNoMatch:"node natural=tree height=51"
                 err.append({'class': 90209, 'subclass': 68044720, 'text': mapcss.tr('Unusually large value of {0} ({1} m), did you mean `{1} cm` or `{1} mm`?', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss.siunit_length(mapcss._tag_uncapture(capture_tags, '{1.value}')))})
 
-        # *[ref:bag][ref:bag!~/(; ?|^)[0-9]{0,3}[1-9][0-9]{12}($|;)/][inside("NL")]
+        # *[ref:bag][ref:bag!~/(; ?|^)([0-9]{0,3}[1-9]|[0-9]{0,2}[1-9][0-9]|[0-9]?[1-9][0-9]{2})[0-9]{12}($|;)/][inside("NL")]
         if ('ref:bag' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:bag')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_244ff389, '(; ?|^)[0-9]{0,3}[1-9][0-9]{12}($|;)'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:bag'))) and (mapcss.inside(self.father.config.options, 'NL')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:bag')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_6708cc9b, '(; ?|^)([0-9]{0,3}[1-9]|[0-9]{0,2}[1-9][0-9]|[0-9]?[1-9][0-9]{2})[0-9]{12}($|;)'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:bag'))) and (mapcss.inside(self.father.config.options, 'NL')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("NL unusual values")
                 # throwWarning:tr("Invalid value of {0}","{0.key}")
-                err.append({'class': 90209, 'subclass': 481931391, 'text': mapcss.tr('Invalid value of {0}', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                err.append({'class': 90209, 'subclass': 2021092431, 'text': mapcss.tr('Invalid value of {0}', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # *[leisure][surface=gravel][sport~="tennis"][inside("NL")]
         if ('leisure' in keys and 'sport' in keys and 'surface' in keys):
@@ -2455,17 +2455,17 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # assertNoMatch:"way highway=cycleway vehicle=no traffic_sign=NL:D104 moped=designated"
                 err.append({'class': 90209, 'subclass': 48304768, 'text': mapcss.tr('Suspicious combination: {0} together with {1} equals {2}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{2.key}={1.value}'))})
 
-        # *[ref:bag][ref:bag!~/(; ?|^)[0-9]{0,3}[1-9][0-9]{12}($|;)/][inside("NL")]
+        # *[ref:bag][ref:bag!~/(; ?|^)([0-9]{0,3}[1-9]|[0-9]{0,2}[1-9][0-9]|[0-9]?[1-9][0-9]{2})[0-9]{12}($|;)/][inside("NL")]
         if ('ref:bag' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:bag')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_244ff389, '(; ?|^)[0-9]{0,3}[1-9][0-9]{12}($|;)'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:bag'))) and (mapcss.inside(self.father.config.options, 'NL')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:bag')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_6708cc9b, '(; ?|^)([0-9]{0,3}[1-9]|[0-9]{0,2}[1-9][0-9]|[0-9]?[1-9][0-9]{2})[0-9]{12}($|;)'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:bag'))) and (mapcss.inside(self.father.config.options, 'NL')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("NL unusual values")
                 # throwWarning:tr("Invalid value of {0}","{0.key}")
-                err.append({'class': 90209, 'subclass': 481931391, 'text': mapcss.tr('Invalid value of {0}', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                err.append({'class': 90209, 'subclass': 2021092431, 'text': mapcss.tr('Invalid value of {0}', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # *[leisure][surface=gravel][sport~="tennis"][inside("NL")]
         if ('leisure' in keys and 'sport' in keys and 'surface' in keys):
@@ -3471,22 +3471,27 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # suggestAlternative:"ref=*"
                 err.append({'class': 90202, 'subclass': 340349535, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
-        # *[ref:bag][ref:bag!~/(; ?|^)[0-9]{0,3}[1-9][0-9]{12}($|;)/][inside("NL")]
+        # *[ref:bag][ref:bag!~/(; ?|^)([0-9]{0,3}[1-9]|[0-9]{0,2}[1-9][0-9]|[0-9]?[1-9][0-9]{2})[0-9]{12}($|;)/][inside("NL")]
         if ('ref:bag' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:bag')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_244ff389, '(; ?|^)[0-9]{0,3}[1-9][0-9]{12}($|;)'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:bag'))) and (mapcss.inside(self.father.config.options, 'NL')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:bag')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_6708cc9b, '(; ?|^)([0-9]{0,3}[1-9]|[0-9]{0,2}[1-9][0-9]|[0-9]?[1-9][0-9]{2})[0-9]{12}($|;)'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:bag'))) and (mapcss.inside(self.father.config.options, 'NL')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("NL unusual values")
                 # throwWarning:tr("Invalid value of {0}","{0.key}")
                 # assertNoMatch:"relation type=multipolygon ref:bag=\"0004567890123456; 1234567890123456\""
                 # assertNoMatch:"relation type=multipolygon ref:bag=0004567890123456"
+                # assertNoMatch:"relation type=multipolygon ref:bag=0050123456789012"
+                # assertNoMatch:"relation type=multipolygon ref:bag=0200123456789012"
                 # assertNoMatch:"relation type=multipolygon ref:bag=0234567890123456"
+                # assertNoMatch:"relation type=multipolygon ref:bag=050123456789012"
                 # assertNoMatch:"relation type=multipolygon ref:bag=1234567890123456"
+                # assertNoMatch:"relation type=multipolygon ref:bag=200123456789012"
                 # assertNoMatch:"relation type=multipolygon ref:bag=4567890123456"
-                err.append({'class': 90209, 'subclass': 481931391, 'text': mapcss.tr('Invalid value of {0}', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                # assertNoMatch:"relation type=multipolygon ref:bag=50123456789012"
+                err.append({'class': 90209, 'subclass': 2021092431, 'text': mapcss.tr('Invalid value of {0}', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # *[leisure][surface=gravel][sport~="tennis"][inside("NL")]
         if ('leisure' in keys and 'sport' in keys and 'surface' in keys):
@@ -3926,10 +3931,15 @@ class Test(TestPluginMapcss):
         self.check_not_err(n.way(data, {'bicycle': 'designated', 'highway': 'busway', 'mofa': 'designated', 'moped': 'designated'}, [0]), expected={'class': 90208, 'subclass': 1443086133})
         self.check_not_err(n.way(data, {'bicycle': 'designated', 'highway': 'busway', 'moped': 'destination'}, [0]), expected={'class': 90208, 'subclass': 1443086133})
         self.check_not_err(n.relation(data, {'addr:housename': 'huis', 'building': 'yes', 'type': 'multipolygon'}, []), expected={'class': 90201, 'subclass': 898220522})
-        self.check_not_err(n.relation(data, {'ref:bag': '0004567890123456; 1234567890123456', 'type': 'multipolygon'}, []), expected={'class': 90209, 'subclass': 481931391})
-        self.check_not_err(n.relation(data, {'ref:bag': '0004567890123456', 'type': 'multipolygon'}, []), expected={'class': 90209, 'subclass': 481931391})
-        self.check_not_err(n.relation(data, {'ref:bag': '0234567890123456', 'type': 'multipolygon'}, []), expected={'class': 90209, 'subclass': 481931391})
-        self.check_not_err(n.relation(data, {'ref:bag': '1234567890123456', 'type': 'multipolygon'}, []), expected={'class': 90209, 'subclass': 481931391})
-        self.check_not_err(n.relation(data, {'ref:bag': '4567890123456', 'type': 'multipolygon'}, []), expected={'class': 90209, 'subclass': 481931391})
+        self.check_not_err(n.relation(data, {'ref:bag': '0004567890123456; 1234567890123456', 'type': 'multipolygon'}, []), expected={'class': 90209, 'subclass': 2021092431})
+        self.check_not_err(n.relation(data, {'ref:bag': '0004567890123456', 'type': 'multipolygon'}, []), expected={'class': 90209, 'subclass': 2021092431})
+        self.check_not_err(n.relation(data, {'ref:bag': '0050123456789012', 'type': 'multipolygon'}, []), expected={'class': 90209, 'subclass': 2021092431})
+        self.check_not_err(n.relation(data, {'ref:bag': '0200123456789012', 'type': 'multipolygon'}, []), expected={'class': 90209, 'subclass': 2021092431})
+        self.check_not_err(n.relation(data, {'ref:bag': '0234567890123456', 'type': 'multipolygon'}, []), expected={'class': 90209, 'subclass': 2021092431})
+        self.check_not_err(n.relation(data, {'ref:bag': '050123456789012', 'type': 'multipolygon'}, []), expected={'class': 90209, 'subclass': 2021092431})
+        self.check_not_err(n.relation(data, {'ref:bag': '1234567890123456', 'type': 'multipolygon'}, []), expected={'class': 90209, 'subclass': 2021092431})
+        self.check_not_err(n.relation(data, {'ref:bag': '200123456789012', 'type': 'multipolygon'}, []), expected={'class': 90209, 'subclass': 2021092431})
+        self.check_not_err(n.relation(data, {'ref:bag': '4567890123456', 'type': 'multipolygon'}, []), expected={'class': 90209, 'subclass': 2021092431})
+        self.check_not_err(n.relation(data, {'ref:bag': '50123456789012', 'type': 'multipolygon'}, []), expected={'class': 90209, 'subclass': 2021092431})
         self.check_not_err(n.relation(data, {'except': 'bicycle', 'type': 'restriction'}, []), expected={'class': 90208, 'subclass': 92591020})
         self.check_not_err(n.relation(data, {'except': 'bicycle;mofa;moped', 'type': 'restriction'}, []), expected={'class': 90208, 'subclass': 92591020})
