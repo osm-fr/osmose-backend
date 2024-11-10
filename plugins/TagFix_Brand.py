@@ -22,7 +22,7 @@
 from modules.OsmoseTranslation import T_
 from plugins.Plugin import TestPluginCommon
 from plugins.Plugin import Plugin
-from plugins.modules.name_suggestion_index import download_nsi
+from plugins.modules.name_suggestion_index import download_nsi, nsi_rule_applies
 
 class TagFix_Brand(Plugin):
 
@@ -48,7 +48,7 @@ If not, see if you can improve the [name-suggestion-index project](https://githu
 
         if not self.father.config.options.get("country"):
             return False
-        self.country_code = self.father.config.options.get("country").split("-")[0].lower()
+        self.country_code = self.father.config.options.get("country")
 
         nsi = download_nsi()
         self.brands_from_nsi = self._parse_category_from_nsi(nsi, "brands/", "brand")
@@ -60,13 +60,8 @@ If not, see if you can improve the [name-suggestion-index project](https://githu
             if tag.startswith(nsiprefix) and "items" in details:
                 nsi_name = tag[len(nsiprefix):]
                 for preset in details["items"]:
-                    if "locationSet" in preset:
-                        if ("include" in preset["locationSet"] and
-                                self.country_code not in preset["locationSet"]["include"] and
-                                "001" not in preset["locationSet"]["include"]):
-                            continue
-                        if "exclude" in preset["locationSet"] and self.country_code in preset["locationSet"]["exclude"]:
-                            continue
+                    if "locationSet" in preset and not nsi_rule_applies(preset["locationSet"], self.country_code):
+                        continue
                     if "matchTags" in preset:
                         for additional_tag in preset["matchTags"]:
                             nsi_key = "{}|{}".format(additional_tag, preset["tags"][key])
