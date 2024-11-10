@@ -35,6 +35,19 @@ def download_nsi():
     results = json.loads(json_str)
     return results['nsi']
 
+
+def nsi_rule_applies(locationSet, country):
+    if not "include" in locationSet and not "exclude" in locationSet:
+        return True
+    # For extract with country="AB-CD-EF", check "AB-CD-EF", then "AB-CD", then "AB", then worldwide ("001")
+    for c in ['-'.join(country.lower().split("-")[:i]) for i in range(country.count("-")+1, 0, -1)]:
+        if "exclude" in locationSet and c in locationSet["exclude"]:
+            return False
+        if "include" in locationSet and c in locationSet["include"]:
+            return True
+    return not "include" in locationSet or "001" in locationSet["include"]
+
+
 # Gets all valid (shop, amenity, ...) names that exist within a certain country
 # country: the lowercase 2-letter country code of the country of interest
 # nsi: the parsed NSI database obtained from download_nsi()
@@ -44,13 +57,8 @@ def whitelist_from_nsi(country, nsi = download_nsi(), nsiprefix = 'brands/'):
     for tag, details in nsi.items():
         if tag.startswith(nsiprefix) and "items" in details:
             for preset in details["items"]:
-                if "locationSet" in preset:
-                    if ("include" in preset["locationSet"] and
-                            country not in preset["locationSet"]["include"] and
-                            "001" not in preset["locationSet"]["include"]): # 001 = worldwide
-                        continue
-                    if "exclude" in preset["locationSet"] and country in preset["locationSet"]["exclude"]:
-                        continue
+                if "locationSet" in preset and not nsi_rule_applies(preset["locationSet"], country):
+                    continue
                 if "name" in preset["tags"]:
                     whitelist.add(preset["tags"]["name"])
                 whitelist.add(preset["displayName"])

@@ -120,7 +120,7 @@ appropriate.'''),
 
         self.whitelist_names = set()
         if country:
-            self.whitelist_names = whitelist_from_nsi(country[:2].lower())
+            self.whitelist_names = whitelist_from_nsi(country)
 
     def node(self, data, tags):
         err = []

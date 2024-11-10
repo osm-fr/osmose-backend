@@ -49,10 +49,10 @@ class Name_UpperCase(Plugin):
         self.country = None
 
         if "country" in self.father.config.options:
-            self.country = self.father.config.options.get("country")[:2]
-            self.whitelist = set(UpperCase_WhiteList.get(self.country, []))
+            self.country = self.father.config.options.get("country")
+            self.whitelist = set(UpperCase_WhiteList.get(self.country.split("-")[0], []))
             nsi_whitelist = set(filter(lambda name: self.UpperTitleCase.match(name) and not self.RomanNumber.match(name),
-                                       whitelist_from_nsi(self.country.lower())))
+                                       whitelist_from_nsi(self.country)))
             self.whitelist.update(nsi_whitelist)
         else:
             self.whitelist = set()
@@ -61,7 +61,7 @@ class Name_UpperCase(Plugin):
         err = []
         if "name" in tags:
             # Whitelist bus stops in Greece, see #2368
-            if self.country and self.country == "GR" and "public_transport" in tags and tags["public_transport"] in ("stop_position", "platform", "station"):
+            if self.country and self.country.split("-")[0] == "GR" and "public_transport" in tags and tags["public_transport"] in ("stop_position", "platform", "station"):
                 return err
 
             # first check if the name *might* match
