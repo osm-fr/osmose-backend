@@ -153,4 +153,41 @@ class Test(TestPluginCommon):
         a.father = father()
         a.init(None)
 
+        # Include CA, exclude CA-QC
         assert a.node(None, {"name": "National Bank", "amenity": "bank", "atm": "yes"})
+
+    def test_CA_ON(self):
+        a = TagFix_Brand(None)
+        class _config:
+            options = {"country": "CA-ON"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+
+        # Include CA, exclude CA-QC
+        assert a.node(None, {"name": "National Bank", "amenity": "bank", "atm": "yes"})
+
+    def test_CA_QC_LAN(self):
+        a = TagFix_Brand(None)
+        class _config:
+            options = {"country": "CA-QC-LAN"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+
+        # Include CA, exclude CA-QC
+        assert not a.node(None, {"name": "National Bank", "amenity": "bank", "atm": "yes"})
+
+    def test_CA_QC(self):
+        a = TagFix_Brand(None)
+        class _config:
+            options = {"country": "CA-QC"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+
+        # Include CA, exclude CA-QC
+        assert not a.node(None, {"name": "National Bank", "amenity": "bank", "atm": "yes"})

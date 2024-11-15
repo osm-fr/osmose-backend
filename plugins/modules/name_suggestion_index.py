@@ -39,13 +39,15 @@ def download_nsi():
 def nsi_rule_applies(locationSet, country):
     if not "include" in locationSet and not "exclude" in locationSet:
         return True
+    incl = set(map(lambda c: str(c).lower().replace('.geojson', '', 1), locationSet["include"] if "include" in locationSet else []))
+    excl = set(map(lambda c: str(c).lower().replace('.geojson', '', 1), locationSet["exclude"] if "exclude" in locationSet else []))
     # For extract with country="AB-CD-EF", check "AB-CD-EF", then "AB-CD", then "AB", then worldwide ("001")
     for c in ['-'.join(country.lower().split("-")[:i]) for i in range(country.count("-")+1, 0, -1)]:
-        if "exclude" in locationSet and c in locationSet["exclude"]:
+        if c in excl:
             return False
-        if "include" in locationSet and c in locationSet["include"]:
+        if c in incl:
             return True
-    return not "include" in locationSet or "001" in locationSet["include"]
+    return len(incl) == 0 or "001" in locationSet["include"]
 
 
 # Gets all valid (shop, amenity, ...) names that exist within a certain country
