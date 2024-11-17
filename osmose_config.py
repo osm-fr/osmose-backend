@@ -343,7 +343,9 @@ france_departement("bourgogne/nievre", 7448, "FR-58")
 france_departement("bourgogne/saone_et_loire", 7397, "FR-71", include=[
     'merge_hydrants_FR_SDIS_71',
 ])
-france_departement("bourgogne/yonne", 7392, "FR-89")
+france_departement("bourgogne/yonne", 7392, "FR-89", include=[
+    'merge_power_pole_FR_spec_sdey'
+])
 
 include_bretagne = [
     # Bretagne
