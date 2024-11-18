@@ -40,9 +40,10 @@ class Analyser_Merge_power_pole_FR_spec_sde18 (Analyser_Merge_Point):
             GDAL(SourceDataGouv(
                     attribution="SDE 18",
                     dataset="673b1255be2baa1d2a71c950",
-                    resource="a6296c3c-8f51-485c-a6c7-c0cead86d474"),
-                srid = 2154,
-                extract="*.shp"),
+                    resource="a6296c3c-8f51-485c-a6c7-c0cead86d474",
+                    extract="*.shp"
+                ),
+                srid = 2154),
             LoadGeomCentroid(select = {"_type": ["poteau", "Poteau", "POTEAU"]} ),
             Conflate(
                 select = Select(
