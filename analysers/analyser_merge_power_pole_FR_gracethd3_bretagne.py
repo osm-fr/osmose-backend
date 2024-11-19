@@ -20,22 +20,22 @@
 ##                                                                       ##
 ###########################################################################
 
-from .Analyser_Merge_power_pole_FR_gracethd import Analyser_Merge_power_pole_FR_gracethd
+from .Analyser_Merge_power_pole_FR_gracethd3 import Analyser_Merge_power_pole_FR_gracethd3
 from .Analyser_Merge import SourceDataGouv
 
-class Analyser_Merge_power_pole_FR_gracethd_dordogne(Analyser_Merge_power_pole_FR_gracethd):
+class Analyser_Merge_power_pole_FR_gracethd3_bretagne(Analyser_Merge_power_pole_FR_gracethd3):
     def __init__(self, config, logger = None):
-        Analyser_Merge_power_pole_FR_gracethd.__init__(self, config,
-            source_url='https://www.data.gouv.fr/fr/datasets/appuis-aeriens-enedis-utilises-dans-le-cadre-du-deploiement-de-la-fibre-sur-le-rip-de-la-dordogne/',
-            dataset_name='Appuis aériens ENEDIS utilisés dans le cadre du déploiement de la Fibre sur le RIP de la Dordogne',
+        Analyser_Merge_power_pole_FR_gracethd3.__init__(self, config,
+            source_url='https://www.data.gouv.fr/fr/datasets/recensement-poteaux-enedis-reutilises-dans-le-cadre-du-deploiement-ftth-du-projet-bretagne-tres-haut-debit/',
+            dataset_name='Recensement poteaux ENEDIS réutilisés dans le cadre du déploiement FTTH du projet Bretagne Très Haut Débit',
             source=SourceDataGouv(
-                attribution="Syndicat Mixte Périgord Numérique",
-                dataset="659d72fb641c7c0d6fe6cc59",
-                resource="82e49c1f-976f-4be7-ab20-0a58e9badb56"),
+                attribution="Mégalis Bretagne",
+                dataset="6613a43e5b40aaa8022d3787",
+                resource="b00051b6-69e5-42c3-8229-f6b556561d83"),
             srid = 2154,
             conflationDistance=5,
             classs=1000,
             extract_operator = {
-                'OR000000000003': 'Enedis'
+                'ORMB0000000003': 'Enedis'
             },
             logger=logger)
