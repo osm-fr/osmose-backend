@@ -143,7 +143,7 @@ class Test(TestPluginCommon):
         self.check_err(a.node(None, {"administrative": "boundary"}))
         self.check_err(a.node(None, {"name": "FIXME"}))
         self.check_err(a.node(None, {"Area": "plop"}))
-        self.check_err(a.node(None, {"access": "public"}))
+        self.check_err(a.node(None, {"access": "official"}))
         self.check_err(a.node(None, {"Fixme": "yes"}))
         self.check_err(a.node(None, {"voltage": "10kV"}))
         assert not a.node(None, {"area": "plop"})
