@@ -39,3 +39,4 @@ class Analyser_Merge_power_pole_FR_gracethd2_vendee(Analyser_Merge_power_pole_FR
                 'ENEDIS': 'Enedis'
             },
             logger=logger)
+
