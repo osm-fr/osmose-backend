@@ -59,4 +59,3 @@ class Analyser_Merge_power_pole_FR_gracethd2 (Analyser_Merge_Point):
         'PCMP': 'epoxy',
         'PMET': 'steel'
     }
-
