@@ -307,7 +307,7 @@ include_aquitaine = [
     'merge_winery_FR_aquitaine',
 ]
 france_departement("aquitaine/dordogne", 7375, "FR-24", include=include_aquitaine + [
-    'merge_power_pole_FR_gracethd_dordogne'
+    'merge_power_pole_FR_gracethd3_dordogne'
 ])
 france_departement("aquitaine/gironde", 7405, "FR-33", include=include_aquitaine + [
     # Bordeaux
@@ -347,7 +347,7 @@ france_departement("bourgogne/yonne", 7392, "FR-89")
 
 include_bretagne = [
     # Bretagne
-    'merge_power_pole_FR_gracethd_bretagne'
+    'merge_power_pole_FR_gracethd3_bretagne'
 ]
 france_departement("bretagne/cotes_d_armor", 7398, "FR-22", include=include_bretagne)
 france_departement("bretagne/ille_et_vilaine", 7465, "FR-35", include=include_bretagne + [
@@ -383,7 +383,7 @@ france_departement("corse/haute_corse", 76931, "FR-2B")
 france_departement("franche_comte/doubs", 7462, "FR-25")
 france_departement("franche_comte/jura", 7460, "FR-39", include=[
     'merge_hydrants_FR_SDIS_39',
-    'merge_power_pole_FR_gracethd_jura'
+    'merge_power_pole_FR_gracethd3_jura'
 ])
 france_departement("franche_comte/haute_saone", 7423, "FR-70")
 france_departement("franche_comte/territoire_de_belfort", 7410, "FR-90")
@@ -470,7 +470,9 @@ france_departement("pays_de_la_loire/maine_et_loire", 7409, "FR-49", include=[
 ])
 france_departement("pays_de_la_loire/mayenne", 7438, "FR-53")
 france_departement("pays_de_la_loire/sarthe", 7443, "FR-72")
-france_departement("pays_de_la_loire/vendee", 7402, "FR-85")
+france_departement("pays_de_la_loire/vendee", 7402, "FR-85", include=[
+    'merge_power_pole_FR_gracethd2_vendee'
+])
 
 france_departement("picardie/aisne", 7411, "FR-02")
 france_departement("picardie/oise", 7427, "FR-60")
