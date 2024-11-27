@@ -53,7 +53,7 @@ class Analyser_Merge_power_pole_FR_spec_sdey (Analyser_Merge_Point):
                     static2 = {'source': self.source, 'highway': 'street_lamp'},
                     mapping1 = {
                         'material': lambda res: self.extract_material.get(res['matieresup']),
-                        'operator': lambda res: self.extract_operator.get(res['natursupor']) if res['natursupor'] and self.extract_operator.get(res['natursupor']) else None,
+                        'operator': lambda res: self.extract_operator.get(res['natursupor']),
                         'height': lambda res: res['haut_mat_m'] if res['haut_mat_m'] and res['haut_mat_m'].isnumeric() and float(res['haut_mat_m']) > 6.0 else None},
                 text = lambda tags, fields: {} )))
 
