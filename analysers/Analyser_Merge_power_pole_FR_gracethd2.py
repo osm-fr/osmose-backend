@@ -24,7 +24,7 @@ from modules.OsmoseTranslation import T_
 from .Analyser_Merge import Analyser_Merge_Point, SHP, LoadGeomCentroid, Conflate, Select, Mapping
 
 
-class Analyser_Merge_power_pole_FR_gracethd (Analyser_Merge_Point):
+class Analyser_Merge_power_pole_FR_gracethd2 (Analyser_Merge_Point):
     def __init__(self, config, source_url, dataset_name, source, srid, conflationDistance, classs, extract_operator = None, logger = None):
         Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8290, id = classs + 1, level = 3, tags = ['merge', 'power', 'fix:chair', 'fix:survey'],
@@ -38,7 +38,7 @@ class Analyser_Merge_power_pole_FR_gracethd (Analyser_Merge_Point):
             source_url,
             dataset_name,
             SHP(source, srid = srid, zip="*.shp"),
-            LoadGeomCentroid(),
+            LoadGeomCentroid(select = {"modele": ["PBOI", "PBET", "PCMP", "PMET"]}),
             Conflate(
                 select = Select(
                     types = ['nodes'],
@@ -48,9 +48,9 @@ class Analyser_Merge_power_pole_FR_gracethd (Analyser_Merge_Point):
                     static1 = {'power': 'pole'},
                     static2 = {'source': self.source},
                     mapping1 = {
-                        'material': lambda res: self.extract_material.get(res['pt_nature']),
-                        'operator': lambda res: extract_operator.get(res['pt_gest']) if res['pt_gest'] and extract_operator.get(res['pt_gest']) else extract_operator.get(res['pt_prop']) if res['pt_prop'] and extract_operator.get(res['pt_prop']) else None,
-                        'height': lambda res: res['pt_a_haut'] if res['pt_a_haut'] and float(res['pt_a_haut']) > 6.0 else None},
+                        'material': lambda res: self.extract_material.get(res['modele']),
+                        'operator': lambda res: extract_operator.get(res['gestionnai'],  extract_operator.get(res['proprietai'])),
+                        'height': lambda res: res['prof_haut'] if res['prof_haut'] and float(res['prof_haut']) > 6.0 else None},
                 text = lambda tags, fields: {} )))
 
     extract_material = {
