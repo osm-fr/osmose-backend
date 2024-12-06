@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge_Point, SHP, LoadGeomCentroid, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, GDAL, LoadGeomCentroid, Conflate, Select, Mapping
 
 
 class Analyser_Merge_power_pole_FR_gracethd2 (Analyser_Merge_Point):
@@ -37,7 +37,7 @@ class Analyser_Merge_power_pole_FR_gracethd2 (Analyser_Merge_Point):
         self.init(
             source_url,
             dataset_name,
-            SHP(source, srid = srid, zip="*.shp"),
+            GDAL(source, srid = srid, zip="*.shp"),
             LoadGeomCentroid(select = {"modele": ["PBOI", "PBET", "PCMP", "PMET"]}),
             Conflate(
                 select = Select(
