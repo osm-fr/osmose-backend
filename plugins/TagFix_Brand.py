@@ -137,12 +137,36 @@ class Test(TestPluginCommon):
         assert not a.node(None, {"shop": "clothes", "name": "Kiabi","not:brand:wikidata": "Q3196299", "brand:wikidata": "Q1234567"})
         assert not a.node(None, {"name": "National Bank", "amenity": "bank", "atm": "yes"})
 
-        # Operators
+        # Operator only for FR-pac
+        assert not a.node(None, {"name": "Beautify fire station", "amenity": "fire_station", "operator": "Bataillon de marins-pompiers de Marseille"})
+
+    def test_FR13(self):
+        a = TagFix_Brand(None)
+        class _config:
+            options = {"country": "FR-13"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+
+        # Operator only enabled for FR-pac, which contains FR-13
         assert a.node(None, {"name": "Beautify fire station", "amenity": "fire_station", "operator": "Bataillon de marins-pompiers de Marseille"})
         assert not a.node(None, {"name": "Beautify fire station", "amenity": "fire_station", "operator": "Bataillon de marins-pompiers de Marseille", "operator:wikidata": "Q2891011"})
-        assert not a.node(None, {"name": "Beautify fire station", "amenity": "fire_station", "not:operator:wikidata": "Q2891011"})
-        assert not a.node(None, {"name": "Beautify fire station", "amenity": "fire_station", "operator": "Unknown firestation"})
 
+    def test_LU(self):
+        a = TagFix_Brand(None)
+        class _config:
+            options = {"country": "LU"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+
+        # Operators
+        assert a.node(None, {"amenity": "fire_station", "operator": "CGDIS"})
+        assert not a.node(None, {"amenity": "fire_station", "operator": "CGDIS", "operator:wikidata": "Q55334052"})
+        assert not a.node(None, {"amenity": "fire_station", "not:operator:wikidata": "Q55334052"})
+        assert not a.node(None, {"amenity": "fire_station", "operator": "Unknown firestation"})
 
     def test_CA(self):
         a = TagFix_Brand(None)
