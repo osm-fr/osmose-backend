@@ -367,7 +367,9 @@ france_departement("bretagne/morbihan", 7447, "FR-56", include=include_bretagne 
     'merge_defibrillators_FR_lorient',
 ])
 
-france_departement("centre/cher", 7456, "FR-18")
+france_departement("centre/cher", 7456, "FR-18", include=[
+    'merge_power_pole_FR_spec_sde18',
+])
 france_departement("centre/eure_et_loir", 7374, "FR-28")
 france_departement("centre/indre", 7417, "FR-36")
 france_departement("centre/indre_et_loire", 7408, "FR-37")
