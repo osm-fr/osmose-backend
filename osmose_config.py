@@ -1026,7 +1026,7 @@ us_ca_county("ventura", 396505, "US-CA-VEN")
 us_ca_county("yolo", 396507, "US-CA-YOL")
 us_ca_county("yuba", 396475, "US-CA-YUB")
 
-us_co_region = gen_country('north-america/us-west/colorado', country_base='usa_colorado', country_code='US-CA', download_repo=OSMFR, language='en', proj=26713)
+us_co_region = gen_country('north-america/us-west/colorado', country_base='usa_colorado', country_code='US-CO', download_repo=OSMFR, language='en', proj=26713)
 us_co_region("denver", (1411327,1411333,1411321,1411338,1411339,1411346,1411351,442310))
 us_co_region("southeast", (1411317,1411320,1411328,1411331,1411335,1411343,1411347,1411349,415767,415769,415781,415785,417649,439376))
 us_co_region("northwest", (1411315,1411329,1411332,1411340,1411341,1411352,1411353,1411354,415167,415168,41690,416907,421142,441008,443690,416905))
@@ -1343,7 +1343,7 @@ default_country("asia", "bangladesh", 184640, {"country": "BD", "language": "bn"
 default_country("asia", "bahrain", 378734, {"country": "BH", "language": "ar","proj": 32639}, download_repo=OSMFR)
 default_country("asia", "bhutan", 184629, {"country": "BT", "language": ["dz", "en"], "driving_side": "left", "proj": 32646}, download_repo=OSMFR)
 default_country("asia", "brunei", 2103120, {"country": "BN", "driving_side": "left", "language": "ms", "proj": 32650}, download_repo=OSMFR)
-default_country("asia", "cambodia", 49898, {"country": "KHM", "language": "km", "proj": 32648}, download_repo=OSMFR)
+default_country("asia", "cambodia", 49898, {"country": "KH", "language": "km", "proj": 32648}, download_repo=OSMFR)
 default_country("asia", "east_timor", 305142, {"country": "TL", "language": "pt", "driving_side": "left", "proj": 32651}, download_repo=OSMFR)
 default_country("asia", "georgia", 28699, {"country": "GE", "language": "ka", "proj": 32637}, download_repo=OSMFR)
 default_country("asia", "israel", 1473946, {"country": "IL", "language": ["he", "ar"], "proj": 32636}, download_repo=OSMFR)
@@ -1511,7 +1511,7 @@ default_country("oceania", "vanuatu", 2177246, {"country": "VU", "language": ["e
 #########################################################################
 
 default_country("merge", "fiji", 571747, {"country": "FJ", "language": "en", "driving_side": "left", "proj": 32660}, download_repo=OSMFR)
-default_country("merge", "kiribati", 571178, {"country": "KL", "language": "en", "driving_side": "left", "proj": 32660}, download_repo=OSMFR)
+default_country("merge", "kiribati", 571178, {"country": "KI", "language": "en", "driving_side": "left", "proj": 32660}, download_repo=OSMFR)
 
 #########################################################################
 
