@@ -40,7 +40,6 @@ class Analyser_Merge_power_pole_FR_spec_sdey (Analyser_Merge_Point):
             GDAL(Source(
                 attribution="Syndicat Départemental d'Energies de l'Yonne",
                 fileUrl="https://trouver.ternum-bfc.fr/dataset/bd94f0e8-b76b-4135-828f-c84e9711e348/resource/e21e39bc-5b51-4c23-b737-1e698ad41d0c/download/pt_lum_89_support_poteau.zip"),
-                srid = 2154,
                 zip="*.shp"),
             LoadGeomCentroid(select = {"natursupor": ["EP+BT", "EP+BT+FT"]} ),
             Conflate(
