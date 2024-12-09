@@ -136,6 +136,7 @@ class Test(TestPluginCommon):
         assert not a.node(None, {"shop": "clothes", "name": "Kiabi","not:brand:wikidata": "Q3196299"})
         assert not a.node(None, {"shop": "clothes", "name": "Kiabi","not:brand:wikidata": "Q3196299", "brand:wikidata": "Q1234567"})
         assert not a.node(None, {"name": "National Bank", "amenity": "bank", "atm": "yes"})
+        assert a.node(None, {"name": "La Place", "amenity": "restaurant"}) # as 'fra' rather than 'FR' in NSI
 
         # Operator only for FR-pac
         assert not a.node(None, {"name": "Beautify fire station", "amenity": "fire_station", "operator": "Bataillon de marins-pompiers de Marseille"})
@@ -167,6 +168,8 @@ class Test(TestPluginCommon):
         assert not a.node(None, {"amenity": "fire_station", "operator": "CGDIS", "operator:wikidata": "Q55334052"})
         assert not a.node(None, {"amenity": "fire_station", "not:operator:wikidata": "Q55334052"})
         assert not a.node(None, {"amenity": "fire_station", "operator": "Unknown firestation"})
+
+        assert not a.node(None, {"name": "La Place", "amenity": "restaurant"}) # as 'fra' rather than 'FR' in NSI
 
     def test_CA(self):
         a = TagFix_Brand(None)
