@@ -32,7 +32,6 @@ class Analyser_Merge_power_pole_FR_gracethd2_vendee(Analyser_Merge_power_pole_FR
                 attribution="Vendée Numérique",
                 dataset="673d09a837eab9c52f42268b",
                 resource="cc66ae17-26a2-43f5-aea3-37496775776c"),
-            srid = 2154,
             conflationDistance=5,
             classs=1000,
             extract_operator = {
