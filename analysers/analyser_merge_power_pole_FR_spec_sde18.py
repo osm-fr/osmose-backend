@@ -42,7 +42,7 @@ class Analyser_Merge_power_pole_FR_spec_sde18 (Analyser_Merge_Point):
                 dataset="673b1255be2baa1d2a71c950",
                 resource="3d617c33-05e1-4190-a3ca-802d94dad509"
             ),
-            srid = 2154, zip="*.shp"),
+            zip="*.shp"),
             LoadGeomCentroid(select = {"_type": ["poteau", "Poteau", "POTEAU"]} ),
             Conflate(
                 select = Select(
@@ -54,7 +54,7 @@ class Analyser_Merge_power_pole_FR_spec_sde18 (Analyser_Merge_Point):
                     static2 = {'source': self.source, 'highway': 'street_lamp', 'operator':'Enedis', 'operator:wikidata':'Q3587594'},
                     mapping1 = {
                         'material': lambda res: self.extract_material.get(res['_matiere']),
-                        'height': lambda res: res['hauteur'] if res['hauteur'] and res['hauteur'].isnumeric() and float(res['hauteur']) > 6.0 else None},
+                        'height': lambda res: res['hauteur'] if res['hauteur'] and res['hauteur'] > 6.0 else None},
                 text = lambda tags, fields: {} )))
 
     extract_material = {

@@ -25,7 +25,7 @@ from .Analyser_Merge import Analyser_Merge_Point, GDAL, LoadGeomCentroid, Confla
 
 
 class Analyser_Merge_power_pole_FR_gracethd2 (Analyser_Merge_Point):
-    def __init__(self, config, source_url, dataset_name, source, srid, conflationDistance, classs, extract_operator = None, logger = None):
+    def __init__(self, config, source_url, dataset_name, source, conflationDistance, classs, extract_operator = None, logger = None):
         Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8290, id = classs + 1, level = 3, tags = ['merge', 'power', 'fix:chair', 'fix:survey'],
             title = T_('Power pole not integrated'))
@@ -37,7 +37,7 @@ class Analyser_Merge_power_pole_FR_gracethd2 (Analyser_Merge_Point):
         self.init(
             source_url,
             dataset_name,
-            GDAL(source, srid = srid, zip="*.shp"),
+            GDAL(source, zip="*.shp"),
             LoadGeomCentroid(select = {"modele": ["PBOI", "PBET", "PCMP", "PMET"]}),
             Conflate(
                 select = Select(
