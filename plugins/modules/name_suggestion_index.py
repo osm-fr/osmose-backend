@@ -26,6 +26,7 @@
 
 from modules.downloader import urlread
 import json
+from pycountry import countries as pycountries
 
 
 # Downloads and returns the parsed NSI database
@@ -85,6 +86,14 @@ def _nsi_to_osmose_extracts(regionlist):
         c = c.lower().replace('.geojson', '', 1)
         if c in _nsi_to_osmose_map:
             out.extend(_nsi_to_osmose_map[c])
+        elif len(c) == 3 and c != "001":
+            try:
+                # Convert ISO 3166-1 alpha-3 (3-letter) or numeric code
+                out.append(pycountries.lookup(c).alpha_2.lower())
+            except LookupError:
+                # We don't support any 3-letter/number code except "001", so if conversion
+                # isn't possible, ignore it. Special cases can be in _nsi_to_osmose_map
+                continue
         else:
             out.append(c)
     return out
@@ -131,6 +140,10 @@ def whitelist_from_nsi(country, nsi = download_nsi(), nsiprefix = 'brands/'):
 #def _debug_list_unsupported_countries(cc):
 #    if isinstance(cc, str):
 #        cc = cc.replace('.geojson', '', 1).upper()
+#        try:
+#            cc = pycountries.lookup(cc).alpha_2
+#        except:
+#            pass
 #        if cc not in _debug_osmose_countries and cc.lower() not in _nsi_to_osmose_map and not any(filter(lambda c: c.startswith(cc + "-"), _debug_osmose_countries)):
 #            _debug_osmose_missing_countries.add(cc.lower())
 #nsi = download_nsi()
