@@ -1406,6 +1406,7 @@ ph_state("soccsksargen", 3851570, "PH-12")
 ph_state("caraga", 3870502, "PH-13")
 ph_state("northern_mindanao", 3873457, "PH-10")
 ph_state("davao_region", 3936842, "PH-11")
+ph_state("negros_island_region", 17733978, "PH-18")
 
 #########################################################################
 
