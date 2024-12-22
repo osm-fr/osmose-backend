@@ -115,3 +115,25 @@ way!:righthandtraffic["cycleway:right"=~/opposite|opposite_lane/][oneway="-1"] {
     assertMatch: "way cycleway:right=opposite oneway=yes";
     assertNoMatch: "way cycleway=opposite oneway=yes";
 }
+
+
+/* Warn about cycleway:lanes having incorrect values, e.g. confusion with bicycle:lanes */
+/* Tolerate everything with a value of cycleway:lane (advisory/exclusive/pictogram) as there is no agreed upon scheme to tag lane-type-per-lane yet */
+way[cycleway:lanes:forward][cycleway:lanes:forward!~/^((shared_lane|share_busway|no|none|lane|(\w|:)*(advisory|exclusive|pictogram)(\w|:)*)?(\||$))+$/],
+way[cycleway:lanes:backward][cycleway:lanes:backward!~/^((shared_lane|share_busway|no|none|lane|(\w|:)*(advisory|exclusive|pictogram)(\w|:)*)?(\||$))+$/],
+way[cycleway:lanes][cycleway:lanes!~/^((shared_lane|share_busway|no|none|lane|(\w|:)*(advisory|exclusive|pictogram)(\w|:)*)?(\||$))+$/] {
+    throwWarning: tr("Uncommon value of {0}", "{0.key}");
+    -osmoseItemClassLevel: "3160/316020/3";
+    -osmoseTags: list("cycleway", "fix:survey");
+    assertMatch: "way cycleway:lanes=4";
+    assertMatch: "way cycleway:lanes=no|designated";
+    assertMatch: "way cycleway:lanes=no|designated|";
+    assertMatch: "way cycleway:lanes=no|lane|designated";
+    assertMatch: "way cycleway:lanes=no|lane|designated|";
+    assertNoMatch: "way cycleway:lanes=no|lane|shared_lane";
+    assertNoMatch: "way cycleway:lanes=|lane|";
+    assertNoMatch: "way cycleway:lanes=lane|||";
+    assertNoMatch: "way cycleway:lanes=|shared_lane";
+    assertNoMatch: "way cycleway:lanes=lane note=single_lane";
+    assertNoMatch: "way cycleway:lanes=lane|advisory_lane|lane_exclusive||lane:exclusive|no"; /* tolerate everything with lane specifics */
+}
