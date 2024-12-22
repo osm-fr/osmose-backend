@@ -276,10 +276,8 @@ class Josm_highway(PluginMapCSS):
                 # assertNoMatch:"way highway=cycleway bicycle=yes"
                 # assertMatch:"way highway=cycleway cycleway=lane"
                 # assertNoMatch:"way highway=cycleway"
-                # assertNoMatch:"way highway=cycleway"
                 # assertNoMatch:"way highway=footway foot=yes"
                 # assertMatch:"way highway=footway maxspeed=20"
-                # assertNoMatch:"way highway=footway"
                 # assertNoMatch:"way highway=footway"
                 # assertNoMatch:"way highway=residential cycleway=lane"
                 # assertNoMatch:"way highway=residential maxspeed=20"
@@ -584,10 +582,8 @@ class Test(TestPluginMapcss):
         self.check_not_err(n.way(data, {'bicycle': 'yes', 'highway': 'cycleway'}, [0]), expected={'class': 9004013, 'subclass': 469607562})
         self.check_err(n.way(data, {'cycleway': 'lane', 'highway': 'cycleway'}, [0]), expected={'class': 9004013, 'subclass': 469607562})
         self.check_not_err(n.way(data, {'highway': 'cycleway'}, [0]), expected={'class': 9004013, 'subclass': 469607562})
-        self.check_not_err(n.way(data, {'highway': 'cycleway'}, [0]), expected={'class': 9004013, 'subclass': 469607562})
         self.check_not_err(n.way(data, {'foot': 'yes', 'highway': 'footway'}, [0]), expected={'class': 9004013, 'subclass': 469607562})
         self.check_err(n.way(data, {'highway': 'footway', 'maxspeed': '20'}, [0]), expected={'class': 9004013, 'subclass': 469607562})
-        self.check_not_err(n.way(data, {'highway': 'footway'}, [0]), expected={'class': 9004013, 'subclass': 469607562})
         self.check_not_err(n.way(data, {'highway': 'footway'}, [0]), expected={'class': 9004013, 'subclass': 469607562})
         self.check_not_err(n.way(data, {'cycleway': 'lane', 'highway': 'residential'}, [0]), expected={'class': 9004013, 'subclass': 469607562})
         self.check_not_err(n.way(data, {'highway': 'residential', 'maxspeed': '20'}, [0]), expected={'class': 9004013, 'subclass': 469607562})
