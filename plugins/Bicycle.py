@@ -20,8 +20,10 @@ class Bicycle(PluginMapCSS):
         self.errors[30329] = self.def_class(item = 3032, level = 2, tags = mapcss.list_('tag', 'highway') + mapcss.list_('fix:chair'), title = mapcss.tr('{0} with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}')))
         self.errors[40101] = self.def_class(item = 4010, level = 2, tags = mapcss.list_('tag', 'highway') + mapcss.list_('fix:chair'), title = mapcss.tr('{0} is preferred to {1}', 'psv', 'service=psv'))
         self.errors[40301] = self.def_class(item = 4030, level = 2, tags = mapcss.list_('tag', 'highway') + mapcss.list_('cycleway', 'fix:chair'), title = mapcss.tr('{0} with {1} and {2}', 'cycleway', 'cycleway:right', 'cycleway:left'))
+        self.errors[316020] = self.def_class(item = 3160, level = 3, tags = mapcss.list_('tag', 'highway') + mapcss.list_('cycleway', 'fix:survey'), title = mapcss.tr('Uncommon value of {0}', mapcss._tag_uncapture(capture_tags, '{0.key}')))
 
         self.re_000d3400 = re.compile(r'footway|construction|proposed')
+        self.re_0aaeb29d = re.compile(r'^((shared_lane|share_busway|no|none|lane|(\w|:)*(advisory|exclusive|pictogram)(\w|:)*)?(\||$))+$')
         self.re_5b286a0d = re.compile(r'no|use_sidepath')
         self.re_6781a1fd = re.compile(r'no|none|separate')
         self.re_67b51e41 = re.compile(r'opposite|opposite_lane')
@@ -184,6 +186,40 @@ class Bicycle(PluginMapCSS):
                 # assertNoMatch:"way cycleway=opposite oneway=yes"
                 err.append({'class': 20302, 'subclass': 0, 'text': mapcss.tr('Opposite or opposite lane in the same way of the oneway')})
 
+        # way[cycleway:lanes:forward][cycleway:lanes:forward!~/^((shared_lane|share_busway|no|none|lane|(\w|:)*(advisory|exclusive|pictogram)(\w|:)*)?(\||$))+$/]
+        # way[cycleway:lanes:backward][cycleway:lanes:backward!~/^((shared_lane|share_busway|no|none|lane|(\w|:)*(advisory|exclusive|pictogram)(\w|:)*)?(\||$))+$/]
+        # way[cycleway:lanes][cycleway:lanes!~/^((shared_lane|share_busway|no|none|lane|(\w|:)*(advisory|exclusive|pictogram)(\w|:)*)?(\||$))+$/]
+        if ('cycleway:lanes' in keys) or ('cycleway:lanes:backward' in keys) or ('cycleway:lanes:forward' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'cycleway:lanes:forward')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_0aaeb29d, '^((shared_lane|share_busway|no|none|lane|(\\w|:)*(advisory|exclusive|pictogram)(\\w|:)*)?(\\||$))+$'), mapcss._tag_capture(capture_tags, 1, tags, 'cycleway:lanes:forward'))))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'cycleway:lanes:backward')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_0aaeb29d, '^((shared_lane|share_busway|no|none|lane|(\\w|:)*(advisory|exclusive|pictogram)(\\w|:)*)?(\\||$))+$'), mapcss._tag_capture(capture_tags, 1, tags, 'cycleway:lanes:backward'))))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'cycleway:lanes')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_0aaeb29d, '^((shared_lane|share_busway|no|none|lane|(\\w|:)*(advisory|exclusive|pictogram)(\\w|:)*)?(\\||$))+$'), mapcss._tag_capture(capture_tags, 1, tags, 'cycleway:lanes'))))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseTags:list("cycleway","fix:survey")
+                # -osmoseItemClassLevel:"3160/316020/3"
+                # throwWarning:tr("Uncommon value of {0}","{0.key}")
+                # assertMatch:"way cycleway:lanes=4"
+                # assertNoMatch:"way cycleway:lanes=lane note=single_lane"
+                # assertNoMatch:"way cycleway:lanes=lane|advisory_lane|lane_exclusive||lane:exclusive|no"
+                # assertNoMatch:"way cycleway:lanes=lane|||"
+                # assertMatch:"way cycleway:lanes=no|designated"
+                # assertMatch:"way cycleway:lanes=no|designated|"
+                # assertMatch:"way cycleway:lanes=no|lane|designated"
+                # assertMatch:"way cycleway:lanes=no|lane|designated|"
+                # assertNoMatch:"way cycleway:lanes=no|lane|shared_lane"
+                # assertNoMatch:"way cycleway:lanes=|lane|"
+                # assertNoMatch:"way cycleway:lanes=|shared_lane"
+                err.append({'class': 316020, 'subclass': 0, 'text': mapcss.tr('Uncommon value of {0}', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+
         return err
 
 
@@ -220,3 +256,14 @@ class Test(TestPluginMapcss):
         self.check_err(n.way(data, {'cycleway': 'opposite'}, [0]), expected={'class': 20301, 'subclass': 0})
         self.check_err(n.way(data, {'cycleway:right': 'opposite', 'oneway': 'yes'}, [0]), expected={'class': 20302, 'subclass': 0})
         self.check_not_err(n.way(data, {'cycleway': 'opposite', 'oneway': 'yes'}, [0]), expected={'class': 20302, 'subclass': 0})
+        self.check_err(n.way(data, {'cycleway:lanes': '4'}, [0]), expected={'class': 316020, 'subclass': 0})
+        self.check_not_err(n.way(data, {'cycleway:lanes': 'lane', 'note': 'single_lane'}, [0]), expected={'class': 316020, 'subclass': 0})
+        self.check_not_err(n.way(data, {'cycleway:lanes': 'lane|advisory_lane|lane_exclusive||lane:exclusive|no'}, [0]), expected={'class': 316020, 'subclass': 0})
+        self.check_not_err(n.way(data, {'cycleway:lanes': 'lane|||'}, [0]), expected={'class': 316020, 'subclass': 0})
+        self.check_err(n.way(data, {'cycleway:lanes': 'no|designated'}, [0]), expected={'class': 316020, 'subclass': 0})
+        self.check_err(n.way(data, {'cycleway:lanes': 'no|designated|'}, [0]), expected={'class': 316020, 'subclass': 0})
+        self.check_err(n.way(data, {'cycleway:lanes': 'no|lane|designated'}, [0]), expected={'class': 316020, 'subclass': 0})
+        self.check_err(n.way(data, {'cycleway:lanes': 'no|lane|designated|'}, [0]), expected={'class': 316020, 'subclass': 0})
+        self.check_not_err(n.way(data, {'cycleway:lanes': 'no|lane|shared_lane'}, [0]), expected={'class': 316020, 'subclass': 0})
+        self.check_not_err(n.way(data, {'cycleway:lanes': '|lane|'}, [0]), expected={'class': 316020, 'subclass': 0})
+        self.check_not_err(n.way(data, {'cycleway:lanes': '|shared_lane'}, [0]), expected={'class': 316020, 'subclass': 0})
