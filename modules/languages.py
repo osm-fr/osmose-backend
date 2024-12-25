@@ -94,6 +94,7 @@ language2scripts = {
     'sr': ['Cyrillic'],
     'sr-Latn': [u'[A-Za-zČĆĐŠŽčćđšž]'],
     'sv': ['Latin'],
+    'sw': ['Latin'],
     'ta': ['Tamil'],
     'tg': ['Arabic', 'Cyrillic'],
     'th': ['Thai'],
