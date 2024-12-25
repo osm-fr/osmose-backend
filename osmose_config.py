@@ -2167,6 +2167,25 @@ class TestPluginCommon(unittest.TestCase):
             f = "analyser_" + a + ".py"
             assert f in analyser_files, "Not found: {0}".format(f)
 
+    def test_countrycode(self):
+        # Ensure country codes are uppercase and two letters (before any "-")
+        countries = list(map(lambda c: c.analyser_options.get("country"), config.values()))
+        assert [] == list(filter(lambda d: d is not None and len(d.split("-", 1)[0]) != 2, countries))
+        assert [] == list(filter(lambda d: d is not None and d != d.upper(), countries))
+
+    def test_languages(self):
+        # Ensure languages are lowercase and mapped to a script
+        from modules.languages import language2scripts
+        languages = []
+        for lang in list(map(lambda c: c.analyser_options.get("language"), config.values())):
+            if isinstance(lang, list):
+                languages.extend(lang)
+            elif lang is not None:
+                languages.append(lang)
+
+        assert set() == set(filter(lambda d: d[:2] != d[:2].lower(), languages))
+        assert set() == set(filter(lambda d: d not in language2scripts, languages))
+
 if __name__ == "__main__":
 
   import json
