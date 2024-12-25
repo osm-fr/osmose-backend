@@ -102,6 +102,7 @@ appropriate.'''),
             for language in languages:
                 if not self.lang[language]:
                     languages = None
+                    break
 
             # Build default regex
             if languages:
