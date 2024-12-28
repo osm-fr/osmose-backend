@@ -21,7 +21,6 @@ class Josm_deprecated(PluginMapCSS):
         self.errors[9002005] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('Wrong usage of {0} tag. Remove {1}, because it is clear that the name is missing even without an additional tag.', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{0.tag}')))
         self.errors[9002006] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('{0} is unspecific. Instead use the key fixme with the information what exactly should be fixed in the value of fixme.', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
         self.errors[9002007] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('{0}={1} is unspecific. Please replace \'\'{1}\'\' by a specific value.', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{0.value}')))
-        self.errors[9002011] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('key with uncommon character'))
         self.errors[9002012] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('uncommon short key'))
         self.errors[9002014] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('questionable key (ending with a number)'))
         self.errors[9002016] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('{0} is not recommended. Use the Reverse Ways function from the Tools menu.', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
@@ -52,7 +51,6 @@ class Josm_deprecated(PluginMapCSS):
         self.re_5ee0acf2 = re.compile(r'josm\/ignore')
         self.re_6029fe03 = re.compile(r'^diaper:')
         self.re_61b0be1b = re.compile(r'^(buoy_cardinal|buoy_installation|buoy_isolated_danger|buoy_lateral|buoy_safe_water|buoy_special_purpose|mooring)$')
-        self.re_620f4d52 = re.compile(r'=|\+|\/|&|<|>|;|\'|\"|%|#|@|\\|,|\.|\{|\}|\?|\*|\^|\$')
         self.re_69ec353a = re.compile(r'^is_in:')
         self.re_6d27b157 = re.compile(r'^description_[0-9]$')
         self.re_787405b1 = re.compile(r'^(yes|no|limited)$')
@@ -1181,16 +1179,7 @@ class Josm_deprecated(PluginMapCSS):
                 err.append({'class': 9002001, 'subclass': 1390370717, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # *[/=|\+|\/|&|<|>|;|'|"|%|#|@|\\|,|\.|\{|\}|\?|\*|\^|\$/]
-        if True:
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, self.re_620f4d52)))
-                except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("key with uncommon character")
-                # throwWarning:tr("{0}","{0.key}")
-                err.append({'class': 9002011, 'subclass': 1752615188, 'text': mapcss.tr('{0}', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+        # Rule Blacklisted (id: 1752615188)
 
         # *[/^.$/]
         # node[/^..$/][!kp][!pk]
@@ -5709,16 +5698,7 @@ class Josm_deprecated(PluginMapCSS):
                 err.append({'class': 9002001, 'subclass': 1390370717, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # *[/=|\+|\/|&|<|>|;|'|"|%|#|@|\\|,|\.|\{|\}|\?|\*|\^|\$/]
-        if True:
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, self.re_620f4d52)))
-                except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("key with uncommon character")
-                # throwWarning:tr("{0}","{0.key}")
-                err.append({'class': 9002011, 'subclass': 1752615188, 'text': mapcss.tr('{0}', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+        # Rule Blacklisted (id: 1752615188)
 
         # *[/^.$/]
         # way[/^..$/][route=ferry][!to]
@@ -10154,16 +10134,7 @@ class Josm_deprecated(PluginMapCSS):
                 err.append({'class': 9002001, 'subclass': 1390370717, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # *[/=|\+|\/|&|<|>|;|'|"|%|#|@|\\|,|\.|\{|\}|\?|\*|\^|\$/]
-        if True:
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, self.re_620f4d52)))
-                except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("key with uncommon character")
-                # throwWarning:tr("{0}","{0.key}")
-                err.append({'class': 9002011, 'subclass': 1752615188, 'text': mapcss.tr('{0}', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+        # Rule Blacklisted (id: 1752615188)
 
         # *[/^.$/]
         # relation[/^..$/][!to]
