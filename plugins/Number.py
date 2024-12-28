@@ -81,6 +81,7 @@ be used if the value is valid.''')
         for i in ["", ":forward", ":backward"]:
             for v in ["", ":hgv", ":bus", ":trailer", ":coach", ":motorcar", ":goods", ":motorcycle", ":tilting"]:
                 self.tag_number.extend(list(map(lambda t: (t[0] + v + i, t[1]), tag_number_directional)))
+                self.tag_number.extend(list(map(lambda t: (t[0] + v + i + ":conditional", t[1]), tag_number_directional)))
         self.tag_number.extend(list(map(lambda t: (t, None), self.tag_number_integer)))
 
         self.MaxspeedExtraValue = ["none", "default", "signals", "national", "no", "unposted", "walk", "urban", "variable"]
@@ -92,18 +93,23 @@ be used if the value is valid.''')
         for i in self.tag_number:
             tag = i[0]
             if tag in tags:
-                m = parseNumberUnitString(tags[tag])
+                val = tags[tag]
+                if tag.endswith(":conditional"):
+                    val = val.split("@")[0].rstrip()
+
+                m = parseNumberUnitString(val)
                 if (not m and
-                    not (tag == "width" and tags[tag] == "narrow") and
-                    not (tag == "capital" and tags[tag] == "yes") and
-                    not (tag == "heritage" and tags[tag] == "yes") and
+                    not (tag == "width" and val == "narrow") and
+                    not (tag == "capital" and val == "yes") and
+                    not (tag == "heritage" and val == "yes") and
                     not (("maxspeed" in tag or "minspeed" in tag) and (
-                        tags[tag] in self.MaxspeedExtraValue or
-                        self.MaxspeedClassValue.match(tags[tag]) or
-                        (tags[tag] == "implicit" and ("traffic_sign" in tags) and "maxspeed" in tags["traffic_sign"].split(";"))
+                        val in self.MaxspeedExtraValue or
+                        self.MaxspeedClassValue.match(val) or
+                        (val == "implicit" and ("traffic_sign" in tags) and "maxspeed" in tags["traffic_sign"].split(";"))
                     )) and
-                    not (tag == "maxheight" and tags[tag] in self.MaxheightExtraValue) and
-                    not (tag.split(":", 1)[0] == "maxweight" and tags[tag] in self.MaxweightExtraValue)
+                    not (tag == "maxheight" and val in self.MaxheightExtraValue) and
+                    not (tag.split(":", 1)[0] == "maxweight" and val in self.MaxweightExtraValue) and
+                    not (tag.endswith(":conditional") and val == "none")
                 ):
                     return {"class": 3091, "subclass": 1, "text": T_("Concerns tag: `{0}`", '='.join([tag, tags[tag]])) }
                 if not m:
@@ -114,7 +120,7 @@ be used if the value is valid.''')
                     return {"class": 3091, "subclass": 8, "text": T_("Concerns tag: `{0}`", '='.join([tag, tags[tag]])) }
 
                 # Below here only tags containing numbers with/without unit remain
-                if tag in self.tag_number_integer and str(int(abs(m["value"]))) != tags[tag]:
+                if tag in self.tag_number_integer and str(int(abs(m["value"]))) != val:
                     # Expected: positive integer, found: decimal number or number with unit
                     return {"class": 3093, "subclass": 4, "text": T_("Concerns tag: `{0}`", '='.join([tag, tags[tag]])) }
                 if m["unit"]:
@@ -124,10 +130,10 @@ be used if the value is valid.''')
                         return {"class": 3094, "subclass": 6, "text": T_("Concerns tag: `{0}`", '='.join([tag, tags[tag]])) }
                 if tag == "height":
                     if convertToUnit(m, 'm') > 500:
-                        return {"class": 3092, "subclass": 2, "text": T_("`height={0}` is really tall, consider changing to `ele=*`", tags[tag]),
+                        return {"class": 3092, "subclass": 2, "text": T_("`height={0}` is really tall, consider changing to `ele=*`", val),
                              "fix": {"-": ["height"], "+": {"ele": tags["height"]}} }
                 elif "maxspeed" in tag and m["value"] < 5 and not "waterway" in tags:
-                    return {"class": 3092, "subclass": 3, "text": T_('`{0}` is really slow', 'maxspeed=' + tags[tag])}
+                    return {"class": 3092, "subclass": 3, "text": T_('`{0}` is really slow', 'maxspeed=' + val)}
                 elif tag == "width" and m["value"] <= 0 and "highway" in tags: # seems to be an old iD bug
                     return {"class": 3092, "subclass": 5, "text": T_("Concerns tag: `{0}`", '='.join([tag, tags[tag]]))}
 
@@ -165,15 +171,20 @@ class Test(TestPluginCommon):
             self.check_err(a.node(None, {"maxspeed:backward":d}), ("maxspeed:backward='{0}'".format(d)))
             self.check_err(a.node(None, {"maxspeed:hgv":d}), ("maxspeed:hgv='{0}'".format(d)))
             self.check_err(a.node(None, {"maxspeed:hgv:forward":d}), ("maxspeed:hgv:forward='{0}'".format(d)))
+            self.check_err(a.node(None, {"maxspeed:hgv:forward:conditional": d + "@ wet"}), ("maxspeed:hgv:forward:conditional='{0}@ wet'".format(d)))
 
         for d in ["50", "FR:urban", "35 mph", "10 knots", "default"]:
             assert not a.node(None, {"maxspeed":d}), ("maxspeed='{0}'".format(d))
             assert not a.node(None, {"minspeed:forward":d}), ("minspeed:forward='{0}'".format(d))
             assert not a.node(None, {"minspeed:hgv":d}), ("minspeed:hgv='{0}'".format(d))
             assert not a.node(None, {"maxspeed:hgv:forward":d}), ("maxspeed:hgv:forward='{0}'".format(d))
+            assert not a.node(None, {"maxspeed:hgv:forward:conditional": d + " @ wet"}), ("maxspeed:hgv:forward:conditional='{0} @ wet'".format(d))
 
         for d in ["50 millimeters", "40 metre", "30 feet", "30 in", "10 mile", "6ft 6in"]:
             self.check_err(a.node(None, {"distance": d}), ("distance='{0}'".format(d)))
+
+        assert not a.node(None, {"maxlength:conditional": "none @ destination"}), "maxlength:conditional=none @ destination"
+        self.check_err(a.node(None, {"maxlength": "none"}), "maxlength=none")
 
         assert not a.node(None, {"maxspeed":"1", "waterway": "river"})
 
