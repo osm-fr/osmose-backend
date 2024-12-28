@@ -30,22 +30,22 @@ class TagFix_BadKey(Plugin):
         Plugin.init(self, logger)
         doc = dict(
             detail = T_(
-'''The key of tag contains characters not recommended. The key is
-composed of alphanumeric characters: 0-9, a-z (preferably lower case),
-separator '_' or ':'. See
+'''The key of the tag contains characters of which the use is discouraged.
+It should be composed of alphanumeric characters: 0-9, a-z (preferably lower case),
+the separator '_' or ':'. See
 [Any_tags_you_like#Syntactic_conventions_for_new_tags](https://wiki.openstreetmap.org/wiki/Any_tags_you_like#Syntactic_conventions_for_new_tags).'''),
             fix = T_(
-'''Check the key tag, and correct.'''),
+'''Check the key, and correct it.'''),
             trap = T_(
-'''There certainly false positives.'''))
+'''There are certainly false positives.'''))
         self.errors[3050]  = self.def_class(item = 3050, level = 1, tags = ['tag', 'fix:chair'],
-            title = T_('Bad key'),
+            title = T_('Key with uncommon character'),
             **doc)
         self.errors[30502]  = self.def_class(item = 3050, level = 3, tags = ['tag', 'fix:chair'],
-            title = T_('Bad key'),
+            title = T_('Key with uncommon character'),
             **doc)
         self.errors[30501] = self.def_class(item = 3050, level = 1, tags = ['tag', 'fix:chair'],
-            title = T_('Bad key suffix'),
+            title = T_('Key suffix with uncommon character'),
             **doc)
 
         import re
