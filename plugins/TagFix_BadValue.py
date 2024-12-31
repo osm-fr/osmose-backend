@@ -127,6 +127,13 @@ However, this should probably still conform to the typical format used for value
         for k in keyss:
             if tags[k] in ("unknown", "*"):
                 err.append({"class": 40613, "subclass": stablehash64(k), "text": T_("Concerns tag: `{0}`", '='.join([k, tags[k]])) })
+            elif len(tags[k].strip()) == 0 and k not in check_list_open and k not in self.check_list_closed:
+                err.append({
+                    "class": 3040,
+                    "subclass": stablehash64(k),
+                    "text": T_("Concerns tag: `{0}`", '='.join([k, tags[k]])),
+                    "fix": {"-": [k]}
+                })
 
         return err
 
@@ -158,6 +165,9 @@ class Test(TestPluginCommon):
                   {"sport": "rugby_union;shot-put;long-jump"}, # good;whitelisted;bad
                   {"access": "unknown"},
                   {"tracktype": "gradde1"},
+                  {"leaf_cycle": ""},
+                  {"wetland": ""},
+                  {"random_key": ""},
                  ]:
             self.check_err(a.node(None, t), t)
             self.check_err(a.way(None, t, None), t)
