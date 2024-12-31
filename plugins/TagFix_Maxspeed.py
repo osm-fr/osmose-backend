@@ -96,7 +96,7 @@ class TagFix_Maxspeed(Plugin):
 
     def way(self, data, tags, nds):
         err = []
-        maxspeed_tags = list(filter(lambda t: t.startswith('maxspeed') and tags[t][0] in "0123456789", tags))
+        maxspeed_tags = list(filter(lambda t: t.startswith('maxspeed') and tags[t] and tags[t][0] in "0123456789", tags))
 
         # Check that maxspeed:advisory/practical <= maxspeed
         for t in maxspeed_tags:
