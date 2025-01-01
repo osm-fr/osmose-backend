@@ -65,7 +65,8 @@ FROM (
       (nodes.tags?'railway' AND nodes.tags->'railway' IN ('subway_entrance')) OR
       (nodes.tags?'public_transport' AND nodes.tags->'public_transport' IN ('platform')) OR
       nodes.tags?'amenity' OR
-      nodes.tags?'barrier'
+      nodes.tags?'barrier' OR
+      array_length(array_positions(t.nodes, nodes.id), 1) != 1 -- exclude the self-intersecting node in P-shaped ways
     )
 """
 
@@ -104,3 +105,28 @@ class Analyser_Osmosis_Highway_Almost_Junction(Analyser_Osmosis):
     def analyser_osmosis_common(self):
         self.run(sql12.format(self.config.options.get("proj")))
         self.run(sql13, lambda res: {"class":1, "data":[self.way_full, self.node, self.positionAsText]})
+
+
+###########################################################################
+
+from .Analyser_Osmosis import TestAnalyserOsmosis
+
+class Test(TestAnalyserOsmosis):
+    @classmethod
+    def setup_class(cls):
+        from modules import config
+        TestAnalyserOsmosis.setup_class()
+        cls.analyser_conf = cls.load_osm("tests/osmosis_highway_almost_junction.osm",
+                                         config.dir_tmp + "/tests/osmosis_highway_almost_junction.test.xml",
+                                         {"proj": 23032}) # Random proj to satisfy highway table generation
+
+    def test_classes(self):
+        with Analyser_Osmosis_Highway_Almost_Junction(self.analyser_conf, self.logger) as a:
+            a.analyser()
+
+        self.root_err = self.load_errors()
+        self.check_err(cl="1", elems=[("node", "17"), ("way", "1008")])
+        self.check_err(cl="1", elems=[("node", "18"), ("way", "1007")])
+        self.check_err(cl="1", elems=[("node", "23"), ("way", "1010")])
+
+        self.check_num_err(3)
