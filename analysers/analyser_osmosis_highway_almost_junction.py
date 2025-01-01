@@ -48,6 +48,7 @@ FROM (
       highway NOT IN ('service', 'footway', 'path', 'platform', 'steps') AND
       NOT is_construction AND
       NOT is_polygon AND
+      ST_IsSimple(linestring) AND -- ignore self-intersecting P-shaped ways
       ST_Length(linestring_proj) > 10
     ) AS t
     LEFT JOIN highways ON
