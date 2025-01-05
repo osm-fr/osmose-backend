@@ -528,10 +528,11 @@ class SourceDataFair(Source):
 class SourceHttpLastModified(Source):
     """Get URL from Last-Modified HTTP headers"""
     def get_millesime(self):
-        return datetime.datetime.strptime(
-            downloader.requests_retry_session().head(self.fileUrl).headers['Last-Modified'],
-            downloader.HTTP_DATE_FMT,
-        )
+        last_modified = downloader.requests_retry_session().head(self.fileUrl).headers.get('Last-Modified')
+        if not last_modified:
+            return None
+        else:
+            return datetime.datetime.strptime(last_modified, downloader.HTTP_DATE_FMT)
 
 class SourceIGN(Source):
     def __init__(self, dep_code, **kwargs):
