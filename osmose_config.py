@@ -424,14 +424,21 @@ france_departement("ile_de_france/seine_et_marne", 7383, "FR-77", include=includ
 france_departement("ile_de_france/val_d_oise", 7433, "FR-95", include=include_ile_de_france)
 france_departement("ile_de_france/yvelines", 7457, "FR-78", include=include_ile_de_france)
 
-france_departement("languedoc_roussillon/aude", 7446, "FR-11")
-france_departement("languedoc_roussillon/gard", 7461, "FR-30")
+france_departement("languedoc_roussillon/aude", 7446, "FR-11", include=[
+    'merge_power_pole_FR_spec_enedis'
+])
+france_departement("languedoc_roussillon/gard", 7461, "FR-30", include=[
+    'merge_power_pole_FR_spec_enedis'
+])
 france_departement("languedoc_roussillon/herault", 7429, "FR-34", include=[
+    'merge_power_pole_FR_spec_enedis',
     # Montpellier
     'merge_public_equipment_FR_montpellier_toilets',
 ])
 france_departement("languedoc_roussillon/lozere", 7421, "FR-48")
-france_departement("languedoc_roussillon/pyrenees_orientales", 7466, "FR-66")
+france_departement("languedoc_roussillon/pyrenees_orientales", 7466, "FR-66", include=[
+    'merge_power_pole_FR_spec_enedis'
+])
 
 france_departement("limousin/correze", 7464, "FR-19")
 france_departement("limousin/creuse", 7459, "FR-23")
@@ -445,9 +452,12 @@ france_departement("lorraine/meuse", 7382, "FR-55")
 france_departement("lorraine/moselle", 51854, "FR-57")
 france_departement("lorraine/vosges", 7384, "FR-88")
 
-france_departement("midi_pyrenees/ariege", 7439, "FR-09")
+france_departement("midi_pyrenees/ariege", 7439, "FR-09", include=[
+    'merge_power_pole_FR_spec_enedis'
+])
 france_departement("midi_pyrenees/aveyron", 7451, "FR-12")
 france_departement("midi_pyrenees/haute_garonne", 7413, "FR-31", include=[
+    'merge_power_pole_FR_spec_enedis',
     # Toulouse
     'merge_public_equipment_FR_toulouse_toilets',
     'merge_defibrillators_FR_toulouse',
@@ -498,13 +508,18 @@ france_departement("provence_alpes_cote_d_azur/alpes_maritimes", 7385, "FR-06", 
     'merge_public_transport_FR_zou_06',
     'merge_public_transport_FR_sillages',
     'merge_public_transport_FR_zestbus',
+    'merge_power_pole_FR_spec_enedis'
 ])
-
 france_departement("provence_alpes_cote_d_azur/bouches_du_rhone", 7393, "FR-13", include=[
     'merge_recycling_FR_ampm',
+    'merge_power_pole_FR_spec_enedis'
 ])
-france_departement("provence_alpes_cote_d_azur/var", 7390, "FR-83")
-france_departement("provence_alpes_cote_d_azur/vaucluse", 7445, "FR-84")
+france_departement("provence_alpes_cote_d_azur/var", 7390, "FR-83", include=[
+    'merge_power_pole_FR_spec_enedis'
+])
+france_departement("provence_alpes_cote_d_azur/vaucluse", 7445, "FR-84", include=[
+    'merge_power_pole_FR_spec_enedis'
+])
 
 france_departement("rhone_alpes/ain", 7387, "FR-01")
 france_departement("rhone_alpes/ardeche", 7430, "FR-07")

@@ -35,14 +35,17 @@ class Analyser_Merge_power_pole_FR_spec_enedis (Analyser_Merge_Point):
             title = T_('Power pole update'))
 
         self.init(
-            "https://www.data.gouv.fr/fr/datasets/supports-eclairage-public-du-sde18/",
+            "https://www.data.gouv.fr/fr/datasets/position-geographique-des-poteaux-hta-et-bt/",
             "Position géographique des poteaux électriques HTA et BT Enedis",
             CSV(SourceDataGouv(
                 attribution="Enedis",
-                dataset="679574c33c924b19bd3f9ffd",
-                resource="c047d86c-4922-4934-8ffc-350935bded1a"
+                dataset="60b9a555532a9939f42fcb3b",
+                resource="93186d05-f283-421c-8534-a92149a01a36"
             )),
-            Load_XY("lng", "lat"),
+             Load_XY("Geo Point", "Geo Point",
+                xFunction = lambda x: x and x.split(',')[1],
+                yFunction = lambda y: y and y.split(',')[0]
+                select = {"PREC": ["A : 0 - 50cm", "B : 50cm - 1m 50"]}),
             Conflate(
                 select = Select(
                     types = ['nodes'],
