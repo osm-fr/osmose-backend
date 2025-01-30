@@ -34,6 +34,8 @@ class Analyser_Merge_power_pole_FR_spec_enedis (Analyser_Merge_Point):
         self.def_class_update_official(item = 8290, id = 1004, level = 3, tags = ['merge', 'power', 'fix:chair', 'fix:survey'],
             title = T_('Power pole update'))
 
+        dep_code = config.options.get('dep_code') or config.options.get('country').split('-')[1]
+
         self.init(
             "https://www.data.gouv.fr/fr/datasets/position-geographique-des-poteaux-hta-et-bt/",
             "Position géographique des poteaux électriques HTA et BT Enedis",
@@ -41,11 +43,14 @@ class Analyser_Merge_power_pole_FR_spec_enedis (Analyser_Merge_Point):
                 attribution="Enedis",
                 dataset="60b9a555532a9939f42fcb3b",
                 resource="93186d05-f283-421c-8534-a92149a01a36"
-            )),
+            ), fields=['Code Département', 'Geo Point', 'PREC']),
             Load_XY("Geo Point", "Geo Point",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0],
-                select = {"PREC": ["A : 0 - 50cm", "B : 50cm - 1m 50"]}),
+                select = {
+                    "Code Département": dep_code,
+                    "PREC": ["A : 0 - 50cm", "B : 50cm - 1m 50"]
+                }),
             Conflate(
                 select = Select(
                     types = ['nodes'],
