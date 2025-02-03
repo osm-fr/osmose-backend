@@ -49,7 +49,7 @@ class Analyser_Merge_Power_Tower_FR(Analyser_Merge_Point):
                         {"power": ["tower", "pole", "terminal", "portal", "insulator"], "operator": [False, "RTE"]},
                         {"disused:power": ["tower", "pole", "terminal", "portal", "insulator"], "operator": [False, "RTE"]},
                         {"removed:power": ["tower", "pole", "terminal", "portal", "insulator"], "operator": [False, "RTE"]},
-                        {"demolished:power": ["tower", "pole", "terminal", "portal", "insulator"], "operator": [False, "RTE"]}
+                        {"demolished:power": ["tower", "pole", "terminal", "portal", "insulator"], "operator": [False, "RTE"]},
                     ]),
 #               osmRef = "ref:FR:RTE", # Commented initial. Only issues missing tower. Then when the missing tower number lower, uncomment to integrate ref into OSM.
                 conflationDistance = 10,
