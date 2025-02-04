@@ -40,7 +40,7 @@ class TagFix_ZawgyiBurmese(Plugin):
             tags = ['value', 'fix:chair'],
             title = T_('Value contains Zawgyi-encoded Burmese characters'),
             detail = T_(
-'''Tag values in OpenStreetMap should be stored in Unicode. However, this
+'''Tag values should be stored in Unicode. However, this
 value contains Burmese characters in the obsolete “Zawgyi” font encoding.
 As long as this value is stored in a non-standard way, modern devices cannot
 display it correctly. Please change the text to be encoded in Unicode.'''),
