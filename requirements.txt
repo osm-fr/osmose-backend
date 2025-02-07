@@ -17,6 +17,8 @@ tiletanic
 sentry-sdk
 wikitextparser
 pycountry
+myanmartools
+PyICU
 
 # Tests
 pytest == 7.4.4 # In v8 it skips the plugins folder, see our issue #2266 and https://github.com/pytest-dev/pytest/issues/12605

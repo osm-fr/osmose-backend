@@ -13,6 +13,7 @@ RUN apt-get update && \
         git \
         libarchive-dev \
         libboost-python-dev \
+        libicu-dev \
         libosmpbf-dev \
         libprotobuf-dev \
         locales \
@@ -23,6 +24,7 @@ RUN apt-get update && \
         postgresql-client \
         protobuf-compiler \
         python3-dev \
+        python3-icu \
         python3-pip \
         python3-setuptools \
         python3-wheel \
