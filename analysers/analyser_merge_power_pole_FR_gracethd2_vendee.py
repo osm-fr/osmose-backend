@@ -33,7 +33,7 @@ class Analyser_Merge_power_pole_FR_gracethd2_vendee(Analyser_Merge_power_pole_FR
                 dataset="673d09a837eab9c52f42268b",
                 resource="cc66ae17-26a2-43f5-aea3-37496775776c"),
             conflationDistance=5,
-            classs=1000,
+            classs=1010,
             extract_operator = {
                 'ENEDIS': 'Enedis'
             },

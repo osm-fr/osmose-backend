@@ -27,11 +27,12 @@ from .Analyser_Merge import Analyser_Merge_Point, SourceDataGouv, GDAL, LoadGeom
 class Analyser_Merge_power_pole_FR_spec_sde18 (Analyser_Merge_Point):
     def __init__(self, config, logger = None):
         Analyser_Merge_Point.__init__(self, config, logger)
-        self.def_class_missing_official(item = 8290, id = 1001, level = 3, tags = ['merge', 'power', 'fix:chair', 'fix:survey'],
+        classs = 1050
+        self.def_class_missing_official(item = 8290, id = classs +1, level = 3, tags = ['merge', 'power', 'fix:chair', 'fix:survey'],
             title = T_('Power pole not integrated'))
-        self.def_class_possible_merge(item = 8291, id = 1003, level = 3, tags = ['merge', 'power', 'fix:chair', 'fix:survey'],
+        self.def_class_possible_merge(item = 8291, id = classs +3, level = 3, tags = ['merge', 'power', 'fix:chair', 'fix:survey'],
             title = T_('Power pole integration suggestion'))
-        self.def_class_update_official(item = 8290, id = 1004, level = 3, tags = ['merge', 'power', 'fix:chair', 'fix:survey'],
+        self.def_class_update_official(item = 8290, id = classs +4, level = 3, tags = ['merge', 'power', 'fix:chair', 'fix:survey'],
             title = T_('Power pole update'))
 
         self.init(

@@ -33,7 +33,7 @@ class Analyser_Merge_power_pole_FR_gracethd3_jura(Analyser_Merge_power_pole_FR_g
                 dataset="66158cdd04686348037417af",
                 resource="3f427bbd-f2bb-49dc-9457-c0aad16b1529"),
             conflationDistance=5,
-            classs=1000,
+            classs=1040,
             extract_operator = {
                 'OR00000003': 'Enedis'
             },

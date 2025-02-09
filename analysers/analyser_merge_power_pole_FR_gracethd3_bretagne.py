@@ -33,7 +33,7 @@ class Analyser_Merge_power_pole_FR_gracethd3_bretagne(Analyser_Merge_power_pole_
                 dataset="6613a43e5b40aaa8022d3787",
                 resource="b00051b6-69e5-42c3-8229-f6b556561d83"),
             conflationDistance=5,
-            classs=1000,
+            classs=1020,
             extract_operator = {
                 'ORMB0000000003': 'Enedis'
             },
