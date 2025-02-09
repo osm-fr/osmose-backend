@@ -33,7 +33,7 @@ class Analyser_Merge_power_pole_FR_gracethd3_dordogne(Analyser_Merge_power_pole_
                 dataset="659d72fb641c7c0d6fe6cc59",
                 resource="82e49c1f-976f-4be7-ab20-0a58e9badb56"),
             conflationDistance=5,
-            classs=1000,
+            classs=1030,
             extract_operator = {
                 'OR000000000003': 'Enedis'
             },
