@@ -44,7 +44,7 @@ class Analyser_Merge_power_pole_FR_spec_enedis (Analyser_Merge_Point):
                 attribution="Enedis",
                 dataset="60b9a555532a9939f42fcb3b",
                 resource="93186d05-f283-421c-8534-a92149a01a36"
-            ), fields=['Code Département', 'Geo Point', 'PREC']),
+            ), fields=['Code Département', 'Geo Point', 'PREC'], separator=';'),
             Load_XY("Geo Point", "Geo Point",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0],
