@@ -73,6 +73,12 @@
     <tag k='note' v='Bad node class 4/5/6/7' />
   </node>
   <node id='43' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86639246091' lon='5.88412773086' />
+  <node id='44' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86573022422' lon='5.89006715474' />
+  <node id='45' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86043589699' lon='5.88997590311' />
+  <node id='46' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86573086285' lon='5.88991521447' />
+  <node id='47' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86572897914' lon='5.89036337656' />
+  <node id='48' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86043451349' lon='5.89030501965' />
+  <node id='49' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.86043639742' lon='5.88985685756' />
   <way id='1000' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='1' />
     <nd ref='3' />
@@ -221,5 +227,23 @@
     <nd ref='42' />
     <nd ref='43' />
     <tag k='highway' v='tertiary' />
+  </way>
+  <way id='1023' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='44' />
+    <nd ref='45' />
+    <tag k='bridge' v='yes' />
+    <tag k='highway' v='secondary' />
+    <tag k='note' v='Class 1 no match, bridge structure on man_made object' />
+  </way>
+  <way id='1024' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='46' />
+    <nd ref='44' />
+    <nd ref='47' />
+    <nd ref='48' />
+    <nd ref='45' />
+    <nd ref='49' />
+    <nd ref='46' />
+    <tag k='bridge:structure' v='arch' />
+    <tag k='man_made' v='bridge' />
   </way>
 </osm>
