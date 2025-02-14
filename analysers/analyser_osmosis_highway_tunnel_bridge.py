@@ -25,20 +25,26 @@ from .Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
 SELECT
-    id,
-    ST_AsText(way_locate(linestring))
+    ways.id,
+    ST_AsText(way_locate(ways.linestring))
 FROM
-    {0}ways
+    ways
+    LEFT JOIN polygons AS contours ON
+        ST_Contains(contours.poly, ways.linestring) AND
+        contours.tags != ''::hstore AND
+        contours.tags?'man_made' AND
+        contours.tags->'man_made' = 'bridge'
 WHERE
-    tags != ''::hstore AND
+    ways.tags != ''::hstore AND
     (
-        tags?'railway' OR
-        (tags?'highway' AND tags->'highway' IN ('motorway', 'trunk', 'primary', 'secondary'))
+        ways.tags?'railway' OR
+        (ways.tags?'highway' AND ways.tags->'highway' IN ('motorway', 'trunk', 'primary', 'secondary'))
     ) AND
-    tags?'bridge' AND
-    tags->'bridge' = 'yes' AND
-    ST_Length(linestring::geography) > 500 AND
-    NOT tags?'bridge:structure'
+    ways.tags?'bridge' AND
+    ways.tags->'bridge' = 'yes' AND
+    ST_Length(ways.linestring::geography) > 500 AND
+    NOT ways.tags?'bridge:structure' AND
+    contours IS NULL
 """
 
 sql20 = """
@@ -151,19 +157,22 @@ WHERE
 
 class Analyser_Osmosis_Highway_Tunnel_Bridge(Analyser_Osmosis):
 
+    requires_tables_common = ['polygons']
     requires_tables_full = ['highways']
     requires_tables_diff = ['highways', 'touched_highways', 'not_touched_highways']
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = self.def_class(item = 7012, level = 3, tags = ['tag', 'highway', 'fix:survey'],
+        self.classs[1] = self.def_class(item = 7012, level = 3, tags = ['tag', 'highway', 'fix:survey'],
             title = T_('Bridge structure missing'),
             detail = T_(
 '''The length of the bridge makes it deserve a more detailed tag than
 `bridge=yes`.'''),
             fix = T_(
-'''See the possible [types of
-bridges](https://wiki.openstreetmap.org/wiki/Key:bridge).'''))
+'''Add a more detailed [bridge type or structure](https://wiki.openstreetmap.org/wiki/Key:bridge).
+
+Alternatively, draw the contour of the bridge using `man_made=bridge`
+and add information about the bridge architecture to this contour.'''))
         #self.classs_change[2] = self.def_class(item = 7130, level = 3, tags = ['tag', 'highway', 'maxheight', "fix:survey"],
         #    title = T_('Missing maxheight tag'))
         #self.classs_change[3] = self.def_class(item = 7130, level = 3, tags = ['tag', 'highway', 'layer', "fix:imagery"],
@@ -196,15 +205,16 @@ split the bridge or tunnel and adjust the tags accordingly.'''),
         #self.callback30 = lambda res: {"class":3, "data":[self.way_full, self.positionAsText] }
         self.callback40 = lambda res: {"class": (4 if res[4] == 'bridge' else 5) + (2 if res[5] else 0), "data": [self.node_full, self.way_full, self.way_full, self.positionAsText] }
 
+    def analyser_osmosis_common(self):
+        self.run(sql10, self.callback10)
+
     def analyser_osmosis_full(self):
-        self.run(sql10.format(""), self.callback10)
         #self.run(sql20.format("", ""))
         #self.run(sql21, self.callback20)
         #self.run(sql30.format("", ""), self.callback30)
         self.run(sql40.format("", ""), self.callback40)
 
     def analyser_osmosis_diff(self):
-        self.run(sql10.format("touched_"), self.callback10)
         #self.run(sql20.format("touched_", ""))
         #self.run(sql21, self.callback20)
         #self.run(sql30, self.callback30)
