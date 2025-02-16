@@ -28,11 +28,11 @@ class Analyser_Merge_Recycling_FR_bm(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
         Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8120, id = 1, level = 3, tags = ['merge', 'recycling', 'fix:survey', 'fix:picture'],
-            title = T_('{0} glass recycling not integrated', 'BM'))
+            title = T_('{0} glass or food waste recycling not integrated', 'BM'))
         self.def_class_possible_merge(item = 8121, id = 3, level = 3, tags = ['merge', 'recycling', 'fix:chair'],
-            title = T_('{0} glass recycling, integration suggestion', 'BM'))
+            title = T_('{0} glass or food waste recycling, integration suggestion', 'BM'))
         self.def_class_update_official(item = 8122, id = 4, level = 3, tags = ['merge', 'recycling', 'fix:chair'],
-            title = T_('{0} glass recycling update', 'BM'))
+            title = T_('{0} glass or food waste recycling update', 'BM'))
 
         self.init(
             'https://opendata.bordeaux-metropole.fr/explore/dataset/en_empac_p',
@@ -43,7 +43,10 @@ class Analyser_Merge_Recycling_FR_bm(Analyser_Merge_Point):
                 format="shp"),
                 zip='en_empac_p.shp'),
             LoadGeomCentroid(
-                select = {"ident": {"like": "%"}}),
+                select = {
+                    "type_emplacement": ["AERIEN", "ENTERRE", "SEMI_ENTERRE", "INCONNU"], # do not select PROJET
+                    "ident": {"like": "%"}
+                }),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -53,7 +56,11 @@ class Analyser_Merge_Recycling_FR_bm(Analyser_Merge_Point):
                 mapping = Mapping(
                     static1 = {
                         "amenity": "recycling",
-                        "recycling:glass_bottles": "yes",
                         "recycling_type": "container"},
                     static2 = {"source": self.source},
-                    mapping1 = {"ref:FR:CUB": "ident"} )))
+                    mapping1 = {
+                        "ref:FR:CUB": "ident",
+                        "recycling:glass_bottles": lambda res: "yes" if res["nature"] == "Verre" else None,
+                        "recycling:food_waste": lambda res: "yes" if res["nature"] == "Biodéchets" else None,
+                        "location": lambda res: "underground" if res["type_emplacement"] in ["ENTERRE", "SEMI_ENTERRE"] else None
+                    } )))
