@@ -468,8 +468,12 @@ france_departement("midi_pyrenees/hautes_pyrenees", 7467, "FR-65")
 france_departement("midi_pyrenees/tarn", 7442, "FR-81")
 france_departement("midi_pyrenees/tarn_et_garonne", 7388, "FR-82")
 
-france_departement("nord_pas_de_calais/nord", 7400, "FR-59")
-france_departement("nord_pas_de_calais/pas_de_calais", 7394, "FR-62")
+france_departement("nord_pas_de_calais/nord", 7400, "FR-59", include =[
+    'merge_power_pole_FR_spec_fibre5962',
+])
+france_departement("nord_pas_de_calais/pas_de_calais", 7394, "FR-62", include=[
+    'merge_power_pole_FR_spec_fibre5962',
+])
 
 france_departement("pays_de_la_loire/loire_atlantique", 7432, "FR-44", include=[
     # Nantes
