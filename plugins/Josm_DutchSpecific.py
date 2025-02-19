@@ -165,27 +165,28 @@ class Josm_DutchSpecific(PluginMapCSS):
         err = []
         set_abbrname = set_addrOnBuilding = set_altLivingStreet = set_badPhoneNumber = set_completedSurfacePavingStonesNumber = set_hasAddMofaPositive = set_housenameWithFix = set_markedSteps = set_multipleGsigns = set_stepsWithBicycleRamp = False
 
-        # node[traffic_sign~="NL:L2"][crossing!=zebra][crossing!=uncontrolled][crossing!=marked][highway=crossing][crossing!=traffic_signals][crossing_ref!=zebra]
-        # node[traffic_sign~="NL:L02"][crossing!=zebra][crossing!=uncontrolled][crossing!=marked][highway=crossing][crossing!=traffic_signals][crossing_ref!=zebra]
+        # node[traffic_sign~="NL:L2"][crossing!=zebra][crossing!=uncontrolled][crossing!=marked][crossing:markings!=zebra][highway=crossing][crossing!=traffic_signals][crossing_ref!=zebra]
+        # node[traffic_sign~="NL:L02"][crossing!=zebra][crossing!=uncontrolled][crossing!=marked][crossing:markings!=zebra][highway=crossing][crossing!=traffic_signals][crossing_ref!=zebra]
         if ('highway' in keys and 'traffic_sign' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss.list_contains(mapcss._tag_capture(capture_tags, 0, tags, 'traffic_sign'), mapcss._value_capture(capture_tags, 0, 'NL:L2'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'crossing') != mapcss._value_const_capture(capture_tags, 1, 'zebra', 'zebra')) and (mapcss._tag_capture(capture_tags, 2, tags, 'crossing') != mapcss._value_const_capture(capture_tags, 2, 'uncontrolled', 'uncontrolled')) and (mapcss._tag_capture(capture_tags, 3, tags, 'crossing') != mapcss._value_const_capture(capture_tags, 3, 'marked', 'marked')) and (mapcss._tag_capture(capture_tags, 4, tags, 'highway') == mapcss._value_capture(capture_tags, 4, 'crossing')) and (mapcss._tag_capture(capture_tags, 5, tags, 'crossing') != mapcss._value_const_capture(capture_tags, 5, 'traffic_signals', 'traffic_signals')) and (mapcss._tag_capture(capture_tags, 6, tags, 'crossing_ref') != mapcss._value_const_capture(capture_tags, 6, 'zebra', 'zebra')))
+                try: match = ((mapcss.list_contains(mapcss._tag_capture(capture_tags, 0, tags, 'traffic_sign'), mapcss._value_capture(capture_tags, 0, 'NL:L2'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'crossing') != mapcss._value_const_capture(capture_tags, 1, 'zebra', 'zebra')) and (mapcss._tag_capture(capture_tags, 2, tags, 'crossing') != mapcss._value_const_capture(capture_tags, 2, 'uncontrolled', 'uncontrolled')) and (mapcss._tag_capture(capture_tags, 3, tags, 'crossing') != mapcss._value_const_capture(capture_tags, 3, 'marked', 'marked')) and (mapcss._tag_capture(capture_tags, 4, tags, 'crossing:markings') != mapcss._value_const_capture(capture_tags, 4, 'zebra', 'zebra')) and (mapcss._tag_capture(capture_tags, 5, tags, 'highway') == mapcss._value_capture(capture_tags, 5, 'crossing')) and (mapcss._tag_capture(capture_tags, 6, tags, 'crossing') != mapcss._value_const_capture(capture_tags, 6, 'traffic_signals', 'traffic_signals')) and (mapcss._tag_capture(capture_tags, 7, tags, 'crossing_ref') != mapcss._value_const_capture(capture_tags, 7, 'zebra', 'zebra')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss.list_contains(mapcss._tag_capture(capture_tags, 0, tags, 'traffic_sign'), mapcss._value_capture(capture_tags, 0, 'NL:L02'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'crossing') != mapcss._value_const_capture(capture_tags, 1, 'zebra', 'zebra')) and (mapcss._tag_capture(capture_tags, 2, tags, 'crossing') != mapcss._value_const_capture(capture_tags, 2, 'uncontrolled', 'uncontrolled')) and (mapcss._tag_capture(capture_tags, 3, tags, 'crossing') != mapcss._value_const_capture(capture_tags, 3, 'marked', 'marked')) and (mapcss._tag_capture(capture_tags, 4, tags, 'highway') == mapcss._value_capture(capture_tags, 4, 'crossing')) and (mapcss._tag_capture(capture_tags, 5, tags, 'crossing') != mapcss._value_const_capture(capture_tags, 5, 'traffic_signals', 'traffic_signals')) and (mapcss._tag_capture(capture_tags, 6, tags, 'crossing_ref') != mapcss._value_const_capture(capture_tags, 6, 'zebra', 'zebra')))
+                try: match = ((mapcss.list_contains(mapcss._tag_capture(capture_tags, 0, tags, 'traffic_sign'), mapcss._value_capture(capture_tags, 0, 'NL:L02'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'crossing') != mapcss._value_const_capture(capture_tags, 1, 'zebra', 'zebra')) and (mapcss._tag_capture(capture_tags, 2, tags, 'crossing') != mapcss._value_const_capture(capture_tags, 2, 'uncontrolled', 'uncontrolled')) and (mapcss._tag_capture(capture_tags, 3, tags, 'crossing') != mapcss._value_const_capture(capture_tags, 3, 'marked', 'marked')) and (mapcss._tag_capture(capture_tags, 4, tags, 'crossing:markings') != mapcss._value_const_capture(capture_tags, 4, 'zebra', 'zebra')) and (mapcss._tag_capture(capture_tags, 5, tags, 'highway') == mapcss._value_capture(capture_tags, 5, 'crossing')) and (mapcss._tag_capture(capture_tags, 6, tags, 'crossing') != mapcss._value_const_capture(capture_tags, 6, 'traffic_signals', 'traffic_signals')) and (mapcss._tag_capture(capture_tags, 7, tags, 'crossing_ref') != mapcss._value_const_capture(capture_tags, 7, 'zebra', 'zebra')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("NL traffic signs")
-                # throwWarning:tr("{0} without {1}, {2} or {3}","{0.tag}","{1.tag}","{2.tag} + crossing_ref=zebra","{3.tag} + crossing_ref=zebra")
+                # throwWarning:tr("{0} without {1}, {2}, {3} or {4}","{0.tag}","{1.tag}","{2.tag} + crossing_ref=zebra","{3.tag} + crossing_ref=zebra","{4.tag}")
                 # assertNoMatch:"node traffic_sign=NL:L02 highway=crossing crossing=traffic_signals note=traffic_signals_combined_with_zebra"
                 # assertMatch:"node traffic_sign=NL:L02;NL:J23 highway=crossing"
                 # assertNoMatch:"node traffic_sign=NL:L2 direction=300"
+                # assertNoMatch:"node traffic_sign=NL:L2 highway=crossing crossing:markings=zebra"
                 # assertNoMatch:"node traffic_sign=NL:L2 highway=crossing crossing=uncontrolled crossing_ref=zebra"
                 # assertMatch:"node traffic_sign=NL:L2 highway=crossing"
-                err.append({'class': 90205, 'subclass': 938076772, 'text': mapcss.tr('{0} without {1}, {2} or {3}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{2.tag} + crossing_ref=zebra'), mapcss._tag_uncapture(capture_tags, '{3.tag} + crossing_ref=zebra'))})
+                err.append({'class': 90205, 'subclass': 1856004257, 'text': mapcss.tr('{0} without {1}, {2}, {3} or {4}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{2.tag} + crossing_ref=zebra'), mapcss._tag_uncapture(capture_tags, '{3.tag} + crossing_ref=zebra'), mapcss._tag_uncapture(capture_tags, '{4.tag}'))})
 
         # *[contact:phone=~/^(00|\+)31 ?0( ?[0-9]){7,}/]
         # *[contact:mobile=~/^(00|\+)31 ?0( ?[0-9]){7,}/]
@@ -459,8 +460,16 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # group:tr("NL deprecated features")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"*:surface=paving_stones + *:paving_stones:shape=square + *:paving_stones:length=[length in meter, e.g. 0.3]"
+                # fixAdd:concat(get(regexp_match("^(.+):surface$","{0.key}"),1),":paving_stones:length=0.",get(regexp_match("^paving_stones:([1-9])0$",get(tag_regex("^(.+):surface$"),0)),1))
+                # fixAdd:concat(get(regexp_match("^(.+):surface$","{0.key}"),1),":paving_stones:shape=square")
+                # fixAdd:"{0.key}=paving_stones"
                 set_completedSurfacePavingStonesNumber = True
-                err.append({'class': 90202, 'subclass': 1911834456, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                err.append({'class': 90202, 'subclass': 1911834456, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(mapcss.get(mapcss.regexp_match(self.re_74d9b833, mapcss._tag_uncapture(capture_tags, '{0.key}')), 1), ':paving_stones:length=0.', mapcss.get(mapcss.regexp_match(self.re_19b1af6a, mapcss.get(mapcss.tag_regex(tags, self.re_74d9b833), 0)), 1))).split('=', 1),
+                    (mapcss.concat(mapcss.get(mapcss.regexp_match(self.re_74d9b833, mapcss._tag_uncapture(capture_tags, '{0.key}')), 1), ':paving_stones:shape=square')).split('=', 1),
+                    (mapcss._tag_uncapture(capture_tags, '{0.key}=paving_stones')).split('=', 1)])
+                }})
 
         # *[/^(.+):surface$/=~/^paving_stones:([1-9])0$/][inside("NL")]!.completedSurfacePavingStonesNumber
         if True:
@@ -2411,10 +2420,18 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # group:tr("NL deprecated features")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"*:surface=paving_stones + *:paving_stones:shape=square + *:paving_stones:length=[length in meter, e.g. 0.3]"
+                # fixAdd:concat(get(regexp_match("^(.+):surface$","{0.key}"),1),":paving_stones:length=0.",get(regexp_match("^paving_stones:([1-9])0$",get(tag_regex("^(.+):surface$"),0)),1))
+                # fixAdd:concat(get(regexp_match("^(.+):surface$","{0.key}"),1),":paving_stones:shape=square")
+                # fixAdd:"{0.key}=paving_stones"
                 # assertNoMatch:"way highway=residential sidewalk:surface=paving_stones cycleway:surface=paving_stones:20"
                 # assertNoMatch:"way highway=residential sidewalk:surface=paving_stones:30 cycleway:surface=paving_stones:20"
                 set_completedSurfacePavingStonesNumber = True
-                err.append({'class': 90202, 'subclass': 1911834456, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                err.append({'class': 90202, 'subclass': 1911834456, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(mapcss.get(mapcss.regexp_match(self.re_74d9b833, mapcss._tag_uncapture(capture_tags, '{0.key}')), 1), ':paving_stones:length=0.', mapcss.get(mapcss.regexp_match(self.re_19b1af6a, mapcss.get(mapcss.tag_regex(tags, self.re_74d9b833), 0)), 1))).split('=', 1),
+                    (mapcss.concat(mapcss.get(mapcss.regexp_match(self.re_74d9b833, mapcss._tag_uncapture(capture_tags, '{0.key}')), 1), ':paving_stones:shape=square')).split('=', 1),
+                    (mapcss._tag_uncapture(capture_tags, '{0.key}=paving_stones')).split('=', 1)])
+                }})
 
         # *[/^(.+):surface$/=~/^paving_stones:([1-9])0$/][inside("NL")]!.completedSurfacePavingStonesNumber
         if True:
@@ -3456,8 +3473,16 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # group:tr("NL deprecated features")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"*:surface=paving_stones + *:paving_stones:shape=square + *:paving_stones:length=[length in meter, e.g. 0.3]"
+                # fixAdd:concat(get(regexp_match("^(.+):surface$","{0.key}"),1),":paving_stones:length=0.",get(regexp_match("^paving_stones:([1-9])0$",get(tag_regex("^(.+):surface$"),0)),1))
+                # fixAdd:concat(get(regexp_match("^(.+):surface$","{0.key}"),1),":paving_stones:shape=square")
+                # fixAdd:"{0.key}=paving_stones"
                 set_completedSurfacePavingStonesNumber = True
-                err.append({'class': 90202, 'subclass': 1911834456, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                err.append({'class': 90202, 'subclass': 1911834456, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(mapcss.get(mapcss.regexp_match(self.re_74d9b833, mapcss._tag_uncapture(capture_tags, '{0.key}')), 1), ':paving_stones:length=0.', mapcss.get(mapcss.regexp_match(self.re_19b1af6a, mapcss.get(mapcss.tag_regex(tags, self.re_74d9b833), 0)), 1))).split('=', 1),
+                    (mapcss.concat(mapcss.get(mapcss.regexp_match(self.re_74d9b833, mapcss._tag_uncapture(capture_tags, '{0.key}')), 1), ':paving_stones:shape=square')).split('=', 1),
+                    (mapcss._tag_uncapture(capture_tags, '{0.key}=paving_stones')).split('=', 1)])
+                }})
 
         # *[/^(.+):surface$/=~/^paving_stones:([1-9])0$/][inside("NL")]!.completedSurfacePavingStonesNumber
         if True:
@@ -3725,11 +3750,12 @@ class Test(TestPluginMapcss):
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
-        self.check_not_err(n.node(data, {'crossing': 'traffic_signals', 'highway': 'crossing', 'note': 'traffic_signals_combined_with_zebra', 'traffic_sign': 'NL:L02'}), expected={'class': 90205, 'subclass': 938076772})
-        self.check_err(n.node(data, {'highway': 'crossing', 'traffic_sign': 'NL:L02;NL:J23'}), expected={'class': 90205, 'subclass': 938076772})
-        self.check_not_err(n.node(data, {'direction': '300', 'traffic_sign': 'NL:L2'}), expected={'class': 90205, 'subclass': 938076772})
-        self.check_not_err(n.node(data, {'crossing': 'uncontrolled', 'crossing_ref': 'zebra', 'highway': 'crossing', 'traffic_sign': 'NL:L2'}), expected={'class': 90205, 'subclass': 938076772})
-        self.check_err(n.node(data, {'highway': 'crossing', 'traffic_sign': 'NL:L2'}), expected={'class': 90205, 'subclass': 938076772})
+        self.check_not_err(n.node(data, {'crossing': 'traffic_signals', 'highway': 'crossing', 'note': 'traffic_signals_combined_with_zebra', 'traffic_sign': 'NL:L02'}), expected={'class': 90205, 'subclass': 1856004257})
+        self.check_err(n.node(data, {'highway': 'crossing', 'traffic_sign': 'NL:L02;NL:J23'}), expected={'class': 90205, 'subclass': 1856004257})
+        self.check_not_err(n.node(data, {'direction': '300', 'traffic_sign': 'NL:L2'}), expected={'class': 90205, 'subclass': 1856004257})
+        self.check_not_err(n.node(data, {'crossing:markings': 'zebra', 'highway': 'crossing', 'traffic_sign': 'NL:L2'}), expected={'class': 90205, 'subclass': 1856004257})
+        self.check_not_err(n.node(data, {'crossing': 'uncontrolled', 'crossing_ref': 'zebra', 'highway': 'crossing', 'traffic_sign': 'NL:L2'}), expected={'class': 90205, 'subclass': 1856004257})
+        self.check_err(n.node(data, {'highway': 'crossing', 'traffic_sign': 'NL:L2'}), expected={'class': 90205, 'subclass': 1856004257})
         self.check_err(n.node(data, {'phone': '+31 06 1234 5678'}), expected={'class': 90201, 'subclass': 1739574763})
         self.check_err(n.node(data, {'phone': '+31 0612345678'}), expected={'class': 90201, 'subclass': 1739574763})
         self.check_err(n.node(data, {'phone': '+31 08008844'}), expected={'class': 90201, 'subclass': 1739574763})
