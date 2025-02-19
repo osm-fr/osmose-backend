@@ -33,14 +33,17 @@ class Josm_FranceSpecificRules(PluginMapCSS):
         self.errors[9019002] = self.def_class(item = 9019, level = 3, tags = mapcss.list_('ref', 'highway'), title = mapcss.tr('validation rules nat_ref in France'))
         self.errors[9019003] = self.def_class(item = 9019, level = 3, tags = [], title = mapcss.tr('missing tag'))
         self.errors[9019004] = self.def_class(item = 9019, level = 3, tags = [], title = {'en': 'Unusual ref for motorway_junction; use of \'ref=*\' for the exit destination ref?'})
-        self.errors[9019005] = self.def_class(item = 9019, level = 3, tags = mapcss.list_('ref', 'highway'), title = mapcss.tr('validation rules Fantoir in France'))
+        self.errors[9019005] = self.def_class(item = 9019, level = 3, tags = [], title = mapcss.tr('{0} is not a valid SIREN number', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
+        self.errors[9019006] = self.def_class(item = 9019, level = 3, tags = [], title = mapcss.tr('{0} is not a valid SIRET number', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
 
         self.re_045a0f34 = re.compile(r'(?i)co.?voiturage')
         self.re_107d2c86 = re.compile(r'PT[1-9]{1}[0-9]*')
         self.re_1473b7c6 = re.compile(r'^(motorway|trunk|primary|secondary|tertiary|unclassified)$')
         self.re_173ac8d4 = re.compile(r'[0-9]{5}[A-Z0-9]{3}')
+        self.re_1bbe23d0 = re.compile(r'(^[0-9]{14}$)|^([0-9]{14};)*[0-9]{14}$')
         self.re_2341f750 = re.compile(r'^(0[1-9]|1[0-9]|2[1-9]|[3-8][0-9]|9[0-5]|973|975|976)[ANP](8|9)[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9])D$')
         self.re_23d0d993 = re.compile(r'[A-Z0-9]{3}')
+        self.re_266c691a = re.compile(r'(^[0-9]{9}$)|^([0-9]{9};)*[0-9]{9}$')
         self.re_299ea34e = re.compile(r'^(motorway_link|trunk_link|primary_link|secondary_link|tertiary_link)$')
         self.re_30299d59 = re.compile(r'^(Enedis|GRDF)$')
         self.re_3b28b3c0 = re.compile(r'^(motorway|trunk|primary|secondary|tertiary|unclassified|service)$')
@@ -355,6 +358,28 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 # -osmoseItemClassLevel:"9019/9019005/3"
                 # throwWarning:"format code ref:FR:FANTOIR"
                 err.append({'class': 9019005, 'subclass': 0, 'text': {'en': 'format code ref:FR:FANTOIR'}})
+
+        # *["ref:FR:SIREN"]["ref:FR:SIREN"!~/(^[0-9]{9}$)|^([0-9]{9};)*[0-9]{9}$/][inside("FR")]
+        if ('ref:FR:SIREN' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:SIREN')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_266c691a, '(^[0-9]{9}$)|^([0-9]{9};)*[0-9]{9}$'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:SIREN'))) and (mapcss.inside(self.father.config.options, 'FR')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("{0} is not a valid SIREN number","{0.tag}")
+                err.append({'class': 9019005, 'subclass': 1878506858, 'text': mapcss.tr('{0} is not a valid SIREN number', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # *["ref:FR:SIRET"]["ref:FR:SIRET"!~/(^[0-9]{14}$)|^([0-9]{14};)*[0-9]{14}$/][inside("FR")]
+        if ('ref:FR:SIRET' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:SIRET')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1bbe23d0, '(^[0-9]{14}$)|^([0-9]{14};)*[0-9]{14}$'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:SIRET'))) and (mapcss.inside(self.father.config.options, 'FR')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("{0} is not a valid SIRET number","{0.tag}")
+                err.append({'class': 9019006, 'subclass': 281992260, 'text': mapcss.tr('{0} is not a valid SIRET number', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         return err
 
@@ -775,6 +800,28 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 # -osmoseAssertNoMatchWithContext:list("way highway=residential name=impasse ref:FR:FANTOIR=95106A581T","inside=FR")
                 err.append({'class': 9019005, 'subclass': 0, 'text': {'en': 'format code ref:FR:FANTOIR'}})
 
+        # *["ref:FR:SIREN"]["ref:FR:SIREN"!~/(^[0-9]{9}$)|^([0-9]{9};)*[0-9]{9}$/][inside("FR")]
+        if ('ref:FR:SIREN' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:SIREN')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_266c691a, '(^[0-9]{9}$)|^([0-9]{9};)*[0-9]{9}$'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:SIREN'))) and (mapcss.inside(self.father.config.options, 'FR')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("{0} is not a valid SIREN number","{0.tag}")
+                err.append({'class': 9019005, 'subclass': 1878506858, 'text': mapcss.tr('{0} is not a valid SIREN number', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # *["ref:FR:SIRET"]["ref:FR:SIRET"!~/(^[0-9]{14}$)|^([0-9]{14};)*[0-9]{14}$/][inside("FR")]
+        if ('ref:FR:SIRET' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:SIRET')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1bbe23d0, '(^[0-9]{14}$)|^([0-9]{14};)*[0-9]{14}$'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:SIRET'))) and (mapcss.inside(self.father.config.options, 'FR')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("{0} is not a valid SIRET number","{0.tag}")
+                err.append({'class': 9019006, 'subclass': 281992260, 'text': mapcss.tr('{0} is not a valid SIRET number', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
         return err
 
     def relation(self, data, tags, members):
@@ -1015,6 +1062,28 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 # -osmoseItemClassLevel:"9019/9019005/3"
                 # throwWarning:"format code ref:FR:FANTOIR"
                 err.append({'class': 9019005, 'subclass': 0, 'text': {'en': 'format code ref:FR:FANTOIR'}})
+
+        # *["ref:FR:SIREN"]["ref:FR:SIREN"!~/(^[0-9]{9}$)|^([0-9]{9};)*[0-9]{9}$/][inside("FR")]
+        if ('ref:FR:SIREN' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:SIREN')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_266c691a, '(^[0-9]{9}$)|^([0-9]{9};)*[0-9]{9}$'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:SIREN'))) and (mapcss.inside(self.father.config.options, 'FR')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("{0} is not a valid SIREN number","{0.tag}")
+                err.append({'class': 9019005, 'subclass': 1878506858, 'text': mapcss.tr('{0} is not a valid SIREN number', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # *["ref:FR:SIRET"]["ref:FR:SIRET"!~/(^[0-9]{14}$)|^([0-9]{14};)*[0-9]{14}$/][inside("FR")]
+        if ('ref:FR:SIRET' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:SIRET')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1bbe23d0, '(^[0-9]{14}$)|^([0-9]{14};)*[0-9]{14}$'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:SIRET'))) and (mapcss.inside(self.father.config.options, 'FR')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("{0} is not a valid SIRET number","{0.tag}")
+                err.append({'class': 9019006, 'subclass': 281992260, 'text': mapcss.tr('{0} is not a valid SIRET number', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         return err
 
