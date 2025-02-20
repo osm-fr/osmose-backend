@@ -531,9 +531,12 @@ france_departement("rhone_alpes/rhone", 7378, "FR-69", include=[
     'merge_public_equipment_FR_lyon_toilets',
     'merge_bicycle_parking_FR_lyon',
 ])
-france_departement("rhone_alpes/savoie", 7425, "FR-73")
+france_departement("rhone_alpes/savoie", 7425, "FR-73", include=[
+    'merge_power_pole_FR_spec_enedis'
+])
 france_departement("rhone_alpes/haute_savoie", 7407, "FR-74", include=[
     'merge_street_lamp_FR_haute-savoie_syane',
+    'merge_power_pole_FR_spec_enedis',
     # Annecy
     'merge_public_transport_FR_sibra',
 ])
