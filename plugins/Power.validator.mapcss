@@ -43,12 +43,3 @@ node[power=transformer][voltage] {
     -osmoseItemClassLevel: "9100/91002/2";
     -osmoseTags: list("tag");
 }
-
-node[power=transformer][!frequency] {
-    throwWarning: tr("Power Transformers should have a frequency tag");
-    -osmoseItemClassLevel: "9100/91003/3";
-    -osmoseTags: list("tag");
-
-    assertMatch: "node power=transformer";
-    assertNoMatch: "node power=transformer frequency=50";
-}
