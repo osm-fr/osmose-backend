@@ -122,7 +122,7 @@ FROM
         NOT (nodes.tags?'location:transition' AND nodes.tags->'location:transition' = 'yes') AND
         NOT (nodes.tags?'transformer' AND nodes.tags->'transformer' in ('distribution', 'main')) AND
         NOT (nodes.tags?'substation' AND nodes.tags->'substation' = 'minor_distribution') AND
-        NOT (nodes.tags?'line_management' AND nodes.tags->'line_management' = 'termination') AND
+        NOT (nodes.tags?'line_management' AND nodes.tags->'line_management' IN ('transition','termination')) AND
         NOT (nodes.tags?'power' AND nodes.tags->'power' = 'terminal')
 """
 
@@ -224,7 +224,7 @@ HAVING
     COUNT(*) > 1
 """
 
-# Every junctions that aren't transformers cross or splits repeated a single time (meaning the junction involves different voltages)
+# Every junctions that aren't transformers cross, splits or terminations repeated a single time (meaning the junction involves different voltages)
 sql31 = """
 SELECT
     DISTINCT(j.nid),
@@ -245,6 +245,7 @@ WHERE
         NOT nodes.tags?'line_management' OR
         (
             NOT 'split' = ANY(string_to_array(nodes.tags->'line_management', '|')) AND
+            NOT 'termination' = ANY(string_to_array(nodes.tags->'line_management', '|')) AND
             nodes.tags->'line_management' != 'cross'
         )
     )
@@ -438,7 +439,9 @@ sql71 = """
 SELECT m.nid,
     ST_AsText(nodes.geom),
     m.line_management,
-    m.location_transition
+    m.location_transition,
+    nodes.tags->'line_management' as current_line_management,
+    nodes.tags->'location:transition' as current_location_transition
 FROM
     power_lines_mgmt m
     JOIN nodes ON nodes.id=m.nid
@@ -461,7 +464,7 @@ class Analyser_Osmosis_Powerline(Analyser_Osmosis):
 '''It's possible that disused power features could be disconnected from the network.
 In which case make use of the `disused:` [lifecycle prefix](https://wiki.openstreetmap.org/wiki/Lifecycle_prefix).'''))
         self.classs[2] = self.def_class(item = 7040, level = 2, tags = ['power', 'fix:imagery'],
-            title = T_('Unfinished power major line'),
+            title = T_('Unfinished power transmission line'),
             detail = T_(
 '''The line ends in a vacuum, and should be connected to another line or
 a transformer (`power=transformer`), a generator (`power=generator`)
@@ -470,7 +473,7 @@ or marked as transitioning into ground (`location:transition=yes`).'''),
 '''It's possible that disused power features could be disconnected from the network.
 In which case make use of the `disused:` [lifecycle prefix](https://wiki.openstreetmap.org/wiki/Lifecycle_prefix).'''))
         self.classs[6] = self.def_class(item = 7040, level = 3, tags = ['power', 'fix:imagery'],
-            title = T_('Unfinished power minor line'),
+            title = T_('Unfinished power distribution line'),
             detail = T_(
 '''The line ends in a vacuum, and should be connected to another line or
 a transformer (`power=transformer`), a generator (`power=generator`)
@@ -535,11 +538,15 @@ there's likely an unmapped pole nearby.'''))
     def __callback80_fix(self, res):
         result = []
         if res[2]:
-            result.append({"+": {"line_management": res[2]}})
-            result.append({"~": {"line_management": res[2]}})
+            if res[4] is None:
+                result.append({"+": {"line_management": res[2]}})
+            elif res[4] != res[2]:
+                result.append({"~": {"line_management": res[2]}})
         if res[3]:
-            result.append({"+": {"location:transition": res[3]}})
-            result.append({"~": {"location:transition": res[3]}})
+            if res[5] is None:
+                result.append({"+": {"line_management": res[3]}})
+            elif res[5] != res[3]:
+                result.append({"~": {"line_management": res[3]}})
 
         return result
 
