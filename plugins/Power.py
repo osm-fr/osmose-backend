@@ -15,7 +15,6 @@ class Power(PluginMapCSS):
         tags = capture_tags = {} # noqa
         self.errors[91001] = self.def_class(item = 9100, level = 2, tags = mapcss.list_('power', 'fix:chair') + mapcss.list_('geom'), title = mapcss.tr('Power Transformers should always be on a node'))
         self.errors[91002] = self.def_class(item = 9100, level = 2, tags = mapcss.list_('power', 'fix:chair') + mapcss.list_('tag'), title = mapcss.tr('On Power Transformers use voltage:primary=* and voltage:secondary=* in place of voltage'))
-        self.errors[91003] = self.def_class(item = 9100, level = 3, tags = mapcss.list_('power', 'fix:chair') + mapcss.list_('tag'), title = mapcss.tr('Power Transformers should have a frequency tag'))
 
 
 
@@ -37,21 +36,6 @@ class Power(PluginMapCSS):
                 # -osmoseItemClassLevel:"9100/91002/2"
                 # throwWarning:tr("On Power Transformers use voltage:primary=* and voltage:secondary=* in place of voltage")
                 err.append({'class': 91002, 'subclass': 0, 'text': mapcss.tr('On Power Transformers use voltage:primary=* and voltage:secondary=* in place of voltage')})
-
-        # node[power=transformer][!frequency]
-        if ('power' in keys):
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'power') == mapcss._value_capture(capture_tags, 0, 'transformer')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'frequency')))
-                except mapcss.RuleAbort: pass
-            if match:
-                # -osmoseTags:list("tag")
-                # -osmoseItemClassLevel:"9100/91003/3"
-                # throwWarning:tr("Power Transformers should have a frequency tag")
-                # assertNoMatch:"node power=transformer frequency=50"
-                # assertMatch:"node power=transformer"
-                err.append({'class': 91003, 'subclass': 0, 'text': mapcss.tr('Power Transformers should have a frequency tag')})
 
         return err
 
@@ -91,5 +75,4 @@ class Test(TestPluginMapcss):
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
-        self.check_not_err(n.node(data, {'frequency': '50', 'power': 'transformer'}), expected={'class': 91003, 'subclass': 0})
-        self.check_err(n.node(data, {'power': 'transformer'}), expected={'class': 91003, 'subclass': 0})
+
