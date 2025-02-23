@@ -59,20 +59,3 @@ class Power(PluginMapCSS):
                 err.append({'class': 91001, 'subclass': 0, 'text': mapcss.tr('Power Transformers should always be on a node')})
 
         return err
-
-
-from plugins.PluginMapCSS import TestPluginMapcss
-
-
-class Test(TestPluginMapcss):
-    def test(self):
-        n = Power(None)
-        class _config:
-            options = {"country": None, "language": None}
-        class father:
-            config = _config()
-        n.father = father()
-        n.init(None)
-        data = {'id': 0, 'lat': 0, 'lon': 0}
-
-

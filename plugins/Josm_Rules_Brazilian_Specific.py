@@ -4848,20 +4848,3 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
                 }})
 
         return err
-
-
-from plugins.PluginMapCSS import TestPluginMapcss
-
-
-class Test(TestPluginMapcss):
-    def test(self):
-        n = Josm_Rules_Brazilian_Specific(None)
-        class _config:
-            options = {"country": None, "language": None}
-        class father:
-            config = _config()
-        n.father = father()
-        n.init(None)
-        data = {'id': 0, 'lat': 0, 'lon': 0}
-
-

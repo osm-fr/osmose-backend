@@ -942,7 +942,26 @@ def compile(inputfile, class_name, mapcss_url = None, only_for = [], not_for = [
     global class_, tests, regex_store, set_store
     rules = dict(map(lambda t: [t, to_p({'type': 'stylesheet', 'rules': selectors_type[t]})], sorted(selectors_type.keys(), key = lambda a: {'node': 0, 'way': 1, 'relation':2}[a])))
     items = build_items(class_)
-    asserts = build_tests(tests)
+
+    asserts = ""
+    if tests:
+        asserts = """
+
+from plugins.PluginMapCSS import TestPluginMapcss
+
+
+class Test(TestPluginMapcss):
+    def test(self):
+        n = """ + prefix + class_name + """(None)
+        class _config:
+            options = {"country": None, "language": None}
+        class father:
+            config = _config()
+        n.father = father()
+        n.init(None)
+        data = {'id': 0, 'lat': 0, 'lon': 0}
+
+        """ + build_tests(tests).replace("\n", "\n        ") + "\n"
 
     mapcss = ("""#-*- coding: utf-8 -*-
 import modules.mapcss_lib as mapcss
@@ -972,24 +991,8 @@ class """ + prefix + class_name + """(PluginMapCSS):
 
         """ + rules[t].replace("\n", "\n        ") + """
         return err
-""", sorted(rules.keys(), key = lambda a: {'node': 0, 'way': 1, 'relation':2}[a]))) + """
-
-from plugins.PluginMapCSS import TestPluginMapcss
-
-
-class Test(TestPluginMapcss):
-    def test(self):
-        n = """ + prefix + class_name + """(None)
-        class _config:
-            options = {"country": None, "language": None}
-        class father:
-            config = _config()
-        n.father = father()
-        n.init(None)
-        data = {'id': 0, 'lat': 0, 'lon': 0}
-
-        """ + asserts.replace("\n", "\n        ") + """
-""").replace("        \n", "\n")
+""", sorted(rules.keys(), key = lambda a: {'node': 0, 'way': 1, 'relation':2}[a])))
+    + asserts).replace("        \n", "\n")
     return mapcss
 
 

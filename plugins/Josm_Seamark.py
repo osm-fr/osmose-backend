@@ -1115,20 +1115,3 @@ class Josm_Seamark(PluginMapCSS):
                 err.append({'class': 9012010, 'subclass': 1214402030, 'text': mapcss.tr('{0} sign require {1} set to left or right', mapcss._tag_uncapture(capture_tags, '{0.value}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
         return err
-
-
-from plugins.PluginMapCSS import TestPluginMapcss
-
-
-class Test(TestPluginMapcss):
-    def test(self):
-        n = Josm_Seamark(None)
-        class _config:
-            options = {"country": None, "language": None}
-        class father:
-            config = _config()
-        n.father = father()
-        n.init(None)
-        data = {'id': 0, 'lat': 0, 'lon': 0}
-
-
