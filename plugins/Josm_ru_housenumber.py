@@ -77,20 +77,3 @@ class Josm_ru_housenumber(PluginMapCSS):
                 err.append({'class': 9017001, 'subclass': 774061168, 'text': mapcss.tr('Номера домов не соответствующие принятому соглашению')})
 
         return err
-
-
-from plugins.PluginMapCSS import TestPluginMapcss
-
-
-class Test(TestPluginMapcss):
-    def test(self):
-        n = Josm_ru_housenumber(None)
-        class _config:
-            options = {"country": None, "language": None}
-        class father:
-            config = _config()
-        n.father = father()
-        n.init(None)
-        data = {'id': 0, 'lat': 0, 'lon': 0}
-
-
