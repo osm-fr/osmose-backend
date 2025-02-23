@@ -55,7 +55,12 @@ class Analyser_Merge_power_pole_FR_spec_enedis (Analyser_Merge_Point):
             Conflate(
                 select = Select(
                     types = ['nodes'],
-                    tags = {'power': ['pole', 'tower']}),
+                    tags = [
+                        {"power": ["pole", "tower"]},
+                        {"disused:power": ["pole", "tower"]},
+                        {"removed:power": ["pole", "tower"]},
+                        {"demolished:power": ["pole", "tower"]},
+                    ]),
                 conflationDistance = 6,
                 mapping = Mapping(
                     static1 = {'power': 'pole'},

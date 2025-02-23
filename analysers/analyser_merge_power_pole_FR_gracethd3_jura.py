@@ -35,6 +35,6 @@ class Analyser_Merge_power_pole_FR_gracethd3_jura(Analyser_Merge_power_pole_FR_g
             conflationDistance=5,
             classs=1040,
             extract_operator = {
-                'OR00000003': 'Enedis'
+                'OR00000003': ['Enedis', 'Q3587594']
             },
             logger=logger)

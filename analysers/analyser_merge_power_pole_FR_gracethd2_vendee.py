@@ -35,6 +35,6 @@ class Analyser_Merge_power_pole_FR_gracethd2_vendee(Analyser_Merge_power_pole_FR
             conflationDistance=5,
             classs=1010,
             extract_operator = {
-                'ENEDIS': 'Enedis'
+                'ENEDIS': ['Enedis', 'Q3587594']
             },
             logger=logger)
