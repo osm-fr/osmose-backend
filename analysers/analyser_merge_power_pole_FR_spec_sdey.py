@@ -46,21 +46,20 @@ class Analyser_Merge_power_pole_FR_spec_sdey (Analyser_Merge_Point):
             Conflate(
                 select = Select(
                     types = ['nodes'],
-                    tags = {'power': 'pole'}),
+                    tags = [
+                        {"power": "pole"},
+                        {"disused:power": "pole"},
+                        {"removed:power": "pole"},
+                        {"demolished:power": "pole"},
+                    ]),
                 conflationDistance = 5,
                 mapping = Mapping(
-                    static1 = {'power': 'pole'},
-                    static2 = {'source': self.source, 'highway': 'street_lamp'},
+                    static1 = {'power': 'pole', 'operator':'Enedis'},
+                    static2 = {'source': self.source, 'highway': 'street_lamp', 'operator:wikidata':'Q3587594'},
                     mapping1 = {
                         'material': lambda res: self.extract_material.get(res['matieresup']),
-                        'operator': lambda res: self.extract_operator.get(res['natursupor']),
                         'height': lambda res: res['haut_mat_m'] if res['haut_mat_m'] and res['haut_mat_m'].isnumeric() and float(res['haut_mat_m']) > 6.0 else None},
                 text = lambda tags, fields: {} )))
-
-    extract_operator = {
-        'EP+BT': 'Enedis',
-        'EP+BT+FT': 'Enedis'
-    }
 
     extract_material = {
         'BOIS': 'wood',
