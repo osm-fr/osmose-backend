@@ -35,6 +35,6 @@ class Analyser_Merge_power_pole_FR_gracethd3_bretagne(Analyser_Merge_power_pole_
             conflationDistance=5,
             classs=1020,
             extract_operator = {
-                'ORMB0000000003': 'Enedis'
+                'ORMB0000000003': ['Enedis','Q3587594']
             },
             logger=logger)

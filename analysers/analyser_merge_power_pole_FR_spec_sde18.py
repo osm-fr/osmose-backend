@@ -48,11 +48,16 @@ class Analyser_Merge_power_pole_FR_spec_sde18 (Analyser_Merge_Point):
             Conflate(
                 select = Select(
                     types = ['nodes'],
-                    tags = {'power': 'pole'}),
+                    tags = [
+                        {"power": "pole"},
+                        {"disused:power": "pole"},
+                        {"removed:power": "pole"},
+                        {"demolished:power": "pole"},
+                    ]),
                 conflationDistance = 5,
                 mapping = Mapping(
-                    static1 = {'power': 'pole'},
-                    static2 = {'source': self.source, 'highway': 'street_lamp', 'operator':'Enedis', 'operator:wikidata':'Q3587594'},
+                    static1 = {'power': 'pole', 'operator':'Enedis'},
+                    static2 = {'source': self.source, 'highway': 'street_lamp', 'operator:wikidata':'Q3587594'},
                     mapping1 = {
                         'material': lambda res: self.extract_material.get(res['_matiere']),
                         'height': lambda res: res['hauteur'] if res['hauteur'] and res['hauteur'] > 6.0 else None},
