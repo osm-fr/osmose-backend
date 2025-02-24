@@ -31,7 +31,7 @@ class Analyser_Merge_power_pole_FR_gracethd2 (Analyser_Merge_Point):
             title = T_('Power pole not integrated'))
         self.def_class_possible_merge(item = 8291, id = classs + 3, level = 3, tags = ['merge', 'power', 'fix:chair', 'fix:survey'],
             title = T_('Power pole integration suggestion'))
-        self.def_class_update_official(item = 8290, id = classs + 4, level = 3, tags = ['merge', 'power', 'fix:chair', 'fix:survey'],
+        self.def_class_update_official(item = 8292, id = classs + 4, level = 3, tags = ['merge', 'power', 'fix:chair', 'fix:survey'],
             title = T_('Power pole update'))
 
         self.init(
