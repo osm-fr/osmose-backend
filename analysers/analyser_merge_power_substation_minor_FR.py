@@ -87,7 +87,7 @@ class Analyser_Merge_Power_Substation_minor_FR(Analyser_Merge_Point):
         'SICAE du Carmausin': ['SICAE-Carmausin', None],
         'SICAE Est': ['SICAE Est', 'Q112115648'],
         'SICAE Oise': ['SICAE Oise', 'Q112115524'],
-        'SICAE de la Somme et du Cambraisis': ['SICAE-Somme', None],
+        'SICAE de la Somme et du Cambraisis': ['SICAE-Somme', 'Q112115660'],
         'SICAP': ['SICAP', None],
         'Strasbourg Électricité Réseaux': ['SER', 'Q107352347'],
         "Syndicat d'électricité synergie Maurienne": ['Synergie Maurienne', None],
