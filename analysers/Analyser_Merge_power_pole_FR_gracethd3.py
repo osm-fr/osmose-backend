@@ -49,7 +49,8 @@ class Analyser_Merge_power_pole_FR_gracethd3 (Analyser_Merge_Point):
                     static2 = {'source': self.source},
                     mapping1 = {
                         'material': lambda res: self.extract_material.get(res['pt_nature']),
-                        'operator': lambda res: extract_operator.get(res['pt_gest'], extract_operator.get(res['pt_prop'])),
+                        'operator': lambda res: extract_operator.get(res['pt_gest'])[0] if res['pt_gest'] in extract_operator else extract_operator.get(res['pt_prop'])[0] if res['pt_prop'] in extract_operator else None,
+                        'operator:wikidata': lambda res: extract_operator.get(res['pt_gest'])[1] if res['pt_gest'] in extract_operator else extract_operator.get(res['pt_prop'])[1] if res['pt_prop'] in extract_operator else None,
                         'height': lambda res: res['pt_a_haut'] if res['pt_a_haut'] and float(res['pt_a_haut']) > 6.0 else None},
                 text = lambda tags, fields: {} )))
 
