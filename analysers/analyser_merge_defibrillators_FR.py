@@ -75,7 +75,7 @@ class Analyser_merge_defibrillators_FR(Analyser_Merge_Point):
                     dataset="61556e1e9d6adb2df86eb0fc",
                     resource="86ea48a0-dd94-4a23-b71c-80d3041d7db2")),
             Load_XY("geom_x", "geom_y",
-                 select = {"c_etat_fonct": "En fonctionnement", "c_doublon": "f"}),
+                 select = {"c_etat_fonct": "En fonctionnement", "c_doublon": "false"}),
             Conflate(
                 select = Select(
                     types = ["nodes"],
@@ -94,9 +94,9 @@ class Analyser_merge_defibrillators_FR(Analyser_Merge_Point):
                     mapping2 = {
                         "name": lambda res: reaccentue.reaccentue(res["c_nom"]) if res["c_nom"] and res["c_acc_complt"] else None,
                         "operator": lambda res: reaccentue.reaccentue(res["c_expt_rais"]) if "c_expt_rais" in res else None,
-                        "source": lambda res: ("Direction Générale de la Santé - " + res["c__edit_datemaj|timePosition"].split("T")[0]),
+                        "source": lambda res: ("Direction Générale de la Santé - " + res["c__edit_datemaj"].split(" ")[0]),
                         "defibrillator:location": lambda res: res["c_acc_complt"] if "c_acc_complt" in res else reaccentue.reaccentue(res["c_nom"]) if res["c_nom"] else None,
-                        "start_date": "c_date_instal|timePosition",
+                        "start_date": "c_date_instal",
                         "security_desk": lambda res: "yes" if res["c_acc_pcsec"] == "t" else "no" if res["c_acc_pcsec"] == "f" else None,
                         "reception_desk": lambda res: "yes" if res["c_acc_acc"] == "t" else "no" if res["c_acc_acc"] == "f" else None,
                         "operator:ref:FR:SIREN": lambda res: res["c_expt_siren"] if "c_expt_siren" in res else None
