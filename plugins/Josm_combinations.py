@@ -40,6 +40,7 @@ class Josm_combinations(PluginMapCSS):
         self.re_23888fca = re.compile(r'^(motorway|motorway_link|trunk|trunk_link)$')
         self.re_25d98c90 = re.compile(r'_name$')
         self.re_27d9cb1c = re.compile(r'^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$')
+        self.re_28d96d81 = re.compile(r'^(sand|mud|earth|dirt|grass|ice|salt|snow|woodchips)$')
         self.re_29fa4401 = re.compile(r'^(beach|bare_rock|cliff|peak|water)$')
         self.re_2d1850d1 = re.compile(r'^recycling:')
         self.re_2fb1110d = re.compile(r':highway$')
@@ -47,7 +48,6 @@ class Josm_combinations(PluginMapCSS):
         self.re_333281f7 = re.compile(r'^oneway:(.+:)?conditional$')
         self.re_33560b51 = re.compile(r'^(bollard|bump_gate|bus_trap|cattle_grid|chain|coupure|entrance|gate|height_restrictor|jersey_barrier|kerb|lift_gate|rope|sally_port|sliding_beam|sliding_gate|spikes|swing_gate|toll_booth|yes)$')
         self.re_337d9a77 = re.compile(r'^maxspeed:.+')
-        self.re_382feae2 = re.compile(r'^(sand|mud|ground|earth|dirt|grass|ice|salt|snow|woodchips)$')
         self.re_390b8c0f = re.compile(r'^(building|building:part)$')
         self.re_3a43a33d = re.compile(r'[a-z]-[A-Z].*[0-9]-[0-9]')
         self.re_3ad9e1f5 = re.compile(r'^(motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|tertiary_link|unclassified|residential|service|living_street)$')
@@ -2044,7 +2044,7 @@ class Josm_combinations(PluginMapCSS):
         # *[amenity=police][police]
         # way[junction=yes][highway]
         # way[tracktype=grade1][surface].unpaved_surface
-        # way[tracktype=grade2][surface][surface=~/^(sand|mud|ground|earth|dirt|grass|ice|salt|snow|woodchips)$/]
+        # way[tracktype=grade2][surface][surface=~/^(sand|mud|earth|dirt|grass|ice|salt|snow|woodchips)$/]
         # way[tracktype=grade4][surface].fully_paved_surface
         # way[tracktype=grade5][surface].fully_paved_surface
         # way[segregated][bicycle=no]
@@ -2094,7 +2094,7 @@ class Josm_combinations(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tracktype') == mapcss._value_capture(capture_tags, 0, 'grade2')) and (mapcss._tag_capture(capture_tags, 1, tags, 'surface')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_382feae2), mapcss._tag_capture(capture_tags, 2, tags, 'surface'))))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tracktype') == mapcss._value_capture(capture_tags, 0, 'grade2')) and (mapcss._tag_capture(capture_tags, 1, tags, 'surface')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_28d96d81), mapcss._tag_capture(capture_tags, 2, tags, 'surface'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -2119,7 +2119,7 @@ class Josm_combinations(PluginMapCSS):
             if match:
                 # group:tr("suspicious tag combination")
                 # throwWarning:tr("{0} together with {1}","{0.tag}","{1.tag}")
-                err.append({'class': 9001002, 'subclass': 1936513938, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+                err.append({'class': 9001002, 'subclass': 3517519, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
         # *[building:part][building]
         # *[addr:street][addr:place][outside("CZ,DK")]
