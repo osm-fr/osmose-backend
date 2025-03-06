@@ -11,7 +11,7 @@ from antlr4 import FileStream, CommonTokenStream, ParseTreeWalker
 from .generated.MapCSSLexer import MapCSSLexer
 from .generated.MapCSSParser import MapCSSParser
 from .MapCSSListenerL import MapCSSListenerL
-from typing import Dict, List, Set, Optional
+from typing import Dict, List, Set, Optional, Union
 from copy import deepcopy
 from . import mapcss_lib
 from inspect import signature, Parameter
@@ -652,7 +652,7 @@ item_default = None
 item = class_id = level = tags = group = group_class = text = text_class = fix = None
 class_info_text = {}
 subclass_id = 0
-class_ = {}
+class_: Dict[str, Union[str, int, Dict[str, List[str]]]] = {}
 tests = []
 regex_store: Dict[List[str], str] = {}
 set_store: Set[str] = set()
@@ -776,7 +776,14 @@ def to_p(t):
                 else:
                     class_index += 1
                     class_id = class_map[group_class or text_class] = class_index
-            class_[class_id] = {
+            else:
+                # Store assigned id's (via -osmoseItemClassLevel) in None. They are not mapped to strings as this would lead to undefined behavior if
+                # there is an entry with for instance -osmoseExample, which would (depending on sequence) be overwritten by an entry without -osmose*
+                # properties, yet with the same group_class or text_class. Using None makes sure these get a unique id (as the max value is used for
+                # determining the class_index.
+                class_map[None] = max(class_map.get(None, 0), class_id)
+
+            classInfoNew = {
                 'item': item or item_default,
                 'class': class_id,
                 'level': level or {'E': 2, 'W': 3, 'O': None}[t['property'][5]],
@@ -786,6 +793,13 @@ def to_p(t):
                     (text if text.startswith('mapcss.tr') else "{'en': " + text + "}"),
                 'info': class_info_text.copy()
             }
+            normFn = lambda x: str(x).replace(" ", "").replace("'", '"').split('",')[0] if str(x).startswith('mapcss.tr') else str(x)
+            if class_id in class_ and any([normFn(class_[class_id][x]) != normFn(classInfoNew[x]) for x in ('item', 'tags', 'desc', 'info')]):
+                # Accept that e.g. level may differ, which can happen with the JOSM entries having the same message with throwError/throwWarning
+                # Also remove everything after a ", because currently tr("xyz", "km") and tr("xyz", "kg") are in the same group, see also #1530
+                # This will raise if e.g. the same class is used for two different messages.
+                raise Exception("Overwriting class with different properties for class id {0}".format(str(class_id)))
+            class_[class_id] = classInfoNew
             class_info_text = {}
         elif t['property'] == 'suggestAlternative':
             pass # Do nothing
