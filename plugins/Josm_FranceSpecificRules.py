@@ -277,13 +277,13 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             if match:
                 # group:tr("validation rules highway milestone")
                 # -osmoseTags:list("ref","highway")
-                # -osmoseItemClassLevel:"3040/30403/3"
+                # -osmoseItemClassLevel:"9019/9019001:2/3"
                 # throwWarning:tr("{0} is not a milestone valid reference RIU","{2.tag}")
                 # -osmoseAssertMatchWithContext:list("node highway=milestone distance=38 nat_ref=20PR38DC operator=SANEF","inside=FR")
                 # -osmoseAssertNoMatchWithContext:list("node highway=milestone distance=38 nat_ref=77PR38DC operator=SANEF","inside=FR")
                 # -osmoseAssertNoMatchWithContext:list("node highway=milestone distance=38 nat_ref=973PR38DC operator=SANEF","inside=FR")
                 # -osmoseAssertMatchWithContext:list("node highway=milestone distance=38 nat_ref=974PR38DC operator=SANEF","inside=FR")
-                err.append({'class': 30403, 'subclass': 0, 'text': mapcss.tr('{0} is not a milestone valid reference RIU', mapcss._tag_uncapture(capture_tags, '{2.tag}'))})
+                err.append({'class': 9019001, 'subclass': 2, 'text': mapcss.tr('{0} is not a milestone valid reference RIU', mapcss._tag_uncapture(capture_tags, '{2.tag}'))})
 
         # node[highway=milestone][operator][nat_ref][!distance][inside("FR")]
         if ('highway' in keys and 'nat_ref' in keys and 'operator' in keys):
@@ -295,11 +295,11 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             if match:
                 # group:tr("validation rules highway milestone")
                 # -osmoseTags:list("ref","highway")
-                # -osmoseItemClassLevel:"9019/9019001/3"
+                # -osmoseItemClassLevel:"9019/9019001:1/3"
                 # throwWarning:tr("missing distance")
                 # -osmoseAssertNoMatchWithContext:list("node highway=milestone distance=38 nat_ref=77PR38DC operator=SANEF","inside=FR")
                 # -osmoseAssertMatchWithContext:list("node highway=milestone nat_ref=77PR38DC operator=SANEF","inside=FR")
-                err.append({'class': 9019001, 'subclass': 0, 'text': mapcss.tr('missing distance')})
+                err.append({'class': 9019001, 'subclass': 1, 'text': mapcss.tr('missing distance')})
 
         # node[highway=motorway_junction][ref=~/^\D/][inside("FR")]
         if ('highway' in keys and 'ref' in keys):
@@ -1112,17 +1112,17 @@ class Test(TestPluginMapcss):
         with with_options(n, {'country': 'FR'}):
             self.check_err(n.node(data, {'amenity': 'parking', 'name': 'Aire de Covoiturage'}), expected={'class': 20806, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_err(n.node(data, {'distance': '38', 'highway': 'milestone', 'nat_ref': '20PR38DC', 'operator': 'SANEF'}), expected={'class': 30403, 'subclass': 0})
+            self.check_err(n.node(data, {'distance': '38', 'highway': 'milestone', 'nat_ref': '20PR38DC', 'operator': 'SANEF'}), expected={'class': 9019001, 'subclass': 2})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.node(data, {'distance': '38', 'highway': 'milestone', 'nat_ref': '77PR38DC', 'operator': 'SANEF'}), expected={'class': 30403, 'subclass': 0})
+            self.check_not_err(n.node(data, {'distance': '38', 'highway': 'milestone', 'nat_ref': '77PR38DC', 'operator': 'SANEF'}), expected={'class': 9019001, 'subclass': 2})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.node(data, {'distance': '38', 'highway': 'milestone', 'nat_ref': '973PR38DC', 'operator': 'SANEF'}), expected={'class': 30403, 'subclass': 0})
+            self.check_not_err(n.node(data, {'distance': '38', 'highway': 'milestone', 'nat_ref': '973PR38DC', 'operator': 'SANEF'}), expected={'class': 9019001, 'subclass': 2})
         with with_options(n, {'country': 'FR'}):
-            self.check_err(n.node(data, {'distance': '38', 'highway': 'milestone', 'nat_ref': '974PR38DC', 'operator': 'SANEF'}), expected={'class': 30403, 'subclass': 0})
+            self.check_err(n.node(data, {'distance': '38', 'highway': 'milestone', 'nat_ref': '974PR38DC', 'operator': 'SANEF'}), expected={'class': 9019001, 'subclass': 2})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.node(data, {'distance': '38', 'highway': 'milestone', 'nat_ref': '77PR38DC', 'operator': 'SANEF'}), expected={'class': 9019001, 'subclass': 0})
+            self.check_not_err(n.node(data, {'distance': '38', 'highway': 'milestone', 'nat_ref': '77PR38DC', 'operator': 'SANEF'}), expected={'class': 9019001, 'subclass': 1})
         with with_options(n, {'country': 'FR'}):
-            self.check_err(n.node(data, {'highway': 'milestone', 'nat_ref': '77PR38DC', 'operator': 'SANEF'}), expected={'class': 9019001, 'subclass': 0})
+            self.check_err(n.node(data, {'highway': 'milestone', 'nat_ref': '77PR38DC', 'operator': 'SANEF'}), expected={'class': 9019001, 'subclass': 1})
         with with_options(n, {'country': 'FR'}):
             self.check_err(n.node(data, {'highway': 'motorway_junction', 'ref': 'N7'}), expected={'class': 9019004, 'subclass': 995082934})
         with with_options(n, {'country': 'FR'}):
