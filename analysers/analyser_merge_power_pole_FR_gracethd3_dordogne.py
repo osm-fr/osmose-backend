@@ -35,6 +35,6 @@ class Analyser_Merge_power_pole_FR_gracethd3_dordogne(Analyser_Merge_power_pole_
             conflationDistance=5,
             classs=1030,
             extract_operator = {
-                'OR000000000003': 'Enedis'
+                'OR000000000003': ['Enedis','Q3587594']
             },
             logger=logger)

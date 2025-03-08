@@ -42,15 +42,22 @@ class Analyser_Merge_power_pole_FR_gracethd2 (Analyser_Merge_Point):
             Conflate(
                 select = Select(
                     types = ['nodes'],
-                    tags = {'power': 'pole'}),
+                    tags = [
+                        {"power": "pole"},
+                        {"disused:power": "pole"},
+                        {"removed:power": "pole"},
+                        {"demolished:power": "pole"},
+                    ]),
                 conflationDistance = conflationDistance,
                 mapping = Mapping(
                     static1 = {'power': 'pole'},
                     static2 = {'source': self.source},
                     mapping1 = {
                         'material': lambda res: self.extract_material.get(res['modele']),
-                        'operator': lambda res: extract_operator.get(res['gestionnai'],  extract_operator.get(res['proprietai'])),
+                        'operator': lambda res: extract_operator.get(res['gestionnai'])[0] if res['gestionnai'] in extract_operator else extract_operator.get(res['proprietai'])[0] if res['proprietai'] in extract_operator else None,
                         'height': lambda res: res['prof_haut'] if res['prof_haut'] and float(res['prof_haut']) > 6.0 else None},
+                    mapping2 = {
+                        'operator:wikidata': lambda res: extract_operator.get(res['gestionnai'])[1] if res['gestionnai'] in extract_operator else extract_operator.get(res['proprietai'])[1] if res['proprietai'] in extract_operator else None},
                 text = lambda tags, fields: {} )))
 
     extract_material = {

@@ -59,7 +59,8 @@ class Analyser_Merge_power_pole_FR_spec_fibre5962 (Analyser_Merge_Point):
                     static2 = {'source': self.source},
                     mapping1 = {
                         'material': lambda res: self.extract_material.get(res['t_ptech__2']),
-                        'operator': lambda res: self.extract_operator.get(res['t_organism'])[0] if res['t_organism'] in self.extract_operator else None,
+                        'operator': lambda res: self.extract_operator.get(res['t_organism'])[0] if res['t_organism'] in self.extract_operator else None},
+                    mapping2 = {
                         'operator:wikidata': lambda res: self.extract_operator.get(res['t_organism'])[1] if res['t_organism'] in self.extract_operator else None},
                 text = lambda tags, fields: {} )))
 
