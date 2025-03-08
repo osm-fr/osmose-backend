@@ -42,6 +42,14 @@ def read_wiki_table(wikitext: str, tab_index: int = 0, keep_markup: bool = False
     if not keep_markup:
         wikitext = wikitextparser.remove_markup(wikitext, replace_tables=False, replace_templates=False)
 
+    # Convert templates that imply cells to text-only templates.
+    # The template name stays the same, so effectively we're changing the definition (adding a hardcoded 'cell on new line' `|` followed by the original template)
+    # Note: this method is not suitable for templates that can be used in- and outside a table. I'm not aware of such templates at the moment
+    cell_template_names = ["Taginfo entry"]
+    cell_template_str = set(map(lambda a: a[0], read_wiki_templates(wikitext, cell_template_names, keep_markup = True)))
+    for ct in cell_template_str:
+        wikitext = wikitext.replace(ct, "\n|" + ct)
+
     t = wikitextparser.parse(wikitext).tables[tab_index]
 
     # Remove header rows if desired

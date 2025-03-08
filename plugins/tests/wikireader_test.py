@@ -54,6 +54,23 @@ class Test(TestPluginCommon):
             ["Abies pinsapo", "[[:d:Q849381|Q849381]]", "evergreen", "needleleaved"],
             ["Ziziphus jujuba", "[[:d:Q11181633|Q11181633]]", "deciduous", None]]
 
+    def test_wikitable_celltemplate(self):
+        t = """
+{| class="wikitable sortable"
+| ABC || DEF {{Taginfo entry|amenity}} || GHI
+|-
+| ABC || DEF
+{{Taginfo entry|amenity}}
+| {{Key|GHI}}
+|-
+| ABC ||
+{{Taginfo entry|amenity}} ||
+|}
+"""
+        assert read_wiki_table(t) == [
+            ["ABC", "DEF", "{{Taginfo entry|amenity}}", "GHI"],
+            ["ABC", "DEF", "{{Taginfo entry|amenity}}", "{{Key|GHI}}"],
+            ["ABC", "", "{{Taginfo entry|amenity}}", ""]]
 
     def test_wikitemplate(self):
         t = """
