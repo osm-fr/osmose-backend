@@ -43,7 +43,7 @@ class Analyser_Merge_Power_Branch_FR(Analyser_Merge_Point):
                 url="https://opendata.reseaux-energies.fr/explore/dataset/postes-electriques-rte",
                 attribution="data.gouv.fr:RTE")),
             Load_XY("Longitude poste (DD)", "Latitude poste (DD)",
-                select = {"FONCTION": "Poste de piquage"}),
+                select = {"FONCTION": "Point de piquage"}),
             Conflate(
                 select = Select(
                     types = ["nodes"],
