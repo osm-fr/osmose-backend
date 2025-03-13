@@ -235,6 +235,19 @@ area[tourism=caravan_site][name][name=~/^[0-9]+$/][!ref][!building] {
 }
 
 
+node[amenity=parking][!parking],
+area[amenity=parking][!parking] {
+  throwWarning: tr("{0} without {1}", "{0.tag}", "{1.key}=*");
+  assertMatch: "relation type=multipolygon amenity=parking";
+  assertNoMatch: "relation type=multipolygon amenity=parking parking=street_side";
+  -osmoseItemClassLevel: "3161/316150/3";
+  -osmoseTags: list("highway", "fix:chair", "parking");
+  -osmoseDetail: tr("Indicate the type of parking, for example `parking=street_side`, `parking=surface` or `parking=underground`, to distinguish between major parking lots and roadside parking. Add access tags and/or service ways through the parking lot as desired.");
+  -osmoseResource: "https://wiki.openstreetmap.org/wiki/Key:parking";
+}
+
+
+
 /* Workaround for issue #1766 */
 node[tunnel][!highway][!area:highway][!railway][!waterway][!piste:type][type!=tunnel][public_transport!=platform][route!=ferry][man_made!=pipeline][man_made!=goods_conveyor][man_made!=wildlife_crossing][man_made!=tunnel][power!=cable] {
     throwWarning: tr("{0} on suspicious object", "{0.key}");
