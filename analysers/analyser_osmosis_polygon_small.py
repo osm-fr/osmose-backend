@@ -41,7 +41,7 @@ UNION ALL
 
 SELECT
   'R' || id,
-  ST_AsText(multipolygon_locate(poly)),
+  ST_AsText(polygon_locate(poly)),
   ST_Area(poly_proj)
 FROM
   {touched}multipolygons
