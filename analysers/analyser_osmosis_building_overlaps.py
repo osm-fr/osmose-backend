@@ -28,13 +28,12 @@ from modules.Stablehash import stablehash64
 sql20 = """
 CREATE TEMP TABLE bnodes AS
 SELECT
-    id,
-    ST_PointN(ST_ExteriorRing(polygon_proj), generate_series(1, npoints)) AS point_proj
+    id, -- needed for 'touched' view
+    type_id,
+    ST_PointN(ST_ExteriorRing(poly_proj), generate_series(1, npoints)) AS point_proj
 FROM
     buildings
 WHERE
-    polygon_proj IS NOT NULL AND
-    NOT relation AND
     NOT layer AND
     wall
 """
@@ -46,28 +45,24 @@ CREATE INDEX bnodes_point_proj ON bnodes USING GIST(point_proj);
 sql30 = """
 CREATE TEMP TABLE intersection_{0}_{1} AS
 SELECT
-    b1.id AS id1,
-    b2.id AS id2,
-    ST_AsText(ST_Transform(ST_Centroid(ST_Intersection(b1.polygon_proj, b2.polygon_proj)), 4326)),
-    ST_Area(ST_Intersection(b1.polygon_proj, b2.polygon_proj)) AS intersectionArea,
+    b1.type_id AS id1,
+    b2.type_id AS id2,
+    ST_AsText(ST_Transform(ST_Centroid(ST_Intersection(b1.poly_proj, b2.poly_proj)), 4326)),
+    ST_Area(ST_Intersection(b1.poly_proj, b2.poly_proj)) AS intersectionArea,
     least(b1.area, b2.area) * 0.10 AS threshold,
-    b1.polygon_proj
+    b1.poly_proj
 FROM
     {0}buildings AS b1
     JOIN {1}buildings AS b2 ON
-        b1.id > b2.id AND
-        b1.linestring && b2.linestring AND
-        ST_IsValid(ST_Intersection(b1.polygon_proj, b2.polygon_proj)) AND
-        ST_Area(ST_Intersection(b1.polygon_proj, b2.polygon_proj)) > 0
+        b1.type_id > b2.type_id AND
+        b1.poly && b2.poly AND
+        ST_IsValid(ST_Intersection(b1.poly_proj, b2.poly_proj)) AND
+        ST_Area(ST_Intersection(b1.poly_proj, b2.poly_proj)) > 0
 WHERE
     b1.wall AND
     b2.wall AND
-    NOT b1.relation AND
-    NOT b2.relation AND
     NOT b1.layer AND
-    NOT b2.layer AND
-    b1.polygon_proj IS NOT NULL AND
-    b2.polygon_proj IS NOT NULL
+    NOT b2.layer
 """
 
 sql31 = """
@@ -79,41 +74,37 @@ FROM
 
 sql40 = """
 SELECT
-    id,
-    ST_AsText(ST_Transform(ST_Centroid(polygon_proj), 4326))
+    type_id,
+    ST_AsText(ST_Transform(ST_Centroid(poly_proj), 4326))
 FROM
     {0}buildings
 WHERE
-    NOT relation AND
     NOT layer AND
-    polygon_proj IS NOT NULL AND
     wall AND
     area < 0.5 * 0.5
 """
 
 sql50 = """
 SELECT
-    DISTINCT ON (bnodes.id)
-    buildings.id,
-    bnodes.id,
+    DISTINCT ON (bnodes.type_id)
+    buildings.type_id,
+    bnodes.type_id,
     ST_AsText(ST_Transform(bnodes.point_proj, 4326))
 FROM
     {0}buildings AS buildings
     JOIN {1}bnodes AS bnodes ON
-        buildings.id > bnodes.id AND
+        buildings.type_id > bnodes.type_id AND
         -- Help planner to use index, both ST_Expand to let planner choose
-        ST_Expand(buildings.polygon_proj, 0.01) && bnodes.point_proj AND
-        ST_Expand(bnodes.point_proj, 0.01) && buildings.polygon_proj AND
-        ST_Expand(bnodes.point_proj, 0.01) && buildings.polygon_proj AND
-        ST_DWithin(buildings.polygon_proj, bnodes.point_proj, 0.01) AND
-        ST_Disjoint(buildings.polygon_proj, bnodes.point_proj)
+        ST_Expand(buildings.poly_proj, 0.01) && bnodes.point_proj AND
+        ST_Expand(bnodes.point_proj, 0.01) && buildings.poly_proj AND
+        ST_Expand(bnodes.point_proj, 0.01) && buildings.poly_proj AND
+        ST_DWithin(buildings.poly_proj, bnodes.point_proj, 0.01) AND
+        ST_Disjoint(buildings.poly_proj, bnodes.point_proj)
 WHERE
-    NOT buildings.relation AND
     NOT buildings.layer AND
-    buildings.polygon_proj IS NOT NULL AND
     buildings.wall
 ORDER BY
-    bnodes.id
+    bnodes.type_id
 """
 
 sql60 = """
@@ -123,7 +114,7 @@ SELECT
 FROM
     (
     SELECT
-        (ST_Dump(ST_Union(ST_Buffer(polygon_proj, 200, 'quad_segs=2')))).geom AS geom
+        (ST_Dump(ST_Union(ST_Buffer(poly_proj, 200, 'quad_segs=2')))).geom AS geom
     FROM
         intersection_{0}_{1}
     WHERE
@@ -135,28 +126,24 @@ WHERE
 
 sql70 = """
 SELECT
-   DISTINCT ON (b2.id)
-   b2.id,
-   b1.id,
-   ST_AsText(way_locate(b2.linestring))
+   DISTINCT ON (b2.type_id)
+   b2.type_id,
+   b1.type_id,
+   ST_AsText(polygon_locate(b2.poly))
 FROM
    {0}buildings AS b1
    JOIN {1}buildings AS b2 ON
-       b2.id != b1.id AND
+       b2.type_id != b1.type_id AND
        b1.tags->'building' = b2.tags->'building' AND
        b1.wall = b2.wall AND
-       ST_Intersects(b1.polygon_proj, b2.polygon_proj) AND
-       ST_Dimension(ST_Intersection(b1.polygon_proj, b2.polygon_proj)) > 0 AND
+       ST_Intersects(b1.poly_proj, b2.poly_proj) AND
+       ST_Dimension(ST_Intersection(b1.poly_proj, b2.poly_proj)) > 0 AND
        b2.npoints = 4
 WHERE
-   NOT b1.relation AND
-   NOT b2.relation AND
    NOT b1.layer AND
-   NOT b2.layer AND
-   b1.polygon_proj IS NOT NULL AND
-   b2.polygon_proj IS NOT NULL
+   NOT b2.layer
 ORDER BY
-   b2.id
+   b2.type_id
 """
 
 class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
@@ -199,12 +186,12 @@ If geometry is correct and there's some vertical difference then make use of the
                 title = T_("Building in parts"),
                 fix = T_('Merge the building parts together as appropriate.'))
 
-        self.callback30 = lambda res: {"class":2 if res[3] > res[4] else 1, "data":[self.way, self.way, self.positionAsText]}
-        self.callback40 = lambda res: {"class":3, "data":[self.way, self.positionAsText]}
-        self.callback50 = lambda res: {"class":4, "data":[self.way, self.way, self.positionAsText]}
+        self.callback30 = lambda res: {"class":2 if res[3] > res[4] else 1, "data":[self.any_id, self.any_id, self.positionAsText]}
+        self.callback40 = lambda res: {"class":3, "data":[self.any_full, self.positionAsText]}
+        self.callback50 = lambda res: {"class":4, "data":[self.any_id, self.any_id, self.positionAsText]}
         self.callback60 = lambda res: {"class":5, "subclass": stablehash64(res[0]), "data":[self.positionAsText]}
         if self.FR:
-            self.callback70 = lambda res: {"class":6, "data":[self.way, self.way, self.positionAsText]}
+            self.callback70 = lambda res: {"class":6, "data":[self.any_id, self.any_id, self.positionAsText]}
 
     def analyser_osmosis_full(self):
         self.run(sql20)
@@ -220,7 +207,7 @@ If geometry is correct and there's some vertical difference then make use of the
     def analyser_osmosis_diff(self):
         self.run(sql20)
         self.run(sql21)
-        self.create_view_touched("bnodes", "W")
+        self.create_view_touched("bnodes", ["W", "R"])
         self.run(sql30.format("touched_", ""))
         self.run(sql30.format("not_touched_", "touched_"))
         self.run(sql31.format("touched_", ""), self.callback30)
