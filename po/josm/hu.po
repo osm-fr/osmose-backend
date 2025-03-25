@@ -8,16 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: josm\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-17 06:12+0200\n"
-"PO-Revision-Date: 2024-05-01 16:41+0000\n"
-"Last-Translator: Balázs Úr <Unknown>\n"
+"POT-Creation-Date: 2025-03-24 06:56+0100\n"
+"PO-Revision-Date: 2025-03-21 21:42+0000\n"
+"Last-Translator: Orbán Péter <orban.peter@hotmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2024-05-02 04:31+0000\n"
-"X-Generator: Launchpad (build 73416ba28731043319fd6c7a5b63d8eb234f6789)\n"
+"X-Launchpad-Export-Date: 2025-03-25 05:48+0000\n"
+"X-Generator: Launchpad (build aa29ae0fff49e4e804b39147c9f259d2fb023199)\n"
 "Language: hu\n"
 
 #: ../core/resources/data/validator/combinations.mapcss:82
@@ -63,9 +63,11 @@ msgstr ""
 #: ../core/resources/data/validator/combinations.mapcss:1038
 #: ../core/resources/data/validator/combinations.mapcss:1045
 #: ../core/resources/data/validator/combinations.mapcss:1051
+#: ../core/resources/data/validator/combinations.mapcss:1117
+#: ../core/resources/data/validator/geometry.mapcss:433
 #: ../core/resources/data/validator/highway.mapcss:74
-#: ../core/resources/data/validator/highway.mapcss:153
-#: ../core/resources/data/validator/highway.mapcss:158
+#: ../core/resources/data/validator/highway.mapcss:151
+#: ../core/resources/data/validator/highway.mapcss:156
 #: ../core/resources/data/validator/relation.mapcss:19
 #: ../core/resources/data/validator/relation.mapcss:38
 #: ../core/resources/data/validator/religion.mapcss:5
@@ -130,6 +132,7 @@ msgstr "{0} szám nélkül"
 #: ../core/resources/data/validator/combinations.mapcss:884
 #: ../core/resources/data/validator/combinations.mapcss:888
 #: ../core/resources/data/validator/combinations.mapcss:978
+#: ../core/resources/data/validator/combinations.mapcss:1116
 #: ../core/resources/data/validator/territories.mapcss:28
 #: ../core/resources/data/validator/territories.mapcss:33
 #, java-format
@@ -236,8 +239,10 @@ msgstr "{1}, {2}, {3} vagy {4} nélküli {0}"
 #: ../core/resources/data/validator/combinations.mapcss:1002
 #: ../core/resources/data/validator/combinations.mapcss:1059
 #: ../core/resources/data/validator/combinations.mapcss:1066
-#: ../core/resources/data/validator/highway.mapcss:165
-#: ../core/resources/data/validator/highway.mapcss:203
+#: ../core/resources/data/validator/combinations.mapcss:1075
+#: ../core/resources/data/validator/combinations.mapcss:1095
+#: ../core/resources/data/validator/highway.mapcss:163
+#: ../core/resources/data/validator/highway.mapcss:201
 #: ../core/resources/data/validator/numeric.mapcss:379
 #: ../core/resources/data/validator/relation.mapcss:72
 msgid "suspicious tag combination"
@@ -269,13 +274,14 @@ msgstr "gyanús címkekombináció"
 #: ../core/resources/data/validator/combinations.mapcss:973
 #: ../core/resources/data/validator/combinations.mapcss:985
 #: ../core/resources/data/validator/combinations.mapcss:1001
+#: ../core/resources/data/validator/combinations.mapcss:1074
 #: ../core/resources/data/validator/deprecated.mapcss:642
 #: ../core/resources/data/validator/deprecated.mapcss:651
 #: ../core/resources/data/validator/deprecated.mapcss:660
 #: ../core/resources/data/validator/deprecated.mapcss:1357
 #: ../core/resources/data/validator/deprecated.mapcss:1362
 #: ../core/resources/data/validator/highway.mapcss:93
-#: ../core/resources/data/validator/highway.mapcss:163
+#: ../core/resources/data/validator/highway.mapcss:161
 #, java-format
 msgid "{0} together with {1}"
 msgstr "{0} együtt van a következővel: {1}"
@@ -422,6 +428,7 @@ msgid ""
 msgstr ""
 
 #: ../core/resources/data/validator/combinations.mapcss:784
+#: ../core/resources/data/validator/combinations.mapcss:1094
 #, java-format
 msgid "{0} together with {1}. Remove {1}."
 msgstr "{0} együtt ezzel: {1}. Távolítsd el ezt: {1}."
@@ -429,7 +436,7 @@ msgstr "{0} együtt ezzel: {1}. Távolítsd el ezt: {1}."
 #: ../core/resources/data/validator/combinations.mapcss:793
 #, java-format
 msgid "Combined foot- and cycleway without {0}."
-msgstr "Közös gyalogos- és kerékpárút {0} nélkül."
+msgstr "Közös gyalog- és kerékpárút {0} nélkül."
 
 #: ../core/resources/data/validator/combinations.mapcss:810
 #, java-format
@@ -768,8 +775,13 @@ msgstr ""
 #: ../core/resources/data/validator/deprecated.mapcss:2506
 #: ../core/resources/data/validator/deprecated.mapcss:2518
 #: ../core/resources/data/validator/deprecated.mapcss:2528
-#: ../core/resources/data/validator/highway.mapcss:131
-#: ../core/resources/data/validator/highway.mapcss:139
+#: ../core/resources/data/validator/deprecated.mapcss:2558
+#: ../core/resources/data/validator/deprecated.mapcss:2566
+#: ../core/resources/data/validator/deprecated.mapcss:2571
+#: ../core/resources/data/validator/deprecated.mapcss:2576
+#: ../core/resources/data/validator/deprecated.mapcss:2581
+#: ../core/resources/data/validator/highway.mapcss:129
+#: ../core/resources/data/validator/highway.mapcss:137
 #, java-format
 msgid "{0} is deprecated"
 msgstr "{0} elavult"
@@ -1066,10 +1078,19 @@ msgstr "{0} elavult"
 #: ../core/resources/data/validator/deprecated.mapcss:2507
 #: ../core/resources/data/validator/deprecated.mapcss:2519
 #: ../core/resources/data/validator/deprecated.mapcss:2529
-#: ../core/resources/data/validator/highway.mapcss:113
-#: ../core/resources/data/validator/highway.mapcss:120
-#: ../core/resources/data/validator/highway.mapcss:133
-#: ../core/resources/data/validator/highway.mapcss:141
+#: ../core/resources/data/validator/deprecated.mapcss:2535
+#: ../core/resources/data/validator/deprecated.mapcss:2540
+#: ../core/resources/data/validator/deprecated.mapcss:2545
+#: ../core/resources/data/validator/deprecated.mapcss:2550
+#: ../core/resources/data/validator/deprecated.mapcss:2559
+#: ../core/resources/data/validator/deprecated.mapcss:2567
+#: ../core/resources/data/validator/deprecated.mapcss:2572
+#: ../core/resources/data/validator/deprecated.mapcss:2577
+#: ../core/resources/data/validator/deprecated.mapcss:2582
+#: ../core/resources/data/validator/highway.mapcss:111
+#: ../core/resources/data/validator/highway.mapcss:118
+#: ../core/resources/data/validator/highway.mapcss:131
+#: ../core/resources/data/validator/highway.mapcss:139
 #: ../core/resources/data/validator/territories.mapcss:22
 #: ../core/resources/data/validator/wikipedia.mapcss:22
 msgid "deprecated tagging"
@@ -1198,11 +1219,12 @@ msgstr ""
 #: ../core/resources/data/validator/deprecated.mapcss:1263
 #: ../core/resources/data/validator/deprecated.mapcss:1325
 #: ../core/resources/data/validator/deprecated.mapcss:1400
-#: ../core/resources/data/validator/geometry.mapcss:318
+#: ../core/resources/data/validator/geometry.mapcss:316
+#: ../core/resources/data/validator/geometry.mapcss:437
 #: ../core/resources/data/validator/numeric.mapcss:506
 #: ../core/resources/data/validator/religion.mapcss:33
-#: ../core/resources/data/validator/unnecessary.mapcss:119
-#: ../core/resources/data/validator/unnecessary.mapcss:155
+#: ../core/resources/data/validator/unnecessary.mapcss:120
+#: ../core/resources/data/validator/unnecessary.mapcss:156
 #, java-format
 msgid "{0}"
 msgstr "{0}"
@@ -1279,7 +1301,7 @@ msgid "{0} is not a building type."
 msgstr ""
 
 #: ../core/resources/data/validator/deprecated.mapcss:2049
-#: ../core/resources/data/validator/highway.mapcss:181
+#: ../core/resources/data/validator/highway.mapcss:179
 #: ../core/resources/data/validator/numeric.mapcss:340
 #: ../core/resources/data/validator/numeric.mapcss:367
 #: ../core/resources/data/validator/numeric.mapcss:394
@@ -1302,6 +1324,14 @@ msgstr ""
 #: ../core/resources/data/validator/deprecated.mapcss:2478
 #, java-format
 msgid "{0} with a temporary URL which may be outdated very soon"
+msgstr ""
+
+#: ../core/resources/data/validator/deprecated.mapcss:2534
+#: ../core/resources/data/validator/deprecated.mapcss:2539
+#: ../core/resources/data/validator/deprecated.mapcss:2544
+#: ../core/resources/data/validator/deprecated.mapcss:2549
+#, java-format
+msgid "{0} should be replaced by {1}"
 msgstr ""
 
 #: ../core/resources/data/validator/geometry.mapcss:43
@@ -1338,12 +1368,12 @@ msgstr "{0} egy vonalon van. Egy kapcsolatban kellene használni"
 #: ../core/resources/data/validator/geometry.mapcss:148
 #, java-format
 msgid "{0} on a closed way. Should be used on an unclosed way."
-msgstr ""
+msgstr "{0} zárt vonalon. Bezáratlan vonalon kell használni."
 
 #: ../core/resources/data/validator/geometry.mapcss:153
 #, java-format
 msgid "{0} on a relation"
-msgstr ""
+msgstr "{0} kapcsolaton"
 
 #: ../core/resources/data/validator/geometry.mapcss:170
 #: ../core/resources/data/validator/geometry.mapcss:173
@@ -1409,44 +1439,44 @@ msgstr "Különböző természeti területek átfednek"
 msgid "Overlapping Identical Landuses"
 msgstr "Átfedésben lévő azonos területfunkciók"
 
-#: ../core/resources/data/validator/geometry.mapcss:319
+#: ../core/resources/data/validator/geometry.mapcss:317
 msgid "isolated node which must be connected to a way"
 msgstr "elszigetelt pont, amelynek kapcsolódnia kell egy vonalhoz"
 
-#: ../core/resources/data/validator/geometry.mapcss:328
+#: ../core/resources/data/validator/geometry.mapcss:326
 msgid "node connects waterway and bridge"
 msgstr "folyóvizet és hidat összekötő pont"
 
-#: ../core/resources/data/validator/geometry.mapcss:334
-#: ../core/resources/data/validator/geometry.mapcss:347
+#: ../core/resources/data/validator/geometry.mapcss:332
+#: ../core/resources/data/validator/geometry.mapcss:345
 #, java-format
 msgid "{0} node connected to a highway"
-msgstr "{0} pont közúthoz kapcsolva"
+msgstr "{0} pont úthoz kapcsolva"
 
-#: ../core/resources/data/validator/geometry.mapcss:353
+#: ../core/resources/data/validator/geometry.mapcss:351
 #, java-format
 msgid "{0} node connected to an underground object"
 msgstr "{0} pont egy föld alatti objektumhoz kapcsolva"
 
-#: ../core/resources/data/validator/geometry.mapcss:358
+#: ../core/resources/data/validator/geometry.mapcss:356
 msgid "suspicious roundabout direction"
 msgstr "gyanús körforgalom irány"
 
-#: ../core/resources/data/validator/geometry.mapcss:363
+#: ../core/resources/data/validator/geometry.mapcss:361
 #, java-format
 msgid "{0} on a large area"
 msgstr "{0} egy nagy területen"
 
-#: ../core/resources/data/validator/geometry.mapcss:369
+#: ../core/resources/data/validator/geometry.mapcss:367
 #, java-format
 msgid "{0} on a small area"
 msgstr "{0} egy kis területen"
 
-#: ../core/resources/data/validator/geometry.mapcss:376
+#: ../core/resources/data/validator/geometry.mapcss:374
 msgid "Too large building"
 msgstr "Túl nagy épület"
 
-#: ../core/resources/data/validator/geometry.mapcss:381
+#: ../core/resources/data/validator/geometry.mapcss:379
 msgid ""
 "Waterway ends without a connection to another waterway or the direction of "
 "the waterway is wrong."
@@ -1454,17 +1484,17 @@ msgstr ""
 "A vízfolyás nem torkollik más vízfolyásokba, vagy rossz irányban van "
 "megrajzolva."
 
-#: ../core/resources/data/validator/geometry.mapcss:387
+#: ../core/resources/data/validator/geometry.mapcss:385
 #, java-format
 msgid "Coastline inside {1}"
 msgstr "Partvonal ezen belül: {1}"
 
-#: ../core/resources/data/validator/geometry.mapcss:394
+#: ../core/resources/data/validator/geometry.mapcss:392
 #, java-format
 msgid "{0} should be on the node where {1} and {2} intersect"
 msgstr "{0} azon a ponton kellene legyen ahol {1} és {2} kereszteződnek"
 
-#: ../core/resources/data/validator/geometry.mapcss:403
+#: ../core/resources/data/validator/geometry.mapcss:401
 #, java-format
 msgid ""
 "{0} is the tag for the linear waterway. To tag the water area use {1} + {2} "
@@ -1473,13 +1503,22 @@ msgstr ""
 "{0} címke egy vízfolyás vonalat ír le. Vízfelület jelöléséhez használd "
 "helyette a {1} + {2} címkéket."
 
-#: ../core/resources/data/validator/geometry.mapcss:417
+#: ../core/resources/data/validator/geometry.mapcss:415
 msgid "Ferry route is not connected to the road network or branches."
 msgstr "Komp útvonal nem kapcsolódik az úthálózathoz, vagy vasúthoz."
 
-#: ../core/resources/data/validator/geometry.mapcss:425
+#: ../core/resources/data/validator/geometry.mapcss:423
 msgid "Ferry route is not connected to a ferry terminal or branches."
 msgstr "Komp útvonal nem kapcsolódik kompkikötőhöz, vagy vasúthoz."
+
+#: ../core/resources/data/validator/geometry.mapcss:432
+#, java-format
+msgid "Railways connection node without {0} or {1}"
+msgstr ""
+
+#: ../core/resources/data/validator/geometry.mapcss:438
+msgid "Node should be connected to two or more ways"
+msgstr "A pontot két vagy több vonalhoz kell csatlakoztatni"
 
 #: ../core/resources/data/validator/highway.mapcss:13
 msgid "abbreviated street name"
@@ -1487,58 +1526,58 @@ msgstr "rövidített utca név"
 
 #: ../core/resources/data/validator/highway.mapcss:21
 msgid "wrong highway tag on a node"
-msgstr "közút cimke egy ponton van, hibásan"
+msgstr "hibás útcímke egy ponton"
 
 #: ../core/resources/data/validator/highway.mapcss:44
 msgid "wrong crossing tag on a way"
-msgstr "kereszteződés cimke egy vonalon van, hibásan"
+msgstr "hibás kereszteződéscímke egy vonalon"
 
 #: ../core/resources/data/validator/highway.mapcss:62
 msgid "Unnamed unclassified highway"
-msgstr "Név és kategória nélküli közút"
+msgstr "Név nélküli egyéb közút"
 
 #: ../core/resources/data/validator/highway.mapcss:73
 msgid "highway without a reference"
-msgstr "közút útszám nélkül"
+msgstr "útszám nélküli közút"
 
 #: ../core/resources/data/validator/highway.mapcss:83
 msgid "Unspecific highway type"
 msgstr "Nem konkrét úttípus"
 
-#: ../core/resources/data/validator/highway.mapcss:112
-#: ../core/resources/data/validator/highway.mapcss:119
+#: ../core/resources/data/validator/highway.mapcss:110
+#: ../core/resources/data/validator/highway.mapcss:117
 #, java-format
 msgid "{0} is deprecated, use {1} instead. Also check similar tags like {2}"
 msgstr ""
 "{0} elavult, használd inkább a következőt: {1}. Ellenőrizd a hasonló "
 "címkéket is, mint például: {2}"
 
-#: ../core/resources/data/validator/highway.mapcss:152
+#: ../core/resources/data/validator/highway.mapcss:150
 #, java-format
 msgid "pedestrian railway crossing without {0}"
 msgstr "gyalogos vasúti kereszteződés {0} nélkül"
 
-#: ../core/resources/data/validator/highway.mapcss:157
+#: ../core/resources/data/validator/highway.mapcss:155
 #, java-format
 msgid "railway crossing without {0}"
 msgstr "vasúti kereszteződés {0} nélkül"
 
-#: ../core/resources/data/validator/highway.mapcss:195
+#: ../core/resources/data/validator/highway.mapcss:193
 #, java-format
 msgid "{0} without right of way"
 msgstr ""
 
-#: ../core/resources/data/validator/highway.mapcss:202
+#: ../core/resources/data/validator/highway.mapcss:200
 #, java-format
 msgid "Area with {0} above {1} is invalid"
 msgstr ""
 
-#: ../core/resources/data/validator/highway.mapcss:213
+#: ../core/resources/data/validator/highway.mapcss:211
 #, java-format
 msgid "{0} with trailing number"
 msgstr ""
 
-#: ../core/resources/data/validator/highway.mapcss:214
+#: ../core/resources/data/validator/highway.mapcss:212
 msgid "questionable value (ending with a number)"
 msgstr ""
 
@@ -1580,7 +1619,7 @@ msgstr "{0} csak számokat tartalmazhat, szükség szerint .5 lépésekben"
 #: ../core/resources/data/validator/unnecessary.mapcss:33
 #: ../core/resources/data/validator/unnecessary.mapcss:44
 #: ../core/resources/data/validator/unnecessary.mapcss:54
-#: ../core/resources/data/validator/unnecessary.mapcss:83
+#: ../core/resources/data/validator/unnecessary.mapcss:84
 #, java-format
 msgid "{0} is unnecessary for {1}"
 msgstr "{0} fölösleges ehhez: {1}"
@@ -1590,9 +1629,9 @@ msgstr "{0} fölösleges ehhez: {1}"
 #: ../core/resources/data/validator/unnecessary.mapcss:34
 #: ../core/resources/data/validator/unnecessary.mapcss:45
 #: ../core/resources/data/validator/unnecessary.mapcss:55
-#: ../core/resources/data/validator/unnecessary.mapcss:77
-#: ../core/resources/data/validator/unnecessary.mapcss:84
-#: ../core/resources/data/validator/unnecessary.mapcss:171
+#: ../core/resources/data/validator/unnecessary.mapcss:78
+#: ../core/resources/data/validator/unnecessary.mapcss:85
+#: ../core/resources/data/validator/unnecessary.mapcss:172
 msgid "unnecessary tag"
 msgstr "fölösleges címke"
 
@@ -1624,7 +1663,7 @@ msgstr ""
 
 #: ../core/resources/data/validator/numeric.mapcss:292
 msgid "tonne"
-msgstr ""
+msgstr "tonna"
 
 #: ../core/resources/data/validator/numeric.mapcss:292
 #: ../core/resources/data/validator/numeric.mapcss:303
@@ -1682,7 +1721,7 @@ msgstr "A(z) {0}-nak/-nek számnak kell lennie, méterben, mértékegység nélk
 
 #: ../core/resources/data/validator/numeric.mapcss:507
 msgid "Unnecessary amount of decimal places"
-msgstr ""
+msgstr "Szükségtelen mennyiségű tizedesjegy"
 
 #: ../core/resources/data/validator/numeric.mapcss:541
 #: ../core/resources/data/validator/numeric.mapcss:550
@@ -1690,7 +1729,7 @@ msgstr ""
 #: ../core/resources/data/validator/territories.mapcss:29
 #: ../core/resources/data/validator/territories.mapcss:34
 msgid "Airport tagging"
-msgstr ""
+msgstr "Repülőtér címkézés"
 
 #: ../core/resources/data/validator/numeric.mapcss:588
 #: ../core/resources/data/validator/numeric.mapcss:600
@@ -1709,6 +1748,11 @@ msgstr ""
 msgid "Numeric name: {0}. Maybe {1} or {2} is meant."
 msgstr ""
 
+#: ../core/resources/data/validator/numeric.mapcss:668
+#, java-format
+msgid "Unusually large value of {0}, possibly centimeter units are meant?"
+msgstr ""
+
 #: ../core/resources/data/validator/relation.mapcss:4
 msgid "relation without type"
 msgstr "típus nélküli kapcsolat"
@@ -1717,7 +1761,7 @@ msgstr "típus nélküli kapcsolat"
 #: ../core/resources/data/validator/relation.mapcss:37
 #, java-format
 msgid "{0} relation without {0} tag"
-msgstr "{0} kapcsolat {0} cimke nélkül"
+msgstr "{0} kapcsolat {0} címke nélkül"
 
 #: ../core/resources/data/validator/relation.mapcss:66
 #, java-format
@@ -1773,21 +1817,21 @@ msgstr ""
 msgid "{0} makes no sense"
 msgstr "semmi értelme a következőnek: {0}"
 
-#: ../core/resources/data/validator/unnecessary.mapcss:71
+#: ../core/resources/data/validator/unnecessary.mapcss:72
 msgid "Nodes duplicating parent way tags"
 msgstr "A pontok megismétlik a szülővonal címkéit"
 
-#: ../core/resources/data/validator/unnecessary.mapcss:76
+#: ../core/resources/data/validator/unnecessary.mapcss:77
 #, java-format
 msgid "{0} together with {1} and {2}. Remove {0}."
 msgstr "{0} együtt {1} és {2} címkével. Távolítsd el: {0}."
 
-#: ../core/resources/data/validator/unnecessary.mapcss:120
-#: ../core/resources/data/validator/unnecessary.mapcss:156
+#: ../core/resources/data/validator/unnecessary.mapcss:121
+#: ../core/resources/data/validator/unnecessary.mapcss:157
 msgid "descriptive name"
-msgstr "Leíró jellegű [name] név"
+msgstr "leíró jellegű [name] név"
 
-#: ../core/resources/data/validator/unnecessary.mapcss:170
+#: ../core/resources/data/validator/unnecessary.mapcss:171
 #, java-format
 msgid "{0} should not be uploaded"
 msgstr "{0}: ezt nem nem szabad feltölteni"

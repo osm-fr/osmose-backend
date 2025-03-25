@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: josm\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-17 06:12+0200\n"
-"PO-Revision-Date: 2024-05-22 19:23+0000\n"
+"POT-Creation-Date: 2025-03-24 06:56+0100\n"
+"PO-Revision-Date: 2025-03-23 08:26+0000\n"
 "Last-Translator: Steve Lee <Unknown>\n"
 "Language-Team: Traditional Chinese\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2024-05-23 04:32+0000\n"
-"X-Generator: Launchpad (build 0e1f616671af724398db43b36ddfb3ed1f2682ec)\n"
+"X-Launchpad-Export-Date: 2025-03-25 08:16+0000\n"
+"X-Generator: Launchpad (build aa29ae0fff49e4e804b39147c9f259d2fb023199)\n"
 "Language: zh_TW\n"
 
 #: ../core/resources/data/validator/combinations.mapcss:82
@@ -62,9 +62,11 @@ msgstr ""
 #: ../core/resources/data/validator/combinations.mapcss:1038
 #: ../core/resources/data/validator/combinations.mapcss:1045
 #: ../core/resources/data/validator/combinations.mapcss:1051
+#: ../core/resources/data/validator/combinations.mapcss:1117
+#: ../core/resources/data/validator/geometry.mapcss:433
 #: ../core/resources/data/validator/highway.mapcss:74
-#: ../core/resources/data/validator/highway.mapcss:153
-#: ../core/resources/data/validator/highway.mapcss:158
+#: ../core/resources/data/validator/highway.mapcss:151
+#: ../core/resources/data/validator/highway.mapcss:156
 #: ../core/resources/data/validator/relation.mapcss:19
 #: ../core/resources/data/validator/relation.mapcss:38
 #: ../core/resources/data/validator/religion.mapcss:5
@@ -83,18 +85,18 @@ msgstr "奇數門牌號碼位於偶數地址側。"
 #: ../core/resources/data/validator/addresses.mapcss:9
 #, java-format
 msgid "Way with {0}. Tag each housenumber separately if possible."
-msgstr "路徑有「{0}」標籤；如果可能，將每個門牌號碼標獨立。"
+msgstr "路徑有 {0}；如果可能，將每個門牌號碼獨立標出。"
 
 #: ../core/resources/data/validator/addresses.mapcss:15
 msgid "End node without housenumber in address interpolation."
-msgstr "地址內插末點無門牌號碼。"
+msgstr "地址內插的結束點沒有門牌號碼。"
 
 #: ../core/resources/data/validator/addresses.mapcss:20
 #, java-format
 msgid ""
 "Object has no {0}, however, it has {1} and {2} whose value looks like a "
 "housenumber."
-msgstr "但是，物件沒有 {0}、卻有 {1} 和 {2}，從數值看來像是門牌號碼。"
+msgstr "物件沒有 {0}、卻有 {1} 與 {2}，從數值看來像是門牌號碼。"
 
 #: ../core/resources/data/validator/addresses.mapcss:29
 #: ../core/resources/data/validator/combinations.mapcss:574
@@ -103,12 +105,12 @@ msgstr "但是，物件沒有 {0}、卻有 {1} 和 {2}，從數值看來像是�
 #: ../core/resources/data/validator/combinations.mapcss:618
 #, java-format
 msgid "Same value of {0} and {1}"
-msgstr "{0} 和 {1} 的值相同"
+msgstr "{0}與{1}的值相同"
 
 #: ../core/resources/data/validator/addresses.mapcss:39
 #, java-format
 msgid "{0} without number"
-msgstr ""
+msgstr "{0}沒有數字"
 
 #: ../core/resources/data/validator/combinations.mapcss:81
 #: ../core/resources/data/validator/combinations.mapcss:93
@@ -125,16 +127,17 @@ msgstr ""
 #: ../core/resources/data/validator/combinations.mapcss:884
 #: ../core/resources/data/validator/combinations.mapcss:888
 #: ../core/resources/data/validator/combinations.mapcss:978
+#: ../core/resources/data/validator/combinations.mapcss:1116
 #: ../core/resources/data/validator/territories.mapcss:28
 #: ../core/resources/data/validator/territories.mapcss:33
 #, java-format
 msgid "{0} without {1}"
-msgstr "{0} 沒有 {1}"
+msgstr "{0}沒有{1}"
 
 #: ../core/resources/data/validator/combinations.mapcss:124
 #, java-format
 msgid "{0} without access tags such as {1}, {2}, or {3}."
-msgstr "{0}無通行限制標籤，例如 {1}、{2} 或 {3}。"
+msgstr "{0}沒有通行標籤，例如 {1}、{2} 或 {3}。"
 
 #: ../core/resources/data/validator/combinations.mapcss:125
 #: ../core/resources/data/validator/combinations.mapcss:141
@@ -157,14 +160,14 @@ msgstr "可疑{0}位於大小道路連接處"
 #: ../core/resources/data/validator/combinations.mapcss:894
 #, java-format
 msgid "{0} without {1} or {2}"
-msgstr "{0} 沒有 {1} 或 {2}"
+msgstr "{0}沒有{1}或{2}"
 
 #: ../core/resources/data/validator/combinations.mapcss:161
 #: ../core/resources/data/validator/combinations.mapcss:290
 #: ../core/resources/data/validator/combinations.mapcss:296
 #, java-format
 msgid "{0} without {1}, {2} or {3}"
-msgstr "{0} 沒有 {1}、{2} 或 {3}"
+msgstr "{0}沒有{1}、{2}或{3}"
 
 #: ../core/resources/data/validator/combinations.mapcss:167
 #: ../core/resources/data/validator/combinations.mapcss:277
@@ -231,8 +234,10 @@ msgstr "{0}沒有{1}、{2}、{3}或{4}"
 #: ../core/resources/data/validator/combinations.mapcss:1002
 #: ../core/resources/data/validator/combinations.mapcss:1059
 #: ../core/resources/data/validator/combinations.mapcss:1066
-#: ../core/resources/data/validator/highway.mapcss:165
-#: ../core/resources/data/validator/highway.mapcss:203
+#: ../core/resources/data/validator/combinations.mapcss:1075
+#: ../core/resources/data/validator/combinations.mapcss:1095
+#: ../core/resources/data/validator/highway.mapcss:163
+#: ../core/resources/data/validator/highway.mapcss:201
 #: ../core/resources/data/validator/numeric.mapcss:379
 #: ../core/resources/data/validator/relation.mapcss:72
 msgid "suspicious tag combination"
@@ -264,13 +269,14 @@ msgstr "可疑標籤組合"
 #: ../core/resources/data/validator/combinations.mapcss:973
 #: ../core/resources/data/validator/combinations.mapcss:985
 #: ../core/resources/data/validator/combinations.mapcss:1001
+#: ../core/resources/data/validator/combinations.mapcss:1074
 #: ../core/resources/data/validator/deprecated.mapcss:642
 #: ../core/resources/data/validator/deprecated.mapcss:651
 #: ../core/resources/data/validator/deprecated.mapcss:660
 #: ../core/resources/data/validator/deprecated.mapcss:1357
 #: ../core/resources/data/validator/deprecated.mapcss:1362
 #: ../core/resources/data/validator/highway.mapcss:93
-#: ../core/resources/data/validator/highway.mapcss:163
+#: ../core/resources/data/validator/highway.mapcss:161
 #, java-format
 msgid "{0} together with {1}"
 msgstr "{0}與{1}並存"
@@ -279,7 +285,7 @@ msgstr "{0}與{1}並存"
 #: ../core/resources/data/validator/combinations.mapcss:386
 #, java-format
 msgid "{0} together with {1} and {2}"
-msgstr ""
+msgstr "{0}有 {1} 與 {2}"
 
 #: ../core/resources/data/validator/combinations.mapcss:401
 #, java-format
@@ -311,19 +317,19 @@ msgstr "不完整的物件：只有 {0} 和 {1}"
 #: ../core/resources/data/validator/deprecated.mapcss:684
 #, java-format
 msgid "{0} together with {1} and conflicting values"
-msgstr "{0}與{1}並存且值相衝突"
+msgstr "{0} 與 {1} 並存且值相衝突"
 
 #: ../core/resources/data/validator/combinations.mapcss:509
 #, java-format
 msgid "{0} on suspicious object"
-msgstr "{0} 出現在有問題的元件上"
+msgstr "{0} 出現在有問題的物件上"
 
 #: ../core/resources/data/validator/combinations.mapcss:515
 #, java-format
 msgid ""
 "{0} together with {1}. The flow direction is defined by the way direction. "
 "Use {1} on {0} only in the rare case of a access restriction."
-msgstr ""
+msgstr "{0}有 {1}：行進方向是依照路徑的方向來定義，在{0}使用 {1}只限於有通行限制的罕見情況。"
 
 #: ../core/resources/data/validator/combinations.mapcss:539
 msgid "natural water used for swimming pool"
@@ -366,7 +372,7 @@ msgid ""
 "Long waterway with {0} but without a tag which defines it as tunnel or "
 "underground. Remove {1} or add a tunnel tag if applicable. Also check "
 "crossing bridges and their {1} tags."
-msgstr "長水道用了 {0} 但沒有定義隧道或地下的標籤：如果適當，移除 {1} 或加入隧道標籤；也檢查跨越的橋梁及其 {1} 標籤。"
+msgstr "長水道用了 {0} 但沒有定義隧道或地下的標籤：如果適當，移除 {1} 或加入隧道標籤；也檢查跨越的橋樑及其 {1} 標籤。"
 
 #: ../core/resources/data/validator/combinations.mapcss:666
 #, java-format
@@ -374,17 +380,17 @@ msgid ""
 "Short waterway with {0} but without a tag which defines it as tunnel or "
 "underground. Remove {1} or add a tunnel tag if applicable. Also check "
 "crossing bridges and their {1} tags."
-msgstr "短水道用了 {0} 但沒有定義隧道或地下的標籤：如果適當，移除 {1} 或加入隧道標籤；也檢查跨越的橋梁及其 {1} 標籤。"
+msgstr "短水道用了 {0} 但沒有定義隧道或地下的標籤：如果適當，移除 {1} 或加入隧道標籤；也檢查跨越的橋樑及其 {1} 標籤。"
 
 #: ../core/resources/data/validator/combinations.mapcss:691
 #, java-format
 msgid "possibly missing {0} tag"
-msgstr "可能少了「{0}」標籤"
+msgstr "可能少了 {0} 標籤"
 
 #: ../core/resources/data/validator/combinations.mapcss:706
 #, java-format
 msgid "Different number of lanes in the keys {0} and {1}"
-msgstr "設定鍵 {0} 和 {1} 有不同數量的車道"
+msgstr "鍵 {0} 和 {1} 的車道數不同"
 
 #: ../core/resources/data/validator/combinations.mapcss:712
 #, java-format
@@ -394,7 +400,7 @@ msgstr "街道有奇數的 {0}，但沒有 {1} 和 {2} 或 {3}"
 #: ../core/resources/data/validator/combinations.mapcss:742
 #, java-format
 msgid "{0} together with {1}. Tag each hydrant separately."
-msgstr ""
+msgstr "{0}有{1}：應各別獨立標記每個消防栓。"
 
 #: ../core/resources/data/validator/combinations.mapcss:747
 #, java-format
@@ -408,6 +414,7 @@ msgid ""
 msgstr ""
 
 #: ../core/resources/data/validator/combinations.mapcss:784
+#: ../core/resources/data/validator/combinations.mapcss:1094
 #, java-format
 msgid "{0} together with {1}. Remove {1}."
 msgstr ""
@@ -420,12 +427,12 @@ msgstr ""
 #: ../core/resources/data/validator/combinations.mapcss:810
 #, java-format
 msgid "{0} without {1} and {2}"
-msgstr "{0}沒有{1}與{2}"
+msgstr "{0} 沒有 {1} 與 {2}"
 
 #: ../core/resources/data/validator/combinations.mapcss:823
 #, java-format
 msgid "{0} together with {1} but without {2}"
-msgstr "{0}有{1}沒有{2}"
+msgstr "{0} 有 {1} 沒有 {2}"
 
 #: ../core/resources/data/validator/combinations.mapcss:835
 #, java-format
@@ -446,7 +453,7 @@ msgstr ""
 #: ../core/resources/data/validator/combinations.mapcss:919
 #, java-format
 msgid "{0} together with {1}. Is the fixme fixed?"
-msgstr ""
+msgstr "{0} 與 {1} 一樣，需要修正項目修好了？"
 
 #: ../core/resources/data/validator/combinations.mapcss:931
 #, java-format
@@ -754,11 +761,16 @@ msgstr ""
 #: ../core/resources/data/validator/deprecated.mapcss:2506
 #: ../core/resources/data/validator/deprecated.mapcss:2518
 #: ../core/resources/data/validator/deprecated.mapcss:2528
-#: ../core/resources/data/validator/highway.mapcss:131
-#: ../core/resources/data/validator/highway.mapcss:139
+#: ../core/resources/data/validator/deprecated.mapcss:2558
+#: ../core/resources/data/validator/deprecated.mapcss:2566
+#: ../core/resources/data/validator/deprecated.mapcss:2571
+#: ../core/resources/data/validator/deprecated.mapcss:2576
+#: ../core/resources/data/validator/deprecated.mapcss:2581
+#: ../core/resources/data/validator/highway.mapcss:129
+#: ../core/resources/data/validator/highway.mapcss:137
 #, java-format
 msgid "{0} is deprecated"
-msgstr "{0} 已經廢棄"
+msgstr "{0} 已經停用"
 
 #: ../core/resources/data/validator/deprecated.mapcss:3
 #: ../core/resources/data/validator/deprecated.mapcss:14
@@ -1052,26 +1064,35 @@ msgstr "{0} 已經廢棄"
 #: ../core/resources/data/validator/deprecated.mapcss:2507
 #: ../core/resources/data/validator/deprecated.mapcss:2519
 #: ../core/resources/data/validator/deprecated.mapcss:2529
-#: ../core/resources/data/validator/highway.mapcss:113
-#: ../core/resources/data/validator/highway.mapcss:120
-#: ../core/resources/data/validator/highway.mapcss:133
-#: ../core/resources/data/validator/highway.mapcss:141
+#: ../core/resources/data/validator/deprecated.mapcss:2535
+#: ../core/resources/data/validator/deprecated.mapcss:2540
+#: ../core/resources/data/validator/deprecated.mapcss:2545
+#: ../core/resources/data/validator/deprecated.mapcss:2550
+#: ../core/resources/data/validator/deprecated.mapcss:2559
+#: ../core/resources/data/validator/deprecated.mapcss:2567
+#: ../core/resources/data/validator/deprecated.mapcss:2572
+#: ../core/resources/data/validator/deprecated.mapcss:2577
+#: ../core/resources/data/validator/deprecated.mapcss:2582
+#: ../core/resources/data/validator/highway.mapcss:111
+#: ../core/resources/data/validator/highway.mapcss:118
+#: ../core/resources/data/validator/highway.mapcss:131
+#: ../core/resources/data/validator/highway.mapcss:139
 #: ../core/resources/data/validator/territories.mapcss:22
 #: ../core/resources/data/validator/wikipedia.mapcss:22
 msgid "deprecated tagging"
-msgstr "不建議的標籤"
+msgstr "已停用的標籤"
 
 #: ../core/resources/data/validator/deprecated.mapcss:326
 #, java-format
 msgid "''{0}'' is meaningless, use more specific tags, e.g. ''{1}''"
-msgstr "「{0}」太沒意義：使用更明確的標籤，像是「{1}」"
+msgstr "{0} 太沒意義：使用更明確的標籤，像是 {1}"
 
 #: ../core/resources/data/validator/deprecated.mapcss:330
 #, java-format
 msgid ""
 "''{0}'' does not specify the official mode of transportation, use ''{1}'' "
 "for example"
-msgstr "「{0}」未指定正式的運輸模式，例如使用「{1}」"
+msgstr "{0} 未指定正式的運輸模式，例如使用 {1}"
 
 #: ../core/resources/data/validator/deprecated.mapcss:336
 #, java-format
@@ -1092,7 +1113,7 @@ msgstr "{0}標籤使用錯誤。刪除 {1}，因爲即使沒有附加標籤，�
 msgid ""
 "{0} is unspecific. Instead use the key fixme with the information what "
 "exactly should be fixed in the value of fixme."
-msgstr ""
+msgstr "{0}不具體。使用 fixme 鍵時請在值中明確應修復的資訊。"
 
 #: ../core/resources/data/validator/deprecated.mapcss:405
 #, java-format
@@ -1135,7 +1156,7 @@ msgstr ""
 #: ../core/resources/data/validator/deprecated.mapcss:542
 #, java-format
 msgid "Unusual key {0}, maybe {1} or {2} is meant"
-msgstr ""
+msgstr "不常見的鍵 {0}，可能是指 {1} 或 {2}"
 
 #: ../core/resources/data/validator/deprecated.mapcss:577
 #, java-format
@@ -1168,22 +1189,23 @@ msgstr "不建議使用{0}。應用工具選單中的反轉路徑功能。"
 #: ../core/resources/data/validator/deprecated.mapcss:1263
 #: ../core/resources/data/validator/deprecated.mapcss:1325
 #: ../core/resources/data/validator/deprecated.mapcss:1400
-#: ../core/resources/data/validator/geometry.mapcss:318
+#: ../core/resources/data/validator/geometry.mapcss:316
+#: ../core/resources/data/validator/geometry.mapcss:437
 #: ../core/resources/data/validator/numeric.mapcss:506
 #: ../core/resources/data/validator/religion.mapcss:33
-#: ../core/resources/data/validator/unnecessary.mapcss:119
-#: ../core/resources/data/validator/unnecessary.mapcss:155
+#: ../core/resources/data/validator/unnecessary.mapcss:120
+#: ../core/resources/data/validator/unnecessary.mapcss:156
 #, java-format
 msgid "{0}"
 msgstr "{0}"
 
 #: ../core/resources/data/validator/deprecated.mapcss:711
 msgid "key with uncommon character"
-msgstr "設定鍵有特殊字元"
+msgstr "鍵有罕見字元"
 
 #: ../core/resources/data/validator/deprecated.mapcss:720
 msgid "uncommon short key"
-msgstr ""
+msgstr "不常見的短鍵"
 
 #: ../core/resources/data/validator/deprecated.mapcss:751
 #: ../core/resources/data/validator/deprecated.mapcss:754
@@ -1209,7 +1231,7 @@ msgstr ""
 #: ../core/resources/data/validator/deprecated.mapcss:1041
 #, java-format
 msgid "{0} is deprecated. Use the {1}: key prefix instead."
-msgstr ""
+msgstr "{0}已棄用。請改用 {1}: 鍵前綴。"
 
 #: ../core/resources/data/validator/deprecated.mapcss:1064
 msgid "questionable key (ending with a number)"
@@ -1218,7 +1240,7 @@ msgstr "可疑鍵（以數字結尾）"
 #: ../core/resources/data/validator/deprecated.mapcss:1135
 #, java-format
 msgid "The key {0} has an uncommon value."
-msgstr ""
+msgstr "鍵 {0} 有不常見的值。"
 
 #: ../core/resources/data/validator/deprecated.mapcss:1241
 #: ../core/resources/data/validator/deprecated.mapcss:1247
@@ -1247,7 +1269,7 @@ msgid "{0} is not a building type."
 msgstr ""
 
 #: ../core/resources/data/validator/deprecated.mapcss:2049
-#: ../core/resources/data/validator/highway.mapcss:181
+#: ../core/resources/data/validator/highway.mapcss:179
 #: ../core/resources/data/validator/numeric.mapcss:340
 #: ../core/resources/data/validator/numeric.mapcss:367
 #: ../core/resources/data/validator/numeric.mapcss:394
@@ -1270,6 +1292,14 @@ msgstr ""
 #: ../core/resources/data/validator/deprecated.mapcss:2478
 #, java-format
 msgid "{0} with a temporary URL which may be outdated very soon"
+msgstr ""
+
+#: ../core/resources/data/validator/deprecated.mapcss:2534
+#: ../core/resources/data/validator/deprecated.mapcss:2539
+#: ../core/resources/data/validator/deprecated.mapcss:2544
+#: ../core/resources/data/validator/deprecated.mapcss:2549
+#, java-format
+msgid "{0} should be replaced by {1}"
 msgstr ""
 
 #: ../core/resources/data/validator/geometry.mapcss:43
@@ -1375,72 +1405,81 @@ msgstr "重疊的相同自然區域"
 msgid "Overlapping Identical Landuses"
 msgstr "相同的土地用途重疊"
 
-#: ../core/resources/data/validator/geometry.mapcss:319
+#: ../core/resources/data/validator/geometry.mapcss:317
 msgid "isolated node which must be connected to a way"
 msgstr "必須連到路徑上的孤立節點"
 
-#: ../core/resources/data/validator/geometry.mapcss:328
+#: ../core/resources/data/validator/geometry.mapcss:326
 msgid "node connects waterway and bridge"
-msgstr "連接橋梁和水路的節點"
+msgstr "連接橋樑和水路的節點"
 
-#: ../core/resources/data/validator/geometry.mapcss:334
-#: ../core/resources/data/validator/geometry.mapcss:347
+#: ../core/resources/data/validator/geometry.mapcss:332
+#: ../core/resources/data/validator/geometry.mapcss:345
 #, java-format
 msgid "{0} node connected to a highway"
 msgstr "節點 {0} 連接到道路"
 
-#: ../core/resources/data/validator/geometry.mapcss:353
+#: ../core/resources/data/validator/geometry.mapcss:351
 #, java-format
 msgid "{0} node connected to an underground object"
 msgstr "連接到地下物體的 {0} 節點"
 
-#: ../core/resources/data/validator/geometry.mapcss:358
+#: ../core/resources/data/validator/geometry.mapcss:356
 msgid "suspicious roundabout direction"
-msgstr "可疑圓環方向"
+msgstr "可疑的圓環方向"
 
-#: ../core/resources/data/validator/geometry.mapcss:363
+#: ../core/resources/data/validator/geometry.mapcss:361
 #, java-format
 msgid "{0} on a large area"
 msgstr "{0} 用在大範圍區域"
 
-#: ../core/resources/data/validator/geometry.mapcss:369
+#: ../core/resources/data/validator/geometry.mapcss:367
 #, java-format
 msgid "{0} on a small area"
 msgstr "{0} 用在小範圍區域"
 
-#: ../core/resources/data/validator/geometry.mapcss:376
+#: ../core/resources/data/validator/geometry.mapcss:374
 msgid "Too large building"
 msgstr "太大的建築物"
 
-#: ../core/resources/data/validator/geometry.mapcss:381
+#: ../core/resources/data/validator/geometry.mapcss:379
 msgid ""
 "Waterway ends without a connection to another waterway or the direction of "
 "the waterway is wrong."
 msgstr "水路結束時未與其他水路連接或者水路方向錯誤。"
 
-#: ../core/resources/data/validator/geometry.mapcss:387
+#: ../core/resources/data/validator/geometry.mapcss:385
 #, java-format
 msgid "Coastline inside {1}"
 msgstr "海岸線在 {1} 裏面"
 
-#: ../core/resources/data/validator/geometry.mapcss:394
+#: ../core/resources/data/validator/geometry.mapcss:392
 #, java-format
 msgid "{0} should be on the node where {1} and {2} intersect"
 msgstr ""
 
-#: ../core/resources/data/validator/geometry.mapcss:403
+#: ../core/resources/data/validator/geometry.mapcss:401
 #, java-format
 msgid ""
 "{0} is the tag for the linear waterway. To tag the water area use {1} + {2} "
 "instead."
-msgstr ""
+msgstr "{0}是線性水路的標籤。若要標注水域，請使用{1} + {2}。"
 
-#: ../core/resources/data/validator/geometry.mapcss:417
+#: ../core/resources/data/validator/geometry.mapcss:415
 msgid "Ferry route is not connected to the road network or branches."
 msgstr ""
 
-#: ../core/resources/data/validator/geometry.mapcss:425
+#: ../core/resources/data/validator/geometry.mapcss:423
 msgid "Ferry route is not connected to a ferry terminal or branches."
+msgstr ""
+
+#: ../core/resources/data/validator/geometry.mapcss:432
+#, java-format
+msgid "Railways connection node without {0} or {1}"
+msgstr "鐵路連接點缺少{0}或{1}"
+
+#: ../core/resources/data/validator/geometry.mapcss:438
+msgid "Node should be connected to two or more ways"
 msgstr ""
 
 #: ../core/resources/data/validator/highway.mapcss:13
@@ -1457,7 +1496,7 @@ msgstr "路徑上錯誤的交叉標籤"
 
 #: ../core/resources/data/validator/highway.mapcss:62
 msgid "Unnamed unclassified highway"
-msgstr "未命名的未分類道路"
+msgstr "未命名的未分級道路"
 
 #: ../core/resources/data/validator/highway.mapcss:73
 msgid "highway without a reference"
@@ -1467,38 +1506,38 @@ msgstr "公路無編號"
 msgid "Unspecific highway type"
 msgstr ""
 
-#: ../core/resources/data/validator/highway.mapcss:112
-#: ../core/resources/data/validator/highway.mapcss:119
+#: ../core/resources/data/validator/highway.mapcss:110
+#: ../core/resources/data/validator/highway.mapcss:117
 #, java-format
 msgid "{0} is deprecated, use {1} instead. Also check similar tags like {2}"
 msgstr ""
 
-#: ../core/resources/data/validator/highway.mapcss:152
+#: ../core/resources/data/validator/highway.mapcss:150
 #, java-format
 msgid "pedestrian railway crossing without {0}"
 msgstr "行人用鐵路平交道沒有 {0}"
 
-#: ../core/resources/data/validator/highway.mapcss:157
+#: ../core/resources/data/validator/highway.mapcss:155
 #, java-format
 msgid "railway crossing without {0}"
 msgstr "鐵路平交道沒有 {0}"
 
-#: ../core/resources/data/validator/highway.mapcss:195
+#: ../core/resources/data/validator/highway.mapcss:193
 #, java-format
 msgid "{0} without right of way"
 msgstr ""
 
-#: ../core/resources/data/validator/highway.mapcss:202
+#: ../core/resources/data/validator/highway.mapcss:200
 #, java-format
 msgid "Area with {0} above {1} is invalid"
 msgstr ""
 
-#: ../core/resources/data/validator/highway.mapcss:213
+#: ../core/resources/data/validator/highway.mapcss:211
 #, java-format
 msgid "{0} with trailing number"
 msgstr ""
 
-#: ../core/resources/data/validator/highway.mapcss:214
+#: ../core/resources/data/validator/highway.mapcss:212
 msgid "questionable value (ending with a number)"
 msgstr "可疑值（以數字結尾）"
 
@@ -1514,7 +1553,7 @@ msgstr ""
 
 #: ../core/resources/data/validator/numeric.mapcss:4
 msgid "numerical key"
-msgstr ""
+msgstr "數字鍵"
 
 #: ../core/resources/data/validator/numeric.mapcss:10
 #, java-format
@@ -1540,7 +1579,7 @@ msgstr ""
 #: ../core/resources/data/validator/unnecessary.mapcss:33
 #: ../core/resources/data/validator/unnecessary.mapcss:44
 #: ../core/resources/data/validator/unnecessary.mapcss:54
-#: ../core/resources/data/validator/unnecessary.mapcss:83
+#: ../core/resources/data/validator/unnecessary.mapcss:84
 #, java-format
 msgid "{0} is unnecessary for {1}"
 msgstr "{1} 不需要 {0}"
@@ -1550,9 +1589,9 @@ msgstr "{1} 不需要 {0}"
 #: ../core/resources/data/validator/unnecessary.mapcss:34
 #: ../core/resources/data/validator/unnecessary.mapcss:45
 #: ../core/resources/data/validator/unnecessary.mapcss:55
-#: ../core/resources/data/validator/unnecessary.mapcss:77
-#: ../core/resources/data/validator/unnecessary.mapcss:84
-#: ../core/resources/data/validator/unnecessary.mapcss:171
+#: ../core/resources/data/validator/unnecessary.mapcss:78
+#: ../core/resources/data/validator/unnecessary.mapcss:85
+#: ../core/resources/data/validator/unnecessary.mapcss:172
 msgid "unnecessary tag"
 msgstr "不需要的標籤"
 
@@ -1601,7 +1640,7 @@ msgstr "公里/小時"
 
 #: ../core/resources/data/validator/numeric.mapcss:319
 msgid "kilometers"
-msgstr "KM"
+msgstr "km"
 
 #: ../core/resources/data/validator/numeric.mapcss:332
 msgid "voltage should be in volts with no units/delimiter/spaces"
@@ -1619,7 +1658,7 @@ msgstr ""
 #: ../core/resources/data/validator/numeric.mapcss:380
 #, java-format
 msgid "unusual {0} value on narrow gauge railway"
-msgstr ""
+msgstr "窄軌鐵路上不常見的 {0} 值"
 
 #: ../core/resources/data/validator/numeric.mapcss:409
 #, java-format
@@ -1664,6 +1703,11 @@ msgstr ""
 #: ../core/resources/data/validator/numeric.mapcss:660
 #, java-format
 msgid "Numeric name: {0}. Maybe {1} or {2} is meant."
+msgstr ""
+
+#: ../core/resources/data/validator/numeric.mapcss:668
+#, java-format
+msgid "Unusually large value of {0}, possibly centimeter units are meant?"
 msgstr ""
 
 #: ../core/resources/data/validator/relation.mapcss:4
@@ -1728,23 +1772,23 @@ msgstr ""
 #: ../core/resources/data/validator/unnecessary.mapcss:63
 #, java-format
 msgid "{0} makes no sense"
-msgstr "{0} 不合理"
+msgstr "{0} 無意義"
 
-#: ../core/resources/data/validator/unnecessary.mapcss:71
+#: ../core/resources/data/validator/unnecessary.mapcss:72
 msgid "Nodes duplicating parent way tags"
 msgstr "節點重複了上層路徑的標籤"
 
-#: ../core/resources/data/validator/unnecessary.mapcss:76
+#: ../core/resources/data/validator/unnecessary.mapcss:77
 #, java-format
 msgid "{0} together with {1} and {2}. Remove {0}."
 msgstr ""
 
-#: ../core/resources/data/validator/unnecessary.mapcss:120
-#: ../core/resources/data/validator/unnecessary.mapcss:156
+#: ../core/resources/data/validator/unnecessary.mapcss:121
+#: ../core/resources/data/validator/unnecessary.mapcss:157
 msgid "descriptive name"
 msgstr ""
 
-#: ../core/resources/data/validator/unnecessary.mapcss:170
+#: ../core/resources/data/validator/unnecessary.mapcss:171
 #, java-format
 msgid "{0} should not be uploaded"
 msgstr ""
@@ -1770,19 +1814,19 @@ msgstr "\"wikipedia\"=\"語言代碼:頁面標題\""
 #: ../core/resources/data/validator/wikipedia.mapcss:28
 #, java-format
 msgid "wikipedia ''{0}'' language is obsolete, use ''{1}'' instead"
-msgstr "維基百科的 ''{0}'' 語言代碼已經過時，請用 ''{1}'' 替換"
+msgstr "維基百科的 {0} 語言代碼已經過時，請用 {1} 替換"
 
 #: ../core/resources/data/validator/wikipedia.mapcss:35
 #, java-format
 msgid "wikipedia ''{0}'' language is invalid, use ''{1}'' instead"
-msgstr "維基百科的 ''{0}'' 語言代碼無效，請用 ''{1}'' 替換"
+msgstr "維基百科的 {0} 語言代碼無效，請用 {1} 替換"
 
 #: ../core/resources/data/validator/wikipedia.mapcss:42
 #: ../core/resources/data/validator/wikipedia.mapcss:49
 #: ../core/resources/data/validator/wikipedia.mapcss:56
 #, java-format
 msgid "{0} tag should not have URL-encoded values like ''%27''"
-msgstr "{0} 標籤的值必須是 URL 格式，像是 ''%27''"
+msgstr "{0} 標籤的值必須是 URL 網址格式，像是 %27"
 
 #: ../core/resources/data/validator/wikipedia.mapcss:63
 msgid "wikipedia title should not start with a space after language code"
@@ -1791,7 +1835,7 @@ msgstr "語言代碼之後的維基百科的條目標題不可以用空白開頭
 #: ../core/resources/data/validator/wikipedia.mapcss:70
 #, java-format
 msgid "wikipedia title should not have ''{0}'' prefix"
-msgstr "維基百科條目標題不可以用 ''{0}'' 開頭"
+msgstr "維基百科條目標題不可以用 {0} 開頭"
 
 #: ../core/resources/data/validator/wikipedia.mapcss:80
 msgid "wikipedia page title should have first letter capitalized"
@@ -1800,7 +1844,7 @@ msgstr "維基百科頁面標題的第一個字母應該大寫"
 #: ../core/resources/data/validator/wikipedia.mapcss:89
 msgid ""
 "wikipedia page title should have spaces instead of underscores (''_''→'' '')"
-msgstr "維基百科的頁面標題應該用空白替換底線 (''_''→'' '')"
+msgstr "維基百科的頁面標題應該用空白替換底線 (\"_\" → \" \")"
 
 #: ../core/resources/data/validator/wikipedia.mapcss:118
 msgid "wikipedia language seems to be duplicated, e.g. en:en:Foo"
@@ -1814,7 +1858,7 @@ msgstr "維基百科標籤必須是 Qnnnn 格式，n 為 0 到 9 數字"
 msgid ""
 "wikipedia tag is set, but there is no wikidata tag. Wikipedia plugin might "
 "help with wikidata id lookups"
-msgstr "設好維基百科標籤，但沒有維基數據標籤。維基百科外掛可以幫忙查維基數據編號"
+msgstr "已設維基百科標籤，但沒有維基數據標籤。維基百科外掛可以幫忙查維基數據編號"
 
 #: ../core/resources/data/validator/wikipedia.mapcss:148
 #, java-format
@@ -1829,8 +1873,8 @@ msgid ""
 "''wikipedia:language=value'' only for additional articles that are not just "
 "other language variants of the main article."
 msgstr ""
-"設定了「{0}」標籤，但沒有「{1}」標籤。確保爲主條目設定「wikipedia=語言:值」，並僅針對其他不只是主條目語言變體的文章設定可選的「wikip"
-"edia:語言=值」。"
+"設定了 {0} 標籤，但沒有 {1} "
+"標籤。確保爲主條目設定「wikipedia=語言:值」，並僅針對其他不只是主條目語言變體的文章設定可選的「wikipedia:語言=值」。"
 
 #: ../core/resources/styles/standard/elemstyles.mapcss:28
 msgid "Hide icons at low zoom"
@@ -1862,5 +1906,5 @@ msgstr ""
 
 #: ../core/resources/styles/standard/elemstyles.mapcss:70
 msgid "Display note=* annotation on nodes"
-msgstr ""
+msgstr "顯示有標上 note=* 註記的節點"
 
