@@ -2,11 +2,11 @@
 # Translators:
 # frodrigo <fred.rodrigo@gmail.com>, 2018
 # Green Aloe, 2022
-# VARVAR <182050@i.ua>, 2023
+# VARVAR <182050@i.ua>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: VARVAR <182050@i.ua>, 2023\n"
+"Last-Translator: VARVAR <182050@i.ua>, 2024\n"
 "Language-Team: Ukrainian (https://app.transifex.com/openstreetmap-france/teams/17462/uk/)\n"
 "Language: uk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
@@ -18,119 +18,119 @@ msgstr "Безкомпромісна перевірка транзитних д�
 #: ../transport.validator.mapcss:64 ../transport.validator.mapcss:69
 msgid "Missing transportation mode, add a tag route = bus/coach/tram/etc"
 msgstr ""
-"Відсутній режим транспортування, додайте теґ route=bus/coach/tram/тощо"
+"Відсутній режим транспортування, додайте теґ route = bus/coach/tram/тощо"
 
 #: ../transport.validator.mapcss:75
 msgid "Missing transportation mode, change tag route to route_master"
 msgstr "Відсутній режим транспортування, змініть теґ route на route_master"
 
-#: ../transport.validator.mapcss:91
+#: ../transport.validator.mapcss:129 ../transport.validator.mapcss:138
 msgid ""
 "Missing public_transport:version tag on a public_transport route relation"
 msgstr ""
 "Відсутній теґ public_transport:version на звʼязку маршруту громадського "
 "транспорту"
 
-#: ../transport.validator.mapcss:100
+#: ../transport.validator.mapcss:148
 msgid "Missing network tag on a public_transport relation"
 msgstr "Відсутній теґ network на звʼязку public_transport"
 
-#: ../transport.validator.mapcss:109
+#: ../transport.validator.mapcss:157
 msgid "Missing operator tag on a public_transport relation"
 msgstr "Відсутній теґ operator у звʼязку громадського транспорту"
 
-#: ../transport.validator.mapcss:118
+#: ../transport.validator.mapcss:166
 msgid "Missing ref tag for line number on a public_transport relation"
 msgstr "Відсутній теґ ref для номеру лінії на звʼязку public_transport"
 
-#: ../transport.validator.mapcss:127
+#: ../transport.validator.mapcss:175
 msgid "Missing from/to tag on a public_transport route relation"
 msgstr "Відсутній теґ from/to у звʼязку маршруту громадського транспорту"
 
-#: ../transport.validator.mapcss:184
+#: ../transport.validator.mapcss:232
 msgid "The stops may not be in the right order"
-msgstr "The stops may not be in the right order"
+msgstr "Зупинки можуть бути в неправильному порядку"
 
-#: ../transport.validator.mapcss:209
+#: ../transport.validator.mapcss:257
 msgid "Is it a bus stop or a bus station?"
 msgstr "Це автобусна зупинка чи автовокзал?"
 
-#: ../transport.validator.mapcss:221
+#: ../transport.validator.mapcss:269
 msgid ""
 "Specify if it is a stop (platform) or a location on the road (stop_position)"
 msgstr "Вкажіть, це зупинка (платформа), чи місце на шляху (stop_position)"
 
-#: ../transport.validator.mapcss:250
+#: ../transport.validator.mapcss:298
 msgid "Is this a bus stop? add the tag highway=bus_stop"
 msgstr "Це автобусна зупинка? додайте теґ highway=bus_stop"
 
-#: ../transport.validator.mapcss:261
+#: ../transport.validator.mapcss:309
 msgid "Check if the note can be deleted"
 msgstr "Перевірте, чи можна видалити нотатку"
 
-#: ../transport.validator.mapcss:266
+#: ../transport.validator.mapcss:314
 msgid "The network should be on the transport lines and not on the stops"
 msgstr "Network повинен бути на транспортних лініях, а не на зупинках"
 
-#: ../transport.validator.mapcss:272
+#: ../transport.validator.mapcss:320
 msgid "The operator should be on the transport lines and not on the stops"
 msgstr "Operator повинен бути на транспортних лініях, а не на зупинках"
 
-#: ../transport.validator.mapcss:283
+#: ../transport.validator.mapcss:331
 msgid ""
 "The line variant does not belong to any line, add it to the route_master "
 "relation"
 msgstr ""
 "Варіант лінії не належить жодній лінії, додайте його до звʼязку route_master"
 
-#: ../transport.validator.mapcss:297
+#: ../transport.validator.mapcss:345
 msgid "The stop is not served by any line, add it to a route relation"
 msgstr ""
 "Зупинка не обслуговується жодною лінією, додайте її до звʼязку маршруту"
 
-#: ../transport.validator.mapcss:222 ../transport.validator.mapcss:233
+#: ../transport.validator.mapcss:270 ../transport.validator.mapcss:281
 msgid "Missing public_transport tag on a public transport stop"
 msgstr "Відсутній теґ public_transport на public_transport_stop"
 
-#: ../transport.validator.mapcss:232
+#: ../transport.validator.mapcss:280
 msgid ""
 "Specify if it is a stop (platform) or a location on the rails "
 "(stop_position)"
 msgstr ""
 "Вкажіть, чи це зупинка (платформа), чи місце на рейках (stop_position)"
 
-#: ../transport.validator.mapcss:244 ../transport.validator.mapcss:251
+#: ../transport.validator.mapcss:292 ../transport.validator.mapcss:299
 msgid "Missing legacy tag on a public transport stop"
 msgstr "Відсутній теґ legacy на public_transport_stop"
 
-#: ../transport.validator.mapcss:137
+#: ../transport.validator.mapcss:185
 msgid ""
 "The network tag should be the same for the route and the route_master : {0} "
 "vs {1}"
 msgstr ""
 "Теґ network має бути однаковим для route та route_master : {0} проти {1}"
 
-#: ../transport.validator.mapcss:142
+#: ../transport.validator.mapcss:190
 msgid ""
 "The operator tag should be the same for the route and the route_master : {0}"
 " vs {1}"
 msgstr ""
 "Теґ operator має бути однаковим для route та route_master : {0} проти {1}"
 
-#: ../transport.validator.mapcss:147
+#: ../transport.validator.mapcss:195
 msgid ""
 "The ref tag should be the same for the route and the route_master : {0} vs "
 "{1}"
 msgstr "Теґ ref має бути однаковим для route та route_master : {0} проти {1}"
 
-#: ../transport.validator.mapcss:152
+#: ../transport.validator.mapcss:200
 msgid ""
 "The colour tag should be the same for the route and the route_master : {0} "
 "vs {1}"
 msgstr ""
 "Теґ colour має бути однаковим для route та route_master : {0} проти {1}"
 
-#: ../transport.validator.mapcss:157
+#: ../transport.validator.mapcss:205
 msgid ""
 "The public transport mode should be the same for the route and the "
 "route_master : {0} vs {1}"
@@ -138,56 +138,56 @@ msgstr ""
 "Режим public transport має бути однаковим для route та route_master : {0} "
 "проти {1}"
 
-#: ../transport.validator.mapcss:163
+#: ../transport.validator.mapcss:211
 msgid "Check the colour tag"
 msgstr "Перевірте теґ colour"
 
-#: ../transport.validator.mapcss:170
+#: ../transport.validator.mapcss:218
 msgid "The colour code should start with '#' followed by 3 or 6 digits"
 msgstr "Код colour має починатися символом '#', за яким стоять 3, або 6 цифр"
 
-#: ../transport.validator.mapcss:178
+#: ../transport.validator.mapcss:226
 msgid "The color of the public transport line should be in a colour tag"
 msgstr "Колір лінії громадського транспорту повинен мати теґ colour"
 
-#: ../transport.validator.mapcss:204
+#: ../transport.validator.mapcss:252
 msgid "A bus stop is supposed to be a node"
 msgstr "Зупинка автобуса повинна бути точкою"
 
-#: ../transport.validator.mapcss:316
+#: ../transport.validator.mapcss:364
 msgid "The interval is invalid (try a number of minutes)"
 msgstr "Недійсний інтервал (вкажіть кількість хвилин)"
 
-#: ../transport.validator.mapcss:332
+#: ../transport.validator.mapcss:380
 msgid "The duration is invalid (try a number of minutes)"
 msgstr "Недійсна тривалість (вкажіть кількість хвилин)"
 
-#: ../transport.validator.mapcss:345
+#: ../transport.validator.mapcss:393
 msgid "Missing interval tag to specify the main interval"
 msgstr "Відсутній теґ interval для вказання основного інтервалу"
 
-#: ../transport.validator.mapcss:351
+#: ../transport.validator.mapcss:399
 msgid "Missing opening_hours tag"
 msgstr "Відсутній теґ opening_hours"
 
-#: ../transport.validator.mapcss:303 ../transport.validator.mapcss:309
+#: ../transport.validator.mapcss:351 ../transport.validator.mapcss:357
 msgid "Missing name on a public transport stop"
 msgstr "Відсутня назва зупинки громадського транспорту"
 
-#: ../transport.validator.mapcss:192
+#: ../transport.validator.mapcss:240
 msgid ""
 "Check the operator tag : this operator does not exist, it may be a typo"
 msgstr ""
 "Перевірте теґ operator: такого оператора не існує, або може бути "
 "орфоргафічною помилкою"
 
-#: ../transport.validator.mapcss:198
+#: ../transport.validator.mapcss:246
 msgid "Check the network tag : this network does not exist, it may be a typo"
 msgstr ""
 "Перевірте теґ network: цієї мережі не існує, або може бути орфоргафічною "
 "помилкою"
 
-#: ../transport.validator.mapcss:215
+#: ../transport.validator.mapcss:263
 msgid ""
 "A bus station is usually a large area where many buses stop, check if you "
 "can draw this area"
@@ -195,15 +195,15 @@ msgstr ""
 "Автобусна станція -  це, як правило, велика територія, де зупиняється багато"
 " автобусів, перевірте, чи можна накреслити цю зону"
 
-#: ../transport.validator.mapcss:243
+#: ../transport.validator.mapcss:291
 msgid "Is this a bus or tram stop ? Add a tag to precise the kind of platform"
 msgstr "Це зупинка автобуса чи трамваю? Додайте теґ точного виду платформи"
 
-#: ../transport.validator.mapcss:359
+#: ../transport.validator.mapcss:407
 msgid "Subway entrances should be mapped as nodes"
 msgstr "Входи в метро повинні бути нанесені на карту як точки"
 
-#: ../transport.validator.mapcss:391
+#: ../transport.validator.mapcss:439
 msgid ""
 "The station entrance should be part of a building or a highway (steps, "
 "footway, etc)"
@@ -211,9 +211,17 @@ msgstr ""
 "Вхід до станції повинен бути частиною будівлі або шляху (сходи, хідник, "
 "тощо)"
 
-#: ../transport.validator.mapcss:375
+#: ../transport.validator.mapcss:423
 msgid ""
 "The station entrance should be in part of a station: add it to a stop_area "
 "relation"
 msgstr ""
 "Вхід до станції має бути частиною станції: додайте його до звʼязку stop_area"
+
+#: ../transport.validator.mapcss:114
+msgid "Missing public_transport:version=1 on a public_transport relation"
+msgstr "Відсутній public_transport:version=1 на звʼязку public_transport"
+
+#: ../transport.validator.mapcss:121
+msgid "Missing public_transport:version=2 on a public_transport relation"
+msgstr "Відсутній public_transport:version=2 на звʼязку public_transport"
