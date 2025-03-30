@@ -85,7 +85,7 @@ FROM
         ways.id = way_nodes.way_id AND
         ways.tags != ''::hstore AND
         ways.tags?'waterway' AND
-        ways.tags->'waterway' IN ('stream', 'river', 'canal', 'drain', 'ditch', 'tidal_channel')
+        ways.tags->'waterway' IN ('stream', 'river', 'canal', 'drain', 'ditch', 'tidal_channel', 'flowline')
 """
 
 sql23 = """
