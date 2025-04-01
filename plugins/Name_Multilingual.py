@@ -56,6 +56,7 @@ class Name_Multilingual(Plugin):
                     {"name": tags["name:"+lang[1]].strip()},
                     {"name": tags["name:"+lang[0]].strip() + separator + tags["name:"+lang[1].strip()]},
                     {"name": tags["name:"+lang[1]].strip() + separator + tags["name:"+lang[0].strip()]},
+                    {"name": merge_sp_eu(tags["name:"+lang[0]], tags["name:"+lang[1]]).strip()}
                 ] if tags.get("name:"+lang[0]) and tags.get("name:"+lang[1]) and tags["name:"+lang[0]].strip() != tags["name:"+lang[1]].strip() else [{"name": tags.get("name:"+lang[0], tags.get("name:"+lang[1])).strip()}]
             self.aggregator = aggregator
             self.split = self.split_sp_eu
@@ -176,6 +177,11 @@ class Name_Multilingual(Plugin):
     def split_sp_eu(self, name):
         if "-" not in name and "(" not in name:
             return self.split_delimitor(name, '/', False)
+
+    def merge_sp_eu(str1, str2):
+        first_list = x[0].split()
+        second_list = x[1].split()
+        return " ".join(first_list + list(set(second_list) - set(first_list)))
 
     def split_sp_ast(self, name):
         if "-" not in name and "(" not in name:
