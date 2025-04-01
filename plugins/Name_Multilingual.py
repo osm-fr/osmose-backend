@@ -354,3 +354,25 @@ class Test(TestPluginCommon):
 
         assert not self.p.way(None, {"name": u"Avenue جادة", "name:fr": u"Avenue", "name:ar": u"جادة"}, None)
         assert not self.p.way(None, {"name": u"Avenue 17 / جادة 17", "name:fr": u"Avenue 17", "name:ar": u"جادة 17"}, None)
+
+    def test_eu(self):
+        TestPluginCommon.setUp(self)
+        self.p = Name_Multilingual(None)
+        class _config:
+            options = {"language": ["es", "eu"], "multilingual_style": "sp_eu"}
+        class father:
+            config = _config()
+        self.p.father = father()
+        self.p.init(None)
+
+        assert self.p.way(None, {"name": u"Carretera Ollaretxe errepidea", "name:es": u"Carretera Ollaretxe", "name:eu": u"Ollaretxe errepidea"})
+        assert self.p.way(None, {"name": u"Kale Nagusia / Calle Mayor", "name:es": u"Calle Nagusia", "name:eu": u"Kale Nagusia"})
+        assert self.p.way(None, {"name": u"Vicente Blasco Ibañez kalea / Calle Vicente Blasco Ibáñez", "name:es": u"Calle Vicente Blasco Ibáñez", "name:eu": u"Vicente Blasco Ibañez kalea"})
+        assert self.p.way(None, {"name": u"Calle San Diego kalea", "name:es": u"Calle San Diego", "name:eu": u"San Diego kalea"})
+        assert self.p.way(None, {"name": u"Calle Islas Canarias / Kanariar Uharteen kalea", "name:es": u"Calle Islas Canarias", "name:eu": u"Kanariar Uharteen kalea"})
+        
+        assert not self.p.way(None, {"name": u"Calle Islas Canarias / Kanariar Uharteen kalea", "name:es": u"Calle Canarias", "name:eu": u"Kanarias kalea"})
+        assert not self.p.way(None, {"name": u"Calle San Diego", "name:es": u"", "name:eu": u"San Diego kalea"})
+        assert not self.p.way(None, {"name": u"Vicente Blasco Ibañez kalea / Calle Vicente Blasco Ibáñez", "name:es": u"", "name:eu": u""})
+        assert not self.p.way(None, {"name": u"Kale Nagusia", "name:es": u"Calle Nagusia", "name:eu": u""})
+        assert not self.p.way(None, {"name": u"Carretera Ollaretxe", "name:es": u"Carretera Ollaretxe", "name:eu": u"Ollaretxe errepidea"})
