@@ -660,10 +660,7 @@ subclass_blacklist = []
 is_meta_rule = False
 
 def to_p(t):
-    global item_default
-    global class_map, class_index, meta_tags, item, class_id, level, tags, subclass_id, group, group_class, text, text_class, fix, class_info_text
-    global tests, class_, regex_store, set_store
-    global subclass_blacklist
+    global class_index, meta_tags, item, class_id, level, tags, subclass_id, group, group_class, text, text_class, fix, class_info_text
     global is_meta_rule
 
     if isinstance(t, str):
@@ -937,8 +934,6 @@ def parse_mapcss(inputfile):
     return listener, tree
 
 def compile(inputfile, class_name, mapcss_url = None, only_for = [], not_for = [], prefix = ""):
-    global item_default, class_map, subclass_blacklist, class_index, meta_tags
-
     listener, tree = parse_mapcss(inputfile)
 
     build_mock_rules()
@@ -953,7 +948,6 @@ def compile(inputfile, class_name, mapcss_url = None, only_for = [], not_for = [
     tree = filter_support_rules(tree)
     selectors_type = segregate_selectors_type(tree)
 
-    global class_, tests, regex_store, set_store
     rules = dict(map(lambda t: [t, to_p({'type': 'stylesheet', 'rules': selectors_type[t]})], sorted(selectors_type.keys(), key = lambda a: {'node': 0, 'way': 1, 'relation':2}[a])))
     items = build_items(class_)
 
