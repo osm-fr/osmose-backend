@@ -54,8 +54,8 @@ class Name_Multilingual(Plugin):
                 return [
                     {"name": tags["name:"+lang[0]].strip()},
                     {"name": tags["name:"+lang[1]].strip()},
-                    {"name": tags["name:"+lang[0]].strip() + separator + tags["name:"+lang[1].strip()]},
-                    {"name": tags["name:"+lang[1]].strip() + separator + tags["name:"+lang[0].strip()]},
+                    {"name": tags["name:"+lang[0]].strip() + separator + tags["name:"+lang[1]].strip()},
+                    {"name": tags["name:"+lang[1]].strip() + separator + tags["name:"+lang[0]].strip()},
                     {"name": self.merge_sp_eu(tags["name:"+lang[0]], tags["name:"+lang[1]]).strip()}
                 ] if tags.get("name:"+lang[0]) and tags.get("name:"+lang[1]) and tags["name:"+lang[0]].strip() != tags["name:"+lang[1]].strip() else [{"name": tags.get("name:"+lang[0], tags.get("name:"+lang[1])).strip()}]
             self.aggregator = aggregator
