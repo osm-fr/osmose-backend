@@ -179,9 +179,9 @@ class Name_Multilingual(Plugin):
             return self.split_delimitor(name, '/', False)
 
     def merge_sp_eu(self, str1, str2):
-        first_list = str1.split()
-        second_list = str2.split()
-        return " ".join(first_list + list(set(second_list) - set(first_list)))
+        if str1.split()[1:] != str2.split()[:-1]:
+            return ""
+        return str1.split()[0] + " " + str2
 
     def split_sp_ast(self, name):
         if "-" not in name and "(" not in name:
