@@ -51,7 +51,7 @@ class Name_Multilingual(Plugin):
                 if name is not None and ("-" in name or "(" in name):
                     return []
                 separator = " / "
-                
+
                 str1 = tags.get("name:" + lang[0])
                 str2 = tags.get("name:" + lang[1])
 
@@ -61,7 +61,7 @@ class Name_Multilingual(Plugin):
 
                 if str1 and not str2:
                     value.append({"name": str1.strip()})
-                
+
                 if str2 and not str1:
                     value.append({"name": str2.strip()})
 
@@ -82,7 +82,7 @@ class Name_Multilingual(Plugin):
                     value.append({"name": namestr2 or name.strip() + separator + str2.strip(), f"name:{lang[0]}": name })
                     value.append({"name": namestr2 or str2.strip() + separator + name.strip(), f"name:{lang[0]}": name })
 
-                return value 
+                return value
             self.aggregator = aggregator
             self.split = self.split_sp_eu
         elif style == "sp_ast":
