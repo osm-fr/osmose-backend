@@ -50,14 +50,39 @@ class Name_Multilingual(Plugin):
                 name = tags.get("name")
                 if name is not None and ("-" in name or "(" in name):
                     return []
-                separator = " / " if name is None or " / " in name else "/"
-                return [
-                    {"name": tags["name:"+lang[0]].strip()},
-                    {"name": tags["name:"+lang[1]].strip()},
-                    {"name": tags["name:"+lang[0]].strip() + separator + tags["name:"+lang[1]].strip()},
-                    {"name": tags["name:"+lang[1]].strip() + separator + tags["name:"+lang[0]].strip()},
-                    {"name": self.merge_sp_eu(tags["name:"+lang[0]], tags["name:"+lang[1]]).strip()}
-                ] if tags.get("name:"+lang[0]) and tags.get("name:"+lang[1]) and tags["name:"+lang[0]].strip() != tags["name:"+lang[1]].strip() else [{"name": tags.get("name:"+lang[0], tags.get("name:"+lang[1])).strip()}]
+                separator = " / "
+                
+                str1 = tags.get("name:" + lang[0])
+                str2 = tags.get("name:" + lang[1])
+
+                combined = self.merge_sp_eu(str1, str2)
+
+                value = []
+
+                if str1 and not str2:
+                    value.append({"name": str1.strip()})
+                
+                if str2 and not str1:
+                    value.append({"name": str2.strip()})
+
+                if str1 and str2 and not combined:
+                    value.append({"name": str1.strip() + separator + str2.strip()})
+                    value.append({"name": str2.strip() + separator + str1.strip()})
+
+                if combined:
+                    value.append({"name": combined})
+
+                if str1 and name != str1 and separator not in name:
+                    namestr1 = self.merge_sp_eu(name, str1)
+                    value.append({"name": namestr1 or name.strip() + separator + str1.strip(), f"name:{lang[1]}": name })
+                    value.append({"name": namestr1 or str1.strip() + separator + name.strip(), f"name:{lang[1]}": name })
+
+                if str2 and name != str2 and separator not in name:
+                    namestr2 = self.merge_sp_eu(name, str2) if separator not in name else None
+                    value.append({"name": namestr2 or name.strip() + separator + str2.strip(), f"name:{lang[0]}": name })
+                    value.append({"name": namestr2 or str2.strip() + separator + name.strip(), f"name:{lang[0]}": name })
+
+                return value 
             self.aggregator = aggregator
             self.split = self.split_sp_eu
         elif style == "sp_ast":
@@ -98,6 +123,9 @@ class Name_Multilingual(Plugin):
         self.lang_regex_script = list(map(lambda l: [l, regex.compile(r"^[\p{{Common}}{0}]+$".format(gen_regex(language2scripts[l])), flags=regex.V1)], lang))
 
     def filter_fix_already_existing(self, names, s):
+        if self.father.config.options.get("multilingual_style") == "sp_eu":
+            return []
+
         return list(filter(
             lambda d: len(d) > 0,
             map(
@@ -137,6 +165,7 @@ class Name_Multilingual(Plugin):
                 for z in s:
                     s_tags = dict(z, **tags)
                     a = self.aggregator(s_tags)
+
                     if {"name": name} not in a:
                         fix = fix + a
             else:
@@ -179,8 +208,10 @@ class Name_Multilingual(Plugin):
             return self.split_delimitor(name, '/', False)
 
     def merge_sp_eu(self, str1, str2):
+        if not str1 or not str2:
+            return None
         if str1.split()[1:] != str2.split()[:-1]:
-            return ""
+            return None
         return str1.split()[0] + " " + str2
 
     def split_sp_ast(self, name):
@@ -365,14 +396,13 @@ class Test(TestPluginCommon):
         self.p.father = father()
         self.p.init(None)
 
-        assert self.p.way(None, {"name": u"Carretera Ollaretxe errepidea", "name:es": u"Carretera Ollaretxe", "name:eu": u"Ollaretxe errepidea"}, None)
-        assert self.p.way(None, {"name": u"Kale Nagusia / Calle Mayor", "name:es": u"Calle Nagusia", "name:eu": u"Kale Nagusia"}, None)
-        assert self.p.way(None, {"name": u"Vicente Blasco Ibañez kalea / Calle Vicente Blasco Ibáñez", "name:es": u"Calle Vicente Blasco Ibáñez", "name:eu": u"Vicente Blasco Ibañez kalea"}, None)
-        assert self.p.way(None, {"name": u"Calle San Diego kalea", "name:es": u"Calle San Diego", "name:eu": u"San Diego kalea"}, None)
-        assert self.p.way(None, {"name": u"Calle Islas Canarias / Kanariar Uharteen kalea", "name:es": u"Calle Islas Canarias", "name:eu": u"Kanariar Uharteen kalea"}, None)
-        
-        assert not self.p.way(None, {"name": u"Calle Islas Canarias / Kanariar Uharteen kalea", "name:es": u"Calle Canarias", "name:eu": u"Kanarias kalea"}, None)
-        assert not self.p.way(None, {"name": u"Calle San Diego", "name:es": u"", "name:eu": u"San Diego kalea"}, None)
+        assert not self.p.way(None, {"name": u"Carretera Ollaretxe errepidea", "name:es": u"Carretera Ollaretxe", "name:eu": u"Ollaretxe errepidea"}, None)
+        assert not self.p.way(None, {"name": u"Kale Nagusia / Calle Mayor", "name:es": u"Calle Mayor", "name:eu": u"Kale Nagusia"}, None)
+        assert not self.p.way(None, {"name": u"Vicente Blasco Ibañez kalea / Calle Vicente Blasco Ibáñez", "name:es": u"Calle Vicente Blasco Ibáñez", "name:eu": u"Vicente Blasco Ibañez kalea"}, None)
+        assert not self.p.way(None, {"name": u"Calle San Diego kalea", "name:es": u"Calle San Diego", "name:eu": u"San Diego kalea"}, None)
+        assert not self.p.way(None, {"name": u"Calle Islas Canarias / Kanariar Uharteen kalea", "name:es": u"Calle Islas Canarias", "name:eu": u"Kanariar Uharteen kalea"}, None)
         assert not self.p.way(None, {"name": u"Vicente Blasco Ibañez kalea / Calle Vicente Blasco Ibáñez", "name:es": u"", "name:eu": u""}, None)
-        assert not self.p.way(None, {"name": u"Kale Nagusia", "name:es": u"Calle Nagusia", "name:eu": u""}, None)
-        assert not self.p.way(None, {"name": u"Carretera Ollaretxe", "name:es": u"Carretera Ollaretxe", "name:eu": u"Ollaretxe errepidea"}, None)
+        assert self.p.way(None, {"name": u"Calle Islas Canarias / Kanariar Uharteen kalea", "name:es": u"Calle Canarias", "name:eu": u"Kanarias kalea"}, None)
+        assert self.p.way(None, {"name": u"Calle San Diego", "name:es": u"", "name:eu": u"San Diego kalea"}, None)
+        assert self.p.way(None, {"name": u"Kale Nagusia", "name:es": u"Calle Mayor", "name:eu": u""}, None)
+        assert self.p.way(None, {"name": u"Carretera Ollaretxe", "name:es": u"Carretera Ollaretxe", "name:eu": u"Ollaretxe errepidea"}, None)
