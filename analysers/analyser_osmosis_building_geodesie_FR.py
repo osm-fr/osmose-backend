@@ -73,13 +73,12 @@ sql12 = """
 DROP VIEW IF EXISTS vicinity CASCADE;
 CREATE VIEW vicinity AS
 SELECT
-    survery_building.id AS s_id,
-    ways.id AS b_id
+    survery_building.id AS s_id
 FROM
     survery_building
-    JOIN buildings AS ways ON
-        survery_building.geom && ways.linestring AND
-        ST_DWithIn(survery_building.geom_transform, polygon_proj, 0.5)
+    JOIN buildings AS b ON
+        survery_building.geom && b.poly AND
+        ST_DWithIn(survery_building.geom_transform, poly_proj, 0.5)
 """
 
 sql13 = """

@@ -43,11 +43,11 @@ class Josm_wikipedia(PluginMapCSS):
         self.re_2a71e33b = re.compile(r'(?i)^([-a-z]+:)wiki/(.*)$')
         self.re_2d3d5d3d = re.compile(r'(?i)^[-a-z]{2,12}:https?:')
         self.re_2dd1bee3 = re.compile(r'^[-a-zA-Z]{2,12}:Q[1-9][0-9]{0,8}$')
+        self.re_3486861b = re.compile(r'^[-a-zA-Z]{2,12}:(?!\p{sc=Georgian})\p{Ll}')
         self.re_4b567f18 = re.compile(r'^Q[1-9][0-9]{0,8}$')
         self.re_536e5b67 = re.compile(r'(?i)^[-a-z]{2,12}: ')
         self.re_53b6f173 = re.compile(r'^be-x-old:')
         self.re_577ca7fb = re.compile(r'^cz:(.+)$')
-        self.re_5940ff7c = re.compile(r'^[-a-zA-Z]{2,12}:\p{Ll}')
         self.re_62d51e93 = re.compile(r'(?i)^([-a-z]+:)([-a-z]+:)(.*)$')
         self.re_644be9e0 = re.compile(r'(?i)^([-a-z]+:)?(.+)$')
         self.re_676bdf5d = re.compile(r'(?i)^([-a-z]+:)(.*)$')
@@ -231,12 +231,12 @@ class Josm_wikipedia(PluginMapCSS):
                     (mapcss.concat('wikipedia=', mapcss.get(mapcss.regexp_match(self.re_2a71e33b, mapcss.tag(tags, 'wikipedia')), 1), mapcss.trim(mapcss.get(mapcss.regexp_match(self.re_2a71e33b, mapcss.tag(tags, 'wikipedia')), 2)))).split('=', 1)])
                 }})
 
-        # *[wikipedia=~/^[-a-zA-Z]{2,12}:\p{Ll}/][wikipedia!~/^jbo:/][wikipedia!~/(?i)^[-a-z]{2,12}:https?:/]
+        # *[wikipedia=~/^[-a-zA-Z]{2,12}:(?!\p{sc=Georgian})\p{Ll}/][wikipedia!~/^jbo:/][wikipedia!~/(?i)^[-a-z]{2,12}:https?:/]
         if ('wikipedia' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5940ff7c), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1ac7f364, '^jbo:'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_2d3d5d3d, '(?i)^[-a-z]{2,12}:https?:'), mapcss._tag_capture(capture_tags, 2, tags, 'wikipedia'))))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_3486861b), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1ac7f364, '^jbo:'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_2d3d5d3d, '(?i)^[-a-z]{2,12}:https?:'), mapcss._tag_capture(capture_tags, 2, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wikipedia page title should have first letter capitalized")
@@ -245,7 +245,7 @@ class Josm_wikipedia(PluginMapCSS):
                 # assertMatch:"node wikipedia=en:foo"
                 # assertNoMatch:"node wikipedia=ru:Абв"
                 # assertMatch:"node wikipedia=ru:абв"
-                err.append({'class': 9011009, 'subclass': 1824269684, 'text': mapcss.tr('wikipedia page title should have first letter capitalized'), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9011009, 'subclass': 118010027, 'text': mapcss.tr('wikipedia page title should have first letter capitalized'), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     (mapcss.concat('wikipedia=', mapcss.get(mapcss.regexp_match(self.re_6a7e1973, mapcss.tag(tags, 'wikipedia')), 1), mapcss.upper(mapcss.get(mapcss.regexp_match(self.re_6a7e1973, mapcss.tag(tags, 'wikipedia')), 2)), mapcss.get(mapcss.regexp_match(self.re_6a7e1973, mapcss.tag(tags, 'wikipedia')), 3))).split('=', 1)])
                 }})
@@ -600,17 +600,17 @@ class Josm_wikipedia(PluginMapCSS):
                     (mapcss.concat('wikipedia=', mapcss.get(mapcss.regexp_match(self.re_2a71e33b, mapcss.tag(tags, 'wikipedia')), 1), mapcss.trim(mapcss.get(mapcss.regexp_match(self.re_2a71e33b, mapcss.tag(tags, 'wikipedia')), 2)))).split('=', 1)])
                 }})
 
-        # *[wikipedia=~/^[-a-zA-Z]{2,12}:\p{Ll}/][wikipedia!~/^jbo:/][wikipedia!~/(?i)^[-a-z]{2,12}:https?:/]
+        # *[wikipedia=~/^[-a-zA-Z]{2,12}:(?!\p{sc=Georgian})\p{Ll}/][wikipedia!~/^jbo:/][wikipedia!~/(?i)^[-a-z]{2,12}:https?:/]
         if ('wikipedia' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5940ff7c), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1ac7f364, '^jbo:'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_2d3d5d3d, '(?i)^[-a-z]{2,12}:https?:'), mapcss._tag_capture(capture_tags, 2, tags, 'wikipedia'))))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_3486861b), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1ac7f364, '^jbo:'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_2d3d5d3d, '(?i)^[-a-z]{2,12}:https?:'), mapcss._tag_capture(capture_tags, 2, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wikipedia page title should have first letter capitalized")
                 # fixAdd:concat("wikipedia=",get(regexp_match("(?i)^([-a-z]+:)(.)(.*)$",tag("wikipedia")),1),upper(get(regexp_match("(?i)^([-a-z]+:)(.)(.*)$",tag("wikipedia")),2)),get(regexp_match("(?i)^([-a-z]+:)(.)(.*)$",tag("wikipedia")),3))
-                err.append({'class': 9011009, 'subclass': 1824269684, 'text': mapcss.tr('wikipedia page title should have first letter capitalized'), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9011009, 'subclass': 118010027, 'text': mapcss.tr('wikipedia page title should have first letter capitalized'), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     (mapcss.concat('wikipedia=', mapcss.get(mapcss.regexp_match(self.re_6a7e1973, mapcss.tag(tags, 'wikipedia')), 1), mapcss.upper(mapcss.get(mapcss.regexp_match(self.re_6a7e1973, mapcss.tag(tags, 'wikipedia')), 2)), mapcss.get(mapcss.regexp_match(self.re_6a7e1973, mapcss.tag(tags, 'wikipedia')), 3))).split('=', 1)])
                 }})
@@ -941,17 +941,17 @@ class Josm_wikipedia(PluginMapCSS):
                     (mapcss.concat('wikipedia=', mapcss.get(mapcss.regexp_match(self.re_2a71e33b, mapcss.tag(tags, 'wikipedia')), 1), mapcss.trim(mapcss.get(mapcss.regexp_match(self.re_2a71e33b, mapcss.tag(tags, 'wikipedia')), 2)))).split('=', 1)])
                 }})
 
-        # *[wikipedia=~/^[-a-zA-Z]{2,12}:\p{Ll}/][wikipedia!~/^jbo:/][wikipedia!~/(?i)^[-a-z]{2,12}:https?:/]
+        # *[wikipedia=~/^[-a-zA-Z]{2,12}:(?!\p{sc=Georgian})\p{Ll}/][wikipedia!~/^jbo:/][wikipedia!~/(?i)^[-a-z]{2,12}:https?:/]
         if ('wikipedia' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5940ff7c), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1ac7f364, '^jbo:'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_2d3d5d3d, '(?i)^[-a-z]{2,12}:https?:'), mapcss._tag_capture(capture_tags, 2, tags, 'wikipedia'))))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_3486861b), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1ac7f364, '^jbo:'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_2d3d5d3d, '(?i)^[-a-z]{2,12}:https?:'), mapcss._tag_capture(capture_tags, 2, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wikipedia page title should have first letter capitalized")
                 # fixAdd:concat("wikipedia=",get(regexp_match("(?i)^([-a-z]+:)(.)(.*)$",tag("wikipedia")),1),upper(get(regexp_match("(?i)^([-a-z]+:)(.)(.*)$",tag("wikipedia")),2)),get(regexp_match("(?i)^([-a-z]+:)(.)(.*)$",tag("wikipedia")),3))
-                err.append({'class': 9011009, 'subclass': 1824269684, 'text': mapcss.tr('wikipedia page title should have first letter capitalized'), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9011009, 'subclass': 118010027, 'text': mapcss.tr('wikipedia page title should have first letter capitalized'), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     (mapcss.concat('wikipedia=', mapcss.get(mapcss.regexp_match(self.re_6a7e1973, mapcss.tag(tags, 'wikipedia')), 1), mapcss.upper(mapcss.get(mapcss.regexp_match(self.re_6a7e1973, mapcss.tag(tags, 'wikipedia')), 2)), mapcss.get(mapcss.regexp_match(self.re_6a7e1973, mapcss.tag(tags, 'wikipedia')), 3))).split('=', 1)])
                 }})
@@ -1167,10 +1167,10 @@ class Test(TestPluginMapcss):
         self.check_not_err(n.node(data, {'wikipedia': 'en:foo'}), expected={'class': 9011007, 'subclass': 1273458928})
         self.check_not_err(n.node(data, {'wikipedia': 'en:foo'}), expected={'class': 9011008, 'subclass': 696665203})
         self.check_err(n.node(data, {'wikipedia': 'en:wiki/foo'}), expected={'class': 9011008, 'subclass': 696665203})
-        self.check_not_err(n.node(data, {'wikipedia': 'en:Foo'}), expected={'class': 9011009, 'subclass': 1824269684})
-        self.check_err(n.node(data, {'wikipedia': 'en:foo'}), expected={'class': 9011009, 'subclass': 1824269684})
-        self.check_not_err(n.node(data, {'wikipedia': 'ru:Абв'}), expected={'class': 9011009, 'subclass': 1824269684})
-        self.check_err(n.node(data, {'wikipedia': 'ru:абв'}), expected={'class': 9011009, 'subclass': 1824269684})
+        self.check_not_err(n.node(data, {'wikipedia': 'en:Foo'}), expected={'class': 9011009, 'subclass': 118010027})
+        self.check_err(n.node(data, {'wikipedia': 'en:foo'}), expected={'class': 9011009, 'subclass': 118010027})
+        self.check_not_err(n.node(data, {'wikipedia': 'ru:Абв'}), expected={'class': 9011009, 'subclass': 118010027})
+        self.check_err(n.node(data, {'wikipedia': 'ru:абв'}), expected={'class': 9011009, 'subclass': 118010027})
         self.check_not_err(n.node(data, {'wikipedia': 'en:foo bar'}), expected={'class': 9011010, 'subclass': 2024856824})
         self.check_err(n.node(data, {'wikipedia': 'en:foo_bar'}), expected={'class': 9011010, 'subclass': 2024856824})
         self.check_not_err(n.node(data, {'wikipedia': 'en:Bar'}), expected={'class': 9011011, 'subclass': 124114060})

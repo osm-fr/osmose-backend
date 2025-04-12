@@ -249,8 +249,10 @@ class Public_Services_Source(Source):
                 feature_address["code_postal"],
                 feature_address["nom_commune"],
             ).strip()
-            elem["wheelchair"] = wheelchair_mapping[feature_address["accessibilite"]]
-            elem["wheelchair:description"] = feature_address["note_accessibilite"]
+            access_info = feature_address.get("accessibilite")
+            if access_info:
+                elem["wheelchair"] = wheelchair_mapping[access_info]
+                elem["wheelchair:description"] = feature_address.get("note_accessibilite")
 
             elem["opening_hours"] = parse_opening_hours(feature["plage_ouverture"])
 

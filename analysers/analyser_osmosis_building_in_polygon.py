@@ -26,29 +26,11 @@ from .Analyser_Osmosis import Analyser_Osmosis
 sql10 = """
 CREATE TEMP TABLE poly_landuse AS
 SELECT
-  type_id,
+  type || id AS type_id,
   poly_proj,
   tags->'landuse' AS landuse
-FROM (
-  SELECT
-    'W' || id AS type_id,
-    tags,
-    ST_Transform(ST_MakePolygon(ways.linestring), {proj}) AS poly_proj
-  FROM
-    ways
-  WHERE
-    is_polygon AND
-    tags != ''::hstore
-  UNION ALL
-  SELECT
-    'R' || id AS type_id,
-    tags,
-    poly_proj
-  FROM
-    multipolygons
-  WHERE
-    is_valid
-) AS t
+FROM
+  polygons
 WHERE
   tags?'landuse' AND
   tags->'landuse' IN ('farmland', 'vineyard', 'orchard', 'plant_nursery')
@@ -57,15 +39,15 @@ WHERE
 sql11 = """
 SELECT DISTINCT ON (poly_landuse.type_id)
   poly_landuse.type_id,
-  buildings.id,
+  buildings.type_id,
   -- Use the building location to point out the error, even though the landuse should be changed
-  ST_AsText(way_locate(buildings.linestring)),
+  ST_AsText(polygon_locate(buildings.poly)),
   buildings.tags->'building',
   poly_landuse.landuse
 FROM
   buildings
   JOIN poly_landuse ON
-    ST_Contains(poly_landuse.poly_proj, buildings.polygon_proj)
+    ST_Contains(poly_landuse.poly_proj, buildings.poly_proj)
 WHERE
   -- ignore e.g. small utility buildings that happen to be on the farmland or are fully surrounded by farmland
   buildings.area > 36 AND
@@ -96,13 +78,13 @@ such as `landuse=vineyard` or `landuse=orchard`).
 For areas dedicated to greenhouse horticulture, use `landuse=greenhouse_horticulture`.'''),
             resource = "https://wiki.openstreetmap.org/wiki/Tag:landuse%3Dfarmland")
 
-    requires_tables_common = ['buildings', 'multipolygons']
+    requires_tables_common = ['buildings', 'polygons']
 
     def analyser_osmosis_common(self):
         self.run(sql10.format(proj=self.config.options["proj"]))
         self.run(sql11, lambda res: {
             "class": 1,
-            "data": [self.any_full, self.way, self.positionAsText],
+            "data": [self.any_full, self.any_id, self.positionAsText],
             "text": T_("`{0}` inside `{1}`", "building=" + res[3], 'landuse=' + res[4])
         })
 

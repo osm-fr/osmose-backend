@@ -137,6 +137,7 @@ ST_AsText(ST_Centroid(ways.linestring))
 
 SQL Helpers are available to compute a location from OSM objects:
 * `way_locate(linestring)`: extract position from central point on the linestring, avoid joining on `nodes`.
+* `polygon_locate(poly)`: get a position that lies within a (multi)polygon.
 * `relation_locate(id)`: loop over relation members to extract a location.
 * `any_locate(type N/W/R, id)`: get location of variable object types.
 * `array_locate(array[type N/W/R, id])`: get location of array of variable object types.

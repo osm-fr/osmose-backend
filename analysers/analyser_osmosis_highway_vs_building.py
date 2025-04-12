@@ -200,38 +200,37 @@ CREATE INDEX idx_commercial_buffergeom ON commercial USING gist(buffergeom)
 """
 
 sql10 = """
-SELECT DISTINCT ON (highway.id, building.id)
-    building.id,
+SELECT DISTINCT ON (highway.id, building.type_id)
+    building.type_id,
     highway.id,
-    ST_AsText(way_locate(building.linestring))
+    ST_AsText(polygon_locate(building.poly))
 FROM
     {0}buildings AS building
     JOIN {1}highway AS highway ON
         highway.highway NOT IN ('footway', 'path', 'steps', 'corridor') AND
         highway.level = '0' AND
         highway.layer = '0' AND
-        ST_Crosses(building.polygon_proj, highway.linestring_proj) AND
-        ST_Dimension(ST_Intersection(building.polygon_proj, highway.linestring_proj)) >= 1 -- The cross is more than a point
+        ST_Crosses(building.poly_proj, highway.linestring_proj) AND
+        ST_Dimension(ST_Intersection(building.poly_proj, highway.linestring_proj)) >= 1 -- The cross is more than a point
 WHERE
     building.wall AND
     NOT building.layer AND
     (NOT building.tags?'amenity' OR building.tags->'amenity'!='parking')
 ORDER BY
     highway.id,
-    building.id
+    building.type_id
 """
 
 sql20 = """
 SELECT
     tree.id,
-    building.id,
+    building.type_id,
     ST_AsText(tree.geom)
 FROM
     {0}tree AS tree
     JOIN {1}buildings AS building ON
-        tree.geom && building.linestring AND
-        ST_Intersects(tree.geom, ST_MakePolygon(building.linestring)) AND
-        NOT building.relation AND
+        tree.geom && building.poly AND
+        ST_Intersects(tree.geom, building.poly) AND
         building.wall AND
         NOT building.layer
 """
@@ -239,14 +238,13 @@ FROM
 sql21 = """
 SELECT
     power.id,
-    building.id,
+    building.type_id,
     ST_AsText(power.geom)
 FROM
     {0}power AS power
     JOIN {1}buildings AS building ON
-        power.geom && building.linestring AND
-        ST_Intersects(power.geom, ST_MakePolygon(building.linestring)) AND
-        NOT building.relation AND
+        power.geom && building.poly AND
+        ST_Intersects(power.geom, building.poly) AND
         building.wall AND
         NOT building.layer
 """
@@ -475,9 +473,9 @@ Intersection lane / building.'''))
         self.classs_change[10] = self.def_class(item = 1070, level = 3, tags = ['waterway', 'geom', 'fix:imagery'], title = T_(u'Waterway intersecting waterway'), **doc)
         self.classs_change[11] = self.def_class(item = 1070, level = 3, tags = ['waterway', 'geom', 'fix:imagery'], title = T_(u'Waterway overlaps'), **doc)
         self.classs_change[16] = self.def_class(item = 1070, level = 2, tags = ['highway', 'shop', 'geom'], title = T_(u'Commercial object or office and highway too close'), **doc)
-        self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText]}
-        self.callback20 = lambda res: {"class":2, "data":[self.node_full, self.way_full, self.positionAsText]}
-        self.callback21 = lambda res: {"class":6, "data":[self.node_full, self.way_full, self.positionAsText]}
+        self.callback10 = lambda res: {"class":1, "data":[self.any_full, self.way_full, self.positionAsText]}
+        self.callback20 = lambda res: {"class":2, "data":[self.node_full, self.any_full, self.positionAsText]}
+        self.callback21 = lambda res: {"class":6, "data":[self.node_full, self.any_full, self.positionAsText]}
         self.callback30 = lambda res: {"class":3, "data":[self.node_full, self.way_full, self.positionAsText]}
         self.callback31 = lambda res: {"class":7, "data":[self.node_full, self.way_full, self.positionAsText]}
         self.callback32 = lambda res: {"class":16, "data":[self.node_full, self.way_full, self.positionAsText]}
