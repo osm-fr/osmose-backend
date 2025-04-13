@@ -51,7 +51,7 @@ FROM
 WHERE
   tags?'amenity' AND
   tags->'amenity' = 'parking' AND
-  (NOT tags?'parking' OR tags->'parking' NOT IN ('street_side', 'lane', 'layby'))
+  (NOT tags?'parking' OR tags->'parking' NOT IN ('street_side', 'lane', 'layby', 'half_on_kerb', 'on_kerb'))
 """
 
 sql13 = """
