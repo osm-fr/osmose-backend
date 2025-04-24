@@ -47,8 +47,7 @@ FROM
                 ARRAY[coalesce((w.tags->'circuits')::integer, 1) - 1 + char_length(coalesce(w.tags->'voltage','')) - char_length(replace(coalesce(w.tags->'voltage',''), ';', ''))]
             ),
             regexp_split_to_array(w.tags->'voltage','; *'))
-        ) AS t(v) 
-        WHERE v ~ '^[0-9\.]+$') AS t(voltage)
+        ) AS t(v)) AS t(voltage)
         ON TRUE
 WHERE
     w.tags != ''::hstore AND
@@ -297,24 +296,41 @@ with nodes_voltage as (
     SELECT
         nid,
         tid,
-        unnest(voltage)::integer voltage,
-        round(unnest(voltage)::numeric / 1000,1) voltage_val
+        unnest(voltage)::varchar voltage
     FROM power_lines_topoedges
+),
+
+with nodes_voltage_values as (
+    SELECT
+        nid,
+        tid,
+        voltage,
+        round(voltage::numeric / 1000,1)::varchar voltage_val
+    FROM nodes_voltage
+    WHERE voltage ~ '^[0-9.]+$'
     UNION SELECT
         nid,
         tid,
-        unnest(voltage)::integer voltage,
-        round((unnest(voltage)::integer / (1000 * sqrt(3)))::numeric,1) voltage_val
+        voltage voltage,
+        round((unnest(voltage)::integer / (1000 * sqrt(3)))::numeric,1)::varchar voltage_val
     FROM power_lines_topoedges
+    WHERE voltage ~ '^[0-9.]+$'
+    UNION SELECT
+        nid,
+        tid,
+        voltage voltage,
+        voltage voltage_val
+    FROM power_lines_topoedges
+    WHERE NOT(voltage ~ '^[^0-9.]+$')
 ),
 
 nodes_selected as (
     SELECT
         nid
     FROM
-        nodes_voltage
+        power_lines_topoedges
     GROUP BY nid
-    HAVING COUNT(distinct tid) > 1 AND array_position(array_agg(voltage), NULL) IS NULL
+    HAVING COUNT(distinct tid) > 1
 ),
 
 voltage_groups as (
@@ -323,7 +339,7 @@ voltage_groups as (
         max(n.voltage) as voltage,
         n.voltage_val,
         count(n.voltage) cv
-    FROM nodes_voltage n
+    FROM nodes_voltage_values n
     JOIN nodes_selected s
         ON s.nid=n.nid
     GROUP BY n.nid, n.voltage_val
@@ -635,7 +651,6 @@ there's likely an unmapped pole nearby.'''))
 
 ###########################################################################
 
-import time
 from .Analyser_Osmosis import TestAnalyserOsmosis
 
 class Test(TestAnalyserOsmosis):
@@ -654,4 +669,7 @@ class Test(TestAnalyserOsmosis):
         self.check_err(cl="2", elems=[("node", "25874")])
         self.check_err(cl="2", elems=[("node", "25883")])
         self.check_err(cl="3", elems=[("node", "25950")])
-        self.check_num_err(7)
+        self.check_err(cl="4", elems=[("node", "26082")])
+        self.check_err(cl="6", elems=[("node", "26191")])
+        self.check_err(cl="8", elems=[("node", "25956")])
+        self.check_num_err(8)
