@@ -1,0 +1,347 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='25873' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.19229424221' lon='4.47287852839'>
+    <tag k='power' v='insulator' />
+  </node>
+  <node id='25874' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.19228681528' lon='4.47405870035'>
+    <tag k='power' v='tower' />
+  </node>
+  <node id='25875' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.19172236547' lon='4.47380120829'>
+    <tag k='line_management' v='split' />
+    <tag k='power' v='tower' />
+  </node>
+  <node id='25876' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.19104650347' lon='4.47379047945'>
+    <tag k='power' v='tower' />
+  </node>
+  <node id='25877' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.19050432245' lon='4.47377975062'>
+    <tag k='power' v='tower' />
+  </node>
+  <node id='25878' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.19040776911' lon='4.47758848742' />
+  <node id='25879' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.19034092438' lon='4.47750265673'>
+    <tag k='line_management' v='transition' />
+    <tag k='location' v='underground' />
+    <tag k='power' v='pole' />
+  </node>
+  <node id='25880' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.19018976738' lon='4.47730911825'>
+    <tag k='line_management' v='branch' />
+    <tag k='power' v='pole' />
+  </node>
+  <node id='25881' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.19025116596' lon='4.47738773173'>
+    <tag k='power' v='pole' />
+  </node>
+  <node id='25882' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.1903014806' lon='4.47745215362'>
+    <tag k='power' v='pole' />
+  </node>
+  <node id='25883' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.19085339852' lon='4.47848970965' />
+  <node id='25884' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.19083854426' lon='4.47818930224' />
+  <node id='25885' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.19069742863' lon='4.47813565806' />
+  <node id='25886' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.1905191768' lon='4.47816784456' />
+  <node id='25887' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.19029636119' lon='4.47821075991' />
+  <node id='25888' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.19025179796' lon='4.47800691202' />
+  <node id='25889' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.19031864279' lon='4.47777087763' />
+  <node id='25890' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18883689105' lon='4.48189344093' />
+  <node id='25891' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18882946365' lon='4.48179151699' />
+  <node id='25892' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18879604034' lon='4.48146428749' />
+  <node id='25893' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18886474379' lon='4.48138113901' />
+  <node id='25894' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18886288694' lon='4.48133017704' />
+  <node id='25895' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.189171123' lon='4.48271151468' />
+  <node id='25896' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18917297984' lon='4.48260959074' />
+  <node id='25897' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18911356097' lon='4.4825371711' />
+  <node id='25898' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18903557362' lon='4.48253448889' />
+  <node id='25899' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18893901769' lon='4.48251571342' />
+  <node id='25900' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18892416292' lon='4.4824781625' />
+  <node id='25901' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18893159031' lon='4.48235209867' />
+  <node id='25902' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18892973346' lon='4.48228236124' />
+  <node id='25903' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18888145543' lon='4.4822421281' />
+  <node id='25904' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18882203625' lon='4.48223408148' />
+  <node id='25905' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18879604034' lon='4.48222335264' />
+  <node id='25906' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18873290922' lon='4.48081250802'>
+    <tag k='power' v='transformer' />
+  </node>
+  <node id='25907' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18875704645' lon='4.48210265324' />
+  <node id='25908' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18870876826' lon='4.48205437347' />
+  <node id='25909' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18872919365' lon='4.4820034115' />
+  <node id='25910' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18877747182' lon='4.48197122499' />
+  <node id='25911' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18876818756' lon='4.48177542374' />
+  <node id='25912' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18868834286' lon='4.48177005932' />
+  <node id='25913' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18860107062' lon='4.48169763967' />
+  <node id='25914' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18859550004' lon='4.48164399549' />
+  <node id='25915' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18862335291' lon='4.4815554826' />
+  <node id='25916' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18869391343' lon='4.481496474' />
+  <node id='25917' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18876076015' lon='4.48128726169' />
+  <node id='25918' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.1886660606' lon='4.4812577574' />
+  <node id='25919' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18860292748' lon='4.48115583345' />
+  <node id='25920' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18867720173' lon='4.48101367638' />
+  <node id='25921' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18876076015' lon='4.48097076103' />
+  <node id='25922' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18877375812' lon='4.48091443464' />
+  <node id='25923' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.1887589033' lon='4.48214288637' />
+  <node id='25924' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18835782171' lon='4.48300655767'>
+    <tag k='power' v='terminal' />
+  </node>
+  <node id='25925' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18842281198' lon='4.48296900675' />
+  <node id='25926' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.1884673767' lon='4.48282416746' />
+  <node id='25927' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18845994925' lon='4.48275979444' />
+  <node id='25928' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18843395316' lon='4.48258813307' />
+  <node id='25929' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18847294728' lon='4.48240574285' />
+  <node id='25930' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18855464915' lon='4.48235746309' />
+  <node id='25931' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18863263719' lon='4.48232259437' />
+  <node id='25932' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18865120575' lon='4.48227967903' />
+  <node id='25933' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18867534488' lon='4.48219116613' />
+  <node id='25934' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18869205657' lon='4.48216434404' />
+  <node id='25935' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18871434068' lon='4.47785671368'>
+    <tag k='power' v='tower' />
+  </node>
+  <node id='25936' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18871434068' lon='4.4785755457'>
+    <tag k='power' v='tower' />
+  </node>
+  <node id='25937' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.1887217681' lon='4.47932656422'>
+    <tag k='power' v='tower' />
+  </node>
+  <node id='25938' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.1887254818' lon='4.48009904042'>
+    <tag k='power' v='tower' />
+  </node>
+  <node id='25939' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18991014533' lon='4.47380120829'>
+    <tag k='power' v='tower' />
+  </node>
+  <node id='25940' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18930853445' lon='4.47380120829'>
+    <tag k='power' v='tower' />
+  </node>
+  <node id='25941' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18874405405' lon='4.47380120829'>
+    <tag k='line_management' v='branch|straight' />
+    <tag k='power' v='tower' />
+  </node>
+  <node id='25942' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18822413277' lon='4.47380120829'>
+    <tag k='power' v='tower' />
+  </node>
+  <node id='25943' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18764478612' lon='4.47381193712'>
+    <tag k='power' v='tower' />
+  </node>
+  <node id='25944' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18873290922' lon='4.47475071564'>
+    <tag k='power' v='tower' />
+  </node>
+  <node id='25945' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18873290922' lon='4.47558220044'>
+    <tag k='power' v='tower' />
+  </node>
+  <node id='25946' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.1887254818' lon='4.47637076989'>
+    <tag k='power' v='tower' />
+  </node>
+  <node id='25947' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18872919551' lon='4.47713251725'>
+    <tag k='line_management' v='branch' />
+    <tag k='power' v='tower' />
+  </node>
+  <node id='25948' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18910799602' lon='4.47712714747'>
+    <tag k='power' v='tower' />
+  </node>
+  <node id='25949' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18955363597' lon='4.47709496096'>
+    <tag k='power' v='tower' />
+  </node>
+  <node id='25950' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.19001412679' lon='4.47708423212' />
+  <node id='25951' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.19005555525' lon='4.47713727609'>
+    <tag k='power' v='pole' />
+  </node>
+  <node id='25952' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.19012399663' lon='4.47722490682'>
+    <tag k='power' v='pole' />
+  </node>
+  <node id='25953' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18708028864' lon='4.47384412363'>
+    <tag k='power' v='tower' />
+  </node>
+  <node id='25954' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18638208636' lon='4.47385485247'>
+    <tag k='power' v='tower' />
+  </node>
+  <node id='25955' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18581014811' lon='4.47385485247'>
+    <tag k='power' v='tower' />
+  </node>
+  <node id='25956' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.1851564971' lon='4.47385485247'>
+    <tag k='power' v='tower' />
+  </node>
+  <node id='25957' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18455483419' lon='4.47345788553'>
+    <tag k='power' v='terminal' />
+  </node>
+  <node id='25958' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18454740621' lon='4.47414453104'>
+    <tag k='power' v='insulator' />
+  </node>
+  <node id='26007' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.19013195417' lon='4.47741984796'>
+    <tag k='power' v='pole' />
+  </node>
+  <node id='26008' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.19008007533' lon='4.47751921145'>
+    <tag k='power' v='pole' />
+  </node>
+  <node id='26009' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.19001231809' lon='4.47764898669'>
+    <tag k='power' v='pole' />
+  </node>
+  <node id='26010' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18994725373' lon='4.47777360409'>
+    <tag k='line_management' v='termination' />
+    <tag k='power' v='pole' />
+  </node>
+  <node id='26082' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18786193028' lon='4.47380791587' />
+  <way id='1908' timestamp='2025-04-24T15:00:00Z' version='1'>
+    <nd ref='25873' />
+    <nd ref='25875' />
+    <tag k='power' v='line' />
+    <tag k='voltage' v='225000' />
+  </way>
+  <way id='1909' timestamp='2025-04-24T15:00:00Z' version='1'>
+    <nd ref='25874' />
+    <nd ref='25875' />
+    <tag k='power' v='line' />
+    <tag k='voltage' v='225000' />
+  </way>
+  <way id='1910' timestamp='2025-04-24T15:00:00Z' version='1'>
+    <nd ref='25875' />
+    <nd ref='25876' />
+    <nd ref='25877' />
+    <nd ref='25939' />
+    <nd ref='25940' />
+    <nd ref='25941' />
+    <nd ref='25942' />
+    <nd ref='26082' />
+    <nd ref='25943' />
+    <nd ref='25953' />
+    <nd ref='25954' />
+    <nd ref='25955' />
+    <nd ref='25956' />
+    <tag k='cables' v='6' />
+    <tag k='circuits' v='2' />
+    <tag k='power' v='line' />
+    <tag k='voltage' v='225000' />
+  </way>
+  <way id='1911' timestamp='2025-04-24T15:00:00Z' version='1'>
+    <nd ref='25957' />
+    <nd ref='25956' />
+    <tag k='power' v='line' />
+    <tag k='voltage' v='225000' />
+  </way>
+  <way id='1912' timestamp='2025-04-24T15:00:00Z' version='1'>
+    <nd ref='25956' />
+    <nd ref='25958' />
+    <tag k='power' v='line' />
+    <tag k='voltage' v='225000' />
+  </way>
+  <way id='1913' timestamp='2025-04-24T15:00:00Z' version='1'>
+    <nd ref='25941' />
+    <nd ref='25944' />
+    <nd ref='25945' />
+    <nd ref='25946' />
+    <nd ref='25947' />
+    <nd ref='25935' />
+    <nd ref='25936' />
+    <nd ref='25937' />
+    <nd ref='25938' />
+    <nd ref='25906' />
+    <tag k='cables' v='3' />
+    <tag k='power' v='line' />
+    <tag k='voltage' v='225000' />
+  </way>
+  <way id='1914' timestamp='2025-04-24T15:00:00Z' version='1'>
+    <nd ref='25907' />
+    <nd ref='25908' />
+    <nd ref='25909' />
+    <nd ref='25910' />
+    <nd ref='25890' />
+    <nd ref='25891' />
+    <nd ref='25911' />
+    <nd ref='25912' />
+    <nd ref='25913' />
+    <nd ref='25914' />
+    <nd ref='25915' />
+    <nd ref='25916' />
+    <nd ref='25892' />
+    <nd ref='25893' />
+    <nd ref='25894' />
+    <nd ref='25917' />
+    <nd ref='25918' />
+    <nd ref='25919' />
+    <nd ref='25920' />
+    <nd ref='25921' />
+    <nd ref='25922' />
+    <nd ref='25906' />
+    <tag k='cables' v='3' />
+    <tag k='location' v='underground' />
+    <tag k='power' v='cable' />
+    <tag k='voltage' v='400' />
+  </way>
+  <way id='1915' timestamp='2025-04-24T15:00:00Z' version='1'>
+    <nd ref='25895' />
+    <nd ref='25896' />
+    <nd ref='25897' />
+    <nd ref='25898' />
+    <nd ref='25899' />
+    <nd ref='25900' />
+    <nd ref='25901' />
+    <nd ref='25902' />
+    <nd ref='25903' />
+    <nd ref='25904' />
+    <nd ref='25905' />
+    <nd ref='25923' />
+    <nd ref='25907' />
+    <tag k='cables' v='3' />
+    <tag k='location' v='underground' />
+    <tag k='power' v='cable' />
+    <tag k='voltage' v='400' />
+  </way>
+  <way id='1916' timestamp='2025-04-24T15:00:00Z' version='1'>
+    <nd ref='25924' />
+    <nd ref='25925' />
+    <nd ref='25926' />
+    <nd ref='25927' />
+    <nd ref='25928' />
+    <nd ref='25929' />
+    <nd ref='25930' />
+    <nd ref='25931' />
+    <nd ref='25932' />
+    <nd ref='25933' />
+    <nd ref='25934' />
+    <nd ref='25907' />
+    <tag k='cables' v='3' />
+    <tag k='location' v='underground' />
+    <tag k='power' v='cable' />
+    <tag k='voltage' v='400' />
+  </way>
+  <way id='1917' timestamp='2025-04-24T15:00:00Z' version='1'>
+    <nd ref='25947' />
+    <nd ref='25948' />
+    <nd ref='25949' />
+    <nd ref='25950' />
+    <tag k='cables' v='3' />
+    <tag k='power' v='line' />
+    <tag k='voltage' v='225000' />
+  </way>
+  <way id='1918' timestamp='2025-04-24T15:00:00Z' version='1'>
+    <nd ref='25883' />
+    <nd ref='25884' />
+    <nd ref='25885' />
+    <nd ref='25886' />
+    <nd ref='25887' />
+    <nd ref='25888' />
+    <nd ref='25889' />
+    <nd ref='25878' />
+    <nd ref='25879' />
+    <tag k='circuits' v='1' />
+    <tag k='location' v='underground' />
+    <tag k='power' v='cable' />
+    <tag k='voltage' v='20000' />
+  </way>
+  <way id='1919' timestamp='2025-04-24T15:00:00Z' version='1'>
+    <nd ref='25950' />
+    <nd ref='25951' />
+    <nd ref='25952' />
+    <nd ref='25880' />
+    <nd ref='25881' />
+    <nd ref='25882' />
+    <nd ref='25879' />
+    <tag k='circuits' v='1' />
+    <tag k='power' v='minor_line' />
+    <tag k='voltage' v='20000' />
+  </way>
+  <way id='1932' timestamp='2025-04-24T15:00:00Z' version='1'>
+    <nd ref='25880' />
+    <nd ref='26007' />
+    <nd ref='26008' />
+    <nd ref='26009' />
+    <nd ref='26010' />
+    <tag k='cables' v='1' />
+    <tag k='circuits' v='1' />
+    <tag k='power' v='minor_line' />
+    <tag k='voltage' v='11500' />
+  </way>
+</osm>

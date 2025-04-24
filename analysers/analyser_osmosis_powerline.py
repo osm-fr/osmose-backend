@@ -34,16 +34,46 @@ SELECT
     unnest(w.nodes) AS nid,
     unnest(w.nodes[2:array_length(w.nodes,1)]) AS nid_next,
     w.tags->'cables' as cables,
-    w.tags->'circuits' as circuits,
+    coalesce((w.tags->'circuits')::integer, 1) as circuits,
     coalesce(w.tags->'location','overhead') as location,
     voltage
 FROM
     ways w
-    JOIN LATERAL (SELECT array_agg(lpad(v, 99, '0')) FROM unnest(regexp_split_to_array(w.tags->'voltage','; *')) AS t(v)) AS t(voltage) ON TRUE
+    JOIN LATERAL (
+        SELECT array_agg(lpad(v, 99, '0'))
+        FROM unnest(array_cat(
+            array_fill(
+                substring(w.tags->'voltage' for greatest(char_length (w.tags->'voltage'),  position(';' in w.tags->'voltage')))::text, -- voltage1 in voltage1;voltage2
+                ARRAY[coalesce((w.tags->'circuits')::integer, 1) - 1 + char_length(coalesce(w.tags->'voltage','')) - char_length(replace(coalesce(w.tags->'voltage',''), ';', ''))]
+            ),
+            regexp_split_to_array(w.tags->'voltage','; *'))
+        ) AS t(v) 
+        WHERE v ~ '^[0-9\.]+$') AS t(voltage)
+        ON TRUE
 WHERE
     w.tags != ''::hstore AND
     w.tags?'power' AND
-    w.tags->'power' IN ('line', 'minor_line', 'cable')
+    w.tags->'power' IN ('line', 'minor_line', 'cable') AND
+    w.tags->'voltage' IS NOT NULL
+
+UNION ALL
+
+SELECT
+    w.id as wid,
+    unnest('{NULL}'||w.nodes[1:array_length(w.nodes,1)-1]) AS nid_prec,
+    unnest(w.nodes) AS nid,
+    unnest(w.nodes[2:array_length(w.nodes,1)]) AS nid_next,
+    w.tags->'cables' as cables,
+    coalesce((w.tags->'circuits')::integer, 1) as circuits,
+    coalesce(w.tags->'location','overhead') as location,
+    NULL as voltage
+FROM
+   ways w
+WHERE
+    w.tags != ''::hstore AND
+    w.tags?'power' AND
+    w.tags->'power' IN ('line', 'minor_line', 'cable') AND
+    w.tags->'voltage' IS NULL
 """
 
 # Build junctions knowledge
@@ -53,11 +83,11 @@ CREATE TEMP TABLE power_lines_topoedges AS
 WITH topotuples as (
     (SELECT
         n.wid,
-        CONCAT(n.nid_prec,'-',n.nid) AS tid,
+        n.nid # n.nid_prec AS tid,
         n.nid,
         n.location,
         n.cables,
-        coalesce(n.circuits, CASE n.cables WHEN '3' THEN '1' ELSE NULL END) as circuits,
+        n.circuits,
         voltage
     FROM power_lines_nodes n
     WHERE nid_prec IS NOT NULL)
@@ -66,11 +96,11 @@ WITH topotuples as (
 
     (SELECT
         n.wid,
-        CONCAT(n.nid,'-',n.nid_next) as tid,
+        n.nid # n.nid_next as tid,
         n.nid,
         n.location,
         n.cables,
-        coalesce(n.circuits, CASE n.cables WHEN '3' THEN '1' ELSE NULL END) as circuits,
+        n.circuits,
         voltage
     FROM power_lines_nodes n
     WHERE nid_next IS NOT NULL)
@@ -82,10 +112,9 @@ SELECT
     p.location,
     COUNT(distinct p.wid) as cw,
     SUM(p.circuits::integer) as circuits,
-    array_agg(voltunnest.voltage) as voltage
+    regexp_split_to_array(string_agg(array_to_string(p.voltage,';'),';'),'; *') as voltage
 FROM
     topotuples p
-    LEFT JOIN LATERAL (SELECT unnest(p.voltage) as voltage) voltunnest ON TRUE
 GROUP BY
     p.nid, p.tid, p.location
 HAVING
@@ -277,19 +306,19 @@ with nodes_voltage as (
         unnest(voltage)::integer voltage,
         round((unnest(voltage)::integer / (1000 * sqrt(3)))::numeric,1) voltage_val
     FROM power_lines_topoedges
-), 
+),
 
 nodes_selected as (
-    SELECT 
+    SELECT
         nid
-    FROM 
+    FROM
         nodes_voltage
     GROUP BY nid
     HAVING COUNT(distinct tid) > 1 AND array_position(array_agg(voltage), NULL) IS NULL
 ),
 
 voltage_groups as (
-    SELECT 
+    SELECT
         n.nid,
         max(n.voltage) as voltage,
         n.voltage_val,
@@ -300,7 +329,7 @@ voltage_groups as (
     GROUP BY n.nid, n.voltage_val
 )
 
-SELECT 
+SELECT
     DISTINCT(v.nid),
     ST_AsText(nodes.geom)
 FROM voltage_groups v
@@ -606,6 +635,7 @@ there's likely an unmapped pole nearby.'''))
 
 ###########################################################################
 
+import time
 from .Analyser_Osmosis import TestAnalyserOsmosis
 
 class Test(TestAnalyserOsmosis):
@@ -613,13 +643,15 @@ class Test(TestAnalyserOsmosis):
     def setup_class(cls):
         from modules import config
         TestAnalyserOsmosis.setup_class()
-        cls.analyser_conf = cls.load_osm("tests/osmosis_powerline_voltage.test.osm",
-                                         config.dir_tmp + "/tests/osmosis_powerline_voltage.test.xml")
+        cls.analyser_conf = cls.load_osm("tests/osmosis_powerline.test.osm",
+                                         config.dir_tmp + "/tests/osmosis_powerline.test.xml")
 
-    def test_class3(self):
+    def test_powergrid(self):
         with Analyser_Osmosis_Powerline(self.analyser_conf, self.logger) as a:
             a.analyser()
 
         self.root_err = self.load_errors()
-        self.check_err(cl="3", elems=[("node", "4")])
-        self.check_num_err(1)
+        self.check_err(cl="2", elems=[("node", "25874")])
+        self.check_err(cl="2", elems=[("node", "25883")])
+        self.check_err(cl="3", elems=[("node", "25950")])
+        self.check_num_err(7)
