@@ -305,22 +305,22 @@ nodes_voltage_values as (
         nid,
         tid,
         voltage,
-        round(voltage::numeric / 1000,1)::varchar voltage_val
+        round((voltage::numeric / 1000)::numeric,1)::varchar voltage_val
     FROM nodes_voltage
     WHERE voltage ~ '^[0-9.]+$'
     UNION SELECT
         nid,
         tid,
         voltage voltage,
-        round((unnest(voltage)::integer / (1000 * sqrt(3)))::numeric,1)::varchar voltage_val
-    FROM power_lines_topoedges
+        round((voltage::numeric / (1000 * sqrt(3)))::numeric,1)::varchar voltage_val
+    FROM nodes_voltage
     WHERE voltage ~ '^[0-9.]+$'
     UNION SELECT
         nid,
         tid,
         voltage voltage,
         voltage voltage_val
-    FROM power_lines_topoedges
+    FROM nodes_voltage
     WHERE NOT(voltage ~ '^[^0-9.]+$')
 ),
 
