@@ -300,7 +300,7 @@ with nodes_voltage as (
     FROM power_lines_topoedges
 ),
 
-with nodes_voltage_values as (
+nodes_voltage_values as (
     SELECT
         nid,
         tid,
