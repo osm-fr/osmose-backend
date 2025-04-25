@@ -73,10 +73,11 @@
   <node id='25929' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18847294728' lon='4.48240574285' />
   <node id='25931' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18863263719' lon='4.48232259437' />
   <node id='25933' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18867534488' lon='4.48219116613' />
-  <node id='25935' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18873595349' lon='4.47889733465'>
+  <node id='25935' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18873641891' lon='4.47860453259'>
+    <tag k='note' v='Should NOT raise class 8 warning line_management suggestion' />
     <tag k='power' v='tower' />
   </node>
-  <node id='25938' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18873404327' lon='4.48009906882'>
+  <node id='25938' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18873524902' lon='4.4793405244'>
     <tag k='power' v='tower' />
   </node>
   <node id='25940' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.19030383378' lon='4.47381279846'>
@@ -156,6 +157,22 @@
     <tag k='note' v='Should raise class 6 warning unfinished power minor line' />
     <tag k='power' v='pole' />
   </node>
+  <node id='26383' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18873758881' lon='4.47786854078'>
+    <tag k='note' v='Should raise class 8 warning suggesting line_management' />
+    <tag k='power' v='tower' />
+  </node>
+  <node id='26384' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18873407912' lon='4.48007651621'>
+    <tag k='line_management' v='split' />
+    <tag k='power' v='tower' />
+  </node>
+  <node id='26415' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18899655947' lon='4.47754561365'>
+    <tag k='line_management' v='termination' />
+    <tag k='power' v='tower' />
+  </node>
+  <node id='26416' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18896684996' lon='4.48045312822'>
+    <tag k='line_management' v='termination' />
+    <tag k='power' v='tower' />
+  </node>
   <node id='26921' timestamp='2025-04-24T15:00:00Z' version='1' lat='46.18814240812' lon='4.4771647346'>
     <tag k='power' v='tower' />
   </node>
@@ -185,6 +202,16 @@
     <tag k='cables' v='3' />
     <tag k='power' v='line' />
     <tag k='voltage' v='63000' />
+  </way>
+  <way id='1455' timestamp='2025-04-24T15:00:00Z' version='1'>
+    <nd ref='26415' />
+    <nd ref='26383' />
+    <nd ref='25935' />
+    <nd ref='25938' />
+    <nd ref='26384' />
+    <nd ref='26416' />
+    <tag k='power' v='line' />
+    <tag k='voltage' v='400000' />
   </way>
   <way id='1908' timestamp='2025-04-24T15:00:00Z' version='1'>
     <nd ref='25873' />
@@ -228,8 +255,10 @@
     <nd ref='25941' />
     <nd ref='25944' />
     <nd ref='25947' />
+    <nd ref='26383' />
     <nd ref='25935' />
     <nd ref='25938' />
+    <nd ref='26384' />
     <nd ref='25906' />
     <tag k='cables' v='3' />
     <tag k='power' v='line' />
