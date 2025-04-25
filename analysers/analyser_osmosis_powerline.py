@@ -24,7 +24,7 @@ from modules.OsmoseTranslation import T_
 from .Analyser_Osmosis import Analyser_Osmosis
 from modules.Stablehash import stablehash64
 
-# Power lines nodes with their voltage as array padded up to 99 zeros
+# Power lines nodes with their voltage as array padded up to 99 zeros to cope with non-numerical values
 # Lines with no voltage get null voltage instead empty array
 sql01 = """
 CREATE TEMP TABLE power_lines_nodes AS
@@ -76,6 +76,9 @@ WHERE
 """
 
 # Build junctions knowledge
+# Topoedges are couples attached to a given node with their neighbors.
+# Topoedges are agregated by nodes and location (two *overhead* lines between two node will give a single topoedge)
+# Involved nodes are not necessary power, particularly on cables
 sql02 = """
 CREATE TEMP TABLE power_lines_topoedges AS
 
@@ -121,6 +124,7 @@ HAVING
 """
 
 # Lone power supports
+# TODO rework by using exclusion from power_lines_nodes, it will save a join and work on a lower amount of pre-selected power nodes
 sql10 = """
 SELECT
     nodes.id,
@@ -146,6 +150,7 @@ HAVING
 """
 
 # Power lines ends with their voltages as array padded with up to 99 zeros
+# TODO rework this analysis with topoedges, find topoedges that end a line and conflate them with terminators.
 sql20 = """
 CREATE TEMP TABLE power_lines_ends AS
 SELECT DISTINCT ON (ends(ways.nodes))
@@ -290,7 +295,9 @@ FROM
 ) AS t
 """
 
-# Every plain line junction that isn't transformers or cross repeated twice (main and / sqrt(3)) (meaning the junction involves different voltages)
+# Every plain line junction that isn't transformers, termination or cross repeated twice (main and / sqrt(3)) (meaning the junction involves different voltages)
+# It looks for voltage continuation on every junction. Two (or more) topoedges on a given node with the same voltage means a connection.
+# TODO support partial termination (i.e termination|straight) with different voltages involved.
 sql30 = """
 with nodes_voltage as (
     SELECT
@@ -358,7 +365,7 @@ WHERE
     ) AND
     NOT nodes.tags?'transformer' AND -- example: power=pole + transformer=*
     (
-        NOT nodes.tags?'line_management' OR nodes.tags->'line_management' != 'cross'
+        NOT nodes.tags?'line_management' OR (nodes.tags->'line_management' != 'cross' AND nodes.tags->'line_management' != 'termination')
     )
 GROUP BY v.nid, nodes.geom, v.voltage
 HAVING
@@ -470,6 +477,7 @@ ORDER BY
 """
 
 # Find line_management and location:transition values from power lines nodes
+# Two circuits in vertices query means 1 in and 1 out of a given node, so straight.
 # Please keep case when ordered
 sql70 = """
 CREATE TEMP TABLE power_lines_mgmt AS
