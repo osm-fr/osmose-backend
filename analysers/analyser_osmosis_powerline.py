@@ -312,23 +312,26 @@ nodes_voltage_values as (
         nid,
         tid,
         voltage,
-        round((voltage::numeric / 1000)::numeric,1)::varchar voltage_val
+        round((voltage::numeric / 1000)::numeric,1)::varchar voltage_val,
+        'numeric' as origin
     FROM nodes_voltage
     WHERE voltage ~ '^[0-9.]+$'
     UNION SELECT
         nid,
         tid,
         voltage voltage,
-        round((voltage::numeric / (1000 * sqrt(3)))::numeric,1)::varchar voltage_val
+        round((voltage::numeric / (1000 * sqrt(3)))::numeric,1)::varchar voltage_val,
+        'numeric' as origin
     FROM nodes_voltage
     WHERE voltage ~ '^[0-9.]+$'
     UNION SELECT
         nid,
         tid,
         voltage voltage,
-        voltage voltage_val
+        voltage voltage_val,
+        'varchar' as origin
     FROM nodes_voltage
-    WHERE NOT(voltage ~ '^[^0-9.]+$')
+    WHERE NOT(voltage ~ '^[0-9.]+$')
 ),
 
 nodes_selected as (
@@ -345,11 +348,12 @@ voltage_groups as (
         n.nid,
         max(n.voltage) as voltage,
         n.voltage_val,
-        count(n.voltage) cv
+        count(n.voltage) cv,
+        n.origin
     FROM nodes_voltage_values n
     JOIN nodes_selected s
         ON s.nid=n.nid
-    GROUP BY n.nid, n.voltage_val
+    GROUP BY n.nid, n.voltage_val, n.origin
 )
 
 SELECT
@@ -367,9 +371,9 @@ WHERE
     (
         NOT nodes.tags?'line_management' OR (nodes.tags->'line_management' != 'cross' AND nodes.tags->'line_management' != 'termination')
     )
-GROUP BY v.nid, nodes.geom, v.voltage
+GROUP BY v.nid, nodes.geom, v.voltage, v.origin
 HAVING
-    sum(v.cv)=2
+    (v.origin='numeric' AND sum(v.cv)=2) OR (v.origin='varchar' AND sum(v.cv)=1)
 """
 
 # Non power nodes on power line and minor_line ways
@@ -674,10 +678,11 @@ class Test(TestAnalyserOsmosis):
             a.analyser()
 
         self.root_err = self.load_errors()
-        self.check_err(cl="2", elems=[("node", "25874")])
-        self.check_err(cl="2", elems=[("node", "25883")])
+        self.check_err(cl="1", elems=[("node", "26971")])
+        self.check_err(cl="2", elems=[("node", "25874"), ("way", "1909")])
+        self.check_err(cl="2", elems=[("node", "25883"), ("way", "1918")])
         self.check_err(cl="3", elems=[("node", "25950")])
-        self.check_err(cl="4", elems=[("node", "26082")])
-        self.check_err(cl="6", elems=[("node", "26191")])
+        self.check_err(cl="4", elems=[("node", "26082"), ("way", "1910")])
+        self.check_err(cl="6", elems=[("node", "26191"), ("way", "2088")])
         self.check_err(cl="8", elems=[("node", "25956")])
-        self.check_num_err(8)
+        self.check_num_err(10)
