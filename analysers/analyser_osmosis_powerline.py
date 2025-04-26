@@ -33,12 +33,12 @@ SELECT
     unnest('{NULL}' || w.nodes[1:array_length(w.nodes, 1) - 1]) AS nid_prec,
     unnest(w.nodes) AS nid,
     unnest(w.nodes[2:array_length(w.nodes, 1)]) AS nid_next,
-    w.tags->'cables' as cables,
-    coalesce((w.tags->'circuits')::integer, 1) as circuits,
-    coalesce(w.tags->'location', 'overhead') as location,
+    w.tags->'cables' AS cables,
+    coalesce((w.tags->'circuits')::integer, 1) AS circuits,
+    coalesce(w.tags->'location', 'overhead') AS location,
     voltage
 FROM
-    ways w
+    ways AS w
     JOIN LATERAL (
         SELECT array_agg(lpad(v, 99, '0'))
         FROM unnest(array_cat(
@@ -58,16 +58,16 @@ WHERE
 UNION ALL
 
 SELECT
-    w.id as wid,
+    w.id AS wid,
     unnest('{NULL}' || w.nodes[1:array_length(w.nodes, 1) - 1]) AS nid_prec,
     unnest(w.nodes) AS nid,
     unnest(w.nodes[2:array_length(w.nodes, 1)]) AS nid_next,
-    w.tags->'cables' as cables,
-    coalesce((w.tags->'circuits')::integer, 1) as circuits,
-    coalesce(w.tags->'location', 'overhead') as location,
-    NULL as voltage
+    w.tags->'cables' AS cables,
+    coalesce((w.tags->'circuits')::integer, 1) AS circuits,
+    coalesce(w.tags->'location', 'overhead') AS location,
+    NULL AS voltage
 FROM
-   ways w
+   ways AS w
 WHERE
     w.tags != ''::hstore AND
     w.tags?'power' AND
@@ -81,9 +81,8 @@ WHERE
 # Involved nodes are not necessary power, particularly on cables
 sql02 = """
 CREATE TEMP TABLE power_lines_topoedges AS
-
 WITH topotuples as (
-    (SELECT
+    SELECT
         n.wid,
         n.nid # n.nid_prec AS tid,
         n.nid,
@@ -91,8 +90,10 @@ WITH topotuples as (
         n.cables,
         n.circuits,
         voltage
-    FROM power_lines_nodes n
-    WHERE nid_prec IS NOT NULL)
+    FROM
+        power_lines_nodes AS n
+    WHERE
+        nid_prec IS NOT NULL
 
     UNION ALL
 
@@ -104,17 +105,19 @@ WITH topotuples as (
         n.cables,
         n.circuits,
         voltage
-    FROM power_lines_nodes n
-    WHERE nid_next IS NOT NULL)
+    FROM
+        power_lines_nodes AS n
+    WHERE
+        nid_next IS NOT NULL
 )
 
 SELECT
     p.nid,
     p.tid,
     p.location,
-    COUNT(distinct p.wid) as cw,
-    SUM(p.circuits::integer) as circuits,
-    regexp_split_to_array(string_agg(array_to_string(p.voltage, ';'), ';'), '; *') as voltage
+    COUNT(distinct p.wid) AS cw,
+    SUM(p.circuits::integer) AS circuits,
+    regexp_split_to_array(string_agg(array_to_string(p.voltage, ';'), ';'), '; *') AS voltage
 FROM
     topotuples p
 GROUP BY
@@ -299,51 +302,64 @@ FROM
 # It looks for voltage continuation on every junction. Two (or more) topoedges on a given node with the same voltage means a connection.
 # TODO support partial termination (i.e termination|straight) with different voltages involved.
 sql30 = """
-with nodes_voltage as (
+WITH nodes_voltage AS (
     SELECT
         nid,
         tid,
         unnest(voltage)::varchar AS voltage
-    FROM power_lines_topoedges
+    FROM
+        power_lines_topoedges
 ),
-
-nodes_voltage_values as (
+nodes_voltage_values AS (
     SELECT
         nid,
         tid,
         voltage,
         round((voltage::numeric / 1000)::numeric,1)::varchar AS voltage_val,
         'numeric' AS origin
-    FROM nodes_voltage
-    WHERE voltage ~ '^[0-9.]+$'
-    UNION SELECT
+    FROM
+        nodes_voltage
+    WHERE
+        voltage ~ '^[0-9.]+$'
+
+    UNION
+
+    SELECT
         nid,
         tid,
         voltage AS voltage,
         round((voltage::numeric / (1000 * sqrt(3)))::numeric,1)::varchar AS voltage_val,
         'numeric' AS origin
-    FROM nodes_voltage
-    WHERE voltage ~ '^[0-9.]+$'
-    UNION SELECT
+    FROM
+        nodes_voltage
+    WHERE
+        voltage ~ '^[0-9.]+$'
+
+    UNION
+
+    SELECT
         nid,
         tid,
         voltage AS voltage,
         voltage AS voltage_val,
         'varchar' AS origin
-    FROM nodes_voltage
-    WHERE NOT(voltage ~ '^[0-9.]+$')
+    FROM
+        nodes_voltage
+    WHERE
+        NOT(voltage ~ '^[0-9.]+$')
 ),
 
-nodes_selected as (
+nodes_selected AS (
     SELECT
         nid
     FROM
         power_lines_topoedges
-    GROUP BY nid
-    HAVING COUNT(distinct tid) > 1
+    GROUP BY
+        nid
+    HAVING
+        COUNT(distinct tid) > 1
 ),
-
-voltage_groups as (
+voltage_groups AS (
     SELECT
         n.nid,
         max(n.voltage) AS voltage,
@@ -352,8 +368,8 @@ voltage_groups as (
         n.origin
     FROM
         nodes_voltage_values AS n
-    JOIN nodes_selected AS s ON
-        s.nid=n.nid
+        JOIN nodes_selected AS s ON
+            s.nid = n.nid
     GROUP BY
         n.nid, n.voltage_val, n.origin
 )
