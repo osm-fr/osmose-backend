@@ -327,9 +327,9 @@ nodes_voltage_values as (
     UNION SELECT
         nid,
         tid,
-        voltage voltage,
-        voltage voltage_val,
-        'varchar' as origin
+        voltage AS voltage,
+        voltage AS voltage_val,
+        'varchar' AS origin
     FROM nodes_voltage
     WHERE NOT(voltage ~ '^[0-9.]+$')
 ),
