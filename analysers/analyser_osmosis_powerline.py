@@ -59,7 +59,7 @@ UNION ALL
 
 SELECT
     w.id as wid,
-    unnest('{NULL}'||w.nodes[1:array_length(w.nodes,1)-1]) AS nid_prec,
+    unnest('{NULL}' || w.nodes[1:array_length(w.nodes, 1) - 1]) AS nid_prec,
     unnest(w.nodes) AS nid,
     unnest(w.nodes[2:array_length(w.nodes,1)]) AS nid_next,
     w.tags->'cables' as cables,
