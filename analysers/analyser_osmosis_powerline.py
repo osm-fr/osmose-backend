@@ -359,8 +359,9 @@ voltage_groups as (
 SELECT
     DISTINCT(v.nid),
     ST_AsText(nodes.geom)
-FROM voltage_groups v
-JOIN nodes ON
+FROM
+    voltage_groups AS v
+    JOIN nodes ON
         v.nid = nodes.id
 WHERE
     (
