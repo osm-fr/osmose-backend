@@ -319,9 +319,9 @@ nodes_voltage_values as (
     UNION SELECT
         nid,
         tid,
-        voltage voltage,
-        round((voltage::numeric / (1000 * sqrt(3)))::numeric,1)::varchar voltage_val,
-        'numeric' as origin
+        voltage AS voltage,
+        round((voltage::numeric / (1000 * sqrt(3)))::numeric,1)::varchar AS voltage_val,
+        'numeric' AS origin
     FROM nodes_voltage
     WHERE voltage ~ '^[0-9.]+$'
     UNION SELECT
