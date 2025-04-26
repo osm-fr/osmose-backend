@@ -43,7 +43,7 @@ FROM
         SELECT array_agg(lpad(v, 99, '0'))
         FROM unnest(array_cat(
             array_fill(
-                substring(w.tags->'voltage' for greatest(char_length (w.tags->'voltage'),  position(';' in w.tags->'voltage')))::text, -- voltage1 in voltage1;voltage2
+                substring(w.tags->'voltage' for greatest(char_length (w.tags->'voltage'), position(';' in w.tags->'voltage')))::text, -- voltage1 in voltage1;voltage2
                 ARRAY[coalesce((w.tags->'circuits')::integer, 1) - 1 + char_length(coalesce(w.tags->'voltage','')) - char_length(replace(coalesce(w.tags->'voltage',''), ';', ''))]
             ),
             regexp_split_to_array(w.tags->'voltage','; *'))
