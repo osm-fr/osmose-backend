@@ -494,8 +494,8 @@ CREATE TEMP TABLE power_lines_mgmt AS
 WITH vertices AS (
     SELECT
         e.nid,
-        string_agg(CASE e.location WHEN 'overhead' THEN e.circuits::varchar ELSE NULL END,'-' order by e.circuits desc) as circuits_overhead,
-        string_agg(CASE WHEN e.location!='overhead' THEN e.circuits::varchar ELSE NULL END,'-' order by e.circuits desc) as circuits_elsewhere
+        string_agg(CASE e.location WHEN 'overhead' THEN e.circuits::varchar ELSE NULL END, '-' ORDER BY e.circuits desc) AS circuits_overhead,
+        string_agg(CASE WHEN e.location!='overhead' THEN e.circuits::varchar ELSE NULL END, '-' ORDER BY e.circuits desc) AS circuits_elsewhere
     FROM
         power_lines_topoedges e
     GROUP BY
