@@ -313,7 +313,7 @@ nodes_voltage_values as (
         tid,
         voltage,
         round((voltage::numeric / 1000)::numeric,1)::varchar AS voltage_val,
-        'numeric' as origin
+        'numeric' AS origin
     FROM nodes_voltage
     WHERE voltage ~ '^[0-9.]+$'
     UNION SELECT
