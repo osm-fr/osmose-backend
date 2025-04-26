@@ -350,10 +350,12 @@ voltage_groups as (
         n.voltage_val,
         count(n.voltage) AS cv,
         n.origin
-    FROM nodes_voltage_values n
-    JOIN nodes_selected s
-        ON s.nid=n.nid
-    GROUP BY n.nid, n.voltage_val, n.origin
+    FROM
+        nodes_voltage_values AS n
+    JOIN nodes_selected AS s ON
+        s.nid=n.nid
+    GROUP BY
+        n.nid, n.voltage_val, n.origin
 )
 
 SELECT
