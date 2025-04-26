@@ -380,8 +380,8 @@ HAVING
 # Non power nodes on power line and minor_line ways
 sql40 = """
 SELECT DISTINCT ON (nodes.id)
-    nodes.id as nid,
-    ways.id as wid,
+    nodes.id AS nid,
+    ways.id AS wid,
     ST_AsText(nodes.geom)
 FROM
     ways
