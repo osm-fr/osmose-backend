@@ -491,7 +491,7 @@ ORDER BY
 sql70 = """
 CREATE TEMP TABLE power_lines_mgmt AS
 
-WITH vertices as (
+WITH vertices AS (
     SELECT
         e.nid,
         string_agg(CASE e.location WHEN 'overhead' THEN e.circuits::varchar ELSE NULL END,'-' order by e.circuits desc) as circuits_overhead,
