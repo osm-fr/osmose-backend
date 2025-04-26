@@ -303,7 +303,7 @@ with nodes_voltage as (
     SELECT
         nid,
         tid,
-        unnest(voltage)::varchar voltage
+        unnest(voltage)::varchar AS voltage
     FROM power_lines_topoedges
 ),
 
