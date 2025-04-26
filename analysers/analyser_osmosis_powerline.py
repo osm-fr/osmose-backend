@@ -35,7 +35,7 @@ SELECT
     unnest(w.nodes[2:array_length(w.nodes, 1)]) AS nid_next,
     w.tags->'cables' as cables,
     coalesce((w.tags->'circuits')::integer, 1) as circuits,
-    coalesce(w.tags->'location','overhead') as location,
+    coalesce(w.tags->'location', 'overhead') as location,
     voltage
 FROM
     ways w
