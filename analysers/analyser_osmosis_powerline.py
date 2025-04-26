@@ -114,7 +114,7 @@ SELECT
     p.location,
     COUNT(distinct p.wid) as cw,
     SUM(p.circuits::integer) as circuits,
-    regexp_split_to_array(string_agg(array_to_string(p.voltage,';'),';'),'; *') as voltage
+    regexp_split_to_array(string_agg(array_to_string(p.voltage, ';'), ';'), '; *') as voltage
 FROM
     topotuples p
 GROUP BY
