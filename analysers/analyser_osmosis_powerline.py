@@ -372,7 +372,11 @@ WHERE
     (
         NOT nodes.tags?'line_management' OR (nodes.tags->'line_management' != 'cross' AND nodes.tags->'line_management' != 'termination')
     )
-GROUP BY v.nid, nodes.geom, v.voltage, v.origin
+GROUP BY
+    v.nid,
+    nodes.geom,
+    v.voltage,
+    v.origin
 HAVING
     (v.origin='numeric' AND sum(v.cv)=2) OR (v.origin='varchar' AND sum(v.cv)=1)
 """
