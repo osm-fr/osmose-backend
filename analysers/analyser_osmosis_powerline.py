@@ -348,7 +348,7 @@ voltage_groups as (
         n.nid,
         max(n.voltage) AS voltage,
         n.voltage_val,
-        count(n.voltage) cv,
+        count(n.voltage) AS cv,
         n.origin
     FROM nodes_voltage_values n
     JOIN nodes_selected s
