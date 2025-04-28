@@ -97,7 +97,7 @@ WITH topotuples as (
 
     UNION ALL
 
-    (SELECT
+    SELECT
         n.wid,
         n.nid # n.nid_next as tid,
         n.nid,
@@ -388,7 +388,10 @@ WHERE
     ) AND
     NOT nodes.tags?'transformer' AND -- example: power=pole + transformer=*
     (
-        NOT nodes.tags?'line_management' OR (nodes.tags->'line_management' != 'cross' AND nodes.tags->'line_management' != 'termination')
+        NOT nodes.tags?'line_management' OR (
+            nodes.tags->'line_management' != 'cross' AND 
+            nodes.tags->'line_management' != 'termination'
+        )
     )
 GROUP BY
     v.nid,
