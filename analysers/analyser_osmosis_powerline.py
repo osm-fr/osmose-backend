@@ -389,7 +389,7 @@ WHERE
     NOT nodes.tags?'transformer' AND -- example: power=pole + transformer=*
     (
         NOT nodes.tags?'line_management' OR (
-            nodes.tags->'line_management' != 'cross' AND 
+            nodes.tags->'line_management' != 'cross' AND
             nodes.tags->'line_management' != 'termination'
         )
     )
