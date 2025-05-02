@@ -1818,15 +1818,15 @@ de_state("thueringen", 62366, "DE-TH")
 
 at_state = gen_country('europe', 'austria', download_repo=OSMFR, language='de', proj=32633)
 
-at_state("niederosterreich", 77189, "AT-3")
-at_state("burgenland", 76909, "AT-1")
-at_state("karnten", 52345, "AT-2")
-at_state("oberosterreich", 102303, "AT-4")
-at_state("salzburg", 86539, "AT-5")
-at_state("steiermark", 35183, "AT-6")
-at_state("tirol", 52343, "AT-7")
-at_state("wien", 109166, "AT-9")
-at_state("vorarlberg", 74942, "AT-8")
+at_state("niederosterreich", 77189, "AT-NOE")
+at_state("burgenland", 76909, "AT-B")
+at_state("karnten", 52345, "AT-K")
+at_state("oberosterreich", 102303, "AT-OOE")
+at_state("salzburg", 86539, "AT-S")
+at_state("steiermark", 35183, "AT-ST")
+at_state("tirol", 52343, "AT-T")
+at_state("wien", 109166, "AT-W")
+at_state("vorarlberg", 74942, "AT-V")
 
 #########################################################################
 
