@@ -1818,10 +1818,10 @@ de_state("thueringen", 62366, "DE-TH")
 
 at_state = gen_country('europe', 'austria', download_repo=OSMFR, language='de', proj=32633)
 
-at_state("niederoesterreich", 77189, "AT-NOE")
+at_state("niederosterreich", 77189, "AT-NOE")
 at_state("burgenland", 76909, "AT-B")
-at_state("kaernten", 52345, "AT-K")
-at_state("oberoesterreich", 102303, "AT-OOE")
+at_state("karnten", 52345, "AT-K")
+at_state("oberosterreich", 102303, "AT-OOE")
 at_state("salzburg", 86539, "AT-S")
 at_state("steiermark", 35183, "AT-ST")
 at_state("tirol", 52343, "AT-T")
