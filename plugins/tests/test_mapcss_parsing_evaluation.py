@@ -809,6 +809,102 @@ class test_mapcss_parsing_evaluation(PluginMapCSS):
                 # assertMatch:"node x=Hello"
                 err.append({'class': 6, 'subclass': 72306003, 'text': {'en': 'test'}})
 
+        # node[x][inside("FX,NL")]
+        if ('x' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'x')) and (mapcss.inside(self.father.config.options, 'FR-69M,FR-69D,FR-2A,FR-2B,FR-01,FR-02,FR-03,FR-04,FR-05,FR-06,FR-07,FR-08,FR-09,FR-10,FR-11,FR-12,FR-13,FR-14,FR-15,FR-16,FR-17,FR-18,FR-19,FR-20,FR-21,FR-22,FR-23,FR-24,FR-25,FR-26,FR-27,FR-28,FR-29,FR-30,FR-31,FR-32,FR-33,FR-34,FR-35,FR-36,FR-37,FR-38,FR-39,FR-40,FR-41,FR-42,FR-43,FR-44,FR-45,FR-46,FR-47,FR-48,FR-49,FR-50,FR-51,FR-52,FR-53,FR-54,FR-55,FR-56,FR-57,FR-58,FR-59,FR-60,FR-61,FR-62,FR-63,FR-64,FR-65,FR-66,FR-67,FR-68,FR-69,FR-70,FR-71,FR-72,FR-73,FR-74,FR-75,FR-76,FR-77,FR-78,FR-79,FR-80,FR-81,FR-82,FR-83,FR-84,FR-85,FR-86,FR-87,FR-88,FR-89,FR-90,FR-91,FR-92,FR-93,FR-94,FR-95,NL')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:"test"
+                # -osmoseAssertNoMatchWithContext:list("node x=1","inside=DE")
+                # -osmoseAssertNoMatchWithContext:list("node x=1","inside=FR")
+                # -osmoseAssertMatchWithContext:list("node x=1","inside=FR-02")
+                # -osmoseAssertNoMatchWithContext:list("node x=1","inside=FR-GP")
+                # -osmoseAssertMatchWithContext:list("node x=1","inside=NL")
+                err.append({'class': 6, 'subclass': 759484915, 'text': {'en': 'test'}})
+
+        # node[x][inside("FX,NL,FR-GF")]
+        if ('x' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'x')) and (mapcss.inside(self.father.config.options, 'FR-69M,FR-69D,FR-2A,FR-2B,FR-01,FR-02,FR-03,FR-04,FR-05,FR-06,FR-07,FR-08,FR-09,FR-10,FR-11,FR-12,FR-13,FR-14,FR-15,FR-16,FR-17,FR-18,FR-19,FR-20,FR-21,FR-22,FR-23,FR-24,FR-25,FR-26,FR-27,FR-28,FR-29,FR-30,FR-31,FR-32,FR-33,FR-34,FR-35,FR-36,FR-37,FR-38,FR-39,FR-40,FR-41,FR-42,FR-43,FR-44,FR-45,FR-46,FR-47,FR-48,FR-49,FR-50,FR-51,FR-52,FR-53,FR-54,FR-55,FR-56,FR-57,FR-58,FR-59,FR-60,FR-61,FR-62,FR-63,FR-64,FR-65,FR-66,FR-67,FR-68,FR-69,FR-70,FR-71,FR-72,FR-73,FR-74,FR-75,FR-76,FR-77,FR-78,FR-79,FR-80,FR-81,FR-82,FR-83,FR-84,FR-85,FR-86,FR-87,FR-88,FR-89,FR-90,FR-91,FR-92,FR-93,FR-94,FR-95,NL,FR-GF')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:"test"
+                # -osmoseAssertNoMatchWithContext:list("node x=1","inside=DE")
+                # -osmoseAssertNoMatchWithContext:list("node x=1","inside=FR")
+                # -osmoseAssertMatchWithContext:list("node x=1","inside=FR-02")
+                # -osmoseAssertMatchWithContext:list("node x=1","inside=FR-GF")
+                # -osmoseAssertNoMatchWithContext:list("node x=1","inside=FR-GP")
+                # -osmoseAssertMatchWithContext:list("node x=1","inside=NL")
+                err.append({'class': 6, 'subclass': 336478965, 'text': {'en': 'test'}})
+
+        # node[x][inside("FX,NL,FR")]
+        if ('x' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'x')) and (mapcss.inside(self.father.config.options, 'FR-69M,FR-69D,FR-2A,FR-2B,FR-01,FR-02,FR-03,FR-04,FR-05,FR-06,FR-07,FR-08,FR-09,FR-10,FR-11,FR-12,FR-13,FR-14,FR-15,FR-16,FR-17,FR-18,FR-19,FR-20,FR-21,FR-22,FR-23,FR-24,FR-25,FR-26,FR-27,FR-28,FR-29,FR-30,FR-31,FR-32,FR-33,FR-34,FR-35,FR-36,FR-37,FR-38,FR-39,FR-40,FR-41,FR-42,FR-43,FR-44,FR-45,FR-46,FR-47,FR-48,FR-49,FR-50,FR-51,FR-52,FR-53,FR-54,FR-55,FR-56,FR-57,FR-58,FR-59,FR-60,FR-61,FR-62,FR-63,FR-64,FR-65,FR-66,FR-67,FR-68,FR-69,FR-70,FR-71,FR-72,FR-73,FR-74,FR-75,FR-76,FR-77,FR-78,FR-79,FR-80,FR-81,FR-82,FR-83,FR-84,FR-85,FR-86,FR-87,FR-88,FR-89,FR-90,FR-91,FR-92,FR-93,FR-94,FR-95,NL,FR')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:"test"
+                # -osmoseAssertNoMatchWithContext:list("node x=1","inside=DE")
+                # -osmoseAssertMatchWithContext:list("node x=1","inside=FR")
+                # -osmoseAssertMatchWithContext:list("node x=1","inside=FR-02")
+                # -osmoseAssertMatchWithContext:list("node x=1","inside=FR-GF")
+                # -osmoseAssertMatchWithContext:list("node x=1","inside=FR-GP")
+                # -osmoseAssertMatchWithContext:list("node x=1","inside=NL")
+                err.append({'class': 6, 'subclass': 1675393091, 'text': {'en': 'test'}})
+
+        # node[x][inside("NL,FX,DE")][outside("FR-02")]
+        if ('x' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'x')) and (mapcss.inside(self.father.config.options, 'NL,FR-69M,FR-69D,FR-2A,FR-2B,FR-01,FR-02,FR-03,FR-04,FR-05,FR-06,FR-07,FR-08,FR-09,FR-10,FR-11,FR-12,FR-13,FR-14,FR-15,FR-16,FR-17,FR-18,FR-19,FR-20,FR-21,FR-22,FR-23,FR-24,FR-25,FR-26,FR-27,FR-28,FR-29,FR-30,FR-31,FR-32,FR-33,FR-34,FR-35,FR-36,FR-37,FR-38,FR-39,FR-40,FR-41,FR-42,FR-43,FR-44,FR-45,FR-46,FR-47,FR-48,FR-49,FR-50,FR-51,FR-52,FR-53,FR-54,FR-55,FR-56,FR-57,FR-58,FR-59,FR-60,FR-61,FR-62,FR-63,FR-64,FR-65,FR-66,FR-67,FR-68,FR-69,FR-70,FR-71,FR-72,FR-73,FR-74,FR-75,FR-76,FR-77,FR-78,FR-79,FR-80,FR-81,FR-82,FR-83,FR-84,FR-85,FR-86,FR-87,FR-88,FR-89,FR-90,FR-91,FR-92,FR-93,FR-94,FR-95,DE')) and (mapcss.outside(self.father.config.options, 'FR-02')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:"test"
+                # -osmoseAssertMatchWithContext:list("node x=1","inside=DE")
+                # -osmoseAssertNoMatchWithContext:list("node x=1","inside=FR")
+                # -osmoseAssertNoMatchWithContext:list("node x=1","inside=FR-02")
+                # -osmoseAssertMatchWithContext:list("node x=1","inside=FR-12")
+                # -osmoseAssertNoMatchWithContext:list("node x=1","inside=FR-GF")
+                # -osmoseAssertNoMatchWithContext:list("node x=1","inside=FR-GP")
+                # -osmoseAssertMatchWithContext:list("node x=1","inside=NL")
+                err.append({'class': 6, 'subclass': 658590773, 'text': {'en': 'test'}})
+
+        # node[x][inside("FR")][outside("FX")]
+        if ('x' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'x')) and (mapcss.inside(self.father.config.options, 'FR')) and (mapcss.outside(self.father.config.options, 'FR-69M,FR-69D,FR-2A,FR-2B,FR-01,FR-02,FR-03,FR-04,FR-05,FR-06,FR-07,FR-08,FR-09,FR-10,FR-11,FR-12,FR-13,FR-14,FR-15,FR-16,FR-17,FR-18,FR-19,FR-20,FR-21,FR-22,FR-23,FR-24,FR-25,FR-26,FR-27,FR-28,FR-29,FR-30,FR-31,FR-32,FR-33,FR-34,FR-35,FR-36,FR-37,FR-38,FR-39,FR-40,FR-41,FR-42,FR-43,FR-44,FR-45,FR-46,FR-47,FR-48,FR-49,FR-50,FR-51,FR-52,FR-53,FR-54,FR-55,FR-56,FR-57,FR-58,FR-59,FR-60,FR-61,FR-62,FR-63,FR-64,FR-65,FR-66,FR-67,FR-68,FR-69,FR-70,FR-71,FR-72,FR-73,FR-74,FR-75,FR-76,FR-77,FR-78,FR-79,FR-80,FR-81,FR-82,FR-83,FR-84,FR-85,FR-86,FR-87,FR-88,FR-89,FR-90,FR-91,FR-92,FR-93,FR-94,FR-95')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:"test"
+                # -osmoseAssertNoMatchWithContext:list("node x=1","inside=FR-02")
+                # -osmoseAssertMatchWithContext:list("node x=1","inside=FR-GF")
+                err.append({'class': 6, 'subclass': 170749071, 'text': {'en': 'test'}})
+
+        # node[x][join_list("-",trim_list(split(";",tag("x"))))="a-b-c"]
+        if ('x' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'x')) and (mapcss.join_list('-', mapcss.trim_list(mapcss.split(';', mapcss.tag(tags, 'x')))) == 'a-b-c'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:"test"
+                # assertMatch:"node x=\"a;  b; ; c\""
+                # assertMatch:"node x=;a;;b;;c;"
+                # assertNoMatch:"node x=a;b;0;c"
+                # assertMatch:"node x=a;b;c"
+                err.append({'class': 6, 'subclass': 1298575189, 'text': {'en': 'test'}})
+
         return err
 
     def way(self, data, tags, nds):
@@ -826,6 +922,7 @@ class test_mapcss_parsing_evaluation(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:"test #1610"
+                # assertMatch:"way x=\"C00; C1; C22\""
                 # assertMatch:"way x=C00;C1;C22"
                 # assertMatch:"way x=C1"
                 # assertNoMatch:"way x=C12"
@@ -1576,6 +1673,63 @@ class Test(TestPluginMapcss):
         self.check_err(n.node(data, {'x': '4-5m'}), expected={'class': 6, 'subclass': 72306003})
         self.check_err(n.node(data, {'x': '5m*3'}), expected={'class': 6, 'subclass': 72306003})
         self.check_err(n.node(data, {'x': 'Hello'}), expected={'class': 6, 'subclass': 72306003})
+        with with_options(n, {'country': 'DE'}):
+            self.check_not_err(n.node(data, {'x': '1'}), expected={'class': 6, 'subclass': 759484915})
+        with with_options(n, {'country': 'FR'}):
+            self.check_not_err(n.node(data, {'x': '1'}), expected={'class': 6, 'subclass': 759484915})
+        with with_options(n, {'country': 'FR-02'}):
+            self.check_err(n.node(data, {'x': '1'}), expected={'class': 6, 'subclass': 759484915})
+        with with_options(n, {'country': 'FR-GP'}):
+            self.check_not_err(n.node(data, {'x': '1'}), expected={'class': 6, 'subclass': 759484915})
+        with with_options(n, {'country': 'NL'}):
+            self.check_err(n.node(data, {'x': '1'}), expected={'class': 6, 'subclass': 759484915})
+        with with_options(n, {'country': 'DE'}):
+            self.check_not_err(n.node(data, {'x': '1'}), expected={'class': 6, 'subclass': 336478965})
+        with with_options(n, {'country': 'FR'}):
+            self.check_not_err(n.node(data, {'x': '1'}), expected={'class': 6, 'subclass': 336478965})
+        with with_options(n, {'country': 'FR-02'}):
+            self.check_err(n.node(data, {'x': '1'}), expected={'class': 6, 'subclass': 336478965})
+        with with_options(n, {'country': 'FR-GF'}):
+            self.check_err(n.node(data, {'x': '1'}), expected={'class': 6, 'subclass': 336478965})
+        with with_options(n, {'country': 'FR-GP'}):
+            self.check_not_err(n.node(data, {'x': '1'}), expected={'class': 6, 'subclass': 336478965})
+        with with_options(n, {'country': 'NL'}):
+            self.check_err(n.node(data, {'x': '1'}), expected={'class': 6, 'subclass': 336478965})
+        with with_options(n, {'country': 'DE'}):
+            self.check_not_err(n.node(data, {'x': '1'}), expected={'class': 6, 'subclass': 1675393091})
+        with with_options(n, {'country': 'FR'}):
+            self.check_err(n.node(data, {'x': '1'}), expected={'class': 6, 'subclass': 1675393091})
+        with with_options(n, {'country': 'FR-02'}):
+            self.check_err(n.node(data, {'x': '1'}), expected={'class': 6, 'subclass': 1675393091})
+        with with_options(n, {'country': 'FR-GF'}):
+            self.check_err(n.node(data, {'x': '1'}), expected={'class': 6, 'subclass': 1675393091})
+        with with_options(n, {'country': 'FR-GP'}):
+            self.check_err(n.node(data, {'x': '1'}), expected={'class': 6, 'subclass': 1675393091})
+        with with_options(n, {'country': 'NL'}):
+            self.check_err(n.node(data, {'x': '1'}), expected={'class': 6, 'subclass': 1675393091})
+        with with_options(n, {'country': 'DE'}):
+            self.check_err(n.node(data, {'x': '1'}), expected={'class': 6, 'subclass': 658590773})
+        with with_options(n, {'country': 'FR'}):
+            self.check_not_err(n.node(data, {'x': '1'}), expected={'class': 6, 'subclass': 658590773})
+        with with_options(n, {'country': 'FR-02'}):
+            self.check_not_err(n.node(data, {'x': '1'}), expected={'class': 6, 'subclass': 658590773})
+        with with_options(n, {'country': 'FR-12'}):
+            self.check_err(n.node(data, {'x': '1'}), expected={'class': 6, 'subclass': 658590773})
+        with with_options(n, {'country': 'FR-GF'}):
+            self.check_not_err(n.node(data, {'x': '1'}), expected={'class': 6, 'subclass': 658590773})
+        with with_options(n, {'country': 'FR-GP'}):
+            self.check_not_err(n.node(data, {'x': '1'}), expected={'class': 6, 'subclass': 658590773})
+        with with_options(n, {'country': 'NL'}):
+            self.check_err(n.node(data, {'x': '1'}), expected={'class': 6, 'subclass': 658590773})
+        with with_options(n, {'country': 'FR-02'}):
+            self.check_not_err(n.node(data, {'x': '1'}), expected={'class': 6, 'subclass': 170749071})
+        with with_options(n, {'country': 'FR-GF'}):
+            self.check_err(n.node(data, {'x': '1'}), expected={'class': 6, 'subclass': 170749071})
+        self.check_err(n.node(data, {'x': 'a;  b; ; c'}), expected={'class': 6, 'subclass': 1298575189})
+        self.check_err(n.node(data, {'x': ';a;;b;;c;'}), expected={'class': 6, 'subclass': 1298575189})
+        self.check_not_err(n.node(data, {'x': 'a;b;0;c'}), expected={'class': 6, 'subclass': 1298575189})
+        self.check_err(n.node(data, {'x': 'a;b;c'}), expected={'class': 6, 'subclass': 1298575189})
+        self.check_err(n.way(data, {'x': 'C00; C1; C22'}, [0]), expected={'class': 16, 'subclass': 1785050832})
         self.check_err(n.way(data, {'x': 'C00;C1;C22'}, [0]), expected={'class': 16, 'subclass': 1785050832})
         self.check_err(n.way(data, {'x': 'C1'}, [0]), expected={'class': 16, 'subclass': 1785050832})
         self.check_not_err(n.way(data, {'x': 'C12'}, [0]), expected={'class': 16, 'subclass': 1785050832})

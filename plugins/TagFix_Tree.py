@@ -22,6 +22,7 @@
 from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 from modules.downloader import urlread
+from plugins.modules.wikiReader import read_wiki_table
 
 
 class TagFix_Tree(Plugin):
@@ -34,17 +35,19 @@ class TagFix_Tree(Plugin):
         allowed_leaf_cycle = ("evergreen", "deciduous")
 
         data = urlread(u"https://wiki.openstreetmap.org/w/index.php?title=Tag:natural%3Dtree/List_of_Species&action=raw", 1)
-        data = list(map(lambda x: list(filter(lambda z: len(z) > 0, map(lambda y: y.strip(), x.split("|")))), data.split("|-")[1:-1]))
+        data = read_wiki_table(data)
         species_map = {}
-        for row in data: # data: list of [species, species:wikidata, leaf_cycle, leaf_type]
+        for row in data: # data: list of [species, genus, species:wikidata, leaf_cycle, leaf_type]
             this_species = {}
-            if row[2] in allowed_leaf_cycle:
-                this_species['leaf_cycle'] = row[2]
-            if row[3] in allowed_leaf_type:
-                this_species['leaf_type'] = row[3]
+            if row[1] in row[0]:
+                this_species['genus'] = row[1]
+            if row[3] in allowed_leaf_cycle:
+                this_species['leaf_cycle'] = row[3]
+            if row[4] in allowed_leaf_type:
+                this_species['leaf_type'] = row[4]
             if len(this_species) > 0:
-                if len(row[1]) > 2 and row[1][0] == "Q":
-                    this_species['species:wikidata'] = row[1]
+                if len(row[2]) > 2 and row[2][0] == "Q":
+                    this_species['species:wikidata'] = row[2]
                 species_map[row[0]] = this_species
         return species_map
 
@@ -73,7 +76,7 @@ class TagFix_Tree(Plugin):
                 # and unclear difference between semi_evergreen and semi_deciduous, see #2224 first comment
                 expected_tags = {x: expected_tags[x] for x in filter(lambda x: x != "leaf_cycle", expected_tags)}
 
-            # The tags do not match with the data on the wiki. Don't check for wikidata (handled in item 3031)
+            # The tags do not match with the data on the wiki. Don't check for wikidata mismatches (handled in item 3031), but wikidata is still part of fix suggestions.
             mismatches = set(filter(lambda t: t in tags and expected_tags[t] != tags[t] and t != "species:wikidata", expected_tags.keys()))
             if len(mismatches) > 0:
                 err.append({

@@ -27,7 +27,7 @@ import json
 
 class Analyser_Merge_Public_Equipment_FR_Lyon_Toilets(Analyser_Merge_Point):
     def ohToStr(self, oh):
-        if not oh:
+        if not oh or oh == "None":
             return None
         else:
             theJson = json.loads(oh.replace("'", '"'))

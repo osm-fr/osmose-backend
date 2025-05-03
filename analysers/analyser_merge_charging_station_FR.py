@@ -32,6 +32,10 @@ class Analyser_Merge_Charging_station_FR(Analyser_Merge_Point):
         "bouygues": "Q3046208",
         "freshmile": "Q111209120",
         "lidl": "Q115764851",
+        "Electra": "Q128592938",
+        "TotalEnergies Charging Services": "Q154037",
+        "Last Mile Solutions": "Q109733858",
+        "Izivia": "Q86671322",
     }
 
     def __init__(self, config, logger=None):
@@ -81,7 +85,6 @@ with `capacity=6` can sometimes match to 3 charging station with `capacity=2`'''
                         "ref:EU:EVSE": "id_station_itinerance"
                     },
                     mapping2={
-                        "email": "contact_operateur",
                         "operator:phone": "telephone_operateur",
                         "operator:email": "contact_operateur",
                         "start_date": "date_mise_en_service",

@@ -44,8 +44,8 @@ class Analyser_Merge_Museum_FR(Analyser_Merge_Point):
                     dataset="5d12ee8206e3e762c0c89a4c",
                     resource="5ccd6238-4fb0-4b2c-b14a-581909489320"),
                 separator=';'),
-            Load_XY("coordonnees", "coordonnees",
-                 where = lambda row: row["coordonnees"],
+            Load_XY("Coordonnees", "Coordonnees",
+                 where = lambda row: row["Coordonnees"],
                  xFunction = lambda x: x and x.split(',')[1],
                  yFunction = lambda y: y and y.split(',')[0]),
             Conflate(
@@ -57,9 +57,9 @@ class Analyser_Merge_Museum_FR(Analyser_Merge_Point):
                 mapping = Mapping(
                     static1 = {"tourism": "museum"},
                     static2 = {"source": self.source},
-                    mapping1 = {"ref:FR:museofile": "identifiant"},
+                    mapping1 = {"ref:FR:museofile": "Identifiant"},
                     mapping2 = {
-                        "website": lambda res: None if not res["url"] else res["url"] if res["url"].startswith('http') else 'http://' + res["url"],
-                        "phone": lambda res: "+33 " + res["telephone"][1:] if res["telephone"] and re_phone.match(res["telephone"]) else None,
-                        "name": lambda res: res["nom_officiel"][0].upper() + res["nom_officiel"][1:] if res["nom_officiel"] else res["nom_officiel"][0].upper() + res["nom_officiel"][1:] if res["nom_officiel"] else None},
-                    text = lambda tags, fields: {"en": ' '.join(filter(lambda x: x, [fields["adrl1_m"], fields["cp_m"], fields["ville_m"]]))} )))
+                        "website": lambda res: None if not res["URL"] else res["URL"] if res["URL"].startswith('http') else 'https://' + res["URL"],
+                        "phone": lambda res: "+33 " + res["Telephone"][1:] if res["Telephone"] and re_phone.match(res["Telephone"]) else None,
+                        "name": lambda res: res["Nom_officiel"][0].upper() + res["Nom_officiel"][1:] if res["Nom_officiel"] else res["Nom_officiel"][0].upper() + res["Nom_officiel"][1:] if res["Nom_officiel"] else None},
+                    text = lambda tags, fields: {"en": ' '.join(filter(lambda x: x, [fields["Adresse"], fields["Lieu"], fields["Code_postal"], fields["Ville"]]))} )))

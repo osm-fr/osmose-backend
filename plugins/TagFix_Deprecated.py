@@ -23,7 +23,7 @@ from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 from modules.downloader import urlread
 from modules.Stablehash import stablehash
-import re
+from plugins.modules.wikiReader import read_wiki_templates,wikitag2text
 
 
 class TagFix_Deprecated(Plugin):
@@ -31,55 +31,31 @@ class TagFix_Deprecated(Plugin):
         wikiRoot = 'https://wiki.openstreetmap.org/wiki'
         data = urlread(wikiRoot + '/Template:Deprecated_features?action=raw', 1)
 
-        # Tidy data up for processing
-        # Eliminate wiki bold formatting
-        data = data.replace("'''", "")
-
-        # Remove HTML newlines
-        data = re.sub(r'<br\s*/>', ' ', data)
-
         # Remove excess whitespace (also removes all newlines)
         data = " ".join(data.split())
 
-        # Eliminate any whitespace around pipe characters
-        # This makes reading the template parameters simple
-        data = re.sub(r'\s?\|\s?', '|', data)
-
-        # Eliminate templates to prevent unexpected pipe characters
-        data = re.sub(r'{{{\s?lang\s?\|?\s?}}}', '', data, flags=re.I)
-        # Tag template can take one or two params, with trailing | possible
-        data = re.sub(
-            r'{{(?:Tag|Key)\s?\|(.+?)\|?\s?}}',
-            lambda x: '`{}`'.format(x.group(1).replace("||", "=").replace("|", "=")),
-            data,
-            flags=re.I
-        )
-
-        # Resolve interwiki links now
-        data = re.sub(
-            r'\[\[(.+?)\]\]',
-            lambda x: '[{}]({}/{})'.format(x.group(1), wikiRoot, x.group(1).replace(" ", "_")),
-            data
-        )
+        data = read_wiki_templates(data, "Deprecated features/item")
 
         deprecated = {}
-        for feature in data.split(r'{{Deprecated features/item')[1:]:
-            # Unaccounted for template present in this feature
-            if r'{{' in feature:
-                continue
-
+        for feature in data:
             src_key, src_val, dest = None, None, None
-            for param in feature.split('|'):
+            for param in feature[2:]:
+                # Convert {{Tag|k|v}} to k=v
+                param = wikitag2text(param, quote = True, star_value = False)
                 if '=' not in param:
                     continue
+                if '{{' in param:
+                    # Unaccounted for template present in this feature
+                    src_key, src_val, dest = None, None, None
+                    break
 
                 k, v = param.split('=', 1)
-                # k will always start with the param because we removed whitespace around | earlier
-                if (k.rstrip() == 'dkey'):
+                k = k.rstrip()
+                if k == 'dkey':
                     src_key = v
-                elif (k.rstrip() == 'dvalue'):
+                elif k == 'dvalue':
                     src_val = v
-                elif (k.rstrip() == 'suggestion'):
+                elif k == 'suggestion':
                     dest = v
 
             # Sanity check in case formatting changes or something

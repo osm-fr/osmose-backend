@@ -210,7 +210,7 @@ def string_contains(subject, string):
 
 def list_contains(subject, string):
     if subject is not None and string is not None:
-        return string in subject and string in subject.split(";")
+        return string in subject and any(map(lambda s: s.strip() == string, subject.split(";")))
 
 def at(asset_lat, asset_lon, lat, lon):
     return asset_lat == lat and asset_lon == lon
@@ -434,6 +434,12 @@ def trim(string):
     if string is not None:
         return str_value(string.strip())
 
+#trim_list(list_name)
+#    remove leading and trailing whitespace from a list of strings, will remove entries that are empty afterwards [since r15591]
+def trim_list(l):
+    if l is not None and isinstance(l, list):
+        return list(filter(None, map(lambda s: s.strip(), l)))
+
 #JOSM_search("...")
 #    true, if JOSM search applies to the object
 def JOSM_search(string):
@@ -630,7 +636,7 @@ def to_double(string):
 #uniq_list()
 #    returns a list of strings that only have unique values from a list of strings [since r15353]
 def uniq_list(l):
-    return set(l)
+    return list(set(l))
 
 # siunit_length(str)
 #    convert length units to meter (fault tolerant, ignoring white space)

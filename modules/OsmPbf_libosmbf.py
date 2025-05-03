@@ -85,35 +85,35 @@ class OsmPbfReader(OsmReader, osm_pbf_parser.Visitor):
         osm_pbf_parser.read_osm_pbf(self._pbf_file, self)
 
 
-    def node(self, osmid, lon, lat, tags):
+    def node(self, osmid, lon, lat, tags, timestamp):
         data = {
             'id': osmid,
             'lon': lon,
             'lat': lat,
             'tag': tags,
             #'version'
-            #'timestamp'
+            'timestamp': timestamp,
             #'uid'
         }
         self._output.NodeCreate(data)
 
-    def way(self, osmid, tags, refs):
+    def way(self, osmid, tags, refs, timestamp):
         data = {
             'id': osmid,
             'tag': tags,
             'nd': refs,
             #'version'
-            #'timestamp'
+            'timestamp': timestamp,
             #'uid'
         }
         self._output.WayCreate(data)
 
-    def relation(self, osmid, tags, ref):
+    def relation(self, osmid, tags, ref, timestamp):
         data = {
             'id': osmid,
             'tag': tags,
             #'version'
-            #'timestamp'
+            'timestamp': timestamp,
             #'uid'
             'member': ref,
         }

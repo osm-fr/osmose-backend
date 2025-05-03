@@ -182,7 +182,6 @@ class default_simple(template_config):
         self.analyser["osmosis_highway_turn_lanes"] = "xxx"
         self.analyser["osmosis_highway_almost_junction"] = "xxx"
         self.analyser["osmosis_highway_without_ref"] = "xxx"
-        self.analyser["osmosis_building_3nodes"] = "xxx"
         self.analyser["osmosis_wikipedia"] = "xxx"
         self.analyser["osmosis_highway_name_close"] = "xxx"
         self.analyser["osmosis_relation_route_access"] = "xxx"
@@ -280,7 +279,7 @@ france_departement = gen_country('europe', 'france', download_repo=OSMFR, langua
     'osmosis_fantoir',
     'osmosis_highway_motorway',
     'osmosis_highway_zone',
-    'merge_milestone_FR_metropole',
+    'merge_milestone_FR',
     'merge_shop_FR',
     'merge_cemetery_FR',
     'merge_man_made_FR',
@@ -307,7 +306,7 @@ include_aquitaine = [
     'merge_winery_FR_aquitaine',
 ]
 france_departement("aquitaine/dordogne", 7375, "FR-24", include=include_aquitaine + [
-    'merge_power_pole_FR_gracethd_dordogne'
+    'merge_power_pole_FR_gracethd3_dordogne'
 ])
 france_departement("aquitaine/gironde", 7405, "FR-33", include=include_aquitaine + [
     # Bordeaux
@@ -343,11 +342,13 @@ france_departement("bourgogne/nievre", 7448, "FR-58")
 france_departement("bourgogne/saone_et_loire", 7397, "FR-71", include=[
     'merge_hydrants_FR_SDIS_71',
 ])
-france_departement("bourgogne/yonne", 7392, "FR-89")
+france_departement("bourgogne/yonne", 7392, "FR-89", include=[
+    'merge_power_pole_FR_spec_sdey'
+])
 
 include_bretagne = [
     # Bretagne
-    'merge_power_pole_FR_gracethd_bretagne'
+    'merge_power_pole_FR_gracethd3_bretagne'
 ]
 france_departement("bretagne/cotes_d_armor", 7398, "FR-22", include=include_bretagne)
 france_departement("bretagne/ille_et_vilaine", 7465, "FR-35", include=include_bretagne + [
@@ -365,7 +366,9 @@ france_departement("bretagne/morbihan", 7447, "FR-56", include=include_bretagne 
     'merge_defibrillators_FR_lorient',
 ])
 
-france_departement("centre/cher", 7456, "FR-18")
+france_departement("centre/cher", 7456, "FR-18", include=[
+    'merge_power_pole_FR_spec_sde18',
+])
 france_departement("centre/eure_et_loir", 7374, "FR-28")
 france_departement("centre/indre", 7417, "FR-36")
 france_departement("centre/indre_et_loire", 7408, "FR-37")
@@ -383,7 +386,7 @@ france_departement("corse/haute_corse", 76931, "FR-2B")
 france_departement("franche_comte/doubs", 7462, "FR-25")
 france_departement("franche_comte/jura", 7460, "FR-39", include=[
     'merge_hydrants_FR_SDIS_39',
-    'merge_power_pole_FR_gracethd_jura'
+    'merge_power_pole_FR_gracethd3_jura'
 ])
 france_departement("franche_comte/haute_saone", 7423, "FR-70")
 france_departement("franche_comte/territoire_de_belfort", 7410, "FR-90")
@@ -420,14 +423,21 @@ france_departement("ile_de_france/seine_et_marne", 7383, "FR-77", include=includ
 france_departement("ile_de_france/val_d_oise", 7433, "FR-95", include=include_ile_de_france)
 france_departement("ile_de_france/yvelines", 7457, "FR-78", include=include_ile_de_france)
 
-france_departement("languedoc_roussillon/aude", 7446, "FR-11")
-france_departement("languedoc_roussillon/gard", 7461, "FR-30")
+france_departement("languedoc_roussillon/aude", 7446, "FR-11", include=[
+    'merge_power_pole_FR_spec_enedis'
+])
+france_departement("languedoc_roussillon/gard", 7461, "FR-30", include=[
+    'merge_power_pole_FR_spec_enedis'
+])
 france_departement("languedoc_roussillon/herault", 7429, "FR-34", include=[
+    'merge_power_pole_FR_spec_enedis',
     # Montpellier
     'merge_public_equipment_FR_montpellier_toilets',
 ])
 france_departement("languedoc_roussillon/lozere", 7421, "FR-48")
-france_departement("languedoc_roussillon/pyrenees_orientales", 7466, "FR-66")
+france_departement("languedoc_roussillon/pyrenees_orientales", 7466, "FR-66", include=[
+    'merge_power_pole_FR_spec_enedis'
+])
 
 france_departement("limousin/correze", 7464, "FR-19")
 france_departement("limousin/creuse", 7459, "FR-23")
@@ -441,9 +451,12 @@ france_departement("lorraine/meuse", 7382, "FR-55")
 france_departement("lorraine/moselle", 51854, "FR-57")
 france_departement("lorraine/vosges", 7384, "FR-88")
 
-france_departement("midi_pyrenees/ariege", 7439, "FR-09")
+france_departement("midi_pyrenees/ariege", 7439, "FR-09", include=[
+    'merge_power_pole_FR_spec_enedis'
+])
 france_departement("midi_pyrenees/aveyron", 7451, "FR-12")
 france_departement("midi_pyrenees/haute_garonne", 7413, "FR-31", include=[
+    'merge_power_pole_FR_spec_enedis',
     # Toulouse
     'merge_public_equipment_FR_toulouse_toilets',
     'merge_defibrillators_FR_toulouse',
@@ -454,8 +467,12 @@ france_departement("midi_pyrenees/hautes_pyrenees", 7467, "FR-65")
 france_departement("midi_pyrenees/tarn", 7442, "FR-81")
 france_departement("midi_pyrenees/tarn_et_garonne", 7388, "FR-82")
 
-france_departement("nord_pas_de_calais/nord", 7400, "FR-59")
-france_departement("nord_pas_de_calais/pas_de_calais", 7394, "FR-62")
+france_departement("nord_pas_de_calais/nord", 7400, "FR-59", include =[
+    'merge_power_pole_FR_spec_fibre5962',
+])
+france_departement("nord_pas_de_calais/pas_de_calais", 7394, "FR-62", include=[
+    'merge_power_pole_FR_spec_fibre5962',
+])
 
 france_departement("pays_de_la_loire/loire_atlantique", 7432, "FR-44", include=[
     # Nantes
@@ -470,7 +487,9 @@ france_departement("pays_de_la_loire/maine_et_loire", 7409, "FR-49", include=[
 ])
 france_departement("pays_de_la_loire/mayenne", 7438, "FR-53")
 france_departement("pays_de_la_loire/sarthe", 7443, "FR-72")
-france_departement("pays_de_la_loire/vendee", 7402, "FR-85")
+france_departement("pays_de_la_loire/vendee", 7402, "FR-85", include=[
+    'merge_power_pole_FR_gracethd2_vendee'
+])
 
 france_departement("picardie/aisne", 7411, "FR-02")
 france_departement("picardie/oise", 7427, "FR-60")
@@ -492,13 +511,18 @@ france_departement("provence_alpes_cote_d_azur/alpes_maritimes", 7385, "FR-06", 
     'merge_public_transport_FR_zou_06',
     'merge_public_transport_FR_sillages',
     'merge_public_transport_FR_zestbus',
+    'merge_power_pole_FR_spec_enedis'
 ])
-
 france_departement("provence_alpes_cote_d_azur/bouches_du_rhone", 7393, "FR-13", include=[
     'merge_recycling_FR_ampm',
+    'merge_power_pole_FR_spec_enedis'
 ])
-france_departement("provence_alpes_cote_d_azur/var", 7390, "FR-83")
-france_departement("provence_alpes_cote_d_azur/vaucluse", 7445, "FR-84")
+france_departement("provence_alpes_cote_d_azur/var", 7390, "FR-83", include=[
+    'merge_power_pole_FR_spec_enedis'
+])
+france_departement("provence_alpes_cote_d_azur/vaucluse", 7445, "FR-84", include=[
+    'merge_power_pole_FR_spec_enedis'
+])
 
 france_departement("rhone_alpes/ain", 7387, "FR-01")
 france_departement("rhone_alpes/ardeche", 7430, "FR-07")
@@ -513,9 +537,12 @@ france_departement("rhone_alpes/rhone", 7378, "FR-69", include=[
     'merge_public_equipment_FR_lyon_toilets',
     'merge_bicycle_parking_FR_lyon',
 ])
-france_departement("rhone_alpes/savoie", 7425, "FR-73")
+france_departement("rhone_alpes/savoie", 7425, "FR-73", include=[
+    'merge_power_pole_FR_spec_enedis'
+])
 france_departement("rhone_alpes/haute_savoie", 7407, "FR-74", include=[
     'merge_street_lamp_FR_haute-savoie_syane',
+    'merge_power_pole_FR_spec_enedis',
     # Annecy
     'merge_public_transport_FR_sibra',
 ])
@@ -558,9 +585,13 @@ france_departement_dom = gen_country(None, country_base='france', download_repo=
 ], **{'addr:city-admin_level': '8,9'})
 
 france_departement_dom(["central-america", "guadeloupe"], 1401835, "FR-GP", dep_code=971, proj=32620, phone_code="590")
-france_departement_dom(["south-america", "guyane"], 1260551, "FR-GF", dep_code=973, language='fr_GF', proj=2972, phone_code="594")
+france_departement_dom(["south-america", "guyane"], 1260551, "FR-GF", dep_code=973, language='fr_GF', proj=2972, phone_code="594", include=[
+    'merge_milestone_FR',
+])
 france_departement_dom(["central-america", "martinique"], 1891495, "FR-MQ", dep_code=972, proj=32620, phone_code="596")
-france_departement_dom(["africa", "mayotte"], 1259885, "FR-YT", dep_code=976, proj=32738, phone_code="262")
+france_departement_dom(["africa", "mayotte"], 1259885, "FR-YT", dep_code=976, proj=32738, phone_code="262", include=[
+    'merge_milestone_FR',
+])
 france_departement_dom(["africa", "reunion"], 1785276, "FR-RE", dep_code=974, proj=2975, phone_code="262")
 
 france_com = gen_country(None, country_base='france', download_repo=OSMFR, language='fr', municipality_ref='ref:INSEE',
@@ -601,6 +632,7 @@ france_com(["north-america", "saint_pierre_et_miquelon"], 3406826, "FR-PM", dep_
     'merge_reservoir_FR',
     'merge_water_FR',
     'merge_road_FR',
+    'merge_milestone_FR',
 ])
 france_com(["oceania", "wallis_et_futuna"], 290162, "FR-WF", proj=32701, phone_code="681", country="wallisetfutuna")
 france_com(["oceania", "polynesie"], 3412620, "FR-PF", language='fr_PF', proj=32706, phone_code="689", phone_format=None, phone_len=8, phone_len_short=6, phone_local_prefix=None, phone_international='00')
@@ -647,7 +679,6 @@ france_local_db.analyser["merge_power_plant_FR"] = "xxx"
 france_local_db.analyser["merge_power_branch_FR"] = "xxx"
 france_local_db.analyser["merge_power_substation_FR"] = "xxx"
 france_local_db.analyser["merge_power_tower_FR"] = "xxx"
-france_local_db.analyser["merge_power_tower_linemngt_FR"] = "xxx"
 france_local_db.analyser["merge_restriction_motorway_FR"] = "xxx"
 france_local_db.analyser["merge_power_substation_minor_FR"] = "xxx"
 france_local_db.analyser["merge_wastewater_plant_FR"] = "xxx"
@@ -700,8 +731,8 @@ default_country("europe", "vatican_city", 36989, {"country": "VA", "language": "
 default_country("europe", "united_kingdom_akrotiri_and_dhekelia", 3263728, {"country": "GB", "language": ["en", "he"], "driving_side": "left", "proj": 32636}, download_country="cyprus")  # British Sovereign Base in Cyprus
 default_country("europe", "united_kingdom_gibraltar", 1278736, {"country": "GI", "language": "en", "proj": 32630}, download_repo=OSMFR, download_country="gibraltar")
 default_country("europe", "united_kingdom_northern_ireland", 156393, {"country": "GB-NIR", "language": "en", "driving_side": "left", "speed_limit_unit": "mph", "proj": 32629}, download_repo=OSMFR, download_country="united_kingdom/northern_ireland")
-default_country("europe", "united_kingdom_wales", 58437, {"country": "GB-WLS", "language": ["en", "cy"], "driving_side": "left", "speed_limit_unit": "mph", "proj": 32630}, download_repo=GEOFABRIK, download_country="great-britain/wales")
-default_country("europe", "united_kingdom_scotland", 58446, {"country": "GB-SCT", "language": "en", "driving_side": "left", "speed_limit_unit": "mph", "proj": 32630}, download_repo=GEOFABRIK, download_country="great-britain/scotland")
+default_country("europe", "united_kingdom_wales", 58437, {"country": "GB-WLS", "language": ["en", "cy"], "driving_side": "left", "speed_limit_unit": "mph", "proj": 32630}, download_repo=GEOFABRIK, download_country="united-kingdom/wales")
+default_country("europe", "united_kingdom_scotland", 58446, {"country": "GB-SCT", "language": "en", "driving_side": "left", "speed_limit_unit": "mph", "proj": 32630}, download_repo=GEOFABRIK, download_country="united-kingdom/scotland")
 
 iceland = default_country("europe","iceland", 299133, {"country": "IS", "language": "is", "proj": 32627}, download_repo=GEOFABRIK) # 299133
 
@@ -933,7 +964,7 @@ mexico_state("jalisco", 2340910, "MX-JAL")
 mexico_state("mexico_city", 1376330, "MX-CMX")
 mexico_state("michoacan", 2340636, "MX-MIC")
 mexico_state("morelos", 1376332, "MX-MOR")
-mexico_state("nayarit", 7695827, "MX-NAY")
+mexico_state("nayarit", 18522414, "MX-NAY")
 mexico_state("nuevo_leon", 1661523, "MX-NLE")
 mexico_state("oaxaca", 2529822, "MX-OAX")
 mexico_state("puebla", 1376491, "MX-PUE")
@@ -959,7 +990,7 @@ us_state("alaska", 1116270, "US-AK", proj=26905)
 us_state("arizona", 162018, "US-AZ", proj=26912)
 us_state("arkansas", 161646, "US-AR", proj=26715)
 
-us_ca_county = gen_country('north-america/us-west/california', country_base='usa_california', download_repo=OSMFR, language='en', proj=26910)
+us_ca_county = gen_country('north-america/us-west/california', country_base='usa_california', download_repo=OSMFR, language='en', proj=26910, speed_limit_unit='mph')
 
 us_ca_county("alameda", 396499, "US-CA-ALA")
 us_ca_county("alpine", 396497, "US-CA-ALP")
@@ -1020,7 +1051,7 @@ us_ca_county("ventura", 396505, "US-CA-VEN")
 us_ca_county("yolo", 396507, "US-CA-YOL")
 us_ca_county("yuba", 396475, "US-CA-YUB")
 
-us_co_region = gen_country('north-america/us-west/colorado', country_base='usa_colorado', country_code='US-CA', download_repo=OSMFR, language='en', proj=26713)
+us_co_region = gen_country('north-america/us-west/colorado', country_base='usa_colorado', country_code='US-CO', download_repo=OSMFR, language='en', proj=26713, speed_limit_unit='mph')
 us_co_region("denver", (1411327,1411333,1411321,1411338,1411339,1411346,1411351,442310))
 us_co_region("southeast", (1411317,1411320,1411328,1411331,1411335,1411343,1411347,1411349,415767,415769,415781,415785,417649,439376))
 us_co_region("northwest", (1411315,1411329,1411332,1411340,1411341,1411352,1411353,1411354,415167,415168,41690,416907,421142,441008,443690,416905))
@@ -1031,7 +1062,7 @@ us_state("connecticut", 165794, "US-CT", proj=3507)
 us_state("delaware", 162110, "US-DE", proj=3509)
 us_state("district-of-columbia", 162069, "US-DC", proj=3559)
 
-us_fl_region = gen_country('north-america/us-south/florida', country_base='usa_florida', country_code='US-FL', download_repo=OSMFR, language='en', proj=3513)
+us_fl_region = gen_country('north-america/us-south/florida', country_base='usa_florida', country_code='US-FL', download_repo=OSMFR, language='en', proj=3513, speed_limit_unit='mph')
 us_fl_region("east_central", (389024,389026,389011,389023,389022,389025))
 us_fl_region("gatorland", (1210739,1210741,1210721,1210723,1210708,1210752))
 us_fl_region("gold_coast", (1210714,1210692,1210746,1210748))
@@ -1042,17 +1073,17 @@ us_fl_region("southwest", (1210722,1210705,1210727,1210744,1210725))
 us_fl_region("suncoast", (1210740,1210695,1210738,1210700,1210702,1210701,1210690,1210707,1210726,1214525,1210734))
 us_fl_region("treasure_coast", (1210711,1210698,1210747,1210696))
 
-us_ga_region = gen_country('north-america/us-south/georgia', country_base='usa_georgia', country_code='US-GA', download_repo=OSMFR, language='en', proj=26917)
+us_ga_region = gen_country('north-america/us-south/georgia', country_base='usa_georgia', country_code='US-GA', download_repo=OSMFR, language='en', proj=26917, speed_limit_unit='mph')
 us_ga_region("north_metro", (964801,1024740,975368,1020471))
 us_ga_region("northeast", (1020709,1020674,1020675,1028131,448430,452082,1029450,964803,452153,1026132,448597,1020707,1028121,1029451,1028127,448085,1073867,1073931,1027988,1020507,1020502,1020708,1029453,1029445,1029448,455070,452088,1029454,532073,532213,1029447,1020503,1074327,1074323))
 us_ga_region("northwest", (1020677,1059834,538625,1059837,1020716,975369,1020125,1059841,533031,1026131,1059843,532848,1059836,1073786,1073864,1020717,1029455,1073863,1073869,1020468,1029446,534697,1029449,1020715,1029452,1028124,1073929,1074325,539093,535392))
 us_ga_region("southeast", (966037,966038,966043,1020678,1025644,1027983,1028132,1028123,1028129,416911,417391,1059839,417302,417316,1059835,1073783,447655,1073771,1073778,413939,1073769,1028130,1073870,1028120,1073866,1073767,1073784,1073865,1073775,1073862,1027989,1027985,1073868,1073861,1073781,1073926,1073923,1073930,1073922,1073773,420422,416868,1073927,1073770,1074322,1074318,420860,1074321,1074317,1028126,1074320,1073768,1027980))
-us_ga_region("southwest", (1020676,1027990,1027981,1027982,11739369,1028122,1059842,1028128,1027986,1073774,1027987,1073765,1073782,1073788,1028119,1028125,1073776,1074368,1073766,1073772,1059838,1073763,1073779,1073925,1074381,1073928,1028133,1073924,1073764,1059840,1073780,1074319,1027984,1073787,1073777,1027979,1074324,1073785))
+us_ga_region("southwest", (1020676,1027990,1027981,1027982,1028122,1059842,1028128,1027986,1073774,1027987,1073765,1073782,1073788,1028119,1028125,1073776,1074368,1073766,1073772,1059838,1073763,1073779,1073925,1074381,1073928,1028133,1073924,1073764,1059840,1073780,1074319,1027984,1073787,1073777,1027979,1074324,1073785))
 
 us_state("hawaii", 166563, "US-HI", proj=2783) # note: projection for hawaii is the one used for center islands, not for the whole
 us_state("idaho", 162116, "US-ID", proj=3741)
 
-us_il_region = gen_country('north-america/us-midwest/illinois', country_base='usa_illinois', country_code='US-IL', download_repo=OSMFR, language='en', proj=3746)
+us_il_region = gen_country('north-america/us-midwest/illinois', country_base='usa_illinois', country_code='US-IL', download_repo=OSMFR, language='en', proj=3746, speed_limit_unit='mph')
 us_il_region("central", (1800573,1801523,1800719,1800376,1800575,1800576,1800723,1800577,1800377,1800578,1800580,1800725,1800727,1800582,1800585,1800378))
 us_il_region("cook", 122576)
 us_il_region("east_central", (1801516,1800574,1801517,1801520,13109140,1801522,1801524,1801525,1801527,1800374,1800375,1801529,1800581,1801534,1800584,1801537))
@@ -1073,7 +1104,7 @@ us_state("maine", 63512, "US-ME", proj=3749)
 us_state("maryland", 162112, "US-MD", proj=26985)
 us_state("massachusetts", 61315, "US-MA", proj=2805)
 
-us_mi_region = gen_country('north-america/us-midwest/michigan', country_base='usa_michigan', country_code='US-MI', download_repo=OSMFR, language='en', proj=3746)
+us_mi_region = gen_country('north-america/us-midwest/michigan', country_base='usa_michigan', country_code='US-MI', download_repo=OSMFR, language='en', proj=3746, speed_limit_unit='mph')
 us_mi_region("southeast", (1582241,1582242,1801749,1801750,1907314,359765,582246,901500,901501))
 us_mi_region("detroit_metro", (359761,359762,359766,359767,407497,574424))
 us_mi_region("central", (1907303,1907324,1907331,1907335,359763,359764,571344,572130,572624,572689,574448,574462,582247,611155))
@@ -1092,7 +1123,7 @@ us_state("new-hampshire", 67213, "US-NH", proj=3613)
 us_state("new-jersey", 224951, "US-NJ", proj=3615)
 us_state("new-mexico", 162014, "US-NM", proj=3617)
 
-us_ny_region = gen_country('north-america/us-northeast/new-york', country_base='usa_new_york', country_code='US-NY', download_repo=OSMFR, language='en', proj=3623)
+us_ny_region = gen_country('north-america/us-northeast/new-york', country_base='usa_new_york', country_code='US-NY', download_repo=OSMFR, language='en', proj=3623, speed_limit_unit='mph')
 us_ny_region("capital_district", (1428041,87979,1428790,1428121,1428091,1427734,1427757,1838018))
 us_ny_region("central_new_york", (1835284,1835253,1838019,3379365,1838016))
 us_ny_region("finger_lakes", (1837995,1838139,1837998,1837993,1804311,1837992))
@@ -1104,7 +1135,7 @@ us_ny_region("north_country", (87741,87689,87783,87742,87775,2552234,1835268))
 us_ny_region("southern_tier", (1838015,1838025,1837994,1837996,1837991,1838024,1838014,1838017))
 us_ny_region("western_new_york", (68855,36267,78970,1837997,36074,1837989,1838089,78971))
 
-us_nc_region = gen_country('north-america/us-south/north-carolina', country_base='usa_north_carolina', country_code="US-NC", download_repo=OSMFR, language='en', proj=3631)
+us_nc_region = gen_country('north-america/us-south/north-carolina', country_base='usa_north_carolina', country_code="US-NC", download_repo=OSMFR, language='en', proj=3631, speed_limit_unit='mph')
 us_nc_region("north_central", (2528685,2528696,2528698,2528700,2528703,2528707,2528713,2528715,2528726,2528730,2528733,2528751,2528697,2528752,2528757))
 us_nc_region("northeast", (2528675,1242005,1242002,1242006,1232243,1232267,1242003,2528706,1242000,1236353,2528720,2528728,1242004,1242001,2528734,2528749,2528753))
 us_nc_region("northwest", (2528670,2528671,2528673,2528674,2528679,2528681,2528684,2528721,2528723,2528754,2528756,2528759))
@@ -1123,7 +1154,7 @@ us_state("south-carolina", 224040, "US-SC", proj=3655)
 us_state("south-dakota", 161652, "US-SD", proj=3659)
 us_state("tennessee", 161838, "US-TN", proj=3661)
 
-us_tx_region = gen_country('north-america/us-south/texas', country_base='usa_texas', country_code="US-TX", download_repo=OSMFR, language='en', proj=3082)
+us_tx_region = gen_country('north-america/us-south/texas', country_base='usa_texas', country_code="US-TX", download_repo=OSMFR, language='en', proj=3082, speed_limit_unit='mph')
 us_tx_region("central", (91858,91911,91933,91939,92017,92024,92026,92032,1651194,1651195,1656651,1657497,1657498,1827125,1827126,1828306,1828427,1828430,1828434,1828436,1828438,1828445,1836914,1836915,1836941,1836955,1836962,1836992,1836993,1836994,1836995,1836997,1837633,1837637,1837639,1837641,1837662,1837663,1837665,1837669,1837671,1837736,1839052))
 us_tx_region("north", (1807484,1807489,1807497,1807507,1807513,1809481,1809485,1809487,1809517,1809527,1809529,1809534,1809554,1809555,1809556,1809595,1810715,1810722,1810723,1810726,1810727,1810728,1810731,1810734,1810735,1810738,1810772,1810775,1810778,1810793,1810930,1810951,1810957,1810964,1810966,1810969,1810970,1810972,1810978,1810979,1810980,1811540,1811550,1811566,1811571,1811588,1811592,1812316,1812357,1812359,1812360,1812423,1812574,1827019,1827095,1827096,1827100,1827101,1827102,1827111,1827112,1827113,1827114,1827116,1827117,1827118,1836916,1836929,1836930,1836937,1836981))
 us_tx_region("northwest", (1634428,1634509,1634544,1827489,1827725,1827726,1836932,1836934,1836982,1836989,1836990,1836991,1837616,1837621,1837628,1837632,1837688,1837698,1837699,1837703,1837710,1839021,1839031,1839045,1839215,1839264,1839269,1839271,1839272,1839286,1839294,1839302,1839374,1839456,1839469,1839474,1839478,1839481,1839521,1839592,1839605,1839608))
@@ -1134,7 +1165,7 @@ us_tx_region("west", (1812313,1812314,1812315,1812339,1812344,1812349,1812578,18
 us_state("utah", 161993, "US-UT", proj=3675)
 us_state("vermont", 60759, "US-VT", proj=3684)
 
-us_va_region = gen_country('north-america/us-south/virginia', country_base='usa_virginia', country_code="US-VA", download_repo=OSMFR, language='en', proj=3968)
+us_va_region = gen_country('north-america/us-south/virginia', country_base='usa_virginia', country_code="US-VA", download_repo=OSMFR, language='en', proj=3968, speed_limit_unit='mph')
 us_va_region("richmond", (1149986,1149988,1633329,206598,206600,2534164,2534169,2534170,2534172,2534175,2534176,2534179,2534182,2534186,2534187,2534194,2534196,2534198,2534200,2534202,3070666,3070728,3070795,3864712,8623880))
 us_va_region("culpeper", (1149987,1633325,1633326,1633327,1633328,1633330,1633331,1633332,206857,207037,2534173,2534189,2534197,2534201,2534203,2534204))
 us_va_region("appomattox", (206651,206666,2504948,2532613,2532619,2532627,2534165,2534166,2534168,2534171,2534174,2534177,2534180,2534188,2534191,2534193,2534199,3864617))
@@ -1291,7 +1322,7 @@ default_country("africa", "sudan", 192789, {"country": "SD", "language": ["ar", 
 default_country("africa", "bir_tawil", 3335661, {"language": ["ar"], "proj": 32636}, download_repo=OSMFR)  # "country": None
 default_country("africa", "swaziland", 88210, {"country": "SZ", "language": "en", "driving_side": "left", "proj": 32736}, download_repo=OSMFR)
 
-tanzania_zone = gen_country('africa', 'tanzania', proj=32736, country_code='TZ', language='en', driving_side="left", download_repo=OSMFR)
+tanzania_zone = gen_country('africa', 'tanzania', proj=32736, country_code='TZ', language=['en', 'sw'], driving_side="left", download_repo=OSMFR)
 
 tanzania_zone("central", 3775063)
 tanzania_zone("coastal", 3775060)
@@ -1337,7 +1368,7 @@ default_country("asia", "bangladesh", 184640, {"country": "BD", "language": "bn"
 default_country("asia", "bahrain", 378734, {"country": "BH", "language": "ar","proj": 32639}, download_repo=OSMFR)
 default_country("asia", "bhutan", 184629, {"country": "BT", "language": ["dz", "en"], "driving_side": "left", "proj": 32646}, download_repo=OSMFR)
 default_country("asia", "brunei", 2103120, {"country": "BN", "driving_side": "left", "language": "ms", "proj": 32650}, download_repo=OSMFR)
-default_country("asia", "cambodia", 49898, {"country": "KHM", "language": "km", "proj": 32648}, download_repo=OSMFR)
+default_country("asia", "cambodia", 49898, {"country": "KH", "language": "km", "proj": 32648}, download_repo=OSMFR)
 default_country("asia", "east_timor", 305142, {"country": "TL", "language": "pt", "driving_side": "left", "proj": 32651}, download_repo=OSMFR)
 default_country("asia", "georgia", 28699, {"country": "GE", "language": "ka", "proj": 32637}, download_repo=OSMFR)
 default_country("asia", "israel", 1473946, {"country": "IL", "language": ["he", "ar"], "proj": 32636}, download_repo=OSMFR)
@@ -1398,6 +1429,7 @@ ph_state("soccsksargen", 3851570, "PH-12")
 ph_state("caraga", 3870502, "PH-13")
 ph_state("northern_mindanao", 3873457, "PH-10")
 ph_state("davao_region", 3936842, "PH-11")
+ph_state("negros_island_region", 17733978, "PH-18")
 
 #########################################################################
 
@@ -1505,7 +1537,7 @@ default_country("oceania", "vanuatu", 2177246, {"country": "VU", "language": ["e
 #########################################################################
 
 default_country("merge", "fiji", 571747, {"country": "FJ", "language": "en", "driving_side": "left", "proj": 32660}, download_repo=OSMFR)
-default_country("merge", "kiribati", 571178, {"country": "KL", "language": "en", "driving_side": "left", "proj": 32660}, download_repo=OSMFR)
+default_country("merge", "kiribati", 571178, {"country": "KI", "language": "en", "driving_side": "left", "proj": 32660}, download_repo=OSMFR)
 
 #########################################################################
 
@@ -1767,7 +1799,7 @@ de_state("bremen", 62718, "DE-HB")
 de_state("hamburg", 62782, "DE-HH")
 de_state("hessen", 62650, "DE-HE")
 de_state("mecklenburg-vorpommern", 28322, "DE-MV")
-de_state("niedersachsen", 454192, "DE-NI")
+de_state("niedersachsen", 62771, "DE-NI")
 
 #de_state("nordrhein-westfalen", 62761, "DE-NW")
 for (name, rel_id) in [("arnsberg", 73340),
@@ -2157,6 +2189,25 @@ class TestPluginCommon(unittest.TestCase):
         for a in all_analysers:
             f = "analyser_" + a + ".py"
             assert f in analyser_files, "Not found: {0}".format(f)
+
+    def test_countrycode(self):
+        # Ensure country codes are uppercase and two letters (before any "-")
+        countries = list(map(lambda c: c.analyser_options.get("country"), config.values()))
+        assert [] == list(filter(lambda d: d is not None and len(d.split("-", 1)[0]) != 2, countries))
+        assert [] == list(filter(lambda d: d is not None and d != d.upper(), countries))
+
+    def test_languages(self):
+        # Ensure languages are lowercase and mapped to a script
+        from modules.languages import language2scripts
+        languages = []
+        for lang in list(map(lambda c: c.analyser_options.get("language"), config.values())):
+            if isinstance(lang, list):
+                languages.extend(lang)
+            elif lang is not None:
+                languages.append(lang)
+
+        assert set() == set(filter(lambda d: d[:2] != d[:2].lower(), languages))
+        assert set() == set(filter(lambda d: d not in language2scripts, languages))
 
 if __name__ == "__main__":
 

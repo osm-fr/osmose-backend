@@ -43,45 +43,32 @@ CREATE INDEX park_highway_linestring_idx ON park_highway USING gist(linestring)
 sql12 = """
 CREATE TEMP TABLE parkings AS
 SELECT
-  *
-FROM (
-  SELECT
-    'W' || id AS type_id,
-    tags,
-    ST_MakePolygon(ways.linestring) AS poly
-  FROM
-    ways
-  WHERE
-    is_polygon AND
-    tags != ''::hstore
-  UNION ALL
-    SELECT
-      'R' || id AS type_id,
-      tags,
-      poly
-    FROM
-      multipolygons
-    WHERE
-      is_valid
-) AS t
+  type || id as type_id,
+  tags,
+  poly
+FROM
+  polygons
 WHERE
   tags?'amenity' AND
   tags->'amenity' = 'parking' AND
-  (NOT tags?'parking' OR tags->'parking' NOT IN ('street_side', 'lane'))
+  (NOT tags?'parking' OR tags->'parking' NOT IN ('street_side', 'lane', 'layby', 'half_on_kerb', 'on_kerb'))
 """
 
 sql13 = """
 SELECT
   pr.type_id,
   ST_AsText(ST_PointOnSurface(pr.poly)),
-  pr.tags->'park_ride' != 'no',
-  ST_Perimeter(ST_Transform(pr.poly, {proj})) / ST_Area(ST_Transform(pr.poly, {proj}))
+  pr.tags->'park_ride' != 'no'
 FROM
   parkings AS pr
   LEFT JOIN park_highway AS highway ON
     ST_Intersects(pr.poly, highway.linestring)
 WHERE
-  highway.id IS NULL
+  highway.id IS NULL AND
+  (
+    pr.tags?'parking' OR
+    (pr.tags?'park_ride' AND pr.tags->'park_ride' != 'no')
+  )
 """
 
 
@@ -113,23 +100,23 @@ HAVING
 
 class Analyser_Osmosis_Parking_highway(Analyser_Osmosis):
 
-    requires_tables_common = ['highways', 'multipolygons']
+    requires_tables_common = ['highways', 'polygons']
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = self.def_class(item = 3161, level = 1, tags = ['highway', 'fix:chair'],
+        self.classs[1] = self.def_class(item = 3161, level = 1, tags = ['highway', 'fix:chair', 'parking'],
             title = T_('Missing access way to parking'),
             detail = T_('There should be a `highway` feature leading to this parking facility to allow for correct routing.'))
-        self.classs[2] = self.def_class(item = 3161, level = 3, tags = ['highway', 'fix:chair'],
+        self.classs[2] = self.def_class(item = 3161, level = 3, tags = ['highway', 'fix:chair', 'parking'],
             title = T_('Missing access way to parking'),
             detail = T_(
 '''There should be a `highway` feature leading to this parking facility
 to allow for correct routing. Add a road or check if `parking=*` is
-correct. If it is a street side parking (`parking=street_side`) or lane,
+correct. If it is a street side parking (`parking=street_side`), layby (`parking=layby`) or lane,
 then add appropriate tags.
 
 See [parking](https://wiki.openstreetmap.org/wiki/Key:parking) tag on the wiki.'''))
-        self.classs[3] = self.def_class(item = 3161, level = 3, tags = ['highway'],
+        self.classs[3] = self.def_class(item = 3161, level = 3, tags = ['highway', 'parking'],
             title = T_('Inconsistent access of parking'),
             detail = T_('''The `access` tag of the parking does not match the `access` tag of the ways inside the parking.
 As a result, this public parking space can only be reached via limited-access roads.'''),
@@ -142,9 +129,7 @@ As a result, this public parking space can only be reached via limited-access ro
         self.run(sql12)
         self.run(sql13.format(proj=self.config.options["proj"]), lambda res: {
             "class": 1 if res[2] else 2,
-            "data": [self.any_full, self.positionAsText],
-            # Street side parkings typically have a perimeter/area ratio > 0.1
-            "fix": {"+": {"parking": "street_side"}} if res[3] > 0.1 else None,
+            "data": [self.any_full, self.positionAsText]
         })
         self.run(sql20, lambda res: {
             "class": 3,
@@ -173,9 +158,8 @@ class Test(TestAnalyserOsmosis):
 
         self.root_err = self.load_errors()
         self.check_err(cl="1", elems=[("way", "101")])
-        self.check_err(cl="2", elems=[("way", "100")], fixes=[{"+": {"parking": "street_side"}}])
-        self.check_err(cl="2", elems=[("way", "124")], fixes=[])
-        self.check_err(cl="2", elems=[("way", "125")], fixes=[])
+        self.check_err(cl="2", elems=[("way", "124")])
+        self.check_err(cl="2", elems=[("way", "125")])
         self.check_err(cl="3", elems=[("way", "103"), ("way", "102")])
         self.check_err(cl="3", elems=[("way", "118"), ("way", "119"), ("way", "120")])
-        self.check_num_err(6)
+        self.check_num_err(5)

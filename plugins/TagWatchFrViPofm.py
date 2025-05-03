@@ -25,6 +25,7 @@ from modules.downloader import urlread
 from modules.Stablehash import stablehash, stablehash64
 import re
 from collections import defaultdict
+from plugins.modules.wikiReader import read_wiki_table, wikitag2text
 
 
 class TagWatchFrViPofm(Plugin):
@@ -52,69 +53,69 @@ class TagWatchFrViPofm(Plugin):
         self._update_ks_vr = defaultdict(dict)
         self._update_kr_vr = defaultdict(dict)
 
-        reline = re.compile(r"^\|([^|]*)\|\|([^|]*)\|\|([^|]*)\|\|([^|]*).*")
-
         # Obtain the info from https://wiki.openstreetmap.org/index.php?title=Tagging_mistakes
         data = urlread(u"https://wiki.openstreetmap.org/index.php?title=Tagging_mistakes&action=raw", 1)
-        data = data.split("\n")
-        for line in data:
-            for res in reline.findall(line):
-                only_for = res[3].strip()
-                if only_for in (None, '', country, language) or (country and country.startswith(only_for)):
-                    r = res[1].strip()
-                    c0 = res[2].strip()
-                    tags = ["fix:chair"] if c0 == "" else [c0, "fix:chair"]
-                    c = stablehash(c0)
-                    self.errors[c] = self.def_class(item = 3030, level = 2, tags = tags,
-                        title = {'en': c0},
-                        detail = T_(
+        data = read_wiki_table(data, skip_headers = False)[1:] # Headers in the middle of the table, not supported yet in read_wiki_table
+
+        for row in data:
+            only_for = row[3]
+            if only_for in (None, '', country, language) or (country and country.startswith(only_for)) or only_for.lower().startswith("{{taginfo"): # This also filters out the alphabetical headers
+                r = wikitag2text(row[1]) # replace-value
+                f = wikitag2text(row[0]) # to-be-replaced value
+                c0 = row[2] # the Osmose issue tag and issue title
+                tags = ["fix:chair"] if c0 == "" else [c0, "fix:chair"]
+                c = stablehash(c0)
+                self.errors[c] = self.def_class(item = 3030, level = 2, tags = tags,
+                    title = {'en': c0},
+                    detail = T_(
 '''Simple and frequent errors, can be updated by anyone on the wiki.'''),
-                        resource = 'https://wiki.openstreetmap.org/wiki/Tagging_mistakes')
-                    if u"=" in res[0]:
-                        k = res[0].split(u"=")[0].strip()
-                        v = res[0].split(u"=")[1].strip()
-                        if self.quoted(k):
-                            k = self.quoted2re(k)
-                            if self.quoted(v):
-                                self._update_kr_vr[k][self.quoted2re(v)] = [r, c]
-                            else:
-                                self._update_kr_vs[k][v] = [r, c]
+                    resource = 'https://wiki.openstreetmap.org/wiki/Tagging_mistakes')
+
+                if "=" in f:
+                    k = f.split("=")[0].strip()
+                    v = f.split("=")[1].strip()
+                    if self.quoted(k):
+                        k = self.quoted2re(k)
+                        if self.quoted(v):
+                            self._update_kr_vr[k][self.quoted2re(v)] = [r, c]
                         else:
-                            if self.quoted(v):
-                                self._update_ks_vr[k][self.quoted2re(v)] = [r, c]
-                            else:
-                                self._update_ks_vs[k][v] = [r, c]
+                            self._update_kr_vs[k][v] = [r, c]
                     else:
-                        if self.quoted(res[0]):
-                            self._update_kr[self.quoted2re(res[0])] = [r, c]
+                        if self.quoted(v):
+                            self._update_ks_vr[k][self.quoted2re(v)] = [r, c]
                         else:
-                            self._update_ks[res[0]] = [r, c]
+                            self._update_ks_vs[k][v] = [r, c]
+                else:
+                    if self.quoted(f):
+                        self._update_kr[self.quoted2re(f)] = [r, c]
+                    else:
+                        self._update_ks[f] = [r, c]
 
     def node(self, data, tags):
         err = []
         for k in tags:
             if k in self._update_ks:
-                err.append({"class": self._update_ks[k][1], "subclass": stablehash64("{0}|{1}".format(self._update_ks, k)), "text": T_("tag key: {0} => {1} (rule ks)", k, self._update_ks[k][0])})
+                err.append({"class": self._update_ks[k][1], "subclass": stablehash64("{0}|{1}".format(self._update_ks, k)), "text": T_("tag key: {0} => {1}", k, self._update_ks[k][0])})
             if k in self._update_ks_vs and tags[k] in self._update_ks_vs[k]:
-                err.append({"class": self._update_ks_vs[k][tags[k]][1], "subclass": stablehash64("{0}|{1}".format(self._update_ks, k)), "text": T_("tag value: {0}={1} => {2} (rule ks_vs)", k, tags[k],self._update_ks_vs[k][tags[k]][0])})
+                err.append({"class": self._update_ks_vs[k][tags[k]][1], "subclass": stablehash64("{0}|{1}".format(self._update_ks, k)), "text": T_("tag value: {0}={1} => {2}", k, tags[k],self._update_ks_vs[k][tags[k]][0])})
             if k in self._update_ks_vr:
                 for v in self._update_ks_vr[k]:
                     if v.match(tags[k]):
-                        err.append({"class": self._update_ks_vr[k][v][1], "subclass": stablehash64("{0}|{1}".format(v, k)), "text": T_("tag value: {0}={1} => {2} (rule ks_vr)", k, tags[k],self._update_ks_vr[k][v][0])})
+                        err.append({"class": self._update_ks_vr[k][v][1], "subclass": stablehash64("{0}|{1}".format(v, k)), "text": T_("tag value: {0}={1} => {2}", k, tags[k],self._update_ks_vr[k][v][0])})
 
         for kk in tags:
             for k in self._update_kr:
                 if k.match(kk):
-                    err.append({"class": self._update_kr[k][1], "subclass": stablehash64("{0}|{1}".format(kk, k)), "text": T_("tag key: {0} => {1} (rule kr)", kk, self._update_kr[k][0])})
+                    err.append({"class": self._update_kr[k][1], "subclass": stablehash64("{0}|{1}".format(kk, k)), "text": T_("tag key: {0} => {1}", kk, self._update_kr[k][0])})
             for k in self._update_kr_vs:
                 if k.match(kk):
                     if tags[kk] in self._update_kr_vs[k]:
-                        err.append({"class": self._update_kr_vs[k][tags[kk]][1], "subclass": stablehash64("{0}|{1}".format(kk, k)), "text": T_("tag value: {0}={1} => {2} (rule kr_vs)", kk, tags[kk], self._update_kr_vs[k][tags[kk]][0])})
+                        err.append({"class": self._update_kr_vs[k][tags[kk]][1], "subclass": stablehash64("{0}|{1}".format(kk, k)), "text": T_("tag value: {0}={1} => {2}", kk, tags[kk], self._update_kr_vs[k][tags[kk]][0])})
             for k in self._update_kr_vr:
                 if k.match(kk):
                     for v in self._update_kr_vr[k]:
                         if v.match(tags[kk]):
-                            err.append({"class": self._update_kr_vr[k][v][1], "subclass": stablehash64("{0}|{1}".format(kk, k)), "text": T_("tag value: {0}={1} => {2} (rule kr_vr)", kk, tags[kk], self._update_kr_vr[k][v][0])})
+                            err.append({"class": self._update_kr_vr[k][v][1], "subclass": stablehash64("{0}|{1}".format(kk, k)), "text": T_("tag value: {0}={1} => {2}", kk, tags[kk], self._update_kr_vr[k][v][0])})
         return err
 
     def way(self, data, tags, nds):
@@ -142,6 +143,7 @@ class Test(TestPluginCommon):
         self.check_err(a.node(None, {"administrative": "boundary"}))
         self.check_err(a.node(None, {"name": "FIXME"}))
         self.check_err(a.node(None, {"Area": "plop"}))
+        self.check_err(a.node(None, {"access": "official"}))
         self.check_err(a.node(None, {"Fixme": "yes"}))
         self.check_err(a.node(None, {"voltage": "10kV"}))
         assert not a.node(None, {"area": "plop"})

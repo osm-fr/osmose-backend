@@ -41,7 +41,7 @@ addr:inclusion=*.'''))
             title = T_('Invalid addr:interpolation or addr:inclusion value'),
             detail = T_(
 '''* Tag `addr:interpolation=*` is only valid with values: `even`, `odd`,
-`all`, `alphabetic` and Number.
+`all`, `alphabetic` or a number.
 * Tag `addr:inclusion=*` is only valid with values: `actual`, `estimate`
 and `potential`.'''))
 

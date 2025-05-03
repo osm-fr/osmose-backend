@@ -26,33 +26,31 @@ from .Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
 SELECT
-    id,
-    ST_AsText(way_locate(linestring))
+    type_id,
+    ST_AsText(polygon_locate(poly))
 FROM
     {0}buildings
 WHERE
     wall AND
     npoints > 15 AND
-    polygon_proj IS NOT NULL AND
-    area / ST_Area(ST_MinimumBoundingCircle(polygon_proj)) > 0.95 AND
-    ST_MaxDistance(polygon_proj, polygon_proj) > 5 AND
+    area / ST_Area(ST_MinimumBoundingCircle(poly_proj)) > 0.95 AND
+    ST_MaxDistance(poly_proj, poly_proj) > 5 AND
     tags - ARRAY['created_by', 'source', 'name', 'building', 'man_made', 'note:qadastre'] = ''::hstore AND
     tags->'building' NOT IN ('hut', 'ger', 'yurt', 'slurry_tank') AND
-    tags->'man_made' NOT IN ('water_tower', 'reservoir_covered', 'wastewater_plant', 'storage_tank', 'windmill', 'dovecote', 'silo')
+    tags->'man_made' NOT IN ('water_tower', 'reservoir_covered', 'wastewater_plant', 'storage_tank', 'windmill', 'dovecote', 'silo', 'gasometer', 'lighthouse', 'bioreactor')
 """
 
 sql20 = """
 SELECT
-    id,
-    ST_AsText(way_locate(linestring))
+    type_id,
+    ST_AsText(polygon_locate(poly))
 FROM
     {0}buildings
 WHERE
     wall AND
-    polygon_proj IS NOT NULL AND
-    ST_MaxDistance(polygon_proj, polygon_proj) > 300 AND
+    ST_MaxDistance(poly_proj, poly_proj) > 300 AND
     tags - ARRAY['created_by', 'source', 'name', 'building', 'note:qadastre'] = ''::hstore AND
-    tags->'building' NOT IN ('warehouse', 'industrial','greenhouse')
+    tags->'building' NOT IN ('warehouse', 'industrial', 'greenhouse', 'manufacture', 'hospital', 'university')
 """
 
 class Analyser_Osmosis_Building_Shapes(Analyser_Osmosis):
@@ -73,7 +71,7 @@ tagged.''')
                 title = T_('Special building (large)'),
                 detail = detail)
 
-            self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "fix":[
+            self.callback10 = lambda res: {"class":1, "data":[self.any_full, self.positionAsText], "fix":[
                 {"+":{"man_made":"water_tower"}},
                 {"+":{"man_made":"reservoir_covered"}},
                 {"+":{"man_made":"wastewater_plant"}},
@@ -82,10 +80,9 @@ tagged.''')
                 {"+":{"man_made":"dovecote"}},
                 {"+":{"man_made":"silo"}},
                 {"+":{"building":"hut"}},
-                {"+":{"building":"yurt"}},
                 {"+":{"building":"ger"}},
             ]}
-            self.callback20 = lambda res: {"class":2, "data":[self.way_full, self.positionAsText], "fix":[
+            self.callback20 = lambda res: {"class":2, "data":[self.any_full, self.positionAsText], "fix":[
                 {"+":{"man_made":"works"}},
                 {"+":{"shop":"mall"}},
                 {"+":{"shop":"supermarket"}},

@@ -46,8 +46,8 @@ way[cycleway][cycleway:right][cycleway:left] {
     assertMatch: "way cycleway=a cycleway:right=b cycleway:left=c";
 }
 
-way[footway=sidewalk][highway!~/footway|construction/][highway] {
-    throwWarning: tr("{0} without {1}", "footway=sidewalk", "highway=footway|construction");
+way[footway=sidewalk][highway!~/footway|construction|proposed/][highway] {
+    throwWarning: tr("{0} without {1}", "footway=sidewalk", "highway=footway|construction|proposed");
     -osmoseItemClassLevel: "2080/20805/3";
     -osmoseTags: list("footway", "fix:chair");
 
@@ -55,6 +55,7 @@ way[footway=sidewalk][highway!~/footway|construction/][highway] {
     assertNoMatch: "way footway=sidewalk highway=footway";
     assertNoMatch: "way footway=sidewalk area:highway=footway";
     assertNoMatch: "way footway=sidewalk highway=construction construction=footway";
+    assertNoMatch: "way footway=sidewalk highway=proposed proposed=footway";
 }
 
 way[highway=service][service=psv][psv!=yes] {
@@ -113,4 +114,26 @@ way!:righthandtraffic["cycleway:right"=~/opposite|opposite_lane/][oneway="-1"] {
 
     assertMatch: "way cycleway:right=opposite oneway=yes";
     assertNoMatch: "way cycleway=opposite oneway=yes";
+}
+
+
+/* Warn about cycleway:lanes having incorrect values, e.g. confusion with bicycle:lanes */
+/* Tolerate everything with a value of cycleway:lane (advisory/exclusive/pictogram) as there is no agreed upon scheme to tag lane-type-per-lane yet */
+way[cycleway:lanes:forward][cycleway:lanes:forward!~/^((shared_lane|share_busway|no|none|lane|(\w|:)*(advisory|exclusive|pictogram)(\w|:)*)?(\||$))+$/],
+way[cycleway:lanes:backward][cycleway:lanes:backward!~/^((shared_lane|share_busway|no|none|lane|(\w|:)*(advisory|exclusive|pictogram)(\w|:)*)?(\||$))+$/],
+way[cycleway:lanes][cycleway:lanes!~/^((shared_lane|share_busway|no|none|lane|(\w|:)*(advisory|exclusive|pictogram)(\w|:)*)?(\||$))+$/] {
+    throwWarning: tr("Uncommon value of {0}", "{0.key}");
+    -osmoseItemClassLevel: "3160/316020/3";
+    -osmoseTags: list("cycleway", "fix:survey");
+    assertMatch: "way cycleway:lanes=4";
+    assertMatch: "way cycleway:lanes=no|designated";
+    assertMatch: "way cycleway:lanes=no|designated|";
+    assertMatch: "way cycleway:lanes=no|lane|designated";
+    assertMatch: "way cycleway:lanes=no|lane|designated|";
+    assertNoMatch: "way cycleway:lanes=no|lane|shared_lane";
+    assertNoMatch: "way cycleway:lanes=|lane|";
+    assertNoMatch: "way cycleway:lanes=lane|||";
+    assertNoMatch: "way cycleway:lanes=|shared_lane";
+    assertNoMatch: "way cycleway:lanes=lane note=single_lane";
+    assertNoMatch: "way cycleway:lanes=lane|advisory_lane|lane_exclusive||lane:exclusive|no"; /* tolerate everything with lane specifics */
 }

@@ -38,7 +38,10 @@ class Construction(Plugin):
 been in construction for more than two years or opening data is
 exceeded.'''))
 
-        self.tag_construction = ["highway", "landuse", "building"]
+        # Tags where the value "construction" does not refer to construction work on the object itself
+        # Note that only company=construction is documented
+        self.tag_not_construction = ["company", "craft", "historic", "industrial", "shop"]
+
         self.tag_date = ["opening_date", "open_date", "construction:date", "temporary:date_on", "date_on"]
         self.default_date = datetime.datetime(9999, 12, 1)
         self.today = datetime.datetime.today()
@@ -65,15 +68,14 @@ exceeded.'''))
             pass
 
     def node(self, data, tags):
-        construction_found = False
-        for t in tags:
-            if t == "construction" or (t.startswith("construction:") and t != "construction:date"):
-                construction_found = True
-                break
+        construction_found = "construction" in tags
 
+        if not construction_found and "operational_status" in tags:
+            construction_found = tags.get("operational_status").endswith("construction")
         if not construction_found:
-            for t in self.tag_construction:
-                if tags.get(t) == "construction":
+            for t in tags:
+                if ((t.startswith("construction:") and t != "construction:date")
+                    or (tags.get(t) == "construction" and t not in self.tag_not_construction and ":" not in t)):
                     construction_found = True
                     break
 
@@ -86,16 +88,21 @@ exceeded.'''))
             date = self.convert2date(tagDate)
 
         end_date = False
-        if date:
-            end_date = date
-        elif "timestamp" in data:
-            end_date = datetime.datetime.strptime(data["timestamp"][0:10], "%Y-%m-%d") + self.date_limit
-        else:
+        try:
+            if date:
+                end_date = date
+            elif data["timestamp"] > 0:
+                end_date = datetime.datetime.fromtimestamp(data["timestamp"]) + self.date_limit
+            else:
+                return
+        except:
+            # This should only trigger in case the pbf reader is updated (and the plugin not), causing the timestamp format to change (or be absent)
+            print("Error: Unexpected format of timestamp or no timestamp provided, expected numerical timestamp")
             return
 
         delta = int(self.total_seconds(self.today - end_date))
         if delta > 0:
-            # Change the subclass every 6 months after expiration, re-popup the marker in frontend event if set as false-positive
+            # Change the subclass every 6 months after expiration, re-popup the marker in frontend even if set as false-positive
             return {"class": 4070, "subclass": delta // self.recall}
 
     def way(self, data, tags, nds):
@@ -120,15 +127,23 @@ class Test(TestPluginCommon):
         self.p.init(None)
 
     def test(self):
+        # Use today, so it won't trigger due to the timestamp in this test
+        ts = datetime.datetime.timestamp(datetime.datetime.today())
+
         constr_tags = [{"construction": "yes"},
                        {"highway": "construction"},
                        {"landuse": "construction"},
                        {"building": "construction"},
+                       {"operational_status": "under_construction"},
+                       {"railway": "construction"},
                        {"construction:man_made": "water_works"},
                       ]
         other_tags = [{"highway": "primary"},
                       {"landuse": "farm"},
                       {"building": "yes"},
+                      {"company": "construction"},
+                      {"construction:date": "2001-01-01"},
+                      {"removed:landuse": "construction"},
                      ]
 
         correct_dates = ["2010-02-03",
@@ -148,31 +163,34 @@ class Test(TestPluginCommon):
                 for val_d in correct_dates:
                     t = tags.copy()
                     t.update({tag_d: val_d})
-                    self.check_err(self.p.node({}, t), t)
+                    self.check_err(self.p.node({"timestamp": ts}, t), t)
                 for val_d in not_correct_dates:
                     t = tags.copy()
                     t.update({tag_d: val_d})
-                    assert not self.p.way({}, t, None), t
+                    assert not self.p.way({"timestamp": ts}, t, None), t
 
         for tags in other_tags:
             for tag_d in self.p.tag_date:
                 for val_d in correct_dates:
                     t = tags.copy()
                     t.update({tag_d: val_d})
-                    assert not self.p.relation({}, t, None), t
+                    assert not self.p.relation({"timestamp": ts}, t, None), t
 
     def test_timestamp(self):
         tags = {"construction": "yes"}
         for ts in ["2003-01-04", "1989-03-10"]:
-            self.check_err(self.p.node({"timestamp": ts}, tags), ts)
-        for ts in ["2078-01-04"]:
-            assert not self.p.node({"timestamp": ts}, tags), ts
+            ts_int = datetime.datetime.timestamp(datetime.datetime.strptime(ts,"%Y-%m-%d"))
+            self.check_err(self.p.node({"timestamp": ts_int}, tags), ts)
+        for ts in ["2078-01-04", str(datetime.datetime.today())[0:10]]:
+            ts_int = datetime.datetime.timestamp(datetime.datetime.strptime(ts,"%Y-%m-%d"))
+            assert not self.p.node({"timestamp": ts_int}, tags), ts
+        assert not self.p.node({"timestamp": 0}, tags)
 
     def test_recall(self):
         tags = {"construction": "yes"}
         today = datetime.datetime.today()
         td = datetime.timedelta(days=6 * 30)
         for i in range(5, 10, 1):
-            e = self.p.node({"timestamp": (today - i*td).strftime("%Y-%m-%d")}, tags)
+            e = self.p.node({"timestamp": datetime.datetime.timestamp(today - i*td)}, tags)
             self.check_err(e, i)
             assert e["subclass"] == i - 5

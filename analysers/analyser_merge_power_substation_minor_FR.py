@@ -58,8 +58,38 @@ class Analyser_Merge_Power_Substation_minor_FR(Analyser_Merge_Point):
                         "substation": "minor_distribution", # Currently default value, we're unable to destinguish distribution and minor_distribution in opendata
                         "voltage": "20000"}, # Currently lawful default value as there is no opendata to define it. Mappers may be knowledgeable
                     mapping2 = {
-                        "operator": "GRD",
-                        "name": lambda fields: fields["Nom poste"] if fields["Nom poste"] != "" and fields["GRD"] != "Strasbourg Électricité Réseaux" else None,
-                        "ref": lambda fields: fields["Nom poste"] if fields["Nom poste"] != "" and fields["GRD"] == "Strasbourg Électricité Réseaux" else None,
+                        "name": lambda fields: fields["Nom poste"] if fields["Nom poste"] != "" else None,
+                        "operator": lambda res: self.extract_operator.get(res['GRD'])[0] if res['GRD'] in self.extract_operator else res['GRD'],
+                        "operator:wikidata": lambda res: self.extract_operator.get(res['GRD'])[1] if res['GRD'] in self.extract_operator else None,
                         "source": lambda fields: self.source() + " - " + fields["GRD"]},
                 )))
+
+    # Main source: https://wiki.openstreetmap.org/wiki/Power_networks/France/Exploitants#Entreprises_de_distribution
+    extract_operator = {
+        "Coopérative d'électricité de Saint Martin de Londres": ['CESML', None],
+        #"Ene'O - Energies Services Occitans": [None, 'Q115468993'],
+        'Enedis': ['Enedis', 'Q3587594'],
+        #'Energie développement services du Briançonnais': [None, None],
+        'Energie et Services de Seyssel': ['ESSeyssel', 'Q92878829'],
+        #'Gascogne Energies Services': [None, None],
+        'Gedia': ['Gedia', 'Q115469036'],
+        'GÉRÉDIS': ['Gérédis', 'Q112115590'],
+        'GreenAlp': ['GreenAlp', 'Q115580260'],
+        #'Gignac Energie': [None, None],
+        "Régie d'Electricité de Thônes": ['REThones', 'Q115579327'],
+        #'Régie Services Energie': [None, None],
+        'réséda': ['réséda', 'Q112115721'],
+        'SOREA': ['Sorea', 'Q115470007'],
+        'SRD': ['SRD', 'Q110319893'],
+        #'SEM Beauvois Distrelec': [None, None],
+        #'SEML ENERGIES HAUTE TARENTAISE': [None, None],
+        'SICAE du Carmausin': ['SICAE-Carmausin', None],
+        'SICAE Est': ['SICAE Est', 'Q112115648'],
+        'SICAE Oise': ['SICAE Oise', 'Q112115524'],
+        'SICAE de la Somme et du Cambraisis': ['SICAE-Somme', 'Q112115660'],
+        'SICAP': ['SICAP', None],
+        'Strasbourg Électricité Réseaux': ['Strasbourg Électricité Réseaux', 'Q107352347'],
+        "Syndicat d'électricité synergie Maurienne": ['Synergie Maurienne', None],
+        'Synelva': ['Synelva', 'Q115470023'],
+        'Vialis': ['Vialis', 'Q113841490'],
+    }

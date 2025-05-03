@@ -18,7 +18,7 @@ class indoor(PluginMapCSS):
         self.errors[52] = self.def_class(item = 1300, level = 3, tags = mapcss.list_('indoor', 'geom') + mapcss.list_('fix:survey', 'shop'), title = mapcss.tr('This indoor shop should probably be inside a room'))
         self.errors[53] = self.def_class(item = 1300, level = 2, tags = mapcss.list_('indoor', 'geom'), title = mapcss.tr('This indoor room should have a door'))
         self.errors[21201] = self.def_class(item = 2120, level = 3, tags = mapcss.list_('indoor', 'geom'), title = mapcss.tr('`{0}` without `{1}` or `{2}`', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.key}')))
-        self.errors[21202] = self.def_class(item = 2120, level = 3, tags = mapcss.list_('indoor', 'geom'), title = mapcss.tr('`{0}` without `{1}`', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.key}')))
+        self.errors[21202] = self.def_class(item = 2120, level = 3, tags = mapcss.list_('indoor', 'geom'), title = mapcss.tr('`{0}` without `{1}`', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.key}')), trap = mapcss.tr('For the number of rooms in a facility, use `{0}` instead.', 'rooms=*'))
 
         self.re_2a047336 = re.compile(r'room|corridor|area|level')
 
@@ -70,6 +70,7 @@ class indoor(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'room')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'indoor')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'buildingpart')))
                 except mapcss.RuleAbort: pass
             if match:
+                # -osmoseTrap:tr("For the number of rooms in a facility, use `{0}` instead.","rooms=*")
                 # -osmoseItemClassLevel:"2120/21202:2/3"
                 # throwWarning:tr("`{0}` without `{1}`","{0.tag}","{1.key}")
                 # fixAdd:"indoor=room"
@@ -174,6 +175,7 @@ class indoor(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'room')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'indoor')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'buildingpart')))
                 except mapcss.RuleAbort: pass
             if match:
+                # -osmoseTrap:tr("For the number of rooms in a facility, use `{0}` instead.","rooms=*")
                 # -osmoseItemClassLevel:"2120/21202:2/3"
                 # throwWarning:tr("`{0}` without `{1}`","{0.tag}","{1.key}")
                 # fixAdd:"indoor=room"
@@ -219,6 +221,7 @@ class indoor(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'room')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'indoor')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'buildingpart')))
                 except mapcss.RuleAbort: pass
             if match:
+                # -osmoseTrap:tr("For the number of rooms in a facility, use `{0}` instead.","rooms=*")
                 # -osmoseItemClassLevel:"2120/21202:2/3"
                 # throwWarning:tr("`{0}` without `{1}`","{0.tag}","{1.key}")
                 # fixAdd:"indoor=room"

@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: josm\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-17 06:12+0200\n"
-"PO-Revision-Date: 2024-05-11 06:22+0000\n"
-"Last-Translator: Kohei Hasegawa <Unknown>\n"
+"POT-Creation-Date: 2025-03-24 06:56+0100\n"
+"PO-Revision-Date: 2025-03-23 09:47+0000\n"
+"Last-Translator: lichterball <Unknown>\n"
 "Language-Team: Japanese <tr@openstreetmap.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2024-05-12 04:31+0000\n"
-"X-Generator: Launchpad (build 0e1f616671af724398db43b36ddfb3ed1f2682ec)\n"
+"X-Launchpad-Export-Date: 2025-03-25 05:59+0000\n"
+"X-Generator: Launchpad (build aa29ae0fff49e4e804b39147c9f259d2fb023199)\n"
 "Language: ja\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -63,9 +63,11 @@ msgstr ""
 #: ../core/resources/data/validator/combinations.mapcss:1038
 #: ../core/resources/data/validator/combinations.mapcss:1045
 #: ../core/resources/data/validator/combinations.mapcss:1051
+#: ../core/resources/data/validator/combinations.mapcss:1117
+#: ../core/resources/data/validator/geometry.mapcss:433
 #: ../core/resources/data/validator/highway.mapcss:74
-#: ../core/resources/data/validator/highway.mapcss:153
-#: ../core/resources/data/validator/highway.mapcss:158
+#: ../core/resources/data/validator/highway.mapcss:151
+#: ../core/resources/data/validator/highway.mapcss:156
 #: ../core/resources/data/validator/relation.mapcss:19
 #: ../core/resources/data/validator/relation.mapcss:38
 #: ../core/resources/data/validator/religion.mapcss:5
@@ -126,6 +128,7 @@ msgstr "{0}に数値以外が入力されている"
 #: ../core/resources/data/validator/combinations.mapcss:884
 #: ../core/resources/data/validator/combinations.mapcss:888
 #: ../core/resources/data/validator/combinations.mapcss:978
+#: ../core/resources/data/validator/combinations.mapcss:1116
 #: ../core/resources/data/validator/territories.mapcss:28
 #: ../core/resources/data/validator/territories.mapcss:33
 #, java-format
@@ -232,8 +235,10 @@ msgstr "{0}があるのに{1}、{2}、{3}、{4}のいずれかがない"
 #: ../core/resources/data/validator/combinations.mapcss:1002
 #: ../core/resources/data/validator/combinations.mapcss:1059
 #: ../core/resources/data/validator/combinations.mapcss:1066
-#: ../core/resources/data/validator/highway.mapcss:165
-#: ../core/resources/data/validator/highway.mapcss:203
+#: ../core/resources/data/validator/combinations.mapcss:1075
+#: ../core/resources/data/validator/combinations.mapcss:1095
+#: ../core/resources/data/validator/highway.mapcss:163
+#: ../core/resources/data/validator/highway.mapcss:201
 #: ../core/resources/data/validator/numeric.mapcss:379
 #: ../core/resources/data/validator/relation.mapcss:72
 msgid "suspicious tag combination"
@@ -265,13 +270,14 @@ msgstr "疑わしいタグの組み合わせ"
 #: ../core/resources/data/validator/combinations.mapcss:973
 #: ../core/resources/data/validator/combinations.mapcss:985
 #: ../core/resources/data/validator/combinations.mapcss:1001
+#: ../core/resources/data/validator/combinations.mapcss:1074
 #: ../core/resources/data/validator/deprecated.mapcss:642
 #: ../core/resources/data/validator/deprecated.mapcss:651
 #: ../core/resources/data/validator/deprecated.mapcss:660
 #: ../core/resources/data/validator/deprecated.mapcss:1357
 #: ../core/resources/data/validator/deprecated.mapcss:1362
 #: ../core/resources/data/validator/highway.mapcss:93
-#: ../core/resources/data/validator/highway.mapcss:163
+#: ../core/resources/data/validator/highway.mapcss:161
 #, java-format
 msgid "{0} together with {1}"
 msgstr "{0}と{1}が一緒にある"
@@ -413,6 +419,7 @@ msgid ""
 msgstr ""
 
 #: ../core/resources/data/validator/combinations.mapcss:784
+#: ../core/resources/data/validator/combinations.mapcss:1094
 #, java-format
 msgid "{0} together with {1}. Remove {1}."
 msgstr "{0}を{1}と一緒に使用しています。{1}を削除してください。"
@@ -759,8 +766,13 @@ msgstr ""
 #: ../core/resources/data/validator/deprecated.mapcss:2506
 #: ../core/resources/data/validator/deprecated.mapcss:2518
 #: ../core/resources/data/validator/deprecated.mapcss:2528
-#: ../core/resources/data/validator/highway.mapcss:131
-#: ../core/resources/data/validator/highway.mapcss:139
+#: ../core/resources/data/validator/deprecated.mapcss:2558
+#: ../core/resources/data/validator/deprecated.mapcss:2566
+#: ../core/resources/data/validator/deprecated.mapcss:2571
+#: ../core/resources/data/validator/deprecated.mapcss:2576
+#: ../core/resources/data/validator/deprecated.mapcss:2581
+#: ../core/resources/data/validator/highway.mapcss:129
+#: ../core/resources/data/validator/highway.mapcss:137
 #, java-format
 msgid "{0} is deprecated"
 msgstr "{0}は推奨されていません"
@@ -1057,10 +1069,19 @@ msgstr "{0}は推奨されていません"
 #: ../core/resources/data/validator/deprecated.mapcss:2507
 #: ../core/resources/data/validator/deprecated.mapcss:2519
 #: ../core/resources/data/validator/deprecated.mapcss:2529
-#: ../core/resources/data/validator/highway.mapcss:113
-#: ../core/resources/data/validator/highway.mapcss:120
-#: ../core/resources/data/validator/highway.mapcss:133
-#: ../core/resources/data/validator/highway.mapcss:141
+#: ../core/resources/data/validator/deprecated.mapcss:2535
+#: ../core/resources/data/validator/deprecated.mapcss:2540
+#: ../core/resources/data/validator/deprecated.mapcss:2545
+#: ../core/resources/data/validator/deprecated.mapcss:2550
+#: ../core/resources/data/validator/deprecated.mapcss:2559
+#: ../core/resources/data/validator/deprecated.mapcss:2567
+#: ../core/resources/data/validator/deprecated.mapcss:2572
+#: ../core/resources/data/validator/deprecated.mapcss:2577
+#: ../core/resources/data/validator/deprecated.mapcss:2582
+#: ../core/resources/data/validator/highway.mapcss:111
+#: ../core/resources/data/validator/highway.mapcss:118
+#: ../core/resources/data/validator/highway.mapcss:131
+#: ../core/resources/data/validator/highway.mapcss:139
 #: ../core/resources/data/validator/territories.mapcss:22
 #: ../core/resources/data/validator/wikipedia.mapcss:22
 msgid "deprecated tagging"
@@ -1174,11 +1195,12 @@ msgstr "{0} は推奨されません。ツールメニューのウェイ方向�
 #: ../core/resources/data/validator/deprecated.mapcss:1263
 #: ../core/resources/data/validator/deprecated.mapcss:1325
 #: ../core/resources/data/validator/deprecated.mapcss:1400
-#: ../core/resources/data/validator/geometry.mapcss:318
+#: ../core/resources/data/validator/geometry.mapcss:316
+#: ../core/resources/data/validator/geometry.mapcss:437
 #: ../core/resources/data/validator/numeric.mapcss:506
 #: ../core/resources/data/validator/religion.mapcss:33
-#: ../core/resources/data/validator/unnecessary.mapcss:119
-#: ../core/resources/data/validator/unnecessary.mapcss:155
+#: ../core/resources/data/validator/unnecessary.mapcss:120
+#: ../core/resources/data/validator/unnecessary.mapcss:156
 #, java-format
 msgid "{0}"
 msgstr ""
@@ -1253,7 +1275,7 @@ msgid "{0} is not a building type."
 msgstr ""
 
 #: ../core/resources/data/validator/deprecated.mapcss:2049
-#: ../core/resources/data/validator/highway.mapcss:181
+#: ../core/resources/data/validator/highway.mapcss:179
 #: ../core/resources/data/validator/numeric.mapcss:340
 #: ../core/resources/data/validator/numeric.mapcss:367
 #: ../core/resources/data/validator/numeric.mapcss:394
@@ -1276,6 +1298,14 @@ msgstr ""
 #: ../core/resources/data/validator/deprecated.mapcss:2478
 #, java-format
 msgid "{0} with a temporary URL which may be outdated very soon"
+msgstr ""
+
+#: ../core/resources/data/validator/deprecated.mapcss:2534
+#: ../core/resources/data/validator/deprecated.mapcss:2539
+#: ../core/resources/data/validator/deprecated.mapcss:2544
+#: ../core/resources/data/validator/deprecated.mapcss:2549
+#, java-format
+msgid "{0} should be replaced by {1}"
 msgstr ""
 
 #: ../core/resources/data/validator/geometry.mapcss:43
@@ -1381,72 +1411,81 @@ msgstr "同じ自然領域が重複している"
 msgid "Overlapping Identical Landuses"
 msgstr "同じ土地利用が重複している"
 
-#: ../core/resources/data/validator/geometry.mapcss:319
+#: ../core/resources/data/validator/geometry.mapcss:317
 msgid "isolated node which must be connected to a way"
 msgstr "ウェイに接続すべきノードが孤立している"
 
-#: ../core/resources/data/validator/geometry.mapcss:328
+#: ../core/resources/data/validator/geometry.mapcss:326
 msgid "node connects waterway and bridge"
 msgstr "水路と橋の両方に接続されたノード"
 
-#: ../core/resources/data/validator/geometry.mapcss:334
-#: ../core/resources/data/validator/geometry.mapcss:347
+#: ../core/resources/data/validator/geometry.mapcss:332
+#: ../core/resources/data/validator/geometry.mapcss:345
 #, java-format
 msgid "{0} node connected to a highway"
 msgstr "{0}のノードが道路に接続している"
 
-#: ../core/resources/data/validator/geometry.mapcss:353
+#: ../core/resources/data/validator/geometry.mapcss:351
 #, java-format
 msgid "{0} node connected to an underground object"
 msgstr ""
 
-#: ../core/resources/data/validator/geometry.mapcss:358
+#: ../core/resources/data/validator/geometry.mapcss:356
 msgid "suspicious roundabout direction"
 msgstr "疑わしい環状交差点の方向"
 
-#: ../core/resources/data/validator/geometry.mapcss:363
+#: ../core/resources/data/validator/geometry.mapcss:361
 #, java-format
 msgid "{0} on a large area"
 msgstr ""
 
-#: ../core/resources/data/validator/geometry.mapcss:369
+#: ../core/resources/data/validator/geometry.mapcss:367
 #, java-format
 msgid "{0} on a small area"
 msgstr ""
 
-#: ../core/resources/data/validator/geometry.mapcss:376
+#: ../core/resources/data/validator/geometry.mapcss:374
 msgid "Too large building"
 msgstr ""
 
-#: ../core/resources/data/validator/geometry.mapcss:381
+#: ../core/resources/data/validator/geometry.mapcss:379
 msgid ""
 "Waterway ends without a connection to another waterway or the direction of "
 "the waterway is wrong."
 msgstr "水路が他の水路に接続することなく終わっているか、水路の向きが誤っています。"
 
-#: ../core/resources/data/validator/geometry.mapcss:387
+#: ../core/resources/data/validator/geometry.mapcss:385
 #, java-format
 msgid "Coastline inside {1}"
 msgstr ""
 
-#: ../core/resources/data/validator/geometry.mapcss:394
+#: ../core/resources/data/validator/geometry.mapcss:392
 #, java-format
 msgid "{0} should be on the node where {1} and {2} intersect"
 msgstr "{0}は{1}と{2}が交差するノード上にあるべきです"
 
-#: ../core/resources/data/validator/geometry.mapcss:403
+#: ../core/resources/data/validator/geometry.mapcss:401
 #, java-format
 msgid ""
 "{0} is the tag for the linear waterway. To tag the water area use {1} + {2} "
 "instead."
 msgstr ""
 
-#: ../core/resources/data/validator/geometry.mapcss:417
+#: ../core/resources/data/validator/geometry.mapcss:415
 msgid "Ferry route is not connected to the road network or branches."
 msgstr ""
 
-#: ../core/resources/data/validator/geometry.mapcss:425
+#: ../core/resources/data/validator/geometry.mapcss:423
 msgid "Ferry route is not connected to a ferry terminal or branches."
+msgstr ""
+
+#: ../core/resources/data/validator/geometry.mapcss:432
+#, java-format
+msgid "Railways connection node without {0} or {1}"
+msgstr "{0} 又は {1} が無いレール接続ノード"
+
+#: ../core/resources/data/validator/geometry.mapcss:438
+msgid "Node should be connected to two or more ways"
 msgstr ""
 
 #: ../core/resources/data/validator/highway.mapcss:13
@@ -1473,38 +1512,38 @@ msgstr "参照記号のない道路"
 msgid "Unspecific highway type"
 msgstr "道路の種類が未指定"
 
-#: ../core/resources/data/validator/highway.mapcss:112
-#: ../core/resources/data/validator/highway.mapcss:119
+#: ../core/resources/data/validator/highway.mapcss:110
+#: ../core/resources/data/validator/highway.mapcss:117
 #, java-format
 msgid "{0} is deprecated, use {1} instead. Also check similar tags like {2}"
 msgstr ""
 
-#: ../core/resources/data/validator/highway.mapcss:152
+#: ../core/resources/data/validator/highway.mapcss:150
 #, java-format
 msgid "pedestrian railway crossing without {0}"
 msgstr "歩行者用踏切に{0}がありません"
 
-#: ../core/resources/data/validator/highway.mapcss:157
+#: ../core/resources/data/validator/highway.mapcss:155
 #, java-format
 msgid "railway crossing without {0}"
 msgstr ""
 
-#: ../core/resources/data/validator/highway.mapcss:195
+#: ../core/resources/data/validator/highway.mapcss:193
 #, java-format
 msgid "{0} without right of way"
 msgstr ""
 
-#: ../core/resources/data/validator/highway.mapcss:202
+#: ../core/resources/data/validator/highway.mapcss:200
 #, java-format
 msgid "Area with {0} above {1} is invalid"
 msgstr ""
 
-#: ../core/resources/data/validator/highway.mapcss:213
+#: ../core/resources/data/validator/highway.mapcss:211
 #, java-format
 msgid "{0} with trailing number"
 msgstr ""
 
-#: ../core/resources/data/validator/highway.mapcss:214
+#: ../core/resources/data/validator/highway.mapcss:212
 msgid "questionable value (ending with a number)"
 msgstr "疑わしい値 (末尾が数字)"
 
@@ -1546,7 +1585,7 @@ msgstr "{0}は0.5刻みの数値であるべきです"
 #: ../core/resources/data/validator/unnecessary.mapcss:33
 #: ../core/resources/data/validator/unnecessary.mapcss:44
 #: ../core/resources/data/validator/unnecessary.mapcss:54
-#: ../core/resources/data/validator/unnecessary.mapcss:83
+#: ../core/resources/data/validator/unnecessary.mapcss:84
 #, java-format
 msgid "{0} is unnecessary for {1}"
 msgstr "{0}は{1}には不要です"
@@ -1556,9 +1595,9 @@ msgstr "{0}は{1}には不要です"
 #: ../core/resources/data/validator/unnecessary.mapcss:34
 #: ../core/resources/data/validator/unnecessary.mapcss:45
 #: ../core/resources/data/validator/unnecessary.mapcss:55
-#: ../core/resources/data/validator/unnecessary.mapcss:77
-#: ../core/resources/data/validator/unnecessary.mapcss:84
-#: ../core/resources/data/validator/unnecessary.mapcss:171
+#: ../core/resources/data/validator/unnecessary.mapcss:78
+#: ../core/resources/data/validator/unnecessary.mapcss:85
+#: ../core/resources/data/validator/unnecessary.mapcss:172
 msgid "unnecessary tag"
 msgstr "不要なタグ"
 
@@ -1676,6 +1715,11 @@ msgstr ""
 msgid "Numeric name: {0}. Maybe {1} or {2} is meant."
 msgstr ""
 
+#: ../core/resources/data/validator/numeric.mapcss:668
+#, java-format
+msgid "Unusually large value of {0}, possibly centimeter units are meant?"
+msgstr ""
+
 #: ../core/resources/data/validator/relation.mapcss:4
 msgid "relation without type"
 msgstr "種別がないリレーション"
@@ -1740,21 +1784,21 @@ msgstr ""
 msgid "{0} makes no sense"
 msgstr ""
 
-#: ../core/resources/data/validator/unnecessary.mapcss:71
+#: ../core/resources/data/validator/unnecessary.mapcss:72
 msgid "Nodes duplicating parent way tags"
 msgstr "親ウェイのタグが重複しているノード"
 
-#: ../core/resources/data/validator/unnecessary.mapcss:76
+#: ../core/resources/data/validator/unnecessary.mapcss:77
 #, java-format
 msgid "{0} together with {1} and {2}. Remove {0}."
 msgstr "{0}が{1}, {2}と共に設定されています。{0}を削除してください。"
 
-#: ../core/resources/data/validator/unnecessary.mapcss:120
-#: ../core/resources/data/validator/unnecessary.mapcss:156
+#: ../core/resources/data/validator/unnecessary.mapcss:121
+#: ../core/resources/data/validator/unnecessary.mapcss:157
 msgid "descriptive name"
 msgstr "説明的なnameタグ"
 
-#: ../core/resources/data/validator/unnecessary.mapcss:170
+#: ../core/resources/data/validator/unnecessary.mapcss:171
 #, java-format
 msgid "{0} should not be uploaded"
 msgstr "{0}はアップロードされるべきではありません"

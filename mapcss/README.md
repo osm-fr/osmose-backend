@@ -12,7 +12,7 @@ Convert one MapCSS
 ==================
 
 ```
-python mapcss2osmose.py addresses.mapcss
+python -m mapcss.mapcss2osmose plugins/Bicycle.validator.mapcss
 ```
 
 Update all external MapCSS

@@ -191,6 +191,11 @@ class TestPluginCommon(unittest.TestCase):
                     break
             assert found, str(expected) + " Not found in the errors list" + str(errors)
 
+        # Check if errors are also unique
+        errors_hashableitems = list(map(lambda e: str(e["class"]) + "|" + str(e.get("subclass", "")), errors))
+        non_unique = set([x for x in errors_hashableitems if errors_hashableitems.count(x) > 1])
+        assert len(non_unique) == 0, "Duplicate entry with class|subclass:\n - " + '\n - '.join(non_unique)
+
     def check_not_err(self, errors, log="Error not expected", expected=None):
         if not errors:
             return

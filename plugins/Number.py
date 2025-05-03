@@ -21,6 +21,7 @@
 
 from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
+from plugins.modules.units import parseNumberUnitString, convertToUnit
 import re
 
 class Number(Plugin):
@@ -31,7 +32,7 @@ class Number(Plugin):
             title = T_('Invalid numerical value'),
             detail = T_(
 '''The tag expects a numeric value with decimals using a period character
-and not a comma. \\ For guidelines on numeric values with units see [the
+and not a comma. For guidelines on numeric values with units see [the
 wiki](https://wiki.openstreetmap.org/wiki/Map_Features/Units).'''),
             fix = T_(
 '''Make sure the relevant tag value is numeric and in the expected format
@@ -62,57 +63,85 @@ be used if the value is valid.''')
 '''Check that you have used the correct unit and a supported abbreviation of the unit.'''),
             resource = "https://wiki.openstreetmap.org/wiki/Map_features/Units"
         )
+        self.errors[30915] = self.def_class(item = 3091, level = 3, tags = ['value', 'fix:chair'],
+            title = T_('Discouraged unit alias'),
+            detail = T_(
+'''The tag uses an unexpected unit.'''),
+            fix = T_(
+'''Check that you have used the correct unit and a supported abbreviation of the unit.'''),
+            resource = "https://wiki.openstreetmap.org/wiki/Map_features/Units"
+        )
 
-        self.tag_number = ["diameter", "distance", "ele", "height", "length", "width", "diameter_crown", "circumference", "depth"]
-        self.tag_number_integer = ["admin_level", "capital", "heritage", "population", "step_count"] # Only positive integers (no units) allowed
-        tag_number_directional = ["maxaxleload", "maxheight", "maxheight:physical", "maxlength", "maxspeed", "maxspeed:advisory", "maxweight", "maxwidth", "minspeed"]
+        # Syntax ("tag", "default unit"), except for integer tags (those are converted automatically)
+        self.tag_number = [("diameter", 'mm'), ("distance", 'km'), ("ele", 'm'), ("height", 'm'), ("length", 'm'), ("width", 'm'), ("diameter_crown", 'm'), ("circumference", 'm'), ("depth", 'm')]
+        self.tag_number_integer = ["admin_level", "capital", "heritage", "population", "rooms", "step_count"] # Only positive integers (no units) allowed
+        tag_number_directional = [("maxaxleload", 't'), ("maxheight", 'm'), ("maxheight:physical", 'm'), ("maxlength", 'm'), ("maxspeed", 'km/h'), ("maxspeed:advisory", 'km/h'), ("maxweight", 't'), ("maxweightrating", 't'), ("maxwidth", 'm'), ("maxwidth:physical", 'm'), ("minspeed", 'km/h')]
 
         # Add suffixes to the directional tags, add everything to tag_number
         for i in ["", ":forward", ":backward"]:
-            self.tag_number.extend(list(map(lambda tag: tag + i, tag_number_directional)))
-        self.tag_number.extend(self.tag_number_integer)
+            for v in ["", ":hgv", ":bus", ":trailer", ":coach", ":motorcar", ":goods", ":motorcycle", ":tilting"]:
+                self.tag_number.extend(list(map(lambda t: (t[0] + v + i, t[1]), tag_number_directional)))
+                self.tag_number.extend(list(map(lambda t: (t[0] + v + i + ":conditional", t[1]), tag_number_directional)))
+        self.tag_number.extend(list(map(lambda t: (t, None), self.tag_number_integer)))
 
-        self.units = ["m", "cm", "mm", "km", "mi", "nmi", # distance excluding feet'inch"
-                      "km/h", "mph", "knots", # speed
-                      "t", "kg", "st", "lbs", "lt", "cwt"] # weight
-
-        self.Number = re.compile(u"^((?:-?[0-9]+(?:[.][0-9]+)?)|(?:[.][0-9]+))(?: ?([a-zA-Z23/]{1,5})|'(?:[0-9]*(?:[.][0-9]+)?\")?|\")?$")
         self.MaxspeedExtraValue = ["none", "default", "signals", "national", "no", "unposted", "walk", "urban", "variable"]
         self.MaxspeedClassValue = re.compile(u'^[A-Z]*:')
         self.MaxheightExtraValue = ["default", "below_default", "no_indications", "no_sign", "none", "unsigned"]
+        self.MaxweightExtraValue = ["unsigned"]
 
     def node(self, data, tags):
         for i in self.tag_number:
-            if i in tags:
-                m = self.Number.match(tags[i])
+            tag = i[0]
+            if tag in tags:
+                val = tags[tag]
+                if tag.endswith(":conditional"):
+                    val = val.split("@")[0].rstrip()
+
+                m = parseNumberUnitString(val)
                 if (not m and
-                    not (i == "width" and tags[i] == "narrow") and
-                    not (i == "capital" and tags[i] == "yes") and
-                    not (i == "heritage" and tags[i] == "yes") and
-                    not (("maxspeed" in i or "minspeed" in i) and (
-                        tags[i] in self.MaxspeedExtraValue or
-                        self.MaxspeedClassValue.match(tags[i]) or
-                        (tags[i] == "implicit" and ("traffic_sign" in tags) and "maxspeed" in tags["traffic_sign"].split(";"))
+                    not (tag == "width" and val == "narrow") and
+                    not (tag == "capital" and val == "yes") and
+                    not (tag == "heritage" and val == "yes") and
+                    not (("maxspeed" in tag or "minspeed" in tag) and (
+                        val in self.MaxspeedExtraValue or
+                        self.MaxspeedClassValue.match(val) or
+                        (val == "implicit" and ("traffic_sign" in tags) and "maxspeed" in tags["traffic_sign"].split(";"))
                     )) and
-                    not (i == "maxheight" and tags[i] in self.MaxheightExtraValue)
+                    not (tag == "maxheight" and val in self.MaxheightExtraValue) and
+                    not (tag.split(":", 1)[0] == "maxweight" and val in self.MaxweightExtraValue) and
+                    not (tag.endswith(":conditional") and val == "none")
                 ):
-                    return {"class": 3091, "subclass": 1, "text": T_("Concerns tag: `{0}`", '='.join([i, tags[i]])) }
+                    return {"class": 3091, "subclass": 1, "text": T_("Concerns tag: `{0}`", '='.join([tag, tags[tag]])) }
                 if not m:
                     continue
 
+                if m["unit"] and (any(x in m["unit"] for x in (',', '-', ';', '.', '~')) or m["unit"][0].strip() == ''):
+                    # Invalid numbers, or multiple values
+                    return {"class": 3091, "subclass": 8, "text": T_("Concerns tag: `{0}`", '='.join([tag, tags[tag]])) }
+
                 # Below here only tags containing numbers with/without unit remain
-                if i in self.tag_number_integer and str(int(abs(float(m.group(1))))) != tags[i]:
+                if tag in self.tag_number_integer and str(int(abs(m["value"]))) != val:
                     # Expected: positive integer, found: decimal number or number with unit
-                    return {"class": 3093, "subclass": 4, "text": T_("Concerns tag: `{0}`", '='.join([i, tags[i]])) }
-                elif m.group(2) and not m.group(2) in self.units:
-                    return {"class": 3094, "subclass": 6, "text": T_("Concerns tag: `{0}`", '='.join([i, tags[i]])) }
-                elif i == "height" and float(m.group(1)) > 500:
-                    return {"class": 3092, "subclass": 2, "text": T_("`height={0}` is really tall, consider changing to `ele=*`", m.group(1)),
+                    return {"class": 3093, "subclass": 4, "text": T_("Concerns tag: `{0}`", '='.join([tag, tags[tag]])) }
+                if m["unit"]:
+                    try:
+                        convertToUnit(m, i[1]) # Will throw in case conversion to the default unit (i[1]) isn't possible
+                    except NotImplementedError:
+                        return {"class": 3094, "subclass": 6, "text": T_("Concerns tag: `{0}`", '='.join([tag, tags[tag]])) }
+                if tag == "height":
+                    if convertToUnit(m, 'm') > 500:
+                        return {"class": 3092, "subclass": 2, "text": T_("`height={0}` is really tall, consider changing to `ele=*`", val),
                              "fix": {"-": ["height"], "+": {"ele": tags["height"]}} }
-                elif "maxspeed" in i and float(m.group(1)) < 5 and not "waterway" in tags:
-                    return {"class": 3092, "subclass": 3, "text": T_('`{0}` is really slow', 'maxspeed=' + m.group(1))}
-                elif i == "width" and float(m.group(1)) <= 0 and "highway" in tags: # seems to be an old iD bug
-                    return {"class": 3092, "subclass": 5, "text": T_("Concerns tag: `{0}`", '='.join([i, tags[i]]))}
+                elif "maxspeed" in tag and m["value"] < 5 and not "waterway" in tags:
+                    return {"class": 3092, "subclass": 3, "text": T_('`{0}` is really slow', 'maxspeed=' + val)}
+                elif tag == "width" and m["value"] <= 0 and "highway" in tags: # seems to be an old iD bug
+                    return {"class": 3092, "subclass": 5, "text": T_("Concerns tag: `{0}`", '='.join([tag, tags[tag]]))}
+
+                # Warn about "highly discouraged" aliases from the wiki, like 'kilometer' instead of 'km'
+                if m["unit"] and (
+                        (len(m["unit"].replace('/', '')) >= 4 and m["unit"] not in ("l/min", "knots")) or
+                        (m["unit"] in ("m3/s", "m3/h", "kph", "kmh", "ST", "T", "ton", "lb", "ft", "in"))):
+                    return {"class": 30915, "subclass": 9, "text": T_("Concerns tag: `{0}`", '='.join([tag, tags[tag]]))}
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
@@ -131,21 +160,33 @@ class Test(TestPluginCommon):
         for d in ["194", "14 m", "0.6m", "1cm", "narrow", "8 km", "400m", "10'", "10'11\"", "1'9.8\"", "1.18\"", "-6"]:
             assert not a.node(None, {"width":d}), ("width='{0}'".format(d))
 
-        for d in ["3,75", "foo", "18,4m", "4.8 cars", "4810"]:
+        for d in ["3,75", "foo", "18,4m", "4.8 cars", "12 km/h", "12 t", "4810", "４"]:
             self.check_err(a.node(None, {"height":d}), ("height='{0}'".format(d)))
             self.check_err(a.way(None, {"height":d}, None), ("height='{0}'".format(d)))
             self.check_err(a.relation(None, {"height":d}, None), ("height='{0}'".format(d)))
+        assert not a.node(None, {"height": "650 mm"})
 
-        for d in ["foo", "18kph", "1", "30 c"]:
+        for d in ["foo", "18kph", "1", "30 c", "30 m", "70;80 km/h", "70-80", "42.5.5"]:
             self.check_err(a.node(None, {"maxspeed":d}), ("maxspeed='{0}'".format(d)))
             self.check_err(a.node(None, {"maxspeed:backward":d}), ("maxspeed:backward='{0}'".format(d)))
+            self.check_err(a.node(None, {"maxspeed:hgv":d}), ("maxspeed:hgv='{0}'".format(d)))
+            self.check_err(a.node(None, {"maxspeed:hgv:forward":d}), ("maxspeed:hgv:forward='{0}'".format(d)))
+            self.check_err(a.node(None, {"maxspeed:hgv:forward:conditional": d + "@ wet"}), ("maxspeed:hgv:forward:conditional='{0}@ wet'".format(d)))
 
         for d in ["50", "FR:urban", "35 mph", "10 knots", "default"]:
             assert not a.node(None, {"maxspeed":d}), ("maxspeed='{0}'".format(d))
             assert not a.node(None, {"minspeed:forward":d}), ("minspeed:forward='{0}'".format(d))
+            assert not a.node(None, {"minspeed:hgv":d}), ("minspeed:hgv='{0}'".format(d))
+            assert not a.node(None, {"maxspeed:hgv:forward":d}), ("maxspeed:hgv:forward='{0}'".format(d))
+            assert not a.node(None, {"maxspeed:hgv:forward:conditional": d + " @ wet"}), ("maxspeed:hgv:forward:conditional='{0} @ wet'".format(d))
 
-        t = {"maxspeed":"1", "waterway": "river"}
-        assert not a.node(None, {"maxspeed":"1", "waterway": "river"}), t
+        for d in ["50 millimeters", "40 metre", "30 feet", "30 in", "10 mile", "6ft 6in"]:
+            self.check_err(a.node(None, {"distance": d}), ("distance='{0}'".format(d)))
+
+        assert not a.node(None, {"maxlength:conditional": "none @ destination"}), "maxlength:conditional=none @ destination"
+        self.check_err(a.node(None, {"maxlength": "none"}), "maxlength=none")
+
+        assert not a.node(None, {"maxspeed":"1", "waterway": "river"})
 
         assert not a.node(None, {"maxspeed": "implicit", "traffic_sign": "maxspeed"})
 

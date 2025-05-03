@@ -35,7 +35,7 @@ class Name_Script(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[50701] = self.def_class(item = 5070, level = 2, tags = ['name', 'fix:chair'],
-            title = T_('Some value chars does not match the language charset'),
+            title = T_("Some characters don't match the language charset"),
             detail = T_(
 '''Words are not written in the appropriate alphabet of the
 language.'''),
@@ -46,10 +46,9 @@ transliterated, and needs to be changed back to the original alphabet.
 untranslated name) or `name:en=Peace` (translated) or `name:ar=سلام`
 (original).'''))
         self.errors[50702] = self.def_class(item = 5070, level = 2, tags = ['name', 'fix:chair'],
-            title = T_('Non printable char'),
+            title = T_('Non-printable character'),
             detail = T_(
-'''A non-printable character such as linefeed (0x000a) has been
-used.'''),
+'''A non-printable character has been used.'''),
             fix = T_(
 '''Remove the character.'''))
         self.errors[50703] = self.def_class(item = 5070, level = 2, tags = ['name', 'fix:chair'],
@@ -103,6 +102,7 @@ appropriate.'''),
             for language in languages:
                 if not self.lang[language]:
                     languages = None
+                    break
 
             # Build default regex
             if languages:
@@ -120,7 +120,7 @@ appropriate.'''),
 
         self.whitelist_names = set()
         if country:
-            self.whitelist_names = whitelist_from_nsi(country[:2].lower())
+            self.whitelist_names = whitelist_from_nsi(country)
 
     def node(self, data, tags):
         err = []
@@ -130,7 +130,7 @@ appropriate.'''),
                 err.append({"class": 50702, "subclass": 0 + stablehash64(key), "text": T_("\"{0}\" unexpected non printable char ({1}, 0x{2:04x}) in key at position {3}", key, unicodedata.name(m.group(0), ''), ord(m.group(0)), m.start() + 1)})
                 break
 
-            m = self.non_printable.search(value)
+            m = self.non_printable.search(value.replace('\n', ' '))
             if m:
                 err.append({"class": 50702, "subclass": 1 + stablehash64(key), "text": T_("\"{0}\"=\"{1}\" unexpected non printable char ({2}, 0x{3:04x}) in value at position {4}", key, value, unicodedata.name(m.group(0), ''), ord(m.group(0)), m.start() + 1)})
                 break
@@ -229,10 +229,13 @@ class Test(TestPluginCommon):
         a.father = father()
         a.init(None)
 
-        assert not a.node(None, {u"name": u"test ь"})
-        assert not a.node(None, {u"name": u"Sacré-Cœur"})
+        assert not a.node(None, {"name": u"test ь"})
+        assert not a.node(None, {"name": u"Sacré-Cœur"})
 
-        self.check_err(a.node(None, {u"name:uk": u"Sacré-Cœur"}))
+        assert not a.node(None, {"inscription": "Statue build in celebration of\nOsmose and OSM"})
+
+        self.check_err(a.node(None, {"name:uk": u"Sacré-Cœur"}))
+        self.check_err(a.node(None, {"inscription": "Special bell character \a"}))
 
     def test_NL(self):
         a = Name_Script(None)

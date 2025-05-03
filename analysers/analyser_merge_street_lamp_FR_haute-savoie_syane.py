@@ -32,7 +32,7 @@ class Analyser_Merge_Eclext_FR_Syane(Analyser_Merge_street_lamp_FR_eclext):
             source=SourceDataGouv(
                 attribution="Syane",
                 dataset="6447bfe8709c0b4a2b88355a",
-                resource="011aa541-8510-4caf-8a00-43d7efbe7543"),
+                resource="c5552fdf-3c7b-4c78-bb45-2bb98bad84c5"),
             srid = 2154,
             classs=1000,
             logger=logger)

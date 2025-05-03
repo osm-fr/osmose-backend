@@ -59,7 +59,7 @@ The issues are defined and produced by analyzers (and plugins).
 
 ### Classes of issues
 A class of issue is a definition of the issues the analyzer will yield.
-The classes of issues are defined by the following fields :
+The classes of issues are defined by the following fields:
 
 * `id`: each class of issue should have an unique `id` in the scope of the analyzer. Note: all plugins are in the same scope of the `Analyser_Sax`.
 
@@ -127,7 +127,7 @@ The main steps of running Osmose-QA are:
   * Upload the result to the Frontend
 * Destroy the database
 
-All the process is handled by the command `osmose_run.py`. Some complementary utilities can found in the `tools` directory.
+All the process is handled by the command `osmose_run.py`. Some complementary utilities can be found in the `tools` directory.
 
 For help run:
 ```

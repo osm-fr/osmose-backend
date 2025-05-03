@@ -27,7 +27,7 @@ class Josm_combinations(PluginMapCSS):
         self.re_0889a956 = re.compile(r'^(basin|reservoir)$')
         self.re_088b0835 = re.compile(r'^addr:')
         self.re_0aef1f28 = re.compile(r'^cycleway(:|$)')
-        self.re_0fb2a009 = re.compile(r'^[0-9]+(\.[0-9]+)?( m)?$')
+        self.re_0f2da17b = re.compile(r'^cycleway:right:')
         self.re_12ce6b85 = re.compile(r':forward')
         self.re_143f11c5 = re.compile(r'^(no|use_sidepath)$')
         self.re_19e33301 = re.compile(r'^no$')
@@ -40,6 +40,7 @@ class Josm_combinations(PluginMapCSS):
         self.re_23888fca = re.compile(r'^(motorway|motorway_link|trunk|trunk_link)$')
         self.re_25d98c90 = re.compile(r'_name$')
         self.re_27d9cb1c = re.compile(r'^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$')
+        self.re_28d96d81 = re.compile(r'^(sand|mud|earth|dirt|grass|ice|salt|snow|woodchips)$')
         self.re_29fa4401 = re.compile(r'^(beach|bare_rock|cliff|peak|water)$')
         self.re_2d1850d1 = re.compile(r'^recycling:')
         self.re_2fb1110d = re.compile(r':highway$')
@@ -47,7 +48,6 @@ class Josm_combinations(PluginMapCSS):
         self.re_333281f7 = re.compile(r'^oneway:(.+:)?conditional$')
         self.re_33560b51 = re.compile(r'^(bollard|bump_gate|bus_trap|cattle_grid|chain|coupure|entrance|gate|height_restrictor|jersey_barrier|kerb|lift_gate|rope|sally_port|sliding_beam|sliding_gate|spikes|swing_gate|toll_booth|yes)$')
         self.re_337d9a77 = re.compile(r'^maxspeed:.+')
-        self.re_382feae2 = re.compile(r'^(sand|mud|ground|earth|dirt|grass|ice|salt|snow|woodchips)$')
         self.re_390b8c0f = re.compile(r'^(building|building:part)$')
         self.re_3a43a33d = re.compile(r'[a-z]-[A-Z].*[0-9]-[0-9]')
         self.re_3ad9e1f5 = re.compile(r'^(motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|tertiary_link|unclassified|residential|service|living_street)$')
@@ -55,7 +55,9 @@ class Josm_combinations(PluginMapCSS):
         self.re_3b4f8f73 = re.compile(r'^(recreation_ground|piste|farm|farmland)$')
         self.re_3baad59c = re.compile(r'^.*:lanes:both_ways$')
         self.re_3e28f822 = re.compile(r'^.*:lanes:(forward|backward|both_ways)$')
+        self.re_4129caf1 = re.compile(r'^cycleway(:right|:both|):buffer')
         self.re_41650b2e = re.compile(r'^(bar|dojo|pub|restaurant|swimming_pool)$')
+        self.re_43925078 = re.compile(r'^cycleway(?!:right|:left|:both|:lanes):')
         self.re_43e7f95e = re.compile(r'mph')
         self.re_49fc2c26 = re.compile(r'^(bowling_alley|slipway|swimming_pool|track)$')
         self.re_4f156c8f = re.compile(r'^(parking|parking_space|parking_entrance|motorcycle_parking|bicycle_parking)$')
@@ -66,15 +68,22 @@ class Josm_combinations(PluginMapCSS):
         self.re_521b2098 = re.compile(r'water|bay|strait')
         self.re_53cf0b2e = re.compile(r'^(cycleway|footway|path)$')
         self.re_57c5150b = re.compile(r'^placement:.*$')
+        self.re_5b29eb0b = re.compile(r'^cycleway:left:')
         self.re_5cf0a79f = re.compile(r'^(parking|parking_space|parking_entrance|motorcycle_parking)$')
         self.re_5dd46ebe = re.compile(r'^(pedestrian|raceway)$')
         self.re_5ee853b2 = re.compile(r'^(ferry|road)$')
+        self.re_5f25daaa = re.compile(r'^cycleway(:right|:left|:both):.')
         self.re_60ec5bd8 = re.compile(r'^bicycle:')
+        self.re_65503bed = re.compile(r'^cycleway(:right|:left|:both|):buffer')
         self.re_68c05e86 = re.compile(r'^(wall|retaining_wall)$')
         self.re_6f957488 = re.compile(r'^(unpaved|compacted|gravel|fine_gravel|pebblestone|ground|earth|dirt|grass|sand|mud|ice|salt|snow|woodchips)$')
+        self.re_70553ac1 = re.compile(r'^cycleway(:left|:both|):buffer')
         self.re_7346b495 = re.compile(r':backward')
+        self.re_73498f6f = re.compile(r'^cycleway(:right|:both):.')
         self.re_734e4397 = re.compile(r'^(yes|stepping_stones)$')
         self.re_78efbab0 = re.compile(r'(^|;)manual(;|$)')
+        self.re_79b2aeac = re.compile(r'^cycleway:both:')
+        self.re_7e9ae763 = re.compile(r'^cycleway(:left|:both):.')
 
 
     def node(self, data, tags):
@@ -2035,7 +2044,7 @@ class Josm_combinations(PluginMapCSS):
         # *[amenity=police][police]
         # way[junction=yes][highway]
         # way[tracktype=grade1][surface].unpaved_surface
-        # way[tracktype=grade2][surface][surface=~/^(sand|mud|ground|earth|dirt|grass|ice|salt|snow|woodchips)$/]
+        # way[tracktype=grade2][surface][surface=~/^(sand|mud|earth|dirt|grass|ice|salt|snow|woodchips)$/]
         # way[tracktype=grade4][surface].fully_paved_surface
         # way[tracktype=grade5][surface].fully_paved_surface
         # way[segregated][bicycle=no]
@@ -2085,7 +2094,7 @@ class Josm_combinations(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tracktype') == mapcss._value_capture(capture_tags, 0, 'grade2')) and (mapcss._tag_capture(capture_tags, 1, tags, 'surface')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_382feae2), mapcss._tag_capture(capture_tags, 2, tags, 'surface'))))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tracktype') == mapcss._value_capture(capture_tags, 0, 'grade2')) and (mapcss._tag_capture(capture_tags, 1, tags, 'surface')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_28d96d81), mapcss._tag_capture(capture_tags, 2, tags, 'surface'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -2110,7 +2119,7 @@ class Josm_combinations(PluginMapCSS):
             if match:
                 # group:tr("suspicious tag combination")
                 # throwWarning:tr("{0} together with {1}","{0.tag}","{1.tag}")
-                err.append({'class': 9001002, 'subclass': 1936513938, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+                err.append({'class': 9001002, 'subclass': 3517519, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
         # *[building:part][building]
         # *[addr:street][addr:place][outside("CZ,DK")]
@@ -2491,7 +2500,7 @@ class Josm_combinations(PluginMapCSS):
                 err.append({'class': 9001001, 'subclass': 1738767711, 'text': mapcss.tr('sport without physical feature')})
 
         # *[building:levels][!building][!building:part]
-        # way[usage][!railway][!waterway][route!=railway][man_made!=pipeline]
+        # way[usage][!railway][!waterway][route!=railway][man_made!=pipeline][!aerialway]
         if ('building:levels' in keys) or ('usage' in keys):
             match = False
             if not match:
@@ -2500,12 +2509,12 @@ class Josm_combinations(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'usage')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'railway')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'waterway')) and (mapcss._tag_capture(capture_tags, 3, tags, 'route') != mapcss._value_const_capture(capture_tags, 3, 'railway', 'railway')) and (mapcss._tag_capture(capture_tags, 4, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 4, 'pipeline', 'pipeline')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'usage')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'railway')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'waterway')) and (mapcss._tag_capture(capture_tags, 3, tags, 'route') != mapcss._value_const_capture(capture_tags, 3, 'railway', 'railway')) and (mapcss._tag_capture(capture_tags, 4, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 4, 'pipeline', 'pipeline')) and (not mapcss._tag_capture(capture_tags, 5, tags, 'aerialway')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
                 # throwWarning:tr("{0} without {1} or {2}","{0.key}","{1.key}","{2.key}")
-                err.append({'class': 9001001, 'subclass': 1032721815, 'text': mapcss.tr('{0} without {1} or {2}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.key}'))})
+                err.append({'class': 9001001, 'subclass': 1552380544, 'text': mapcss.tr('{0} without {1} or {2}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.key}'))})
 
         # *[/_name$/][!name][!old_name][!loc_name][!reg_name][!uic_name][!artist_name][!lock_name][!"osak:municipality_name"][!"osak:street_name"][NHD:subbasin_name!~/^(Des Moines Headwaters|Upper Des Moines|East Fork Des Moines)$/][noname!=yes]
         if True:
@@ -2893,12 +2902,12 @@ class Josm_combinations(PluginMapCSS):
                 # throwWarning:tr("{0} together with {1}","{0.tag}","{1.tag}")
                 err.append({'class': 9001002, 'subclass': 1711273436, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
-        # way[highway=pedestrian][width][width<3]
+        # way[highway=pedestrian][width][siunit_length(tag(width))<3]
         if ('highway' in keys and 'width' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'pedestrian')) and (mapcss._tag_capture(capture_tags, 1, tags, 'width')) and (mapcss._tag_capture(capture_tags, 2, tags, 'width') < mapcss._value_capture(capture_tags, 2, 3)))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'pedestrian')) and (mapcss._tag_capture(capture_tags, 1, tags, 'width')) and (mapcss.siunit_length(mapcss.tag(tags, 'width')) < 3))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
@@ -2909,7 +2918,7 @@ class Josm_combinations(PluginMapCSS):
                 # assertMatch:"way highway=pedestrian width=1"
                 # assertNoMatch:"way highway=pedestrian width=3"
                 # assertNoMatch:"way highway=pedestrian width=5.5"
-                err.append({'class': 9001002, 'subclass': 867332242, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9001002, 'subclass': 1277186295, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     ['highway','footway']])
                 }})
@@ -3414,13 +3423,13 @@ class Josm_combinations(PluginMapCSS):
                 # throwWarning:tr("{0} is lower than {1} on {2}.","{1.key}","{0.key}","{2.tag}")
                 err.append({'class': 9001002, 'subclass': 1175862429, 'text': mapcss.tr('{0} is lower than {1} on {2}.', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{2.tag}'))})
 
-        # area[/^(building|building:part)$/][height=~/^[0-9]+(\.[0-9]+)?( m)?$/][min_height=~/^[0-9]+(\.[0-9]+)?( m)?$/][get(split(" ",tag(height)),0)<=get(split(" ",tag(min_height)),0)]
+        # area[/^(building|building:part)$/][height][min_height][siunit_length(tag(height))<=siunit_length(tag(min_height))]
         # area[/^(building|building:part)$/][building:levels][building:min_level][tag("building:levels")<=tag("building:min_level")]
         if ('building:levels' in keys and 'building:min_level' in keys) or ('height' in keys and 'min_height' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, self.re_390b8c0f)) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_0fb2a009), mapcss._tag_capture(capture_tags, 1, tags, 'height'))) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0fb2a009), mapcss._tag_capture(capture_tags, 2, tags, 'min_height'))) and (mapcss.get(mapcss.split(' ', mapcss.tag(tags, 'height')), 0) <= mapcss.get(mapcss.split(' ', mapcss.tag(tags, 'min_height')), 0)) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, self.re_390b8c0f)) and (mapcss._tag_capture(capture_tags, 1, tags, 'height')) and (mapcss._tag_capture(capture_tags, 2, tags, 'min_height')) and (mapcss.siunit_length(mapcss.tag(tags, 'height')) <= mapcss.siunit_length(mapcss.tag(tags, 'min_height'))) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -3429,7 +3438,134 @@ class Josm_combinations(PluginMapCSS):
             if match:
                 # group:tr("suspicious tag combination")
                 # throwWarning:tr("{0} is lower or equal to {1} on {2}","{1.key}","{2.key}","{0.key}")
-                err.append({'class': 9001002, 'subclass': 836405855, 'text': mapcss.tr('{0} is lower or equal to {1} on {2}', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.key}'), mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                err.append({'class': 9001002, 'subclass': 1399744513, 'text': mapcss.tr('{0} is lower or equal to {1} on {2}', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.key}'), mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+
+        # way[cycleway:right][cycleway:right!=lane][cycleway:right!=separate][/^cycleway(:right|:both|):buffer/]
+        # way[cycleway:left][cycleway:left!=lane][cycleway:left!=separate][/^cycleway(:left|:both|):buffer/]
+        # way[cycleway:both][cycleway:both!=lane][cycleway:both!=separate][/^cycleway(:right|:left|:both|):buffer/]
+        # way[cycleway][cycleway!=lane][cycleway!=separate][/^cycleway(:right|:left|:both|):buffer/]
+        if ('cycleway' in keys) or ('cycleway:both' in keys) or ('cycleway:left' in keys) or ('cycleway:right' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'cycleway:right')) and (mapcss._tag_capture(capture_tags, 1, tags, 'cycleway:right') != mapcss._value_const_capture(capture_tags, 1, 'lane', 'lane')) and (mapcss._tag_capture(capture_tags, 2, tags, 'cycleway:right') != mapcss._value_const_capture(capture_tags, 2, 'separate', 'separate')) and (mapcss._tag_capture(capture_tags, 3, tags, self.re_4129caf1)))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'cycleway:left')) and (mapcss._tag_capture(capture_tags, 1, tags, 'cycleway:left') != mapcss._value_const_capture(capture_tags, 1, 'lane', 'lane')) and (mapcss._tag_capture(capture_tags, 2, tags, 'cycleway:left') != mapcss._value_const_capture(capture_tags, 2, 'separate', 'separate')) and (mapcss._tag_capture(capture_tags, 3, tags, self.re_70553ac1)))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'cycleway:both')) and (mapcss._tag_capture(capture_tags, 1, tags, 'cycleway:both') != mapcss._value_const_capture(capture_tags, 1, 'lane', 'lane')) and (mapcss._tag_capture(capture_tags, 2, tags, 'cycleway:both') != mapcss._value_const_capture(capture_tags, 2, 'separate', 'separate')) and (mapcss._tag_capture(capture_tags, 3, tags, self.re_65503bed)))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'cycleway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'cycleway') != mapcss._value_const_capture(capture_tags, 1, 'lane', 'lane')) and (mapcss._tag_capture(capture_tags, 2, tags, 'cycleway') != mapcss._value_const_capture(capture_tags, 2, 'separate', 'separate')) and (mapcss._tag_capture(capture_tags, 3, tags, self.re_65503bed)))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("suspicious tag combination")
+                # throwWarning:tr("{0} together with {1}","{0.tag}","{3.tag}")
+                # assertNoMatch:"way cycleway:both=lane cycleway:both:buffer=no"
+                # assertNoMatch:"way cycleway:both=lane cycleway:buffer=no"
+                # assertNoMatch:"way cycleway:both=lane cycleway:left:buffer=yes"
+                # assertMatch:"way cycleway:both=track cycleway:left:buffer=yes"
+                # assertNoMatch:"way cycleway:left=lane cycleway:left:buffer=yes"
+                # assertMatch:"way cycleway:left=shared_lane cycleway:buffer=no"
+                # assertNoMatch:"way cycleway:right=lane cycleway:right:buffer=no"
+                # assertNoMatch:"way cycleway:right=separate cycleway:right:buffer=yes"
+                # assertNoMatch:"way cycleway=lane cycleway:both:buffer=no"
+                # assertNoMatch:"way cycleway=lane cycleway:buffer=yes"
+                # assertNoMatch:"way cycleway=lane cycleway:right:buffer=no"
+                # assertMatch:"way cycleway=shared_busway cycleway:buffer=no"
+                err.append({'class': 9001002, 'subclass': 89219844, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{3.tag}'))})
+
+        # way[cycleway:right=separate][/^cycleway(:right|:both):./]
+        # way[cycleway:left=separate][/^cycleway(:left|:both):./]
+        # way[cycleway:both=separate][/^cycleway(:right|:left|:both):./]
+        # way[cycleway=separate][/^cycleway(:right|:left|:both):./]
+        if ('cycleway' in keys) or ('cycleway:both' in keys) or ('cycleway:left' in keys) or ('cycleway:right' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'cycleway:right') == mapcss._value_capture(capture_tags, 0, 'separate')) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_73498f6f)))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'cycleway:left') == mapcss._value_capture(capture_tags, 0, 'separate')) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_7e9ae763)))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'cycleway:both') == mapcss._value_capture(capture_tags, 0, 'separate')) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_5f25daaa)))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'cycleway') == mapcss._value_capture(capture_tags, 0, 'separate')) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_5f25daaa)))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("suspicious tag combination")
+                # throwWarning:tr("{0} together with {1}. Remove {1}.","{0.tag}","{1.tag}")
+                # assertMatch:"way cycleway:both=separate cycleway:both:buffer=yes"
+                # assertMatch:"way cycleway:both=separate cycleway:left:surface=asphalt"
+                # assertMatch:"way cycleway:both=separate cycleway:right:surface=asphalt"
+                # assertNoMatch:"way cycleway:both=separate"
+                # assertMatch:"way cycleway:left=separate cycleway:both:buffer=yes"
+                # assertMatch:"way cycleway:left=separate cycleway:left:surface=asphalt"
+                # assertNoMatch:"way cycleway:left=separate cycleway:right:buffer=yes"
+                # assertMatch:"way cycleway:right=separate cycleway:both:buffer=yes"
+                # assertNoMatch:"way cycleway:right=separate cycleway:left:surface=asphalt"
+                # assertMatch:"way cycleway:right=separate cycleway:right:surface=asphalt"
+                # assertMatch:"way cycleway=separate cycleway:both:buffer=yes"
+                # assertMatch:"way cycleway=separate cycleway:left:surface=asphalt"
+                # assertMatch:"way cycleway=separate cycleway:right:surface=asphalt"
+                # assertNoMatch:"way cycleway=separate"
+                err.append({'class': 9001002, 'subclass': 1546310512, 'text': mapcss.tr('{0} together with {1}. Remove {1}.', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+
+        # way[/^cycleway:right:/][!cycleway:right][!cycleway:both][!cycleway]
+        # way[/^cycleway:left:/][!cycleway:left][!cycleway:both][!cycleway]
+        # way[/^cycleway:both:/][!cycleway:both][!cycleway][!cycleway:left][!cycleway:right]
+        # way[/^cycleway(?!:right|:left|:both|:lanes):/][!cycleway][!cycleway:both][!cycleway:left][!cycleway:right][segregated!=yes]
+        if True:
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, self.re_0f2da17b)) and (not mapcss._tag_capture(capture_tags, 1, tags, 'cycleway:right')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'cycleway:both')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'cycleway')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, self.re_5b29eb0b)) and (not mapcss._tag_capture(capture_tags, 1, tags, 'cycleway:left')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'cycleway:both')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'cycleway')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, self.re_79b2aeac)) and (not mapcss._tag_capture(capture_tags, 1, tags, 'cycleway:both')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'cycleway')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'cycleway:left')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'cycleway:right')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, self.re_43925078)) and (not mapcss._tag_capture(capture_tags, 1, tags, 'cycleway')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'cycleway:both')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'cycleway:left')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'cycleway:right')) and (mapcss._tag_capture(capture_tags, 5, tags, 'segregated') != mapcss._value_const_capture(capture_tags, 5, 'yes', 'yes')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("missing tag")
+                # throwWarning:tr("{0} without {1}","{0.key}","{1.key}")
+                # suggestAlternative:"{0.tag} + {1.key}=*"
+                # assertMatch:"way cycleway:both:buffer=yes"
+                # assertMatch:"way cycleway:both:surface=asphalt"
+                # assertNoMatch:"way cycleway:both=lane cycleway:both:buffer=yes"
+                # assertNoMatch:"way cycleway:both=lane cycleway:both:surface=asphalt"
+                # assertMatch:"way cycleway:buffer=no"
+                # assertMatch:"way cycleway:left:buffer=yes"
+                # assertMatch:"way cycleway:left:surface=asphalt"
+                # assertNoMatch:"way cycleway:left=lane cycleway:left:buffer=yes"
+                # assertMatch:"way cycleway:left=lane cycleway:right:buffer=no"
+                # assertNoMatch:"way cycleway:left=lane cycleway:right=lane cycleway:both:buffer=yes"
+                # assertNoMatch:"way cycleway:left=lane cycleway:right=lane cycleway:buffer=no"
+                # assertMatch:"way cycleway:right:buffer=yes"
+                # assertMatch:"way cycleway:right:surface=asphalt"
+                # assertMatch:"way cycleway:right=lane cycleway:left:buffer=yes"
+                # assertNoMatch:"way cycleway:right=lane cycleway:right:buffer=yes"
+                # assertNoMatch:"way cycleway=lane cycleway:buffer=yes"
+                # assertNoMatch:"way cycleway=lane cycleway:surface=asphalt"
+                # assertNoMatch:"way highway=path segregated=yes cycleway:surface=needles footway:surface=paving_stones"
+                # assertNoMatch:"way highway=primary oneway=yes bicycle:lanes=no|designated|yes cycleway:lanes=|lane|no"
+                err.append({'class': 9001001, 'subclass': 1754047217, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
         return err
 
@@ -4491,13 +4627,13 @@ class Josm_combinations(PluginMapCSS):
                 # throwWarning:tr("{0} is lower than {1} on {2}.","{1.key}","{0.key}","{2.tag}")
                 err.append({'class': 9001002, 'subclass': 1175862429, 'text': mapcss.tr('{0} is lower than {1} on {2}.', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{2.tag}'))})
 
-        # area[/^(building|building:part)$/][height=~/^[0-9]+(\.[0-9]+)?( m)?$/][min_height=~/^[0-9]+(\.[0-9]+)?( m)?$/][get(split(" ",tag(height)),0)<=get(split(" ",tag(min_height)),0)]
+        # area[/^(building|building:part)$/][height][min_height][siunit_length(tag(height))<=siunit_length(tag(min_height))]
         # area[/^(building|building:part)$/][building:levels][building:min_level][tag("building:levels")<=tag("building:min_level")]
         if ('building:levels' in keys and 'building:min_level' in keys and 'type' in keys) or ('height' in keys and 'min_height' in keys and 'type' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, self.re_390b8c0f)) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_0fb2a009), mapcss._tag_capture(capture_tags, 1, tags, 'height'))) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0fb2a009), mapcss._tag_capture(capture_tags, 2, tags, 'min_height'))) and (mapcss.get(mapcss.split(' ', mapcss.tag(tags, 'height')), 0) <= mapcss.get(mapcss.split(' ', mapcss.tag(tags, 'min_height')), 0)) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, self.re_390b8c0f)) and (mapcss._tag_capture(capture_tags, 1, tags, 'height')) and (mapcss._tag_capture(capture_tags, 2, tags, 'min_height')) and (mapcss.siunit_length(mapcss.tag(tags, 'height')) <= mapcss.siunit_length(mapcss.tag(tags, 'min_height'))) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -4506,7 +4642,7 @@ class Josm_combinations(PluginMapCSS):
             if match:
                 # group:tr("suspicious tag combination")
                 # throwWarning:tr("{0} is lower or equal to {1} on {2}","{1.key}","{2.key}","{0.key}")
-                err.append({'class': 9001002, 'subclass': 836405855, 'text': mapcss.tr('{0} is lower or equal to {1} on {2}', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.key}'), mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                err.append({'class': 9001002, 'subclass': 1399744513, 'text': mapcss.tr('{0} is lower or equal to {1} on {2}', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.key}'), mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         return err
 
@@ -4571,10 +4707,10 @@ class Test(TestPluginMapcss):
         self.check_err(n.way(data, {'highway': 'primary', 'turn:lanes:forward': 'left|right'}, [0]), expected={'class': 9001001, 'subclass': 1407445006})
         self.check_not_err(n.way(data, {'highway': 'primary', 'lanes': '2', 'turn:lanes': 'left|right'}, [0]), expected={'class': 9001001, 'subclass': 1407445006})
         self.check_err(n.way(data, {'highway': 'primary', 'turn:lanes': 'left|right'}, [0]), expected={'class': 9001001, 'subclass': 1407445006})
-        self.check_err(n.way(data, {'highway': 'pedestrian', 'width': '0.8'}, [0]), expected={'class': 9001002, 'subclass': 867332242})
-        self.check_err(n.way(data, {'highway': 'pedestrian', 'width': '1'}, [0]), expected={'class': 9001002, 'subclass': 867332242})
-        self.check_not_err(n.way(data, {'highway': 'pedestrian', 'width': '3'}, [0]), expected={'class': 9001002, 'subclass': 867332242})
-        self.check_not_err(n.way(data, {'highway': 'pedestrian', 'width': '5.5'}, [0]), expected={'class': 9001002, 'subclass': 867332242})
+        self.check_err(n.way(data, {'highway': 'pedestrian', 'width': '0.8'}, [0]), expected={'class': 9001002, 'subclass': 1277186295})
+        self.check_err(n.way(data, {'highway': 'pedestrian', 'width': '1'}, [0]), expected={'class': 9001002, 'subclass': 1277186295})
+        self.check_not_err(n.way(data, {'highway': 'pedestrian', 'width': '3'}, [0]), expected={'class': 9001002, 'subclass': 1277186295})
+        self.check_not_err(n.way(data, {'highway': 'pedestrian', 'width': '5.5'}, [0]), expected={'class': 9001002, 'subclass': 1277186295})
         self.check_not_err(n.way(data, {'building': 'house', 'construction:building': 'house'}, [0]), expected={'class': 9001001, 'subclass': 1239539337})
         self.check_not_err(n.way(data, {'construction': 'house', 'construction:building': 'house'}, [0]), expected={'class': 9001001, 'subclass': 1239539337})
         self.check_err(n.way(data, {'construction:building': 'house'}, [0]), expected={'class': 9001001, 'subclass': 1239539337})
@@ -4618,3 +4754,48 @@ class Test(TestPluginMapcss):
         self.check_not_err(n.way(data, {'highway': 'living_street'}, [0]), expected={'class': 9001002, 'subclass': 1040857321})
         self.check_not_err(n.way(data, {'piste:grooming': 'classic', 'piste:type': 'nordic'}, [0]), expected={'class': 9001001, 'subclass': 716854348})
         self.check_err(n.way(data, {'piste:type': 'nordic'}, [0]), expected={'class': 9001001, 'subclass': 716854348})
+        self.check_not_err(n.way(data, {'cycleway:both': 'lane', 'cycleway:both:buffer': 'no'}, [0]), expected={'class': 9001002, 'subclass': 89219844})
+        self.check_not_err(n.way(data, {'cycleway:both': 'lane', 'cycleway:buffer': 'no'}, [0]), expected={'class': 9001002, 'subclass': 89219844})
+        self.check_not_err(n.way(data, {'cycleway:both': 'lane', 'cycleway:left:buffer': 'yes'}, [0]), expected={'class': 9001002, 'subclass': 89219844})
+        self.check_err(n.way(data, {'cycleway:both': 'track', 'cycleway:left:buffer': 'yes'}, [0]), expected={'class': 9001002, 'subclass': 89219844})
+        self.check_not_err(n.way(data, {'cycleway:left': 'lane', 'cycleway:left:buffer': 'yes'}, [0]), expected={'class': 9001002, 'subclass': 89219844})
+        self.check_err(n.way(data, {'cycleway:buffer': 'no', 'cycleway:left': 'shared_lane'}, [0]), expected={'class': 9001002, 'subclass': 89219844})
+        self.check_not_err(n.way(data, {'cycleway:right': 'lane', 'cycleway:right:buffer': 'no'}, [0]), expected={'class': 9001002, 'subclass': 89219844})
+        self.check_not_err(n.way(data, {'cycleway:right': 'separate', 'cycleway:right:buffer': 'yes'}, [0]), expected={'class': 9001002, 'subclass': 89219844})
+        self.check_not_err(n.way(data, {'cycleway': 'lane', 'cycleway:both:buffer': 'no'}, [0]), expected={'class': 9001002, 'subclass': 89219844})
+        self.check_not_err(n.way(data, {'cycleway': 'lane', 'cycleway:buffer': 'yes'}, [0]), expected={'class': 9001002, 'subclass': 89219844})
+        self.check_not_err(n.way(data, {'cycleway': 'lane', 'cycleway:right:buffer': 'no'}, [0]), expected={'class': 9001002, 'subclass': 89219844})
+        self.check_err(n.way(data, {'cycleway': 'shared_busway', 'cycleway:buffer': 'no'}, [0]), expected={'class': 9001002, 'subclass': 89219844})
+        self.check_err(n.way(data, {'cycleway:both': 'separate', 'cycleway:both:buffer': 'yes'}, [0]), expected={'class': 9001002, 'subclass': 1546310512})
+        self.check_err(n.way(data, {'cycleway:both': 'separate', 'cycleway:left:surface': 'asphalt'}, [0]), expected={'class': 9001002, 'subclass': 1546310512})
+        self.check_err(n.way(data, {'cycleway:both': 'separate', 'cycleway:right:surface': 'asphalt'}, [0]), expected={'class': 9001002, 'subclass': 1546310512})
+        self.check_not_err(n.way(data, {'cycleway:both': 'separate'}, [0]), expected={'class': 9001002, 'subclass': 1546310512})
+        self.check_err(n.way(data, {'cycleway:both:buffer': 'yes', 'cycleway:left': 'separate'}, [0]), expected={'class': 9001002, 'subclass': 1546310512})
+        self.check_err(n.way(data, {'cycleway:left': 'separate', 'cycleway:left:surface': 'asphalt'}, [0]), expected={'class': 9001002, 'subclass': 1546310512})
+        self.check_not_err(n.way(data, {'cycleway:left': 'separate', 'cycleway:right:buffer': 'yes'}, [0]), expected={'class': 9001002, 'subclass': 1546310512})
+        self.check_err(n.way(data, {'cycleway:both:buffer': 'yes', 'cycleway:right': 'separate'}, [0]), expected={'class': 9001002, 'subclass': 1546310512})
+        self.check_not_err(n.way(data, {'cycleway:left:surface': 'asphalt', 'cycleway:right': 'separate'}, [0]), expected={'class': 9001002, 'subclass': 1546310512})
+        self.check_err(n.way(data, {'cycleway:right': 'separate', 'cycleway:right:surface': 'asphalt'}, [0]), expected={'class': 9001002, 'subclass': 1546310512})
+        self.check_err(n.way(data, {'cycleway': 'separate', 'cycleway:both:buffer': 'yes'}, [0]), expected={'class': 9001002, 'subclass': 1546310512})
+        self.check_err(n.way(data, {'cycleway': 'separate', 'cycleway:left:surface': 'asphalt'}, [0]), expected={'class': 9001002, 'subclass': 1546310512})
+        self.check_err(n.way(data, {'cycleway': 'separate', 'cycleway:right:surface': 'asphalt'}, [0]), expected={'class': 9001002, 'subclass': 1546310512})
+        self.check_not_err(n.way(data, {'cycleway': 'separate'}, [0]), expected={'class': 9001002, 'subclass': 1546310512})
+        self.check_err(n.way(data, {'cycleway:both:buffer': 'yes'}, [0]), expected={'class': 9001001, 'subclass': 1754047217})
+        self.check_err(n.way(data, {'cycleway:both:surface': 'asphalt'}, [0]), expected={'class': 9001001, 'subclass': 1754047217})
+        self.check_not_err(n.way(data, {'cycleway:both': 'lane', 'cycleway:both:buffer': 'yes'}, [0]), expected={'class': 9001001, 'subclass': 1754047217})
+        self.check_not_err(n.way(data, {'cycleway:both': 'lane', 'cycleway:both:surface': 'asphalt'}, [0]), expected={'class': 9001001, 'subclass': 1754047217})
+        self.check_err(n.way(data, {'cycleway:buffer': 'no'}, [0]), expected={'class': 9001001, 'subclass': 1754047217})
+        self.check_err(n.way(data, {'cycleway:left:buffer': 'yes'}, [0]), expected={'class': 9001001, 'subclass': 1754047217})
+        self.check_err(n.way(data, {'cycleway:left:surface': 'asphalt'}, [0]), expected={'class': 9001001, 'subclass': 1754047217})
+        self.check_not_err(n.way(data, {'cycleway:left': 'lane', 'cycleway:left:buffer': 'yes'}, [0]), expected={'class': 9001001, 'subclass': 1754047217})
+        self.check_err(n.way(data, {'cycleway:left': 'lane', 'cycleway:right:buffer': 'no'}, [0]), expected={'class': 9001001, 'subclass': 1754047217})
+        self.check_not_err(n.way(data, {'cycleway:both:buffer': 'yes', 'cycleway:left': 'lane', 'cycleway:right': 'lane'}, [0]), expected={'class': 9001001, 'subclass': 1754047217})
+        self.check_not_err(n.way(data, {'cycleway:buffer': 'no', 'cycleway:left': 'lane', 'cycleway:right': 'lane'}, [0]), expected={'class': 9001001, 'subclass': 1754047217})
+        self.check_err(n.way(data, {'cycleway:right:buffer': 'yes'}, [0]), expected={'class': 9001001, 'subclass': 1754047217})
+        self.check_err(n.way(data, {'cycleway:right:surface': 'asphalt'}, [0]), expected={'class': 9001001, 'subclass': 1754047217})
+        self.check_err(n.way(data, {'cycleway:left:buffer': 'yes', 'cycleway:right': 'lane'}, [0]), expected={'class': 9001001, 'subclass': 1754047217})
+        self.check_not_err(n.way(data, {'cycleway:right': 'lane', 'cycleway:right:buffer': 'yes'}, [0]), expected={'class': 9001001, 'subclass': 1754047217})
+        self.check_not_err(n.way(data, {'cycleway': 'lane', 'cycleway:buffer': 'yes'}, [0]), expected={'class': 9001001, 'subclass': 1754047217})
+        self.check_not_err(n.way(data, {'cycleway': 'lane', 'cycleway:surface': 'asphalt'}, [0]), expected={'class': 9001001, 'subclass': 1754047217})
+        self.check_not_err(n.way(data, {'cycleway:surface': 'needles', 'footway:surface': 'paving_stones', 'highway': 'path', 'segregated': 'yes'}, [0]), expected={'class': 9001001, 'subclass': 1754047217})
+        self.check_not_err(n.way(data, {'bicycle:lanes': 'no|designated|yes', 'cycleway:lanes': '|lane|no', 'highway': 'primary', 'oneway': 'yes'}, [0]), expected={'class': 9001001, 'subclass': 1754047217})

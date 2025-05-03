@@ -21,6 +21,8 @@
 
 from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
+from plugins.modules.name_suggestion_index import whitelist_from_nsi
+import re
 
 
 class Name_Initials(Plugin):
@@ -30,15 +32,19 @@ class Name_Initials(Plugin):
         self.errors[902] = self.def_class(item = 5010, level = 3, tags = ['name', 'fix:chair'],
             title = T_('Initial stuck to the name'))
 
-        import re
         self.ReInitColleNom  = re.compile(r"^(.*[A-Z]\.)([A-Z][a-z].*)$")
+
+        self.whitelist = []
+        if "country" in self.father.config.options:
+            country = self.father.config.options.get("country")
+            self.whitelist = list(filter(lambda name: "." in name.replace(". ", ""), whitelist_from_nsi(country)))
 
     def node(self, data, tags):
         if "name" in tags:
-            name = tags[u"name"]
+            name = tags["name"]
             r = self.ReInitColleNom.match(name)
-            if r: # and not u"E.Leclerc" in self._DataTags[u"name"]:
-                return {"class":902, "subclass": 0, "text":{"en":tags[u"name"]}, "fix":{"name": "{0} {1}".format(r.group(1), r.group(2))}}
+            if r and not any(map(lambda whitelist: whitelist in name, self.whitelist)):
+                return {"class":902, "subclass": 0, "text":{"en":tags["name"]}, "fix":{"name": "{0} {1}".format(r.group(1), r.group(2))}}
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
@@ -50,14 +56,19 @@ class Name_Initials(Plugin):
 from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
-    def setUp(self):
-        TestPluginCommon.setUp(self)
-        self.p = Name_Initials(None)
-        self.p.init(None)
-
     def test(self):
-        self.check_err(self.p.node(None, {"name": "A.Bsuaeuae"}))
-        self.check_err(self.p.way(None, {"name": "C.Dkuaeu"}, None))
-        assert not self.p.relation(None, {"name": "E. Fiuaeuie"}, None)
-        assert not self.p.node(None, {"name": "G.H."})
-        assert not self.p.node(None, {"name": "GeHaueue"})
+        a = Name_Initials(None)
+        class _config:
+            options = {"country": "NL"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+
+        self.check_err(a.node(None, {"name": "A.Bsuaeuae"}))
+        self.check_err(a.way(None, {"name": "C.Dkuaeu"}, None))
+        assert not a.relation(None, {"name": "E. Fiuaeuie"}, None)
+        assert not a.node(None, {"name": "G.H."})
+        assert not a.node(None, {"name": "GeHaueue"})
+        assert not a.node(None, {"name": "Station Service E.Leclerc"}) # NSI-whitelisted (global)
+        assert not a.node(None, {"name": "Station Service E.Leclerc Paris"}) # NSI-whitelisted with suffix

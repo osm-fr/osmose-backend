@@ -11,7 +11,7 @@ from antlr4 import FileStream, CommonTokenStream, ParseTreeWalker
 from .generated.MapCSSLexer import MapCSSLexer
 from .generated.MapCSSParser import MapCSSParser
 from .MapCSSListenerL import MapCSSListenerL
-from typing import Dict, List, Set, Optional
+from typing import Dict, List, Set, Optional, Union
 from copy import deepcopy
 from . import mapcss_lib
 from inspect import signature, Parameter
@@ -344,6 +344,34 @@ def functionExpression_rule_flags(t, c):
         c['flags'].append('relational')
     return t
 
+specialCountryMap = {
+    # https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#exceptional-reservations
+    # None here simply means 'not yet implemented by us'
+    'AC': None,
+    'CP': None,
+    'CQ': None,
+    'DG': None,
+    'EA': None,
+    'EU': None,
+    'EZ': None,
+    'FX': ['FR-69M', 'FR-69D', 'FR-2A', 'FR-2B'] + list(map(lambda n: 'FR-{:02}'.format(n), range(1,96))),
+    'IC': None,
+    'SU': None,
+    'TA': None,
+    'UK': None,
+    'UN': None,
+}
+def functionExpression_insideoutside(t, c):
+    """
+    type = functionExpression
+    convert unconventional country codes to Osmose equivalent
+    """
+    if t['name'] in ('inside', 'outside'):
+        countries = t["params"][0]["value"].split(',')
+        countries = list(map(lambda x: x if x not in specialCountryMap or (specialCountryMap[x] is None and not print("Warning: special country code not implemented yet: " + x)) else ','.join(specialCountryMap[x]), countries))
+        t["params"][0]["value"] = ','.join(countries)
+    return t
+
 def rule_after_flags(t, c):
     """
     type = rule
@@ -479,6 +507,7 @@ rewrite_rules_change_before = [
     ('booleanExpression', booleanExpression_operator_to_function),
     ('functionExpression', functionExpression_param_regex),
     ('functionExpression', functionExpression_regexp_flags),
+    ('functionExpression', functionExpression_insideoutside),
     ('pseudo_class', pseudo_class_righthandtraffic),
     # Safty
     ('rule', rule_declarations_order),
@@ -623,7 +652,7 @@ item_default = None
 item = class_id = level = tags = group = group_class = text = text_class = fix = None
 class_info_text = {}
 subclass_id = 0
-class_ = {}
+class_: Dict[str, Union[str, int, Dict[str, List[str]]]] = {}
 tests = []
 regex_store: Dict[List[str], str] = {}
 set_store: Set[str] = set()
@@ -631,10 +660,7 @@ subclass_blacklist = []
 is_meta_rule = False
 
 def to_p(t):
-    global item_default
-    global class_map, class_index, meta_tags, item, class_id, level, tags, subclass_id, group, group_class, text, text_class, fix, class_info_text
-    global tests, class_, regex_store, set_store
-    global subclass_blacklist
+    global class_index, meta_tags, item, class_id, level, tags, subclass_id, group, group_class, text, text_class, fix, class_info_text
     global is_meta_rule
 
     if isinstance(t, str):
@@ -747,7 +773,14 @@ def to_p(t):
                 else:
                     class_index += 1
                     class_id = class_map[group_class or text_class] = class_index
-            class_[class_id] = {
+            else:
+                # Store assigned id's (via -osmoseItemClassLevel) in None. They are not mapped to strings as this would lead to undefined behavior if
+                # there is an entry with for instance -osmoseExample, which would (depending on sequence) be overwritten by an entry without -osmose*
+                # properties, yet with the same group_class or text_class. Using None makes sure these get a unique id (as the max value is used for
+                # determining the class_index.
+                class_map[None] = max(class_map.get(None, 0), class_id)
+
+            classInfoNew = {
                 'item': item or item_default,
                 'class': class_id,
                 'level': level or {'E': 2, 'W': 3, 'O': None}[t['property'][5]],
@@ -757,6 +790,13 @@ def to_p(t):
                     (text if text.startswith('mapcss.tr') else "{'en': " + text + "}"),
                 'info': class_info_text.copy()
             }
+            normFn = lambda x: str(x).replace(" ", "").replace("'", '"').split('",')[0] if str(x).startswith('mapcss.tr') else str(x)
+            if class_id in class_ and any([normFn(class_[class_id][x]) != normFn(classInfoNew[x]) for x in ('item', 'tags', 'desc', 'info')]):
+                # Accept that e.g. level may differ, which can happen with the JOSM entries having the same message with throwError/throwWarning
+                # Also remove everything after a ", because currently tr("xyz", "km") and tr("xyz", "kg") are in the same group, see also #1530
+                # This will raise if e.g. the same class is used for two different messages.
+                raise Exception("Overwriting class with different properties for class id {0}".format(str(class_id)))
+            class_[class_id] = classInfoNew
             class_info_text = {}
         elif t['property'] == 'suggestAlternative':
             pass # Do nothing
@@ -894,8 +934,6 @@ def parse_mapcss(inputfile):
     return listener, tree
 
 def compile(inputfile, class_name, mapcss_url = None, only_for = [], not_for = [], prefix = ""):
-    global item_default, class_map, subclass_blacklist, class_index, meta_tags
-
     listener, tree = parse_mapcss(inputfile)
 
     build_mock_rules()
@@ -910,10 +948,28 @@ def compile(inputfile, class_name, mapcss_url = None, only_for = [], not_for = [
     tree = filter_support_rules(tree)
     selectors_type = segregate_selectors_type(tree)
 
-    global class_, tests, regex_store, set_store
     rules = dict(map(lambda t: [t, to_p({'type': 'stylesheet', 'rules': selectors_type[t]})], sorted(selectors_type.keys(), key = lambda a: {'node': 0, 'way': 1, 'relation':2}[a])))
     items = build_items(class_)
-    asserts = build_tests(tests)
+
+    asserts = ""
+    if tests:
+        asserts = """
+
+from plugins.PluginMapCSS import TestPluginMapcss
+
+
+class Test(TestPluginMapcss):
+    def test(self):
+        n = """ + prefix + class_name + """(None)
+        class _config:
+            options = {"country": None, "language": None}
+        class father:
+            config = _config()
+        n.father = father()
+        n.init(None)
+        data = {'id': 0, 'lat': 0, 'lon': 0}
+
+        """ + build_tests(tests).replace("\n", "\n        ") + "\n"
 
     mapcss = ("""#-*- coding: utf-8 -*-
 import modules.mapcss_lib as mapcss
@@ -943,24 +999,8 @@ class """ + prefix + class_name + """(PluginMapCSS):
 
         """ + rules[t].replace("\n", "\n        ") + """
         return err
-""", sorted(rules.keys(), key = lambda a: {'node': 0, 'way': 1, 'relation':2}[a]))) + """
-
-from plugins.PluginMapCSS import TestPluginMapcss
-
-
-class Test(TestPluginMapcss):
-    def test(self):
-        n = """ + prefix + class_name + """(None)
-        class _config:
-            options = {"country": None, "language": None}
-        class father:
-            config = _config()
-        n.father = father()
-        n.init(None)
-        data = {'id': 0, 'lat': 0, 'lon': 0}
-
-        """ + asserts.replace("\n", "\n        ") + """
-""").replace("        \n", "\n")
+""", sorted(rules.keys(), key = lambda a: {'node': 0, 'way': 1, 'relation':2}[a])))
+    + asserts).replace("        \n", "\n")
     return mapcss
 
 

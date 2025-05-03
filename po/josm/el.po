@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: josm\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-17 06:12+0200\n"
-"PO-Revision-Date: 2024-04-11 11:56+0000\n"
-"Last-Translator: Μ G <Unknown>\n"
+"POT-Creation-Date: 2025-03-24 06:56+0100\n"
+"PO-Revision-Date: 2025-03-24 22:01+0000\n"
+"Last-Translator: Gerasimos <Unknown>\n"
 "Language-Team: Greek <el@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2024-04-18 05:10+0000\n"
-"X-Generator: Launchpad (build 67d34a19aaa1df7be4dd8bf498cbc5bbd785067b)\n"
+"X-Launchpad-Export-Date: 2025-03-25 05:35+0000\n"
+"X-Generator: Launchpad (build aa29ae0fff49e4e804b39147c9f259d2fb023199)\n"
 "Language: el\n"
 
 #: ../core/resources/data/validator/combinations.mapcss:82
@@ -62,32 +62,34 @@ msgstr ""
 #: ../core/resources/data/validator/combinations.mapcss:1038
 #: ../core/resources/data/validator/combinations.mapcss:1045
 #: ../core/resources/data/validator/combinations.mapcss:1051
+#: ../core/resources/data/validator/combinations.mapcss:1117
+#: ../core/resources/data/validator/geometry.mapcss:433
 #: ../core/resources/data/validator/highway.mapcss:74
-#: ../core/resources/data/validator/highway.mapcss:153
-#: ../core/resources/data/validator/highway.mapcss:158
+#: ../core/resources/data/validator/highway.mapcss:151
+#: ../core/resources/data/validator/highway.mapcss:156
 #: ../core/resources/data/validator/relation.mapcss:19
 #: ../core/resources/data/validator/relation.mapcss:38
 #: ../core/resources/data/validator/religion.mapcss:5
 #: ../core/resources/data/validator/wikipedia.mapcss:139
 msgid "missing tag"
-msgstr ""
+msgstr "απούσα ετικέτα"
 
 #: ../core/resources/data/validator/addresses.mapcss:3
 msgid "Even housenumber in odd address interpolation."
-msgstr ""
+msgstr "Ζυγός αριθμός σπιτιού σε περιττή εισαγωγή διευθύνσεων."
 
 #: ../core/resources/data/validator/addresses.mapcss:6
 msgid "Odd housenumber in even address interpolation."
-msgstr ""
+msgstr "Μονός αριθμός σπιτιού σε ζυγή εισαγωγή διευθύνσεων."
 
 #: ../core/resources/data/validator/addresses.mapcss:9
 #, java-format
 msgid "Way with {0}. Tag each housenumber separately if possible."
-msgstr ""
+msgstr "Γραμμή με {0}. Ταγκάρετε κάθε αριθμό σπιτιού ξεχωριστά αν δύναται."
 
 #: ../core/resources/data/validator/addresses.mapcss:15
 msgid "End node without housenumber in address interpolation."
-msgstr ""
+msgstr "Τελικός κόμβος χωρίς αριθμό σπιτιού στην εισαγωγή διευθύνσεων."
 
 #: ../core/resources/data/validator/addresses.mapcss:20
 #, java-format
@@ -95,6 +97,8 @@ msgid ""
 "Object has no {0}, however, it has {1} and {2} whose value looks like a "
 "housenumber."
 msgstr ""
+"Το αντικείμενο δεν έχει {0}, ωστόσο, έχει {1} και {2} των οποίων η τιμή "
+"μοιάζει με αριθμό σπιτιού."
 
 #: ../core/resources/data/validator/addresses.mapcss:29
 #: ../core/resources/data/validator/combinations.mapcss:574
@@ -103,12 +107,12 @@ msgstr ""
 #: ../core/resources/data/validator/combinations.mapcss:618
 #, java-format
 msgid "Same value of {0} and {1}"
-msgstr ""
+msgstr "Ίδια τιμή {0} και {1}"
 
 #: ../core/resources/data/validator/addresses.mapcss:39
 #, java-format
 msgid "{0} without number"
-msgstr ""
+msgstr "{0} χωρίς αριθμό"
 
 #: ../core/resources/data/validator/combinations.mapcss:81
 #: ../core/resources/data/validator/combinations.mapcss:93
@@ -125,29 +129,30 @@ msgstr ""
 #: ../core/resources/data/validator/combinations.mapcss:884
 #: ../core/resources/data/validator/combinations.mapcss:888
 #: ../core/resources/data/validator/combinations.mapcss:978
+#: ../core/resources/data/validator/combinations.mapcss:1116
 #: ../core/resources/data/validator/territories.mapcss:28
 #: ../core/resources/data/validator/territories.mapcss:33
 #, java-format
 msgid "{0} without {1}"
-msgstr ""
+msgstr "{0} χωρίς {1}"
 
 #: ../core/resources/data/validator/combinations.mapcss:124
 #, java-format
 msgid "{0} without access tags such as {1}, {2}, or {3}."
-msgstr ""
+msgstr "{0} χωρίς ετικέτες πρόσβασης όπως το {1}, {2} ή {3}."
 
 #: ../core/resources/data/validator/combinations.mapcss:125
 #: ../core/resources/data/validator/combinations.mapcss:141
 #: ../core/resources/data/validator/combinations.mapcss:146
 msgid "suspicious barrier"
-msgstr ""
+msgstr "ύποπτο φράγμα"
 
 #: ../core/resources/data/validator/combinations.mapcss:139
 #: ../core/resources/data/validator/combinations.mapcss:145
 #, java-format
 msgid ""
 "Suspicious {0} on a connection of a small highway with a larger highway"
-msgstr ""
+msgstr "Ύποπτο {0} σε σύνδεση μικρής οδικής αρτηρίας με μεγαλύτερης"
 
 #: ../core/resources/data/validator/combinations.mapcss:154
 #: ../core/resources/data/validator/combinations.mapcss:245
@@ -157,21 +162,21 @@ msgstr ""
 #: ../core/resources/data/validator/combinations.mapcss:894
 #, java-format
 msgid "{0} without {1} or {2}"
-msgstr ""
+msgstr "{0} χωρίς {1} ή {2}"
 
 #: ../core/resources/data/validator/combinations.mapcss:161
 #: ../core/resources/data/validator/combinations.mapcss:290
 #: ../core/resources/data/validator/combinations.mapcss:296
 #, java-format
 msgid "{0} without {1}, {2} or {3}"
-msgstr ""
+msgstr "{0} χωρίς {1}, {2} ή {3}"
 
 #: ../core/resources/data/validator/combinations.mapcss:167
 #: ../core/resources/data/validator/combinations.mapcss:277
 #: ../core/resources/data/validator/combinations.mapcss:284
 #, java-format
 msgid "{0} without {1}, {2}, {3} or {4}"
-msgstr ""
+msgstr "{0} χωρίς {1}, {2}, {3} ή {4}"
 
 #: ../core/resources/data/validator/combinations.mapcss:251
 #: ../core/resources/data/validator/combinations.mapcss:320
@@ -231,12 +236,14 @@ msgstr ""
 #: ../core/resources/data/validator/combinations.mapcss:1002
 #: ../core/resources/data/validator/combinations.mapcss:1059
 #: ../core/resources/data/validator/combinations.mapcss:1066
-#: ../core/resources/data/validator/highway.mapcss:165
-#: ../core/resources/data/validator/highway.mapcss:203
+#: ../core/resources/data/validator/combinations.mapcss:1075
+#: ../core/resources/data/validator/combinations.mapcss:1095
+#: ../core/resources/data/validator/highway.mapcss:163
+#: ../core/resources/data/validator/highway.mapcss:201
 #: ../core/resources/data/validator/numeric.mapcss:379
 #: ../core/resources/data/validator/relation.mapcss:72
 msgid "suspicious tag combination"
-msgstr ""
+msgstr "ύποπτος συνδυασμός ετικετών"
 
 #: ../core/resources/data/validator/combinations.mapcss:319
 #: ../core/resources/data/validator/combinations.mapcss:331
@@ -264,44 +271,46 @@ msgstr ""
 #: ../core/resources/data/validator/combinations.mapcss:973
 #: ../core/resources/data/validator/combinations.mapcss:985
 #: ../core/resources/data/validator/combinations.mapcss:1001
+#: ../core/resources/data/validator/combinations.mapcss:1074
 #: ../core/resources/data/validator/deprecated.mapcss:642
 #: ../core/resources/data/validator/deprecated.mapcss:651
 #: ../core/resources/data/validator/deprecated.mapcss:660
 #: ../core/resources/data/validator/deprecated.mapcss:1357
 #: ../core/resources/data/validator/deprecated.mapcss:1362
 #: ../core/resources/data/validator/highway.mapcss:93
-#: ../core/resources/data/validator/highway.mapcss:163
+#: ../core/resources/data/validator/highway.mapcss:161
 #, java-format
 msgid "{0} together with {1}"
-msgstr ""
+msgstr "{0} μαζί με {1}"
 
 #: ../core/resources/data/validator/combinations.mapcss:379
 #: ../core/resources/data/validator/combinations.mapcss:386
 #, java-format
 msgid "{0} together with {1} and {2}"
-msgstr ""
+msgstr "{0} μαζί με το {1} και {2}"
 
 #: ../core/resources/data/validator/combinations.mapcss:401
 #, java-format
 msgid "two objects, one with {0} and one with {1} + {2} + {3}"
-msgstr ""
+msgstr "δύο αντικείμενα, ένα με {0} και ένα με {1} + {2} + {3}"
 
 #: ../core/resources/data/validator/combinations.mapcss:407
 #, java-format
 msgid "{0} on an inner multipolygon ring without further tags"
 msgstr ""
+"{0} σε έναν εσωτερικό δακτύλιο πολλαπλών πολυγώνων χωρίς περαιτέρω ετικέτες"
 
 #: ../core/resources/data/validator/combinations.mapcss:432
 #: ../core/resources/data/validator/combinations.mapcss:447
 #, java-format
 msgid "incomplete object: only {0}"
-msgstr ""
+msgstr "ημιτελές αντικείμενο: μόνο {0}"
 
 #: ../core/resources/data/validator/combinations.mapcss:441
 #: ../core/resources/data/validator/combinations.mapcss:453
 #, java-format
 msgid "incomplete object: only {0} and {1}"
-msgstr ""
+msgstr "ημιτελές αντικείμενο: μόνο {0} και {1}"
 
 #: ../core/resources/data/validator/combinations.mapcss:473
 #: ../core/resources/data/validator/combinations.mapcss:482
@@ -311,12 +320,12 @@ msgstr ""
 #: ../core/resources/data/validator/deprecated.mapcss:684
 #, java-format
 msgid "{0} together with {1} and conflicting values"
-msgstr ""
+msgstr "{0} μαζί με {1} και αντικρουόμενες τιμές"
 
 #: ../core/resources/data/validator/combinations.mapcss:509
 #, java-format
 msgid "{0} on suspicious object"
-msgstr ""
+msgstr "{0} σε ύποπτο αντικείμενο"
 
 #: ../core/resources/data/validator/combinations.mapcss:515
 #, java-format
@@ -324,41 +333,44 @@ msgid ""
 "{0} together with {1}. The flow direction is defined by the way direction. "
 "Use {1} on {0} only in the rare case of a access restriction."
 msgstr ""
+"{0} μαζί με {1}. Η κατεύθυνση του ρου ορίζεται από την κατεύθυνση της "
+"γραμμής. Χρησιμοποιήστε {1} στο {0} μόνο στην σπάνια περίπτωση ενός "
+"περιορισμού πρόσβασης."
 
 #: ../core/resources/data/validator/combinations.mapcss:539
 msgid "natural water used for swimming pool"
-msgstr ""
+msgstr "φυσικό νερό που χρησιμοποιείται για την πισίνα"
 
 #: ../core/resources/data/validator/combinations.mapcss:546
 msgid "sport without physical feature"
-msgstr ""
+msgstr "άθλημα χωρίς σωματικά χαρακτηριστικά"
 
 #: ../core/resources/data/validator/combinations.mapcss:566
 #, java-format
 msgid "alternative name without {0}"
-msgstr ""
+msgstr "εναλλακτικό όνομα χωρίς {0}"
 
 #: ../core/resources/data/validator/combinations.mapcss:581
 #, java-format
 msgid "incomplete usage of {0} on a way without {1}"
-msgstr ""
+msgstr "ατελής χρήση του {0} σε γραμμή χωρίς {1}"
 
 #: ../core/resources/data/validator/combinations.mapcss:595
 #: ../core/resources/data/validator/combinations.mapcss:610
 #: ../core/resources/data/validator/combinations.mapcss:625
 #, java-format
 msgid "Same value of {0}, {1} and {2}"
-msgstr ""
+msgstr "Ίδια τιμή των {0}, {1} και {2}"
 
 #: ../core/resources/data/validator/combinations.mapcss:635
 #, java-format
 msgid "{0} and {1} together with {2} and conflicting values"
-msgstr ""
+msgstr "{0} και {1} μαζί με {2} και αντικρουόμενες τιμές"
 
 #: ../core/resources/data/validator/combinations.mapcss:657
 #, java-format
 msgid "{0} on a relation without {1}"
-msgstr ""
+msgstr "{0} σε μια σχέση χωρίς {1}"
 
 #: ../core/resources/data/validator/combinations.mapcss:662
 #, java-format
@@ -367,6 +379,9 @@ msgid ""
 "underground. Remove {1} or add a tunnel tag if applicable. Also check "
 "crossing bridges and their {1} tags."
 msgstr ""
+"Μακρά υδάτινη διαδρομή με {0} αλλά χωρίς ετικέτα που να το ορίζει ως σήραγγα "
+"ή υπόγειο. Αφαιρέστε το {1} η προσθέστε μια ετικέτα σήραγγας αν χρειάζεται. "
+"Επίσης ελέγξτε της γέφυρες που διασχίζουν και τις ετικέτες {1} τους."
 
 #: ../core/resources/data/validator/combinations.mapcss:666
 #, java-format
@@ -375,99 +390,108 @@ msgid ""
 "underground. Remove {1} or add a tunnel tag if applicable. Also check "
 "crossing bridges and their {1} tags."
 msgstr ""
+"Σύντομη υδάτινη διαδρομή με {0} αλλά χωρίς ετικέτα που να το ορίζει ως "
+"σήραγγα ή υπόγειο. Αφαιρέστε το {1} η προσθέστε μια ετικέτα σήραγγας αν "
+"χρειάζεται. Επίσης ελέγξτε της γέφυρες που διασχίζουν και τις ετικέτες {1} "
+"τους."
 
 #: ../core/resources/data/validator/combinations.mapcss:691
 #, java-format
 msgid "possibly missing {0} tag"
-msgstr ""
+msgstr "πιθανώς λείπει η ετικέτα {0}"
 
 #: ../core/resources/data/validator/combinations.mapcss:706
 #, java-format
 msgid "Different number of lanes in the keys {0} and {1}"
-msgstr ""
+msgstr "Διαφορετικός αριθμός λωρίδων στο κλειδί {0} και {1}"
 
 #: ../core/resources/data/validator/combinations.mapcss:712
 #, java-format
 msgid "street with odd number of {0}, but without {1} and {2} or {3}"
-msgstr ""
+msgstr "οδός με περιττό αριθμό του {0}, αλλά χωρίς {1} και {2} ή {3}"
 
 #: ../core/resources/data/validator/combinations.mapcss:742
 #, java-format
 msgid "{0} together with {1}. Tag each hydrant separately."
-msgstr ""
+msgstr "{0} μαζί με {1}. Προσθέστε ετικέτα σε κάθε κρουνό ξεχωριστά."
 
 #: ../core/resources/data/validator/combinations.mapcss:747
 #, java-format
 msgid "{0} together with {1} on a node. Remove {0}."
-msgstr ""
+msgstr "{0} μαζί με {1} σε έναν κόμβο. Κατάργηση {0}."
 
 #: ../core/resources/data/validator/combinations.mapcss:772
 #, java-format
 msgid ""
 "A linear object {0} without {1} has a tag indicating that it is an area."
 msgstr ""
+"Ένα γραμμικό αντικείμενο {0} χωρίς {1} έχει μια ετικέτα που υποδεικνύει ότι "
+"είναι μια περιοχή."
 
 #: ../core/resources/data/validator/combinations.mapcss:784
+#: ../core/resources/data/validator/combinations.mapcss:1094
 #, java-format
 msgid "{0} together with {1}. Remove {1}."
-msgstr ""
+msgstr "{0} μαζί με {1}. Κατάργηση {1}."
 
 #: ../core/resources/data/validator/combinations.mapcss:793
 #, java-format
 msgid "Combined foot- and cycleway without {0}."
-msgstr ""
+msgstr "Συνδυασμένος πεζο- και ποδηλατόδρομος χωρίς {0}."
 
 #: ../core/resources/data/validator/combinations.mapcss:810
 #, java-format
 msgid "{0} without {1} and {2}"
-msgstr ""
+msgstr "{0} χωρίς {1} και {2}"
 
 #: ../core/resources/data/validator/combinations.mapcss:823
 #, java-format
 msgid "{0} together with {1} but without {2}"
-msgstr ""
+msgstr "{0} μαζί με {1} αλλά χωρίς {2}"
 
 #: ../core/resources/data/validator/combinations.mapcss:835
 #, java-format
 msgid "{0} together with {1} and conflicting values plus no {2}"
-msgstr ""
+msgstr "{0} μαζί με {1} και αντικρουόμενες τιμές συν όχι {2}"
 
 #: ../core/resources/data/validator/combinations.mapcss:864
 #, java-format
 msgid "{0} together with {1}. Probably {2} is meant."
-msgstr ""
+msgstr "{0} μαζί με {1}. Μάλλον το {2} εννοείται."
 
 #: ../core/resources/data/validator/combinations.mapcss:875
 #, java-format
 msgid ""
 "{0} together with {1}. Should be used on a minor highway type or a node"
 msgstr ""
+"{0} μαζί με {1}. Θα πρέπει να χρησιμοποιηθεί σε ελλάσων τύπο οδικής αρτηρίας "
+"ή σε κόμβο"
 
 #: ../core/resources/data/validator/combinations.mapcss:919
 #, java-format
 msgid "{0} together with {1}. Is the fixme fixed?"
-msgstr ""
+msgstr "{0} μαζί με {1}. Διορθώθηκε το φτιάξε με;"
 
 #: ../core/resources/data/validator/combinations.mapcss:931
 #, java-format
 msgid "Use {0} only as value of {1}"
-msgstr ""
+msgstr "Χρησιμοποιήστε το {0} μόνο ως τιμή του {1}"
 
 #: ../core/resources/data/validator/combinations.mapcss:955
 #, java-format
 msgid "{0} together with {1} at right-hand traffic"
-msgstr ""
+msgstr "{0} μαζί με {1} στη δεξιά κυκλοφορία"
 
 #: ../core/resources/data/validator/combinations.mapcss:959
 #, java-format
 msgid "{0} together with {1} at left-hand traffic"
-msgstr ""
+msgstr "{0} μαζί με {1} στη αριστερή κυκλοφορία"
 
 #: ../core/resources/data/validator/combinations.mapcss:1013
 #: ../core/resources/data/validator/combinations.mapcss:1050
 #, java-format
 msgid "No grooming defined for {0} skiing, add {1}"
-msgstr ""
+msgstr "Δεν έχει οριστεί περιποίηση για {0} σκι, προσθέστε το {1}"
 
 #: ../core/resources/data/validator/combinations.mapcss:1024
 #: ../core/resources/data/validator/combinations.mapcss:1031
@@ -475,17 +499,17 @@ msgstr ""
 #: ../core/resources/data/validator/combinations.mapcss:1044
 #, java-format
 msgid "No difficulty defined for skiing, add {0}"
-msgstr ""
+msgstr "Δεν έχει καθοριστεί δυσκολία για σκι, προσθέστε {0}"
 
 #: ../core/resources/data/validator/combinations.mapcss:1058
 #, java-format
 msgid "{0} is lower than {1} on {2}."
-msgstr ""
+msgstr "Το {0} είναι χαμηλότερο από το {1} στο {2}."
 
 #: ../core/resources/data/validator/combinations.mapcss:1065
 #, java-format
 msgid "{0} is lower or equal to {1} on {2}"
-msgstr ""
+msgstr "Το {0} είναι χαμηλότερο ή ίσο με το {1} στο {2}"
 
 #: ../core/resources/data/validator/deprecated.mapcss:2
 #: ../core/resources/data/validator/deprecated.mapcss:12
@@ -754,8 +778,13 @@ msgstr ""
 #: ../core/resources/data/validator/deprecated.mapcss:2506
 #: ../core/resources/data/validator/deprecated.mapcss:2518
 #: ../core/resources/data/validator/deprecated.mapcss:2528
-#: ../core/resources/data/validator/highway.mapcss:131
-#: ../core/resources/data/validator/highway.mapcss:139
+#: ../core/resources/data/validator/deprecated.mapcss:2558
+#: ../core/resources/data/validator/deprecated.mapcss:2566
+#: ../core/resources/data/validator/deprecated.mapcss:2571
+#: ../core/resources/data/validator/deprecated.mapcss:2576
+#: ../core/resources/data/validator/deprecated.mapcss:2581
+#: ../core/resources/data/validator/highway.mapcss:129
+#: ../core/resources/data/validator/highway.mapcss:137
 #, java-format
 msgid "{0} is deprecated"
 msgstr "{0} είναι παρωχημένο"
@@ -1052,19 +1081,30 @@ msgstr "{0} είναι παρωχημένο"
 #: ../core/resources/data/validator/deprecated.mapcss:2507
 #: ../core/resources/data/validator/deprecated.mapcss:2519
 #: ../core/resources/data/validator/deprecated.mapcss:2529
-#: ../core/resources/data/validator/highway.mapcss:113
-#: ../core/resources/data/validator/highway.mapcss:120
-#: ../core/resources/data/validator/highway.mapcss:133
-#: ../core/resources/data/validator/highway.mapcss:141
+#: ../core/resources/data/validator/deprecated.mapcss:2535
+#: ../core/resources/data/validator/deprecated.mapcss:2540
+#: ../core/resources/data/validator/deprecated.mapcss:2545
+#: ../core/resources/data/validator/deprecated.mapcss:2550
+#: ../core/resources/data/validator/deprecated.mapcss:2559
+#: ../core/resources/data/validator/deprecated.mapcss:2567
+#: ../core/resources/data/validator/deprecated.mapcss:2572
+#: ../core/resources/data/validator/deprecated.mapcss:2577
+#: ../core/resources/data/validator/deprecated.mapcss:2582
+#: ../core/resources/data/validator/highway.mapcss:111
+#: ../core/resources/data/validator/highway.mapcss:118
+#: ../core/resources/data/validator/highway.mapcss:131
+#: ../core/resources/data/validator/highway.mapcss:139
 #: ../core/resources/data/validator/territories.mapcss:22
 #: ../core/resources/data/validator/wikipedia.mapcss:22
 msgid "deprecated tagging"
-msgstr ""
+msgstr "καταργημένη προσθήκη ετικετών"
 
 #: ../core/resources/data/validator/deprecated.mapcss:326
 #, java-format
 msgid "''{0}'' is meaningless, use more specific tags, e.g. ''{1}''"
 msgstr ""
+"Το ''{0}'' δεν έχει νόημα, χρησιμοποιήστε πιο συγκεκριμένες ετικέτες, π.χ. "
+"''{1}''"
 
 #: ../core/resources/data/validator/deprecated.mapcss:330
 #, java-format
@@ -1072,6 +1112,8 @@ msgid ""
 "''{0}'' does not specify the official mode of transportation, use ''{1}'' "
 "for example"
 msgstr ""
+"Το ''{0}'' δεν προσδιορίζει τον επίσημο τρόπο μεταφοράς, χρησιμοποιήστε το "
+"''{1}'' για παράδειγμα"
 
 #: ../core/resources/data/validator/deprecated.mapcss:336
 #, java-format
@@ -1079,6 +1121,8 @@ msgid ""
 "{0}={1} is unspecific. Instead of ''{1}'' please give more information about "
 "what exactly should be fixed."
 msgstr ""
+"Το {0}={1} δεν είναι συγκεκριμένο. Αντί για ''{1}'', δώστε περισσότερες "
+"πληροφορίες σχετικά με το τι ακριβώς πρέπει να διορθωθεί."
 
 #: ../core/resources/data/validator/deprecated.mapcss:341
 #, java-format
@@ -1086,6 +1130,8 @@ msgid ""
 "Wrong usage of {0} tag. Remove {1}, because it is clear that the name is "
 "missing even without an additional tag."
 msgstr ""
+"Λανθασμένη χρήση της ετικέτας {0}. Καταργήστε το {1}, γιατί είναι σαφές ότι "
+"το όνομα λείπει ακόμη και χωρίς πρόσθετη ετικέτα."
 
 #: ../core/resources/data/validator/deprecated.mapcss:350
 #, java-format
@@ -1093,71 +1139,82 @@ msgid ""
 "{0} is unspecific. Instead use the key fixme with the information what "
 "exactly should be fixed in the value of fixme."
 msgstr ""
+"Το {0} δεν είναι συγκεκριμένο. Αντίθετα, χρησιμοποιήστε το κλειδί φτιάξε με "
+"με τις πληροφορίες του τι ακριβώς πρέπει να φτιαχτεί στην τιμή του φτιάξε με."
 
 #: ../core/resources/data/validator/deprecated.mapcss:405
 #, java-format
 msgid "{0} is deprecated. Please use instead a multipolygon."
 msgstr ""
+"Το {0} έχει καταργηθεί. Χρησιμοποιήστε αντί αυτού ένα πολλαπλό πολύγωνο."
 
 #: ../core/resources/data/validator/deprecated.mapcss:443
 #, java-format
 msgid ""
 "{0} is deprecated. Please specify interval by using opening_hours syntax"
 msgstr ""
+"Το {0} έχει καταργηθεί. Προσδιορίστε το διάστημα χρησιμοποιώντας τη σύνταξη "
+"opening_hours"
 
 #: ../core/resources/data/validator/deprecated.mapcss:449
 #, java-format
 msgid ""
 "{0} is deprecated. Please delete this object and use a private layer instead"
 msgstr ""
+"Το {0} έχει καταργηθεί. Διαγράψτε αυτό το αντικείμενο και χρησιμοποιήστε ένα "
+"ιδιωτικό επίπεδο"
 
 #: ../core/resources/data/validator/deprecated.mapcss:491
 #, java-format
 msgid "{0}={1} is unspecific. Please replace ''{1}'' by a specific value."
 msgstr ""
+"Το {0}={1} δεν είναι συγκεκριμένο. Αντικαταστήστε το ''{1}'' με μια "
+"συγκεκριμένη τιμή."
 
 #: ../core/resources/data/validator/deprecated.mapcss:496
 #: ../core/resources/data/validator/deprecated.mapcss:2487
 #, java-format
 msgid "{0} should be replaced with {1}"
-msgstr ""
+msgstr "Το {0} θα πρέπει να αντικατασταθεί με το {1}"
 
 #: ../core/resources/data/validator/deprecated.mapcss:500
 #, java-format
 msgid "{0} = {1}; remove {0}"
-msgstr ""
+msgstr "{0} = {1}; κατάργηση {0}"
 
 #: ../core/resources/data/validator/deprecated.mapcss:505
 #, java-format
 msgid "{0} is unspecific"
-msgstr ""
+msgstr "Το {0} δεν είναι συγκεκριμένο"
 
 #: ../core/resources/data/validator/deprecated.mapcss:542
 #, java-format
 msgid "Unusual key {0}, maybe {1} or {2} is meant"
-msgstr ""
+msgstr "Ασυνήθιστο κλειδί {0}, ίσως {1} ή {2} εννοείται"
 
 #: ../core/resources/data/validator/deprecated.mapcss:577
 #, java-format
 msgid "Unspecific tag {0}"
-msgstr ""
+msgstr "Μη συγκεκριμένη ετικέτα {0}"
 
 #: ../core/resources/data/validator/deprecated.mapcss:582
 #: ../core/resources/data/validator/numeric.mapcss:579
 #, java-format
 msgid "Definition of {0} is unclear"
-msgstr ""
+msgstr "Ο ορισμός του {0} δεν είναι σαφής"
 
 #: ../core/resources/data/validator/deprecated.mapcss:583
 #, java-format
 msgid "{0} + {1} + {2}"
-msgstr ""
+msgstr "{0} + {1} + {2}"
 
 #: ../core/resources/data/validator/deprecated.mapcss:605
 #, java-format
 msgid ""
 "{0} is not recommended. Use the Reverse Ways function from the Tools menu."
 msgstr ""
+"Το {0} δεν ενδείκνυται. Χρησιμοποίηστε την λειτουργία Αντιστροφής Γραμμών "
+"από το μενού Εργαλεία."
 
 #: ../core/resources/data/validator/deprecated.mapcss:710
 #: ../core/resources/data/validator/deprecated.mapcss:1063
@@ -1168,22 +1225,23 @@ msgstr ""
 #: ../core/resources/data/validator/deprecated.mapcss:1263
 #: ../core/resources/data/validator/deprecated.mapcss:1325
 #: ../core/resources/data/validator/deprecated.mapcss:1400
-#: ../core/resources/data/validator/geometry.mapcss:318
+#: ../core/resources/data/validator/geometry.mapcss:316
+#: ../core/resources/data/validator/geometry.mapcss:437
 #: ../core/resources/data/validator/numeric.mapcss:506
 #: ../core/resources/data/validator/religion.mapcss:33
-#: ../core/resources/data/validator/unnecessary.mapcss:119
-#: ../core/resources/data/validator/unnecessary.mapcss:155
+#: ../core/resources/data/validator/unnecessary.mapcss:120
+#: ../core/resources/data/validator/unnecessary.mapcss:156
 #, java-format
 msgid "{0}"
-msgstr ""
+msgstr "{0}"
 
 #: ../core/resources/data/validator/deprecated.mapcss:711
 msgid "key with uncommon character"
-msgstr ""
+msgstr "κλειδί με ασυνήθιστο χαρακτήρα"
 
 #: ../core/resources/data/validator/deprecated.mapcss:720
 msgid "uncommon short key"
-msgstr ""
+msgstr "ασυνήθιστο σύντομο κλειδί"
 
 #: ../core/resources/data/validator/deprecated.mapcss:751
 #: ../core/resources/data/validator/deprecated.mapcss:754
@@ -1191,6 +1249,8 @@ msgstr ""
 msgid ""
 "{0} is inaccurate. Use separate tags for each specific type, e.g. {1} or {2}."
 msgstr ""
+"Το {0} είναι ανακριβές. Χρησιμοποιήστε ξεχωριστές ετικέτες για κάθε "
+"συγκεκριμένο τύπο, π.χ. {1} ή {2}."
 
 #: ../core/resources/data/validator/deprecated.mapcss:793
 #: ../core/resources/data/validator/deprecated.mapcss:918
@@ -1204,21 +1264,22 @@ msgstr ""
 #: ../core/resources/data/validator/deprecated.mapcss:2162
 #, java-format
 msgid "{0} is deprecated for {1}"
-msgstr ""
+msgstr "Το {0} έχει καταργηθεί για {1}"
 
 #: ../core/resources/data/validator/deprecated.mapcss:1041
 #, java-format
 msgid "{0} is deprecated. Use the {1}: key prefix instead."
 msgstr ""
+"Το {0} έχει καταργηθεί. Χρησιμοποιήστε αντί αυτού το πρόθεμα κλειδιού {1}:."
 
 #: ../core/resources/data/validator/deprecated.mapcss:1064
 msgid "questionable key (ending with a number)"
-msgstr ""
+msgstr "αμφισβητήσιμο κλειδί (τελειώνει με αριθμό)"
 
 #: ../core/resources/data/validator/deprecated.mapcss:1135
 #, java-format
 msgid "The key {0} has an uncommon value."
-msgstr ""
+msgstr "Το κλειδί {0} έχει μια ασυνήθιστη τιμή."
 
 #: ../core/resources/data/validator/deprecated.mapcss:1241
 #: ../core/resources/data/validator/deprecated.mapcss:1247
@@ -1228,7 +1289,7 @@ msgstr ""
 #: ../core/resources/data/validator/deprecated.mapcss:1327
 #: ../core/resources/data/validator/deprecated.mapcss:1402
 msgid "misspelled value"
-msgstr ""
+msgstr "ανορθόγραφη τιμή"
 
 #: ../core/resources/data/validator/deprecated.mapcss:1269
 #: ../core/resources/data/validator/deprecated.mapcss:1278
@@ -1238,16 +1299,16 @@ msgstr ""
 #: ../core/resources/data/validator/numeric.mapcss:558
 #, java-format
 msgid "wrong value: {0}"
-msgstr ""
+msgstr "λάθος τιμή: {0}"
 
 #: ../core/resources/data/validator/deprecated.mapcss:1342
 #: ../core/resources/data/validator/deprecated.mapcss:1350
 #, java-format
 msgid "{0} is not a building type."
-msgstr ""
+msgstr "Το {0} δεν είναι τύπος κτιρίου."
 
 #: ../core/resources/data/validator/deprecated.mapcss:2049
-#: ../core/resources/data/validator/highway.mapcss:181
+#: ../core/resources/data/validator/highway.mapcss:179
 #: ../core/resources/data/validator/numeric.mapcss:340
 #: ../core/resources/data/validator/numeric.mapcss:367
 #: ../core/resources/data/validator/numeric.mapcss:394
@@ -1258,7 +1319,7 @@ msgstr ""
 #: ../core/resources/data/validator/numeric.mapcss:566
 #, java-format
 msgid "unusual value of {0}"
-msgstr ""
+msgstr "ασυνήθιστη τιμή του {0}"
 
 #: ../core/resources/data/validator/deprecated.mapcss:2435
 #, java-format
@@ -1266,70 +1327,83 @@ msgid ""
 "{0} as a tag on an object. Roles are specified in the relation members list "
 "instead."
 msgstr ""
+"{0} ως ετικέτα σε ένα αντικείμενο. Αντίθετα, οι ρόλοι καθορίζονται στη λίστα "
+"μελών της σχέσης."
 
 #: ../core/resources/data/validator/deprecated.mapcss:2478
 #, java-format
 msgid "{0} with a temporary URL which may be outdated very soon"
-msgstr ""
+msgstr "{0} με μια προσωρινή διεύθυνση URL που μπορεί να μην ισχύει σύντομα"
+
+#: ../core/resources/data/validator/deprecated.mapcss:2534
+#: ../core/resources/data/validator/deprecated.mapcss:2539
+#: ../core/resources/data/validator/deprecated.mapcss:2544
+#: ../core/resources/data/validator/deprecated.mapcss:2549
+#, java-format
+msgid "{0} should be replaced by {1}"
+msgstr "Το {0} θα πρέπει να αντικατασταθεί από το {1}"
 
 #: ../core/resources/data/validator/geometry.mapcss:43
 #, java-format
 msgid "{0} on a node. Should be used on a way."
-msgstr ""
+msgstr "{0} σε κόμβο. Πρέπει να χρησιμοποιηθεί σε γραμμή."
 
 #: ../core/resources/data/validator/geometry.mapcss:52
 #, java-format
 msgid "{0} on a node. Should be used on a way or relation."
-msgstr ""
+msgstr "{0} σε κόμβο. Πρέπει να χρησιμοποιηθεί σε γραμμή ή σχέση."
 
 #: ../core/resources/data/validator/geometry.mapcss:86
 #, java-format
 msgid "{0} on a node. Should be drawn as an area."
-msgstr ""
+msgstr "{0} σε έναν κόμβο. Θα πρέπει να σχεδιαστεί ως περιοχή."
 
 #: ../core/resources/data/validator/geometry.mapcss:94
 #, java-format
 msgid "{0} on a node. Should be used in a relation"
-msgstr ""
+msgstr "{0} σε έναν κόμβο. Θα πρέπει να χρησιμοποιείται σε μια σχέση"
 
 #: ../core/resources/data/validator/geometry.mapcss:122
 #: ../core/resources/data/validator/geometry.mapcss:135
 #, java-format
 msgid "{0} on a way. Should be used on a node."
-msgstr ""
+msgstr "{0} σε γραμμή. Πρέπει να χρησιμοποιηθεί σε κόμβο."
 
 #: ../core/resources/data/validator/geometry.mapcss:143
 #, java-format
 msgid "{0} on a way. Should be used in a relation"
-msgstr ""
+msgstr "{0} σε γραμμή. Πρέπει να χρησιμοποιηθεί σε σχέση."
 
 #: ../core/resources/data/validator/geometry.mapcss:148
 #, java-format
 msgid "{0} on a closed way. Should be used on an unclosed way."
 msgstr ""
+"{0} σε κλειστή γραμμή. Θα έπρεπε να χρησιμοποιείται σε ανοιχτή γραμμή."
 
 #: ../core/resources/data/validator/geometry.mapcss:153
 #, java-format
 msgid "{0} on a relation"
-msgstr ""
+msgstr "{0} σε μια σχέση"
 
 #: ../core/resources/data/validator/geometry.mapcss:170
 #: ../core/resources/data/validator/geometry.mapcss:173
 msgid "node connects highway and building"
-msgstr ""
+msgstr "ο κόμβος συνδέει οδό και κτήριο"
 
 #: ../core/resources/data/validator/geometry.mapcss:178
 msgid ""
 "Object at Position 0.00E 0.00N. There is nothing at this position except an "
 "already mapped weather buoy."
 msgstr ""
+"Αντικείμενο στη Θέση 0,00Ε 0,00Ν. Δεν υπάρχει τίποτα σε αυτή τη θέση εκτός "
+"από μια ήδη χαρτογραφημένη σημαδούρα καιρού."
 
 #: ../core/resources/data/validator/geometry.mapcss:184
 #: ../core/resources/data/validator/highway.mapcss:51
 #: ../core/resources/data/validator/highway.mapcss:56
 #, java-format
 msgid "{0} on a node"
-msgstr ""
+msgstr "{0} σε έναν κόμβο"
 
 #: ../core/resources/data/validator/geometry.mapcss:191
 msgid "Building inside building"
@@ -1337,15 +1411,15 @@ msgstr "Κτήριο εντός κτηρίου"
 
 #: ../core/resources/data/validator/geometry.mapcss:197
 msgid "Overlapping buildings"
-msgstr ""
+msgstr "Επικαλυπτόμενα κτίρια"
 
 #: ../core/resources/data/validator/geometry.mapcss:212
 msgid "Overlapping Water Areas"
-msgstr ""
+msgstr "Επικαλυπτόμενες Υδάτινες Περιοχές"
 
 #: ../core/resources/data/validator/geometry.mapcss:224
 msgid "Water area inside water area"
-msgstr ""
+msgstr "Υδάτινη περιοχή εντός υδάτινης περιοχής"
 
 #: ../core/resources/data/validator/geometry.mapcss:228
 msgid "Overlapping Areas"
@@ -1365,196 +1439,215 @@ msgstr "Αλληλεπικαλυπτόμενες περιοχές"
 #: ../core/resources/data/validator/geometry.mapcss:265
 #, java-format
 msgid "{0} inside {1}"
-msgstr ""
+msgstr "{0} μέσα στο {1}"
 
 #: ../core/resources/data/validator/geometry.mapcss:239
 msgid "Overlapping Identical Natural Areas"
-msgstr ""
+msgstr "Επικαλυπτόμενες ολόιδιες φυσικές περιοχές"
 
 #: ../core/resources/data/validator/geometry.mapcss:243
 msgid "Overlapping Identical Landuses"
-msgstr ""
+msgstr "Επικαλυπτόμενες ολόιδιες χρήσεις γης"
 
-#: ../core/resources/data/validator/geometry.mapcss:319
+#: ../core/resources/data/validator/geometry.mapcss:317
 msgid "isolated node which must be connected to a way"
-msgstr ""
+msgstr "απομονωμένος κόμβος που πρέπει να συνδέεται σε γραμμή"
 
-#: ../core/resources/data/validator/geometry.mapcss:328
+#: ../core/resources/data/validator/geometry.mapcss:326
 msgid "node connects waterway and bridge"
-msgstr ""
+msgstr "ο κόμβος συνδέει υδάτινη διαδρομή και γέφυρα"
 
-#: ../core/resources/data/validator/geometry.mapcss:334
-#: ../core/resources/data/validator/geometry.mapcss:347
+#: ../core/resources/data/validator/geometry.mapcss:332
+#: ../core/resources/data/validator/geometry.mapcss:345
 #, java-format
 msgid "{0} node connected to a highway"
-msgstr ""
+msgstr "Ο κόμβος {0} συνδέεται σε οδό"
 
-#: ../core/resources/data/validator/geometry.mapcss:353
+#: ../core/resources/data/validator/geometry.mapcss:351
 #, java-format
 msgid "{0} node connected to an underground object"
-msgstr ""
+msgstr "{0} κόμβος συνδεδεμένος με υπόγειο αντικείμενο"
 
-#: ../core/resources/data/validator/geometry.mapcss:358
+#: ../core/resources/data/validator/geometry.mapcss:356
 msgid "suspicious roundabout direction"
-msgstr ""
+msgstr "ύποπτη κατεύθυνση κυκλικού κόμβου"
 
-#: ../core/resources/data/validator/geometry.mapcss:363
+#: ../core/resources/data/validator/geometry.mapcss:361
 #, java-format
 msgid "{0} on a large area"
-msgstr ""
+msgstr "{0} σε μεγάλη περιοχή"
 
-#: ../core/resources/data/validator/geometry.mapcss:369
+#: ../core/resources/data/validator/geometry.mapcss:367
 #, java-format
 msgid "{0} on a small area"
-msgstr ""
+msgstr "{0} σε μικρή περιοχή"
 
-#: ../core/resources/data/validator/geometry.mapcss:376
+#: ../core/resources/data/validator/geometry.mapcss:374
 msgid "Too large building"
-msgstr ""
+msgstr "Πολύ μεγάλο κτίριο"
 
-#: ../core/resources/data/validator/geometry.mapcss:381
+#: ../core/resources/data/validator/geometry.mapcss:379
 msgid ""
 "Waterway ends without a connection to another waterway or the direction of "
 "the waterway is wrong."
 msgstr ""
+"Η υδάτινη διαδρομή τελειώνει χωρίς σύνδεση με άλλη υδάτινη διαδρομή ή η "
+"κατεύθυνση της υδάτινης διαδρομής είναι λανθασμένη."
 
-#: ../core/resources/data/validator/geometry.mapcss:387
+#: ../core/resources/data/validator/geometry.mapcss:385
 #, java-format
 msgid "Coastline inside {1}"
-msgstr ""
+msgstr "Ακτή εντός {1}"
 
-#: ../core/resources/data/validator/geometry.mapcss:394
+#: ../core/resources/data/validator/geometry.mapcss:392
 #, java-format
 msgid "{0} should be on the node where {1} and {2} intersect"
 msgstr ""
+"Το {0} θα πρέπει να βρίσκεται στον κόμβο όπου τέμνονται τα {1} και {2}"
 
-#: ../core/resources/data/validator/geometry.mapcss:403
+#: ../core/resources/data/validator/geometry.mapcss:401
 #, java-format
 msgid ""
 "{0} is the tag for the linear waterway. To tag the water area use {1} + {2} "
 "instead."
 msgstr ""
+"Το {0} είναι η ετικέτα για τη γραμμική υδάτινη διαδρομή. Για να προσθέσετε "
+"ετικέτες στην υδάτινη περιοχή, αντίθετα χρησιμοποιήστε {1} + {2}."
 
-#: ../core/resources/data/validator/geometry.mapcss:417
+#: ../core/resources/data/validator/geometry.mapcss:415
 msgid "Ferry route is not connected to the road network or branches."
 msgstr ""
+"Το δρομολόγιο του φέρι δεν συνδέεται με το οδικό δίκτυο ή τις διακλαδώσεις."
 
-#: ../core/resources/data/validator/geometry.mapcss:425
+#: ../core/resources/data/validator/geometry.mapcss:423
 msgid "Ferry route is not connected to a ferry terminal or branches."
 msgstr ""
+"Το δρομολόγιο του φέρι δεν συνδέεται με τερματικό σταθμό ή τις διακλαδώσεις."
+
+#: ../core/resources/data/validator/geometry.mapcss:432
+#, java-format
+msgid "Railways connection node without {0} or {1}"
+msgstr "Κόμβος σιδηροδρομικής σύνδεσης χωρίς {0} ή {1}"
+
+#: ../core/resources/data/validator/geometry.mapcss:438
+msgid "Node should be connected to two or more ways"
+msgstr "Ο κόμβος θα έπρεπε να συνδέεται με δύο ή παραπάνω γραμμές"
 
 #: ../core/resources/data/validator/highway.mapcss:13
 msgid "abbreviated street name"
-msgstr ""
+msgstr "συντομευμένο όνομα οδού"
 
 #: ../core/resources/data/validator/highway.mapcss:21
 msgid "wrong highway tag on a node"
-msgstr ""
+msgstr "λανθασμένη ετικέτα οδού σε κόμβο"
 
 #: ../core/resources/data/validator/highway.mapcss:44
 msgid "wrong crossing tag on a way"
-msgstr ""
+msgstr "λανθασμένη ετικέτα διάβασης σε γραμμή"
 
 #: ../core/resources/data/validator/highway.mapcss:62
 msgid "Unnamed unclassified highway"
-msgstr "Δρόμος σε μη κατοικημένη περιοχή"
+msgstr "Ανώνυμη αταξινόμητη οδική αρτηρία"
 
 #: ../core/resources/data/validator/highway.mapcss:73
 msgid "highway without a reference"
-msgstr ""
+msgstr "οδική αρτηρία χωρίς αναφορά"
 
 #: ../core/resources/data/validator/highway.mapcss:83
 msgid "Unspecific highway type"
-msgstr "Απροσδιόριστος τύπος Αυτοκινητοδρόμου"
+msgstr "Απροσδιόριστος τύπος οδού"
 
-#: ../core/resources/data/validator/highway.mapcss:112
-#: ../core/resources/data/validator/highway.mapcss:119
+#: ../core/resources/data/validator/highway.mapcss:110
+#: ../core/resources/data/validator/highway.mapcss:117
 #, java-format
 msgid "{0} is deprecated, use {1} instead. Also check similar tags like {2}"
 msgstr ""
+"Το {0} έχει καταργηθεί, αντίθετα χρησιμοποιήστε το {1}. Ελέγξτε επίσης "
+"παρόμοιες ετικέτες όπως {2}"
 
-#: ../core/resources/data/validator/highway.mapcss:152
+#: ../core/resources/data/validator/highway.mapcss:150
 #, java-format
 msgid "pedestrian railway crossing without {0}"
-msgstr ""
+msgstr "Σιδηροδρομική διάβαση πεζών χωρίς {0}"
 
-#: ../core/resources/data/validator/highway.mapcss:157
+#: ../core/resources/data/validator/highway.mapcss:155
 #, java-format
 msgid "railway crossing without {0}"
-msgstr ""
+msgstr "Σιδηροδρομική διάβαση χωρίς {0}"
 
-#: ../core/resources/data/validator/highway.mapcss:195
+#: ../core/resources/data/validator/highway.mapcss:193
 #, java-format
 msgid "{0} without right of way"
-msgstr ""
+msgstr "{0} χωρίς προτεραιότητα"
 
-#: ../core/resources/data/validator/highway.mapcss:202
+#: ../core/resources/data/validator/highway.mapcss:200
 #, java-format
 msgid "Area with {0} above {1} is invalid"
-msgstr ""
+msgstr "Η περιοχή με {0} πάνω από {1} δεν είναι έγκυρη"
 
-#: ../core/resources/data/validator/highway.mapcss:213
+#: ../core/resources/data/validator/highway.mapcss:211
 #, java-format
 msgid "{0} with trailing number"
-msgstr ""
+msgstr "{0} με τελικό αριθμό"
 
-#: ../core/resources/data/validator/highway.mapcss:214
+#: ../core/resources/data/validator/highway.mapcss:212
 msgid "questionable value (ending with a number)"
-msgstr ""
+msgstr "αμφισβητούμενη τιμή (τελειώνει με αριθμό)"
 
 #: ../core/resources/data/validator/multiple.mapcss:10
 #, java-format
 msgid "{0} with multiple values"
-msgstr ""
+msgstr "{0} με πολλαπλές τιμές"
 
 #: ../core/resources/data/validator/multiple.mapcss:38
 #, java-format
 msgid "empty value in semicolon-separated ''{0}''"
-msgstr ""
+msgstr "κενή τιμή σε διαχωρισμένο με ερωτηματικό ''{0}''"
 
 #: ../core/resources/data/validator/numeric.mapcss:4
 msgid "numerical key"
-msgstr ""
+msgstr "αριθμητικό κλειδί"
 
 #: ../core/resources/data/validator/numeric.mapcss:10
 #, java-format
 msgid "{0} value with + sign"
-msgstr ""
+msgstr "τιμή {0} με σύμβολο +"
 
 #: ../core/resources/data/validator/numeric.mapcss:19
 #, java-format
 msgid "{0} should be an integer value between -5 and 5"
-msgstr ""
+msgstr "Το {0} θα πρέπει να είναι μια ακέραια τιμή μεταξύ -5 και 5"
 
 #: ../core/resources/data/validator/numeric.mapcss:33
 #, java-format
 msgid "negative {0} value"
-msgstr ""
+msgstr "αρνητική τιμή {0}"
 
 #: ../core/resources/data/validator/numeric.mapcss:45
 #, java-format
 msgid "{0} should have numbers only with optional .5 increments"
 msgstr ""
+"Το {0} θα πρέπει να έχει αριθμούς μόνο με προαιρετικές προσαυξήσεις 0,5"
 
 #: ../core/resources/data/validator/numeric.mapcss:71
 #: ../core/resources/data/validator/unnecessary.mapcss:33
 #: ../core/resources/data/validator/unnecessary.mapcss:44
 #: ../core/resources/data/validator/unnecessary.mapcss:54
-#: ../core/resources/data/validator/unnecessary.mapcss:83
+#: ../core/resources/data/validator/unnecessary.mapcss:84
 #, java-format
 msgid "{0} is unnecessary for {1}"
-msgstr ""
+msgstr "Το {0} δεν είναι απαραίτητο για {1}"
 
 #: ../core/resources/data/validator/numeric.mapcss:72
 #: ../core/resources/data/validator/unnecessary.mapcss:8
 #: ../core/resources/data/validator/unnecessary.mapcss:34
 #: ../core/resources/data/validator/unnecessary.mapcss:45
 #: ../core/resources/data/validator/unnecessary.mapcss:55
-#: ../core/resources/data/validator/unnecessary.mapcss:77
-#: ../core/resources/data/validator/unnecessary.mapcss:84
-#: ../core/resources/data/validator/unnecessary.mapcss:171
+#: ../core/resources/data/validator/unnecessary.mapcss:78
+#: ../core/resources/data/validator/unnecessary.mapcss:85
+#: ../core/resources/data/validator/unnecessary.mapcss:172
 msgid "unnecessary tag"
-msgstr ""
+msgstr "περιττή ετικέτα"
 
 #: ../core/resources/data/validator/numeric.mapcss:96
 #, java-format
@@ -1562,17 +1655,21 @@ msgid ""
 "unusual value of {0}: use abbreviation for unit and space between value and "
 "unit"
 msgstr ""
+"ασυνήθιστη τιμή του {0}: χρησιμοποιήστε τη συντομογραφία για τη μονάδα και "
+"το διάστημα μεταξύ τιμής και μονάδας"
 
 #: ../core/resources/data/validator/numeric.mapcss:144
 #, java-format
 msgid "unusual value of {0}: use '' for foot and \" for inches, no spaces"
 msgstr ""
+"ασυνήθιστη τιμή του {0}: χρησιμοποιήστε '' για πόδι και \" για ίντσες, χωρίς "
+"κενά"
 
 #: ../core/resources/data/validator/numeric.mapcss:190
 #: ../core/resources/data/validator/numeric.mapcss:483
 #, java-format
 msgid "unusual value of {0}: use . instead of , as decimal separator"
-msgstr ""
+msgstr "ασυνήθιστη τιμή του {0}: χρήση . αντί για , ως δεκαδικό διαχωριστικό"
 
 #: ../core/resources/data/validator/numeric.mapcss:268
 #, java-format
@@ -1580,10 +1677,13 @@ msgid ""
 "unusual value of {0}: meters is default; only positive values; point is "
 "decimal separator; if units, put space then unit"
 msgstr ""
+"ασυνήθιστη τιμή του {0}: τα μέτρα είναι προεπιλεγμένα. μόνο θετικές τιμές? "
+"Το σημείο είναι δεκαδικό διαχωριστικό. εάν μονάδες, βάλτε κενό και στη "
+"συνέχεια μονάδα"
 
 #: ../core/resources/data/validator/numeric.mapcss:292
 msgid "tonne"
-msgstr ""
+msgstr "τόνος"
 
 #: ../core/resources/data/validator/numeric.mapcss:292
 #: ../core/resources/data/validator/numeric.mapcss:303
@@ -1593,6 +1693,9 @@ msgid ""
 "unusual value of {0}: {1} is default; only positive values; point is decimal "
 "separator; if units, put space then unit"
 msgstr ""
+"ασυνήθιστη τιμή του {0}: Το {1} είναι προεπιλεγμένο. μόνο θετικές τιμές? Το "
+"σημείο είναι δεκαδικό διαχωριστικό. εάν μονάδες, βάλτε κενό και στη συνέχεια "
+"μονάδα"
 
 #: ../core/resources/data/validator/numeric.mapcss:303
 #: ../plugins/photoadjust/src/org/openstreetmap/josm/plugins/photoadjust/PhotoPropertyEditor.java:258
@@ -1601,45 +1704,46 @@ msgstr "χλμ/ω"
 
 #: ../core/resources/data/validator/numeric.mapcss:319
 msgid "kilometers"
-msgstr ""
+msgstr "χιλιόμετρα"
 
 #: ../core/resources/data/validator/numeric.mapcss:332
 msgid "voltage should be in volts with no units/delimiter/spaces"
-msgstr ""
+msgstr "Η τάση πρέπει να είναι σε βολτ χωρίς μονάδες/οριοθέτες/κενά"
 
 #: ../core/resources/data/validator/numeric.mapcss:355
 #, java-format
 msgid "imprecise value of {0}"
-msgstr ""
+msgstr "ανακριβής τιμή του {0}"
 
 #: ../core/resources/data/validator/numeric.mapcss:356
 msgid "an integer value in millimeters, without unit"
-msgstr ""
+msgstr "μια ακέραια τιμή σε χιλιοστά, χωρίς μονάδα"
 
 #: ../core/resources/data/validator/numeric.mapcss:380
 #, java-format
 msgid "unusual {0} value on narrow gauge railway"
-msgstr ""
+msgstr "ασυνήθιστη τιμή {0} για σιδηροδρομική γραμμή στενού εύρους"
 
 #: ../core/resources/data/validator/numeric.mapcss:409
 #, java-format
 msgid "{0} must be a numeric value"
-msgstr ""
+msgstr "Το {0} πρέπει να είναι μια αριθμητική τιμή"
 
 #: ../core/resources/data/validator/numeric.mapcss:419
 #, java-format
 msgid "{0} must be a positive integer number"
-msgstr ""
+msgstr "Το {0} πρέπει να είναι θετικός ακέραιος αριθμός"
 
 #: ../core/resources/data/validator/numeric.mapcss:471
 #: ../core/resources/data/validator/numeric.mapcss:494
 #, java-format
 msgid "{0} must be a numeric value, in meters and without units"
 msgstr ""
+"Το {0} πρέπει να είναι μια αριθμητική τιμή, σε μέτρα και χωρίς μονάδες"
 
 #: ../core/resources/data/validator/numeric.mapcss:507
 msgid "Unnecessary amount of decimal places"
-msgstr ""
+msgstr "Περιττός αριθμός δεκαδικών θέσεων"
 
 #: ../core/resources/data/validator/numeric.mapcss:541
 #: ../core/resources/data/validator/numeric.mapcss:550
@@ -1647,7 +1751,7 @@ msgstr ""
 #: ../core/resources/data/validator/territories.mapcss:29
 #: ../core/resources/data/validator/territories.mapcss:34
 msgid "Airport tagging"
-msgstr ""
+msgstr "Επισήμανση αεροδρομίου"
 
 #: ../core/resources/data/validator/numeric.mapcss:588
 #: ../core/resources/data/validator/numeric.mapcss:600
@@ -1660,122 +1764,136 @@ msgid ""
 "unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point "
 "is decimal separator; space between value and unit"
 msgstr ""
+"ασυνήθιστη τιμή του {0}: ορίστε τη μονάδα π.χ. {1} ή {2}; μόνο θετικές "
+"τιμές? Το σημείο είναι δεκαδικά διαχωρισμένο. διάστημα μεταξύ τιμής και "
+"μονάδας"
 
 #: ../core/resources/data/validator/numeric.mapcss:660
 #, java-format
 msgid "Numeric name: {0}. Maybe {1} or {2} is meant."
+msgstr "Αριθμητικό όνομα: {0}. Ίσως εννοείται το {1} ή το {2}."
+
+#: ../core/resources/data/validator/numeric.mapcss:668
+#, java-format
+msgid "Unusually large value of {0}, possibly centimeter units are meant?"
 msgstr ""
+"Ασυνήθιστα μεγάλη τιμή του {0}, πιθανώς να εννοούνται μονάδες εκατοστών;"
 
 #: ../core/resources/data/validator/relation.mapcss:4
 msgid "relation without type"
-msgstr ""
+msgstr "σχέση χωρίς τύπο"
 
 #: ../core/resources/data/validator/relation.mapcss:18
 #: ../core/resources/data/validator/relation.mapcss:37
 #, java-format
 msgid "{0} relation without {0} tag"
-msgstr ""
+msgstr "Σχέση {0} χωρίς ετικέτα {0}"
 
 #: ../core/resources/data/validator/relation.mapcss:66
 #, java-format
 msgid "way with {0} is part of a {1} route relation"
-msgstr ""
+msgstr "γραμμή με {0} είναι μέρος σχέσης διαδρομής {1}"
 
 #: ../core/resources/data/validator/relation.mapcss:71
 #, java-format
 msgid "{0} of {1} member and {0} relation differ"
-msgstr ""
+msgstr "{0} του μέλους {1} και η σχέση {0} διαφέρουν"
 
 #: ../core/resources/data/validator/religion.mapcss:4
 msgid "religion without denomination"
-msgstr ""
+msgstr "θρησκεία χωρίς δόγμα"
 
 #: ../core/resources/data/validator/religion.mapcss:12
 msgid "unknown christian denomination"
-msgstr ""
+msgstr "άγνωστο χριστιανικό δόγμα"
 
 #: ../core/resources/data/validator/religion.mapcss:19
 msgid "unknown muslim denomination"
-msgstr ""
+msgstr "άγνωστο μουσουλμανικό δόγμα"
 
 #: ../core/resources/data/validator/religion.mapcss:26
 msgid "unknown jewish denomination"
-msgstr ""
+msgstr "άγνωστο εβραϊκό δόγμα"
 
 #: ../core/resources/data/validator/territories.mapcss:4
 msgid "street name contains ss"
-msgstr ""
+msgstr "Το όνομα της οδού περιέχει ss"
 
 #: ../core/resources/data/validator/territories.mapcss:13
 msgid "street name contains ß"
-msgstr ""
+msgstr "Το όνομα της οδού περιέχει ß"
 
 #: ../core/resources/data/validator/territories.mapcss:20
 #, java-format
 msgid "{0} is deprecated in {1}"
-msgstr ""
+msgstr "Το {0} έχει καταργηθεί στο {1}"
 
 #: ../core/resources/data/validator/unnecessary.mapcss:7
 #, java-format
 msgid "{0} is unnecessary"
-msgstr ""
+msgstr "Το {0} δεν είναι απαραίτητο"
 
 #: ../core/resources/data/validator/unnecessary.mapcss:17
 #, java-format
 msgid "{0} is optional on {1}"
-msgstr ""
+msgstr "Το {0} είναι προαιρετικό στο {1}"
 
 #: ../core/resources/data/validator/unnecessary.mapcss:63
 #, java-format
 msgid "{0} makes no sense"
-msgstr ""
+msgstr "Το {0} δεν έχει νόημα"
 
-#: ../core/resources/data/validator/unnecessary.mapcss:71
+#: ../core/resources/data/validator/unnecessary.mapcss:72
 msgid "Nodes duplicating parent way tags"
-msgstr ""
+msgstr "Διπλότυπες ετικέτες κόμβων στην μητρική γραμμή"
 
-#: ../core/resources/data/validator/unnecessary.mapcss:76
+#: ../core/resources/data/validator/unnecessary.mapcss:77
 #, java-format
 msgid "{0} together with {1} and {2}. Remove {0}."
-msgstr ""
+msgstr "{0} μαζί με {1} και {2}. Κατάργηση {0}."
 
-#: ../core/resources/data/validator/unnecessary.mapcss:120
-#: ../core/resources/data/validator/unnecessary.mapcss:156
+#: ../core/resources/data/validator/unnecessary.mapcss:121
+#: ../core/resources/data/validator/unnecessary.mapcss:157
 msgid "descriptive name"
-msgstr ""
+msgstr "περιγραφικό όνομα"
 
-#: ../core/resources/data/validator/unnecessary.mapcss:170
+#: ../core/resources/data/validator/unnecessary.mapcss:171
 #, java-format
 msgid "{0} should not be uploaded"
-msgstr ""
+msgstr "Το {0} δεν πρέπει να μεταφορτωθεί"
 
 #: ../core/resources/data/validator/wikipedia.mapcss:5
 msgid ""
 "wikipedia tag has no language given, use ''wikipedia''=''language:page "
 "title''"
 msgstr ""
+"Στην ετικέτα wikipedia δεν έχει δοθεί γλώσσα, χρησιμοποιήστε "
+"''wikipedia''=''γλώσσα:τίτλος σελίδας''"
 
 #: ../core/resources/data/validator/wikipedia.mapcss:13
 msgid "wikipedia tag has an unknown language prefix"
-msgstr ""
+msgstr "Η ετικέτα wikipedia έχει ένα πρόθεμα άγνωστης γλώσσας"
 
 #: ../core/resources/data/validator/wikipedia.mapcss:20
 msgid "wikipedia tag format is deprecated"
-msgstr ""
+msgstr "Η μορφή ετικέτας wikipedia έχει καταργηθεί"
 
 #: ../core/resources/data/validator/wikipedia.mapcss:21
 msgid "''wikipedia''=''language:page title''"
-msgstr ""
+msgstr "''wikipedia''=''γλώσσα:τίτλος σελίδας''"
 
 #: ../core/resources/data/validator/wikipedia.mapcss:28
 #, java-format
 msgid "wikipedia ''{0}'' language is obsolete, use ''{1}'' instead"
 msgstr ""
+"Η γλώσσα της wikipedia ''{0}'' είναι ξεπερασμένη, χρησιμοποιήστε το ''{1}''"
 
 #: ../core/resources/data/validator/wikipedia.mapcss:35
 #, java-format
 msgid "wikipedia ''{0}'' language is invalid, use ''{1}'' instead"
 msgstr ""
+"Η γλώσσα wikipedia ''{0}'' δεν είναι έγκυρη, αντίθετα χρησιμοποιήστε το "
+"''{1}''"
 
 #: ../core/resources/data/validator/wikipedia.mapcss:42
 #: ../core/resources/data/validator/wikipedia.mapcss:49
@@ -1783,43 +1901,51 @@ msgstr ""
 #, java-format
 msgid "{0} tag should not have URL-encoded values like ''%27''"
 msgstr ""
+"Η ετικέτα {0} δεν πρέπει να έχει κωδικοποιημένες τιμές URL όπως ''%27''"
 
 #: ../core/resources/data/validator/wikipedia.mapcss:63
 msgid "wikipedia title should not start with a space after language code"
 msgstr ""
+"Ο τίτλος της wikipedia δεν πρέπει να ξεκινά με κενό μετά τον κωδικό γλώσσας"
 
 #: ../core/resources/data/validator/wikipedia.mapcss:70
 #, java-format
 msgid "wikipedia title should not have ''{0}'' prefix"
-msgstr ""
+msgstr "Ο τίτλος της wikipedia δεν πρέπει να έχει πρόθεμα ''{0}''"
 
 #: ../core/resources/data/validator/wikipedia.mapcss:80
 msgid "wikipedia page title should have first letter capitalized"
 msgstr ""
+"Ο τίτλος της σελίδας wikipedia θα πρέπει να έχει το πρώτο γράμμα κεφαλαίο"
 
 #: ../core/resources/data/validator/wikipedia.mapcss:89
 msgid ""
 "wikipedia page title should have spaces instead of underscores (''_''→'' '')"
 msgstr ""
+"Ο τίτλος της σελίδας wikipedia θα πρέπει να έχει κενά αντί για κάτω παύλες "
+"(''_''→'' '')"
 
 #: ../core/resources/data/validator/wikipedia.mapcss:118
 msgid "wikipedia language seems to be duplicated, e.g. en:en:Foo"
-msgstr ""
+msgstr "η γλώσσα της wikipedia φαίνεται να είναι διπλή, π.χ. en:en:Foo"
 
 #: ../core/resources/data/validator/wikipedia.mapcss:127
 msgid "wikidata tag must be in Qnnnn format, where n is a digit"
 msgstr ""
+"Η ετικέτα wikidata πρέπει να είναι σε μορφή Qnnnn, όπου το n είναι ένα ψηφίο"
 
 #: ../core/resources/data/validator/wikipedia.mapcss:138
 msgid ""
 "wikipedia tag is set, but there is no wikidata tag. Wikipedia plugin might "
 "help with wikidata id lookups"
 msgstr ""
+"Η ετικέτα wikipedia έχει οριστεί, αλλά δεν υπάρχει ετικέτα wikidata. Το "
+"πρόσθετο Wikipedia μπορεί να βοηθήσει με αναζητήσεις αναγνωριστικών wikidata"
 
 #: ../core/resources/data/validator/wikipedia.mapcss:148
 #, java-format
 msgid "{0} value looks like a {1} value"
-msgstr ""
+msgstr "Η τιμή {0} μοιάζει με την τιμή {1}"
 
 #: ../core/resources/data/validator/wikipedia.mapcss:163
 #, java-format
@@ -1829,36 +1955,41 @@ msgid ""
 "''wikipedia:language=value'' only for additional articles that are not just "
 "other language variants of the main article."
 msgstr ""
+"Έχει οριστεί η ετικέτα ''{0}'', αλλά όχι η ετικέτα ''{1}''. Βεβαιωθείτε να "
+"ορίσετε το ''wikipedia=γλώσσα:τιμή'' για το κύριο άρθρο και  προαιρετικά "
+"''wikipedia:γλώσσα=τιμή'' μόνο για πρόσθετα άρθρα που δεν είναι απλώς άλλες "
+"γλωσσικές παραλλαγές του κύριου άρθρου."
 
 #: ../core/resources/styles/standard/elemstyles.mapcss:28
 msgid "Hide icons at low zoom"
-msgstr ""
+msgstr "Απόκρυψη εικονιδίων σε χαμηλό ζουμ"
 
 #: ../core/resources/styles/standard/elemstyles.mapcss:34
 msgid "Less obtrusive node symbols at low zoom"
-msgstr ""
+msgstr "Λιγότερο εμφανή σύμβολα κόμβων σε χαμηλό ζουμ"
 
 #: ../core/resources/styles/standard/elemstyles.mapcss:40
 msgid "Hide tagged waynodes at low zoom"
-msgstr ""
+msgstr "Απόκρυψη ταγκαρισμένων κόμβων γραμμής στη χαμηλή εστίαση"
 
 #: ../core/resources/styles/standard/elemstyles.mapcss:46
 msgid "Display street labels (at high zoom)"
-msgstr ""
+msgstr "Εμφάνιση ετικετών δρόμων (με υψηλό ζουμ)"
 
 #: ../core/resources/styles/standard/elemstyles.mapcss:52
 msgid "Use alternative turn restriction icon set"
-msgstr ""
+msgstr "Χρησιμοποιήστε εναλλακτικό σύνολο εικονιδίων περιορισμού στροφής"
 
 #: ../core/resources/styles/standard/elemstyles.mapcss:58
 msgid "Display fill colour of areas with place=*"
-msgstr ""
+msgstr "Εμφάνιση χρώματος πλήρωσης περιοχών με θέση=*"
 
 #: ../core/resources/styles/standard/elemstyles.mapcss:64
 msgid "Areas are drawn with fill only around their inner edges"
 msgstr ""
+"Οι περιοχές σχεδιάζονται με γέμισμα μόνο γύρω από τις εσωτερικές τους άκρες"
 
 #: ../core/resources/styles/standard/elemstyles.mapcss:70
 msgid "Display note=* annotation on nodes"
-msgstr ""
+msgstr "Εμφάνιση σημείωσης=* σχολιασμός στους κόμβους"
 

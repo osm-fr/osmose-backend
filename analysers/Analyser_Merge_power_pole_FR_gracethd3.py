@@ -21,36 +21,43 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge_Point, SHP, LoadGeomCentroid, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, GDAL, LoadGeomCentroid, Conflate, Select, Mapping
 
 
-class Analyser_Merge_power_pole_FR_gracethd (Analyser_Merge_Point):
-    def __init__(self, config, source_url, dataset_name, source, srid, conflationDistance, classs, extract_operator = None, logger = None):
+class Analyser_Merge_power_pole_FR_gracethd3 (Analyser_Merge_Point):
+    def __init__(self, config, source_url, dataset_name, source, conflationDistance, classs, extract_operator = None, logger = None):
         Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8290, id = classs + 1, level = 3, tags = ['merge', 'power', 'fix:chair', 'fix:survey'],
             title = T_('Power pole not integrated'))
         self.def_class_possible_merge(item = 8291, id = classs + 3, level = 3, tags = ['merge', 'power', 'fix:chair', 'fix:survey'],
             title = T_('Power pole integration suggestion'))
-        self.def_class_update_official(item = 8290, id = classs + 4, level = 3, tags = ['merge', 'power', 'fix:chair', 'fix:survey'],
+        self.def_class_update_official(item = 8292, id = classs + 4, level = 3, tags = ['merge', 'power', 'fix:chair', 'fix:survey'],
             title = T_('Power pole update'))
 
         self.init(
             source_url,
             dataset_name,
-            SHP(source, srid = srid, zip="*.shp"),
+            GDAL(source, zip="*.shp"),
             LoadGeomCentroid(),
             Conflate(
                 select = Select(
                     types = ['nodes'],
-                    tags = {'power': 'pole'}),
+                    tags = [
+                        {"power": "pole"},
+                        {"disused:power": "pole"},
+                        {"removed:power": "pole"},
+                        {"demolished:power": "pole"},
+                    ]),
                 conflationDistance = conflationDistance,
                 mapping = Mapping(
                     static1 = {'power': 'pole'},
                     static2 = {'source': self.source},
                     mapping1 = {
                         'material': lambda res: self.extract_material.get(res['pt_nature']),
-                        'operator': lambda res: extract_operator.get(res['pt_gest']) if res['pt_gest'] and extract_operator.get(res['pt_gest']) else extract_operator.get(res['pt_prop']) if res['pt_prop'] and extract_operator.get(res['pt_prop']) else None,
+                        'operator': lambda res: extract_operator.get(res['pt_gest'])[0] if res['pt_gest'] in extract_operator else extract_operator.get(res['pt_prop'])[0] if res['pt_prop'] in extract_operator else None,
                         'height': lambda res: res['pt_a_haut'] if res['pt_a_haut'] and float(res['pt_a_haut']) > 6.0 else None},
+                    mapping2 = {
+                        'operator:wikidata': lambda res: extract_operator.get(res['pt_gest'])[1] if res['pt_gest'] in extract_operator else extract_operator.get(res['pt_prop'])[1] if res['pt_prop'] in extract_operator else None},
                 text = lambda tags, fields: {} )))
 
     extract_material = {

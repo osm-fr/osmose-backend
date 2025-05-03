@@ -141,7 +141,7 @@ docker-compose -f docker-compose.yml -f docker-compose-dev.yml run -p 8888:8888 
 ```
 Note the `8888:8888`, which exposes port `8888` to localhost.
 
-Follow the displayed link on http://localhost:8888/...
+Follow the displayed link on http://localhost:8888/... Use this [password](https://github.com/osm-fr/osmose-backend/blob/master/docker/work/.jupyter/jupyter_notebook_config.py#L13).
 
 
 Start by reading the index documentation, and copy template to test your

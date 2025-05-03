@@ -20,22 +20,21 @@
 ##                                                                       ##
 ###########################################################################
 
-from .Analyser_Merge_power_pole_FR_gracethd import Analyser_Merge_power_pole_FR_gracethd
+from .Analyser_Merge_power_pole_FR_gracethd3 import Analyser_Merge_power_pole_FR_gracethd3
 from .Analyser_Merge import SourceDataGouv
 
-class Analyser_Merge_power_pole_FR_gracethd_jura(Analyser_Merge_power_pole_FR_gracethd):
+class Analyser_Merge_power_pole_FR_gracethd3_dordogne(Analyser_Merge_power_pole_FR_gracethd3):
     def __init__(self, config, logger = None):
-        Analyser_Merge_power_pole_FR_gracethd.__init__(self, config,
-            source_url='https://www.data.gouv.fr/fr/datasets/appuis-aeriens-enedis-utilises-dans-le-cadre-du-deploiement-de-la-fibre-sur-le-rip-du-jura/',
-            dataset_name='Appuis aériens ENEDIS utilisés dans le cadre du déploiement de la Fibre sur le RIP du Jura',
+        Analyser_Merge_power_pole_FR_gracethd3.__init__(self, config,
+            source_url='https://www.data.gouv.fr/fr/datasets/appuis-aeriens-enedis-utilises-dans-le-cadre-du-deploiement-de-la-fibre-sur-le-rip-de-la-dordogne/',
+            dataset_name='Appuis aériens ENEDIS utilisés dans le cadre du déploiement de la Fibre sur le RIP de la Dordogne',
             source=SourceDataGouv(
-                attribution="SIDEC Jura",
-                dataset="66158cdd04686348037417af",
-                resource="3f427bbd-f2bb-49dc-9457-c0aad16b1529"),
-            srid = 2154,
+                attribution="Syndicat Mixte Périgord Numérique",
+                dataset="659d72fb641c7c0d6fe6cc59",
+                resource="82e49c1f-976f-4be7-ab20-0a58e9badb56"),
             conflationDistance=5,
-            classs=1000,
+            classs=1030,
             extract_operator = {
-                'OR00000003': 'Enedis'
+                'OR000000000003': ['Enedis','Q3587594']
             },
             logger=logger)

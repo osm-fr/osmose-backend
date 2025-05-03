@@ -30,22 +30,22 @@ cvqnotag AS (
         ways.id,
         tags - ARRAY['source', 'created_by'] AS tags,
         CASE
-            WHEN ST_X(ST_StartPoint(linestring)) = ST_X(ST_StartPoint(linestring)) THEN
+            WHEN ST_X(ST_StartPoint(linestring)) = ST_X(ST_EndPoint(linestring)) THEN
                 CASE
-                    WHEN ST_Y(ST_StartPoint(linestring)) < ST_Y(ST_StartPoint(linestring)) THEN linestring
+                    WHEN ST_Y(ST_StartPoint(linestring)) < ST_Y(ST_EndPoint(linestring)) THEN linestring
                     ELSE ST_Reverse(linestring)
                 END
-            WHEN ST_X(ST_StartPoint(linestring)) < ST_X(ST_StartPoint(linestring)) THEN linestring
+            WHEN ST_X(ST_StartPoint(linestring)) < ST_X(ST_EndPoint(linestring)) THEN linestring
             ELSE ST_Reverse(linestring)
         END as linestring,
         sha224(ST_AsBinary(
             CASE
-                WHEN ST_X(ST_StartPoint(linestring)) = ST_X(ST_StartPoint(linestring)) THEN
+                WHEN ST_X(ST_StartPoint(linestring)) = ST_X(ST_EndPoint(linestring)) THEN
                     CASE
-                        WHEN ST_Y(ST_StartPoint(linestring)) < ST_Y(ST_StartPoint(linestring)) THEN linestring
+                        WHEN ST_Y(ST_StartPoint(linestring)) < ST_Y(ST_EndPoint(linestring)) THEN linestring
                         ELSE ST_Reverse(linestring)
                     END
-                WHEN ST_X(ST_StartPoint(linestring)) < ST_X(ST_StartPoint(linestring)) THEN linestring
+                WHEN ST_X(ST_StartPoint(linestring)) < ST_X(ST_EndPoint(linestring)) THEN linestring
                 ELSE ST_Reverse(linestring)
             END
         )) as linestring_hash
@@ -104,22 +104,22 @@ cvqn AS (
         ways.id,
         tags - ARRAY['source', 'created_by'] AS tags,
         CASE
-            WHEN ST_X(ST_StartPoint(linestring)) = ST_X(ST_StartPoint(linestring)) THEN
+            WHEN ST_X(ST_StartPoint(linestring)) = ST_X(ST_EndPoint(linestring)) THEN
                 CASE
-                    WHEN ST_Y(ST_StartPoint(linestring)) < ST_Y(ST_StartPoint(linestring)) THEN linestring
+                    WHEN ST_Y(ST_StartPoint(linestring)) < ST_Y(ST_EndPoint(linestring)) THEN linestring
                     ELSE ST_Reverse(linestring)
                 END
-            WHEN ST_X(ST_StartPoint(linestring)) < ST_X(ST_StartPoint(linestring)) THEN linestring
+            WHEN ST_X(ST_StartPoint(linestring)) < ST_X(ST_EndPoint(linestring)) THEN linestring
             ELSE ST_Reverse(linestring)
         END as linestring,
         sha224(ST_AsBinary(
             CASE
-                WHEN ST_X(ST_StartPoint(linestring)) = ST_X(ST_StartPoint(linestring)) THEN
+                WHEN ST_X(ST_StartPoint(linestring)) = ST_X(ST_EndPoint(linestring)) THEN
                     CASE
-                        WHEN ST_Y(ST_StartPoint(linestring)) < ST_Y(ST_StartPoint(linestring)) THEN linestring
+                        WHEN ST_Y(ST_StartPoint(linestring)) < ST_Y(ST_EndPoint(linestring)) THEN linestring
                         ELSE ST_Reverse(linestring)
                     END
-                WHEN ST_X(ST_StartPoint(linestring)) < ST_X(ST_StartPoint(linestring)) THEN linestring
+                WHEN ST_X(ST_StartPoint(linestring)) < ST_X(ST_EndPoint(linestring)) THEN linestring
                 ELSE ST_Reverse(linestring)
             END
         )) as linestring_hash

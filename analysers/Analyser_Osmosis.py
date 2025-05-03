@@ -242,34 +242,25 @@ ANALYZE {0}.polygons;
     sql_create_buildings = """
 CREATE UNLOGGED TABLE {0}.buildings AS
 SELECT
-    *,
-    CASE WHEN polygon_proj IS NOT NULL AND wall THEN ST_Area(polygon_proj) ELSE NULL END AS area
-FROM (
-SELECT DISTINCT ON (id)
     id,
+    type || id AS type_id,
     tags,
-    linestring,
-    CASE WHEN ST_IsValid(linestring) = 't' AND ST_IsSimple(linestring) = 't' AND ST_IsValid(ST_MakePolygon(ST_Transform(linestring, {1}))) THEN ST_MakePolygon(ST_Transform(linestring, {1})) ELSE NULL END AS polygon_proj,
+    poly,
+    poly_proj,
     (NOT tags?'wall' OR tags->'wall' != 'no') AND tags->'building' != 'roof' AS wall,
     tags?'layer' AS layer,
-    ST_NPoints(linestring) AS npoints,
-    relation_members.relation_id IS NOT NULL AS relation
+    ST_NPoints(poly) AS npoints,
+    ST_Area(poly_proj) AS area
 FROM
-    ways
-    LEFT JOIN relation_members ON
-        relation_members.member_type = 'W' AND
-        relation_members.member_id = ways.id
+    polygons
 WHERE
-    tags != ''::hstore AND
     tags?'building' AND
-    tags->'building' != 'no' AND
-    is_polygon
-) AS t
+    tags->'building' != 'no'
 ;
 
-CREATE INDEX idx_buildings_linestring ON {0}.buildings USING GIST(linestring);
-CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestring) WHERE wall;
-CREATE INDEX idx_buildings_polygon_proj ON {0}.buildings USING gist(polygon_proj);
+CREATE INDEX idx_buildings_poly ON {0}.buildings USING GIST(poly);
+CREATE INDEX idx_buildings_poly_wall ON {0}.buildings USING GIST(poly) WHERE wall;
+CREATE INDEX idx_buildings_poly_proj ON {0}.buildings USING gist(poly_proj);
 ANALYZE {0}.buildings;
 """
 
@@ -411,13 +402,14 @@ ANALYZE {0}.buildings;
                     self.requires_tables_build(["polygons"])
                     self.create_view_not_touched('polygons', ['W', 'R'])
                 elif table == 'buildings':
+                    self.requires_tables_build(["polygons"])
                     self.giscurs.execute(self.sql_create_buildings.format(self.config.db_schema.split(',')[0], self.config.options.get("proj")))
                 elif table == 'touched_buildings':
                     self.requires_tables_build(["buildings"])
-                    self.create_view_touched('buildings', 'W')
+                    self.create_view_touched('buildings', ['W', 'R'])
                 elif table == 'not_touched_buildings':
                     self.requires_tables_build(["buildings"])
-                    self.create_view_not_touched('buildings', 'W')
+                    self.create_view_not_touched('buildings', ['W', 'R'])
                 else:
                     raise Exception('Unknown table name {0}'.format(table))
                 self.giscurs.execute('COMMIT')

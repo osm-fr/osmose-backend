@@ -5,11 +5,12 @@
 # ToniE <osm-ToniE@web.de>, 2020
 # Manfred Brandl <manfred@brandl.net>, 2021
 # kjon kjon <kjon@gmx.de>, 2023
+# mcliquid <info@mcliquid.de>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: kjon kjon <kjon@gmx.de>, 2023\n"
-"Language-Team: German (https://www.transifex.com/openstreetmap-france/teams/17462/de/)\n"
+"Last-Translator: mcliquid <info@mcliquid.de>, 2024\n"
+"Language-Team: German (https://app.transifex.com/openstreetmap-france/teams/17462/de/)\n"
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
@@ -25,67 +26,67 @@ msgstr "Fehlendes Verkehrsmittel, ergänze den Tag route = bus/coach/tram/etc"
 msgid "Missing transportation mode, change tag route to route_master"
 msgstr "Fehlendes Verkehrsmittel, ändere Tag route in route_master"
 
-#: ../transport.validator.mapcss:91
+#: ../transport.validator.mapcss:129 ../transport.validator.mapcss:138
 msgid ""
 "Missing public_transport:version tag on a public_transport route relation"
 msgstr ""
 "Fehlender public_transport:version Tag an einer public_transport Routen-"
 "Relation"
 
-#: ../transport.validator.mapcss:100
+#: ../transport.validator.mapcss:148
 msgid "Missing network tag on a public_transport relation"
 msgstr "Fehlender network Tag bei einer public_transport Relation"
 
-#: ../transport.validator.mapcss:109
+#: ../transport.validator.mapcss:157
 msgid "Missing operator tag on a public_transport relation"
 msgstr "Fehlender operator Tag bei einer public_transport Relation"
 
-#: ../transport.validator.mapcss:118
+#: ../transport.validator.mapcss:166
 msgid "Missing ref tag for line number on a public_transport relation"
 msgstr ""
 "Fehlender ref Tag für Liniennummer bei einer public_transport Relation"
 
-#: ../transport.validator.mapcss:127
+#: ../transport.validator.mapcss:175
 msgid "Missing from/to tag on a public_transport route relation"
 msgstr "Fehlender from/to Tag bei einer public_transport Routen-Relation"
 
-#: ../transport.validator.mapcss:184
+#: ../transport.validator.mapcss:232
 msgid "The stops may not be in the right order"
 msgstr ""
 "Die Haltestellen sind möglicherweise nicht in der richtigen Reihenfolge"
 
-#: ../transport.validator.mapcss:209
+#: ../transport.validator.mapcss:257
 msgid "Is it a bus stop or a bus station?"
 msgstr "Ist das eine Bushaltestelle oder ein Busbahnhof?"
 
-#: ../transport.validator.mapcss:221
+#: ../transport.validator.mapcss:269
 msgid ""
 "Specify if it is a stop (platform) or a location on the road (stop_position)"
 msgstr ""
 "Gebe bitte an, ob das eine Haltestelle (platform) oder eine Position auf der"
 " Fahrbahn ist (stop_position)"
 
-#: ../transport.validator.mapcss:250
+#: ../transport.validator.mapcss:298
 msgid "Is this a bus stop? add the tag highway=bus_stop"
 msgstr "Ist das eine Bushaltestelle? Wenn ja, Tag highway=bus_stop hinzufügen"
 
-#: ../transport.validator.mapcss:261
+#: ../transport.validator.mapcss:309
 msgid "Check if the note can be deleted"
 msgstr "Prüfe ob die Notiz gelöscht werden kann"
 
-#: ../transport.validator.mapcss:266
+#: ../transport.validator.mapcss:314
 msgid "The network should be on the transport lines and not on the stops"
 msgstr ""
 "Der Verkehrsverbund soll in den Linien und nicht an den Haltestellen "
 "enthalten sein"
 
-#: ../transport.validator.mapcss:272
+#: ../transport.validator.mapcss:320
 msgid "The operator should be on the transport lines and not on the stops"
 msgstr ""
 "Das Verkehrsunternehmen soll in den Linien und nicht an den Haltestellen "
 "enthalten sein"
 
-#: ../transport.validator.mapcss:283
+#: ../transport.validator.mapcss:331
 msgid ""
 "The line variant does not belong to any line, add it to the route_master "
 "relation"
@@ -93,17 +94,17 @@ msgstr ""
 "Die Linienvariante gehört zu keiner Linie, füge sie zur route_master "
 "Relation hinzu"
 
-#: ../transport.validator.mapcss:297
+#: ../transport.validator.mapcss:345
 msgid "The stop is not served by any line, add it to a route relation"
 msgstr ""
 "Diese Haltestelle wird von keiner Linie bedient, füge sie zu einer Routen-"
 "Relation hinzu"
 
-#: ../transport.validator.mapcss:222 ../transport.validator.mapcss:233
+#: ../transport.validator.mapcss:270 ../transport.validator.mapcss:281
 msgid "Missing public_transport tag on a public transport stop"
 msgstr "Fehlender public_transport Tag an einer Haltestelle"
 
-#: ../transport.validator.mapcss:232
+#: ../transport.validator.mapcss:280
 msgid ""
 "Specify if it is a stop (platform) or a location on the rails "
 "(stop_position)"
@@ -111,39 +112,39 @@ msgstr ""
 "Gebe bitte an, ob das eine Haltestelle (platform) oder eine Position auf den"
 " Schienen ist (stop_position)"
 
-#: ../transport.validator.mapcss:244 ../transport.validator.mapcss:251
+#: ../transport.validator.mapcss:292 ../transport.validator.mapcss:299
 msgid "Missing legacy tag on a public transport stop"
 msgstr "Notwendiges Tag für die Haltestelle fehlt"
 
-#: ../transport.validator.mapcss:137
+#: ../transport.validator.mapcss:185
 msgid ""
 "The network tag should be the same for the route and the route_master : {0} "
 "vs {1}"
 msgstr ""
 "Der network-Tag sollte bei route und route_master gleich sein: {0} vs. {1}"
 
-#: ../transport.validator.mapcss:142
+#: ../transport.validator.mapcss:190
 msgid ""
 "The operator tag should be the same for the route and the route_master : {0}"
 " vs {1}"
 msgstr ""
 "Der operator-Tag sollte bei route und route_master gleich sein: {0} vs. {1}"
 
-#: ../transport.validator.mapcss:147
+#: ../transport.validator.mapcss:195
 msgid ""
 "The ref tag should be the same for the route and the route_master : {0} vs "
 "{1}"
 msgstr ""
 "Der ref-Tag sollte bei route und route_master gleich sein: {0} vs. {1}"
 
-#: ../transport.validator.mapcss:152
+#: ../transport.validator.mapcss:200
 msgid ""
 "The colour tag should be the same for the route and the route_master : {0} "
 "vs {1}"
 msgstr ""
 "Der colour-Tag sollte bei route und route_master gleich sein: {0} vs. {1}"
 
-#: ../transport.validator.mapcss:157
+#: ../transport.validator.mapcss:205
 msgid ""
 "The public transport mode should be the same for the route and the "
 "route_master : {0} vs {1}"
@@ -151,56 +152,56 @@ msgstr ""
 "Das Verkehrsmittel sollte für die route und den route_master gleich sein: "
 "{0} versus {1}"
 
-#: ../transport.validator.mapcss:163
+#: ../transport.validator.mapcss:211
 msgid "Check the colour tag"
 msgstr "colour Tag überprüfen"
 
-#: ../transport.validator.mapcss:170
+#: ../transport.validator.mapcss:218
 msgid "The colour code should start with '#' followed by 3 or 6 digits"
 msgstr "Der Farbcode sollte mit '#' starten, gefolgt von 3 oder 6 Ziffern."
 
-#: ../transport.validator.mapcss:178
+#: ../transport.validator.mapcss:226
 msgid "The color of the public transport line should be in a colour tag"
 msgstr ""
 "Die Farbe der Linie des öffentlichen Verkehrs soll im Tag \"colour\" "
 "enthalten sein"
 
-#: ../transport.validator.mapcss:204
+#: ../transport.validator.mapcss:252
 msgid "A bus stop is supposed to be a node"
 msgstr "Eine Bushaltestelle soll ein Knoten sein"
 
-#: ../transport.validator.mapcss:316
+#: ../transport.validator.mapcss:364
 msgid "The interval is invalid (try a number of minutes)"
 msgstr "Das Intervall ist ungültig (Nimm die Anzahl der Minuten)"
 
-#: ../transport.validator.mapcss:332
+#: ../transport.validator.mapcss:380
 msgid "The duration is invalid (try a number of minutes)"
 msgstr "Die Dauer ist ungültig (Nimm die Anzahl der Minuten)"
 
-#: ../transport.validator.mapcss:345
+#: ../transport.validator.mapcss:393
 msgid "Missing interval tag to specify the main interval"
 msgstr "Fehlendes interval Tag zur Angabe des Hauptintervalls"
 
-#: ../transport.validator.mapcss:351
+#: ../transport.validator.mapcss:399
 msgid "Missing opening_hours tag"
 msgstr "Fehlendes Tag \"opening_hours\""
 
-#: ../transport.validator.mapcss:303 ../transport.validator.mapcss:309
+#: ../transport.validator.mapcss:351 ../transport.validator.mapcss:357
 msgid "Missing name on a public transport stop"
 msgstr "Haltestelle ohne Namen"
 
-#: ../transport.validator.mapcss:192
+#: ../transport.validator.mapcss:240
 msgid ""
 "Check the operator tag : this operator does not exist, it may be a typo"
 msgstr ""
 "Prüfe das operator Tag: Dieses existiert nicht, vielleicht ein Tippfehler"
 
-#: ../transport.validator.mapcss:198
+#: ../transport.validator.mapcss:246
 msgid "Check the network tag : this network does not exist, it may be a typo"
 msgstr ""
 "Prüfe das network Tag: Dieses existiert nicht, vielleicht ein Tippfehler"
 
-#: ../transport.validator.mapcss:215
+#: ../transport.validator.mapcss:263
 msgid ""
 "A bus station is usually a large area where many buses stop, check if you "
 "can draw this area"
@@ -208,17 +209,17 @@ msgstr ""
 "Ein Busbahnhof ist normalerweise eine größere Fläche an der viele Busse "
 "halten, vielleicht kannst du die Fläche zeichnen"
 
-#: ../transport.validator.mapcss:243
+#: ../transport.validator.mapcss:291
 msgid "Is this a bus or tram stop ? Add a tag to precise the kind of platform"
 msgstr ""
 "Ist dies eine Bus- oder Tramhaltestelle? Ergänze ein Tag, um die Art des "
 "Bahnsteigs zu präzisieren"
 
-#: ../transport.validator.mapcss:359
+#: ../transport.validator.mapcss:407
 msgid "Subway entrances should be mapped as nodes"
 msgstr "U-Bahneingänge sollen als Punkte gemappt werden"
 
-#: ../transport.validator.mapcss:391
+#: ../transport.validator.mapcss:439
 msgid ""
 "The station entrance should be part of a building or a highway (steps, "
 "footway, etc)"
@@ -226,10 +227,18 @@ msgstr ""
 "Der Bahnhofseingag soll Teil eines Gebäudes oder eines Weges (Stufen, "
 "Fußweg, etc.) sein"
 
-#: ../transport.validator.mapcss:375
+#: ../transport.validator.mapcss:423
 msgid ""
 "The station entrance should be in part of a station: add it to a stop_area "
 "relation"
 msgstr ""
 "Der Eingang zur Station sollte als Teil der Haltestelle zu einer stop_area "
 "Relation hinzugefügt werden"
+
+#: ../transport.validator.mapcss:114
+msgid "Missing public_transport:version=1 on a public_transport relation"
+msgstr "Fehlende public_transport:version=1 an einer ÖPNV-Relation"
+
+#: ../transport.validator.mapcss:121
+msgid "Missing public_transport:version=2 on a public_transport relation"
+msgstr "Fehlende public_transport:version=2 an einer ÖPNV-Relation"

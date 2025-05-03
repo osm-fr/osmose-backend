@@ -22,7 +22,7 @@
 from modules.OsmoseTranslation import T_
 from plugins.Plugin import TestPluginCommon
 from plugins.Plugin import Plugin
-from plugins.modules.name_suggestion_index import download_nsi
+from plugins.modules.name_suggestion_index import download_nsi, nsi_rule_applies
 
 class TagFix_Brand(Plugin):
 
@@ -48,7 +48,7 @@ If not, see if you can improve the [name-suggestion-index project](https://githu
 
         if not self.father.config.options.get("country"):
             return False
-        self.country_code = self.father.config.options.get("country").split("-")[0].lower()
+        self.country_code = self.father.config.options.get("country")
 
         nsi = download_nsi()
         self.brands_from_nsi = self._parse_category_from_nsi(nsi, "brands/", "brand")
@@ -60,13 +60,8 @@ If not, see if you can improve the [name-suggestion-index project](https://githu
             if tag.startswith(nsiprefix) and "items" in details:
                 nsi_name = tag[len(nsiprefix):]
                 for preset in details["items"]:
-                    if "locationSet" in preset:
-                        if ("include" in preset["locationSet"] and
-                                self.country_code not in preset["locationSet"]["include"] and
-                                "001" not in preset["locationSet"]["include"]):
-                            continue
-                        if "exclude" in preset["locationSet"] and self.country_code in preset["locationSet"]["exclude"]:
-                            continue
+                    if "locationSet" in preset and not nsi_rule_applies(preset["locationSet"], self.country_code):
+                        continue
                     if "matchTags" in preset:
                         for additional_tag in preset["matchTags"]:
                             nsi_key = "{}|{}".format(additional_tag, preset["tags"][key])
@@ -141,13 +136,40 @@ class Test(TestPluginCommon):
         assert not a.node(None, {"shop": "clothes", "name": "Kiabi","not:brand:wikidata": "Q3196299"})
         assert not a.node(None, {"shop": "clothes", "name": "Kiabi","not:brand:wikidata": "Q3196299", "brand:wikidata": "Q1234567"})
         assert not a.node(None, {"name": "National Bank", "amenity": "bank", "atm": "yes"})
+        assert a.node(None, {"name": "La Place", "amenity": "restaurant"}) # as 'fra' rather than 'FR' in NSI
 
-        # Operators
+        # Operator only for FR-pac
+        assert not a.node(None, {"name": "Beautify fire station", "amenity": "fire_station", "operator": "Bataillon de marins-pompiers de Marseille"})
+
+    def test_FR13(self):
+        a = TagFix_Brand(None)
+        class _config:
+            options = {"country": "FR-13"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+
+        # Operator only enabled for FR-pac, which contains FR-13
         assert a.node(None, {"name": "Beautify fire station", "amenity": "fire_station", "operator": "Bataillon de marins-pompiers de Marseille"})
         assert not a.node(None, {"name": "Beautify fire station", "amenity": "fire_station", "operator": "Bataillon de marins-pompiers de Marseille", "operator:wikidata": "Q2891011"})
-        assert not a.node(None, {"name": "Beautify fire station", "amenity": "fire_station", "not:operator:wikidata": "Q2891011"})
-        assert not a.node(None, {"name": "Beautify fire station", "amenity": "fire_station", "operator": "Unknown firestation"})
 
+    def test_LU(self):
+        a = TagFix_Brand(None)
+        class _config:
+            options = {"country": "LU"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+
+        # Operators
+        assert a.node(None, {"amenity": "fire_station", "operator": "CGDIS"})
+        assert not a.node(None, {"amenity": "fire_station", "operator": "CGDIS", "operator:wikidata": "Q55334052"})
+        assert not a.node(None, {"amenity": "fire_station", "not:operator:wikidata": "Q55334052"})
+        assert not a.node(None, {"amenity": "fire_station", "operator": "Unknown firestation"})
+
+        assert not a.node(None, {"name": "La Place", "amenity": "restaurant"}) # as 'fra' rather than 'FR' in NSI
 
     def test_CA(self):
         a = TagFix_Brand(None)
@@ -158,4 +180,41 @@ class Test(TestPluginCommon):
         a.father = father()
         a.init(None)
 
+        # Include CA, exclude CA-QC
         assert a.node(None, {"name": "National Bank", "amenity": "bank", "atm": "yes"})
+
+    def test_CA_ON(self):
+        a = TagFix_Brand(None)
+        class _config:
+            options = {"country": "CA-ON"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+
+        # Include CA, exclude CA-QC
+        assert a.node(None, {"name": "National Bank", "amenity": "bank", "atm": "yes"})
+
+    def test_CA_QC_LAN(self):
+        a = TagFix_Brand(None)
+        class _config:
+            options = {"country": "CA-QC-LAN"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+
+        # Include CA, exclude CA-QC
+        assert not a.node(None, {"name": "National Bank", "amenity": "bank", "atm": "yes"})
+
+    def test_CA_QC(self):
+        a = TagFix_Brand(None)
+        class _config:
+            options = {"country": "CA-QC"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+
+        # Include CA, exclude CA-QC
+        assert not a.node(None, {"name": "National Bank", "amenity": "bank", "atm": "yes"})

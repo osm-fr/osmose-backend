@@ -4,7 +4,7 @@ This documentation is for understanding how Osmose-QA Backend works. With the ma
 
 This documentation is written in Markdown and in Jupyter Notebook. The Jupyter Notebook are interactive shell for learn and test code.
 Nevertheless, and like the Markdown part, it could be accessed as static view [online at Github](https://github.com/osm-fr/osmose-backend/tree/master/doc).
-If you want to run the Jupyter Notebook in interactive mode, go the [online instance](https://osmose-jupyter.openstreetmap.fr) (use this [password](https://github.com/osm-fr/osmose-backend/blob/master/docker/work/.jupyter/jupyter_notebook_config.py#L13)) or follow the [installation with Docker](../docker/README.md).
+If you want to run the Jupyter Notebook in interactive mode follow the [installation with Docker](../docker/README.md).
 
 0. [Index](0-Index.md): General consideration and concept, good point to start.
 1. [Python Plugin](https://github.com/osm-fr/osmose-backend/blob/master/doc/1-Plugin.ipynb): Interactive introduction to how to make simple validation rule using Python.

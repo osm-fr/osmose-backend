@@ -26,9 +26,11 @@ class TagFix_MultipleTag2(PluginMapCSS):
         self.errors[40201] = self.def_class(item = 4020, level = 1, tags = mapcss.list_('tag') + mapcss.list_('fix:chair', 'highway', 'roundabout'), title = mapcss.tr('Roundabout as area'))
         self.errors[40303] = self.def_class(item = 4030, level = 1, tags = mapcss.list_('tag') + mapcss.list_('fix:chair'), title = mapcss.tr('Tag conflict'), trap = mapcss.tr('Sometimes the object needs both tags.'), detail = mapcss.tr('The object contains two incompatible tags.'))
         self.errors[40401] = self.def_class(item = 4040, level = 2, tags = mapcss.list_('tag') + mapcss.list_('fix:chair', 'name', 'tourism'), title = mapcss.tr('{0} with {1}, likely this is a single pitch instead', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}')), detail = mapcss.tr('The camping site has a numeric name. Numeric identifiers are much more common for a single pitch (`tourism=camp_pitch`) within a camping site. Possibly the two were interchanged?'))
+        self.errors[50802] = self.def_class(item = 5080, level = 3, tags = mapcss.list_('tag') + mapcss.list_('name', 'fix:chair'), title = mapcss.tr('{0} contains the value of {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}')), trap = mapcss.tr('Possibly a different `alt_name` that is very similar to `name` was meant. Alternative names are often similar (but never equal) to the name.'))
         self.errors[71301] = self.def_class(item = 7130, level = 3, tags = mapcss.list_('tag') + mapcss.list_('highway', 'maxheight', 'fix:survey'), title = mapcss.tr('Missing maxheight tag'), detail = mapcss.tr('Missing `maxheight=*` or `maxheight:physical=*` for a tunnel or a way under a bridge.'))
         self.errors[303210] = self.def_class(item = 3032, level = 3, tags = mapcss.list_('tag'), title = mapcss.tr('Fence with {0} tag, also add {1}', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.key}')))
         self.errors[303211] = self.def_class(item = 3032, level = 3, tags = mapcss.list_('tag'), title = mapcss.tr('suspicious tag combination'))
+        self.errors[316150] = self.def_class(item = 3161, level = 3, tags = mapcss.list_('tag') + mapcss.list_('highway', 'fix:chair', 'parking'), title = mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.key}=*')), detail = mapcss.tr('Indicate the type of parking, for example `parking=street_side`, `parking=surface` or `parking=underground`, to distinguish between major parking lots and roadside parking. Add access tags and/or service ways through the parking lot as desired.'), resource = 'https://wiki.openstreetmap.org/wiki/Key:parking')
 
         self.re_066203d3 = re.compile(r'^[0-9]+$')
         self.re_2ae49e65 = re.compile(r'^(motorway_link|trunk_link|primary|primary_link|secondary|secondary_link)$')
@@ -214,6 +216,43 @@ class TagFix_MultipleTag2(PluginMapCSS):
                     '-': ([
                     'name'])
                 }})
+
+        # *[alt_name][name][alt_name~=*name][alt_name!=*name]
+        if ('alt_name' in keys and 'name' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'alt_name')) and (mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 2, tags, 'alt_name'), mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'name')))) and (mapcss._tag_capture(capture_tags, 3, tags, 'alt_name') != mapcss._value_capture(capture_tags, 3, mapcss.tag(tags, 'name'))))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseTags:list("name","fix:chair")
+                # -osmoseTrap:tr("Possibly a different `alt_name` that is very similar to `name` was meant. Alternative names are often similar (but never equal) to the name.")
+                # -osmoseItemClassLevel:"5080/50802/3"
+                # throwWarning:tr("{0} contains the value of {1}","{0.key}","{1.key}")
+                # fixAdd:concat("{0.key}=",join_list(";",trim_list(split(";",replace(concat(";",join_list(";",trim_list(split(";",tag("alt_name")))),";"),concat(";",tag("name"),";"),";")))))
+                # assertMatch:"node name=y alt_name=\"x; y; z\""
+                # assertMatch:"node name=y alt_name=x;y;z"
+                # assertNoMatch:"node name=y alt_name=xyz"
+                # assertNoMatch:"node name=y alt_name=y"
+                err.append({'class': 50802, 'subclass': 0, 'text': mapcss.tr('{0} contains the value of {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(mapcss._tag_uncapture(capture_tags, '{0.key}='), mapcss.join_list(';', mapcss.trim_list(mapcss.split(';', mapcss.replace(mapcss.concat(';', mapcss.join_list(';', mapcss.trim_list(mapcss.split(';', mapcss.tag(tags, 'alt_name')))), ';'), mapcss.concat(';', mapcss.tag(tags, 'name'), ';'), ';')))))).split('=', 1)])
+                }})
+
+        # node[amenity=parking][!parking]
+        if ('amenity' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'parking')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'parking')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseTags:list("highway","fix:chair","parking")
+                # -osmoseDetail:tr("Indicate the type of parking, for example `parking=street_side`, `parking=surface` or `parking=underground`, to distinguish between major parking lots and roadside parking. Add access tags and/or service ways through the parking lot as desired.")
+                # -osmoseItemClassLevel:"3161/316150/3"
+                # -osmoseResource:"https://wiki.openstreetmap.org/wiki/Key:parking"
+                # throwWarning:tr("{0} without {1}","{0.tag}","{1.key}=*")
+                err.append({'class': 316150, 'subclass': 0, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.key}=*'))})
 
         # node[tunnel][!highway][!area:highway][!railway][!waterway][!piste:type][type!=tunnel][public_transport!=platform][route!=ferry][man_made!=pipeline][man_made!=goods_conveyor][man_made!=wildlife_crossing][man_made!=tunnel][power!=cable]
         if ('tunnel' in keys):
@@ -507,6 +546,39 @@ class TagFix_MultipleTag2(PluginMapCSS):
                     'name'])
                 }})
 
+        # *[alt_name][name][alt_name~=*name][alt_name!=*name]
+        if ('alt_name' in keys and 'name' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'alt_name')) and (mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 2, tags, 'alt_name'), mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'name')))) and (mapcss._tag_capture(capture_tags, 3, tags, 'alt_name') != mapcss._value_capture(capture_tags, 3, mapcss.tag(tags, 'name'))))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseTags:list("name","fix:chair")
+                # -osmoseTrap:tr("Possibly a different `alt_name` that is very similar to `name` was meant. Alternative names are often similar (but never equal) to the name.")
+                # -osmoseItemClassLevel:"5080/50802/3"
+                # throwWarning:tr("{0} contains the value of {1}","{0.key}","{1.key}")
+                # fixAdd:concat("{0.key}=",join_list(";",trim_list(split(";",replace(concat(";",join_list(";",trim_list(split(";",tag("alt_name")))),";"),concat(";",tag("name"),";"),";")))))
+                err.append({'class': 50802, 'subclass': 0, 'text': mapcss.tr('{0} contains the value of {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(mapcss._tag_uncapture(capture_tags, '{0.key}='), mapcss.join_list(';', mapcss.trim_list(mapcss.split(';', mapcss.replace(mapcss.concat(';', mapcss.join_list(';', mapcss.trim_list(mapcss.split(';', mapcss.tag(tags, 'alt_name')))), ';'), mapcss.concat(';', mapcss.tag(tags, 'name'), ';'), ';')))))).split('=', 1)])
+                }})
+
+        # area[amenity=parking][!parking]
+        if ('amenity' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'parking')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'parking')) and (mapcss._tag_capture(capture_tags, -1, tags, 'area') != mapcss._value_const_capture(capture_tags, -1, 'no', 'no')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseTags:list("highway","fix:chair","parking")
+                # -osmoseDetail:tr("Indicate the type of parking, for example `parking=street_side`, `parking=surface` or `parking=underground`, to distinguish between major parking lots and roadside parking. Add access tags and/or service ways through the parking lot as desired.")
+                # -osmoseItemClassLevel:"3161/316150/3"
+                # -osmoseResource:"https://wiki.openstreetmap.org/wiki/Key:parking"
+                # throwWarning:tr("{0} without {1}","{0.tag}","{1.key}=*")
+                err.append({'class': 316150, 'subclass': 0, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.key}=*'))})
+
         return err
 
     def relation(self, data, tags, members):
@@ -660,6 +732,41 @@ class TagFix_MultipleTag2(PluginMapCSS):
                     'name'])
                 }})
 
+        # *[alt_name][name][alt_name~=*name][alt_name!=*name]
+        if ('alt_name' in keys and 'name' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'alt_name')) and (mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 2, tags, 'alt_name'), mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'name')))) and (mapcss._tag_capture(capture_tags, 3, tags, 'alt_name') != mapcss._value_capture(capture_tags, 3, mapcss.tag(tags, 'name'))))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseTags:list("name","fix:chair")
+                # -osmoseTrap:tr("Possibly a different `alt_name` that is very similar to `name` was meant. Alternative names are often similar (but never equal) to the name.")
+                # -osmoseItemClassLevel:"5080/50802/3"
+                # throwWarning:tr("{0} contains the value of {1}","{0.key}","{1.key}")
+                # fixAdd:concat("{0.key}=",join_list(";",trim_list(split(";",replace(concat(";",join_list(";",trim_list(split(";",tag("alt_name")))),";"),concat(";",tag("name"),";"),";")))))
+                err.append({'class': 50802, 'subclass': 0, 'text': mapcss.tr('{0} contains the value of {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(mapcss._tag_uncapture(capture_tags, '{0.key}='), mapcss.join_list(';', mapcss.trim_list(mapcss.split(';', mapcss.replace(mapcss.concat(';', mapcss.join_list(';', mapcss.trim_list(mapcss.split(';', mapcss.tag(tags, 'alt_name')))), ';'), mapcss.concat(';', mapcss.tag(tags, 'name'), ';'), ';')))))).split('=', 1)])
+                }})
+
+        # area[amenity=parking][!parking]
+        if ('amenity' in keys and 'type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'parking')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'parking')) and (mapcss._tag_capture(capture_tags, -1, tags, 'type') == mapcss._value_capture(capture_tags, -1, 'multipolygon')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseTags:list("highway","fix:chair","parking")
+                # -osmoseDetail:tr("Indicate the type of parking, for example `parking=street_side`, `parking=surface` or `parking=underground`, to distinguish between major parking lots and roadside parking. Add access tags and/or service ways through the parking lot as desired.")
+                # -osmoseItemClassLevel:"3161/316150/3"
+                # -osmoseResource:"https://wiki.openstreetmap.org/wiki/Key:parking"
+                # throwWarning:tr("{0} without {1}","{0.tag}","{1.key}=*")
+                # assertNoMatch:"relation type=multipolygon amenity=parking parking=street_side"
+                # assertMatch:"relation type=multipolygon amenity=parking"
+                err.append({'class': 316150, 'subclass': 0, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.key}=*'))})
+
         return err
 
 
@@ -688,6 +795,10 @@ class Test(TestPluginMapcss):
         self.check_err(n.node(data, {'barrier': 'fence', 'material': 'wood'}), expected={'class': 303210, 'subclass': 0})
         self.check_err(n.node(data, {'name': '24', 'tourism': 'camp_site'}), expected={'class': 40401, 'subclass': 0})
         self.check_not_err(n.node(data, {'name': '24tents', 'tourism': 'camp_site'}), expected={'class': 40401, 'subclass': 0})
+        self.check_err(n.node(data, {'alt_name': 'x; y; z', 'name': 'y'}), expected={'class': 50802, 'subclass': 0})
+        self.check_err(n.node(data, {'alt_name': 'x;y;z', 'name': 'y'}), expected={'class': 50802, 'subclass': 0})
+        self.check_not_err(n.node(data, {'alt_name': 'xyz', 'name': 'y'}), expected={'class': 50802, 'subclass': 0})
+        self.check_not_err(n.node(data, {'alt_name': 'y', 'name': 'y'}), expected={'class': 50802, 'subclass': 0})
         self.check_err(n.way(data, {'amenity': 'fuel', 'building': 'roof'}, [0]), expected={'class': 30322, 'subclass': 0})
         self.check_not_err(n.way(data, {'amenity': 'parking', 'building': 'roof', 'parking': 'rooftop'}, [0]), expected={'class': 30322, 'subclass': 0})
         self.check_err(n.way(data, {'fee': 'yes', 'highway': 'primary'}, [0]), expected={'class': 30320, 'subclass': 1000})
@@ -706,3 +817,5 @@ class Test(TestPluginMapcss):
         self.check_not_err(n.way(data, {'bridge': 'yes', 'tunnel': 'no'}, [0]), expected={'class': 40303, 'subclass': 0})
         self.check_err(n.way(data, {'bridge': 'yes', 'tunnel': 'yes'}, [0]), expected={'class': 40303, 'subclass': 0})
         self.check_err(n.relation(data, {}, []), expected={'class': 21102, 'subclass': 0})
+        self.check_not_err(n.relation(data, {'amenity': 'parking', 'parking': 'street_side', 'type': 'multipolygon'}, []), expected={'class': 316150, 'subclass': 0})
+        self.check_err(n.relation(data, {'amenity': 'parking', 'type': 'multipolygon'}, []), expected={'class': 316150, 'subclass': 0})

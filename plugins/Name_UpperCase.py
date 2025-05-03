@@ -46,21 +46,26 @@ class Name_UpperCase(Plugin):
         )
         self.UpperTitleCase = re.compile(r".*[\p{Lu}\p{Lt}]{5,}")
         self.RomanNumber = re.compile(r".*[IVXCDLM]{5,}")
+        self.country = None
 
         if "country" in self.father.config.options:
-            country = self.father.config.options.get("country")[:2]
-            self.whitelist = set(UpperCase_WhiteList.get(country, []))
+            self.country = self.father.config.options.get("country")
+            self.whitelist = set(UpperCase_WhiteList.get(self.country.split("-")[0], []))
             nsi_whitelist = set(filter(lambda name: self.UpperTitleCase.match(name) and not self.RomanNumber.match(name),
-                                       whitelist_from_nsi(country.lower())))
+                                       whitelist_from_nsi(self.country)))
             self.whitelist.update(nsi_whitelist)
         else:
             self.whitelist = set()
 
     def node(self, data, tags):
         err = []
-        if u"name" in tags:
+        if "name" in tags:
+            # Whitelist bus stops in Greece, see #2368
+            if self.country and self.country.split("-")[0] == "GR" and "public_transport" in tags and tags["public_transport"] in ("stop_position", "platform", "station"):
+                return err
+
             # first check if the name *might* match
-            if self.UpperTitleCase.match(tags[u"name"]) and not self.RomanNumber.match(tags[u"name"]):
+            if self.UpperTitleCase.match(tags["name"]) and not self.RomanNumber.match(tags["name"]):
                 if not self.whitelist or not any(map(lambda whitelist: whitelist in tags["name"], self.whitelist)):
                     err.append({"class": 803, "text": T_("Concerns tag: `{0}`", '='.join(['name', tags['name']])) })
                 else:
@@ -90,15 +95,33 @@ class Test(TestPluginCommon):
                   {u"name": u"EHPAD MAGEUSCULE"},
                   {u"name": u"ICI PARIS XL"}, # in NSI, but not for FR
                   {u"name": u"AÇǱÞΣSSὩΙST"},
-                  {u"name": u"NORMA PARIS"},
+                  {u"name": u"IKEA PARIS"},
                  ]:
             self.check_err(a.node(None, t), t)
             self.check_err(a.way(None, t, None), t)
 
         for t in [{u"name": u"Col des Champs XIIVVVIM"},
                   {u"name": u"EHPAD La Madelon"},
-                  {u"name": u"NORMA"}, # in NSI
-                  {u"name": u"NORMA Paris"},
+                  {u"name": u"IKEA"}, # in NSI
+                  {u"name": u"IKEA Paris"},
                   {u"name": u"ƻאᎯᚦ京"},
+                 ]:
+            assert not a.node(None, t), t
+
+    def test_GR(self):
+        a = Name_UpperCase(None)
+        class _config:
+            options = {"country": "GR", "language": "el"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+        for t in [{"name": u"ΠΛΑΤΕΙΑ ΕΛΕΥΘΕΡΙΑΣ"},
+                  {"name": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"},
+                 ]:
+            self.check_err(a.node(None, t), t)
+            self.check_err(a.way(None, t, None), t)
+
+        for t in [{"name": u"ΠΛΑΤΕΙΑ ΕΛΕΥΘΕΡΙΑΣ", "public_transport": "stop_position"},
                  ]:
             assert not a.node(None, t), t
