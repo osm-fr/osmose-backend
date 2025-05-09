@@ -48,6 +48,7 @@ class Analyser_Merge_Power_Substation_minor_FR(Analyser_Merge_Point):
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = [
+                        {"power": "substation", "substation": ["industrial", "generation"], "operator": [operator[0] for operator in self.extract_operator.values()]},
                         {"power": "substation", "substation": ["distribution", "minor_distribution"]},
                         {"power": None, "transformer": ["distribution", "main"]}]),
                 conflationDistance = 50,
