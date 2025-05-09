@@ -58,7 +58,7 @@ class TagFix_Maxspeed_AT(Plugin):
 '''Set `maxspeed` and `maxspeed:type` or `source:maxspeed` (but not both) as appropriate.
 For a list of values, see table 'valid_maxspeed_types' in the source code below.'''),
             trap=T_(
-'''Do not just add a `maxspeed` value suitable for the type. The type may be incorrect too! 
+'''Do not just add a `maxspeed` value suitable for the type. The type may be incorrect too!
 Always check `highway`, all other tags related to speed and verify on the ground.'''),
             resource='https://wiki.openstreetmap.org/wiki/Key:maxspeed')
 
@@ -67,10 +67,10 @@ Always check `highway`, all other tags related to speed and verify on the ground
             detail=T_(
 '''The speed limit in `maxspeed` must be either numeric or `walk`. Do not specify a unit, km/h is the default.'''),
             fix=T_(
-'''Set `maxspeed` as appropriate and set speed limit type in `maxspeed:type` or `source:maxspeed` (but not both). 
+'''Set `maxspeed` as appropriate and set speed limit type in `maxspeed:type` or `source:maxspeed` (but not both).
 For a list of values, see table 'valid_maxspeed_types' in the source code below.'''),
             trap=T_(
-'''If a speed limit type (e.g. `AT:*`) is set in `maxspeed`, do not assume it's correct! 
+'''If a speed limit type (e.g. `AT:*`) is set in `maxspeed`, do not assume it's correct!
 Always check `highway`, all other tags related to speed and verify on the ground.'''),
             resource='https://wiki.openstreetmap.org/wiki/Key:maxspeed')
 
@@ -79,12 +79,12 @@ Always check `highway`, all other tags related to speed and verify on the ground
             detail=T_(
 '''The speed limit in `maxspeed` is very low and no type is given in `maxspeed:type` or `source:maxspeed`.'''),
             fix=T_(
-'''For pedestrian areas and living streets (except shared zones and school roads), walking speed is the default and no 
-speed limit or type should be set. If walking speed is prescribed on a sign, set `maxspeed=walk`, `maxspeed:type=sign` 
-and `traffic_sign=AT:54[text]` or `traffic_sign=AT:..,54[text]`. If a speed of 5 km/h is prescribed on a sign, 
+'''For pedestrian areas and living streets (except shared zones and school roads), walking speed is the default and no
+speed limit or type should be set. If walking speed is prescribed on a sign, set `maxspeed=walk`, `maxspeed:type=sign`
+and `traffic_sign=AT:54[text]` or `traffic_sign=AT:..,54[text]`. If a speed of 5 km/h is prescribed on a sign,
 set `maxspeed=5`, `maxspeed:type=sign`.'''),
             trap=T_(
-'''Do not assume any of the data present is correct!  
+'''Do not assume any of the data present is correct!
 Always check `highway`, all other tags related to speed and verify on the ground.'''),
             resource='https://wiki.openstreetmap.org/wiki/DE:Verkehrszeichen_in_Österreich')
 
@@ -93,23 +93,23 @@ Always check `highway`, all other tags related to speed and verify on the ground
             detail=T_(
 '''The speed limit type in `maxspeed:type` or `source:maxspeed` is not valid.'''),
             fix=T_(
-'''Set the appropriate speed limit type. For a list of values, 
+'''Set the appropriate speed limit type. For a list of values,
 see the table 'valid_maxspeed_types' in the source code below.'''),
             trap=T_(
-'''Do not assume any of the data present is correct!  
+'''Do not assume any of the data present is correct!
 Always check `highway`, all other tags related to speed and verify on the ground.'''),
             resource='https://wiki.openstreetmap.org/wiki/DE:Key:maxspeed:type')
 
         self.errors[5] = self.def_class(item=3032, level=2, tags=['maxspeed'],
             title=T_('Multiple speed limit types'),
             detail=T_(
-'''`maxspeed:type` and `source:maxspeed` are both set. This may cause confusion for mappers and data consumers, 
+'''`maxspeed:type` and `source:maxspeed` are both set. This may cause confusion for mappers and data consumers,
 especially if the values are different.'''),
             fix=T_(
-'''Set either `maxspeed:type` or `source:maxspeed` (but not both). For a list of values, 
+'''Set either `maxspeed:type` or `source:maxspeed` (but not both). For a list of values,
 see table 'valid_maxspeed_types' in the source code below.'''),
             trap=T_(
-'''Do not assume any of the data present is correct!  
+'''Do not assume any of the data present is correct!
 Always check `highway`, all other tags related to speed and verify on the ground.'''),
             resource='https://wiki.openstreetmap.org/wiki/DE:Key:maxspeed:type')
 
@@ -118,10 +118,10 @@ Always check `highway`, all other tags related to speed and verify on the ground
             detail=T_(
 '''The speed limit in `maxspeed` is not consistent with the speed limit type in `maxspeed:type` or `source:maxspeed`.'''),
             fix=T_(
-'''Set `maxspeed` and/or `maxspeed:type`/`source:maxspeed` (but not both) as appropriate. For a list of values, 
+'''Set `maxspeed` and/or `maxspeed:type`/`source:maxspeed` (but not both) as appropriate. For a list of values,
 see table 'valid_maxspeed_types' in the source code below.'''),
             trap=T_(
-'''Do not assume any of the data present is correct! 
+'''Do not assume any of the data present is correct!
 Always check `highway`, all other tags related to speed and verify on the ground.'''),
             resource='https://wiki.openstreetmap.org/wiki/DE:Key:maxspeed:type')
 
@@ -200,70 +200,55 @@ class Test(TestPluginCommon):
         plugin.init(None)
 
         # No error if not in Austria
-        assert not plugin.way(type('Obj', (object,), {'center_lat': 55, 'center_lon': 5})(),
-                              {'highway': 'residential', 'maxspeed_type': 'dont know', 'source:maxspeed': 'unknown'}, None)
+        assert not plugin.way(None, {'highway': 'residential', 'maxspeed_type': 'dont know',
+                              'source:maxspeed': 'unknown'}, None)
 
         # No error if in Austria but not a highway
-        assert not plugin.way(type('Obj', (object,), {'center_lat': 47.01, 'center_lon': 14})(),
-                              {'maxspeed_type': 'dont know', 'source:maxspeed': 'unknown'}, None)
+        assert not plugin.way(None, {'maxspeed_type': 'dont know', 'source:maxspeed': 'unknown'}, None)
 
         # No error if valid
-        assert not plugin.way(type('Obj', (object,), {'center_lat': 47.02, 'center_lon': 14})(),
-                              {'highway': 'primary'}, None)
-        
-        assert not plugin.way(type('Obj', (object,), {'center_lat': 47.03, 'center_lon': 14})(),
-                              {'highway': 'primary', 'maxspeed': '100'}, None)
+        assert not plugin.way(None, {'highway': 'primary'}, None)
 
-        assert not plugin.way(type('Obj', (object,), {'center_lat': 47.04, 'center_lon': 14})(),
-                              {'highway': 'living_street', 'maxspeed': 'walk'}, None)
-        
-        assert not plugin.way(type('Obj', (object,), {'center_lat': 47.05, 'center_lon': 14})(),
-                              {'highway': 'residential', 'maxspeed': '5', 'source:maxspeed': 'sign'}, None)
-        
-        assert not plugin.way(type('Obj', (object,), {'center_lat': 47.06, 'center_lon': 14})(),
-                              {'highway': 'secondary', 'maxspeed': '70', 'maxspeed:type': 'sign'}, None)
-        
-        assert not plugin.way(type('Obj', (object,), {'center_lat': 47.07, 'center_lon': 14})(),
-                              {'highway': 'tertiary', 'maxspeed': '50', 'source:maxspeed': 'AT:urban'}, None)
-        
-        assert not plugin.way(type('Obj', (object,), {'center_lat': 47.08, 'center_lon': 14})(),
-                              {'highway': 'unclassified', 'maxspeed': '100', 'maxspeed:type': 'AT:rural', 
-                                    'source:maxspeed': 'read it in the news'}, None)
-        
+        assert not plugin.way(None, {'highway': 'primary', 'maxspeed': '100'}, None)
+
+        assert not plugin.way(None, {'highway': 'living_street', 'maxspeed': 'walk'}, None)
+
+        assert not plugin.way(None, {'highway': 'residential', 'maxspeed': '5', 'source:maxspeed': 'sign'}, None)
+
+        assert not plugin.way(None, {'highway': 'secondary', 'maxspeed': '70', 'maxspeed:type': 'sign'}, None)
+
+        assert not plugin.way(None, {'highway': 'tertiary', 'maxspeed': '50', 'source:maxspeed': 'AT:urban'}, None)
+
+        assert not plugin.way(None, {'highway': 'unclassified', 'maxspeed': '100', 'maxspeed:type': 'AT:rural',
+                                               'source:maxspeed': 'read it in the news'}, None)
+
         # Error when maxspeed type without maxspeed
-        assert self.check_err(plugin.way(type('Obj', (object,), {'center_lat': 47.09, 'center_lon': 14})(),
-                              {'highway': 'secondary', 'maxspeed:type': 'sign'}, None))
+        assert self.check_err(plugin.way(None, {'highway': 'secondary', 'maxspeed:type': 'sign'}, None))
 
-        assert self.check_err(plugin.way(type('Obj', (object,), {'center_lat': 47.10, 'center_lon': 14})(),
-                              {'highway': 'secondary', 'source:maxspeed': 'sign'}, None))
+        assert self.check_err(plugin.way(None, {'highway': 'secondary', 'source:maxspeed': 'sign'}, None))
 
         # Error when maxspeed not numeric or walk
-        assert self.check_err(plugin.way(type('Obj', (object,), {'center_lat': 47.11, 'center_lon': 14})(),
-                              {'highway': 'tertiary', 'maxspeed': 'fast'}, None))
+        assert self.check_err(plugin.way(None, {'highway': 'tertiary', 'maxspeed': 'fast'}, None))
 
         # Error when maxspeed too low
-        assert self.check_err(plugin.way(type('Obj', (object,), {'center_lat': 47.12, 'center_lon': 14})(),
-                              {'highway': 'residential', 'maxspeed': '5'}, None))
+        assert self.check_err(plugin.way(None, {'highway': 'residential', 'maxspeed': '5'}, None))
 
         # Error when invalid speed limit type
-        assert self.check_err(plugin.way(type('Obj', (object,), {'center_lat': 47.13, 'center_lon': 14})(),
-                              {'highway': 'residential', 'maxspeed': '50', 'source:maxspeed': 'AT:city'}, None))
+        assert self.check_err(plugin.way(None, {'highway': 'residential', 'maxspeed': '50',
+                                                          'source:maxspeed': 'AT:city'}, None))
 
-        assert self.check_err(plugin.way(type('Obj', (object,), {'center_lat': 47.14, 'center_lon': 14})(),
-                              {'highway': 'secondary', 'maxspeed': '70', 'maxspeed:type': 'yes'}, None))
+        assert self.check_err(plugin.way(None, {'highway': 'secondary', 'maxspeed': '70', 'maxspeed:type': 'yes'}, None))
 
         # Error when speed limit type duplication
-        assert self.check_err(plugin.way(type('Obj', (object,), {'center_lat': 47.16, 'center_lon': 14})(),
-                              {'highway': 'unclassified', 'maxspeed': '100', 'maxspeed:type': 'AT:zone40', 
-                                    'source:maxspeed': 'AT:rural'}, None))
+        assert self.check_err(plugin.way(None, {'highway': 'unclassified', 'maxspeed': '100',
+                                                          'maxspeed:type': 'AT:zone40', 'source:maxspeed': 'AT:rural'}, None))
 
-        assert self.check_err(plugin.way(type('Obj', (object,), {'center_lat': 47.17, 'center_lon': 14})(),
-                              {'highway': 'unclassified', 'maxspeed': '100', 'maxspeed:type': 'AT:rural', 
-                                    'source:maxspeed': 'AT:urban'}, None))
+        assert self.check_err(plugin.way(None, {'highway': 'unclassified', 'maxspeed': '100',
+                                                          'maxspeed:type': 'AT:rural', 'source:maxspeed': 'AT:urban'}, None))
 
         # Error when speed and type mismatch
-        assert self.check_err(plugin.way(type('Obj', (object,), {'center_lat': 47.18, 'center_lon': 14})(),
-                              {'highway': 'secondary', 'maxspeed': '70', 'maxspeed:type': 'AT:city_limit30'}, None))
+        assert self.check_err(plugin.way(None, {'highway': 'secondary', 'maxspeed': '70',
+                                                          'maxspeed:type': 'AT:city_limit30'}, None))
 
-        assert self.check_err(plugin.way(type('Obj', (object,), {'center_lat': 47.19, 'center_lon': 14})(),
-                              {'highway': 'tertiary', 'maxspeed': '50', 'source:maxspeed': 'AT:rural'}, None))
+        assert self.check_err(plugin.way(None, {'highway': 'tertiary', 'maxspeed': '50',
+                                                          'source:maxspeed': 'AT:rural'}, None))
