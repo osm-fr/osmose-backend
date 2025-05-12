@@ -46,7 +46,8 @@ class analyser_merge_advertising_board_FR_Brest(Analyser_Merge_Point):
             Conflate(
                 select=Select(
                     types=["nodes", "ways"],
-                    tags={"advertising": "board"}),
+                    tags={"advertising": "board",
+                          "access":"yes"}),
                 conflationDistance=10,
                 mapping=Mapping(
                     static1={"advertising": "board",
