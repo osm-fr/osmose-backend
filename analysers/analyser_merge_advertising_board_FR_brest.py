@@ -28,11 +28,11 @@ class analyser_merge_advertising_board_FR_Brest(Analyser_Merge_Point):
     def __init__(self, config, logger=None):
         Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item=8360, id=1, level=3, tags=['merge', 'public equipment', 'fix:survey', 'fix:picture'],
-                                        title=T_('Advertising board not integrated'))
+                                        title=T_('Advertising board in OpenData but not in OSM'))
+        self.def_class_missing_osm(item=7361, id=2, level=3, tags=['merge'],
+                                   title=T_('Advertising board in OSM but not in OpenData'))
         self.def_class_possible_merge(item=8361, id=3, level=3, tags=['merge'],
-                                      title=T_('Advertising board integration suggestion'))
-        self.def_class_update_official(item=8362, id=4, level=3, tags=['merge'],
-                                       title=T_('Advertising board update'))
+                                      title=T_('Advertising board in both OpenData and OSM, integration suggestion'))
         self.init(
             "https://www.data.gouv.fr/fr/datasets/panneaux-dexpression-libre/",
             "Position des panneaux d'expression libre sur le territoire de Brest métropole.",
@@ -46,8 +46,7 @@ class analyser_merge_advertising_board_FR_Brest(Analyser_Merge_Point):
             Conflate(
                 select=Select(
                     types=["nodes", "ways"],
-                    tags={"advertising": "board",
-                          "access":"yes"}),
+                    tags={"advertising": "board"}),
                 conflationDistance=10,
                 mapping=Mapping(
                     static1={"advertising": "board",
