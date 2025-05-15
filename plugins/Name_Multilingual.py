@@ -165,7 +165,6 @@ class Name_Multilingual(Plugin):
                 for z in s:
                     s_tags = dict(z, **tags)
                     a = self.aggregator(s_tags)
-
                     if {"name": name} not in a:
                         fix = fix + a
             else:
