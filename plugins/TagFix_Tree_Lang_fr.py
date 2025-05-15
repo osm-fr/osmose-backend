@@ -98,7 +98,7 @@ class TagFix_Tree_Lang_fr(Plugin):
                 err.append(c)
 
         if 'denotation' in tags:
-            if tags['denotation'] not in ('avenue', 'urban', 'natural_monument', 'landmark', 'agricultural'):
+            if tags['denotation'] not in ('avenue', 'urban', 'natural_monument', 'landmark', 'agricultural','park','garden'):
                 err.append({"class": 3120, "subclass": 4, "text": T_("Bad tag denotation=\"{0}\"", tags["denotation"])})
 
         return err
