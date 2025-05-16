@@ -41,7 +41,7 @@ FROM
     ways AS w
     JOIN LATERAL (
         SELECT array_agg(lpad(v, 99, '0'))
-        FROM (SELECT 
+        FROM (SELECT
             unnest(array_cat(
                 array_fill(
                     split_part(w.tags->'voltage', ';', 1)::text, -- voltage1 in voltage1;voltage2
