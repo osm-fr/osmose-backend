@@ -32,7 +32,7 @@ SELECT
     w.id as wid,
     unnest('{NULL}' || w.nodes[1:array_length(w.nodes, 1) - 1]) AS nid_prec,
     unnest(w.nodes) AS nid,
-    unnest(w.nodes[2:array_length(w.nodes, 1)]) AS nid_next,
+    unnest(w.nodes[2:]) AS nid_next,
     w.tags->'cables' AS cables,
     coalesce((w.tags->'circuits')::integer, 1) AS circuits,
     coalesce(w.tags->'location', 'overhead') AS location,
@@ -41,19 +41,25 @@ FROM
     ways AS w
     JOIN LATERAL (
         SELECT array_agg(lpad(v, 99, '0'))
-        FROM unnest(array_cat(
-            array_fill(
-                substring(w.tags->'voltage' for greatest(char_length (w.tags->'voltage'), position(';' in w.tags->'voltage')))::text, -- voltage1 in voltage1;voltage2
-                ARRAY[coalesce((w.tags->'circuits')::integer, 1) - 1 + char_length(coalesce(w.tags->'voltage', '')) - char_length(replace(coalesce(w.tags->'voltage',''), ';', ''))]
-            ),
-            regexp_split_to_array(w.tags->'voltage', '; *'))
+        FROM (SELECT 
+            unnest(array_cat(
+                array_fill(
+                    split_part(w.tags->'voltage', ';', 1)::text, -- voltage1 in voltage1;voltage2
+                    ARRAY[greatest(0, coalesce((w.tags->'circuits')::integer, 1) - (1 + length(coalesce(w.tags->'voltage', '')) - length(replace(coalesce(w.tags->'voltage',''), ';', ''))))]
+                ),
+                regexp_split_to_array(w.tags->'voltage', '; *'))
+            ) LIMIT coalesce((w.tags->'circuits')::integer, 1)
         ) AS t(v)) AS t(voltage)
         ON TRUE
 WHERE
     w.tags != ''::hstore AND
     w.tags?'power' AND
     w.tags->'power' IN ('line', 'minor_line', 'cable') AND
-    w.tags->'voltage' IS NOT NULL
+    w.tags->'voltage' IS NOT NULL AND
+    (
+        w.tags->'circuits' ~ '^[0-9]+$' OR
+        w.tags->'circuits' IS NULL
+    )
 
 UNION ALL
 
@@ -72,7 +78,12 @@ WHERE
     w.tags != ''::hstore AND
     w.tags?'power' AND
     w.tags->'power' IN ('line', 'minor_line', 'cable') AND
-    w.tags->'voltage' IS NULL
+    (
+        w.tags->'voltage' IS NULL OR (
+            w.tags->'circuits' IS NOT NULL AND
+            NOT(w.tags->'circuits' ~ '^[0-9]+$')
+        )
+    )
 """
 
 # Build junctions knowledge
