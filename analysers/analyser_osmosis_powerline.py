@@ -394,7 +394,7 @@ FROM
         v.nid = nodes.id
 WHERE
     (
-        NOT nodes.tags ? 'power' OR
+        NOT nodes.tags?'power' OR
         nodes.tags->'power' != 'transformer'
     ) AND
     NOT nodes.tags ? 'transformer' AND -- example: power=pole + transformer=*
