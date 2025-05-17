@@ -32,7 +32,7 @@ class analyser_merge_advertising_board_FR_Brest(Analyser_Merge_Point):
         self.def_class_missing_osm(item=7361, id=2, level=3, tags=['merge'],
                                    title=T_('Advertising board in OSM but not in OpenData'))
         self.def_class_possible_merge(item=8361, id=3, level=3, tags=['merge'],
-                                      title=T_('Advertising board in both OpenData and OSM, integration suggestion'))
+                                      title=T_('Advertising board integration suggestion'))
         self.init(
             "https://www.data.gouv.fr/fr/datasets/panneaux-dexpression-libre/",
             "Position des panneaux d'expression libre sur le territoire de Brest métropole.",
