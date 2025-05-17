@@ -28,7 +28,7 @@ class analyser_merge_advertising_board_FR_Brest(Analyser_Merge_Point):
     def __init__(self, config, logger=None):
         Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item=8360, id=1, level=3, tags=['merge', 'public equipment', 'fix:survey', 'fix:picture'],
-                                        title=T_('Advertising board in OpenData but not in OSM'))
+                                        title=T_('Advertising board not integrated'))
         self.def_class_missing_osm(item=7361, id=2, level=3, tags=['merge'],
                                    title=T_('Advertising board in OSM but not in OpenData'))
         self.def_class_possible_merge(item=8361, id=3, level=3, tags=['merge'],
