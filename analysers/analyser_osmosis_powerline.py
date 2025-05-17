@@ -589,8 +589,8 @@ FROM
     power_lines_mgmt m
     JOIN nodes ON nodes.id=m.nid
 WHERE
-    (line_management IS NOT NULL AND (NOT nodes.tags ? 'line_management' OR nodes.tags->'line_management' != m.line_management)) OR
-    (location_transition IS NOT NULL AND (NOT nodes.tags ? 'location:transition' OR nodes.tags->'location:transition' != m.location_transition))
+    (line_management IS NOT NULL AND (NOT nodes.tags?'line_management' OR nodes.tags->'line_management' != m.line_management)) OR
+    (location_transition IS NOT NULL AND (NOT nodes.tags?'location:transition' OR nodes.tags->'location:transition' != m.location_transition))
 ORDER BY
     m.nid
 """
