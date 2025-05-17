@@ -213,11 +213,11 @@ FROM
     JOIN nodes ON
         line_ends.nid = nodes.id
     WHERE
-        NOT (nodes.tags ? 'location:transition' AND nodes.tags->'location:transition' = 'yes') AND
-        NOT (nodes.tags ? 'transformer' AND nodes.tags->'transformer' in ('distribution', 'main')) AND
-        NOT (nodes.tags ? 'substation' AND nodes.tags->'substation' = 'minor_distribution') AND
-        NOT (nodes.tags ? 'line_management' AND nodes.tags->'line_management' IN ('transition','termination')) AND
-        NOT (nodes.tags ? 'power' AND nodes.tags->'power' = 'terminal')
+        NOT (nodes.tags?'location:transition' AND nodes.tags->'location:transition' = 'yes') AND
+        NOT (nodes.tags?'transformer' AND nodes.tags->'transformer' in ('distribution', 'main')) AND
+        NOT (nodes.tags?'substation' AND nodes.tags->'substation' = 'minor_distribution') AND
+        NOT (nodes.tags?'line_management' AND nodes.tags->'line_management' IN ('transition','termination')) AND
+        NOT (nodes.tags?'power' AND nodes.tags->'power' = 'terminal')
 """
 
 sql23 = """
