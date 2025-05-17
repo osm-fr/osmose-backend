@@ -55,9 +55,9 @@ WHERE
     w.tags != ''::hstore AND
     w.tags?'power' AND
     w.tags->'power' IN ('line', 'minor_line', 'cable') AND
-    w.tags ? 'voltage' AND
+    w.tags?'voltage' AND
     (
-        NOT w.tags ? 'circuits' OR
+        NOT w.tags?'circuits' OR
         w.tags->'circuits' ~ '^[0-9]+$'
     )
 
