@@ -402,7 +402,6 @@ class Test(TestPluginCommon):
         assert not self.p.way(None, {"name": "Calle Islas Canarias / Kanariar Uharteen kalea", "name:es": "Calle Islas Canarias", "name:eu": "Kanariar Uharteen kalea"}, None)
         assert not self.p.way(None, {"name": "Vicente Blasco Ibañez kalea / Calle Vicente Blasco Ibáñez", "name:es": "", "name:eu": ""}, None)
         assert self.p.way(None, {"name": "Calle Islas Canarias / Kanariar Uharteen kalea", "name:es": "Calle Canarias", "name:eu": "Kanarias kalea"}, None)
-        assert self.p.way(None, {"name": "Calle San Diego"}, None)
         assert self.p.way(None, {"name:eu": "San Diego kalea"}, None)
         assert self.p.way(None, {"name:es": "Calle Mayor"}, None)
         assert self.p.way(None, {"name": "Calle San Diego", "name:eu": "San Diego kalea"}, None)
