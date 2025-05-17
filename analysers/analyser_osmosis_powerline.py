@@ -368,7 +368,7 @@ nodes_selected AS (
     GROUP BY
         nid
     HAVING
-        COUNT(distinct tid) > 1
+        count(distinct tid) > 1
 ),
 voltage_groups AS (
     SELECT
