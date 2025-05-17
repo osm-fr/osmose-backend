@@ -176,7 +176,7 @@ FROM
     ways
 WHERE
     ways.tags != ''::hstore AND
-    ways.tags ? 'power' AND
+    ways.tags?'power' AND
     ways.tags->'power' IN ('line', 'minor_line', 'cable')
 ORDER BY
     ends(ways.nodes)
