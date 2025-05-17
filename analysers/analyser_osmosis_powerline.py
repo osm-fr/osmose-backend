@@ -397,7 +397,7 @@ WHERE
         NOT nodes.tags?'power' OR
         nodes.tags->'power' != 'transformer'
     ) AND
-    NOT nodes.tags ? 'transformer' AND -- example: power=pole + transformer=*
+    NOT nodes.tags?'transformer' AND -- example: power=pole + transformer=*
     (
         NOT nodes.tags ? 'line_management' OR (
             nodes.tags->'line_management' != 'cross' AND
