@@ -76,11 +76,11 @@ FROM
    ways AS w
 WHERE
     w.tags != ''::hstore AND
-    w.tags ? 'power' AND
+    w.tags?'power' AND
     w.tags->'power' IN ('line', 'minor_line', 'cable') AND
     (
-        NOT w.tags ? 'voltage' OR (
-            w.tags ? 'circuits' AND
+        NOT w.tags?'voltage' OR (
+            w.tags?'circuits' AND
             NOT(w.tags->'circuits' ~ '^[0-9]+$')
         )
     )
