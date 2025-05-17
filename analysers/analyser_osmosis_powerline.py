@@ -36,10 +36,16 @@ SELECT
     w.tags->'cables' AS cables,
     coalesce((w.tags->'circuits')::integer, 1) AS circuits,
     coalesce(w.tags->'location', 'overhead') AS location,
-    voltage
+    voltages
 FROM
     ways AS w
     JOIN LATERAL (
+        -- Creating a voltage list consistent with number of circuits by padding with the first voltage when necessary or limiting:
+        -- Filling size is the difference between circuits (defaults to 1) and the number of voltages in the list
+        -- circuits=1 + voltage=20000;400 => voltage={20000} (no fill and limiting to 1)
+        -- circuits=2 + voltage=20000 => voltage={20000;20000} (filling with first value and no limiting)
+        -- circuits=2 + voltage=20000;400 => voltage={20000;400} (no fill and no limiting)
+        -- circuits=3 + voltage=20000;400 => voltage={20000;20000;400} (filling with first value and no limiting)
         SELECT array_agg(lpad(v, 99, '0'))
         FROM (SELECT
             unnest(array_cat(
@@ -49,7 +55,7 @@ FROM
                 ),
                 regexp_split_to_array(w.tags->'voltage', '; *'))
             ) LIMIT coalesce((w.tags->'circuits')::integer, 1)
-        ) AS t(v)) AS t(voltage)
+        ) AS t(v)) AS t(voltages)
         ON TRUE
 WHERE
     w.tags != ''::hstore AND
@@ -67,11 +73,11 @@ SELECT
     w.id AS wid,
     unnest('{NULL}' || w.nodes[1:array_length(w.nodes, 1) - 1]) AS nid_prec,
     unnest(w.nodes) AS nid,
-    unnest(w.nodes[2:array_length(w.nodes, 1)]) AS nid_next,
+    unnest(w.nodes[2:]) AS nid_next,
     w.tags->'cables' AS cables,
     coalesce((w.tags->'circuits')::integer, 1) AS circuits,
     coalesce(w.tags->'location', 'overhead') AS location,
-    NULL AS voltage
+    NULL AS voltages
 FROM
    ways AS w
 WHERE
@@ -81,7 +87,7 @@ WHERE
     (
         NOT w.tags ? 'voltage' OR (
             w.tags ? 'circuits' AND
-            NOT(w.tags->'circuits' ~ '^[0-9]+$')
+            w.tags->'circuits' !~ '^[0-9]+$'
         )
     )
 """
@@ -100,7 +106,7 @@ WITH topotuples as (
         n.location,
         n.cables,
         n.circuits,
-        voltage
+        voltages
     FROM
         power_lines_nodes AS n
     WHERE
@@ -115,7 +121,7 @@ WITH topotuples as (
         n.location,
         n.cables,
         n.circuits,
-        voltage
+        voltages
     FROM
         power_lines_nodes AS n
     WHERE
@@ -128,13 +134,13 @@ SELECT
     p.location,
     COUNT(distinct p.wid) AS cw,
     SUM(p.circuits::integer) AS circuits,
-    regexp_split_to_array(string_agg(array_to_string(p.voltage, ';'), ';'), '; *') AS voltage
+    regexp_split_to_array(string_agg(array_to_string(p.voltages, ';'), ';'), '; *') AS voltages
 FROM
     topotuples p
 GROUP BY
     p.nid, p.tid, p.location
 HAVING
-    array_position(array_agg(p.circuits), NULL) IS NULL
+    bool_and(p.circuits IS NOT NULL)
 """
 
 # Lone power supports
@@ -317,16 +323,17 @@ WITH nodes_voltage AS (
     SELECT
         nid,
         tid,
-        unnest(voltage)::varchar AS voltage
+        unnest(voltages)::varchar AS voltage
     FROM
         power_lines_topoedges
 ),
 nodes_voltage_values AS (
+    -- Nodes with their voltage in deca-volts
     SELECT
         nid,
         tid,
         voltage,
-        round((voltage::numeric / 1000)::numeric,1)::varchar AS voltage_val,
+        (voltage::numeric / 1000)::numeric(11,1)::varchar AS voltage_val, --rounding voltage in deca-volts
         'numeric' AS origin
     FROM
         nodes_voltage
@@ -335,11 +342,12 @@ nodes_voltage_values AS (
 
     UNION
 
+    -- Nodes with their voltage to ground in deca-volts
     SELECT
         nid,
         tid,
         voltage AS voltage,
-        round((voltage::numeric / (1000 * sqrt(3)))::numeric,1)::varchar AS voltage_val,
+        (voltage::numeric / (1000 * sqrt(3)))::numeric(11,1)::varchar AS voltage_val,
         'numeric' AS origin
     FROM
         nodes_voltage
@@ -348,6 +356,7 @@ nodes_voltage_values AS (
 
     UNION
 
+    -- Nodes with no voltages
     SELECT
         nid,
         tid,
@@ -357,9 +366,10 @@ nodes_voltage_values AS (
     FROM
         nodes_voltage
     WHERE
-        NOT(voltage ~ '^[0-9.]+$')
+        voltage !~ '^[0-9.]+$'
 ),
 
+-- We select nodes connecting at least two edges
 nodes_selected AS (
     SELECT
         nid
@@ -370,6 +380,8 @@ nodes_selected AS (
     HAVING
         COUNT(distinct tid) > 1
 ),
+
+-- Matching selected nodes by their voltage or between voltage and voltage-to-ground independently
 voltage_groups AS (
     SELECT
         n.nid,
@@ -399,10 +411,8 @@ WHERE
     ) AND
     NOT nodes.tags ? 'transformer' AND -- example: power=pole + transformer=*
     (
-        NOT nodes.tags ? 'line_management' OR (
-            nodes.tags->'line_management' != 'cross' AND
-            nodes.tags->'line_management' != 'termination'
-        )
+        NOT nodes.tags ? 'line_management' OR
+        nodes.tags->'line_management' NOT IN ('cross', 'termination')
     )
 GROUP BY
     v.nid,
