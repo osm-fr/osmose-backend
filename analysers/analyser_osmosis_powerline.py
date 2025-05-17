@@ -533,7 +533,7 @@ WITH vertices AS (
     GROUP BY
         e.nid
     HAVING
-        COUNT(*) > 1 AND SUM(e.circuits) > 2
+        count(*) > 1 AND sum(e.circuits) > 2
 )
 
 SELECT
