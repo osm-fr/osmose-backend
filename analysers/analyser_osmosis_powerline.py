@@ -252,7 +252,7 @@ FROM
     ways
 WHERE
     tags != ''::hstore AND
-    tags ? 'power' AND
+    tags?'power' AND
     tags->'power' NOT IN ('line', 'minor_line', 'cable') AND
     is_polygon
 )
