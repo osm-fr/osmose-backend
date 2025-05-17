@@ -237,7 +237,7 @@ FROM
     nodes
 WHERE
     tags != ''::hstore AND
-    tags ? 'power' AND
+    tags?'power' AND
     tags->'power' NOT IN ('pole', 'tower', 'portal')
 )
 UNION ALL
