@@ -132,8 +132,8 @@ SELECT
     p.nid,
     p.tid,
     p.location,
-    COUNT(distinct p.wid) AS cw,
-    SUM(p.circuits::integer) AS circuits,
+    count(distinct p.wid) AS cw,
+    sum(p.circuits::integer) AS circuits,
     regexp_split_to_array(string_agg(array_to_string(p.voltages, ';'), ';'), '; *') AS voltages
 FROM
     topotuples p
