@@ -454,7 +454,7 @@ FROM
         {0}ways
     WHERE
         tags != ''::hstore AND
-        tags ? 'power' AND
+        tags?'power' AND
         tags->'power' = 'line' AND
         (NOT tags ? 'tunnel' OR NOT tags->'tunnel' IN ('yes', 'true')) AND
         (NOT tags ? 'submarine' OR NOT tags->'submarine' IN ('yes', 'true')) AND
