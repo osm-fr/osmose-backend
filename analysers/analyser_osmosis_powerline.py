@@ -61,9 +61,9 @@ WHERE
     w.tags != ''::hstore AND
     w.tags?'power' AND
     w.tags->'power' IN ('line', 'minor_line', 'cable') AND
-    w.tags ? 'voltage' AND
+    w.tags?'voltage' AND
     (
-        NOT w.tags ? 'circuits' OR
+        NOT w.tags?'circuits' OR
         w.tags->'circuits' ~ '^[0-9]+$'
     )
 
@@ -82,11 +82,11 @@ FROM
    ways AS w
 WHERE
     w.tags != ''::hstore AND
-    w.tags ? 'power' AND
+    w.tags?'power' AND
     w.tags->'power' IN ('line', 'minor_line', 'cable') AND
     (
-        NOT w.tags ? 'voltage' OR (
-            w.tags ? 'circuits' AND
+        NOT w.tags?'voltage' OR (
+            w.tags?'circuits' AND
             w.tags->'circuits' !~ '^[0-9]+$'
         )
     )
@@ -160,7 +160,7 @@ FROM
         ways.tags->'power' IN ('line', 'minor_line', 'cable')
 WHERE
     nodes.tags != ''::hstore AND
-    nodes.tags ? 'power' AND
+    nodes.tags?'power' AND
     nodes.tags->'power' IN ('pole', 'tower', 'insulator', 'terminal', 'portal')
 GROUP BY
     nodes.id,
@@ -182,7 +182,7 @@ FROM
     ways
 WHERE
     ways.tags != ''::hstore AND
-    ways.tags ? 'power' AND
+    ways.tags?'power' AND
     ways.tags->'power' IN ('line', 'minor_line', 'cable')
 ORDER BY
     ends(ways.nodes)
@@ -219,11 +219,11 @@ FROM
     JOIN nodes ON
         line_ends.nid = nodes.id
     WHERE
-        NOT (nodes.tags ? 'location:transition' AND nodes.tags->'location:transition' = 'yes') AND
-        NOT (nodes.tags ? 'transformer' AND nodes.tags->'transformer' in ('distribution', 'main')) AND
-        NOT (nodes.tags ? 'substation' AND nodes.tags->'substation' = 'minor_distribution') AND
-        NOT (nodes.tags ? 'line_management' AND nodes.tags->'line_management' IN ('transition','termination')) AND
-        NOT (nodes.tags ? 'power' AND nodes.tags->'power' = 'terminal')
+        NOT (nodes.tags?'location:transition' AND nodes.tags->'location:transition' = 'yes') AND
+        NOT (nodes.tags?'transformer' AND nodes.tags->'transformer' in ('distribution', 'main')) AND
+        NOT (nodes.tags?'substation' AND nodes.tags->'substation' = 'minor_distribution') AND
+        NOT (nodes.tags?'line_management' AND nodes.tags->'line_management' IN ('transition','termination')) AND
+        NOT (nodes.tags?'power' AND nodes.tags->'power' = 'terminal')
 """
 
 sql23 = """
@@ -243,7 +243,7 @@ FROM
     nodes
 WHERE
     tags != ''::hstore AND
-    tags ? 'power' AND
+    tags?'power' AND
     tags->'power' NOT IN ('pole', 'tower', 'portal')
 )
 UNION ALL
@@ -258,7 +258,7 @@ FROM
     ways
 WHERE
     tags != ''::hstore AND
-    tags ? 'power' AND
+    tags?'power' AND
     tags->'power' NOT IN ('line', 'minor_line', 'cable') AND
     is_polygon
 )
@@ -308,7 +308,7 @@ FROM
     JOIN ways ON
         ways.id != u.wid AND
         ways.tags != ''::hstore AND
-        ways.tags ? 'power' AND
+        ways.tags?'power' AND
         ways.tags->'power' IN ('line', 'minor_line', 'cable') AND
         ways.linestring && u.geom AND
         u.nid = ANY(ways.nodes)
@@ -378,7 +378,7 @@ nodes_selected AS (
     GROUP BY
         nid
     HAVING
-        COUNT(distinct tid) > 1
+        count(distinct tid) > 1
 ),
 
 -- Matching selected nodes by their voltage or between voltage and voltage-to-ground independently
@@ -406,12 +406,12 @@ FROM
         v.nid = nodes.id
 WHERE
     (
-        NOT nodes.tags ? 'power' OR
+        NOT nodes.tags?'power' OR
         nodes.tags->'power' != 'transformer'
     ) AND
-    NOT nodes.tags ? 'transformer' AND -- example: power=pole + transformer=*
+    NOT nodes.tags?'transformer' AND -- example: power=pole + transformer=*
     (
-        NOT nodes.tags ? 'line_management' OR
+        NOT nodes.tags?'line_management' OR
         nodes.tags->'line_management' NOT IN ('cross', 'termination')
     )
 GROUP BY
@@ -438,10 +438,10 @@ FROM
         ST_DWithin(nodes.geom, t.geom, 50)
 WHERE
     ways.tags != ''::hstore AND
-    ways.tags ? 'power' AND
+    ways.tags?'power' AND
     ways.tags->'power' IN ('line', 'minor_line') AND
-    (NOT ways.tags ? 'tunnel' OR NOT ways.tags->'tunnel' IN ('yes', 'true')) AND
-    (NOT ways.tags ? 'submarine' OR NOT ways.tags->'submarine' IN ('yes', 'true')) AND
+    (NOT ways.tags?'tunnel' OR NOT ways.tags->'tunnel' IN ('yes', 'true')) AND
+    (NOT ways.tags?'submarine' OR NOT ways.tags->'submarine' IN ('yes', 'true')) AND
     t.geom IS NULL
 ORDER BY
     nodes.id
@@ -464,11 +464,11 @@ FROM
         {0}ways
     WHERE
         tags != ''::hstore AND
-        tags ? 'power' AND
+        tags?'power' AND
         tags->'power' = 'line' AND
-        (NOT tags ? 'tunnel' OR NOT tags->'tunnel' IN ('yes', 'true')) AND
-        (NOT tags ? 'submarine' OR NOT tags->'submarine' IN ('yes', 'true')) AND
-        (NOT tags ? 'location' OR NOT tags->'location' IN ('underground')) AND
+        (NOT tags?'tunnel' OR NOT tags->'tunnel' IN ('yes', 'true')) AND
+        (NOT tags?'submarine' OR NOT tags->'submarine' IN ('yes', 'true')) AND
+        (NOT tags?'location' OR NOT tags->'location' IN ('underground')) AND
         array_length(nodes, 1) >= 30
     ) AS d
 """
@@ -543,7 +543,7 @@ WITH vertices AS (
     GROUP BY
         e.nid
     HAVING
-        COUNT(*) > 1 AND SUM(e.circuits) > 2
+        count(*) > 1 AND sum(e.circuits) > 2
 )
 
 SELECT
@@ -599,8 +599,8 @@ FROM
     power_lines_mgmt m
     JOIN nodes ON nodes.id=m.nid
 WHERE
-    (line_management IS NOT NULL AND (NOT nodes.tags ? 'line_management' OR nodes.tags->'line_management' != m.line_management)) OR
-    (location_transition IS NOT NULL AND (NOT nodes.tags ? 'location:transition' OR nodes.tags->'location:transition' != m.location_transition))
+    (line_management IS NOT NULL AND (NOT nodes.tags?'line_management' OR nodes.tags->'line_management' != m.line_management)) OR
+    (location_transition IS NOT NULL AND (NOT nodes.tags?'location:transition' OR nodes.tags->'location:transition' != m.location_transition))
 ORDER BY
     m.nid
 """
