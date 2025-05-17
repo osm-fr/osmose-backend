@@ -302,7 +302,7 @@ FROM
     JOIN ways ON
         ways.id != u.wid AND
         ways.tags != ''::hstore AND
-        ways.tags ? 'power' AND
+        ways.tags?'power' AND
         ways.tags->'power' IN ('line', 'minor_line', 'cable') AND
         ways.linestring && u.geom AND
         u.nid = ANY(ways.nodes)
