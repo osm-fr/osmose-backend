@@ -8,16 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: josm\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-24 06:56+0100\n"
-"PO-Revision-Date: 2025-03-21 21:42+0000\n"
-"Last-Translator: Orbán Péter <orban.peter@hotmail.com>\n"
+"POT-Creation-Date: 2025-05-17 10:01+0200\n"
+"PO-Revision-Date: 2025-04-17 13:43+0000\n"
+"Last-Translator: Báthory Péter <bathory86p@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2025-03-25 05:48+0000\n"
-"X-Generator: Launchpad (build aa29ae0fff49e4e804b39147c9f259d2fb023199)\n"
+"X-Launchpad-Export-Date: 2025-05-18 05:25+0000\n"
+"X-Generator: Launchpad (build fb7816c0224c8da2b221957e8afc3706cb6505f5)\n"
 "Language: hu\n"
 
 #: ../core/resources/data/validator/combinations.mapcss:82
@@ -1579,7 +1579,7 @@ msgstr ""
 
 #: ../core/resources/data/validator/highway.mapcss:212
 msgid "questionable value (ending with a number)"
-msgstr ""
+msgstr "kérdéses érték (számra végződik)"
 
 #: ../core/resources/data/validator/multiple.mapcss:10
 #, java-format
@@ -1608,7 +1608,7 @@ msgstr "{0} -5 és 5 közötti egész szám kell legyen"
 #: ../core/resources/data/validator/numeric.mapcss:33
 #, java-format
 msgid "negative {0} value"
-msgstr ""
+msgstr "negatív {0} érték"
 
 #: ../core/resources/data/validator/numeric.mapcss:45
 #, java-format
@@ -1641,11 +1641,15 @@ msgid ""
 "unusual value of {0}: use abbreviation for unit and space between value and "
 "unit"
 msgstr ""
+"szokatlan érték {0}: Használd a mértékegység rövidítését, és egy szóközt az "
+"érték és a mértékegység között!"
 
 #: ../core/resources/data/validator/numeric.mapcss:144
 #, java-format
 msgid "unusual value of {0}: use '' for foot and \" for inches, no spaces"
 msgstr ""
+"szokatlan érték {0}: Használj ''-t a lábra és \"-t a hüvelykre, szóközök "
+"nélkül!"
 
 #: ../core/resources/data/validator/numeric.mapcss:190
 #: ../core/resources/data/validator/numeric.mapcss:483
@@ -1660,6 +1664,9 @@ msgid ""
 "unusual value of {0}: meters is default; only positive values; point is "
 "decimal separator; if units, put space then unit"
 msgstr ""
+"szokatlan érték {0}: Méter az alapértelmezett; csak pozitív értékek; tizedes "
+"pontot használj; ha megadod a mértékegységet, tégy szóközt az érték és a "
+"mértékegység közé!"
 
 #: ../core/resources/data/validator/numeric.mapcss:292
 msgid "tonne"
@@ -1673,6 +1680,9 @@ msgid ""
 "unusual value of {0}: {1} is default; only positive values; point is decimal "
 "separator; if units, put space then unit"
 msgstr ""
+"szokatlan érték {0}: {1} az alapértelmezett; csak pozitív értékek; tizedes "
+"pontot használj; ha megadod a mértékegységet, tégy szóközt az érték és a "
+"mértékegység közé!"
 
 #: ../core/resources/data/validator/numeric.mapcss:303
 #: ../plugins/photoadjust/src/org/openstreetmap/josm/plugins/photoadjust/PhotoPropertyEditor.java:258
@@ -1692,16 +1702,16 @@ msgstr ""
 #: ../core/resources/data/validator/numeric.mapcss:355
 #, java-format
 msgid "imprecise value of {0}"
-msgstr ""
+msgstr "pontatlan érték {0}"
 
 #: ../core/resources/data/validator/numeric.mapcss:356
 msgid "an integer value in millimeters, without unit"
-msgstr ""
+msgstr "egy egész szám milliméterben, mértékegység nélkül"
 
 #: ../core/resources/data/validator/numeric.mapcss:380
 #, java-format
 msgid "unusual {0} value on narrow gauge railway"
-msgstr ""
+msgstr "szokatlan érték {0} egy keskeny nyomtávú vasúton"
 
 #: ../core/resources/data/validator/numeric.mapcss:409
 #, java-format
@@ -1742,6 +1752,9 @@ msgid ""
 "unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point "
 "is decimal separator; space between value and unit"
 msgstr ""
+"szokatlan érték {0}: Add meg a mértékegységet, pl. {1} vagy {2}; csak "
+"pozitív értékek; tizedes pontot használj; ha megadod a mértékegységet, tégy "
+"szóközt az érték és a mértékegység közé!"
 
 #: ../core/resources/data/validator/numeric.mapcss:660
 #, java-format
@@ -1752,6 +1765,7 @@ msgstr ""
 #, java-format
 msgid "Unusually large value of {0}, possibly centimeter units are meant?"
 msgstr ""
+"Szokatlanul nagy {0} érték: Lehet, hogy centiméter mértékegységre gondoltál?"
 
 #: ../core/resources/data/validator/relation.mapcss:4
 msgid "relation without type"
@@ -1766,7 +1780,7 @@ msgstr "{0} kapcsolat {0} címke nélkül"
 #: ../core/resources/data/validator/relation.mapcss:66
 #, java-format
 msgid "way with {0} is part of a {1} route relation"
-msgstr ""
+msgstr "a {0} vonal része a {1} útvonal kapcsolatnak"
 
 #: ../core/resources/data/validator/relation.mapcss:71
 #, java-format
