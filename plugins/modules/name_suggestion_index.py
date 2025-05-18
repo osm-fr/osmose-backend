@@ -39,6 +39,16 @@ def download_nsi():
 
 # Countries in NSI with different ids or spanning multiple Osmose extracts
 _nsi_to_osmose_map = {
+    # Austria
+    "at-3": ["at-noe"], # Niederösterreich
+    "at-1": ["at-b"], # Burgenland
+    "at-2": ["at-k"], # Kärnten
+    "at-4": ["at-ooe"], # Oberösterreich
+    "at-5": ["at-s"], # Salzburg
+    "at-6": ["at-st"], # Steiermark
+    "at-7": ["at-t"], # Tirol
+    "at-9": ["at-w"], # Wien
+    "at-8": ["at-v"], # Vorarlberg
     # China
     "hk": ["cn-91"], # Hong Kong
     "mo": ["cn-92"], # Macau
