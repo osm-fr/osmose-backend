@@ -75,10 +75,10 @@ Always check `highway`, all other tags related to speed and verify on the ground
             detail=T_(
 '''The speed limit in `maxspeed` is very low and no type is given in `maxspeed:type` or `source:maxspeed`.'''),
             fix=T_(
-'''For pedestrian areas and living streets (except shared zones and school roads), walking speed is the default and no
-speed limit or type should be set. If walking speed is prescribed on a sign, set `maxspeed=walk`, `maxspeed:type=sign`
-and `traffic_sign=AT:54[text]` or `traffic_sign=AT:..,54[text]`. If a speed of 5 km/h is prescribed on a sign,
-set `maxspeed=5`, `maxspeed:type=sign`.'''),
+'''For pedestrian areas and living streets (except shared zones), walking speed is the default and no
+speed limit or type should be set. If walking speed is signposted, set `maxspeed=walk`, `maxspeed:type=sign`
+and `traffic_sign=AT:54[text]` or `traffic_sign=AT:..,54[text]`. If a low speed is signposted,
+set `maxspeed` to the speed, `maxspeed:type=sign`.'''),
             trap=T_(
 '''Do not assume any of the data present is correct!
 Always check `highway`, all other tags related to speed and verify on the ground.'''),
@@ -145,11 +145,11 @@ Always check `highway`, all other tags related to speed and verify on the ground
             return {'class': 2, 'text': T_('Invalid maxspeed: `{0}`', maxspeed)}
 
         # Error: maxspeed suspiciously low, probably 'walk'; needs verification
+        # except for speeds < 5 (covered in Number.py) and if signposted
         if maxspeed.isdigit():
             maxspeed_num = int(maxspeed)
-            if maxspeed_num < 10:
-                if maxspeed_num != 5 or (maxspeed_type != 'sign' and source_maxspeed != 'sign'):
-                    return {'class': 3, 'text': T_('Low maxspeed: `{0}`', maxspeed)}
+            if (maxspeed_num > 4) and (maxspeed_num < 15) and (maxspeed_type != 'sign') and (source_maxspeed != 'sign'):
+                return {'class': 3, 'text': T_('Low maxspeed: `{0}`', maxspeed)}
 
         valid_type = None
         if maxspeed_type:
