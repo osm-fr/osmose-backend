@@ -51,8 +51,8 @@ class TagFix_Maxspeed_AT(Plugin):
             detail=T_(
 '''A speed limit type is given in `maxspeed:type` or `source:maxspeed`, but no speed limit is set in `maxspeed`.'''),
             fix=T_(
-'''Set `maxspeed` and `maxspeed:type` or `source:maxspeed` (but not both) as appropriate.
-For a list of values, see table 'valid_maxspeed_types' in the source code below.'''),
+'''Set `maxspeed` and either `maxspeed:type` or `source:maxspeed` as appropriate. For a list of values, 
+see [Implicit maxspeed values](https://wiki.openstreetmap.org/wiki/Key:maxspeed#Implicit_maxspeed_values).'''),
             trap=T_(
 '''Do not just add a `maxspeed` value suitable for the type. The type may be incorrect too!
 Always check `highway`, all other tags related to speed and verify on the ground.'''),
@@ -63,8 +63,8 @@ Always check `highway`, all other tags related to speed and verify on the ground
             detail=T_(
 '''The speed limit in `maxspeed` must be either numeric or `walk`. Do not specify a unit, km/h is the default.'''),
             fix=T_(
-'''Set `maxspeed` as appropriate and set speed limit type in `maxspeed:type` or `source:maxspeed` (but not both).
-For a list of values, see table 'valid_maxspeed_types' in the source code below.'''),
+'''Set `maxspeed` as appropriate and set speed limit type in either `maxspeed:type` or `source:maxspeed`. For a list of values, 
+see [Implicit maxspeed values](https://wiki.openstreetmap.org/wiki/Key:maxspeed#Implicit_maxspeed_values).'''),
             trap=T_(
 '''If a speed limit type (e.g. `AT:*`) is set in `maxspeed`, do not assume it's correct!
 Always check `highway`, all other tags related to speed and verify on the ground.'''),
@@ -90,7 +90,7 @@ Always check `highway`, all other tags related to speed and verify on the ground
 '''The speed limit type in `maxspeed:type` or `source:maxspeed` is not valid.'''),
             fix=T_(
 '''Set the appropriate speed limit type. For a list of values,
-see the table 'valid_maxspeed_types' in the source code below.'''),
+see [Implicit maxspeed values](https://wiki.openstreetmap.org/wiki/Key:maxspeed#Implicit_maxspeed_values)'''),
             trap=T_(
 '''Do not assume any of the data present is correct!
 Always check `highway`, all other tags related to speed and verify on the ground.'''),
@@ -99,11 +99,11 @@ Always check `highway`, all other tags related to speed and verify on the ground
         self.errors[5] = self.def_class(item=3032, level=2, tags=['maxspeed'],
             title=T_('Multiple speed limit types'),
             detail=T_(
-'''`maxspeed:type` and `source:maxspeed` are both set. This may cause confusion for mappers and data consumers,
-especially if the values are different.'''),
+'''`maxspeed:type` and `source:maxspeed` are both set. This may cause confusion for mappers and data consumers
+if the values are different.'''),
             fix=T_(
-'''Set either `maxspeed:type` or `source:maxspeed` (but not both). For a list of values,
-see table 'valid_maxspeed_types' in the source code below.'''),
+'''Set either `maxspeed:type` or `source:maxspeed`. For a list of values,
+see [Implicit maxspeed values](https://wiki.openstreetmap.org/wiki/Key:maxspeed#Implicit_maxspeed_values).'''),
             trap=T_(
 '''Do not assume any of the data present is correct!
 Always check `highway`, all other tags related to speed and verify on the ground.'''),
@@ -114,8 +114,8 @@ Always check `highway`, all other tags related to speed and verify on the ground
             detail=T_(
 '''The speed limit in `maxspeed` is not consistent with the speed limit type in `maxspeed:type` or `source:maxspeed`.'''),
             fix=T_(
-'''Set `maxspeed` and/or `maxspeed:type`/`source:maxspeed` (but not both) as appropriate. For a list of values,
-see table 'valid_maxspeed_types' in the source code below.'''),
+'''Adjust `maxspeed`, `maxspeed:type` or `source:maxspeed` as appropriate. For a list of values,
+see [Implicit maxspeed values](https://wiki.openstreetmap.org/wiki/Key:maxspeed#Implicit_maxspeed_values).'''),
             trap=T_(
 '''Do not assume any of the data present is correct!
 Always check `highway`, all other tags related to speed and verify on the ground.'''),
