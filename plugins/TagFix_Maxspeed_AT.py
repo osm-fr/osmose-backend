@@ -89,7 +89,7 @@ Always check `highway`, all other tags related to speed and verify on the ground
             resource='https://wiki.openstreetmap.org/wiki/DE:Verkehrszeichen_in_Österreich')
 
         self.errors[4] = self.def_class(item=3091, level=2, tags=['value', 'maxspeed'],
-            title=T_('Invalid speed limit type '),
+            title=T_('Invalid speed limit type'),
             detail=T_(
 '''The speed limit type in `maxspeed:type` or `source:maxspeed` is not valid.'''),
             fix=T_(
