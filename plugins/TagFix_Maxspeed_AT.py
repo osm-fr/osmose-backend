@@ -38,13 +38,9 @@ class TagFix_Maxspeed_AT(Plugin):
         'AT:zone15': '15', 'AT:zone20': '20', 'AT:zone30': '30', 'AT:zone40': '40', 'AT:zone50': '50', 'AT:zone70': '70',
         'AT:shared_zone20': '20', 'AT:shared_zone30': '30',
         'AT:bicycle_road': '30',
-        # Under discussion, different spelling
+        # Alternatives
         'AT:zone:20': '20', 'AT:zone:30': '30', 'AT:zone:40': '40', 'AT:zone:50': '50',
-        # Under discussion, interim usage, to be replaced
-        'AT:Wohnstraße': 'walk',
-        'AT:Begegnungszone:20': '20', 'AT:Begegnungszone:30': '30', 'AT:shared_space': '20',
-        # Under discussion, probably obsolete
-        'zone': '', 'AT:zone': ''
+        'AT:zone': ''
     }
 
     def init(self, logger):
@@ -183,7 +179,7 @@ Always check `highway`, all other tags related to speed and verify on the ground
 
         # Error: maxspeed type doesn't match maxspeed
         # except for types covered in TagFix_Maxspeed plugin and types without specific speed
-        if valid_type and valid_type not in {'AT:motorway', 'AT:trunk', 'AT:rural', 'AT:urban', 'sign', 'AT:zone', 'zone'}:
+        if valid_type and valid_type not in {'AT:motorway', 'AT:trunk', 'AT:rural', 'AT:urban', 'sign', 'AT:zone'}:
             if maxspeed != self.valid_maxspeed_types.get(valid_type):
                 err.append({'class': 6,
                             'text': T_('maxspeed and type mismatch: `{0}`<>`{1}`', maxspeed, valid_type)})
