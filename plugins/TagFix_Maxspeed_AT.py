@@ -136,7 +136,8 @@ Always check `highway`, all other tags related to speed and verify on the ground
         # Error: maxspeed type without maxspeed
         if not maxspeed:
             if maxspeed_type or source_maxspeed:
-                err.append({'class': 1, 'text': T_('Speed limit type without maxspeed')})
+                err.append({'class': 1, 'text': T_('{0} without maxspeed',
+                                                   maxspeed_type if maxspeed_type else source_maxspeed)})
             return err
 
         # Error: maxspeed not numeric or 'walk'
