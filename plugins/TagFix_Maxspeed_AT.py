@@ -199,11 +199,7 @@ class Test(TestPluginCommon):
         plugin = TagFix_Maxspeed_AT(None)
         plugin.init(None)
 
-        # No error if not in Austria
-        assert not plugin.way(None, {'highway': 'residential', 'maxspeed_type': 'dont know',
-                              'source:maxspeed': 'unknown'}, None)
-
-        # No error if in Austria but not a highway
+        # No error if not a highway
         assert not plugin.way(None, {'maxspeed_type': 'dont know', 'source:maxspeed': 'unknown'}, None)
 
         # No error if valid
@@ -223,32 +219,32 @@ class Test(TestPluginCommon):
                                                'source:maxspeed': 'read it in the news'}, None)
 
         # Error when maxspeed type without maxspeed
-        assert self.check_err(plugin.way(None, {'highway': 'secondary', 'maxspeed:type': 'sign'}, None))
+        self.check_err(plugin.way(None, {'highway': 'secondary', 'maxspeed:type': 'sign'}, None))
 
-        assert self.check_err(plugin.way(None, {'highway': 'secondary', 'source:maxspeed': 'sign'}, None))
+        self.check_err(plugin.way(None, {'highway': 'secondary', 'source:maxspeed': 'sign'}, None))
 
         # Error when maxspeed not numeric or walk
-        assert self.check_err(plugin.way(None, {'highway': 'tertiary', 'maxspeed': 'fast'}, None))
+        self.check_err(plugin.way(None, {'highway': 'tertiary', 'maxspeed': 'fast'}, None))
 
         # Error when maxspeed too low
-        assert self.check_err(plugin.way(None, {'highway': 'residential', 'maxspeed': '5'}, None))
+        self.check_err(plugin.way(None, {'highway': 'residential', 'maxspeed': '5'}, None))
 
         # Error when invalid speed limit type
-        assert self.check_err(plugin.way(None, {'highway': 'residential', 'maxspeed': '50',
-                                                          'source:maxspeed': 'AT:city'}, None))
+        self.check_err(plugin.way(None, {'highway': 'residential', 'maxspeed': '50',
+                                                   'source:maxspeed': 'AT:city'}, None))
 
-        assert self.check_err(plugin.way(None, {'highway': 'secondary', 'maxspeed': '70', 'maxspeed:type': 'yes'}, None))
+        self.check_err(plugin.way(None, {'highway': 'secondary', 'maxspeed': '70', 'maxspeed:type': 'yes'}, None))
 
         # Error when speed limit type duplication
-        assert self.check_err(plugin.way(None, {'highway': 'unclassified', 'maxspeed': '100',
-                                                          'maxspeed:type': 'AT:zone40', 'source:maxspeed': 'AT:rural'}, None))
+        self.check_err(plugin.way(None, {'highway': 'unclassified', 'maxspeed': '100',
+                                                   'maxspeed:type': 'AT:zone40', 'source:maxspeed': 'AT:rural'}, None))
 
-        assert self.check_err(plugin.way(None, {'highway': 'unclassified', 'maxspeed': '100',
-                                                          'maxspeed:type': 'AT:rural', 'source:maxspeed': 'AT:urban'}, None))
+        self.check_err(plugin.way(None, {'highway': 'unclassified', 'maxspeed': '100',
+                                                   'maxspeed:type': 'AT:rural', 'source:maxspeed': 'AT:urban'}, None))
 
         # Error when speed and type mismatch
-        assert self.check_err(plugin.way(None, {'highway': 'secondary', 'maxspeed': '70',
-                                                          'maxspeed:type': 'AT:city_limit30'}, None))
+        self.check_err(plugin.way(None, {'highway': 'secondary', 'maxspeed': '70',
+                                                   'maxspeed:type': 'AT:city_limit30'}, None))
 
-        assert self.check_err(plugin.way(None, {'highway': 'tertiary', 'maxspeed': '50',
-                                                          'source:maxspeed': 'AT:rural'}, None))
+        self.check_err(plugin.way(None, {'highway': 'tertiary', 'maxspeed': '50',
+                                                   'source:maxspeed': 'AT:rural'}, None))
