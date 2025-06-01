@@ -173,7 +173,7 @@ Always check `highway`, all other tags related to speed and verify on the ground
             # Error: source:maxspeed is invalid
             if source_maxspeed in self.valid_maxspeed_types.keys():
                 valid_type = source_maxspeed
-            else:
+            elif source_maxspeed.startswith('AT:') or source_maxspeed in {'zone', 'walk'}:
                 err.append({'class': 4,
                             'text': T_('Invalid source:maxspeed: `{0}`', source_maxspeed)})
 
