@@ -179,8 +179,8 @@ Always check `highway`, all other tags related to speed and verify on the ground
 
         # Error: maxspeed type doesn't match maxspeed
         # except for types covered in TagFix_Maxspeed plugin and types without specific speed
-        if valid_type and valid_type not in {'AT:motorway', 'AT:trunk', 'AT:rural', 'AT:urban', 'sign', 'AT:zone'}:
-            if maxspeed != self.valid_maxspeed_types.get(valid_type):
+        if valid_type and valid_type not in {'AT:motorway', 'AT:trunk', 'AT:rural', 'AT:urban'}:
+            if self.valid_maxspeed_types.get(valid_type) and (self.valid_maxspeed_types.get(valid_type) != maxspeed):
                 err.append({'class': 6,
                             'text': T_('maxspeed and type mismatch: `{0}`<>`{1}`', maxspeed, valid_type)})
 
