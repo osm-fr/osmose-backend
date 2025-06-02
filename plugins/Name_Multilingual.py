@@ -72,12 +72,12 @@ class Name_Multilingual(Plugin):
                 if combined:
                     value.append({"name": combined})
 
-                if str1 and name != str1 and separator not in name:
+                if name and str1 and name != str1 and separator not in name:
                     namestr1 = self.merge_sp_eu(name, str1)
                     value.append({"name": namestr1 or name.strip() + separator + str1.strip(), f"name:{lang[1]}": name })
                     value.append({"name": namestr1 or str1.strip() + separator + name.strip(), f"name:{lang[1]}": name })
 
-                if str2 and name != str2 and separator not in name:
+                if name and str2 and name != str2 and separator not in name:
                     namestr2 = self.merge_sp_eu(name, str2) if separator not in name else None
                     value.append({"name": namestr2 or name.strip() + separator + str2.strip(), f"name:{lang[0]}": name })
                     value.append({"name": namestr2 or str2.strip() + separator + name.strip(), f"name:{lang[0]}": name })
@@ -401,7 +401,10 @@ class Test(TestPluginCommon):
         assert not self.p.way(None, {"name": "Calle San Diego kalea", "name:es": "Calle San Diego", "name:eu": "San Diego kalea"}, None)
         assert not self.p.way(None, {"name": "Calle Islas Canarias / Kanariar Uharteen kalea", "name:es": "Calle Islas Canarias", "name:eu": "Kanariar Uharteen kalea"}, None)
         assert not self.p.way(None, {"name": "Vicente Blasco Ibañez kalea / Calle Vicente Blasco Ibáñez", "name:es": "", "name:eu": ""}, None)
+        assert not self.p.way(None, {"name": "Calle San Diego"}, None)
         assert self.p.way(None, {"name": "Calle Islas Canarias / Kanariar Uharteen kalea", "name:es": "Calle Canarias", "name:eu": "Kanarias kalea"}, None)
         assert self.p.way(None, {"name": "Calle San Diego", "name:eu": "San Diego kalea"}, None)
         assert self.p.way(None, {"name": "Kale Nagusia", "name:es": "Calle Mayor"}, None)
         assert self.p.way(None, {"name": "Carretera Ollaretxe", "name:es": "Carretera Ollaretxe", "name:eu": "Ollaretxe errepidea"}, None)
+        assert self.p.way(None, {"name:eu": "San Diego kalea"}, None)
+        assert self.p.way(None, {"name:es": "Calle Mayor"}, None)
