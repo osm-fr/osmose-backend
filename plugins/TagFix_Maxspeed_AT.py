@@ -66,7 +66,7 @@ Always check `highway`, all other tags related to speed and verify on the ground
 '''Set `maxspeed` as appropriate and set speed limit type in either `maxspeed:type` or `source:maxspeed`. For a list of values, 
 see [Implicit maxspeed values](https://wiki.openstreetmap.org/wiki/Key:maxspeed#Implicit_maxspeed_values).'''),
             trap=T_(
-'''If a speed limit type (e.g. `AT:*`) is set in `maxspeed`, do not assume it's correct!
+'''If a speed limit type (e.g. `AT:*`) is set in `maxspeed`, do not assume it is correct!
 Always check `highway`, all other tags related to speed and verify on the ground.'''),
             resource='https://wiki.openstreetmap.org/wiki/Key:maxspeed')
 
@@ -90,16 +90,17 @@ Always check `highway`, all other tags related to speed and verify on the ground
 '''The speed limit type in `maxspeed:type` or `source:maxspeed` is not valid.'''),
             fix=T_(
 '''Set the appropriate speed limit type. For a list of values,
-see [Implicit maxspeed values](https://wiki.openstreetmap.org/wiki/Key:maxspeed#Implicit_maxspeed_values)'''),
+see [Implicit maxspeed values](https://wiki.openstreetmap.org/wiki/Key:maxspeed#Implicit_maxspeed_values).'''),
             trap=T_(
-'''Do not assume any of the data present is correct!
+'''In case the speed limit type is `zone`, do not just change it to `AT:zone`, but to a more specific value.
+Do not assume any of the data present is correct!
 Always check `highway`, all other tags related to speed and verify on the ground.'''),
             resource='https://wiki.openstreetmap.org/wiki/DE:Key:maxspeed:type')
 
         self.errors[5] = self.def_class(item=3032, level=2, tags=['maxspeed'],
             title=T_('Multiple speed limit types'),
             detail=T_(
-'''`maxspeed:type` and `source:maxspeed` are both set. This may cause confusion for mappers and data consumers
+'''`maxspeed:type` and `source:maxspeed` are both set. This may confuse mappers and data consumers
 if the values are different.'''),
             fix=T_(
 '''Set either `maxspeed:type` or `source:maxspeed`. For a list of values,
@@ -136,7 +137,7 @@ Always check `highway`, all other tags related to speed and verify on the ground
         # Error: maxspeed type without maxspeed
         if not maxspeed:
             if maxspeed_type or source_maxspeed:
-                err.append({'class': 1, 'text': T_('{0} without maxspeed',
+                err.append({'class': 1, 'text': T_('`{0}` without maxspeed',
                                                    maxspeed_type if maxspeed_type else source_maxspeed)})
             return err
 
