@@ -51,7 +51,7 @@ class TagFix_Maxspeed_AT(Plugin):
             detail=T_(
 '''A speed limit type is given in `maxspeed:type` or `source:maxspeed`, but no speed limit is set in `maxspeed`.'''),
             fix=T_(
-'''Set `maxspeed` and either `maxspeed:type` or `source:maxspeed` as appropriate. For a list of values, 
+'''Set `maxspeed` and either `maxspeed:type` or `source:maxspeed` as appropriate. For a list of values,
 see [Implicit maxspeed values](https://wiki.openstreetmap.org/wiki/Key:maxspeed#Implicit_maxspeed_values).'''),
             trap=T_(
 '''Do not just add a `maxspeed` value suitable for the type. The type may be incorrect too!
@@ -63,7 +63,7 @@ Always check `highway`, all other tags related to speed and verify on the ground
             detail=T_(
 '''The speed limit in `maxspeed` must be either numeric or `walk`. Do not specify a unit, km/h is the default.'''),
             fix=T_(
-'''Set `maxspeed` as appropriate and set speed limit type in either `maxspeed:type` or `source:maxspeed`. For a list of values, 
+'''Set `maxspeed` as appropriate and set speed limit type in either `maxspeed:type` or `source:maxspeed`. For a list of values,
 see [Implicit maxspeed values](https://wiki.openstreetmap.org/wiki/Key:maxspeed#Implicit_maxspeed_values).'''),
             trap=T_(
 '''If a speed limit type (e.g. `AT:*`) is set in `maxspeed`, do not assume it is correct!
@@ -245,4 +245,4 @@ class Test(TestPluginCommon):
                                                    'maxspeed:type': 'AT:city_limit30'}, None))
 
         self.check_err(plugin.way(None, {'highway': 'tertiary', 'maxspeed': '50',
-                                                   'source:maxspeed': 'AT:rural'}, None))
+                                                   'source:maxspeed': 'AT:city_limit30'}, None))
