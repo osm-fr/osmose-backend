@@ -620,10 +620,13 @@
       },
       {
         "shop": "bicycle"
+      },
+      {
+        "shop": "fishing"
       }
     ],
     "generate": {
-      "shop": "sports;outdoor;bicycle",
+      "shop": "sports;outdoor;bicycle;fishing",
       "fixme": "select a shop type"
     }
   },

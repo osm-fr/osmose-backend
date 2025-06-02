@@ -8,6 +8,7 @@
 # Ivan <freeExec@mail.ru>, 2020
 # Jake Strine <jake.strine@gmail.com>, 2017
 # BusteR <lyamin2712@rambler.ru>, 2021
+# RiG, 2025
 # 4004, 2017
 msgid ""
 msgstr ""
@@ -15,7 +16,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
 "PO-Revision-Date: 2014-04-30 17:25+0000\n"
-"Last-Translator: 4004, 2017\n"
+"Last-Translator: RiG, 2025\n"
 "Language-Team: Russian (http://app.transifex.com/openstreetmap-france/osmose/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -100,35 +101,34 @@ msgstr "Недопустимая роль"
 msgid "Broken highway level continuity"
 msgstr "Прерывание уровня дороги"
 
-#: ../analysers/analyser_osmosis_building_3nodes.py:52
 msgid "Merge building (triangle)"
 msgstr "Объединить здание (треугольник)"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:175
+#: ../analysers/analyser_osmosis_building_overlaps.py:162
 msgid "Building intersection"
 msgstr "Пересечение здания"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:178
+#: ../analysers/analyser_osmosis_building_overlaps.py:165
 msgid "Large building intersection"
 msgstr "Пересечение больших зданий"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:182
+#: ../analysers/analyser_osmosis_building_overlaps.py:169
 msgid "Building too small"
 msgstr "Слишком маленькое здание"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:189
+#: ../analysers/analyser_osmosis_building_overlaps.py:176
 msgid "Gap between buildings"
 msgstr "Разрыв между зданиями"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:194
+#: ../analysers/analyser_osmosis_building_overlaps.py:181
 msgid "Large building intersection cluster"
 msgstr "Кластер пересечений больших зданий"
 
-#: ../analysers/analyser_osmosis_building_shapes.py:70
+#: ../analysers/analyser_osmosis_building_shapes.py:68
 msgid "Special building (round)"
 msgstr "Специальное здание (круглое)"
 
-#: ../analysers/analyser_osmosis_building_shapes.py:73
+#: ../analysers/analyser_osmosis_building_shapes.py:71
 msgid "Special building (large)"
 msgstr "Специальное здание (большое)"
 
@@ -144,7 +144,7 @@ msgstr "Отсутствует путь на переезде"
 msgid "Lone highway or barrier node"
 msgstr "Одиночная точка дороги или барьера"
 
-#: ../analysers/analyser_osmosis_building_geodesie_FR.py:106
+#: ../analysers/analyser_osmosis_building_geodesie_FR.py:105
 msgid "Geodesic mark without building"
 msgstr "Геодезический знак без здания"
 
@@ -161,15 +161,15 @@ msgstr "Плохой * _link дороги"
 msgid "Highway too long for a *_link"
 msgstr "Дорога слишком длинная для * _link"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:466
+#: ../analysers/analyser_osmosis_highway_vs_building.py:464
 msgid "Highway intersecting building"
 msgstr "Дорога пересекает здание"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:467
+#: ../analysers/analyser_osmosis_highway_vs_building.py:465
 msgid "Tree intersecting building"
 msgstr "Дерево пересекает здание"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:468
+#: ../analysers/analyser_osmosis_highway_vs_building.py:466
 msgid "Tree and highway too close"
 msgstr "Дерево и Дорога слишком близко"
 
@@ -422,10 +422,10 @@ msgstr "Линия из одного узла"
 msgid "Deprecated tag"
 msgstr "Устаревший тег"
 
-#: ../plugins/TagFix_MultipleTag.py:34 ../plugins/TagFix_MultipleTag2.py:20
-#: ../plugins/TagFix_MultipleTag_FR.py:34
+#: ../plugins/TagFix_MultipleTag2.py:20 ../plugins/TagFix_MultipleTag_FR.py:34
 #: ../plugins/TagFix_MultipleTag_Lang_es.py:33
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:33
+#: ../plugins/TagFix_MultipleTag.py:34
 msgid "Watch multiple tags"
 msgstr ""
 
@@ -443,7 +443,7 @@ msgstr "Недействительная ссылка"
 
 #: ../plugins/TagFix_MultipleTag2.py:16 ../plugins/TagFix_MultipleTag2.py:396
 msgid "Tag highway missing on junction"
-msgstr ""
+msgstr "Тег highway отсутствует на перекрестке"
 
 #: ../plugins/TagFix_MultipleTag2.py:17 ../plugins/TagFix_MultipleTag2.py:413
 msgid "Tag highway missing on oneway"
@@ -525,7 +525,7 @@ msgstr ""
 #: ../plugins/TagRemove_Roundabout.py:31
 #: ../plugins/TagRemove_Roundabout_Ref.py:33
 msgid "Unneeded tag on junction=roundabout"
-msgstr ""
+msgstr "Ненужный тег на junction=roundabout"
 
 #: ../analysers/analyser_osmosis_fantoir.py:109
 msgid "Multiple name for the same ref FANTOIR"
@@ -600,17 +600,17 @@ msgstr "Объект землепользования не на земле"
 msgid "Natural feature underground"
 msgstr "Природный объект под землёй"
 
-#: ../plugins/Name_Local.py:42 ../plugins/Name_Local_JP.py:34
+#: ../plugins/Name_Local_JP.py:34 ../plugins/Name_Local.py:42
 msgid "Default and local language name not the same"
-msgstr ""
+msgstr "Местное название и общепринятое название не совпадают"
 
-#: ../plugins/Name_Local.py:44 ../plugins/Name_Local_JP.py:36
+#: ../plugins/Name_Local_JP.py:36 ../plugins/Name_Local.py:44
 msgid "Local language name without default name"
-msgstr ""
+msgstr "Имя на местном языке без языка по умолчанию"
 
-#: ../plugins/Name_Local.py:46 ../plugins/Name_Local_JP.py:38
+#: ../plugins/Name_Local_JP.py:38 ../plugins/Name_Local.py:46
 msgid "Language name without default name"
-msgstr ""
+msgstr "Локализованное название без имени по умолчанию"
 
 #: ../analysers/analyser_merge_library_FR_aquitaine.py:31
 msgid "Library not integrated"
@@ -664,7 +664,7 @@ msgstr "Отсутствует структура моста"
 msgid "Roundabout as area"
 msgstr "Круговое движение как площадь"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:199
+#: ../analysers/analyser_osmosis_building_overlaps.py:186
 msgid "Building in parts"
 msgstr ""
 
@@ -705,7 +705,7 @@ msgstr ""
 #: ../plugins/TagFix_MultipleTag.py:125
 msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
-msgstr ""
+msgstr " Включает автомобили, лошадей, мопеды, опасные грузы и т. д., если не указано иное."
 
 #: ../analysers/analyser_osmosis_highway_area_access.py:173
 #: ../analysers/analyser_osmosis_highway_area_access.py:177
@@ -724,11 +724,11 @@ msgstr "Объект должен заканчиваться на берегу �
 msgid "Naptan import, survey needed."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:469
+#: ../analysers/analyser_osmosis_highway_vs_building.py:467
 msgid "Highway intersecting small water piece"
 msgstr "Дорога пересекает маленький кусок воды"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:470
+#: ../analysers/analyser_osmosis_highway_vs_building.py:468
 msgid "Highway intersecting large water piece"
 msgstr "Дорога пересекает большой кусок воды"
 
@@ -831,7 +831,7 @@ msgstr ""
 #: ../plugins/Name_Toponymy_FR.py:156
 #, python-format, python-brace-format
 msgid "Missing capital letter for: {0}"
-msgstr ""
+msgstr "Отсутствует заглавная буква для: {0}"
 
 #: ../plugins/Source_FR.py:38
 msgid "Source tag contains AAAA"
@@ -905,7 +905,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_polygon.py:111
 msgid "Invalid multipolygon"
-msgstr ""
+msgstr "Неверный мультиполигон"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:201
 msgid "Interpolation on nodes of multiple street names"
@@ -920,11 +920,11 @@ msgstr ""
 #: ../analysers/analyser_osmosis_relation_large.py:88
 #, python-format, python-brace-format
 msgid "Large relation of type {0}"
-msgstr ""
+msgstr "Большое отношение типа {0}"
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:298
 msgid "Duplicated node without tag"
-msgstr ""
+msgstr "Дублированный объект без тега"
 
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:224
 msgid "Should be polygon, part of multipolygon or not having area tag"
@@ -932,11 +932,11 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_almost_junction.py:103
 msgid "Almost junction, join or use noexit tag"
-msgstr ""
+msgstr "Почти перекресток, соедините дороги или используйте тег noexit"
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:440
 msgid "One way inaccessible or missing parking or parking entrance"
-msgstr ""
+msgstr "Дорога с односторонним движением недостижима или отсутствие парковки или въезда на парковку"
 
 #: ../analysers/analyser_osmosis_highway_without_ref.py:52
 msgid "Motorway without ref, nat_ref, int_ref or noref tag"
@@ -948,7 +948,7 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag2.py:19 ../plugins/TagFix_MultipleTag2.py:662
 msgid "Missing relation type"
-msgstr ""
+msgstr "Отсутствует тип отношения"
 
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:176
 msgid ""
@@ -958,7 +958,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:178
 msgid "Possible missing direction tag on stop or a give way"
-msgstr ""
+msgstr "Возможно, отсутствует указатель направления для знака \"Стоп\" или \"Уступи дорогу\""
 
 #: ../plugins/TagFix_MultipleTag2.py:24 ../plugins/TagFix_MultipleTag2.py:107
 #: ../plugins/TagFix_MultipleTag2.py:338 ../plugins/TagFix_MultipleTag2.py:648
@@ -993,7 +993,7 @@ msgstr "Повторяющийся тег wikipedia"
 #: ../plugins/TagRemove_Roundabout_Ref.py:41
 #, python-format, python-brace-format
 msgid "Should not contain tag ref={0}"
-msgstr ""
+msgstr "Не должен содержать тег ref={0}"
 
 #: ../analysers/analyser_osmosis_highway_name_close.py:87
 msgid "Close similar name"
@@ -1001,7 +1001,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:586
 msgid "Public transport relation route not in route_master relation"
-msgstr ""
+msgstr "Маршрут общественного транспорта не входит в отношение route_master"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:617
 msgid ""
@@ -1058,7 +1058,7 @@ msgstr ""
 #: ../plugins/Construction2.py:16 ../plugins/Construction2.py:54
 #, python-brace-format
 msgid "Inconsistent tagging of {0}"
-msgstr ""
+msgstr "Несогласованные теги: {0}"
 
 #: ../analysers/analyser_merge_sport_FR_aquitaine_equestrian.py:31
 msgid "Aquitaine equestrian spot not integrated"
@@ -1101,7 +1101,7 @@ msgstr ""
 #: ../analysers/analyser_merge_tourism_FR.py:42
 #, python-brace-format
 msgid "{0} not integrated"
-msgstr ""
+msgstr "{0} не интегрировано"
 
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:72
 #, python-brace-format
@@ -1112,23 +1112,23 @@ msgstr ""
 msgid ""
 "Small highway group apart from the main network or with insufficient access "
 "upstream"
-msgstr ""
+msgstr "Небольшая группа дорог, отделенная от основной сети или имеющая недостаточный доступ к другим дорогам"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:471
+#: ../analysers/analyser_osmosis_highway_vs_building.py:469
 msgid "Power object intersecting building"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:472
+#: ../analysers/analyser_osmosis_highway_vs_building.py:470
 msgid "Power object and highway too close"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:474
+#: ../analysers/analyser_osmosis_highway_vs_building.py:472
 msgid "Highway overlaps"
-msgstr ""
+msgstr "Перекрытие дорог"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:476
+#: ../analysers/analyser_osmosis_highway_vs_building.py:474
 msgid "Waterway overlaps"
-msgstr ""
+msgstr "Перекрытие водных путей"
 
 #: ../analysers/analyser_osmosis_highway_zone.py:113
 #: ../analysers/analyser_osmosis_highway_zone.py:115
@@ -1139,7 +1139,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:377
 msgid "Restriction relation, bad oneway direction on \"from\" or \"to\" member"
-msgstr ""
+msgstr "Направление ограничения поворота противоречит правилу oneway на одной из дорог-участников"
 
 #: ../plugins/Name_Cadastre_FR.py:16 ../plugins/Name_Cadastre_FR.py:45
 #: ../plugins/Name_Cadastre_FR.py:70
@@ -1150,11 +1150,11 @@ msgstr ""
 
 #: ../plugins/Name_Punctuation.py:31
 msgid "Unexpected punctuation in name"
-msgstr ""
+msgstr "Неожиданная пунктуация в имени"
 
 #: ../plugins/Power.py:16 ../plugins/Power.py:59
 msgid "Power Transformers should always be on a node"
-msgstr ""
+msgstr "Силовые трансформаторы всегда должны быть на узле"
 
 #: ../plugins/Power.py:17 ../plugins/Power.py:38
 msgid ""
@@ -1185,23 +1185,23 @@ msgstr ""
 #: ../plugins/TagFix_MultipleTag2.py:580 ../plugins/TagFix_MultipleTag2.py:768
 #, python-brace-format
 msgid "{0} without {1}"
-msgstr ""
+msgstr "{0} без {1}"
 
 #: ../plugins/Bicycle.py:19 ../plugins/Bicycle.py:20 ../plugins/Bicycle.py:104
 #: ../plugins/Bicycle.py:136
 #, python-brace-format
 msgid "{0} with {1}"
-msgstr ""
+msgstr "{0} с {1}"
 
 #: ../plugins/Bicycle.py:22 ../plugins/Bicycle.py:50
 #, python-brace-format
 msgid "{0} with {1} and {2}"
-msgstr ""
+msgstr "{0} с {1} и {2}"
 
 #: ../plugins/Bicycle.py:21 ../plugins/Bicycle.py:85
 #, python-brace-format
 msgid "{0} is preferred to {1}"
-msgstr ""
+msgstr "{0} предпочтительнее, чем {1}"
 
 #: ../analysers/analyser_merge_police_FR_gn.py:32
 msgid "Police/\"Gendarmerie\" not integrated"
@@ -1218,7 +1218,7 @@ msgstr ""
 #: ../analysers/analyser_osmosis_parking_highway.py:108
 #: ../analysers/analyser_osmosis_parking_highway.py:111
 msgid "Missing access way to parking"
-msgstr ""
+msgstr "Отсутствует подъездной путь к парковке"
 
 #: ../plugins/TagFix_MultipleTag2.py:23 ../plugins/TagFix_MultipleTag2.py:88
 #: ../plugins/TagFix_MultipleTag2.py:320 ../plugins/TagFix_MultipleTag2.py:630
@@ -1227,11 +1227,11 @@ msgstr ""
 
 #: ../plugins/TagRemove_Fixme.py:33
 msgid "Object needs review"
-msgstr ""
+msgstr "Объект нуждается в проверке"
 
 #: ../plugins/TagRemove_Fixme.py:35
 msgid "Highway classification needs review"
-msgstr ""
+msgstr "Классификация дороги нуждается в пересмотре"
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:46
 msgid "Paris bicycle parking not integrated"
@@ -1275,7 +1275,7 @@ msgstr ""
 
 #: ../plugins/Website.py:49
 msgid "The URL does not have a valid scheme"
-msgstr ""
+msgstr "URL-адрес не имеет допустимой схемы"
 
 #: ../analysers/analyser_merge_public_transport_FR_bibus.py:32
 #: ../analysers/analyser_merge_public_transport_FR_rla.py:32
@@ -1465,7 +1465,7 @@ msgstr ""
 msgid "Bad separator for multiple values"
 msgstr ""
 
-#: ../plugins/TagFix_Maxspeed.py:132
+#: ../plugins/TagFix_Maxspeed.py:130
 #, python-brace-format
 msgid "Discordant {0} and {1}"
 msgstr ""
@@ -1562,7 +1562,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:653
 msgid "Tag \"addr:street\" not matching a street name around"
-msgstr ""
+msgstr "Тег \"addr:street\" не соответствует названию улицы поблизости"
 
 #: ../plugins/Addr_Interpolation.py:31
 msgid "Misusing addr:interpolation in combination with other tags"
@@ -1583,7 +1583,7 @@ msgstr ""
 
 #: ../plugins/TagFix_Deprecated.py:77
 msgid "Deprecated value"
-msgstr ""
+msgstr "Устаревшее значение"
 
 #: ../plugins/Highway_Parking_Lane.py:105
 #: ../plugins/TagFix_DuplicateValue.py:44
@@ -1622,13 +1622,13 @@ msgstr ""
 msgid "Conditional interval does not fit into opening hours"
 msgstr ""
 
-#: ../analysers/analyser_merge_defibrillators_FR.py:61
 #: ../analysers/analyser_merge_defibrillators_FR_aedmap.py:34
 #: ../analysers/analyser_merge_defibrillators_FR_hautesalpes.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_issylesmoulineaux.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_lorient.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_montfort.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_paris.py:31
+#: ../analysers/analyser_merge_defibrillators_FR.py:61
 #: ../analysers/analyser_merge_defibrillators_FR_saintmalo.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_toulouse.py:31
 msgid "Defibrillator not integrated"
@@ -1846,14 +1846,14 @@ msgid ""
 "`population`."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_building_geodesie_FR.py:108
+#: ../analysers/analyser_osmosis_building_geodesie_FR.py:107
 msgid ""
 "A survey point has a name which indicates it is located on a\n"
 "building (bell tower, water tower, tower), but the node is not inside a\n"
 "building polygon (`building=*`)."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_building_geodesie_FR.py:112
+#: ../analysers/analyser_osmosis_building_geodesie_FR.py:111
 msgid ""
 "If the building footprint is present but is misplaced because of a\n"
 "shift in the source data (cadastre, orthophotographs), replace the\n"
@@ -1861,7 +1861,7 @@ msgid ""
 "be drawn."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_building_geodesie_FR.py:117
+#: ../analysers/analyser_osmosis_building_geodesie_FR.py:116
 msgid ""
 "Do not move the geodetic point, because it is a reference point (see the\n"
 "[import of these geodetic\n"
@@ -2000,7 +2000,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_noexit.py:91
 msgid "Noexit on way with multiple exits"
-msgstr ""
+msgstr "Нет съезда на пути с несколькими съездами"
 
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:166
 msgid ""
@@ -2015,7 +2015,7 @@ msgid ""
 "`bridge=yes`."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:463
+#: ../analysers/analyser_osmosis_highway_vs_building.py:461
 msgid ""
 "![](https://wiki.openstreetmap.org/w/images/d/dc/Osmose-eg-error-1070.png)\n"
 "\n"
@@ -2055,7 +2055,7 @@ msgstr ""
 #: ../analysers/analyser_osmosis_polygon_overlaps.py:86
 #, python-brace-format
 msgid "Area intersection `{0}`"
-msgstr ""
+msgstr "Пересечение областей `{0}`"
 
 #: ../analysers/analyser_osmosis_polygon_overlaps.py:88
 msgid ""
@@ -2173,7 +2173,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:379
 msgid "Impossible to reach the restriction by respecting the oneway."
-msgstr ""
+msgstr "Ограничение поворота противоречит правилу одностороннего движения"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:383
 msgid ""
@@ -2408,13 +2408,13 @@ msgstr ""
 msgid ""
 "Conflict between lanes number of same suffix (\"\", forward, backward or "
 "both_ways)"
-msgstr ""
+msgstr "Конфликт между номерами полос с одинаковым суффиксом (\"\", forward, backward или both_ways)"
 
 #: ../plugins/Highway_Lanes.py:57
 msgid ""
 "The number of lanes defined by many lane tags are not the same for a\n"
 "given direction."
-msgstr ""
+msgstr "Количество полос, определенное несколькими тегами полос, не одинаково для заданного направления. "
 
 #: ../plugins/Highway_Lanes.py:67
 msgid ""
@@ -2467,7 +2467,7 @@ msgstr ""
 msgid ""
 "Words are not written in the appropriate alphabet of the\n"
 "language."
-msgstr ""
+msgstr "Слова с буквами, не входящими в алфавит данного языка."
 
 #: ../plugins/Name_Script.py:43
 msgid ""
@@ -2476,7 +2476,7 @@ msgid ""
 "`name:ar=Salaam` should be either `name:en=Salaam` (if known by\n"
 "untranslated name) or `name:en=Peace` (translated) or `name:ar=سلام`\n"
 "(original)."
-msgstr ""
+msgstr " Вероятно, был выбран неправильный язык.Возможно, слово было транслитерировано и его необходимо восстановить до исходного алфавита. Например, `name:ar=Salaam` неверно. Однако `name:en=Salaam` / `name:hu=Szálám` (если не переведено, просто транслитерируйте) или `name:en=Peace` / `name:hu=Béke` (переведено) или `name:ar=سلام` (исходный арабский текст) являются правильными. "
 
 #: ../plugins/Name_Script.py:53
 msgid "Remove the character."
@@ -2549,7 +2549,7 @@ msgstr ""
 msgid ""
 "These errors require a good command of your editing tool. Some\n"
 "corrections are not necessarily intuitive."
-msgstr ""
+msgstr "Эти ошибки требуют хорошего владения вашим инструментом редактирования. Некоторые\nисправления не обязательно интуитивно понятны."
 
 #: ../plugins/Structural_DuplicateNodes.py:52
 msgid ""
@@ -2612,7 +2612,7 @@ msgid ""
 "The tag or combination key/value is no longer used. List of deprecated\n"
 "features comes from [Deprecated\n"
 "features](https://wiki.openstreetmap.org/wiki/Deprecated_features)"
-msgstr ""
+msgstr "Тег или комбинация ключ/значение больше не используются. Список устаревших элементов взяты из [Устаревшие элементы](https://wiki.openstreetmap.org/wiki/Deprecated_features)"
 
 #: ../plugins/TagFix_DuplicateValue.py:35
 msgid ""
@@ -2765,7 +2765,7 @@ msgstr ""
 #: ../plugins/TagFix_MultipleTag2.py:27
 #: ../plugins/TagRemove_Incompatibles.py:37
 msgid "Sometimes the object needs both tags."
-msgstr ""
+msgstr "Иногда объекту требуются оба тега."
 
 #: ../plugins/TagRemove_NameIsRef_FR.py:36
 msgid ""
@@ -2799,7 +2799,7 @@ msgstr ""
 #: ../analysers/analyser_merge_traffic_signs.py:83
 #, python-brace-format
 msgid "Unmapped {0}"
-msgstr ""
+msgstr "Не нанесено на карту: {0}"
 
 #: ../analysers/analyser_merge_street_objects.py:48
 #, python-brace-format
@@ -2816,27 +2816,27 @@ msgstr ""
 msgid ""
 "Add the appropriate highway tagging if the imagery is up-to-date and sign "
 "detection is correct."
-msgstr ""
+msgstr "Добавьте соответствующую маркировку дороги, если изображения актуальны и распознавание знаков выполнено правильно."
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:455
+#: ../analysers/analyser_osmosis_highway_vs_building.py:453
 msgid ""
 "Two features overlap with no shared node to indicate a physical connection "
 "or tagging to indicate a vertical separation."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:457
+#: ../analysers/analyser_osmosis_highway_vs_building.py:455
 msgid ""
 "Move a feature if it's in the wrong place. Connect the features if "
 "appropriate or update the tags if not."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:473
+#: ../analysers/analyser_osmosis_highway_vs_building.py:471
 msgid "Highway intersecting highway"
-msgstr ""
+msgstr "Дорога пересекает дорогу"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:475
+#: ../analysers/analyser_osmosis_highway_vs_building.py:473
 msgid "Waterway intersecting waterway"
-msgstr ""
+msgstr "Водный путь пересекает водный путь"
 
 #: ../analysers/analyser_osmosis_relation_enforcement.py:59
 msgid "Disconnected speed camera"
@@ -2850,27 +2850,27 @@ msgstr ""
 
 #: ../plugins/Name_Script.py:55
 msgid "Unexpected symbol in name"
-msgstr ""
+msgstr "Неожиданный символ в названии"
 
 #: ../plugins/TagFix_BadValue.py:33
 msgid "Bad tag value"
-msgstr ""
+msgstr "Неверное значение тега"
 
 #: ../plugins/TagFix_MultipleTag.py:38
 msgid "Untagged named object"
-msgstr ""
+msgstr "Объект с именем, но без тега"
 
 #: ../analysers/analyser_merge_street_objects.py:70
 #: ../analysers/analyser_merge_traffic_signs.py:106
 #, python-brace-format
 msgid "Observed between {0} and {1}"
-msgstr ""
+msgstr "Проверялось между {0} и {1}"
 
 #: ../analysers/analyser_merge_street_objects.py:71
 #: ../analysers/analyser_merge_traffic_signs.py:107
 #, python-brace-format
 msgid "Observed on {0}"
-msgstr ""
+msgstr "Проверялось {0}"
 
 #: ../analysers/analyser_merge_charging_station_FR.py:45
 msgid ""
@@ -2878,7 +2878,7 @@ msgid ""
 "charging stations comes from a database published by Etalab. This database\n"
 "brings together information published by the various local authorities and\n"
 "networks in France."
-msgstr ""
+msgstr "Здесь может быть станция зарядки автомобилей, но она не нанесена на карту. Список зарядных станций взяты из базы данных, опубликованной Etalab. Эта база данных объединяет информацию, опубликованную различными местными органами власти и сети во Франции."
 
 #: ../analysers/analyser_merge_charging_station_FR.py:50
 msgid ""
@@ -2910,7 +2910,7 @@ msgid ""
 "relations."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_building_shapes.py:67
+#: ../analysers/analyser_osmosis_building_shapes.py:65
 msgid ""
 "The shape of the building is characteristic and as such would be\n"
 "tagged."
@@ -2928,7 +2928,7 @@ msgstr ""
 msgid ""
 "It's possible that disused power features could be disconnected from the network.\n"
 "In which case make use of the `disused:` [lifecycle prefix](https://wiki.openstreetmap.org/wiki/Lifecycle_prefix)."
-msgstr ""
+msgstr "Это могут быть объекты, которые больше не используются и были отключены от электросети. В этом случае используйте [префикс] `disused:` (https://wiki.openstreetmap.org/wiki/Lifecycle_prefix)"
 
 #: ../analysers/analyser_osmosis_powerline.py:469
 #: ../analysers/analyser_osmosis_powerline.py:478
@@ -2936,7 +2936,7 @@ msgid ""
 "The line ends in a vacuum, and should be connected to another line or\n"
 "a transformer (`power=transformer`), a generator (`power=generator`)\n"
 "or marked as transitioning into ground (`location:transition=yes`)."
-msgstr ""
+msgstr "Этот конец линии должен быть подключен либо к другой линии, либо к трансформатору (`power=transformer`), либо к генератору (`power=generator`). Или его следует пометить как (`location:transition=yes`), если в этой точке линия уходит под землю. "
 
 #: ../analysers/analyser_osmosis_powerline.py:486
 msgid ""
@@ -2975,7 +2975,7 @@ msgstr ""
 msgid ""
 "The object is missing any tag which defines what kind of feature it is. This"
 " is unexpected for something tagged with `area=yes`."
-msgstr ""
+msgstr "Объект не имеет тега, который определяет, какой это тип объекта. Это неожиданно для чего-то, помеченного `area=yes`."
 
 #: ../plugins/TagFix_Area.py:36
 msgid ""
@@ -2987,7 +2987,7 @@ msgstr ""
 msgid ""
 "It may be more appropriate to remove the object completely if it isn't "
 "useful."
-msgstr ""
+msgstr "Если объект бесполезен, его лучше полностью удалить."
 
 #: ../plugins/TagFix_Area.py:41
 msgid "Redundant area negation"
@@ -3007,26 +3007,26 @@ msgstr ""
 msgid ""
 "Add a top level tag to state what this feature is. Considered top level tags"
 " are (with derived `disused:`, `abandoned:` and `historic:` variants):"
-msgstr ""
+msgstr "Добавьте тег верхнего уровня, чтобы указать, что это за элемент. Рассматриваемые теги верхнего уровня (с производными вариантами `disused:`, `abandoned:` и `historic:`):"
 
 #: ../plugins/TagFix_MultipleTag2.py:19
 msgid "The relation is missing a `type` tag to define what it represents."
 msgstr ""
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:31
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:31
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:31
 #, python-brace-format
 msgid "{0} bicycle rental not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:33
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:33
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:33
 #, python-brace-format
 msgid "{0} bicycle rental integration suggestion"
-msgstr ""
+msgstr "{0} предложение по интеграции проката велосипедов"
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:35
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:35
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:35
 #, python-brace-format
 msgid "{0} bicycle update"
 msgstr ""
@@ -3057,19 +3057,19 @@ msgstr ""
 #: ../plugins/TagFix_MultipleTag2.py:121
 #, python-brace-format
 msgid "The tag `{0}` is deprecated in favour of {1}"
-msgstr ""
+msgstr "Тег `{0}` устарел, используйте {1}"
 
 #: ../analysers/analyser_merge_traffic_signs.py:84
 #, python-brace-format
 msgid ""
 "Traffic sign ({1}) detected by Mapillary, but no nearby tagging of any:{0}"
-msgstr ""
+msgstr "Mapillary обнаружил дорожный знак ({1}), но поблизости нет меток:{0}"
 
 #: ../plugins/Date.py:35
 msgid ""
 "The date entered is not in the expected format described at\n"
 "[Key:start_date](https://wiki.openstreetmap.org/wiki/Key:start_date)"
-msgstr ""
+msgstr "Введенная дата не соответствует ожидаемому формату, описанному в [Key:start_date](https://wiki.openstreetmap.org/wiki/Key:start_date)"
 
 #: ../plugins/Date.py:84 ../plugins/Date.py:86
 #: ../plugins/Name_ShouldBeHousenumber.py:63 ../plugins/Name_UpperCase.py:70
@@ -3084,29 +3084,29 @@ msgstr ""
 #: ../plugins/TagFix_BadValue.py:134 ../plugins/TagFix_MultipleValue.py:99
 #, python-brace-format
 msgid "Concerns tag: `{0}`"
-msgstr ""
+msgstr "Проблемный тег: `{0}`"
 
 #: ../plugins/Name_Punctuation.py:39
 #, python-brace-format
 msgid "Unexpected character: `{0}`"
-msgstr ""
+msgstr "Неожиданный символ: `{0}`"
 
 #: ../plugins/Name_UpperCase.py:41
 msgid ""
 "This feature is tagged with a name which contains a fully uppercase word (or words).\n"
 " This is not expected for the majority of named features."
-msgstr ""
+msgstr "Этот элемент помечен именем, содержащим слово (или слова) полностью заглавными буквами.\nЭто не ожидается для большинства названных объектов."
 
 #: ../plugins/Name_UpperCase.py:44
 msgid ""
 "While uncommon, it is possible for a name to have uppercase words.\n"
 " This is particularly the case for corporate/branded locations as well as acronyms."
-msgstr ""
+msgstr "Хоть это и нетипично, но в имени могут быть слова, написанные заглавными буквами.\nЭто особенно актуально для корпоративных/брендовых местоположений, а также аббревиатур."
 
 #: ../plugins/Number.py:133
 #, python-format, python-brace-format
 msgid "`height={0}` is really tall, consider changing to `ele=*`"
-msgstr ""
+msgstr "`height={0}` очень высокий, рассмотрите возможность изменения на `ele=*`"
 
 #: ../plugins/TagFix_BadValue.py:35
 msgid ""
@@ -3130,14 +3130,14 @@ msgstr ""
 msgid "Gas station without tag `ref:mise` or invalid"
 msgstr ""
 
-#: ../analysers/analyser_merge_parking_FR_BNLS.py:38
 #: ../analysers/analyser_merge_parking_FR_bm.py:31
+#: ../analysers/analyser_merge_parking_FR_BNLS.py:38
 #, python-brace-format
 msgid "{0} parking not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_parking_FR_BNLS.py:41
 #: ../analysers/analyser_merge_parking_FR_bm.py:33
+#: ../analysers/analyser_merge_parking_FR_BNLS.py:41
 #, python-brace-format
 msgid "{0} parking integration suggestion"
 msgstr ""
@@ -3183,7 +3183,7 @@ msgstr ""
 
 #: ../plugins/Number.py:32
 msgid "Invalid numerical value"
-msgstr ""
+msgstr "Неверное числовое значение"
 
 #: ../plugins/Number.py:38
 msgid ""
@@ -3212,34 +3212,34 @@ msgstr ""
 msgid "`{0}` is really slow"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:180
-#: ../analysers/analyser_osmosis_building_overlaps.py:196
+#: ../analysers/analyser_osmosis_building_overlaps.py:167
+#: ../analysers/analyser_osmosis_building_overlaps.py:183
 msgid ""
 "Large intersections may also be duplicates - in which case you should delete"
 " the less accurate elements."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:183
+#: ../analysers/analyser_osmosis_building_overlaps.py:170
 msgid "The area of this feature is too small to possibly be a building."
-msgstr ""
+msgstr "Площадь этого объекта слишком мала, чтобы быть зданием."
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:191
+#: ../analysers/analyser_osmosis_building_overlaps.py:178
 msgid ""
 "It looks like these buildings should be physically joined, but they don't "
 "share nodes to indicate this."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:192
+#: ../analysers/analyser_osmosis_building_overlaps.py:179
 msgid "Connect the buildings by joining nodes where appropriate."
-msgstr ""
+msgstr "Соедините здания, соединяя точки там, где это необходимо."
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:200
+#: ../analysers/analyser_osmosis_building_overlaps.py:187
 msgid "Merge the building parts together as appropriate."
-msgstr ""
+msgstr "Объедините части здания вместе по мере необходимости."
 
 #: ../plugins/TagFix_MultipleTag.py:65 ../plugins/TagFix_MultipleTag.py:71
 msgid "Overly permissive access"
-msgstr ""
+msgstr "Проверить ограничения доступа "
 
 #: ../plugins/TagFix_MultipleTag.py:67 ../plugins/TagFix_MultipleTag.py:73
 msgid ""
@@ -3247,7 +3247,7 @@ msgid ""
 " all transport modes. This is almost never the case and more specific tags "
 "should be used instead. For further detail, see [the "
 "wiki](https://wiki.openstreetmap.org/wiki/Key:access#Transport_mode_restrictions)."
-msgstr ""
+msgstr "Теги `access=yes` и `access=permissive` отмечают объект как доступный для всех видов транспорта. Это крайне маловероятно, и вместо этого следует использовать более конкретные теги. Более подробную информацию см. в [Wiki](https://wiki.openstreetmap.org/wiki/Key:access#Transport_mode_restrictions). "
 
 #: ../analysers/analyser_merge_parapharmacy_IT.py:32
 #: ../analysers/analyser_merge_pharmacy_IT.py:32
@@ -3368,11 +3368,11 @@ msgstr ""
 msgid ""
 "If after review you are sure that it is new data and right for\n"
 "OpenStreetMap, then you can add it."
-msgstr ""
+msgstr "Если после проверки вы уверены, что это актуальные данные и они подходят для OpenStreetMap, тогда вы можете их добавить."
 
 #: ../analysers/Analyser_Merge.py:1230
 msgid "Be sure that it does not already exist in another place."
-msgstr ""
+msgstr "Убедитесь, что он еще не существует в другом месте."
 
 #: ../analysers/Analyser_Merge.py:1235
 msgid ""
@@ -3397,7 +3397,7 @@ msgid ""
 "It is from an open data source, but that is not enough to ensure the quality\n"
 "of the data. Review it before integrating the data. You must not do blind imports\n"
 "into OSM, you must do critical review of data integration."
-msgstr ""
+msgstr "Это из открытого источника данных, но этого недостаточно для обеспечения качества данных. Просмотрите его перед интеграцией данных. Вы не должны делать слепой импорт в OSM, вам необходимо провести критический анализ интеграции данных."
 
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:164
 msgid "A nearby node already has the `highway=traffic_signals` tag."
@@ -3438,7 +3438,7 @@ msgid ""
 "`construction:date`, `temporary:date_on`, `date_on` and the object has\n"
 "been in construction for more than two years or opening data is\n"
 "exceeded."
-msgstr ""
+msgstr "Нет тега `opening_date`, `check_date`, `open_date`, `construction:date`, `temporary:date_on`, `date_on`, а объект находится в стадии строительства более двух лет или превышены сроки начала строительства."
 
 #: ../plugins/Covid19.py:19 ../plugins/Covid19.py:96 ../plugins/Covid19.py:187
 #: ../plugins/Covid19.py:265
@@ -3468,13 +3468,13 @@ msgstr ""
 
 #: ../plugins/TagFix_Brand.py:32
 msgid "This name is very common, is this store part of the brand network?"
-msgstr ""
+msgstr "Это название очень распространено, является ли этот магазин частью сети бренда?"
 
 #: ../plugins/TagFix_Brand.py:34
 msgid ""
 "This object has a very common name that probably corresponds to a brand "
 "name. All objects of the same brand should be tagged the same way."
-msgstr ""
+msgstr "У этого объекта очень распространенное имя, которое, вероятно, соответствует названию бренда. Все объекты одного бренда должны быть помечены одинаково."
 
 #: ../analysers/analyser_merge_milestone_FR.py:41
 msgid "The list of milestone comes from the CEREMA's database \"RIU\" in France."
@@ -3538,18 +3538,18 @@ msgstr ""
 #: ../analysers/analyser_osmosis_way_approximate.py:167
 #, python-brace-format
 msgid "Approximate geometry of {0}"
-msgstr ""
+msgstr "Приблизительная геометрия {0}"
 
 #: ../plugins/Phone2.py:16
 msgid "Different value of tag contact:* and *"
-msgstr ""
+msgstr "Отличающиеся значение тега contact:* и *"
 
 #: ../plugins/Phone2.py:70 ../plugins/Phone2.py:121 ../plugins/Phone2.py:172
 #, python-brace-format
 msgid "Different values of {0} and of {1}"
-msgstr ""
+msgstr "Отличающиеся значения {0} и {1}"
 
-#: ../plugins/TagFix_Maxspeed.py:94
+#: ../plugins/TagFix_Maxspeed.py:92
 msgid "Discordant maxspeed and source:maxspeed or maxspeed:type"
 msgstr ""
 
@@ -3574,7 +3574,7 @@ msgstr ""
 
 #: ../plugins/TagRemove_Layer.py:45
 msgid "Long Waterway/water underground and no tunnel"
-msgstr ""
+msgstr "Длинный водный путь/вода под землей и без туннеля"
 
 #: ../plugins/TagRemove_Layer.py:47
 msgid "Waterway/water above ground and no bridge"
@@ -3761,13 +3761,13 @@ msgstr ""
 msgid "Picnic site"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:171
+#: ../analysers/analyser_osmosis_building_overlaps.py:158
 msgid ""
 "Fix geometry so that buildings don't overlap, but share nodes if physically joined.\n"
 "If geometry is correct and there's some vertical difference then make use of the `layer` tag to indicate this."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:185
+#: ../analysers/analyser_osmosis_building_overlaps.py:172
 msgid ""
 "- Correct the geometry if inaccurately mapped.\n"
 "- Correct the tagging if this isn't a building.\n"
@@ -3791,7 +3791,7 @@ msgstr ""
 msgid ""
 "Geometry seems to be draw crudely, there is a discrepancy between the\n"
 "drawing and the real way especially in the curve."
-msgstr ""
+msgstr "Похоже, линия проведена не очень точно. Между нарисованной линией и фактическим курсом имеется несоответствие."
 
 #: ../analysers/analyser_osmosis_way_angle.py:94
 #: ../analysers/analyser_osmosis_way_approximate.py:172
@@ -4061,20 +4061,20 @@ msgstr ""
 
 #: ../plugins/TagFix_Brand.py:41
 msgid "Operator can be completed with operator:wikidata"
-msgstr ""
+msgstr "Тег operator может быть дополнен тегом operator:wikidata"
 
 #: ../plugins/TagFix_Brand.py:43
 msgid ""
 "The name of the operator on this object is generally associated with "
 "additional tags, especially operator:wikidata. All objects with the same "
 "operator should be tagged the same way."
-msgstr ""
+msgstr "Во многих местах дополнительные теги связаны с именем оператора объекта, особенно `operator:wikidata`. Объекты, которыми управляет один и тот же оператор, должны быть маркированы одинаково."
 
 #: ../plugins/TagFix_Brand.py:45
 msgid ""
 "If this is indeed the operator in question, add `operator:wikidata`.\n"
 "If not, see if you can improve the [name-suggestion-index project](https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md) which is used to register common operators."
-msgstr ""
+msgstr " Если это действительно тот оператор, о котором идет речь, добавьте соответствующий тег `operator:wikidata`. Если нет, посетите [сайт проекта name-suggestion-index](https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md), который представляет собой коллекцию известных брендов."
 
 #: ../analysers/analyser_merge_defibrillators_FR.py:64
 msgid "Defibrillator integration suggestion"
@@ -4133,12 +4133,12 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_waterway.py:173
 msgid "Unconnected stream or wrong way flow"
-msgstr ""
+msgstr "Несвязанный поток или поток в неправильном направлении"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:662
 #, python-brace-format
 msgid "No street with name \"{0}\" found around"
-msgstr ""
+msgstr "Не найдено ни одной улицы с названием \"{0}\""
 
 #: ../analysers/analyser_osmosis_waterway.py:156
 msgid "River bank without river"
@@ -4607,13 +4607,13 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_roundabout.py:107
 msgid "Roundabout without right of way"
-msgstr ""
+msgstr "Кольцевой перекресток без права преимущественного проезда"
 
 #: ../analysers/analyser_osmosis_roundabout.py:109
 msgid ""
 "A highway with `junction=roundabout` must by definition have the right of way.\n"
 "Circular highways without right of way should be tagged as `junction=circular`."
-msgstr ""
+msgstr "Дорога с `junction=roundabout` по определению должна иметь преимущественное право проезда.\nКольцевые дороги без права преимущественного проезда следует помечать как `junction=circular`."
 
 #: ../analysers/analyser_osmosis_roundabout.py:112
 msgid ""
@@ -4759,17 +4759,17 @@ msgid ""
 "correct."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_building_in_polygon.py:87
+#: ../analysers/analyser_osmosis_building_in_polygon.py:69
 msgid "Building on agricultural land"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_building_in_polygon.py:89
+#: ../analysers/analyser_osmosis_building_in_polygon.py:71
 msgid ""
 "Buildings of a farm (houses, sheds, stables, barns, ...) are usually located on the farmyard,\n"
 "not on the farmland where the crops grow."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_building_in_polygon.py:92
+#: ../analysers/analyser_osmosis_building_in_polygon.py:74
 msgid ""
 "Change or split the landuse such that the farm buildings are on an area with `landuse=farmyard`\n"
 "and the area where crops grow are within `landuse=farmland` (or more dedicated types of farmland,\n"
@@ -4778,10 +4778,10 @@ msgid ""
 "For areas dedicated to greenhouse horticulture, use `landuse=greenhouse_horticulture`."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_building_in_polygon.py:106
+#: ../analysers/analyser_osmosis_building_in_polygon.py:88
 #, python-brace-format
 msgid "`{0}` inside `{1}`"
-msgstr ""
+msgstr "`{0}` внутри `{1}`"
 
 #: ../analysers/analyser_osmosis_polygon_small.py:68
 msgid ""
@@ -5072,7 +5072,7 @@ msgstr ""
 msgid "Bad intersection with aeroway"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:477
+#: ../analysers/analyser_osmosis_highway_vs_building.py:475
 msgid "Commercial object or office and highway too close"
 msgstr ""
 
@@ -5175,7 +5175,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_way_angle.py:90
 msgid "Suspicious angle in way"
-msgstr ""
+msgstr "Подозрительный угол в линии"
 
 #: ../analysers/analyser_osmosis_way_angle.py:92
 msgid ""
@@ -5231,7 +5231,7 @@ msgid ""
 "Power substation is not known by the operator or misses substation=* value"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:459
+#: ../analysers/analyser_osmosis_highway_vs_building.py:457
 msgid ""
 "A feature may be missing a tag, such as `tunnel=*`, `bridge=*`, `covered=*` or `ford=*`.\n"
 "If a road or railway intersects a building, consider adding the `layer=*` tag to it.\n"
@@ -5353,7 +5353,7 @@ msgstr ""
 #: ../analysers/analyser_osmosis_highway_deadend.py:474
 #, python-brace-format
 msgid "Oneway inaccessible: {0}"
-msgstr ""
+msgstr "Дорога с односторонним движением недостижима: {0}"
 
 #: ../analysers/analyser_osmosis_relation_duplicate_member.py:62
 msgid "Duplicate relation member"
@@ -5510,7 +5510,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_tunnel_bridge.py:195
 msgid "Bridge connected to crossing non-bridge highway"
-msgstr ""
+msgstr "Мост, соединенный с пересекающей его дорогой-\"не мостом\""
 
 #: ../analysers/analyser_osmosis_highway_tunnel_bridge.py:197
 msgid "Tunnel connected to crossing non-tunnel highway"
@@ -5518,7 +5518,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_tunnel_bridge.py:199
 msgid "Bridge connected to non-bridge highway"
-msgstr ""
+msgstr "Мост, соединенный с дорогой-\"не мостом\""
 
 #: ../analysers/analyser_osmosis_highway_tunnel_bridge.py:201
 msgid "Tunnel connected to non-tunnel highway"
@@ -5536,7 +5536,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_powerline.py:467
 msgid "Unfinished power transmission line"
-msgstr ""
+msgstr "Недостроенная линия электропередачи"
 
 #: ../analysers/analyser_osmosis_powerline.py:476
 msgid "Unfinished power distribution line"
@@ -5544,7 +5544,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_powerline.py:506
 msgid "Power support line management suggestion"
-msgstr ""
+msgstr "Предложение по поддержке \"line_management\""
 
 #: ../analysers/analyser_osmosis_soundex.py:236
 msgid "Possibly misspelled name"
@@ -5579,7 +5579,7 @@ msgstr ""
 
 #: ../plugins/Name_Script.py:38
 msgid "Some characters don't match the language charset"
-msgstr ""
+msgstr "Некоторые символы не соответствуют кодировке языка."
 
 #: ../plugins/Name_Script.py:49
 msgid "Non-printable character"
@@ -5632,7 +5632,7 @@ msgid ""
 "and `potential`."
 msgstr ""
 
-#: ../plugins/TagFix_Maxspeed.py:92
+#: ../plugins/TagFix_Maxspeed.py:90
 msgid "Advisory or practical maxspeed exceeds legal speed limit"
 msgstr ""
 
@@ -5654,7 +5654,7 @@ msgid ""
 "`parking=surface` or `parking=underground`, to distinguish between major "
 "parking lots and roadside parking. Add access tags and/or service ways "
 "through the parking lot as desired."
-msgstr ""
+msgstr "Укажите тип парковки, например `parking=street_side`, `parking=surface` или `parking=underground`, чтобы различать основные парковки и парковки на обочине дороги. Добавьте метки доступа и/или пути движения через парковку по желанию."
 
 #: ../plugins/TagFix_Tree.py:58
 msgid "Conflicting tree properties"
@@ -5701,9 +5701,28 @@ msgstr ""
 #: ../plugins/TagWatchFrViPofm.py:113 ../plugins/TagWatchFrViPofm.py:118
 #, python-brace-format
 msgid "tag value: {0}={1} => {2}"
-msgstr ""
+msgstr "значение тега: {0}={1} => {2}"
 
 #: ../plugins/indoor.py:21
 #, python-brace-format
 msgid "For the number of rooms in a facility, use `{0}` instead."
+msgstr ""
+
+#: ../analysers/analyser_merge_advertising_board_FR_brest.py:31
+msgid "Advertising board not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_advertising_board_FR_brest.py:33
+msgid "Advertising board integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_advertising_board_FR_brest.py:35
+msgid "Advertising board update"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_FR_rla.py:64
+#: ../analysers/analyser_merge_public_transport_FR_sillages.py:62
+#: ../analysers/analyser_merge_public_transport_FR_zestbus.py:62
+#: ../analysers/analyser_merge_public_transport_FR_zou_06.py:69
+msgid "{place} stop of {fields['stop_name']}"
 msgstr ""

@@ -103,35 +103,34 @@ msgstr "Недійсна роль"
 msgid "Broken highway level continuity"
 msgstr "Зламана безперервність рівня шляху"
 
-#: ../analysers/analyser_osmosis_building_3nodes.py:52
 msgid "Merge building (triangle)"
 msgstr "Об’єднані будівлі (трикутник)"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:175
+#: ../analysers/analyser_osmosis_building_overlaps.py:162
 msgid "Building intersection"
 msgstr "Накладання будівель"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:178
+#: ../analysers/analyser_osmosis_building_overlaps.py:165
 msgid "Large building intersection"
 msgstr "Накладання великих будівель"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:182
+#: ../analysers/analyser_osmosis_building_overlaps.py:169
 msgid "Building too small"
 msgstr "Будівля занадто мала"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:189
+#: ../analysers/analyser_osmosis_building_overlaps.py:176
 msgid "Gap between buildings"
 msgstr "Прогалина між будівлями"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:194
+#: ../analysers/analyser_osmosis_building_overlaps.py:181
 msgid "Large building intersection cluster"
 msgstr "Накладання груп великих будівель"
 
-#: ../analysers/analyser_osmosis_building_shapes.py:70
+#: ../analysers/analyser_osmosis_building_shapes.py:68
 msgid "Special building (round)"
 msgstr "Спеціальна будівля (кругла)"
 
-#: ../analysers/analyser_osmosis_building_shapes.py:73
+#: ../analysers/analyser_osmosis_building_shapes.py:71
 msgid "Special building (large)"
 msgstr "Спеціальна будівля (велика)"
 
@@ -147,7 +146,7 @@ msgstr "Відсутня лінія на level_crossing"
 msgid "Lone highway or barrier node"
 msgstr "Одинокий шлях чи точка бар’єру"
 
-#: ../analysers/analyser_osmosis_building_geodesie_FR.py:106
+#: ../analysers/analyser_osmosis_building_geodesie_FR.py:105
 msgid "Geodesic mark without building"
 msgstr "Геодезична мітка без споруди"
 
@@ -164,15 +163,15 @@ msgstr "Помилковий *_link highway"
 msgid "Highway too long for a *_link"
 msgstr "Highway задовгий для *_link"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:466
+#: ../analysers/analyser_osmosis_highway_vs_building.py:464
 msgid "Highway intersecting building"
 msgstr "Шлях перетинає будівлю"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:467
+#: ../analysers/analyser_osmosis_highway_vs_building.py:465
 msgid "Tree intersecting building"
 msgstr "Дерево перетинає будівлю"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:468
+#: ../analysers/analyser_osmosis_highway_vs_building.py:466
 msgid "Tree and highway too close"
 msgstr "Дерево і шлях надто близько"
 
@@ -425,10 +424,10 @@ msgstr "Лінія з однією точкою"
 msgid "Deprecated tag"
 msgstr "Теґ, що не підтримується"
 
-#: ../plugins/TagFix_MultipleTag.py:34 ../plugins/TagFix_MultipleTag2.py:20
-#: ../plugins/TagFix_MultipleTag_FR.py:34
+#: ../plugins/TagFix_MultipleTag2.py:20 ../plugins/TagFix_MultipleTag_FR.py:34
 #: ../plugins/TagFix_MultipleTag_Lang_es.py:33
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:33
+#: ../plugins/TagFix_MultipleTag.py:34
 msgid "Watch multiple tags"
 msgstr "Переглянути декілька теґів"
 
@@ -603,15 +602,15 @@ msgstr "Ознака landuse не на землі"
 msgid "Natural feature underground"
 msgstr "Ознака natural під землею"
 
-#: ../plugins/Name_Local.py:42 ../plugins/Name_Local_JP.py:34
+#: ../plugins/Name_Local_JP.py:34 ../plugins/Name_Local.py:42
 msgid "Default and local language name not the same"
 msgstr "Основна та місцева мови неоднакові"
 
-#: ../plugins/Name_Local.py:44 ../plugins/Name_Local_JP.py:36
+#: ../plugins/Name_Local_JP.py:36 ../plugins/Name_Local.py:44
 msgid "Local language name without default name"
 msgstr "Назва локальною мовою без звичайного імені"
 
-#: ../plugins/Name_Local.py:46 ../plugins/Name_Local_JP.py:38
+#: ../plugins/Name_Local_JP.py:38 ../plugins/Name_Local.py:46
 msgid "Language name without default name"
 msgstr "Назва мовою без звичайного імені"
 
@@ -667,7 +666,7 @@ msgstr "Відсутня структура мосту"
 msgid "Roundabout as area"
 msgstr "Кругове перехрестя як ділянка"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:199
+#: ../analysers/analyser_osmosis_building_overlaps.py:186
 msgid "Building in parts"
 msgstr "Будівля з частин"
 
@@ -727,11 +726,11 @@ msgstr "Об’єкт повинен бути близьким до узбере
 msgid "Naptan import, survey needed."
 msgstr "Naptan імпорт, слід перевірити."
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:469
+#: ../analysers/analyser_osmosis_highway_vs_building.py:467
 msgid "Highway intersecting small water piece"
 msgstr "Шлях перетинає малий водотік"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:470
+#: ../analysers/analyser_osmosis_highway_vs_building.py:468
 msgid "Highway intersecting large water piece"
 msgstr "Шлях перетинає великий водотік"
 
@@ -1117,19 +1116,19 @@ msgid ""
 "upstream"
 msgstr "Невелика група автомагістралей з основної мережі або з недостатнім доступом далі за напрямом"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:471
+#: ../analysers/analyser_osmosis_highway_vs_building.py:469
 msgid "Power object intersecting building"
 msgstr "Об’єкт енергетики перетинає будівлю"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:472
+#: ../analysers/analyser_osmosis_highway_vs_building.py:470
 msgid "Power object and highway too close"
 msgstr "Об’єкт енергетики та шлях знаходяться надто близько"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:474
+#: ../analysers/analyser_osmosis_highway_vs_building.py:472
 msgid "Highway overlaps"
 msgstr "Накладання шляхів"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:476
+#: ../analysers/analyser_osmosis_highway_vs_building.py:474
 msgid "Waterway overlaps"
 msgstr "Накладання водотоків"
 
@@ -1468,7 +1467,7 @@ msgstr "Неприпустимий символ у номері телефону
 msgid "Bad separator for multiple values"
 msgstr "Помилковий роздільник для багатьох значень"
 
-#: ../plugins/TagFix_Maxspeed.py:132
+#: ../plugins/TagFix_Maxspeed.py:130
 #, python-brace-format
 msgid "Discordant {0} and {1}"
 msgstr "Розбіжність {0} і {1}"
@@ -1625,13 +1624,13 @@ msgstr "Теґ умовних інтервалів не є дійсним"
 msgid "Conditional interval does not fit into opening hours"
 msgstr "Умовні інтервали не вписуються в години роботи"
 
-#: ../analysers/analyser_merge_defibrillators_FR.py:61
 #: ../analysers/analyser_merge_defibrillators_FR_aedmap.py:34
 #: ../analysers/analyser_merge_defibrillators_FR_hautesalpes.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_issylesmoulineaux.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_lorient.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_montfort.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_paris.py:31
+#: ../analysers/analyser_merge_defibrillators_FR.py:61
 #: ../analysers/analyser_merge_defibrillators_FR_saintmalo.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_toulouse.py:31
 msgid "Defibrillator not integrated"
@@ -1849,14 +1848,14 @@ msgid ""
 "`population`."
 msgstr "`population` в admin_centre  є більшим за `population`\nзв’язку."
 
-#: ../analysers/analyser_osmosis_building_geodesie_FR.py:108
+#: ../analysers/analyser_osmosis_building_geodesie_FR.py:107
 msgid ""
 "A survey point has a name which indicates it is located on a\n"
 "building (bell tower, water tower, tower), but the node is not inside a\n"
 "building polygon (`building=*`)."
 msgstr "Точка обстеження має назву, яка лежить в основі значення\nбудівлі (дзвіниця, водонапірна башта, вежа), але точка знаходиться\nпоза  полігоном будівлі (`building=*`)."
 
-#: ../analysers/analyser_osmosis_building_geodesie_FR.py:112
+#: ../analysers/analyser_osmosis_building_geodesie_FR.py:111
 msgid ""
 "If the building footprint is present but is misplaced because of a\n"
 "shift in the source data (cadastre, orthophotographs), replace the\n"
@@ -1864,7 +1863,7 @@ msgid ""
 "be drawn."
 msgstr "Якщо контур будівлі присутній, але неправильно розміщений через\nзсув у вихідних даних (кадастр, ортофотознімки), замініть макет будівлі,\nщоб виправити цю проблему. В іншому випадку будівлю потрібно\nнамалювати."
 
-#: ../analysers/analyser_osmosis_building_geodesie_FR.py:117
+#: ../analysers/analyser_osmosis_building_geodesie_FR.py:116
 msgid ""
 "Do not move the geodetic point, because it is a reference point (see the\n"
 "[import of these geodetic\n"
@@ -2018,7 +2017,7 @@ msgid ""
 "`bridge=yes`."
 msgstr "Завдяки довжині мосту він заслуговує більш детального теґування,\nніж `bridge=yes`."
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:463
+#: ../analysers/analyser_osmosis_highway_vs_building.py:461
 msgid ""
 "![](https://wiki.openstreetmap.org/w/images/d/dc/Osmose-eg-error-1070.png)\n"
 "\n"
@@ -2821,23 +2820,23 @@ msgid ""
 "detection is correct."
 msgstr "Додайте відповідне позначення теґами для автомагістралі, якщо зображення є актуальним та знаки розпізнаються правильно."
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:455
+#: ../analysers/analyser_osmosis_highway_vs_building.py:453
 msgid ""
 "Two features overlap with no shared node to indicate a physical connection "
 "or tagging to indicate a vertical separation."
 msgstr "Два об’єкти перекриваються без спільної точки, що вказує на фізичне з’єднання або теґується для позначення вертикального розподілу."
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:457
+#: ../analysers/analyser_osmosis_highway_vs_building.py:455
 msgid ""
 "Move a feature if it's in the wrong place. Connect the features if "
 "appropriate or update the tags if not."
 msgstr "Перемістіть об’єкт, якщо він знаходиться не в тому місці. Підключіть функції, якщо це потрібно, або оновіть теґи, якщо ні."
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:473
+#: ../analysers/analyser_osmosis_highway_vs_building.py:471
 msgid "Highway intersecting highway"
 msgstr "Шлях перетинає інший без з’єднання"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:475
+#: ../analysers/analyser_osmosis_highway_vs_building.py:473
 msgid "Waterway intersecting waterway"
 msgstr "Водотік перетинає інший без з’єднання"
 
@@ -2913,7 +2912,7 @@ msgid ""
 "relations."
 msgstr "Див. [можливі\nролі](https://wiki.openstreetmap.org/wiki/Relation:boundary) на зв’язках\nмеж."
 
-#: ../analysers/analyser_osmosis_building_shapes.py:67
+#: ../analysers/analyser_osmosis_building_shapes.py:65
 msgid ""
 "The shape of the building is characteristic and as such would be\n"
 "tagged."
@@ -3016,20 +3015,20 @@ msgstr "Додайте тег верхнього рівня, щоб вказат
 msgid "The relation is missing a `type` tag to define what it represents."
 msgstr "У зв’язку відсутній теґ `type`, який визначає, його призначення."
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:31
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:31
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:31
 #, python-brace-format
 msgid "{0} bicycle rental not integrated"
 msgstr "{0} велопрокат не інтегрований"
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:33
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:33
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:33
 #, python-brace-format
 msgid "{0} bicycle rental integration suggestion"
 msgstr "{0} прокат велосипедів пропозиція з інтеграції"
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:35
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:35
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:35
 #, python-brace-format
 msgid "{0} bicycle update"
 msgstr "{0} bicycle оновлення"
@@ -3133,14 +3132,14 @@ msgstr "Можливо, картограф намагався нанести н�
 msgid "Gas station without tag `ref:mise` or invalid"
 msgstr "АЗС без теґу `ref:mise` або недійсна"
 
-#: ../analysers/analyser_merge_parking_FR_BNLS.py:38
 #: ../analysers/analyser_merge_parking_FR_bm.py:31
+#: ../analysers/analyser_merge_parking_FR_BNLS.py:38
 #, python-brace-format
 msgid "{0} parking not integrated"
 msgstr "{0} parking не інтегрований"
 
-#: ../analysers/analyser_merge_parking_FR_BNLS.py:41
 #: ../analysers/analyser_merge_parking_FR_bm.py:33
+#: ../analysers/analyser_merge_parking_FR_BNLS.py:41
 #, python-brace-format
 msgid "{0} parking integration suggestion"
 msgstr "{0} parking пропозиція з інтеграції"
@@ -3215,28 +3214,28 @@ msgstr "Перевірте правильність значення. Подум
 msgid "`{0}` is really slow"
 msgstr "`{0}` дуже повільний"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:180
-#: ../analysers/analyser_osmosis_building_overlaps.py:196
+#: ../analysers/analyser_osmosis_building_overlaps.py:167
+#: ../analysers/analyser_osmosis_building_overlaps.py:183
 msgid ""
 "Large intersections may also be duplicates - in which case you should delete"
 " the less accurate elements."
 msgstr "Великі перехрестя також можуть бути дублікатами - у цьому випадку вам слід видалити менш точні елементи."
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:183
+#: ../analysers/analyser_osmosis_building_overlaps.py:170
 msgid "The area of this feature is too small to possibly be a building."
 msgstr "Площа цього об’єкта є надто малою, щоб бути будівлею."
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:191
+#: ../analysers/analyser_osmosis_building_overlaps.py:178
 msgid ""
 "It looks like these buildings should be physically joined, but they don't "
 "share nodes to indicate this."
 msgstr "Схоже, що ці будівлі мають бути фізично з’єднаними, але вони не мають спільних точок, що вказує на це."
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:192
+#: ../analysers/analyser_osmosis_building_overlaps.py:179
 msgid "Connect the buildings by joining nodes where appropriate."
 msgstr "З’єднайте будівлі, поєднавши точки, де це необхідно."
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:200
+#: ../analysers/analyser_osmosis_building_overlaps.py:187
 msgid "Merge the building parts together as appropriate."
 msgstr "Об’єднайте частини будівлі разом, якщо потрібно."
 
@@ -3552,7 +3551,7 @@ msgstr "Різне значення теґу contact:* і *"
 msgid "Different values of {0} and of {1}"
 msgstr "Різні значення {0} і {1}"
 
-#: ../plugins/TagFix_Maxspeed.py:94
+#: ../plugins/TagFix_Maxspeed.py:92
 msgid "Discordant maxspeed and source:maxspeed or maxspeed:type"
 msgstr "Неузгоджені maxspeed і source:maxspeed або maxspeed:type"
 
@@ -3764,13 +3763,13 @@ msgstr "Точка огляду"
 msgid "Picnic site"
 msgstr "Місце для пікніка"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:171
+#: ../analysers/analyser_osmosis_building_overlaps.py:158
 msgid ""
 "Fix geometry so that buildings don't overlap, but share nodes if physically joined.\n"
 "If geometry is correct and there's some vertical difference then make use of the `layer` tag to indicate this."
 msgstr "Виправте геометрію, щоб будівлі не накладалися між собою, але мали спільні точки, якщо вони фізично з’єднані.\nЯкщо геометрія правильна та є певна вертикальна різниця, скористайтеся тегом `layer`, щоб вказати це."
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:185
+#: ../analysers/analyser_osmosis_building_overlaps.py:172
 msgid ""
 "- Correct the geometry if inaccurately mapped.\n"
 "- Correct the tagging if this isn't a building.\n"
@@ -4762,17 +4761,17 @@ msgid ""
 "correct."
 msgstr "Зв’язок, члени якого (зрештою) посилаються на себе, зазвичай неправильний."
 
-#: ../analysers/analyser_osmosis_building_in_polygon.py:87
+#: ../analysers/analyser_osmosis_building_in_polygon.py:69
 msgid "Building on agricultural land"
 msgstr "Будівля на землі сільськогосподарського призначення"
 
-#: ../analysers/analyser_osmosis_building_in_polygon.py:89
+#: ../analysers/analyser_osmosis_building_in_polygon.py:71
 msgid ""
 "Buildings of a farm (houses, sheds, stables, barns, ...) are usually located on the farmyard,\n"
 "not on the farmland where the crops grow."
 msgstr "Будинки господарства (будинки, сараї, стайні, сараї,..) зазвичай розташовуються на подвір’ях,\nа не на сільськогосподарських угіддях, де ростуть посіви."
 
-#: ../analysers/analyser_osmosis_building_in_polygon.py:92
+#: ../analysers/analyser_osmosis_building_in_polygon.py:74
 msgid ""
 "Change or split the landuse such that the farm buildings are on an area with `landuse=farmyard`\n"
 "and the area where crops grow are within `landuse=farmland` (or more dedicated types of farmland,\n"
@@ -4781,7 +4780,7 @@ msgid ""
 "For areas dedicated to greenhouse horticulture, use `landuse=greenhouse_horticulture`."
 msgstr "Змініть або розділіть землекористування таким чином, щоб будівлі ферми знаходилися на території з `landuse=farmyard`,\nа територія, де вирощуються сільськогосподарські культури, входила до `landuse=farmland` (або більш виділених типів сільськогосподарських угідь,\nтаких як `landuse=vineyard` або `landuse=orchard`).\n\nДля територій, призначених для тепличного господарства, використовуйте `landuse=greenhouse_horticulture`."
 
-#: ../analysers/analyser_osmosis_building_in_polygon.py:106
+#: ../analysers/analyser_osmosis_building_in_polygon.py:88
 #, python-brace-format
 msgid "`{0}` inside `{1}`"
 msgstr "`{0}` всередині `{1}`"
@@ -5075,7 +5074,7 @@ msgstr "Поганий перетин із залізницею"
 msgid "Bad intersection with aeroway"
 msgstr "Поганий перетин із злітною доріжкою"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:477
+#: ../analysers/analyser_osmosis_highway_vs_building.py:475
 msgid "Commercial object or office and highway too close"
 msgstr "Комерційний об’єкт чи офіс і шлях розміщені занадто близько"
 
@@ -5234,7 +5233,7 @@ msgid ""
 "Power substation is not known by the operator or misses substation=* value"
 msgstr "Не вказаний оператор підстанції, або відсутнє значення substation=*"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:459
+#: ../analysers/analyser_osmosis_highway_vs_building.py:457
 msgid ""
 "A feature may be missing a tag, such as `tunnel=*`, `bridge=*`, `covered=*` or `ford=*`.\n"
 "If a road or railway intersects a building, consider adding the `layer=*` tag to it.\n"
@@ -5635,7 +5634,7 @@ msgid ""
 "and `potential`."
 msgstr ""
 
-#: ../plugins/TagFix_Maxspeed.py:92
+#: ../plugins/TagFix_Maxspeed.py:90
 msgid "Advisory or practical maxspeed exceeds legal speed limit"
 msgstr ""
 
@@ -5709,4 +5708,23 @@ msgstr ""
 #: ../plugins/indoor.py:21
 #, python-brace-format
 msgid "For the number of rooms in a facility, use `{0}` instead."
+msgstr ""
+
+#: ../analysers/analyser_merge_advertising_board_FR_brest.py:31
+msgid "Advertising board not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_advertising_board_FR_brest.py:33
+msgid "Advertising board integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_advertising_board_FR_brest.py:35
+msgid "Advertising board update"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_FR_rla.py:64
+#: ../analysers/analyser_merge_public_transport_FR_sillages.py:62
+#: ../analysers/analyser_merge_public_transport_FR_zestbus.py:62
+#: ../analysers/analyser_merge_public_transport_FR_zou_06.py:69
+msgid "{place} stop of {fields['stop_name']}"
 msgstr ""

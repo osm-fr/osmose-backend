@@ -35,7 +35,7 @@ class Analyser_Merge_Bridge_ES(Analyser_Merge_Point):
             'Hidrografía',
             SHP(Source(
                 attribution='Instituto Geográfico Nacional', millesime='2023-05-22',
-                fileUrl='http://centrodedescargas.cnig.es/CentroDescargas/descargaDir', post={'secuencialDescDir': self.secuencialDescDir(), 'aceptCodsLicsDD_0': '15'},
+                fileUrl='https://centrodedescargas.cnig.es/CentroDescargas/descargaDir', post={'secuencialDescDir': self.secuencialDescDir(), 'aceptCodsLicsDD_0': '15'},
                 encoding='LATIN1'),
                 zip='hi_cruce_l_ES*.shp'),
             Load_XY(('ST_X(ST_LineInterpolatePoint(ST_GeometryN(geom, 1), 0.5))',), ('ST_Y(ST_LineInterpolatePoint(ST_GeometryN(geom, 1), 0.5))',),
