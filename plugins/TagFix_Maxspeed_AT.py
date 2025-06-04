@@ -46,7 +46,7 @@ class TagFix_Maxspeed_AT(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
 
-        self.errors[1] = self.def_class(item=3032, level=2, tags=['maxspeed'],
+        self.errors[303220] = self.def_class(item=3032, level=2, tags=['maxspeed'],
             title=T_('Speed limit type without speed limit'),
             detail=T_(
 '''A speed limit type is given in `maxspeed:type` or `source:maxspeed`, but no speed limit is set in `maxspeed`.'''),
@@ -58,7 +58,7 @@ see [Implicit maxspeed values](https://wiki.openstreetmap.org/wiki/Key:maxspeed#
 Always check `highway`, all other tags related to speed and verify on the ground.'''),
             resource='https://wiki.openstreetmap.org/wiki/Key:maxspeed')
 
-        self.errors[2] = self.def_class(item=3091, level=1, tags=['value', 'maxspeed'],
+        self.errors[309110] = self.def_class(item=3091, level=1, tags=['value', 'maxspeed'],
             title=T_('Invalid speed limit value'),
             detail=T_(
 '''The speed limit in `maxspeed` must be either numeric or `walk`. Do not specify a unit, km/h is the default.'''),
@@ -70,7 +70,7 @@ see [Implicit maxspeed values](https://wiki.openstreetmap.org/wiki/Key:maxspeed#
 Always check `highway`, all other tags related to speed and verify on the ground.'''),
             resource='https://wiki.openstreetmap.org/wiki/Key:maxspeed')
 
-        self.errors[3] = self.def_class(item=3091, level=2, tags=['maxspeed'],
+        self.errors[309111] = self.def_class(item=3091, level=2, tags=['maxspeed'],
             title=T_('Low speed limit value'),
             detail=T_(
 '''The speed limit in `maxspeed` is very low and no type is given in `maxspeed:type` or `source:maxspeed`.'''),
@@ -84,7 +84,7 @@ set `maxspeed` to the speed, `maxspeed:type=sign`.'''),
 Always check `highway`, all other tags related to speed and verify on the ground.'''),
             resource='https://wiki.openstreetmap.org/wiki/DE:Verkehrszeichen_in_Österreich')
 
-        self.errors[4] = self.def_class(item=3091, level=2, tags=['value', 'maxspeed'],
+        self.errors[309112] = self.def_class(item=3091, level=2, tags=['value', 'maxspeed'],
             title=T_('Invalid speed limit type'),
             detail=T_(
 '''The speed limit type in `maxspeed:type` or `source:maxspeed` is not valid.'''),
@@ -97,7 +97,7 @@ Do not assume any of the data present is correct!
 Always check `highway`, all other tags related to speed and verify on the ground.'''),
             resource='https://wiki.openstreetmap.org/wiki/DE:Key:maxspeed:type')
 
-        self.errors[5] = self.def_class(item=3032, level=2, tags=['maxspeed'],
+        self.errors[303221] = self.def_class(item=3032, level=2, tags=['maxspeed'],
             title=T_('Multiple speed limit types'),
             detail=T_(
 '''`maxspeed:type` and `source:maxspeed` are both set. This may confuse mappers and data consumers
@@ -110,7 +110,7 @@ see [Implicit maxspeed values](https://wiki.openstreetmap.org/wiki/Key:maxspeed#
 Always check `highway`, all other tags related to speed and verify on the ground.'''),
             resource='https://wiki.openstreetmap.org/wiki/DE:Key:maxspeed:type')
 
-        self.errors[6] = self.def_class(item=3032, level=1, tags=['maxspeed'],
+        self.errors[303222] = self.def_class(item=3032, level=1, tags=['maxspeed'],
             title=T_('Speed limit and type mismatch'),
             detail=T_(
 '''The speed limit in `maxspeed` is not consistent with the speed limit type in `maxspeed:type` or `source:maxspeed`.'''),
@@ -137,7 +137,7 @@ Always check `highway`, all other tags related to speed and verify on the ground
         # Error: maxspeed type without maxspeed
         if not maxspeed:
             if maxspeed_type or source_maxspeed:
-                err.append({'class': 1, 'text': T_('`{0}` without maxspeed',
+                err.append({'class': 303220, 'text': T_('`{0}` without maxspeed',
                                                    maxspeed_type if maxspeed_type else source_maxspeed)})
             return err
 
@@ -145,14 +145,14 @@ Always check `highway`, all other tags related to speed and verify on the ground
         if maxspeed.endswith(' km/h'):
             maxspeed = maxspeed[:-5]
         if not maxspeed.isdigit() and maxspeed != 'walk':
-            return {'class': 2, 'text': T_('Invalid maxspeed: `{0}`', maxspeed)}
+            return {'class': 309110, 'text': T_('Invalid maxspeed: `{0}`', maxspeed)}
 
         # Error: maxspeed suspiciously low, probably 'walk'; needs verification
         # except for speeds < 5 (covered in Number.py) and if signposted
         if maxspeed.isdigit():
             maxspeed_num = int(maxspeed)
             if (maxspeed_num > 4) and (maxspeed_num < 15) and (maxspeed_type != 'sign') and (source_maxspeed != 'sign'):
-                return {'class': 3, 'text': T_('Low maxspeed: `{0}`', maxspeed)}
+                return {'class': 309111, 'text': T_('Low maxspeed: `{0}`', maxspeed)}
 
         valid_type = None
         if maxspeed_type:
@@ -160,32 +160,32 @@ Always check `highway`, all other tags related to speed and verify on the ground
             if maxspeed_type in self.valid_maxspeed_types.keys():
                 valid_type = maxspeed_type
             else:
-                err.append({'class': 4,
+                err.append({'class': 309112,
                             'text': T_('Invalid maxspeed:type: `{0}`', maxspeed_type)})
             if source_maxspeed:
                 # Error: source:maxspeed equal to maxspeed:type
                 # Disabled for now to avoid excessive warnings; perform bulk cleanup first
                 if maxspeed_type == source_maxspeed:
-                    # err.append({'class': 5,
+                    # err.append({'class': 303221,
                     #            'text': T_('Duplicate speed limit type: `{0}`', maxspeed_type)})
                     pass
                 # Error: source:maxspeed contains different maxspeed type
                 elif source_maxspeed.startswith('AT:') or source_maxspeed in {'zone', 'sign', 'walk'}:
-                    err.append({'class': 5,
+                    err.append({'class': 303221,
                                 'text': T_('Conflicting speed limit types: `{0}`<>`{1}`', maxspeed_type, source_maxspeed)})
         elif source_maxspeed:
             # Error: source:maxspeed is invalid
             if source_maxspeed in self.valid_maxspeed_types.keys():
                 valid_type = source_maxspeed
             elif source_maxspeed.startswith('AT:') or source_maxspeed in {'zone', 'walk'}:
-                err.append({'class': 4,
+                err.append({'class': 309112,
                             'text': T_('Invalid source:maxspeed: `{0}`', source_maxspeed)})
 
         # Error: maxspeed type doesn't match maxspeed
         # except for types covered in TagFix_Maxspeed plugin and types without specific speed
         if valid_type and valid_type not in {'AT:motorway', 'AT:trunk', 'AT:rural', 'AT:urban'}:
             if self.valid_maxspeed_types.get(valid_type) and (self.valid_maxspeed_types.get(valid_type) != maxspeed):
-                err.append({'class': 6,
+                err.append({'class': 303222,
                             'text': T_('maxspeed and type mismatch: `{0}`<>`{1}`', maxspeed, valid_type)})
 
         return err
