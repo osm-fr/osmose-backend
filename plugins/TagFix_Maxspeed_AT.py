@@ -142,6 +142,8 @@ Always check `highway`, all other tags related to speed and verify on the ground
             return err
 
         # Error: maxspeed not numeric or 'walk'
+        if maxspeed.endswith(' km/h'):
+            maxspeed = maxspeed[:-5]
         if not maxspeed.isdigit() and maxspeed != 'walk':
             return {'class': 2, 'text': T_('Invalid maxspeed: `{0}`', maxspeed)}
 
@@ -203,7 +205,7 @@ class Test(TestPluginCommon):
         # No error if valid
         assert not plugin.way(None, {'highway': 'primary'}, None)
 
-        assert not plugin.way(None, {'highway': 'primary', 'maxspeed': '100'}, None)
+        assert not plugin.way(None, {'highway': 'primary', 'maxspeed': '100 km/h'}, None)
 
         assert not plugin.way(None, {'highway': 'living_street', 'maxspeed': 'walk'}, None)
 
@@ -223,6 +225,8 @@ class Test(TestPluginCommon):
 
         # Error when maxspeed not numeric or walk
         self.check_err(plugin.way(None, {'highway': 'tertiary', 'maxspeed': 'fast'}, None))
+
+        self.check_err(plugin.way(None, {'highway': 'tertiary', 'maxspeed': '70 mph'}, None))
 
         # Error when maxspeed too low
         self.check_err(plugin.way(None, {'highway': 'residential', 'maxspeed': '5'}, None))
