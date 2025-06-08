@@ -107,7 +107,7 @@ these should be mapped as two separate objects.'''),
     def node(self, data, tags):
         if tags.get('railway') in ('abandoned', 'tram', 'proposed', 'razed', 'dismantled', 'construction', 'platform'):
             del tags['railway']
-        if tags.get('waterway') == 'dam':
+        if tags.get('waterway') == 'dam' or ('waterway' in tags and 'highway' in tags and tags.get('ford') == 'yes'):
             del tags['waterway']
         if tags.get('railway') == 'tram_stop' and tags.get('highway') == 'bus_stop':
             del tags['railway']
@@ -144,6 +144,7 @@ class Test(TestPluginCommon):
         for t in [{"aerialway": "yes", "aeroway": "yes"},
                   {"highway": "trunk", "railway": "rail"},
                   {"amenity": "fountain", "leisure": "swimming_pool", "natural": "water"},
+                  {"highway": "track", "waterway": "stream"},
                  ]:
             self.check_err(a.node(None, t), t)
             self.check_err(a.way(None, t, None), t)
@@ -155,6 +156,7 @@ class Test(TestPluginCommon):
                   {"waterway": "dam", "highway": "road"},
                   {"landuse": "school", "amenity": "school"},
                   {"place": "square", "highway": "pedestrian"},
-                  {"leisure": "nature_reserve", "natural": "scrub"}
+                  {"leisure": "nature_reserve", "natural": "scrub"},
+                  {"highway": "track", "waterway": "stream", "ford": "yes"},
                  ]:
             assert not a.node(None, t), t
