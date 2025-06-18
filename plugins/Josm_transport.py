@@ -7,6 +7,10 @@ from plugins.PluginMapCSS import PluginMapCSS
 
 
 class Josm_transport(PluginMapCSS):
+    # ------------------------------- IMPORTANT -------------------------------
+    # This file is generated automatically and should not be modified directly.
+    # Instead, modify the source mapcss file and regenerate this Python script.
+    # -------------------------------------------------------------------------
 
     MAPCSS_URL = 'https://github.com/Jungle-Bus/transport_mapcss/blob/master/transport.validator.mapcss'
 

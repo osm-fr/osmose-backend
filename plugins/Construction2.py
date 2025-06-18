@@ -7,6 +7,10 @@ from plugins.PluginMapCSS import PluginMapCSS
 
 
 class Construction2(PluginMapCSS):
+    # ------------------------------- IMPORTANT -------------------------------
+    # This file is generated automatically and should not be modified directly.
+    # Instead, modify the source mapcss file and regenerate this Python script.
+    # -------------------------------------------------------------------------
 
 
 

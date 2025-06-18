@@ -7,6 +7,10 @@ from plugins.PluginMapCSS import PluginMapCSS
 
 
 class Josm_religion(PluginMapCSS):
+    # ------------------------------- IMPORTANT -------------------------------
+    # This file is generated automatically and should not be modified directly.
+    # Instead, modify the source mapcss file and regenerate this Python script.
+    # -------------------------------------------------------------------------
 
     MAPCSS_URL = 'https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/religion.mapcss'
 
