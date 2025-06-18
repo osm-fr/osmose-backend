@@ -980,6 +980,10 @@ from plugins.PluginMapCSS import PluginMapCSS
 
 
 class """ + prefix + class_name + """(PluginMapCSS):
+    # ------------------------------- IMPORTANT -------------------------------
+    # This file is generated automatically and should not be modified directly.
+    # Instead, modify the source mapcss file and regenerate this Python script.
+    # -------------------------------------------------------------------------
 """ + ("\n    MAPCSS_URL = '" + mapcss_url + "'" if mapcss_url else "") + """
 """ + ("\n    only_for = ['" + "', '".join(only_for) + "']\n" if only_for != [] else "") + """
 """ + ("\n    not_for = ['" + "', '".join(not_for) + "']\n" if not_for != [] else "") + """
