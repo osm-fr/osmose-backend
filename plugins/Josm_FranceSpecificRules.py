@@ -36,6 +36,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
         self.errors[9019005] = self.def_class(item = 9019, level = 3, tags = mapcss.list_('ref', 'highway'), title = mapcss.tr('validation rules Fantoir in France'))
         self.errors[9019006] = self.def_class(item = 9019, level = 3, tags = [], title = mapcss.tr('{0} is not a valid SIREN number', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
         self.errors[9019007] = self.def_class(item = 9019, level = 3, tags = [], title = mapcss.tr('{0} is not a valid SIRET number', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
+        self.errors[9019008] = self.def_class(item = 9019, level = 3, tags = [], title = mapcss.tr('{0} is not a valid code NAF/APE value, mapcss._tag_uncapture(capture_tags, '{0.tag}')))
 
         self.re_045a0f34 = re.compile(r'(?i)co.?voiturage')
         self.re_107d2c86 = re.compile(r'PT[1-9]{1}[0-9]*')
@@ -383,6 +384,18 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 # -osmoseItemClassLevel:"9019/9019007/3"
                 # throwWarning:tr("{0} is not a valid SIRET number","{0.tag}")
                 err.append({'class': 9019007, 'subclass': 0, 'text': mapcss.tr('{0} is not a valid SIRET number', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # *["ref:FR:NAF"]["ref:FR:NAF"!~/^([0-9]{2}\.[0-9]{2}[A-Z];)*[0-9]{2}\.[0-9]{2}[A-Z]$/][inside("FR")]
+        if ('ref:FR:NAF' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:NAF')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.<-----------remplace------------>, '^([0-9]{2}\.[0-9]{2}[A-Z];)*[0-9]{2}\.[0-9]{2}[A-Z]$'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:NAF'))) and (mapcss.inside(self.father.config.options, 'FR')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseItemClassLevel:"9019/9019008/3"
+                # throwWarning:tr("{0} is not a valid code NAF/APE value","{0.tag}")
+                err.append({'class': 9019008, 'subclass': 0, 'text': mapcss.tr('{0} is not a valid code NAF/APE value', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         return err
 
@@ -827,6 +840,18 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 # throwWarning:tr("{0} is not a valid SIRET number","{0.tag}")
                 err.append({'class': 9019007, 'subclass': 0, 'text': mapcss.tr('{0} is not a valid SIRET number', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
+        # *["ref:FR:NAF"]["ref:FR:NAF"!~/^([0-9]{2}\.[0-9]{2}[A-Z];)*[0-9]{2}\.[0-9]{2}[A-Z]$/][inside("FR")]
+        if ('ref:FR:NAF' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:NAF')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.<-----------remplace------------>, '^([0-9]{2}\.[0-9]{2}[A-Z];)*[0-9]{2}\.[0-9]{2}[A-Z]$'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:NAF'))) and (mapcss.inside(self.father.config.options, 'FR')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseItemClassLevel:"9019/9019008/3"
+                # throwWarning:tr("{0} is not a valid code NAF/APE value","{0.tag}")
+                err.append({'class': 9019008, 'subclass': 0, 'text': mapcss.tr('{0} is not a valid code NAF/APE value', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
         return err
 
     def relation(self, data, tags, members):
@@ -1091,6 +1116,18 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 # -osmoseItemClassLevel:"9019/9019007/3"
                 # throwWarning:tr("{0} is not a valid SIRET number","{0.tag}")
                 err.append({'class': 9019007, 'subclass': 0, 'text': mapcss.tr('{0} is not a valid SIRET number', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # *["ref:FR:NAF"]["ref:FR:NAF"!~/^([0-9]{2}\.[0-9]{2}[A-Z];)*[0-9]{2}\.[0-9]{2}[A-Z]$/][inside("FR")]
+        if ('ref:FR:NAF' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:NAF')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.<-----------remplace------------>, '^([0-9]{2}\.[0-9]{2}[A-Z];)*[0-9]{2}\.[0-9]{2}[A-Z]$'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:NAF'))) and (mapcss.inside(self.father.config.options, 'FR')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseItemClassLevel:"9019/9019008/3"
+                # throwWarning:tr("{0} is not a valid code NAF/APE value","{0.tag}")
+                err.append({'class': 9019008, 'subclass': 0, 'text': mapcss.tr('{0} is not a valid code NAF/APE value', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         return err
 
