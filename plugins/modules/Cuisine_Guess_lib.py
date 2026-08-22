@@ -155,19 +155,43 @@ class Cuisine:
           labels.append(cuisines)
 
     preprocessor = ColumnTransformer([
-        ('name_ngram', TfidfVectorizer(analyzer='char', ngram_range=(self.N, self.N), min_df=2), 'name'),
+        # Use min_df>=2 to ignore ngrams or words that appear only once in the training set
+        # Which are likely to be typos or very specific names. Lower the classifer size.
+        ('name_ngram', TfidfVectorizer(analyzer='char', ngram_range=(self.N, self.N), min_df=5), 'name'),
         ('name_word', TfidfVectorizer(analyzer='word', token_pattern=r'(?u)\b\w{3,}\b', min_df=5), 'name'),
         ('cat', OneHotEncoder(handle_unknown='ignore'), ['amenity', 'takeaway']),
     ])
     self.pipeline = Pipeline([
         ('prep', preprocessor),
-        ('clf', OneVsRestClassifier(LogisticRegression(class_weight='balanced', max_iter=1000))),
+        ('clf', OneVsRestClassifier(LogisticRegression(C=1.0, class_weight='balanced', max_iter=1000))),
     ])
 
     self.mlb = MultiLabelBinarizer(classes=sorted(self.keep_cuisines))
     X = pd.DataFrame(rows)
     y = self.mlb.fit_transform(labels)
+
+    # Train the model
     self.pipeline.fit(X, y)
+
+    # - OR -
+
+    # # Optimize model hyperparameters using grid search and cross-validation
+    # # Note: This is commented out to avoid long training times during normal execution.
+    # from sklearn.model_selection import GridSearchCV
+    # param_grid = {
+    #   'prep__name_ngram__min_df': [2],  # [1, 2],
+    #   'prep__name_ngram__ngram_range': [(3, 4)],  # [(3, 3), (3, 4), (4, 4)],
+    #   'prep__name_word__min_df': [2],  # [1, 2, 3, 4, 5],
+    #   'clf__estimator__C': [1.0],  # [1.0, 2.0, 5.0, 10.0],
+    # }
+    # grid_search = GridSearchCV(self.pipeline, param_grid, scoring='f1_micro', cv=3, n_jobs=-1)
+    # grid_search.fit(X, y)
+    # self.grid_search = grid_search
+    # self.pipeline = grid_search.best_estimator_
+
+    # print('Best hyperparameters selected by grid search:')
+    # print(grid_search.best_params_)
+    # print('Best cross-validation f1_micro score:', grid_search.best_score_)
 
   def guess_score(self, name, amenity, takeaway):
     X = pd.DataFrame([{
