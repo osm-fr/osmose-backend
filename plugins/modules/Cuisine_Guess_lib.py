@@ -23,10 +23,17 @@ import string
 import csv
 import sys
 import re
-import itertools
 import random
 from collections import defaultdict
 from unidecode import unidecode
+
+import pandas as pd
+from sklearn.compose import ColumnTransformer
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+from sklearn.multiclass import OneVsRestClassifier
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import MultiLabelBinarizer, OneHotEncoder
 
 
 # Non-cuisine tags to drop entirely
@@ -47,58 +54,6 @@ _CUISINE_IMPLIES = {
   'pizza': ['italian'],
   'tacos': ['mexican'],
 }
-
-class Index:
-  def __init__(self):
-    self.index = defaultdict(lambda: defaultdict(int))
-    self.count = defaultdict(int)
-
-  def insert(self, tokens, clazz, coef):
-    n = len(tokens)
-    for token in tokens:
-      self.count[token] += 1
-      self.index[token][clazz] += coef / n
-
-  def normalize(self, prune):
-    for token, n in list(self.count.items()):
-      if n <= prune:
-        del self.count[token]
-        del self.index[token]
-
-    for _, clazz_score in self.index.items():
-      s = sum(clazz_score.values())
-      for clazz in clazz_score.keys():
-        clazz_score[clazz] /= s
-
-  def search(self, tokens):
-    total = defaultdict(int)
-    n = 0
-    for token in tokens:
-      if token in self.index:
-        n += 1
-        for clazz, score in self.index[token].items():
-          total[clazz] += score
-
-    return {k: v/n for k, v in total.items()}
-
-
-def sum_dict(*d):
-  keys = map(lambda coef_dd: list(coef_dd[1].keys()), d)
-  keys = set(itertools.chain.from_iterable(keys))
-
-  s_coef = sum(map(lambda coef_dd: coef_dd[0], d))
-
-  ret = {}
-  for cuisine in keys:
-    s = 0
-    for coef, dd in d:
-      s += coef * dd.get(cuisine, 0)
-    ret[cuisine] = s / s_coef
-  return ret
-
-
-def ngram(text, n):
-  return [text[i:i+n] for i in range(0, len(text) - n + 1)]
 
 
 class Cuisine:
@@ -135,7 +90,7 @@ class Cuisine:
         if trigger in cuisines:
           cuisines.extend(implied)
 
-      return set(cuisines)
+      return cuisines
 
   multiple_space = re.compile(' +')
 
@@ -175,7 +130,7 @@ class Cuisine:
     else:
       self.data_slice = -1
 
-    # Normalize score for "cuisine" occurrences
+    # Count "cuisine" occurrences and remove unfrequented ones
     coef = defaultdict(int)
 
     for row in self.data[0:self.data_slice]:
@@ -183,50 +138,51 @@ class Cuisine:
         for cuisine in self.expland_cuisine(row['cuisine']):
           coef[cuisine] += 1
 
-    coef = {k: v for k, v in coef.items() if v >= 8} # Remove unfrequented "cuisine"
-    for cuisine in coef.keys():
-      coef[cuisine] = 1 / coef[cuisine]
-
-    # Index "cuisine" by name and other attributes
-    self.index_ngram = Index()
-    self.index_words = Index()
-    self.index_amenity = Index()
-    self.index_takeaway = Index()
-
+    self.keep_cuisines = {k for k, v in coef.items() if v >= 8} # Remove unfrequented "cuisine"
+    # Build the training rows: (name, amenity, takeaway) -> set of cuisines
+    rows = []
+    labels = []
     for row in self.data[0:self.data_slice]:
       name = row['name']
       if row['cuisine'] and len(name) >= self.N + 1:
-        for cuisine in self.expland_cuisine(row['cuisine']):
-          if cuisine in coef:
-            text = self.expland_name(name)
-            self.index_ngram.insert(ngram(text, self.N), cuisine, coef[cuisine])
-            self.index_words.insert(self.enumerate_word(text), cuisine, coef[cuisine])
-            self.index_amenity.insert(self.enumerate_amenity(row['amenity']), cuisine, coef[cuisine])
-            self.index_takeaway.insert(self.enumerate_takeaway(row['takeaway']), cuisine, coef[cuisine])
+        cuisines = self.expland_cuisine(row['cuisine']) & self.keep_cuisines
+        if cuisines:
+          rows.append({
+              'name': self.expland_name(name),
+              'amenity': ';'.join(self.enumerate_amenity(row['amenity'])) or 'unknown',
+              'takeaway': str(self.enumerate_takeaway(row['takeaway'])[0]),
+          })
+          labels.append(cuisines)
 
-    # Normalize and remove unfrequented token
-    self.index_ngram.normalize(1)
-    self.index_words.normalize(5)
-    self.index_amenity.normalize(0)
-    self.index_takeaway.normalize(0)
+    preprocessor = ColumnTransformer([
+        ('name_ngram', TfidfVectorizer(analyzer='char', ngram_range=(self.N, self.N), min_df=2), 'name'),
+        ('name_word', TfidfVectorizer(analyzer='word', token_pattern=r'(?u)\b\w{3,}\b', min_df=5), 'name'),
+        ('cat', OneHotEncoder(handle_unknown='ignore'), ['amenity', 'takeaway']),
+    ])
+    self.pipeline = Pipeline([
+        ('prep', preprocessor),
+        ('clf', OneVsRestClassifier(LogisticRegression(class_weight='balanced', max_iter=1000))),
+    ])
 
+    self.mlb = MultiLabelBinarizer(classes=sorted(self.keep_cuisines))
+    X = pd.DataFrame(rows)
+    y = self.mlb.fit_transform(labels)
+    self.pipeline.fit(X, y)
 
-  def guess_score(self, name, amenity, takeaway, c1, c2, c3, c4, s):
-    text = self.expland_name(name)
-    r_ngram = self.index_ngram.search(ngram(text, self.N))
-    r_word = self.index_words.search(self.enumerate_word(text))
-    r_amenity = self.index_amenity.search(self.enumerate_amenity(amenity))
-    r_takeaway = self.index_takeaway.search(self.enumerate_takeaway(takeaway))
+  def guess_score(self, name, amenity, takeaway):
+    X = pd.DataFrame([{
+      'name': self.expland_name(name),
+      'amenity': ';'.join(self.enumerate_amenity(amenity)) or 'unknown',
+      'takeaway': str(self.enumerate_takeaway(takeaway)[0]),
+    }])
+    probas = self.pipeline.predict_proba(X)[0]
+    return dict(zip(self.mlb.classes_, probas))
 
-    r = sum_dict([c1, r_ngram], [c2, r_word], [c3, r_amenity], [c4, r_takeaway])
-    r = {k: v for k, v in r.items() if v > s}
-    return r
+  def guess(self, name, amenity, takeaway, s=0.5):
+    g = self.guess_score(name, amenity, takeaway)
+    return dict(filter(lambda c: c[1] > s, g.items()))
 
-  def guess(self, name, amenity, takeaway, c1=1, c2=2.02414594, c3=0.1519341, c4=0.14086179, s=0.5):
-    g = self.guess_score(name, amenity, takeaway, c1, c2, c3, c4, s)
-    return {k: 0.9 if v > 0.6 else 0.75 for k, v in g.items()}
-
-  def evaluate(self, c1, c2, c3, c4, s):
+  def evaluate(self, s):
     n = 0
     c = 0
     sco = 0
@@ -234,7 +190,7 @@ class Cuisine:
       name = row['name']
       cuisines = self.expland_cuisine(row['cuisine'])
       if cuisines and len(name) >= self.N + 1:
-        r = self.guess_score(name, row['amenity'], row['takeaway'], c1, c2, c3, c4, s)
+        r = self.guess(name, row['amenity'], row['takeaway'], s)
 
         if r:
           n += 1
@@ -266,35 +222,12 @@ out;
 
 
 def optimize():
-  from scipy.optimize import minimize # type: ignore
-
   cuisine = Cuisine(sys.argv[1], evaluation=0.9)
 
-  def f(c):
-    c2, c3, c4 = c
-    for s in [0.3, 0.4, 0.5, 0.6, 1]:
-      n, r = cuisine.evaluate(1, c2, c3, c4, s)
-      if r > 0.75:
-        return -n
-    return 0
-
-  x0 = [2.02414594, 0.1519341, 0.14086179]
-  res = minimize(f, x0, method='nelder-mead', options={'xatol': 1e-8, 'disp': True})
-  print(res)
-
-  r = cuisine.evaluate(1, *res.x, 0.5)
-  print(0.5)
-  print(r)
-
-  r = cuisine.evaluate(1, *res.x, 0.6)
-  print(0.6)
-  print(r)
-
-  r = cuisine.evaluate(1, *res.x, 0.7)
-  print(0.7)
-  print(r)
-
-  print(res.x)
+  for s in [0.6, 0.7, 0.8, 0.9, 1]:
+    r = cuisine.evaluate(s)
+    print(s)
+    print(r)
 
 
 if __name__ == "__main__":
