@@ -29,6 +29,25 @@ from collections import defaultdict
 from unidecode import unidecode
 
 
+# Non-cuisine tags to drop entirely
+_CUISINE_DROP = ['buffet', 'dessert', 'cake', 'world', 'bio']
+
+# i10n / synonyms: token -> list of replacement tokens
+_CUISINE_SYNONYMS = {
+  'japonais': ['japanese'],
+  'vietnam': ['vietnamese'],
+  'indien': ['indian'],
+  'italian_pizza': ['italian', 'pizza'],
+}
+
+# Common mistake / implicit association: trigger -> list of cuisines to add
+_CUISINE_IMPLIES = {
+  'sushi': ['japanese'],
+  'japanese': ['sushi'],
+  'pizza': ['italian'],
+  'tacos': ['mexican'],
+}
+
 class Index:
   def __init__(self):
     self.index = defaultdict(lambda: defaultdict(int))
@@ -92,7 +111,6 @@ class Cuisine:
         data.append(row)
     return data
 
-
   @staticmethod
   def expland_cuisine(cuisines):
     if not cuisines:
@@ -101,61 +119,35 @@ class Cuisine:
       cuisines = cuisines.lower()
       cuisines = list(set(map(lambda s: s.strip(), cuisines.split(';'))))
 
-      # Non cuisine77
-      if 'buffet' in cuisines:
-        cuisines.remove('buffet')
-      if 'dessert' in cuisines:
-        cuisines.remove('dessert')
-      if 'cake' in cuisines:
-        cuisines.remove('cake')
-      if 'world' in cuisines:
-        cuisines.remove('world')
-      if 'bio' in cuisines:
-        cuisines.remove('bio')
+      # remove non-cuisine tags
+      for tag in _CUISINE_DROP:
+        if tag in cuisines:
+          cuisines.remove(tag)
 
-      # i10n
-      if 'japonais' in cuisines:
-        cuisines.append('japanese')
-        cuisines.remove('japonais')
-      if 'vietnam' in cuisines:
-        cuisines.append('vietnamese')
-        cuisines.remove('vietnam')
-      if 'indien' in cuisines:
-        cuisines.append('indian')
-        cuisines.remove('indien')
+      # i10n / synonyms
+      for old, new in _CUISINE_SYNONYMS.items():
+        if old in cuisines:
+          cuisines.remove(old)
+          cuisines.extend(new)
 
-      # Common mistake
-      if 'sushi' in cuisines:
-        cuisines.append('japanese')
-      elif 'japanese' in cuisines:
-        cuisines.append('sushi')
-      if 'pizza' in cuisines:
-        cuisines.append('italian')
-      if 'italian_pizza' in cuisines:
-        cuisines.append('italian')
-        cuisines.append('pizza')
-        cuisines.remove('italian_pizza')
-      if 'tacos' in cuisines:
-        cuisines.append('mexican')
+      # Common mistake / implied cuisines
+      for trigger, implied in _CUISINE_IMPLIES.items():
+        if trigger in cuisines:
+          cuisines.extend(implied)
 
-      # if 'regional' in cuisines:
-      #   cuisines.append('french')
-      # if 'pasta' in cuisines:
-      #   cuisines.append('italian')
-      # if 'chinese' in cuisines:
-      #   cuisines.append('asian')
       return set(cuisines)
 
   multiple_space = re.compile(' +')
 
-  def expland_name(self, text):
+  @staticmethod
+  def expland_name(text):
     text = text.lower()
     text = unidecode(text)
     text = text.strip()
     text = text.replace("'", '')
-    text = text.translate(str.maketrans(' ', ' ', string.punctuation)) # Remove punctiation
-    text = text.translate(str.maketrans(' ', ' ', '0123456789')) # Remove
-    text = self.multiple_space.sub(' ', text)
+    text = text.translate(str.maketrans(' ', ' ', string.punctuation)) # Remove punctuation
+    text = text.translate(str.maketrans(' ', ' ', '0123456789')) # Remove digits
+    text = Cuisine.multiple_space.sub(' ', text)
     text = ' '.join(filter(lambda t: len(t) > 1 and t not in ('le',), text.split(' ')))
     text = '  ' + text + '  '
     return text
