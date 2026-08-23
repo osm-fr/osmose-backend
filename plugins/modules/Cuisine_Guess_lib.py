@@ -113,11 +113,16 @@ class Cuisine:
 
   @staticmethod
   def enumerate_amenity(amenity):
-    return list(set(map(lambda s: s.strip(), amenity.split(';'))).intersection(set(['fast_food', 'restaurant'])))
+    return list(sorted(set(map(lambda s: s.strip(), amenity.split(';'))).intersection(set(['fast_food', 'restaurant']))))
 
   @staticmethod
   def enumerate_takeaway(takeaway):
     return [takeaway and takeaway != 'no']
+
+  @staticmethod
+  def enumerate_brand(brand):
+    if brand:
+      return brand.strip()
 
   def __init__(self, cuisine_csv, evaluation=0):
     self.N = 3
@@ -139,7 +144,7 @@ class Cuisine:
           coef[cuisine] += 1
 
     self.keep_cuisines = {k for k, v in coef.items() if v >= 8} # Remove unfrequented "cuisine"
-    # Build the training rows: (name, amenity, takeaway) -> set of cuisines
+    # Build the training rows: (name, amenity, takeaway, brand) -> set of cuisines
     rows = []
     labels = []
     for row in self.data[0:self.data_slice]:
@@ -151,6 +156,7 @@ class Cuisine:
               'name': self.expland_name(name),
               'amenity': ';'.join(self.enumerate_amenity(row['amenity'])) or 'unknown',
               'takeaway': str(self.enumerate_takeaway(row['takeaway'])[0]),
+              'brand': self.enumerate_brand(row['brand']) or 'unknown',
           })
           labels.append(cuisines)
 
@@ -159,7 +165,7 @@ class Cuisine:
         # Which are likely to be typos or very specific names. Lower the classifer size.
         ('name_ngram', TfidfVectorizer(analyzer='char', ngram_range=(self.N, self.N), min_df=5), 'name'),
         ('name_word', TfidfVectorizer(analyzer='word', token_pattern=r'(?u)\b\w{3,}\b', min_df=5), 'name'),
-        ('cat', OneHotEncoder(handle_unknown='ignore'), ['amenity', 'takeaway']),
+        ('cat', OneHotEncoder(handle_unknown='ignore'), ['amenity', 'takeaway', 'brand']),
     ])
     self.pipeline = Pipeline([
         ('prep', preprocessor),
@@ -193,17 +199,18 @@ class Cuisine:
     # print(grid_search.best_params_)
     # print('Best cross-validation f1_micro score:', grid_search.best_score_)
 
-  def guess_score(self, name, amenity, takeaway):
+  def guess_score(self, name, amenity, takeaway, brand):
     X = pd.DataFrame([{
       'name': self.expland_name(name),
       'amenity': ';'.join(self.enumerate_amenity(amenity)) or 'unknown',
       'takeaway': str(self.enumerate_takeaway(takeaway)[0]),
+      'brand': self.enumerate_brand(brand),
     }])
     probas = self.pipeline.predict_proba(X)[0]
     return dict(zip(self.mlb.classes_, probas))
 
-  def guess(self, name, amenity, takeaway, s=0.5):
-    g = self.guess_score(name, amenity, takeaway)
+  def guess(self, name, amenity, takeaway, brand, s=0.5):
+    g = self.guess_score(name, amenity, takeaway, brand)
     return dict(filter(lambda c: c[1] > s, g.items()))
 
   def evaluate(self, s):
@@ -214,7 +221,7 @@ class Cuisine:
       name = row['name']
       cuisines = self.expland_cuisine(row['cuisine'])
       if cuisines and len(name) >= self.N + 1:
-        r = self.guess(name, row['amenity'], row['takeaway'], s)
+        r = self.guess(name, row['amenity'], row['takeaway'], row['brand'], s)
 
         if r:
           n += 1
@@ -236,12 +243,19 @@ class Cuisine:
     return [n, c/n if n != 0 else 0]
 
 
-# CSV data from overpass query
+# CSV data from extract query
 """
-[out:csv(amenity,cuisine,takeaway,name)][timeout:2500];
-{{geocodeArea:France}}->.searchArea;
-nwr["amenity"~"restaurant|fast_food"]["name"]["cuisine"](area.searchArea);
-out;
+wget https://download.geofabrik.de/europe/france-latest.osm.pbf
+curl "https://polygons.openstreetmap.fr/get_poly.py?id=1403916&params=0" > france-metropolitan.poly
+osmium tags-filter france-latest.osm.pbf nwr/cuisine --omit-referenced -f pbf > france-cuisine.osm.pbf
+osmium tags-filter france-cuisine.osm.pbf nwr/name --omit-referenced -f pbf > france-cuisine-name.osm.pbf
+osmium tags-filter france-cuisine-name.osm.pbf nwr/amenity=restaurant,fast_food --omit-referenced -f pbf > france-cuisine-name-amenity.osm.pbf
+osmium extract france-cuisine-name-amenity.osm.pbf --strategy=simple --polygon=france-metropolitan.poly -f pbf > france-cuisine-name-amenity-metropolitan.osm.pbf
+osmium export france-cuisine-name-amenity-metropolitan.osm.pbf -f geojson \
+  | jq -r '.features[] | [.properties.amenity, .properties.cuisine, .properties.takeaway, .properties.name, .properties.brand] | @tsv' \
+  | sort \
+  > cuisine-france-metropolitan.csv
+rm *.osm.pbf france-metropolitan.poly
 """
 
 

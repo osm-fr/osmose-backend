@@ -45,7 +45,7 @@ class Cuisine_Guess(Plugin):
         if 'name' not in tags or tags.get('amenity') not in ('restaurant', 'fast_food'):
             return
 
-        cuisine_guess = self.taster.guess(tags['name'], tags['amenity'], tags.get('takeaway'))
+        cuisine_guess = self.taster.guess(tags['name'], tags['amenity'], tags.get('takeaway'), tags.get('brand'))
         if cuisine_guess:
             tasty_cuisines = None
             if 'cuisine' in tags:
