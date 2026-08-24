@@ -37,7 +37,13 @@ from sklearn.preprocessing import MultiLabelBinarizer, OneHotEncoder
 
 
 # Non-cuisine tags to drop entirely
-_CUISINE_DROP = ['buffet', 'dessert', 'cake', 'world', 'bio']
+_CUISINE_DROP = [
+  'buffet', 'dessert',
+  'cake', 'ice_cream',
+  'coffee_shop', 'wine', 'bubble_tea', 'juice', 'tea',
+  'regional', 'local', 'traditional',
+  'world', 'bio',
+]
 
 # i10n / synonyms: token -> list of replacement tokens
 _CUISINE_SYNONYMS = {
@@ -47,14 +53,108 @@ _CUISINE_SYNONYMS = {
   'italian_pizza': ['italian', 'pizza'],
 }
 
-# Common mistake / implicit association: trigger -> list of cuisines to add
-_CUISINE_IMPLIES = {
-  'sushi': ['japanese'],
-  'japanese': ['sushi'],
-  'pizza': ['italian'],
-  'tacos': ['mexican'],
+_CUISINE_HIERARCHY = {
+  "maghrebi": {
+    "algerian": None,
+    "moroccan": None,
+    "tunisian": None,
+    "couscous": None,
+    "tajine": None,
+  },
+  "oriental": {
+    "afghan": None,
+    "arab": None,
+    "lebanese": None,
+    "persian": None,
+    "syrian": None,
+    "turkish": {
+      "kebab": None,
+    },
+  },
+  "african": {
+    "senegalese": None,
+  },
+  "american": {
+    "burger": None,
+    "diner": None,
+    "fried_chicken": None,
+    "hotdog": None,
+    "wings": None,
+  },
+  "mexican": {
+    "tacos": None,
+  },
+  "spanish": {
+    "basque": None,
+    "basque_ciderhouse": None,
+    "catalan": None,
+    "churro": None,
+    "galician": None,
+    "paella": None,
+    "tapas": None,
+    "valencian": None,
+    "vasca": None,
+  },
+  "asian": {
+    "cambodian": None,
+    "chinese": None,
+    "indian": {
+      "curry": None,
+      "naan": None,
+    },
+    "indonesian": None,
+    "japanese": {
+      "ramen": None,
+      "sushi": None,
+    },
+    "korean": None,
+    "lao": None,
+    "nepalese": None,
+    "sri_lankan": None,
+    "taiwanese": None,
+    "thai": None,
+    "vietnamese": None,
+  },
+  "caribbean": {
+    "creole": None,
+  },
+  "latin_american": {
+    "argentinian": None,
+    "brazilian": None,
+    "colombian": None,
+    "peruvian": None,
+    "venezuelan": None,
+    "empanada": None,
+    "arepa": None,
+  },
+  "italian": {
+    "pasta": None,
+    "pizza": None,
+  },
+  "hawaiian": {
+    "poke": None,
+  },
 }
 
+def _flatten_cuisine_hierarchy(hierarchy, parent=None):
+  parents = {}
+  for cuisine, children in hierarchy.items():
+    if parent is not None:
+      parents[cuisine] = parent
+    if isinstance(children, dict):
+      parents.update(_flatten_cuisine_hierarchy(children, cuisine))
+  return parents
+
+_CUISINE_PARENTS = _flatten_cuisine_hierarchy(_CUISINE_HIERARCHY)
+
+def _expand_ancestors(cuisines):
+  result = set(cuisines)
+  for cuisine in list(cuisines):
+    parent = _CUISINE_PARENTS.get(cuisine)
+    while parent:
+      result.add(parent)
+      parent = _CUISINE_PARENTS.get(parent)
+  return result
 
 class Cuisine:
   @staticmethod
@@ -86,9 +186,7 @@ class Cuisine:
           cuisines.extend(new)
 
       # Common mistake / implied cuisines
-      for trigger, implied in _CUISINE_IMPLIES.items():
-        if trigger in cuisines:
-          cuisines.extend(implied)
+      cuisines = _expand_ancestors(cuisines)
 
       return cuisines
 
