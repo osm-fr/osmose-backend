@@ -23,7 +23,6 @@ import string
 import csv
 import sys
 import re
-import random
 from collections import defaultdict
 from unidecode import unidecode
 
@@ -31,6 +30,8 @@ import pandas as pd
 from sklearn.compose import ColumnTransformer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report
+from sklearn.model_selection import train_test_split
 from sklearn.multiclass import OneVsRestClassifier
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import MultiLabelBinarizer, OneHotEncoder
@@ -228,24 +229,23 @@ class Cuisine:
     self.data = self.load_csv(cuisine_csv)
 
     if evaluation:
-      random.shuffle(self.data)
-      self.data_slice = round(len(self.data) * evaluation)
+      self.train_data, self.test_data = train_test_split(self.data, train_size=evaluation)
     else:
-      self.data_slice = -1
+      self.train_data, self.test_data = self.data, []
 
     # Count "cuisine" occurrences and remove unfrequented ones
     coef = defaultdict(int)
 
-    for row in self.data[0:self.data_slice]:
+    for row in self.train_data:
       if row['cuisine']:
         for cuisine in self.expland_cuisine(row['cuisine']):
           coef[cuisine] += 1
 
-    self.keep_cuisines = {k for k, v in coef.items() if v >= 8} # Remove unfrequented "cuisine"
+    self.keep_cuisines = {k for k, v in coef.items() if v >= 20} # Remove unfrequented "cuisine"
     # Build the training rows: (name, amenity, takeaway, brand) -> set of cuisines
     rows = []
     labels = []
-    for row in self.data[0:self.data_slice]:
+    for row in self.train_data:
       name = row['name']
       if row['cuisine'] and len(name) >= self.N + 1:
         cuisines = self.expland_cuisine(row['cuisine']) & self.keep_cuisines
@@ -347,7 +347,7 @@ class Cuisine:
     n = 0
     c = 0
     sco = 0
-    for row in self.data[self.data_slice:-1]:
+    for row in self.test_data:
       name = row['name']
       cuisines = self.expland_cuisine(row['cuisine'])
       if cuisines and len(name) >= self.N + 1:
@@ -355,22 +355,46 @@ class Cuisine:
 
         if r:
           n += 1
-          # m = False
+          m = False
           for cuisine, score in r.items():
             if cuisine in cuisines:
               sco += score
               c += 1
               # print(True, name, cuisines, r)
-              # m = True
+              m = True
               break
             # else:
             #   print(cuisines, cuisine)
 
-          # if not m:
-          #   print(False, name, cuisines, r)
+          if not m:
+            print(False, name, cuisines, r)
 
     # print(self.N, c, n, c/n*100, sco/c)
     return [n, c/n if n != 0 else 0]
+
+  def classification_report(self, s):
+    """Precision/recall/F1 per cuisine on the full test set, using
+    scikit-learn's classification_report instead of the single aggregate
+    score computed by evaluate()."""
+    rows = []
+    labels = []
+    for row in self.test_data:
+      name = row['name']
+      cuisines = self.expland_cuisine(row['cuisine']) & self.keep_cuisines
+      if cuisines and len(name) >= self.N + 1:
+        rows.append({
+          'name': self.expland_name(name),
+          'amenity': ';'.join(self.enumerate_amenity(row['amenity'])) or 'unknown',
+          'takeaway': str(self.enumerate_takeaway(row['takeaway'])[0]),
+          'brand': self.enumerate_brand(row['brand']) or 'unknown',
+        })
+        labels.append(cuisines)
+
+    X = pd.DataFrame(rows)
+    y_true = self.mlb.transform(labels)
+    y_pred = (self.pipeline.predict_proba(X) > s).astype(int)
+
+    return classification_report(y_true, y_pred, target_names=self.mlb.classes_, zero_division=0)
 
 
 # CSV data from extract query
@@ -392,11 +416,12 @@ rm *.osm.pbf france-metropolitan.poly
 def optimize():
   cuisine = Cuisine(sys.argv[1], evaluation=0.9)
 
-  for s in [0.6, 0.7, 0.8, 0.9, 1]:
+  for s in [0.8, 0.9, 0.95]:
     r = cuisine.evaluate(s)
     print(s)
     print(r)
 
+  print(cuisine.classification_report(0.95)) # => precision 0.84
 
 if __name__ == "__main__":
   optimize()
