@@ -178,6 +178,7 @@ class Cuisine:
 
     # Train the model
     self.pipeline.fit(X, y)
+    self.print_feature_importance()
 
     # - OR -
 
@@ -198,6 +199,37 @@ class Cuisine:
     # print('Best hyperparameters selected by grid search:')
     # print(grid_search.best_params_)
     # print('Best cross-validation f1_micro score:', grid_search.best_score_)
+
+  def print_feature_importance(self):
+    """Print, per feature group (name n-grams/words, amenity, takeaway,
+    brand), the mean and max absolute coefficient
+    magnitude across all cuisine classifiers. This is a proxy for how much
+    each input actually contributes to the predictions."""
+    import numpy as np
+
+    feature_names = self.pipeline.named_steps['prep'].get_feature_names_out()
+    clf = self.pipeline.named_steps['clf']
+
+    groups = defaultdict(list)
+    for i, fname in enumerate(feature_names):
+      for group in ('amenity', 'takeaway', 'brand'):
+        if fname.startswith('cat__' + group):
+          groups[group].append(i)
+          break
+      else:
+        if fname.startswith('name_ngram'):
+          groups['name_ngram'].append(i)
+        elif fname.startswith('name_word'):
+          groups['name_word'].append(i)
+
+    all_coefs = np.vstack([est.coef_[0] for est in clf.estimators_])
+    mean_abs_coef = np.abs(all_coefs).mean(axis=0)
+
+    print('Feature importance (mean/max |coefficient| across all cuisine classifiers):')
+    print(f"{'group':<18} {'#features':<10} {'mean |coef|':<14} {'max |coef|'}")
+    for group, idxs in sorted(groups.items(), key=lambda kv: -mean_abs_coef[kv[1]].mean()):
+      idxs = np.array(idxs)
+      print(f"{group:<18} {len(idxs):<10} {mean_abs_coef[idxs].mean():<14.4f} {mean_abs_coef[idxs].max():.4f}")
 
   def guess_score(self, name, amenity, takeaway, brand):
     X = pd.DataFrame([{
