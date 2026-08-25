@@ -343,7 +343,7 @@ class Cuisine:
     probas = self.pipeline.predict_proba(X)[0]
     return dict(zip(self.mlb.classes_, probas))
 
-  def guess(self, name, amenity, takeaway, brand, s=0.5):
+  def guess(self, name, amenity, takeaway, brand, s=0.95):
     g = self.guess_score(name, amenity, takeaway, brand)
     return dict(filter(lambda c: c[1] > s, g.items()))
 

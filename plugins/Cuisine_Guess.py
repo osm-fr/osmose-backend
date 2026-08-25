@@ -22,12 +22,15 @@
 from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 
-from .modules import Cuisine_Guess_lib
+from .modules.Cuisine_Guess_lib import Cuisine, guess_prune
 
 
 class Cuisine_Guess(Plugin):
 
-    only_for = ["FR"]
+    only_for = ["FR", "ES"]
+    not_for = [
+        "FR-GP", "FR-GF", "FR-YT", "FR-RE", "FR-BL", "FR-MF", "FR-PM", "FR-WF", "FR-PF",
+    ]
 
     def init(self, logger):
         Plugin.init(self, logger)
@@ -39,28 +42,19 @@ class Cuisine_Guess(Plugin):
             title = T_('Suggestion of `cuisine` value'),
             detail = T_(detail))
 
-        self.taster = Cuisine_Guess_lib.Cuisine('dictionaries/Lang_fr/cuisine.csv')
+        self.taster = Cuisine('dictionaries/Lang_fr/cuisine.csv')
 
     def node(self, data, tags):
         if 'name' not in tags or tags.get('amenity') not in ('restaurant', 'fast_food'):
             return
 
-        cuisine_guess = self.taster.guess(tags['name'], tags['amenity'], tags.get('takeaway'), tags.get('brand'))
+        cuisines = set(map(lambda s: s.strip(), tags.get('cuisine', []).split(';')))
+        cuisine_guess = guess_prune(self.taster, cuisines, tags['name'], tags['amenity'], tags.get('takeaway'), tags.get('brand'))
         if cuisine_guess:
-            tasty_cuisines = None
-            if 'cuisine' in tags:
-                max_score = max(map(lambda c: c[1], cuisine_guess.items()))
-                if max_score < 0.9:
-                    tasty_cuisines = True
-                else:
-                    cuisines = set(map(lambda s: s.strip(), tags['cuisine'].split(';')))
-                    tasty_cuisines = cuisines.intersection(set(map(lambda c: c[0], cuisine_guess.items())))
-
-            if not tasty_cuisines:
-                return {'class': 1 if 'cuisine' in tags else 2,
-                    'text': T_('Guess with probability: {0}', ', '.join(map(lambda cs: '{0} ({1}%)'.format(cs[0], round(cs[1] * 100)), cuisine_guess.items()))),
-                    'fix': [{'~': {'cuisine': cuisine[0]}} for cuisine in cuisine_guess.items()]
-                }
+            return {'class': 1 if 'cuisine' in tags else 2,
+                'text': T_('Guess with probability: {0}', ', '.join(map(lambda cs: '{0} ({1}%)'.format(cs[0], round(cs[1] * 100)), cuisine_guess.items()))),
+                'fix': [{'~': {'cuisine': cuisine[0]}} for cuisine in cuisine_guess.items()]
+            }
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
