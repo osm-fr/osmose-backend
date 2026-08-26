@@ -225,8 +225,8 @@ class Cuisine:
     if brand:
       return brand.strip()
 
-  def __init__(self, cuisine_csv, evaluation=0, use_cache=True):
-    self.N = 3
+  def __init__(self, cuisine_csv, evaluation=0, use_cache=True, ngram=4):
+    self.N = ngram
 
     cache_path = downloader.get_cache_path(cuisine_csv, str(SourceVersion.version(cuisine_csv, Cuisine, self.N)))
     if use_cache and evaluation == 0:
@@ -428,9 +428,9 @@ rm *.osm.pbf france-metropolitan.poly
 
 
 def optimize():
-  cuisine = Cuisine(sys.argv[1], evaluation=0.9)
+  cuisine = Cuisine(sys.argv[1], evaluation=0.9, use_cache=False, ngram=3)
 
-  for s in [0.8, 0.9, 0.95]:
+  for s in [0.95]:
     r = cuisine.evaluate(s)
     print(s)
     print(r)
