@@ -25,6 +25,8 @@ import sys
 import re
 from collections import defaultdict
 from unidecode import unidecode
+import joblib
+from modules import downloader, SourceVersion
 
 import pandas as pd
 from sklearn.compose import ColumnTransformer
@@ -223,8 +225,17 @@ class Cuisine:
     if brand:
       return brand.strip()
 
-  def __init__(self, cuisine_csv, evaluation=0):
+  def __init__(self, cuisine_csv, evaluation=0, use_cache=True):
     self.N = 3
+
+    cache_path = downloader.get_cache_path(cuisine_csv, str(SourceVersion.version(cuisine_csv, Cuisine, self.N)))
+    if use_cache and evaluation == 0:
+      try:
+        loaded = joblib.load(cache_path)
+        self.__dict__.update(loaded.__dict__)
+        return
+      except FileNotFoundError:
+        pass
 
     self.data = self.load_csv(cuisine_csv)
 
@@ -276,7 +287,10 @@ class Cuisine:
 
     # Train the model
     self.pipeline.fit(X, y)
-    self.print_feature_importance()
+    print(self.classification_report(s, keep_cuisines))
+
+    if use_cache and evaluation == 0:
+      joblib.dump(self, cache_path)
 
     # - OR -
 
