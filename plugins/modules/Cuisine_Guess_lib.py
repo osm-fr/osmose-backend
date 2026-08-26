@@ -205,7 +205,7 @@ class Cuisine:
     text = text.translate(str.maketrans(' ', ' ', '0123456789')) # Remove digits
     text = Cuisine.multiple_space.sub(' ', text)
     text = ' '.join(filter(lambda t: len(t) > 1 and t not in ('le',), text.split(' ')))
-    text = '  ' + text + '  '
+    text = ' ' + text + ' '
     return text
 
   @staticmethod
