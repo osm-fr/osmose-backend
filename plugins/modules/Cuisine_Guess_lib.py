@@ -209,21 +209,18 @@ class Cuisine:
     return text
 
   @staticmethod
-  def enumerate_word(text):
-    return list(filter(lambda w: len(w) >= 3, text.strip().split(' ')))
+  def make_row(name, amenity, takeaway, brand):
+    if amenity:
+      amenity = ';'.join(sorted(set(map(lambda s: s.strip(), amenity.split(';'))).intersection(set(['fast_food', 'restaurant']))))
+    else:
+      amenity = 'unknown'
 
-  @staticmethod
-  def enumerate_amenity(amenity):
-    return list(sorted(set(map(lambda s: s.strip(), amenity.split(';'))).intersection(set(['fast_food', 'restaurant']))))
-
-  @staticmethod
-  def enumerate_takeaway(takeaway):
-    return [takeaway and takeaway != 'no']
-
-  @staticmethod
-  def enumerate_brand(brand):
-    if brand:
-      return brand.strip()
+    return {
+        'name': Cuisine.expland_name(name),
+        'amenity': amenity,
+        'takeaway': str(takeaway and takeaway != 'no'),
+        'brand': brand.strip() if brand else 'unknown',
+    }
 
   def __init__(self, cuisine_csv, evaluation=0, use_cache=True, ngram=4):
     self.N = ngram
@@ -261,12 +258,7 @@ class Cuisine:
       if row['cuisine'] and len(name) >= self.N + 1:
         cuisines = self.expland_cuisine(row['cuisine']) & self.keep_cuisines
         if cuisines:
-          rows.append({
-              'name': self.expland_name(name),
-              'amenity': ';'.join(self.enumerate_amenity(row['amenity'])) or 'unknown',
-              'takeaway': str(self.enumerate_takeaway(row['takeaway'])[0]),
-              'brand': self.enumerate_brand(row['brand']) or 'unknown',
-          })
+          rows.append(self.make_row(name, row['amenity'], row['takeaway'], row['brand']))
           labels.append(cuisines)
 
     preprocessor = ColumnTransformer([
@@ -344,12 +336,7 @@ class Cuisine:
       print(f"{group:<18} {len(idxs):<10} {mean_abs_coef[idxs].mean():<14.4f} {mean_abs_coef[idxs].max():.4f}")
 
   def guess_score(self, name, amenity, takeaway, brand):
-    X = pd.DataFrame([{
-      'name': self.expland_name(name),
-      'amenity': ';'.join(self.enumerate_amenity(amenity)) or 'unknown',
-      'takeaway': str(self.enumerate_takeaway(takeaway)[0]),
-      'brand': self.enumerate_brand(brand),
-    }])
+    X = pd.DataFrame([self.make_row(name, amenity, takeaway, brand)])
     probas = self.pipeline.predict_proba(X)[0]
     return dict(zip(self.mlb.classes_, probas))
 
@@ -396,12 +383,7 @@ class Cuisine:
       name = row['name']
       cuisines = self.expland_cuisine(row['cuisine']) & self.keep_cuisines
       if cuisines and len(name) >= self.N + 1:
-        rows.append({
-          'name': self.expland_name(name),
-          'amenity': ';'.join(self.enumerate_amenity(row['amenity'])) or 'unknown',
-          'takeaway': str(self.enumerate_takeaway(row['takeaway'])[0]),
-          'brand': self.enumerate_brand(row['brand']) or 'unknown',
-        })
+        rows.append(self.make_row(name, row['amenity'], row['takeaway'], row['brand']))
         labels.append(cuisines)
 
     X = pd.DataFrame(rows)
