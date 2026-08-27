@@ -387,6 +387,25 @@ osmium export france-cuisine-name-amenity-metropolitan.osm.pbf -f geojson \
 rm *.osm.pbf france-metropolitan.poly
 """
 
+def guess_prune(teaster, cuisines, name, amenity, takeaway, brand, s=0.95):
+  g = teaster.guess_score(name, amenity, takeaway, brand)
+
+  probable_g = dict(filter(lambda c: c[0] not in cuisines and c[1] > s, g.items()))
+  improbable_g = dict(filter(lambda c: c[0] in cuisines and c[1] <= 1 - s, g.items()))
+
+  if not cuisines:
+    return probable_g
+  else:
+    probable_subclass = dict(filter(lambda cs: cs[0] in _CUISINE_PARENTS and _CUISINE_PARENTS[cs[0]] in cuisines, probable_g.items()))
+    probable_others = dict(filter(lambda cs: cs[0] not in _CUISINE_PARENTS or _CUISINE_PARENTS[cs[0]] not in cuisines, probable_g.items()))
+    improbable = dict(filter(lambda cs: cs[0] in cuisines, improbable_g.items()))
+
+    return dict(filter(lambda cs: len(cs[1]) > 0, {
+        "probable_subclass": probable_subclass,
+        "probable_others": probable_others,
+        "improbable": improbable,
+    }.items()))
+
 def evaluate(taster, s):
   n = 0
   c = 0
@@ -394,7 +413,8 @@ def evaluate(taster, s):
     name = row['name']
     cuisines = taster.expland_cuisine(row['cuisine'])
     if cuisines and len(name) >= taster.N + 1:
-      r = taster.guess_prune(cuisines, name, row['amenity'], row['takeaway'], row['brand'], s)
+      r = taster.guess_score(name, row['amenity'], row['takeaway'], row['brand'])
+      r = dict(filter(lambda c: c[1] > s, r.items()))
 
       if r:
         n += 1
@@ -410,6 +430,10 @@ def evaluate(taster, s):
 
         if not m:
           print(False, name, cuisines, r)
+
+        p = guess_prune(taster, cuisines, name, row['amenity'], row['takeaway'], row['brand'], s)
+        if p:
+          print('     ', name, cuisines, p)
 
   return [n, c/n if n != 0 else 0]
 
