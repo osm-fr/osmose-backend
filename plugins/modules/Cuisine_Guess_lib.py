@@ -39,127 +39,131 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import MultiLabelBinarizer, OneHotEncoder
 
 
-# Non-cuisine tags to drop entirely
-_CUISINE_DROP = [
-  'buffet', 'dessert',
-  'cake', 'ice_cream',
-  'coffee_shop', 'wine', 'bubble_tea', 'juice', 'tea',
-  'regional', 'local', 'traditional',
-  'world', 'bio',
-]
-
-# i10n / synonyms: token -> list of replacement tokens
-_CUISINE_SYNONYMS = {
-  'japonais': ['japanese'],
-  'vietnam': ['vietnamese'],
-  'indien': ['indian'],
-  'italian_pizza': ['italian', 'pizza'],
-}
-
-_CUISINE_HIERARCHY = {
-  "maghrebi": {
-    "algerian": None,
-    "moroccan": None,
-    "tunisian": None,
-    "couscous": None,
-    "tajine": None,
-  },
-  "oriental": {
-    "afghan": None,
-    "arab": None,
-    "lebanese": None,
-    "persian": None,
-    "syrian": None,
-    "turkish": {
-      "kebab": None,
-    },
-  },
-  "african": {
-    "senegalese": None,
-  },
-  "american": {
-    "burger": None,
-    "diner": None,
-    "fried_chicken": None,
-    "hotdog": None,
-    "wings": None,
-  },
-  "mexican": {
-    "tacos": None,
-  },
-  "spanish": {
-    "basque": None,
-    "basque_ciderhouse": None,
-    "catalan": None,
-    "churro": None,
-    "galician": None,
-    "paella": None,
-    "tapas": None,
-    "valencian": None,
-    "vasca": None,
-  },
-  "asian": {
-    "cambodian": None,
-    "chinese": None,
-    "indian": {
-      "curry": None,
-      "naan": None,
-    },
-    "indonesian": None,
-    "japanese": {
-      "ramen": None,
-      "sushi": None,
-    },
-    "korean": None,
-    "lao": None,
-    "nepalese": None,
-    "sri_lankan": None,
-    "taiwanese": None,
-    "thai": None,
-    "vietnamese": None,
-  },
-  "caribbean": {
-    "creole": None,
-  },
-  "latin_american": {
-    "argentinian": None,
-    "brazilian": None,
-    "colombian": None,
-    "peruvian": None,
-    "venezuelan": None,
-    "empanada": None,
-    "arepa": None,
-  },
-  "italian": {
-    "pasta": None,
-    "pizza": None,
-  },
-  "hawaiian": {
-    "poke": None,
-  },
-}
-
-def _flatten_cuisine_hierarchy(hierarchy, parent=None):
-  parents = {}
-  for cuisine, children in hierarchy.items():
-    if parent is not None:
-      parents[cuisine] = parent
-    if isinstance(children, dict):
-      parents.update(_flatten_cuisine_hierarchy(children, cuisine))
-  return parents
-
-_CUISINE_PARENTS = _flatten_cuisine_hierarchy(_CUISINE_HIERARCHY)
-
-def _expand_ancestors(cuisines):
-  result = set(cuisines)
-  for cuisine in list(cuisines):
-    parent = _CUISINE_PARENTS.get(cuisine)
-    while parent:
-      result.add(parent)
-      parent = _CUISINE_PARENTS.get(parent)
-  return result
-
 class Cuisine:
+  # Non-cuisine tags to drop entirely
+  _CUISINE_DROP = [
+      'buffet', 'dessert',
+      'cake', 'ice_cream',
+      'coffee_shop', 'wine', 'bubble_tea', 'juice', 'tea',
+      'regional', 'local', 'traditional',
+      'world', 'bio',
+  ]
+
+  # i10n / synonyms: token -> list of replacement tokens
+  _CUISINE_SYNONYMS = {
+      'japonais': ['japanese'],
+      'vietnam': ['vietnamese'],
+      'indien': ['indian'],
+      'italian_pizza': ['italian', 'pizza'],
+  }
+
+  _CUISINE_HIERARCHY = {
+      "maghrebi": {
+          "algerian": None,
+          "moroccan": None,
+          "tunisian": None,
+          "couscous": None,
+          "tajine": None,
+      },
+      "oriental": {
+          "afghan": None,
+          "arab": None,
+          "lebanese": None,
+          "persian": None,
+          "syrian": None,
+          "turkish": {
+              "kebab": None,
+          },
+      },
+      "african": {
+          "senegalese": None,
+      },
+      "american": {
+          "burger": None,
+          "diner": None,
+          "fried_chicken": None,
+          "hotdog": None,
+          "wings": None,
+      },
+      "mexican": {
+          "tacos": None,
+      },
+      "spanish": {
+          "basque": None,
+          "basque_ciderhouse": None,
+          "catalan": None,
+          "churro": None,
+          "galician": None,
+          "paella": None,
+          "tapas": None,
+          "valencian": None,
+          "vasca": None,
+      },
+      "asian": {
+          "cambodian": None,
+          "chinese": None,
+          "indian": {
+              "curry": None,
+              "naan": None,
+          },
+          "indonesian": None,
+          "japanese": {
+              "ramen": None,
+              "sushi": None,
+          },
+          "korean": None,
+          "lao": None,
+          "nepalese": None,
+          "sri_lankan": None,
+          "taiwanese": None,
+          "thai": None,
+          "vietnamese": None,
+      },
+      "caribbean": {
+          "creole": None,
+      },
+      "latin_american": {
+          "argentinian": None,
+          "brazilian": None,
+          "colombian": None,
+          "peruvian": None,
+          "venezuelan": None,
+          "empanada": None,
+          "arepa": None,
+      },
+      "italian": {
+          "pasta": None,
+          "pizza": None,
+      },
+      "hawaiian": {
+          "poke": None,
+      },
+  }
+
+  @staticmethod
+  def _flatten_cuisine_hierarchy(hierarchy, parent=None):
+    def rec(hierarchy, parent):
+      parents = {}
+      for cuisine, children in hierarchy.items():
+        if parent is not None:
+          parents[cuisine] = parent
+        if isinstance(children, dict):
+          parents.update(rec(children, cuisine))
+      return parents
+    return rec(hierarchy, parent)
+
+  _CUISINE_PARENTS = _flatten_cuisine_hierarchy(_CUISINE_HIERARCHY)
+
+  @staticmethod
+  def _expand_ancestors(cuisines):
+    result = set(cuisines)
+    for cuisine in list(cuisines):
+      parent = Cuisine._CUISINE_PARENTS.get(cuisine)
+      while parent:
+        result.add(parent)
+        parent = Cuisine._CUISINE_PARENTS.get(parent)
+    return result
+
   @staticmethod
   def load_csv(file_path):
     data = []
@@ -178,18 +182,18 @@ class Cuisine:
       cuisines = list(set(map(lambda s: s.strip(), cuisines.split(';'))))
 
       # remove non-cuisine tags
-      for tag in _CUISINE_DROP:
+      for tag in Cuisine._CUISINE_DROP:
         if tag in cuisines:
           cuisines.remove(tag)
 
       # i10n / synonyms
-      for old, new in _CUISINE_SYNONYMS.items():
+      for old, new in Cuisine._CUISINE_SYNONYMS.items():
         if old in cuisines:
           cuisines.remove(old)
           cuisines.extend(new)
 
       # Common mistake / implied cuisines
-      cuisines = _expand_ancestors(cuisines)
+      cuisines = Cuisine._expand_ancestors(cuisines)
 
       return cuisines
 
@@ -396,8 +400,8 @@ def guess_prune(teaster, cuisines, name, amenity, takeaway, brand, s=0.95):
   if not cuisines:
     return probable_g
   else:
-    probable_subclass = dict(filter(lambda cs: cs[0] in _CUISINE_PARENTS and _CUISINE_PARENTS[cs[0]] in cuisines, probable_g.items()))
-    probable_others = dict(filter(lambda cs: cs[0] not in _CUISINE_PARENTS or _CUISINE_PARENTS[cs[0]] not in cuisines, probable_g.items()))
+    probable_subclass = dict(filter(lambda cs: cs[0] in Cuisine._CUISINE_PARENTS and Cuisine._CUISINE_PARENTS[cs[0]] in cuisines, probable_g.items()))
+    probable_others = dict(filter(lambda cs: cs[0] not in Cuisine._CUISINE_PARENTS or Cuisine._CUISINE_PARENTS[cs[0]] not in cuisines, probable_g.items()))
     improbable = dict(filter(lambda cs: cs[0] in cuisines, improbable_g.items()))
 
     return dict(filter(lambda cs: len(cs[1]) > 0, {
