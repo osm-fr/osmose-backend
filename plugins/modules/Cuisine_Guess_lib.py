@@ -222,24 +222,23 @@ class Cuisine:
         'brand': brand.strip() if brand else 'unknown',
     }
 
-  def __init__(self, cuisine_csv, evaluation=0, use_cache=True, ngram=4):
+  def __init__(self, cuisine_csv, s=0.95, use_cache=True, ngram=4):
     self.N = ngram
 
     cache_path = downloader.get_cache_path(cuisine_csv, str(SourceVersion.version(cuisine_csv, Cuisine, self.N)))
-    if use_cache and evaluation == 0:
+    if use_cache:
       try:
         loaded = joblib.load(cache_path)
-        self.__dict__.update(loaded.__dict__)
+        self.__dict__.update(loaded)
         return
       except FileNotFoundError:
         pass
 
-    self.data = self.load_csv(cuisine_csv)
-
-    if evaluation:
-      self.train_data, self.test_data = train_test_split(self.data, train_size=evaluation)
+    csv_data = self.load_csv(cuisine_csv)
+    if use_cache:
+      self.train_data, self.test_data = csv_data, []
     else:
-      self.train_data, self.test_data = self.data, []
+      self.train_data, self.test_data = train_test_split(csv_data, train_size=0.9)
 
     # Count "cuisine" occurrences and remove unfrequented ones
     coef = defaultdict(int)
@@ -249,14 +248,14 @@ class Cuisine:
         for cuisine in self.expland_cuisine(row['cuisine']):
           coef[cuisine] += 1
 
-    self.keep_cuisines = {k for k, v in coef.items() if v >= 20} # Remove unfrequented "cuisine"
+    keep_cuisines = {k for k, v in coef.items() if v >= 20} # Remove unfrequented "cuisine"
     # Build the training rows: (name, amenity, takeaway, brand) -> set of cuisines
     rows = []
     labels = []
     for row in self.train_data:
       name = row['name']
       if row['cuisine'] and len(name) >= self.N + 1:
-        cuisines = self.expland_cuisine(row['cuisine']) & self.keep_cuisines
+        cuisines = self.expland_cuisine(row['cuisine']) & keep_cuisines
         if cuisines:
           rows.append(self.make_row(name, row['amenity'], row['takeaway'], row['brand']))
           labels.append(cuisines)
@@ -273,7 +272,7 @@ class Cuisine:
         ('clf', OneVsRestClassifier(LogisticRegression(C=1.0, class_weight='balanced', max_iter=1000))),
     ])
 
-    self.mlb = MultiLabelBinarizer(classes=sorted(self.keep_cuisines))
+    self.mlb = MultiLabelBinarizer(classes=sorted(keep_cuisines))
     X = pd.DataFrame(rows)
     y = self.mlb.fit_transform(labels)
 
@@ -281,8 +280,11 @@ class Cuisine:
     self.pipeline.fit(X, y)
     print(self.classification_report(s, keep_cuisines))
 
-    if use_cache and evaluation == 0:
-      joblib.dump(self, cache_path)
+    if use_cache:
+      joblib.dump({
+          "pipeline": self.pipeline,
+          "mlb": self.mlb,
+      }, cache_path)
 
     # - OR -
 
@@ -344,11 +346,17 @@ class Cuisine:
     g = self.guess_score(name, amenity, takeaway, brand)
     return dict(filter(lambda c: c[1] > s, g.items()))
 
+  def guess_prune(self, cuisines, name, amenity, takeaway, brand, s=0.95):
+    g = self.guess(name, amenity, takeaway, brand, s)
+    cuisines = _expand_ancestors(cuisines)
+    g = dict(filter(lambda cs: cs[0] not in cuisines, g.items()))
+    return g
+
   def evaluate(self, s):
     n = 0
     c = 0
     sco = 0
-    for row in self.test_data:
+    for row in self.test_data[:100]:
       name = row['name']
       cuisines = self.expland_cuisine(row['cuisine'])
       if cuisines and len(name) >= self.N + 1:
@@ -373,7 +381,7 @@ class Cuisine:
     # print(self.N, c, n, c/n*100, sco/c)
     return [n, c/n if n != 0 else 0]
 
-  def classification_report(self, s):
+  def classification_report(self, s, keep_cuisines):
     """Precision/recall/F1 per cuisine on the full test set, using
     scikit-learn's classification_report instead of the single aggregate
     score computed by evaluate()."""
@@ -381,7 +389,7 @@ class Cuisine:
     labels = []
     for row in self.test_data:
       name = row['name']
-      cuisines = self.expland_cuisine(row['cuisine']) & self.keep_cuisines
+      cuisines = self.expland_cuisine(row['cuisine']) & keep_cuisines
       if cuisines and len(name) >= self.N + 1:
         rows.append(self.make_row(name, row['amenity'], row['takeaway'], row['brand']))
         labels.append(cuisines)
@@ -410,14 +418,12 @@ rm *.osm.pbf france-metropolitan.poly
 
 
 def optimize():
-  cuisine = Cuisine(sys.argv[1], evaluation=0.9, use_cache=False, ngram=3)
+  cuisine = Cuisine(sys.argv[1], s=0.95, use_cache=False, ngram=3)
 
   for s in [0.95]:
     r = cuisine.evaluate(s)
     print(s)
     print(r)
-
-  print(cuisine.classification_report(0.95)) # => precision 0.84
 
 if __name__ == "__main__":
   optimize()
