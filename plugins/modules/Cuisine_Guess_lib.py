@@ -352,35 +352,6 @@ class Cuisine:
     g = dict(filter(lambda cs: cs[0] not in cuisines, g.items()))
     return g
 
-  def evaluate(self, s):
-    n = 0
-    c = 0
-    sco = 0
-    for row in self.test_data[:100]:
-      name = row['name']
-      cuisines = self.expland_cuisine(row['cuisine'])
-      if cuisines and len(name) >= self.N + 1:
-        r = self.guess(name, row['amenity'], row['takeaway'], row['brand'], s)
-
-        if r:
-          n += 1
-          m = False
-          for cuisine, score in r.items():
-            if cuisine in cuisines:
-              sco += score
-              c += 1
-              # print(True, name, cuisines, r)
-              m = True
-              break
-            # else:
-            #   print(cuisines, cuisine)
-
-          if not m:
-            print(False, name, cuisines, r)
-
-    # print(self.N, c, n, c/n*100, sco/c)
-    return [n, c/n if n != 0 else 0]
-
   def classification_report(self, s, keep_cuisines):
     """Precision/recall/F1 per cuisine on the full test set, using
     scikit-learn's classification_report instead of the single aggregate
@@ -416,12 +387,37 @@ osmium export france-cuisine-name-amenity-metropolitan.osm.pbf -f geojson \
 rm *.osm.pbf france-metropolitan.poly
 """
 
+def evaluate(taster, s):
+  n = 0
+  c = 0
+  for row in taster.test_data:
+    name = row['name']
+    cuisines = taster.expland_cuisine(row['cuisine'])
+    if cuisines and len(name) >= taster.N + 1:
+      r = taster.guess_prune(cuisines, name, row['amenity'], row['takeaway'], row['brand'], s)
+
+      if r:
+        n += 1
+        m = False
+        for cuisine, score in r.items():
+          if cuisine in cuisines:
+            c += 1
+            # print(True, name, cuisines, r)
+            m = True
+            break
+          # else:
+          #   print(cuisines, cuisine)
+
+        if not m:
+          print(False, name, cuisines, r)
+
+  return [n, c/n if n != 0 else 0]
 
 def optimize():
   cuisine = Cuisine(sys.argv[1], s=0.95, use_cache=False, ngram=3)
 
   for s in [0.95]:
-    r = cuisine.evaluate(s)
+    r = evaluate(cuisine, s)
     print(s)
     print(r)
 
