@@ -27,6 +27,7 @@ from collections import defaultdict
 from unidecode import unidecode
 import joblib
 from modules import downloader, SourceVersion
+from typing import Dict, List, Optional, Any, Set, Iterable
 
 import pandas as pd
 from sklearn.compose import ColumnTransformer
@@ -41,7 +42,7 @@ from sklearn.preprocessing import MultiLabelBinarizer, OneHotEncoder
 
 class Cuisine:
   # Non-cuisine tags to drop entirely
-  _CUISINE_DROP = [
+  _CUISINE_DROP: List[str] = [
       'buffet', 'dessert',
       'cake', 'ice_cream',
       'coffee_shop', 'wine', 'bubble_tea', 'juice', 'tea',
@@ -50,14 +51,14 @@ class Cuisine:
   ]
 
   # i10n / synonyms: token -> list of replacement tokens
-  _CUISINE_SYNONYMS = {
+  _CUISINE_SYNONYMS: Dict[str, List[str]] = {
       'japonais': ['japanese'],
       'vietnam': ['vietnamese'],
       'indien': ['indian'],
       'italian_pizza': ['italian', 'pizza'],
   }
 
-  _CUISINE_HIERARCHY = {
+  _CUISINE_HIERARCHY: Dict[str, Dict[str, Optional[Dict[str, Any]]]]  = {
       "maghrebi": {
           "algerian": None,
           "moroccan": None,
@@ -141,7 +142,7 @@ class Cuisine:
   }
 
   @staticmethod
-  def _flatten_cuisine_hierarchy(hierarchy, parent=None):
+  def _flatten_cuisine_hierarchy(hierarchy, parent=None) -> Dict[str, str]:
     def rec(hierarchy, parent):
       parents = {}
       for cuisine, children in hierarchy.items():
@@ -152,12 +153,12 @@ class Cuisine:
       return parents
     return rec(hierarchy, parent)
 
-  _CUISINE_PARENTS = _flatten_cuisine_hierarchy(_CUISINE_HIERARCHY)
+  _CUISINE_PARENTS: Dict[str, str] = _flatten_cuisine_hierarchy(_CUISINE_HIERARCHY)
 
   @staticmethod
-  def _expand_ancestors(cuisines):
+  def _expand_ancestors(cuisines: Set[str]) -> Set[str]:
     result = set(cuisines)
-    for cuisine in list(cuisines):
+    for cuisine in cuisines:
       parent = Cuisine._CUISINE_PARENTS.get(cuisine)
       while parent:
         result.add(parent)
@@ -165,18 +166,14 @@ class Cuisine:
     return result
 
   @staticmethod
-  def load_csv(file_path):
-    data = []
+  def load_csv(file_path: str) -> Iterable[Dict[str, str]]:
     with open(file_path) as csvfile:
-      spamreader = csv.DictReader(csvfile, delimiter="\t")
-      for row in list(spamreader):
-        data.append(row)
-    return data
+      return list(csv.DictReader(csvfile, delimiter="\t"))
 
   @staticmethod
-  def expland_cuisine(cuisine):
+  def expland_cuisine(cuisine: str) -> Set[str]:
     cuisine = cuisine.lower()
-    cuisines = list(set(map(lambda s: s.strip(), cuisine.split(';'))))
+    cuisines = set(map(lambda s: s.strip(), cuisine.split(';')))
 
     # remove non-cuisine tags
     for tag in Cuisine._CUISINE_DROP:
@@ -187,7 +184,8 @@ class Cuisine:
     for old, new in Cuisine._CUISINE_SYNONYMS.items():
       if old in cuisines:
         cuisines.remove(old)
-        cuisines.extend(new)
+        for n in new:
+          cuisines.add(n)
 
     # Common mistake / implied cuisines
     cuisines = Cuisine._expand_ancestors(cuisines)
@@ -197,7 +195,7 @@ class Cuisine:
   multiple_space = re.compile(' +')
 
   @staticmethod
-  def expland_name(text):
+  def expland_name(text: str) -> str:
     text = text.lower()
     text = unidecode(text)
     text = text.strip()
@@ -210,7 +208,7 @@ class Cuisine:
     return text
 
   @staticmethod
-  def make_row(name, amenity, takeaway, brand):
+  def make_row(name: str, amenity: str, takeaway: Optional[str], brand: Optional[str]) -> Dict[str, Optional[str]]:
     if amenity:
       amenity = ';'.join(sorted(set(map(lambda s: s.strip(), amenity.split(';'))).intersection(set(['fast_food', 'restaurant']))))
     else:
@@ -223,7 +221,7 @@ class Cuisine:
         'brand': brand.strip() if brand else 'unknown',
     }
 
-  def __init__(self, cuisine_csv, s=0.95, use_cache=True, ngram=4):
+  def __init__(self, cuisine_csv: str, s: float = 0.95, use_cache: bool = True, ngram: int = 4):
     self.N = ngram
 
     cache_path = downloader.get_cache_path(cuisine_csv, str(SourceVersion.version(cuisine_csv, Cuisine, self.N)))
@@ -242,7 +240,7 @@ class Cuisine:
       self.train_data, self.test_data = train_test_split(csv_data, train_size=0.9)
 
     # Count "cuisine" occurrences and remove unfrequented ones
-    coef = defaultdict(int)
+    coef: Dict[str, int] = defaultdict(int)
 
     for row in self.train_data:
       if row['cuisine']:
@@ -338,22 +336,12 @@ class Cuisine:
       idxs = np.array(idxs)
       print(f"{group:<18} {len(idxs):<10} {mean_abs_coef[idxs].mean():<14.4f} {mean_abs_coef[idxs].max():.4f}")
 
-  def guess_score(self, name, amenity, takeaway, brand):
+  def guess_score(self, name: str, amenity: str, takeaway: Optional[str], brand: Optional[str]) -> Dict[str, float]:
     X = pd.DataFrame([self.make_row(name, amenity, takeaway, brand)])
     probas = self.pipeline.predict_proba(X)[0]
     return dict(zip(self.mlb.classes_, probas))
 
-  def guess(self, name, amenity, takeaway, brand, s=0.95):
-    g = self.guess_score(name, amenity, takeaway, brand)
-    return dict(filter(lambda c: c[1] > s, g.items()))
-
-  def guess_prune(self, cuisines, name, amenity, takeaway, brand, s=0.95):
-    g = self.guess(name, amenity, takeaway, brand, s)
-    cuisines = _expand_ancestors(cuisines)
-    g = dict(filter(lambda cs: cs[0] not in cuisines, g.items()))
-    return g
-
-  def classification_report(self, s, keep_cuisines):
+  def classification_report(self, s: float, keep_cuisines: Set[str]):
     """Precision/recall/F1 per cuisine on the full test set, using
     scikit-learn's classification_report instead of the single aggregate
     score computed by evaluate()."""
@@ -388,14 +376,16 @@ osmium export france-cuisine-name-amenity-metropolitan.osm.pbf -f geojson \
 rm *.osm.pbf france-metropolitan.poly
 """
 
-def guess_prune(teaster, cuisines, name, amenity, takeaway, brand, s=0.95):
+def guess_prune(teaster: Cuisine, cuisines: Set[str], name: str, amenity: str, takeaway: Optional[str], brand: Optional[str], s: float = 0.95) -> Dict[str, Dict[str, float]]:
   g = teaster.guess_score(name, amenity, takeaway, brand)
 
   probable_g = dict(filter(lambda c: c[0] not in cuisines and c[1] > s, g.items()))
   improbable_g = dict(filter(lambda c: c[0] in cuisines and c[1] <= 1 - s, g.items()))
 
   if not cuisines:
-    return probable_g
+    return {
+        "probable_others": probable_g,
+    }
   else:
     probable_subclass = dict(filter(lambda cs: cs[0] in Cuisine._CUISINE_PARENTS and Cuisine._CUISINE_PARENTS[cs[0]] in cuisines, probable_g.items()))
     probable_others = dict(filter(lambda cs: cs[0] not in Cuisine._CUISINE_PARENTS or Cuisine._CUISINE_PARENTS[cs[0]] not in cuisines, probable_g.items()))
@@ -407,7 +397,7 @@ def guess_prune(teaster, cuisines, name, amenity, takeaway, brand, s=0.95):
         "improbable": improbable,
     }.items()))
 
-def evaluate(taster, s):
+def evaluate(taster: Cuisine, s: float):
   n = 0
   c = 0
   for row in taster.test_data:
