@@ -27,7 +27,7 @@ from collections import defaultdict
 from unidecode import unidecode
 import joblib
 from modules import downloader, SourceVersion
-from typing import Dict, List, Optional, Any, Set, Iterable
+from typing import Dict, List, Optional, Any, Set, Iterable, Tuple
 
 import pandas as pd
 from sklearn.compose import ColumnTransformer
@@ -142,7 +142,7 @@ class Cuisine:
   }
 
   @staticmethod
-  def _flatten_cuisine_hierarchy(hierarchy, parent=None) -> Dict[str, str]:
+  def _flatten_reversed_cuisine_hierarchy(hierarchy, parent=None) -> Dict[str, str]:
     def rec(hierarchy, parent):
       parents = {}
       for cuisine, children in hierarchy.items():
@@ -153,7 +153,20 @@ class Cuisine:
       return parents
     return rec(hierarchy, parent)
 
-  _CUISINE_PARENTS: Dict[str, str] = _flatten_cuisine_hierarchy(_CUISINE_HIERARCHY)
+  _CUISINE_PARENTS: Dict[str, str] = _flatten_reversed_cuisine_hierarchy(_CUISINE_HIERARCHY)
+
+  @staticmethod
+  def _flatten_cuisine_hierarchy(hierarchy) -> Dict[str, Set[str]]:
+    def rec(hierarchy):
+      parents = {}
+      for cuisine, children in hierarchy.items():
+        if isinstance(children, dict):
+          parents[cuisine] = children.keys()
+          parents = dict(parents, **rec(children))
+      return parents
+    return rec(hierarchy)
+
+  _CUISINE_CHILDREN: Dict[str, Set[str]] = _flatten_cuisine_hierarchy(_CUISINE_HIERARCHY)
 
   @staticmethod
   def _expand_ancestors(cuisines: Set[str]) -> Set[str]:
@@ -376,7 +389,7 @@ osmium export france-cuisine-name-amenity-metropolitan.osm.pbf -f geojson \
 rm *.osm.pbf france-metropolitan.poly
 """
 
-def guess_prune(teaster: Cuisine, cuisines: Set[str], name: str, amenity: str, takeaway: Optional[str], brand: Optional[str], s: float = 0.95) -> Dict[str, Dict[str, float]]:
+def guess_prune(teaster: Cuisine, cuisines: Set[str], name: str, amenity: str, takeaway: Optional[str], brand: Optional[str], s: float = 0.95) -> Dict[str, List[Tuple[Tuple[Optional[str], Optional[str]], float]]]:
   g = teaster.guess_score(name, amenity, takeaway, brand)
 
   probable_g = dict(filter(lambda c: c[0] not in cuisines and c[1] > s, g.items()))
@@ -384,18 +397,25 @@ def guess_prune(teaster: Cuisine, cuisines: Set[str], name: str, amenity: str, t
 
   if not cuisines:
     return {
-        "probable_others": probable_g,
+        "probable_others": list(map(lambda cs: [[None, cs[0]], cs[1]], probable_g.items()))
     }
   else:
-    probable_subclass = dict(filter(lambda cs: cs[0] in Cuisine._CUISINE_PARENTS and Cuisine._CUISINE_PARENTS[cs[0]] in cuisines, probable_g.items()))
-    probable_others = dict(filter(lambda cs: cs[0] not in Cuisine._CUISINE_PARENTS or Cuisine._CUISINE_PARENTS[cs[0]] not in cuisines, probable_g.items()))
-    improbable = dict(filter(lambda cs: cs[0] in cuisines, improbable_g.items()))
-
-    return dict(filter(lambda cs: len(cs[1]) > 0, {
-        "probable_subclass": probable_subclass,
-        "probable_others": probable_others,
-        "improbable": improbable,
-    }.items()))
+    ret = {
+        "probable_subclass": [],
+        "probable_others": [],
+        "improbable": [],
+    }
+    for cuisine, coef in probable_g.items():
+      # The cuisine has a parent, but the parent is the not the parent of an other original cuisines (sibling cuisine)
+      if cuisine in Cuisine._CUISINE_PARENTS and Cuisine._CUISINE_PARENTS[cuisine] in cuisines:
+          parent = Cuisine._CUISINE_PARENTS[cuisine]
+          if parent not in Cuisine._CUISINE_CHILDREN or not (Cuisine._CUISINE_CHILDREN[parent] & cuisines):
+            ret['probable_subclass'].append([[parent, cuisine], coef])
+      else:
+        ret['probable_others'].append([[None, cuisine], coef])
+    for cuisine, coef in improbable_g.items():
+      ret['improbable'].append([[cuisine, None], coef])
+    return dict(filter(lambda cs: len(cs[1]) > 0, ret.items()))
 
 def evaluate(taster: Cuisine, s: float):
   n = 0

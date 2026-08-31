@@ -42,18 +42,52 @@ class Cuisine_Guess(Plugin):
             title = T_('Suggestion of `cuisine` value'),
             detail = T_(detail))
 
-        self.taster = Cuisine('dictionaries/Lang_fr/cuisine.csv')
+        self.taster = Cuisine('dictionaries/Lang_fr/cuisine.csv', use_cache=False, ngram=3)
+
+    def full(self, cuisines, actions):
+        for action in actions:
+            if action[0][0]:
+                cuisines = self.remove(cuisines, action[0][0])
+            if action[0][1]:
+                cuisines = list(cuisines)
+                cuisines.append(action[0][1])
+        return cuisines
+
+    def replace(self, cuisines, a, b):
+        return map(lambda c: b if c == a else c, cuisines)
+
+    def remove(self, cuisines, a):
+        return filter(lambda c: c != a, cuisines)
 
     def node(self, data, tags):
         if 'name' not in tags or tags.get('amenity') not in ('restaurant', 'fast_food'):
             return
 
-        cuisines = set(map(lambda s: s.strip(), tags.get('cuisine', []).split(';')))
+        cuisines = list(map(lambda s: s.strip(), tags['cuisine'].split(';'))) if 'cuisine' in tags else set()
         cuisine_guess = guess_prune(self.taster, cuisines, tags['name'], tags['amenity'], tags.get('takeaway'), tags.get('brand'))
-        if cuisine_guess:
+        guess_number = len(cuisine_guess.get('probable_subclass', [])) + len(cuisine_guess.get('probable_others', [])) + len(cuisine_guess.get('improbable', []))
+        if guess_number > 0:
             return {'class': 1 if 'cuisine' in tags else 2,
-                'text': T_('Guess with probability: {0}', ', '.join(map(lambda cs: '{0} ({1}%)'.format(cs[0], round(cs[1] * 100)), cuisine_guess.items()))),
-                'fix': [{'~': {'cuisine': cuisine[0]}} for cuisine in cuisine_guess.items()]
+                'text': T_('Guess with probability: {0}', ', '.join(
+                    list(map(
+                        lambda cs: 'sub kind "{0}" -> "{1}" ({2}%)'.format(cs[0][0], cs[0][1], round(cs[1] * 100)),
+                        cuisine_guess.get('probable_subclass', [])
+                    )) +
+                    list(map(
+                        lambda cs: '"{0}" ({1}%)'.format(cs[0][1], round(cs[1] * 100)),
+                        cuisine_guess.get('probable_others', [])
+                    )) +
+                    list(map(
+                        lambda cs: 'impropable {0} ({1}%)'.format(cs[0][0], round(cs[1] * 100)),
+                        cuisine_guess.get('improbable', [])
+                    ))
+                )),
+                'fix': [
+                    (list({'~': {'cuisine': ';'.join(self.full(cuisines, cuisine_guess.get('probable_subclass', []) + cuisine_guess.get('probable_others', []) + cuisine_guess.get('improbable', []))) }}) if guess_number <= 3 else []) +
+                    (list({'~': {'cuisine': ';'.join(self.replace(cuisines, guess[0][0], guess[0][1]))}} for guess in cuisine_guess.get('probable_subclass', [])) if guess_number >= 2 else []) +
+                    (list({'~': {'cuisine': ';'.join(list(cuisines) + [guess[0][1]])}} for guess in cuisine_guess.get('probable_others', [])) if guess_number >= 2 else []) +
+                    (list({'~': {'cuisine': ';'.join(self.remove(cuisines, guess[0][0]))}} for guess in cuisine_guess.get('improbable', [])) if guess_number >= 2 else [])
+                ]
             }
 
     def way(self, data, tags, nds):
