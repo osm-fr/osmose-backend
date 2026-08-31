@@ -174,28 +174,25 @@ class Cuisine:
     return data
 
   @staticmethod
-  def expland_cuisine(cuisines):
-    if not cuisines:
-      return
-    else:
-      cuisines = cuisines.lower()
-      cuisines = list(set(map(lambda s: s.strip(), cuisines.split(';'))))
+  def expland_cuisine(cuisine):
+    cuisine = cuisine.lower()
+    cuisines = list(set(map(lambda s: s.strip(), cuisine.split(';'))))
 
-      # remove non-cuisine tags
-      for tag in Cuisine._CUISINE_DROP:
-        if tag in cuisines:
-          cuisines.remove(tag)
+    # remove non-cuisine tags
+    for tag in Cuisine._CUISINE_DROP:
+      if tag in cuisines:
+        cuisines.remove(tag)
 
-      # i10n / synonyms
-      for old, new in Cuisine._CUISINE_SYNONYMS.items():
-        if old in cuisines:
-          cuisines.remove(old)
-          cuisines.extend(new)
+    # i10n / synonyms
+    for old, new in Cuisine._CUISINE_SYNONYMS.items():
+      if old in cuisines:
+        cuisines.remove(old)
+        cuisines.extend(new)
 
-      # Common mistake / implied cuisines
-      cuisines = Cuisine._expand_ancestors(cuisines)
+    # Common mistake / implied cuisines
+    cuisines = Cuisine._expand_ancestors(cuisines)
 
-      return cuisines
+    return cuisines
 
   multiple_space = re.compile(' +')
 
