@@ -56,6 +56,8 @@ class Cuisine:
       'vietnam': ['vietnamese'],
       'indien': ['indian'],
       'italian_pizza': ['italian', 'pizza'],
+      'pancake': ['savory_pancakes'],
+      'pancakes': ['savory_pancakes'],
   }
 
   _CUISINE_HIERARCHY: Dict[str, Dict[str, Optional[Dict[str, Any]]]]  = {
@@ -107,6 +109,8 @@ class Cuisine:
               "curry": None,
               "naan": None,
           },
+          "tibetan": None,
+          "pakistani": None,
           "indonesian": None,
           "japanese": {
               "ramen": None,
@@ -138,6 +142,16 @@ class Cuisine:
       },
       "hawaiian": {
           "poke": None,
+      },
+      "meat": {
+          "steak_house": None,
+          "barbecue": None,
+      },
+      "friture": {
+          "fries": None
+      },
+      "seafood": {
+          "fish": None,
       },
   }
 
