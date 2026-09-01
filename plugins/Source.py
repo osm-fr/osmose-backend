@@ -77,7 +77,7 @@ class Test(TestPluginCommon):
     def test(self):
         a = Source(None)
         class _config:
-            options = {"country": "MD", "project": "openstreetmap"}
+            options = {"test": True, "country": "MD", "project": "openstreetmap"}
         class father:
             config = _config()
         a.father = father()

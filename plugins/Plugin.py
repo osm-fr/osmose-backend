@@ -154,7 +154,7 @@ class TestPluginCommon(unittest.TestCase):
 
     def set_default_config(self, plugin):
         class _config:
-            options = {"project": "openstreetmap"}
+            options = {"test": True, "project": "openstreetmap"}
         class father:
             config = _config()
         plugin.father = father()
