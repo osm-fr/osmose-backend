@@ -248,11 +248,11 @@ class Cuisine:
         'brand': brand.strip() if brand else 'unknown',
     }
 
-  def __init__(self, cuisine_csv: str, local_cuisines: Optional[List[str]], s: float = 0.95, use_cache: bool = True, ngram: int = 4):
+  def __init__(self, cuisine_csv: str, local_cuisines: Optional[List[str]], s: float = 0.95, use_cache: bool = True, train_size: Optional[float] = None, ngram: int = 4):
     self.local_cuisines = local_cuisines or []
     self.N = ngram
 
-    cache_path = downloader.get_cache_path(cuisine_csv, str(SourceVersion.version(cuisine_csv, Cuisine, self.N)))
+    cache_path = downloader.get_cache_path(cuisine_csv, str(SourceVersion.version(cuisine_csv, Cuisine, self.N, train_size)))
     if use_cache:
       try:
         loaded = joblib.load(cache_path)
@@ -262,10 +262,10 @@ class Cuisine:
         pass
 
     csv_data = self.load_csv(cuisine_csv)
-    if use_cache:
-      self.train_data, self.test_data = csv_data, []
+    if train_size is not None:
+      self.train_data, self.test_data = train_test_split(csv_data, train_size=train_size if train_size > 0 else 0.9)
     else:
-      self.train_data, self.test_data = train_test_split(csv_data, train_size=0.9)
+      self.train_data, self.test_data = csv_data, []
 
     # Count "cuisine" occurrences and remove unfrequented ones
     coef: Dict[str, int] = defaultdict(int)
@@ -305,7 +305,10 @@ class Cuisine:
 
     # Train the model
     self.pipeline.fit(X, y)
+    self.print_feature_importance()
     print(self.classification_report(s, keep_cuisines))
+    if train_size is not None:
+      print(self.classification_report(s, keep_cuisines))
 
     if use_cache:
       joblib.dump({
@@ -432,12 +435,12 @@ def guess_prune(teaster: Cuisine, cuisines: Set[str], name: str, amenity: str, t
       ret['improbable'].append(((cuisine, None), coef))
     return dict(filter(lambda cs: len(cs[1]) > 0, ret.items()))
 
-def evaluate(taster: Cuisine, local_cuisines: List[str], s: float):
+def evaluate(taster: Cuisine, local_cuisines: Optional[List[str]], s: float):
   n = 0
   c = 0
   for row in taster.test_data:
     name = row['name']
-    cuisines = taster.expland_cuisine(row['cuisine'], local_cuisines)
+    cuisines = taster.expland_cuisine(row['cuisine'], local_cuisines or [])
     if cuisines and len(name) >= taster.N + 1:
       r = taster.guess_score(name, row['amenity'], row['takeaway'], row['brand'])
       r = dict(filter(lambda c: c[1] > s, r.items()))
@@ -466,7 +469,7 @@ def evaluate(taster: Cuisine, local_cuisines: List[str], s: float):
 def optimize():
   csv_path = sys.argv[1]
   local_cuisines = sys.argv[2].split(';')
-  cuisine = Cuisine(csv_path, local_cuisines, s=0.95, use_cache=False, ngram=3)
+  cuisine = Cuisine(csv_path, local_cuisines, s=0.95, use_cache=False, train_size=-1, ngram=3)
 
   for s in [0.95]:
     r = evaluate(cuisine, local_cuisines, s)

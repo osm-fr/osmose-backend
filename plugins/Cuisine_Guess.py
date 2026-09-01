@@ -43,19 +43,22 @@ class Cuisine_Guess(Plugin):
             detail = T_(detail))
 
         country = self.father.config.options.get("country")
-        if not country:
+        if country is None:
             return None
-        country = country.split('-', 1)
 
         country_csv = {
             'ES': 'dictionaries/es/cuisine.csv',
             'FR': 'dictionaries/fr/cuisine.csv',
-        }.get(country[0])
-        if not country_csv:
+        }.get(country.split('-', 1)[0])
+        if country_csv is None:
             return None
 
         local_cuisines = self.father.config.options.get("local_cuisines")
-        self.taster = Cuisine(country_csv, local_cuisines)
+        if self.father.config.options.get("test"):
+            # Make learning very fast
+            self.taster = Cuisine(country_csv, local_cuisines, train_size=0.1, ngram=2)
+        else:
+            self.taster = Cuisine(country_csv, local_cuisines)
 
     def full(self, cuisines, actions):
         for action in actions:
@@ -117,6 +120,11 @@ from plugins.Plugin import with_options # noqa
 class Test(TestPluginCommon):
     def test(self):
         a = Cuisine_Guess(None)
+        class _config:
+            options = {'test': True, 'country': 'FR', 'language': None, 'local_cuisines': ['french']}
+        class father:
+            config = _config()
+        a.father = father()
         a.init(None)
         assert a.node(None, {"amenity": "restaurant", "name": "Fujiyama"})
-        assert not a.node(None, {"amenity": "restaurant", "name": "lkgverjverkj"})
+        assert not a.node(None, {"amenity": "restaurant", "name": "wwwwwwwwwwwww"})
