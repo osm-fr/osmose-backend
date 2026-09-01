@@ -42,7 +42,20 @@ class Cuisine_Guess(Plugin):
             title = T_('Suggestion of `cuisine` value'),
             detail = T_(detail))
 
-        self.taster = Cuisine('dictionaries/Lang_fr/cuisine.csv', use_cache=False, ngram=3)
+        country = self.father.config.options.get("country")
+        if not country:
+            return None
+        country = country.split('-', 1)
+
+        country_csv = {
+            'ES': 'dictionaries/es/cuisine.csv',
+            'FR': 'dictionaries/fr/cuisine.csv',
+        }.get(country[0])
+        if not country_csv:
+            return None
+
+        local_cuisines = self.father.config.options.get("local_cuisines")
+        self.taster = Cuisine(country_csv, local_cuisines)
 
     def full(self, cuisines, actions):
         for action in actions:
@@ -99,6 +112,7 @@ class Cuisine_Guess(Plugin):
 
 ###########################################################################
 from plugins.Plugin import TestPluginCommon
+from plugins.Plugin import with_options # noqa
 
 class Test(TestPluginCommon):
     def test(self):

@@ -198,12 +198,12 @@ class Cuisine:
       return list(csv.DictReader(csvfile, delimiter="\t"))
 
   @staticmethod
-  def expland_cuisine(cuisine: str) -> Set[str]:
+  def expland_cuisine(cuisine: str, local_cuisine: List[str]) -> Set[str]:
     cuisine = cuisine.lower()
     cuisines = set(map(lambda s: s.strip(), cuisine.split(';')))
 
     # remove non-cuisine tags
-    for tag in Cuisine._CUISINE_DROP:
+    for tag in Cuisine._CUISINE_DROP + local_cuisine:
       if tag in cuisines:
         cuisines.remove(tag)
 
@@ -248,7 +248,8 @@ class Cuisine:
         'brand': brand.strip() if brand else 'unknown',
     }
 
-  def __init__(self, cuisine_csv: str, s: float = 0.95, use_cache: bool = True, ngram: int = 4):
+  def __init__(self, cuisine_csv: str, local_cuisines: Optional[List[str]], s: float = 0.95, use_cache: bool = True, ngram: int = 4):
+    self.local_cuisines = local_cuisines or []
     self.N = ngram
 
     cache_path = downloader.get_cache_path(cuisine_csv, str(SourceVersion.version(cuisine_csv, Cuisine, self.N)))
@@ -271,7 +272,7 @@ class Cuisine:
 
     for row in self.train_data:
       if row['cuisine']:
-        for cuisine in self.expland_cuisine(row['cuisine']):
+        for cuisine in self.expland_cuisine(row['cuisine'], self.local_cuisines):
           coef[cuisine] += 1
 
     keep_cuisines = {k for k, v in coef.items() if v >= 20} # Remove unfrequented "cuisine"
@@ -281,7 +282,7 @@ class Cuisine:
     for row in self.train_data:
       name = row['name']
       if row['cuisine'] and len(name) >= self.N + 1:
-        cuisines = self.expland_cuisine(row['cuisine']) & keep_cuisines
+        cuisines = self.expland_cuisine(row['cuisine'], self.local_cuisines) & keep_cuisines
         if cuisines:
           rows.append(self.make_row(name, row['amenity'], row['takeaway'], row['brand']))
           labels.append(cuisines)
@@ -376,7 +377,7 @@ class Cuisine:
     labels = []
     for row in self.test_data:
       name = row['name']
-      cuisines = self.expland_cuisine(row['cuisine']) & keep_cuisines
+      cuisines = self.expland_cuisine(row['cuisine'], self.local_cuisines) & keep_cuisines
       if cuisines and len(name) >= self.N + 1:
         rows.append(self.make_row(name, row['amenity'], row['takeaway'], row['brand']))
         labels.append(cuisines)
@@ -411,10 +412,10 @@ def guess_prune(teaster: Cuisine, cuisines: Set[str], name: str, amenity: str, t
 
   if not cuisines:
     return {
-        "probable_others": list(map(lambda cs: [[None, cs[0]], cs[1]], probable_g.items()))
+        "probable_others": list(map(lambda cs: ((None, cs[0]), cs[1]), probable_g.items()))
     }
   else:
-    ret = {
+    ret: Dict[str, List[Tuple[Tuple[Optional[str], Optional[str]], float]]] = {
         "probable_subclass": [],
         "probable_others": [],
         "improbable": [],
@@ -424,19 +425,19 @@ def guess_prune(teaster: Cuisine, cuisines: Set[str], name: str, amenity: str, t
       if cuisine in Cuisine._CUISINE_PARENTS and Cuisine._CUISINE_PARENTS[cuisine] in cuisines:
           parent = Cuisine._CUISINE_PARENTS[cuisine]
           if parent not in Cuisine._CUISINE_CHILDREN or not (Cuisine._CUISINE_CHILDREN[parent] & cuisines):
-            ret['probable_subclass'].append([[parent, cuisine], coef])
+            ret['probable_subclass'].append(((parent, cuisine), coef))
       else:
-        ret['probable_others'].append([[None, cuisine], coef])
+        ret['probable_others'].append(((None, cuisine), coef))
     for cuisine, coef in improbable_g.items():
-      ret['improbable'].append([[cuisine, None], coef])
+      ret['improbable'].append(((cuisine, None), coef))
     return dict(filter(lambda cs: len(cs[1]) > 0, ret.items()))
 
-def evaluate(taster: Cuisine, s: float):
+def evaluate(taster: Cuisine, local_cuisines: List[str], s: float):
   n = 0
   c = 0
   for row in taster.test_data:
     name = row['name']
-    cuisines = taster.expland_cuisine(row['cuisine'])
+    cuisines = taster.expland_cuisine(row['cuisine'], local_cuisines)
     if cuisines and len(name) >= taster.N + 1:
       r = taster.guess_score(name, row['amenity'], row['takeaway'], row['brand'])
       r = dict(filter(lambda c: c[1] > s, r.items()))
@@ -463,10 +464,12 @@ def evaluate(taster: Cuisine, s: float):
   return [n, c/n if n != 0 else 0]
 
 def optimize():
-  cuisine = Cuisine(sys.argv[1], s=0.95, use_cache=False, ngram=3)
+  csv_path = sys.argv[1]
+  local_cuisines = sys.argv[2].split(';')
+  cuisine = Cuisine(csv_path, local_cuisines, s=0.95, use_cache=False, ngram=3)
 
   for s in [0.95]:
-    r = evaluate(cuisine, s)
+    r = evaluate(cuisine, local_cuisines, s)
     print(s)
     print(r)
 
