@@ -263,7 +263,7 @@ class Cuisine:
 
     csv_data = self.load_csv(cuisine_csv)
     if train_size is not None:
-      self.train_data, self.test_data = train_test_split(csv_data, train_size=train_size if train_size > 0 else 0.9)
+      self.train_data, self.test_data = train_test_split(csv_data, random_state=0, train_size=train_size if train_size > 0 else 0.9)
     else:
       self.train_data, self.test_data = csv_data, []
 
@@ -411,24 +411,29 @@ def guess_prune(teaster: Cuisine, cuisines: Set[str], name: str, amenity: str, t
   g = teaster.guess_score(name, amenity, takeaway, brand)
 
   probable_g = dict(filter(lambda c: c[0] not in cuisines and c[1] > s, g.items()))
-  improbable_g = dict(filter(lambda c: c[0] in cuisines and c[1] <= 1 - s, g.items()))
 
   if not cuisines:
     return {
         "probable_others": list(map(lambda cs: ((None, cs[0]), cs[1]), probable_g.items()))
     }
   else:
+    improbable_g = dict(filter(lambda c: c[0] in cuisines and c[1] <= 1 - s, g.items()))
+
     ret: Dict[str, List[Tuple[Tuple[Optional[str], Optional[str]], float]]] = {
         "probable_subclass": [],
         "probable_others": [],
         "improbable": [],
     }
     for cuisine, coef in probable_g.items():
-      # The cuisine has a parent, but the parent is the not the parent of an other original cuisines (sibling cuisine)
-      if cuisine in Cuisine._CUISINE_PARENTS and Cuisine._CUISINE_PARENTS[cuisine] in cuisines:
-          parent = Cuisine._CUISINE_PARENTS[cuisine]
-          if parent not in Cuisine._CUISINE_CHILDREN or not (Cuisine._CUISINE_CHILDREN[parent] & cuisines):
-            ret['probable_subclass'].append(((parent, cuisine), coef))
+      children = Cuisine._CUISINE_CHILDREN.get(cuisine, [])
+      if cuisines.intersection(children):
+        continue
+
+      # The cuisine has a parent, but the parent is the not the parent of an other initial cuisines (sibling cuisine)
+      parent = Cuisine._CUISINE_PARENTS.get(cuisine)
+      if parent in cuisines:
+        if not cuisines.intersection(Cuisine._CUISINE_CHILDREN.get(parent)):
+          ret['probable_subclass'].append(((parent, cuisine), coef))
       else:
         ret['probable_others'].append(((None, cuisine), coef))
     for cuisine, coef in improbable_g.items():
