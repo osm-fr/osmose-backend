@@ -407,10 +407,10 @@ osmium export france-cuisine-name-amenity-metropolitan.osm.pbf -f geojson \
 rm *.osm.pbf france-metropolitan.poly
 """
 
-def guess_prune(teaster: Cuisine, cuisines: Set[str], name: str, amenity: str, takeaway: Optional[str], brand: Optional[str], s: float = 0.95) -> Dict[str, List[Tuple[Tuple[Optional[str], Optional[str]], float]]]:
+def guess_prune(teaster: Cuisine, local_cuisines: Optional[List[str]], cuisines: Set[str], name: str, amenity: str, takeaway: Optional[str], brand: Optional[str], s: float = 0.95) -> Dict[str, List[Tuple[Tuple[Optional[str], Optional[str]], float]]]:
   g = teaster.guess_score(name, amenity, takeaway, brand)
 
-  probable_g = dict(filter(lambda c: c[0] not in cuisines and c[1] > s, g.items()))
+  probable_g = dict(filter(lambda c: c[0] not in cuisines and c[1] > s and (local_cuisines is None or c[0] not in local_cuisines), g.items()))
 
   if not cuisines:
     return {
@@ -436,8 +436,9 @@ def guess_prune(teaster: Cuisine, cuisines: Set[str], name: str, amenity: str, t
           ret['probable_subclass'].append(((parent, cuisine), coef))
       else:
         ret['probable_others'].append(((None, cuisine), coef))
-    for cuisine, coef in improbable_g.items():
-      ret['improbable'].append(((cuisine, None), coef))
+    if len(probable_g) > 0:
+      for cuisine, coef in improbable_g.items():
+        ret['improbable'].append(((cuisine, None), coef))
     return dict(filter(lambda cs: len(cs[1]) > 0, ret.items()))
 
 def evaluate(taster: Cuisine, local_cuisines: Optional[List[str]], s: float):
@@ -465,7 +466,7 @@ def evaluate(taster: Cuisine, local_cuisines: Optional[List[str]], s: float):
         if not m:
           print(False, name, cuisines, r)
 
-        p = guess_prune(taster, cuisines, name, row['amenity'], row['takeaway'], row['brand'], s)
+        p = guess_prune(taster, None, cuisines, name, row['amenity'], row['takeaway'], row['brand'], s)
         if p:
           print('     ', name, cuisines, p)
 

@@ -53,12 +53,12 @@ class Cuisine_Guess(Plugin):
         if country_csv is None:
             return None
 
-        local_cuisines = self.father.config.options.get("local_cuisines")
+        self.local_cuisines = self.father.config.options.get("local_cuisines")
         if self.father.config.options.get("test"):
             # Make learning very fast
-            self.taster = Cuisine(country_csv, local_cuisines, train_size=0.1, ngram=2)
+            self.taster = Cuisine(country_csv, self.local_cuisines, train_size=0.1, ngram=2)
         else:
-            self.taster = Cuisine(country_csv, local_cuisines)
+            self.taster = Cuisine(country_csv, self.local_cuisines)
 
     def full(self, cuisines, actions):
         for action in actions:
@@ -80,22 +80,22 @@ class Cuisine_Guess(Plugin):
             return
 
         cuisines = list(map(lambda s: s.strip(), tags['cuisine'].split(';'))) if 'cuisine' in tags else set()
-        cuisine_guess = guess_prune(self.taster, set(cuisines), tags['name'], tags['amenity'], tags.get('takeaway'), tags.get('brand'))
+        cuisine_guess = guess_prune(self.taster, self.local_cuisines, set(cuisines), tags['name'], tags['amenity'], tags.get('takeaway'), tags.get('brand'))
         guess_number = len(cuisine_guess.get('probable_subclass', [])) + len(cuisine_guess.get('probable_others', [])) + len(cuisine_guess.get('improbable', []))
         if guess_number > 0:
             full_cusine = list(self.full(cuisines, cuisine_guess.get('probable_subclass', []) + cuisine_guess.get('probable_others', []) + cuisine_guess.get('improbable', []))) if guess_number <= 3 else []
             return {'class': 1 if 'cuisine' in tags else 2,
                 'text': T_('Guess with probability: {0}', ', '.join(
                     list(map(
-                        lambda cs: 'sub kind "{0}" -> "{1}" ({2}%)'.format(cs[0][0], cs[0][1], round(cs[1] * 100)),
+                        lambda cs: 'sub kind "{0}" -> "{1}" ({2}%)'.format(cs[0][0], cs[0][1], round(cs[1] * 100, 1)),
                         cuisine_guess.get('probable_subclass', [])
                     )) +
                     list(map(
-                        lambda cs: '"{0}" ({1}%)'.format(cs[0][1], round(cs[1] * 100)),
+                        lambda cs: '"{0}" ({1}%)'.format(cs[0][1], round(cs[1] * 100, 1)),
                         cuisine_guess.get('probable_others', [])
                     )) +
                     list(map(
-                        lambda cs: 'impropable {0} ({1}%)'.format(cs[0][0], round(cs[1] * 100)),
+                        lambda cs: 'impropable {0} ({1}%)'.format(cs[0][0], round(cs[1] * 100, 1)),
                         cuisine_guess.get('improbable', [])
                     ))
                 )),
