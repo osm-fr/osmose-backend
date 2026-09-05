@@ -28,6 +28,7 @@ from unidecode import unidecode
 import joblib
 from modules import downloader, SourceVersion
 from typing import Dict, List, Optional, Any, Set, Iterable, Tuple
+from itertools import chain
 
 import pandas as pd
 from sklearn.compose import ColumnTransformer
@@ -156,18 +157,17 @@ class Cuisine:
   }
 
   @staticmethod
-  def _flatten_reversed_cuisine_hierarchy(hierarchy, parent=None) -> Dict[str, str]:
-    def rec(hierarchy, parent):
+  def _flatten_reversed_cuisine_hierarchy(hierarchy) -> Dict[str, List[str]]:
+    def rec(hierarchy, ancestors):
       parents = {}
       for cuisine, children in hierarchy.items():
-        if parent is not None:
-          parents[cuisine] = parent
+        parents[cuisine] = list(ancestors)
         if isinstance(children, dict):
-          parents.update(rec(children, cuisine))
+          parents.update(rec(children, ancestors + [cuisine]))
       return parents
-    return rec(hierarchy, parent)
+    return rec(hierarchy, [])
 
-  _CUISINE_PARENTS: Dict[str, str] = _flatten_reversed_cuisine_hierarchy(_CUISINE_HIERARCHY)
+  _CUISINE_PARENTS: Dict[str, List[str]] = _flatten_reversed_cuisine_hierarchy(_CUISINE_HIERARCHY)
 
   @staticmethod
   def _flatten_cuisine_hierarchy(hierarchy) -> Dict[str, Set[str]]:
@@ -186,10 +186,7 @@ class Cuisine:
   def _expand_ancestors(cuisines: Set[str]) -> Set[str]:
     result = set(cuisines)
     for cuisine in cuisines:
-      parent = Cuisine._CUISINE_PARENTS.get(cuisine)
-      while parent:
-        result.add(parent)
-        parent = Cuisine._CUISINE_PARENTS.get(parent)
+      result.update(Cuisine._CUISINE_PARENTS.get(cuisine, ()))
     return result
 
   @staticmethod
@@ -418,27 +415,32 @@ def guess_prune(teaster: Cuisine, local_cuisines: Optional[List[str]], cuisines:
     }
   else:
     improbable_g = dict(filter(lambda c: c[0] in cuisines and c[1] <= 1 - s, g.items()))
+    cuisines_parents = set(chain.from_iterable(map(lambda cuisine: Cuisine._CUISINE_PARENTS.get(cuisine, []), cuisines)))
 
-    ret: Dict[str, List[Tuple[Tuple[Optional[str], Optional[str]], float]]] = {
+    ret: Dict[str, List[Tuple[Tuple[Optional[Iterable[str]], Optional[str]], float]]] = {
         "probable_subclass": [],
         "probable_others": [],
         "improbable": [],
     }
     for cuisine, coef in probable_g.items():
-      children = Cuisine._CUISINE_CHILDREN.get(cuisine, [])
+      children = Cuisine._CUISINE_CHILDREN.get(cuisine, set())
       if cuisines.intersection(children):
         continue
 
       # The cuisine has a parent, but the parent is the not the parent of an other initial cuisines (sibling cuisine)
-      parent = Cuisine._CUISINE_PARENTS.get(cuisine)
-      if parent in cuisines:
-        if not cuisines.intersection(Cuisine._CUISINE_CHILDREN.get(parent)):
-          ret['probable_subclass'].append(((parent, cuisine), coef))
+      parents = Cuisine._CUISINE_PARENTS.get(cuisine, [])
+      intersection = cuisines.intersection(parents)
+      if intersection and len(parents) > 0:
+        first_parent = next(iter(parents))
+        siblings = Cuisine._CUISINE_CHILDREN.get(first_parent, None)
+        if siblings is None or not cuisines.intersection(siblings):
+          ret['probable_subclass'].append(((intersection, cuisine), coef))
       else:
-        ret['probable_others'].append(((None, cuisine), coef))
+        if cuisine not in cuisines_parents:
+          ret['probable_others'].append(((None, cuisine), coef))
     if len(probable_g) > 0:
       for cuisine, coef in improbable_g.items():
-        ret['improbable'].append(((cuisine, None), coef))
+        ret['improbable'].append((([cuisine], None), coef))
     return dict(filter(lambda cs: len(cs[1]) > 0, ret.items()))
 
 def evaluate(taster: Cuisine, local_cuisines: Optional[List[str]], s: float):

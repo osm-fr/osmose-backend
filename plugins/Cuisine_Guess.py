@@ -63,17 +63,18 @@ class Cuisine_Guess(Plugin):
     def full(self, cuisines, actions):
         for action in actions:
             if action[0][0]:
-                cuisines = self.remove(cuisines, action[0][0])
+                for a in action[0][0]:
+                    cuisines = self.remove(cuisines, a)
             if action[0][1]:
                 cuisines = list(cuisines)
                 cuisines.append(action[0][1])
         return cuisines
 
-    def replace(self, cuisines, a, b):
-        return map(lambda c: b if c == a else c, cuisines)
+    def replace(self, cuisines, a_s, b):
+        return set(map(lambda c: b if c in a_s else c, cuisines))
 
-    def remove(self, cuisines, a):
-        return filter(lambda c: c != a, cuisines)
+    def remove(self, cuisines, a_s):
+        return filter(lambda c: c not in a_s, cuisines)
 
     def node(self, data, tags):
         if 'name' not in tags or tags.get('amenity') not in ('restaurant', 'fast_food'):
@@ -87,7 +88,7 @@ class Cuisine_Guess(Plugin):
             return {'class': 1 if 'cuisine' in tags else 2,
                 'text': T_('Guess with probability: {0}', ', '.join(
                     list(map(
-                        lambda cs: 'sub kind "{0}" -> "{1}" ({2}%)'.format(cs[0][0], cs[0][1], round(cs[1] * 100, 1)),
+                        lambda cs: 'sub kind "{0}" -> "{1}" ({2}%)'.format(';'.join(cs[0][0]), cs[0][1], round(cs[1] * 100, 1)),
                         cuisine_guess.get('probable_subclass', [])
                     )) +
                     list(map(
@@ -95,7 +96,7 @@ class Cuisine_Guess(Plugin):
                         cuisine_guess.get('probable_others', [])
                     )) +
                     list(map(
-                        lambda cs: 'impropable {0} ({1}%)'.format(cs[0][0], round(cs[1] * 100, 1)),
+                        lambda cs: 'impropable {0} ({1}%)'.format(cs[0][0][0], round(cs[1] * 100, 1)),
                         cuisine_guess.get('improbable', [])
                     ))
                 )),
