@@ -404,7 +404,7 @@ osmium export france-cuisine-name-amenity-metropolitan.osm.pbf -f geojson \
 rm *.osm.pbf france-metropolitan.poly
 """
 
-def guess_prune(teaster: Cuisine, local_cuisines: Optional[List[str]], cuisines: Set[str], name: str, amenity: str, takeaway: Optional[str], brand: Optional[str], s: float = 0.95) -> Dict[str, List[Tuple[Tuple[Optional[str], Optional[str]], float]]]:
+def guess_prune(teaster: Cuisine, local_cuisines: Optional[List[str]], cuisines: Set[str], name: str, amenity: str, takeaway: Optional[str], brand: Optional[str], s: float = 0.95) -> Dict[str, List[Tuple[Tuple[Optional[List[str]], Optional[str]], float]]]:
   g = teaster.guess_score(name, amenity, takeaway, brand)
 
   probable_g = dict(filter(lambda c: c[0] not in cuisines and c[1] > s and (local_cuisines is None or c[0] not in local_cuisines), g.items()))
@@ -417,7 +417,7 @@ def guess_prune(teaster: Cuisine, local_cuisines: Optional[List[str]], cuisines:
     improbable_g = dict(filter(lambda c: c[0] in cuisines and c[1] <= 1 - s, g.items()))
     cuisines_parents = set(chain.from_iterable(map(lambda cuisine: Cuisine._CUISINE_PARENTS.get(cuisine, []), cuisines)))
 
-    ret: Dict[str, List[Tuple[Tuple[Optional[Iterable[str]], Optional[str]], float]]] = {
+    ret: Dict[str, List[Tuple[Tuple[Optional[List[str]], Optional[str]], float]]] = {
         "probable_subclass": [],
         "probable_others": [],
         "improbable": [],
@@ -434,7 +434,7 @@ def guess_prune(teaster: Cuisine, local_cuisines: Optional[List[str]], cuisines:
         first_parent = next(iter(parents))
         siblings = Cuisine._CUISINE_CHILDREN.get(first_parent, None)
         if siblings is None or not cuisines.intersection(siblings):
-          ret['probable_subclass'].append(((intersection, cuisine), coef))
+          ret['probable_subclass'].append(((list(intersection), cuisine), coef))
       else:
         if cuisine not in cuisines_parents:
           ret['probable_others'].append(((None, cuisine), coef))
