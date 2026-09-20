@@ -1,5 +1,7 @@
+from unittest import mock
 from plugins.Plugin import TestPluginCommon
-from plugins.modules.wikiReader import read_wiki_table, read_wiki_templates, wikitag2text
+from plugins.modules import wikiReader
+from plugins.modules.wikiReader import read_wiki_table, read_wiki_templates, wikitag2text, urlwikiread
 
 class Test(TestPluginCommon):
     def test_wikitag2text(self):
@@ -89,3 +91,33 @@ class Test(TestPluginCommon):
             "lang={{{lang|}}}",
             "suggestion={{Tag|leaf_type}} '''or''' {{Tag|leaf_cycle}}",
             "22"]
+
+    def test_urlwikiread_no_redirect(self):
+        with mock.patch.object(wikiReader, "urlread", return_value="some wikitext") as m:
+            assert urlwikiread("https://wiki.openstreetmap.org/w/index.php?title=Foo&action=raw", 7) == "some wikitext"
+            m.assert_called_once_with("https://wiki.openstreetmap.org/w/index.php?title=Foo&action=raw", 7)
+
+    def test_urlwikiread_redirect_indexphp(self):
+        def fake(url, delay):
+            return "#REDIRECT [[Bar]]" if "title=Foo" in url else "{| table |}"
+        with mock.patch.object(wikiReader, "urlread", side_effect=fake) as m:
+            assert urlwikiread("https://wiki.openstreetmap.org/w/index.php?title=Foo&action=raw", 7) == "{| table |}"
+        m.assert_has_calls([
+            mock.call("https://wiki.openstreetmap.org/w/index.php?title=Foo&action=raw", 7),
+            mock.call("https://wiki.openstreetmap.org/w/index.php?title=Bar&action=raw", 7)])
+
+    def test_urlwikiread_redirect_wiki_path(self):
+        calls = []
+        def fake(url, delay):
+            calls.append((url, delay))
+            return "#REDIRECT [[List of postal codes]]" if len(calls) == 1 else "final"
+        with mock.patch.object(wikiReader, "urlread", side_effect=fake):
+            assert urlwikiread("https://en.wikipedia.org/wiki/Postal_codes?action=raw", 1) == "final"
+        assert calls == [
+            ("https://en.wikipedia.org/wiki/Postal_codes?action=raw", 1),
+            ("https://en.wikipedia.org/wiki/List_of_postal_codes?action=raw", 1)]
+
+    def test_urlwikiread_max_redirects(self):
+        with mock.patch.object(wikiReader, "urlread", return_value="#REDIRECT [[X]]"):
+            with self.assertRaises(Exception):
+                urlwikiread("https://wiki.openstreetmap.org/w/index.php?title=A&action=raw", 1, maxRedirects=2)

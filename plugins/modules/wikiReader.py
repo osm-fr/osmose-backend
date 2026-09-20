@@ -22,7 +22,33 @@
 
 import wikitextparser
 import re
+from urllib.parse import parse_qsl, quote, urlencode, urlsplit, urlunsplit
+from modules.downloader import urlread
+from modules import OsmoseLog
 from typing import Union, Optional
+
+def redirect_url(url: str, page_name: str) -> str:
+    parts = urlsplit(url)
+    if parts.path == "/w/index.php":
+        query = dict(parse_qsl(parts.query))
+        query.update({"title": page_name, "action": "raw"})
+        return urlunsplit((parts.scheme, parts.netloc, parts.path, urlencode(query), ""))
+    if parts.path.startswith("/wiki/"):
+        return urlunsplit((parts.scheme, parts.netloc, "/wiki/" + quote(page_name.replace(" ", "_"), safe="/:"), urlencode({"action": "raw"}), ""))
+    raise Exception(f"Unsupported wiki URL: {url}")
+
+
+def urlwikiread(url: str, cacheInterval: int, maxRedirects: int = 5) -> str:
+    # Read the wikitext of a wiki page, following #REDIRECT directives
+    wikitext = urlread(url, cacheInterval)
+    match = re.match(r"^\s*#REDIRECT\s*\[\[(.+?)\]\]", wikitext.strip(), re.IGNORECASE)
+    if not match:
+        return wikitext
+    if maxRedirects <= 0:
+        raise Exception(f"Maximum wiki redirects ({maxRedirects}) exceeded at {url}")
+    page_name = match.group(1).split("|", 1)[0].strip().lstrip(":")
+    OsmoseLog.logger().warn(f"Wiki redirect detected: {url} -> '{page_name}'")
+    return urlwikiread(redirect_url(url, page_name), cacheInterval, maxRedirects - 1)
 
 # Get a list of lists containing all cells of a table.
 # Parameters:

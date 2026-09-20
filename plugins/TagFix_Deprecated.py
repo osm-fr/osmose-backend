@@ -19,15 +19,14 @@
 
 from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
-from modules.downloader import urlread
 from modules.Stablehash import stablehash
-from plugins.modules.wikiReader import read_wiki_templates,wikitag2text
+from plugins.modules.wikiReader import read_wiki_templates, wikitag2text, urlwikiread
 
 
 class TagFix_Deprecated(Plugin):
     def deprecated_list(self):
         wikiRoot = 'https://wiki.openstreetmap.org/wiki'
-        data = urlread(wikiRoot + '/Template:Deprecated_features?action=raw', 1)
+        data = urlwikiread(wikiRoot + '/Template:Deprecated_features?action=raw', 1)
 
         # Remove excess whitespace (also removes all newlines)
         data = " ".join(data.split())
