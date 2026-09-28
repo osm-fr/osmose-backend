@@ -20,10 +20,10 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2025-07-15 03:38+0000\n"
-"Last-Translator: Piotr Strebski <strebski@gmail.com>\n"
-"Language-Team: Polish <https://hosted.weblate.org/projects/osmose/backend/pl/"
-">\n"
+"PO-Revision-Date: 2026-09-28 18:10+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Polish <https://hosted.weblate.org/projects/osmose/backend/"
+"pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,7 +31,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && "
 "(n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
 "n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 2026.10.dev0\n"
 
 #: ../analysers/analyser_merge_college_FR.py:31
 msgid "College not integrated"
@@ -782,8 +782,8 @@ msgstr "Zła kolejność pasów do skrętu"
 #: ../plugins/Highway_Lanes.py:60
 msgid "Bad access lanes value, should not be an integer but a restriction"
 msgstr ""
-"Zła wartość dostępu tagu „*:lanes” – to powinny być wartości typu „yes”/"
-"„no”, a nie liczba"
+"Zła wartość dostępu tagu „*:lanes” – to powinny być wartości typu „yes”/„no"
+"”, a nie liczba"
 
 #: ../plugins/Highway_Lanes.py:65
 msgid "Turn lanes merge_to_* need an aside lane on good side"
@@ -1031,8 +1031,8 @@ msgid ""
 "in a associatedStreet relation"
 msgstr ""
 "'addr:housenumber' lub 'addr:housename' bez 'addr:street', 'addr:district', "
-"'addr:neighbourhood', 'addr:quarter', 'addr:suburb', 'addr:place' lub 'addr:"
-"hamlet' musi być w relacji associatedStreet"
+"'addr:neighbourhood', 'addr:quarter', 'addr:suburb', 'addr:place' lub "
+"'addr:hamlet' musi być w relacji associatedStreet"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:580
 msgid "The track of this route contains gaps"
@@ -1924,8 +1924,7 @@ msgstr ""
 #: ../analysers/analyser_osmosis_cycleway_track.py:65
 msgid ""
 "Duplicated cycle tracks, `highway=*`+`cycleway=track` and `highway=cycleway`"
-msgstr ""
-"Powielone ścieżki rowerowe, highway=*+cycleway=track i highway=cycleway"
+msgstr "Powielone ścieżki rowerowe, highway=*+cycleway=track i highway=cycleway"
 
 #: ../analysers/analyser_osmosis_cycleway_track.py:67
 msgid ""
@@ -2039,8 +2038,8 @@ msgid ""
 "Check the consistency of highway type for\n"
 "`highway=trunk_link|primary_link|secondary_link`."
 msgstr ""
-"Sprawdź spójność kategorii drogi `highway=trunk_link|primary_link|"
-"secondary_link`."
+"Sprawdź spójność kategorii drogi "
+"`highway=trunk_link|primary_link|secondary_link`."
 
 #: ../analysers/analyser_osmosis_highway_link.py:137
 msgid ""
@@ -2049,9 +2048,9 @@ msgid ""
 msgstr ""
 "Zmień rodzaj drogi `*_link`, żeby pasował do drogi, do której jest "
 "połączony.\n"
-"Wejdź na [Wiki](https://wiki.openstreetmap.org/wiki/File:"
-"OpenStreetMap_Highway_links_table_between_different_highway_types..png) po "
-"więcej informacji."
+"Wejdź na [Wiki](https://wiki.openstreetmap.org/wiki/"
+"File:OpenStreetMap_Highway_links_table_between_different_highway_types..png) "
+"po więcej informacji."
 
 #: ../analysers/analyser_osmosis_highway_link.py:140
 msgid ""
@@ -2260,8 +2259,8 @@ msgstr ""
 msgid "Close the way to make a polygon or add to a multipolygon."
 msgstr ""
 "Połącz końce tej linii, tak żeby tworzyła wielokąt lub dodaj ją jako część "
-"relacji [multipolygon](https://wiki.openstreetmap.org/wiki/Pl:Relation:"
-"multipolygon)."
+"relacji [multipolygon](https://wiki.openstreetmap.org/wiki/"
+"Pl:Relation:multipolygon)."
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:368
 msgid ""
@@ -2353,8 +2352,8 @@ msgid ""
 "present. See [Roundabout](https://wiki.openstreetmap.org/wiki/Roundabout)\n"
 "for more info."
 msgstr ""
-"Wygląda to na rondo, ale brakuje tagu [`junction=roundabout`](https://wiki."
-"openstreetmap.org/wiki/Pl:Tag:junction%3Droundabout)."
+"Wygląda to na rondo, ale brakuje tagu [`junction=roundabout`](https://"
+"wiki.openstreetmap.org/wiki/Pl:Tag:junction%3Droundabout)."
 
 #: ../analysers/analyser_osmosis_roundabout.py:98
 msgid ""
@@ -2945,8 +2944,8 @@ msgid ""
 "Move the seamark to the correct position and remove the tag\n"
 "`seamark:fixme=*`."
 msgstr ""
-"Przenieś znak nawigacyjny na rzeczywistą pozycję i usuń tag `seamark:"
-"fixme=*`."
+"Przenieś znak nawigacyjny na rzeczywistą pozycję i usuń tag "
+"`seamark:fixme=*`."
 
 #: ../plugins/TagRemove_Roundabout.py:33
 #: ../plugins/TagRemove_Roundabout_Ref.py:35
@@ -2970,8 +2969,8 @@ msgstr "Do zmapowania: {0}"
 msgid ""
 "Street object ({1}) detected by Mapillary, but no nearby \"{0}\" tagging."
 msgstr ""
-"Obiekt uliczny ({1}) wykryty przez Mapillary, ale w pobliżu brak oznaczenia "
-"„{0}”."
+"Obiekt uliczny ({1}) wykryty przez Mapillary, ale w pobliżu brak oznaczenia „"
+"{0}”."
 
 #: ../analysers/analyser_merge_street_objects.py:50
 msgid ""
@@ -3101,8 +3100,8 @@ msgstr ""
 "\n"
 "Jeśli jest to parking przy jezdni (`parking=street_side`) lub pas na jezdni "
 "(`parking=lane`), popraw tagowanie.\n"
-"Zobacz [rodzaje parkingów na Wiki](https://wiki.openstreetmap.org/wiki/Pl:"
-"Key:parking)."
+"Zobacz [rodzaje parkingów na Wiki](https://wiki.openstreetmap.org/wiki/"
+"Pl:Key:parking)."
 
 #: ../analysers/analyser_osmosis_powerline.py:665
 #: ../analysers/analyser_osmosis_powerline.py:674
@@ -3475,8 +3474,8 @@ msgid ""
 msgstr ""
 "Tag `access=yes` lub `access=permissive` zezwala na wszystkie środki "
 "transportu, włączając samochody, konie, motorowery, materiały niebezpieczne "
-"itd., chyba że wyraźnie wyłączone. Czytaj więcej na [Wiki](https://wiki."
-"openstreetmap.org/wiki/Key:access#Transport_mode_restrictions)."
+"itd., chyba że wyraźnie wyłączone. Czytaj więcej na [Wiki](https://"
+"wiki.openstreetmap.org/wiki/Key:access#Transport_mode_restrictions)."
 
 #: ../analysers/analyser_merge_parapharmacy_IT.py:32
 #: ../analysers/analyser_merge_pharmacy_IT.py:32
@@ -3823,8 +3822,7 @@ msgstr "Tag `level=*` powinien być używany ze sklepami, usługami itp."
 
 #: ../plugins/TagFix_MultipleTag2.py:26
 msgid "The tag `level` should be used for buildings, shops, amenities, etc."
-msgstr ""
-"Usuń tag `level` i sprawdź, czy nie trzeba dodać tagu `layer` w zamian."
+msgstr "Usuń tag `level` i sprawdź, czy nie trzeba dodać tagu `layer` w zamian."
 
 #: ../plugins/TagRemove_Layer.py:43
 msgid "Waterway/water underground and no tunnel"
@@ -4376,8 +4374,8 @@ msgid ""
 msgstr ""
 "Droga lub grupa dróg musi być połączona z punktem wejścia:\n"
 "* droga: `route=ferry`, `man_made=pier`, `aeroway=taxiway|runway|apron`, "
-"`railway=platform` lub `highway=motorway|motorway_link|trunk|trunk_link|"
-"primary|primary_link`,\n"
+"`railway=platform` lub "
+"`highway=motorway|motorway_link|trunk|trunk_link|primary|primary_link`,\n"
 "* droga dla rowerów: `railway=platform`, `public_transport=platform` lub "
 "`highway=pedestrian`."
 
@@ -6102,8 +6100,8 @@ msgid ""
 "tag, nor within an associatedStreet relation"
 msgstr ""
 "'addr:housenumber' lub 'addr:housename' bez 'addr:street', 'addr:district', "
-"'addr:neighbourhood', 'addr:quarter', 'addr:suburb', 'addr:place' lub 'addr:"
-"hamlet' musi być w relacji associatedStreet"
+"'addr:neighbourhood', 'addr:quarter', 'addr:suburb', 'addr:place' lub "
+"'addr:hamlet' musi być w relacji associatedStreet"
 
 #: ../plugins/TagFix_Maxspeed_AT.py:51
 msgid "Speed limit type without speed limit"
