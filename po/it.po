@@ -18,17 +18,17 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2025-07-16 22:01+0000\n"
-"Last-Translator: Marco Ciotola <github@ciotola.dev>\n"
+"PO-Revision-Date: 2026-09-28 18:09+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/osmose/backend/"
 "it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
-"1 : 2;\n"
-"X-Generator: Weblate 5.13-dev\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 "
+": 2;\n"
+"X-Generator: Weblate 2026.10.dev0\n"
 
 #: ../analysers/analyser_merge_college_FR.py:31
 msgid "College not integrated"
@@ -870,8 +870,8 @@ msgstr ""
 #: ../plugins/TagFix_MultipleTag_FR.py:69
 msgid "Needs tag amenity=nursery|kindergarten|school besides on school:FR"
 msgstr ""
-"Necessita dell’etichetta amenity=nursery|kindergarten|school oltre a school:"
-"FR"
+"Necessita dell’etichetta amenity=nursery|kindergarten|school oltre a "
+"school:FR"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:74
 #: ../plugins/TagFix_MultipleTag_FR.py:76
@@ -1173,8 +1173,8 @@ msgstr ""
 #: ../analysers/analyser_osmosis_relation_restriction.py:377
 msgid "Restriction relation, bad oneway direction on \"from\" or \"to\" member"
 msgstr ""
-"Relazione di obbligo di svolta, direzione del senso unico errata sui membri "
-"“from” oppure “to”"
+"Relazione di obbligo di svolta, direzione del senso unico errata sui membri “"
+"from” oppure “to”"
 
 #: ../plugins/Name_Cadastre_FR.py:20 ../plugins/Name_Cadastre_FR.py:49
 #: ../plugins/Name_Cadastre_FR.py:74
@@ -1308,8 +1308,7 @@ msgstr "In Farsi, la lettera araba `{0}` dovrebbe essere sostituita con `{1}`."
 
 #: ../plugins/Colour.py:20
 msgid "Colour code should start with '#' followed by 3 or 6 digits"
-msgstr ""
-"Il codice colore dovrebbe cominciare con '#' seguito da 3 o 6 caratteri"
+msgstr "Il codice colore dovrebbe cominciare con '#' seguito da 3 o 6 caratteri"
 
 #: ../plugins/Website.py:47
 msgid "The URL contains a space"
@@ -1378,8 +1377,8 @@ msgid ""
 "Population on admin_centre role ({0}) greater than population on the "
 "relation ({1})"
 msgstr ""
-"Popolazione sul ruolo admin_centre ({0}) maggiore di quella sulla relazione "
-"({1})"
+"Popolazione sul ruolo admin_centre ({0}) maggiore di quella sulla relazione ("
+"{1})"
 
 #: ../analysers/analyser_osmosis_fantoir.py:113
 #, python-brace-format
@@ -1421,10 +1420,10 @@ msgid ""
 "(lanes:both_ways={3}) - (non fullwidth={4}) - (non fullwidth forward={5}) - "
 "(non fullwidth backward={6}) - (non fullwidth both_ways={7})"
 msgstr ""
-"su strada a doppio senso, (lanes={0}) != (lanes:forward={1}) + (lanes:"
-"backward={2}) + (lanes:both_ways={3}) - (corsie parziali={4}) - (corsie "
-"parziali forward={5}) - (corsie parziali backward={6}) - (corsie parziali "
-"both_ways={7})"
+"su strada a doppio senso, (lanes={0}) != (lanes:forward={1}) + "
+"(lanes:backward={2}) + (lanes:both_ways={3}) - (corsie parziali={4}) - "
+"(corsie parziali forward={5}) - (corsie parziali backward={6}) - (corsie "
+"parziali both_ways={7})"
 
 #: ../plugins/Highway_Lanes.py:334
 #, python-brace-format
@@ -1620,8 +1619,8 @@ msgstr "Intersezione su interpolazione"
 #: ../analysers/analyser_osmosis_addr_interpolation.py:197
 msgid "Interpolation ends should have tag \"addr:housenumber\""
 msgstr ""
-"Gli estremi di un’interpolazione dovrebbero avere l’etichetta “addr:"
-"housenumber”"
+"Gli estremi di un’interpolazione dovrebbero avere l’etichetta “"
+"addr:housenumber”"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:203
 msgid "Interpolation on nodes of multiple \"associatedStreet\" relations"
@@ -2899,8 +2898,8 @@ msgstr "{0} non mappato"
 msgid ""
 "Street object ({1}) detected by Mapillary, but no nearby \"{0}\" tagging."
 msgstr ""
-"Oggetto ({1}) rilevato da Mapillary ma nessun elemento etichettato con "
-"\"{0}\" presente nei dintorni."
+"Oggetto ({1}) rilevato da Mapillary ma nessun elemento etichettato con \"{0}"
+"\" presente nei dintorni."
 
 #: ../analysers/analyser_merge_street_objects.py:50
 msgid ""
@@ -3123,8 +3122,7 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag2.py:23
 msgid "The relation is missing a `type` tag to define what it represents."
-msgstr ""
-"Alla relazione manca un tag ‘type’ che definisca cosa essa rappresenta."
+msgstr "Alla relazione manca un tag ‘type’ che definisca cosa essa rappresenta."
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:31
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:31
@@ -3567,8 +3565,9 @@ msgstr ""
 "Se si tratta effettivamente di un marchio, aggiungi le etichette `brand` e "
 "`brand:wikidata`.\n"
 "Altrimenti, verificare se puoi migliorare il [progetto name-suggestion-index]"
-"(https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING."
-"md) che è usato per collegare i nomi frequenti ai marchi e le loro etichette."
+"(https://github.com/osmlab/name-suggestion-index/blob/master/"
+"CONTRIBUTING.md) che è usato per collegare i nomi frequenti ai marchi e le "
+"loro etichette."
 
 #: ../analysers/analyser_merge_hydrants_FR.py:32
 msgid "Fire hydrant not integrated"
