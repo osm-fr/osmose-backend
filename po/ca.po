@@ -14,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
 "PO-Revision-Date: 2026-09-28 18:05+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Last-Translator: Adolfo Jayme Barrientos <fito@libreoffice.org>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/osmose/backend/"
 "ca/>\n"
 "Language: ca\n"
@@ -905,7 +905,7 @@ msgstr "Usa l'etiqueta construction per a \"{0}\""
 #: ../plugins/TagFix_Note_Lang_fr.py:124 ../plugins/TagFix_Note_Lang_fr.py:127
 #, python-brace-format, python-format
 msgid "\"{0}\" can be set in specific tag"
-msgstr "\"{0}\" es pot establir en una etiqueta específica"
+msgstr "«{0}» es pot definir en una etiqueta específica"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:634
 msgid "Member without addr:housenumber nor addr:housename"
@@ -940,7 +940,7 @@ msgstr "Hauria de ser polígon, part del multipolígon o no tenir etiqueta d'àr
 
 #: ../analysers/analyser_osmosis_highway_almost_junction.py:103
 msgid "Almost junction, join or use noexit tag"
-msgstr "Gairebé junction, join o useu etiqueta noexit"
+msgstr "Gairebé un encreuament; uniu-lo o useu l'etiqueta «noexit»"
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:440
 msgid "One way inaccessible or missing parking or parking entrance"
@@ -4185,7 +4185,7 @@ msgstr "ressalt"
 
 #: tmp.json:27
 msgid "traffic signals"
-msgstr "senyals de trànsit"
+msgstr "semàfors"
 
 #: tmp.json:28
 msgid "living street"
