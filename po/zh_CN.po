@@ -11,15 +11,16 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-04-30 17:25+0000\n"
-"Last-Translator: anodern, 2021\n"
-"Language-Team: Chinese (China) (http://app.transifex.com/openstreetmap-"
-"france/osmose/language/zh_CN/)\n"
+"PO-Revision-Date: 2026-09-28 18:13+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
+"projects/osmose/backend/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2026.10.dev0\n"
 
 #: ../analysers/analyser_merge_college_FR.py:31
 msgid "College not integrated"
@@ -1004,9 +1005,9 @@ msgid ""
 "neighbourhood, addr:quarter, addr:suburb, addr:place or addr:hamlet must be "
 "in a associatedStreet relation"
 msgstr ""
-"addr:housenumber 或 addr:housename 无 addr:street, addr:district, addr:"
-"neighbourhood, addr:quarter, addr:suburb, addr:place 或 addr:hamlet必须处于"
-"associatedStreet关系中"
+"addr:housenumber 或 addr:housename 无 addr:street, addr:district, "
+"addr:neighbourhood, addr:quarter, addr:suburb, addr:place 或 addr:hamlet必须"
+"处于associatedStreet关系中"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:580
 msgid "The track of this route contains gaps"
@@ -1366,8 +1367,7 @@ msgstr "未知的转弯车道值 \"{0}\""
 #, python-brace-format
 msgid ""
 "on oneway, (lanes={0}) != (lanes:forward={1}) - (non fullwidth forward={2})"
-msgstr ""
-"在一个方向, (lanes={0}) != (lanes:forward={1}) - (non fullwidth forward={2})"
+msgstr "在一个方向, (lanes={0}) != (lanes:forward={1}) - (non fullwidth forward={2})"
 
 #: ../plugins/Highway_Lanes.py:332
 #, python-brace-format
@@ -1392,8 +1392,8 @@ msgid ""
 "on two way, (lanes={0}) <= (lanes:backward={1}) - (non fullwidth "
 "backward={2})"
 msgstr ""
-"在两个方向, (lanes={0}) <= (lanes:backward={1}) - (non fullwidth "
-"backward={2})"
+"在两个方向, (lanes={0}) <= (lanes:backward={1}) - (non fullwidth backward="
+"{2})"
 
 #: ../plugins/Highway_Lanes.py:338
 #, python-brace-format
@@ -1401,8 +1401,8 @@ msgid ""
 "on two way, (lanes={0}) < (lanes:both_ways={1}) - (non fullwidth "
 "both_ways={2})"
 msgstr ""
-"在两个方向, (lanes={0}) < (lanes:both_ways={1}) - (non fullwidth "
-"both_ways={2})"
+"在两个方向, (lanes={0}) < (lanes:both_ways={1}) - (non fullwidth both_ways="
+"{2})"
 
 #: ../plugins/Name_Quotation.py:56
 #, python-brace-format
@@ -1445,8 +1445,8 @@ msgid ""
 "\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x}). Means "
 "\"{5}\" ({6}, 0x{7:04x})?"
 msgstr ""
-"\"{0}\"=\"{1}\" 不寻常字符 \"{2}\" ({3}, 0x{4:04x}). 意味着 \"{5}\" ({6}, "
-"0x{7:04x})?"
+"\"{0}\"=\"{1}\" 不寻常字符 \"{2}\" ({3}, 0x{4:04x}). 意味着 \"{5}\" ({6}, 0x"
+"{7:04x})?"
 
 #: ../plugins/Name_Script.py:181 ../plugins/Name_Script.py:204
 #, python-brace-format
@@ -1981,8 +1981,7 @@ msgstr ""
 msgid ""
 "Highway from `motorway` to `tertiary` are important ways. They should\n"
 "lead to somewhere and in particular to a network of minor roads."
-msgstr ""
-"从“高速公路”到“三级道路”都是重要的道路。它们通向某个地方，尤其是次级路网。"
+msgstr "从“高速公路”到“三级道路”都是重要的道路。它们通向某个地方，尤其是次级路网。"
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:438
 msgid "Review the classification of road or draw the local road network."
@@ -2787,8 +2786,7 @@ msgstr ""
 msgid ""
 "`highway=road` has been used, choose a correct value, such as\n"
 "`highway=unclassified`."
-msgstr ""
-"使用了 `highway=road`，请选择一个正确的值，例如 `highway=unclassified`。"
+msgstr "使用了 `highway=road`，请选择一个正确的值，例如 `highway=unclassified`。"
 
 #: ../plugins/TagRemove_FR.py:35
 msgid "`designation=*` is a United Kingdom-specific tag."
@@ -2974,8 +2972,8 @@ msgid ""
 "openstreetmap.org/wiki/Lifecycle_prefix)."
 msgstr ""
 "这可能是一个可以脱离电网的停用的电力要素。\n"
-"在这种情况下应使用 `disused:` [lifecycle prefix](https://wiki.openstreetmap."
-"org/wiki/Lifecycle_prefix)."
+"在这种情况下应使用 `disused:` [lifecycle prefix](https://"
+"wiki.openstreetmap.org/wiki/Lifecycle_prefix)."
 
 #: ../analysers/analyser_osmosis_powerline.py:670
 #: ../analysers/analyser_osmosis_powerline.py:679
@@ -2999,8 +2997,8 @@ msgid ""
 "shouldn't\n"
 "have additional nodes that aren't tagged as a `power` feature."
 msgstr ""
-"电线只能在支撑点间以直线连接，在这两点之间不应有其它未添加 `power` 标签的要"
-"素。"
+"电线只能在支撑点间以直线连接，在这两点之间不应有其它未添加 `power` 标签的要素"
+"。"
 
 #: ../analysers/analyser_osmosis_powerline.py:697
 msgid ""
@@ -5896,9 +5894,9 @@ msgid ""
 "addr:neighbourhood, addr:quarter, addr:suburb, addr:place or addr:hamlet "
 "tag, nor within an associatedStreet relation"
 msgstr ""
-"addr:housenumber 或 addr:housename 无 addr:street, addr:district, addr:"
-"neighbourhood, addr:quarter, addr:suburb, addr:place 或 addr:hamlet必须处于"
-"associatedStreet关系中"
+"addr:housenumber 或 addr:housename 无 addr:street, addr:district, "
+"addr:neighbourhood, addr:quarter, addr:suburb, addr:place 或 addr:hamlet必须"
+"处于associatedStreet关系中"
 
 #: ../plugins/TagFix_Maxspeed_AT.py:51
 msgid "Speed limit type without speed limit"
