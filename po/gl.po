@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2026-01-13 18:02+0000\n"
-"Last-Translator: Hugoren Martinako <aumpfbahn@gmail.com>\n"
+"PO-Revision-Date: 2026-09-28 18:08+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/osmose/backend/"
 "gl/>\n"
 "Language: gl\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15.2-dev\n"
+"X-Generator: Weblate 2026.10.dev0\n"
 
 #: ../analysers/analyser_merge_college_FR.py:31
 msgid "College not integrated"
@@ -1028,9 +1028,9 @@ msgid ""
 "neighbourhood, addr:quarter, addr:suburb, addr:place or addr:hamlet must be "
 "in a associatedStreet relation"
 msgstr ""
-"addr:housenumber ou addr:housename sen addr:street, addr:district, addr:"
-"neighbourhood, addr:quarter, addr:suburb, addr:place ou addr:hamlet ten que "
-"estar nunha relación associatedStreet"
+"addr:housenumber ou addr:housename sen addr:street, addr:district, "
+"addr:neighbourhood, addr:quarter, addr:suburb, addr:place ou addr:hamlet ten "
+"que estar nunha relación associatedStreet"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:580
 msgid "The track of this route contains gaps"
@@ -1194,8 +1194,8 @@ msgid ""
 "On Power Transformers use voltage:primary=* and voltage:secondary=* in place "
 "of voltage"
 msgstr ""
-"Nos transformadores de enerxía emprégase 'voltage:primary=*' e 'voltage:"
-"secondary=*' no canto da voltaxe"
+"Nos transformadores de enerxía emprégase 'voltage:primary=*' e "
+"'voltage:secondary=*' no canto da voltaxe"
 
 #: ../plugins/TagFix_Wikidata.py:33
 msgid ""
@@ -1406,8 +1406,8 @@ msgstr "Valor descoñecido dos carrís de xiro «{0}»"
 msgid ""
 "on oneway, (lanes={0}) != (lanes:forward={1}) - (non fullwidth forward={2})"
 msgstr ""
-"nun só sentido, (lanes={0}) != (lanes:forward={1}) - (sen fullwidth "
-"forward={2})"
+"nun só sentido, (lanes={0}) != (lanes:forward={1}) - (sen fullwidth forward="
+"{2})"
 
 #: ../plugins/Highway_Lanes.py:332
 #, python-brace-format
@@ -1417,8 +1417,8 @@ msgid ""
 "(non fullwidth backward={6}) - (non fullwidth both_ways={7})"
 msgstr ""
 "nos dous sentidos, (lanes={0}) != (lanes:forward={1}) + (lanes:backward={2}) "
-"+ (lanes:both_ways={3}) - (sen fullwidth={4}) - (sen fullwidth forward={5}) "
-"- (sen fullwidth backward={6}) - (sen fullwidth both_ways={7})"
+"+ (lanes:both_ways={3}) - (sen fullwidth={4}) - (sen fullwidth forward="
+"{5}) - (sen fullwidth backward={6}) - (sen fullwidth both_ways={7})"
 
 #: ../plugins/Highway_Lanes.py:334
 #, python-brace-format
@@ -1476,8 +1476,7 @@ msgstr ""
 #: ../plugins/Name_Script.py:140
 #, python-brace-format
 msgid "\"{0}\" unexpected symbol char ({1}, 0x{2:04x}) in key at position {3}"
-msgstr ""
-"\"{0}\" caracter non esperado ({1}, 0x{2:04x}) na posición {3} da clave"
+msgstr "\"{0}\" caracter non esperado ({1}, 0x{2:04x}) na posición {3} da clave"
 
 #: ../plugins/Name_Script.py:145
 #, python-brace-format
@@ -1613,8 +1612,7 @@ msgstr "Intersección de interpolacións"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:197
 msgid "Interpolation ends should have tag \"addr:housenumber\""
-msgstr ""
-"Os extremos da interpolación deberían ter a etiqueta 'addr:housenumber'"
+msgstr "Os extremos da interpolación deberían ter a etiqueta 'addr:housenumber'"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:203
 msgid "Interpolation on nodes of multiple \"associatedStreet\" relations"
@@ -2160,8 +2158,8 @@ msgid ""
 msgstr ""
 "É moi probable que os semáforos da intersección sean inconsistentes entre "
 "si; véxase tamén\n"
-"[highway=traffic_signals](https://wiki.openstreetmap.org/wiki/Tag:"
-"highway%3Dtraffic_signals)."
+"[highway=traffic_signals](https://wiki.openstreetmap.org/wiki/"
+"Tag:highway%3Dtraffic_signals)."
 
 #: ../analysers/analyser_osmosis_highway_tunnel_bridge.py:169
 msgid ""
