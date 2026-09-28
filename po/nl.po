@@ -20,8 +20,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2026-01-12 14:01+0000\n"
-"Last-Translator: Famlam <famlam@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2026-09-28 18:10+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/osmose/backend/nl/>"
 "\n"
 "Language: nl\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15.1\n"
+"X-Generator: Weblate 2026.10.dev0\n"
 
 #: ../analysers/analyser_merge_college_FR.py:31
 msgid "College not integrated"
@@ -759,8 +759,8 @@ msgstr "School bijwerken"
 msgid ""
 "Conflict between usage of *:lanes or *:lanes:(forward|backward|both_ways)"
 msgstr ""
-"Conflict tussen het gebruik van *:lanes of *:lanes:(forward|backward|"
-"both_ways)"
+"Conflict tussen het gebruik van *:lanes of *:lanes:"
+"(forward|backward|both_ways)"
 
 #: ../plugins/Highway_Lanes.py:41
 msgid "Conflict between lanes number"
@@ -953,8 +953,7 @@ msgstr "Bijna een kruising, voeg samen of gebruik noexit tag"
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:440
 msgid "One way inaccessible or missing parking or parking entrance"
-msgstr ""
-"Eénrichtingsweg ontoegankelijk of ontbrekende parking of parking ingang"
+msgstr "Eénrichtingsweg ontoegankelijk of ontbrekende parking of parking ingang"
 
 #: ../analysers/analyser_osmosis_highway_without_ref.py:52
 msgid "Motorway without ref, nat_ref, int_ref or noref tag"
@@ -1026,9 +1025,9 @@ msgid ""
 "neighbourhood, addr:quarter, addr:suburb, addr:place or addr:hamlet must be "
 "in a associatedStreet relation"
 msgstr ""
-"addr:housenumber of addr:housename zonder addr:street, addr:district, addr:"
-"neighbourhood, addr:quarter, addr:suburb, addr:place of addr:hamlet moet in "
-"een associatedStreet relatie zijn"
+"addr:housenumber of addr:housename zonder addr:street, addr:district, "
+"addr:neighbourhood, addr:quarter, addr:suburb, addr:place of addr:hamlet "
+"moet in een associatedStreet relatie zijn"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:580
 msgid "The track of this route contains gaps"
@@ -1036,8 +1035,7 @@ msgstr "De track van deze route bevat gaten"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:582
 msgid "The stop or platform is too far from the track of this route"
-msgstr ""
-"De halte of het platform bevindt zich te ver van het pad van deze route"
+msgstr "De halte of het platform bevindt zich te ver van het pad van deze route"
 
 #: ../plugins/Phone.py:59
 msgid "Missing international prefix"
@@ -1412,9 +1410,9 @@ msgid ""
 "(lanes:both_ways={3}) - (non fullwidth={4}) - (non fullwidth forward={5}) - "
 "(non fullwidth backward={6}) - (non fullwidth both_ways={7})"
 msgstr ""
-"op tweerichtingsweg, (lanes={0}) != (lanes:forward={1}) + (lanes:"
-"backward={2}) + (lanes:both_ways={3}) - (non fullwidth={4}) - (non fullwidth "
-"forward={5}) - (non fullwidth backward={6}) - (non fullwidth both_ways={7})"
+"op tweerichtingsweg, (lanes={0}) != (lanes:forward={1}) + (lanes:backward="
+"{2}) + (lanes:both_ways={3}) - (non fullwidth={4}) - (non fullwidth forward="
+"{5}) - (non fullwidth backward={6}) - (non fullwidth both_ways={7})"
 
 #: ../plugins/Highway_Lanes.py:334
 #, python-brace-format
@@ -1490,8 +1488,8 @@ msgid ""
 "\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x}). Means "
 "\"{5}\" ({6}, 0x{7:04x})?"
 msgstr ""
-"\"{0}\"=\"{1}\" onverwachte karakter \"{2}\" ({3}, 0x{4:04x}). Betekent "
-"\"{5}\" ({6}, 0x{7:04x})?"
+"\"{0}\"=\"{1}\" onverwachte karakter \"{2}\" ({3}, 0x{4:04x}). Betekent \"{5}"
+"\" ({6}, 0x{7:04x})?"
 
 #: ../plugins/Name_Script.py:181 ../plugins/Name_Script.py:204
 #, python-brace-format
@@ -2129,8 +2127,8 @@ msgid ""
 msgstr ""
 "Het is zeer waarschijnlijk dat de verkeerslichten op de kruising niet "
 "consistent met elkaar zijn, zie ook\n"
-"[highway=traffic_signals](https://wiki.openstreetmap.org/wiki/Tag:"
-"highway%3Dtraffic_signals)."
+"[highway=traffic_signals](https://wiki.openstreetmap.org/wiki/"
+"Tag:highway%3Dtraffic_signals)."
 
 #: ../analysers/analyser_osmosis_highway_tunnel_bridge.py:169
 msgid ""
@@ -6177,9 +6175,9 @@ msgid ""
 "addr:neighbourhood, addr:quarter, addr:suburb, addr:place or addr:hamlet "
 "tag, nor within an associatedStreet relation"
 msgstr ""
-"addr:housenumber of addr:housename zonder addr:street, addr:district, addr:"
-"neighbourhood, addr:quarter, addr:suburb, addr:place of addr:hamlet moet in "
-"een associatedStreet relatie zijn"
+"addr:housenumber of addr:housename zonder addr:street, addr:district, "
+"addr:neighbourhood, addr:quarter, addr:suburb, addr:place of addr:hamlet "
+"moet in een associatedStreet relatie zijn"
 
 #: ../plugins/TagFix_Maxspeed_AT.py:51
 msgid "Speed limit type without speed limit"
