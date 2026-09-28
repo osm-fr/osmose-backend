@@ -21,7 +21,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
 "PO-Revision-Date: 2026-09-28 18:05+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Last-Translator: Hosted Weblate user 165690 "
+"<lorantart@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/osmose/backend/cs/>"
 "\n"
 "Language: cs\n"
@@ -1237,7 +1238,7 @@ msgstr "Policie/\"Gendarmerie\", update"
 #: ../analysers/analyser_osmosis_parking_highway.py:108
 #: ../analysers/analyser_osmosis_parking_highway.py:111
 msgid "Missing access way to parking"
-msgstr "Chybějící příjezdová cesta na parkoviště"
+msgstr "Chybějící servisní cesta k parkovišti"
 
 #: ../plugins/TagFix_MultipleTag2.py:27 ../plugins/TagFix_MultipleTag2.py:92
 #: ../plugins/TagFix_MultipleTag2.py:324 ../plugins/TagFix_MultipleTag2.py:634
@@ -1286,7 +1287,7 @@ msgstr "Ve Farsi, arabské písmeno '{0}' by mělo být nahrazeno '{1}'"
 
 #: ../plugins/Colour.py:20
 msgid "Colour code should start with '#' followed by 3 or 6 digits"
-msgstr "Kód barvy by měl začínat znakem '#' následováným 3 nebo 6 čísly"
+msgstr "Kód barvy by měl začínat znakem '#' následováným 3 nebo 6 číslicemi"
 
 #: ../plugins/Website.py:47
 msgid "The URL contains a space"
