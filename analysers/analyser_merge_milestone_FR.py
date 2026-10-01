@@ -28,13 +28,13 @@ class Analyser_Merge_Milestone_FR(Analyser_Merge_Point):
 
         country = self.config.options.get("country")
         if country and country.startswith('FR-GF'):
-            resource = 'e9288a97-faf1-4638-b3df-571ceae401f8'
+            resource = '7ebdf3ff-ddb6-4c8d-b9e2-28411ec1cc01'
         elif country and country.startswith('FR-PM'):
-            resource = '9425939b-13f5-460d-a635-fcde0e05ade5'
+            resource = 'c2ef3f6a-43f5-4370-a143-578b9f9555b6'
         elif country and country.startswith('FR-YT'):
-            resource = '65060ce7-acc5-4546-a1ce-b9b47b40383f'
+            resource = '667f7f76-cdad-4b20-999b-4e3cd4a59c70'
         else:
-            resource = '90a65602-3ca4-41d7-bf7c-23d435c916e1'
+            resource = ''
 
         doc = dict(
             detail = T_(
