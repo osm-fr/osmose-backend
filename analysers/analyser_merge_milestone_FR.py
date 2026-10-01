@@ -34,7 +34,7 @@ class Analyser_Merge_Milestone_FR(Analyser_Merge_Point):
         elif country and country.startswith('FR-YT'):
             resource = '667f7f76-cdad-4b20-999b-4e3cd4a59c70'
         else:
-            resource = ''
+            resource = '95258fdf-baf4-41d4-b059-b1191ec13b7f'
 
         doc = dict(
             detail = T_(
