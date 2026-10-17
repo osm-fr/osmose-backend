@@ -273,7 +273,7 @@ def gen_country(area, path_base=None,
 
     return gen
 
-france_departement = gen_country('europe', 'france', download_repo=OSMFR, language='fr', proj=2154, municipality_ref='ref:INSEE',
+france_departement = gen_country('europe', 'france', download_repo=OSMFR, language='fr', proj=2154, municipality_ref='ref:INSEE', local_cuisines=['french'],
     phone_code='33', phone_len=9, phone_format=r'^([+]%s([- ./]*[0-9]){8}[0-9])|[0-9]{4}|[0-9]{6}$', phone_international='00', phone_local_prefix='0',
     include=[
     'osmosis_building_geodesie_FR',
@@ -553,7 +553,7 @@ france_departement("rhone_alpes/haute_savoie", 7407, "FR-74", include=[
 ])
 
 
-france_departement_dom = gen_country(None, country_base='france', download_repo=OSMFR, language='fr', municipality_ref='ref:INSEE',
+france_departement_dom = gen_country(None, country_base='france', download_repo=OSMFR, language='fr', municipality_ref='ref:INSEE', local_cuisines=None,
     phone_len=9, phone_format=r'^([+]%s([- ./]*[0-9]){8}[0-9])|[0-9]{4}|[0-9]{6}$', phone_international='00', phone_local_prefix='0',
     include=[
     'osmosis_building_geodesie_FR',
@@ -599,7 +599,7 @@ france_departement_dom(["africa", "mayotte"], 1259885, "FR-YT", dep_code=976, pr
 ])
 france_departement_dom(["africa", "reunion"], 1785276, "FR-RE", dep_code=974, proj=2975, phone_code="262")
 
-france_com = gen_country(None, country_base='france', download_repo=OSMFR, language='fr', municipality_ref='ref:INSEE',
+france_com = gen_country(None, country_base='france', download_repo=OSMFR, language='fr', municipality_ref='ref:INSEE', local_cuisines=None,
     phone_len=9, phone_format=r'^([+]%s([- ./]*[0-9]){8}[0-9])|[0-9]{4}|[0-9]{6}$', phone_international='00', phone_local_prefix='0',
     include=[
     'merge_college_FR',
@@ -1846,7 +1846,8 @@ at_state("vorarlberg", 74942, "AT-8")
 
 #########################################################################
 
-es_prov = gen_country('europe', 'spain', download_repo=OSMFR, language='es', municipality_ref='ine:municipio', phone_code='34', phone_len=9, phone_len_short=[3, 4, 5], phone_international='00', include=[
+es_prov = gen_country('europe', 'spain', download_repo=OSMFR, language='es', municipality_ref='ine:municipio', local_cuisines=['spanish'],
+    phone_code='34', phone_len=9, phone_len_short=[3, 4, 5], phone_international='00', include=[
     'merge_road_ES',
     'merge_bridge_ES',
 ], hydro_map={

@@ -23,287 +23,466 @@ import string
 import csv
 import sys
 import re
-import itertools
-import random
 from collections import defaultdict
 from unidecode import unidecode
+import joblib
+from modules import downloader, SourceVersion
+from typing import Dict, List, Optional, Any, Set, Iterable, Tuple
+from itertools import chain
 
-
-class Index:
-  def __init__(self):
-    self.index = defaultdict(lambda: defaultdict(int))
-    self.count = defaultdict(int)
-
-  def insert(self, tokens, clazz, coef):
-    n = len(tokens)
-    for token in tokens:
-      self.count[token] += 1
-      self.index[token][clazz] += coef / n
-
-  def normalize(self, prune):
-    for token, n in list(self.count.items()):
-      if n <= prune:
-        del self.count[token]
-        del self.index[token]
-
-    for _, clazz_score in self.index.items():
-      s = sum(clazz_score.values())
-      for clazz in clazz_score.keys():
-        clazz_score[clazz] /= s
-
-  def search(self, tokens):
-    total = defaultdict(int)
-    n = 0
-    for token in tokens:
-      if token in self.index:
-        n += 1
-        for clazz, score in self.index[token].items():
-          total[clazz] += score
-
-    return {k: v/n for k, v in total.items()}
-
-
-def sum_dict(*d):
-  keys = map(lambda coef_dd: list(coef_dd[1].keys()), d)
-  keys = set(itertools.chain.from_iterable(keys))
-
-  s_coef = sum(map(lambda coef_dd: coef_dd[0], d))
-
-  ret = {}
-  for cuisine in keys:
-    s = 0
-    for coef, dd in d:
-      s += coef * dd.get(cuisine, 0)
-    ret[cuisine] = s / s_coef
-  return ret
-
-
-def ngram(text, n):
-  return [text[i:i+n] for i in range(0, len(text) - n + 1)]
+import pandas as pd
+from sklearn.compose import ColumnTransformer
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report
+from sklearn.model_selection import train_test_split
+from sklearn.multiclass import OneVsRestClassifier
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import MultiLabelBinarizer, OneHotEncoder
 
 
 class Cuisine:
+  # Non-cuisine tags to drop entirely
+  _CUISINE_DROP: List[str] = [
+      'buffet', 'dessert',
+      'cake', 'ice_cream',
+      'coffee_shop', 'wine', 'bubble_tea', 'juice', 'tea',
+      'regional', 'local', 'traditional',
+      'world', 'bio',
+  ]
+
+  # i10n / synonyms: token -> list of replacement tokens
+  _CUISINE_SYNONYMS: Dict[str, List[str]] = {
+      'japonais': ['japanese'],
+      'vietnam': ['vietnamese'],
+      'indien': ['indian'],
+      'italian_pizza': ['italian', 'pizza'],
+      'pancake': ['savory_pancakes'],
+      'pancakes': ['savory_pancakes'],
+  }
+
+  _CUISINE_HIERARCHY: Dict[str, Dict[str, Optional[Dict[str, Any]]]]  = {
+      "maghrebi": {
+          "algerian": None,
+          "moroccan": None,
+          "tunisian": None,
+          "couscous": None,
+          "tajine": None,
+      },
+      "oriental": {
+          "afghan": None,
+          "arab": None,
+          "lebanese": None,
+          "persian": None,
+          "syrian": None,
+          "turkish": {
+              "kebab": None,
+          },
+      },
+      "african": {
+          "senegalese": None,
+      },
+      "american": {
+          "burger": None,
+          "diner": None,
+          "fried_chicken": None,
+          "hotdog": None,
+          "wings": None,
+      },
+      "mexican": {
+          "tacos": None,
+      },
+      "spanish": {
+          "basque": None,
+          "basque_ciderhouse": None,
+          "catalan": None,
+          "churro": None,
+          "galician": None,
+          "paella": None,
+          "tapas": None,
+          "valencian": None,
+          "vasca": None,
+      },
+      "asian": {
+          "cambodian": None,
+          "chinese": None,
+          "indian": {
+              "curry": None,
+              "naan": None,
+          },
+          "tibetan": None,
+          "pakistani": None,
+          "indonesian": None,
+          "japanese": {
+              "ramen": None,
+              "sushi": None,
+          },
+          "korean": None,
+          "lao": None,
+          "nepalese": None,
+          "sri_lankan": None,
+          "taiwanese": None,
+          "thai": None,
+          "vietnamese": None,
+      },
+      "caribbean": {
+          "creole": None,
+      },
+      "latin_american": {
+          "argentinian": None,
+          "brazilian": None,
+          "colombian": None,
+          "peruvian": None,
+          "venezuelan": None,
+          "empanada": None,
+          "arepa": None,
+      },
+      "italian": {
+          "pasta": None,
+          "pizza": None,
+      },
+      "hawaiian": {
+          "poke": None,
+      },
+      "meat": {
+          "steak_house": None,
+          "barbecue": None,
+      },
+      "friture": {
+          "fries": None
+      },
+      "seafood": {
+          "fish": None,
+      },
+  }
+
   @staticmethod
-  def load_csv(file_path):
-    data = []
+  def _flatten_reversed_cuisine_hierarchy(hierarchy) -> Dict[str, List[str]]:
+    def rec(hierarchy, ancestors):
+      parents = {}
+      for cuisine, children in hierarchy.items():
+        parents[cuisine] = list(ancestors)
+        if isinstance(children, dict):
+          parents.update(rec(children, ancestors + [cuisine]))
+      return parents
+    return rec(hierarchy, [])
+
+  _CUISINE_PARENTS: Dict[str, List[str]] = _flatten_reversed_cuisine_hierarchy(_CUISINE_HIERARCHY)
+
+  @staticmethod
+  def _flatten_cuisine_hierarchy(hierarchy) -> Dict[str, Set[str]]:
+    def rec(hierarchy):
+      parents = {}
+      for cuisine, children in hierarchy.items():
+        if isinstance(children, dict):
+          parents[cuisine] = children.keys()
+          parents = dict(parents, **rec(children))
+      return parents
+    return rec(hierarchy)
+
+  _CUISINE_CHILDREN: Dict[str, Set[str]] = _flatten_cuisine_hierarchy(_CUISINE_HIERARCHY)
+
+  @staticmethod
+  def _expand_ancestors(cuisines: Set[str]) -> Set[str]:
+    result = set(cuisines)
+    for cuisine in cuisines:
+      result.update(Cuisine._CUISINE_PARENTS.get(cuisine, ()))
+    return result
+
+  @staticmethod
+  def load_csv(file_path: str) -> Iterable[Dict[str, str]]:
     with open(file_path) as csvfile:
-      spamreader = csv.DictReader(csvfile, delimiter="\t")
-      for row in list(spamreader):
-        data.append(row)
-    return data
-
+      return list(csv.DictReader(csvfile, delimiter="\t"))
 
   @staticmethod
-  def expland_cuisine(cuisines):
-    if not cuisines:
-      return
-    else:
-      cuisines = cuisines.lower()
-      cuisines = list(set(map(lambda s: s.strip(), cuisines.split(';'))))
+  def expland_cuisine(cuisine: str, local_cuisine: List[str]) -> Set[str]:
+    cuisine = cuisine.lower()
+    cuisines = set(map(lambda s: s.strip(), cuisine.split(';')))
 
-      # Non cuisine77
-      if 'buffet' in cuisines:
-        cuisines.remove('buffet')
-      if 'dessert' in cuisines:
-        cuisines.remove('dessert')
-      if 'cake' in cuisines:
-        cuisines.remove('cake')
-      if 'world' in cuisines:
-        cuisines.remove('world')
-      if 'bio' in cuisines:
-        cuisines.remove('bio')
+    # remove non-cuisine tags
+    for tag in Cuisine._CUISINE_DROP + local_cuisine:
+      if tag in cuisines:
+        cuisines.remove(tag)
 
-      # i10n
-      if 'japonais' in cuisines:
-        cuisines.append('japanese')
-        cuisines.remove('japonais')
-      if 'vietnam' in cuisines:
-        cuisines.append('vietnamese')
-        cuisines.remove('vietnam')
-      if 'indien' in cuisines:
-        cuisines.append('indian')
-        cuisines.remove('indien')
+    # i10n / synonyms
+    for old, new in Cuisine._CUISINE_SYNONYMS.items():
+      if old in cuisines:
+        cuisines.remove(old)
+        for n in new:
+          cuisines.add(n)
 
-      # Common mistake
-      if 'sushi' in cuisines:
-        cuisines.append('japanese')
-      elif 'japanese' in cuisines:
-        cuisines.append('sushi')
-      if 'pizza' in cuisines:
-        cuisines.append('italian')
-      if 'italian_pizza' in cuisines:
-        cuisines.append('italian')
-        cuisines.append('pizza')
-        cuisines.remove('italian_pizza')
-      if 'tacos' in cuisines:
-        cuisines.append('mexican')
+    # Common mistake / implied cuisines
+    cuisines = Cuisine._expand_ancestors(cuisines)
 
-      # if 'regional' in cuisines:
-      #   cuisines.append('french')
-      # if 'pasta' in cuisines:
-      #   cuisines.append('italian')
-      # if 'chinese' in cuisines:
-      #   cuisines.append('asian')
-      return set(cuisines)
+    return cuisines
 
   multiple_space = re.compile(' +')
 
-  def expland_name(self, text):
+  @staticmethod
+  def expland_name(text: str) -> str:
     text = text.lower()
     text = unidecode(text)
     text = text.strip()
     text = text.replace("'", '')
-    text = text.translate(str.maketrans(' ', ' ', string.punctuation)) # Remove punctiation
-    text = text.translate(str.maketrans(' ', ' ', '0123456789')) # Remove
-    text = self.multiple_space.sub(' ', text)
+    text = text.translate(str.maketrans(' ', ' ', string.punctuation)) # Remove punctuation
+    text = text.translate(str.maketrans(' ', ' ', '0123456789')) # Remove digits
+    text = Cuisine.multiple_space.sub(' ', text)
     text = ' '.join(filter(lambda t: len(t) > 1 and t not in ('le',), text.split(' ')))
-    text = '  ' + text + '  '
+    text = ' ' + text + ' '
     return text
 
   @staticmethod
-  def enumerate_word(text):
-    return list(filter(lambda w: len(w) >= 3, text.strip().split(' ')))
-
-  @staticmethod
-  def enumerate_amenity(amenity):
-    return list(set(map(lambda s: s.strip(), amenity.split(';'))).intersection(set(['fast_food', 'restaurant'])))
-
-  @staticmethod
-  def enumerate_takeaway(takeaway):
-    return [takeaway and takeaway != 'no']
-
-  def __init__(self, cuisine_csv, evaluation=0):
-    self.N = 3
-
-    self.data = self.load_csv(cuisine_csv)
-
-    if evaluation:
-      random.shuffle(self.data)
-      self.data_slice = round(len(self.data) * evaluation)
+  def make_row(name: str, amenity: str, takeaway: Optional[str], brand: Optional[str]) -> Dict[str, Optional[str]]:
+    if amenity:
+      amenity = ';'.join(sorted(set(map(lambda s: s.strip(), amenity.split(';'))).intersection(set(['fast_food', 'restaurant']))))
     else:
-      self.data_slice = -1
+      amenity = 'unknown'
 
-    # Normalize score for "cuisine" occurrences
-    coef = defaultdict(int)
+    return {
+        'name': Cuisine.expland_name(name),
+        'amenity': amenity,
+        'takeaway': str(takeaway and takeaway != 'no'),
+        'brand': brand.strip() if brand else 'unknown',
+    }
 
-    for row in self.data[0:self.data_slice]:
+  def __init__(self, cuisine_csv: str, local_cuisines: Optional[List[str]], s: float = 0.95, use_cache: bool = True, train_size: Optional[float] = None, ngram: int = 4):
+    self.local_cuisines = local_cuisines or []
+    self.N = ngram
+
+    cache_path = downloader.get_cache_path(cuisine_csv, str(SourceVersion.version(cuisine_csv, Cuisine, self.N, train_size)))
+    if use_cache:
+      try:
+        loaded = joblib.load(cache_path)
+        self.__dict__.update(loaded)
+        return
+      except FileNotFoundError:
+        pass
+
+    csv_data = self.load_csv(cuisine_csv)
+    if train_size is not None:
+      self.train_data, self.test_data = train_test_split(csv_data, random_state=0, train_size=train_size if train_size > 0 else 0.9)
+    else:
+      self.train_data, self.test_data = csv_data, []
+
+    # Count "cuisine" occurrences and remove unfrequented ones
+    coef: Dict[str, int] = defaultdict(int)
+
+    for row in self.train_data:
       if row['cuisine']:
-        for cuisine in self.expland_cuisine(row['cuisine']):
+        for cuisine in self.expland_cuisine(row['cuisine'], self.local_cuisines):
           coef[cuisine] += 1
 
-    coef = {k: v for k, v in coef.items() if v >= 8} # Remove unfrequented "cuisine"
-    for cuisine in coef.keys():
-      coef[cuisine] = 1 / coef[cuisine]
-
-    # Index "cuisine" by name and other attributes
-    self.index_ngram = Index()
-    self.index_words = Index()
-    self.index_amenity = Index()
-    self.index_takeaway = Index()
-
-    for row in self.data[0:self.data_slice]:
+    keep_cuisines = {k for k, v in coef.items() if v >= 20} # Remove unfrequented "cuisine"
+    # Build the training rows: (name, amenity, takeaway, brand) -> set of cuisines
+    rows = []
+    labels = []
+    for row in self.train_data:
       name = row['name']
       if row['cuisine'] and len(name) >= self.N + 1:
-        for cuisine in self.expland_cuisine(row['cuisine']):
-          if cuisine in coef:
-            text = self.expland_name(name)
-            self.index_ngram.insert(ngram(text, self.N), cuisine, coef[cuisine])
-            self.index_words.insert(self.enumerate_word(text), cuisine, coef[cuisine])
-            self.index_amenity.insert(self.enumerate_amenity(row['amenity']), cuisine, coef[cuisine])
-            self.index_takeaway.insert(self.enumerate_takeaway(row['takeaway']), cuisine, coef[cuisine])
+        cuisines = self.expland_cuisine(row['cuisine'], self.local_cuisines) & keep_cuisines
+        if cuisines:
+          rows.append(self.make_row(name, row['amenity'], row['takeaway'], row['brand']))
+          labels.append(cuisines)
 
-    # Normalize and remove unfrequented token
-    self.index_ngram.normalize(1)
-    self.index_words.normalize(5)
-    self.index_amenity.normalize(0)
-    self.index_takeaway.normalize(0)
+    preprocessor = ColumnTransformer([
+        # Use min_df>=2 to ignore ngrams or words that appear only once in the training set
+        # Which are likely to be typos or very specific names. Lower the classifer size.
+        ('name_ngram', TfidfVectorizer(analyzer='char', ngram_range=(self.N, self.N), min_df=5), 'name'),
+        ('name_word', TfidfVectorizer(analyzer='word', token_pattern=r'(?u)\b\w{3,}\b', min_df=5), 'name'),
+        ('cat', OneHotEncoder(handle_unknown='ignore'), ['amenity', 'takeaway', 'brand']),
+    ])
+    self.pipeline = Pipeline([
+        ('prep', preprocessor),
+        ('clf', OneVsRestClassifier(LogisticRegression(C=1.0, class_weight='balanced', max_iter=1000))),
+    ])
 
+    self.mlb = MultiLabelBinarizer(classes=sorted(keep_cuisines))
+    X = pd.DataFrame(rows)
+    y = self.mlb.fit_transform(labels)
 
-  def guess_score(self, name, amenity, takeaway, c1, c2, c3, c4, s):
-    text = self.expland_name(name)
-    r_ngram = self.index_ngram.search(ngram(text, self.N))
-    r_word = self.index_words.search(self.enumerate_word(text))
-    r_amenity = self.index_amenity.search(self.enumerate_amenity(amenity))
-    r_takeaway = self.index_takeaway.search(self.enumerate_takeaway(takeaway))
+    # Train the model
+    self.pipeline.fit(X, y)
+    self.print_feature_importance()
+    print(self.classification_report(s, keep_cuisines))
+    if train_size is not None:
+      print(self.classification_report(s, keep_cuisines))
 
-    r = sum_dict([c1, r_ngram], [c2, r_word], [c3, r_amenity], [c4, r_takeaway])
-    r = {k: v for k, v in r.items() if v > s}
-    return r
+    if use_cache:
+      joblib.dump({
+          "pipeline": self.pipeline,
+          "mlb": self.mlb,
+      }, cache_path)
 
-  def guess(self, name, amenity, takeaway, c1=1, c2=2.02414594, c3=0.1519341, c4=0.14086179, s=0.5):
-    g = self.guess_score(name, amenity, takeaway, c1, c2, c3, c4, s)
-    return {k: 0.9 if v > 0.6 else 0.75 for k, v in g.items()}
+    # - OR -
 
-  def evaluate(self, c1, c2, c3, c4, s):
-    n = 0
-    c = 0
-    sco = 0
-    for row in self.data[self.data_slice:-1]:
+    # # Optimize model hyperparameters using grid search and cross-validation
+    # # Note: This is commented out to avoid long training times during normal execution.
+    # from sklearn.model_selection import GridSearchCV
+    # param_grid = {
+    #   'prep__name_ngram__min_df': [2],  # [1, 2],
+    #   'prep__name_ngram__ngram_range': [(3, 4)],  # [(3, 3), (3, 4), (4, 4)],
+    #   'prep__name_word__min_df': [2],  # [1, 2, 3, 4, 5],
+    #   'clf__estimator__C': [1.0],  # [1.0, 2.0, 5.0, 10.0],
+    # }
+    # grid_search = GridSearchCV(self.pipeline, param_grid, scoring='f1_micro', cv=3, n_jobs=-1)
+    # grid_search.fit(X, y)
+    # self.grid_search = grid_search
+    # self.pipeline = grid_search.best_estimator_
+
+    # print('Best hyperparameters selected by grid search:')
+    # print(grid_search.best_params_)
+    # print('Best cross-validation f1_micro score:', grid_search.best_score_)
+
+  def print_feature_importance(self):
+    """Print, per feature group (name n-grams/words, amenity, takeaway,
+    brand), the mean and max absolute coefficient
+    magnitude across all cuisine classifiers. This is a proxy for how much
+    each input actually contributes to the predictions."""
+    import numpy as np
+
+    feature_names = self.pipeline.named_steps['prep'].get_feature_names_out()
+    clf = self.pipeline.named_steps['clf']
+
+    groups = defaultdict(list)
+    for i, fname in enumerate(feature_names):
+      for group in ('amenity', 'takeaway', 'brand'):
+        if fname.startswith('cat__' + group):
+          groups[group].append(i)
+          break
+      else:
+        if fname.startswith('name_ngram'):
+          groups['name_ngram'].append(i)
+        elif fname.startswith('name_word'):
+          groups['name_word'].append(i)
+
+    all_coefs = np.vstack([est.coef_[0] for est in clf.estimators_])
+    mean_abs_coef = np.abs(all_coefs).mean(axis=0)
+
+    print('Feature importance (mean/max |coefficient| across all cuisine classifiers):')
+    print(f"{'group':<18} {'#features':<10} {'mean |coef|':<14} {'max |coef|'}")
+    for group, idxs in sorted(groups.items(), key=lambda kv: -mean_abs_coef[kv[1]].mean()):
+      idxs = np.array(idxs)
+      print(f"{group:<18} {len(idxs):<10} {mean_abs_coef[idxs].mean():<14.4f} {mean_abs_coef[idxs].max():.4f}")
+
+  def guess_score(self, name: str, amenity: str, takeaway: Optional[str], brand: Optional[str]) -> Dict[str, float]:
+    X = pd.DataFrame([self.make_row(name, amenity, takeaway, brand)])
+    probas = self.pipeline.predict_proba(X)[0]
+    return dict(zip(self.mlb.classes_, probas))
+
+  def classification_report(self, s: float, keep_cuisines: Set[str]):
+    """Precision/recall/F1 per cuisine on the full test set, using
+    scikit-learn's classification_report instead of the single aggregate
+    score computed by evaluate()."""
+    rows = []
+    labels = []
+    for row in self.test_data:
       name = row['name']
-      cuisines = self.expland_cuisine(row['cuisine'])
+      cuisines = self.expland_cuisine(row['cuisine'], self.local_cuisines) & keep_cuisines
       if cuisines and len(name) >= self.N + 1:
-        r = self.guess_score(name, row['amenity'], row['takeaway'], c1, c2, c3, c4, s)
+        rows.append(self.make_row(name, row['amenity'], row['takeaway'], row['brand']))
+        labels.append(cuisines)
 
-        if r:
-          n += 1
-          # m = False
-          for cuisine, score in r.items():
-            if cuisine in cuisines:
-              sco += score
-              c += 1
-              # print(True, name, cuisines, r)
-              # m = True
-              break
-            # else:
-            #   print(cuisines, cuisine)
+    X = pd.DataFrame(rows)
+    y_true = self.mlb.transform(labels)
+    y_pred = (self.pipeline.predict_proba(X) > s).astype(int)
 
-          # if not m:
-          #   print(False, name, cuisines, r)
-
-    # print(self.N, c, n, c/n*100, sco/c)
-    return [n, c/n if n != 0 else 0]
+    return classification_report(y_true, y_pred, target_names=self.mlb.classes_, zero_division=0)
 
 
-# CSV data from overpass query
+# CSV data from extract query
 """
-[out:csv(amenity,cuisine,takeaway,name)][timeout:2500];
-{{geocodeArea:France}}->.searchArea;
-nwr["amenity"~"restaurant|fast_food"]["name"]["cuisine"](area.searchArea);
-out;
+wget https://download.geofabrik.de/europe/france-latest.osm.pbf
+curl "https://polygons.openstreetmap.fr/get_poly.py?id=1403916&params=0" > france-metropolitan.poly
+osmium tags-filter france-latest.osm.pbf nwr/cuisine --omit-referenced -f pbf > france-cuisine.osm.pbf
+osmium tags-filter france-cuisine.osm.pbf nwr/name --omit-referenced -f pbf > france-cuisine-name.osm.pbf
+osmium tags-filter france-cuisine-name.osm.pbf nwr/amenity=restaurant,fast_food --omit-referenced -f pbf > france-cuisine-name-amenity.osm.pbf
+osmium extract france-cuisine-name-amenity.osm.pbf --strategy=simple --polygon=france-metropolitan.poly -f pbf > france-cuisine-name-amenity-metropolitan.osm.pbf
+osmium export france-cuisine-name-amenity-metropolitan.osm.pbf -f geojson \
+  | jq -r '.features[] | [.properties.amenity, .properties.cuisine, .properties.takeaway, .properties.name, .properties.brand] | @tsv' \
+  | sort \
+  > cuisine-france-metropolitan.csv
+rm *.osm.pbf france-metropolitan.poly
 """
 
+def guess_prune(teaster: Cuisine, local_cuisines: Optional[List[str]], cuisines: Set[str], name: str, amenity: str, takeaway: Optional[str], brand: Optional[str], s: float = 0.95) -> Dict[str, List[Tuple[Tuple[Optional[List[str]], Optional[str]], float]]]:
+  g = teaster.guess_score(name, amenity, takeaway, brand)
+
+  probable_g = dict(filter(lambda c: c[0] not in cuisines and c[1] > s and (local_cuisines is None or c[0] not in local_cuisines), g.items()))
+
+  if not cuisines:
+    return {
+        "probable_others": list(map(lambda cs: ((None, cs[0]), cs[1]), probable_g.items()))
+    }
+  else:
+    improbable_g = dict(filter(lambda c: c[0] in cuisines and c[1] <= 1 - s, g.items()))
+    cuisines_parents = set(chain.from_iterable(map(lambda cuisine: Cuisine._CUISINE_PARENTS.get(cuisine, []), cuisines)))
+
+    ret: Dict[str, List[Tuple[Tuple[Optional[List[str]], Optional[str]], float]]] = {
+        "probable_subclass": [],
+        "probable_others": [],
+        "improbable": [],
+    }
+    for cuisine, coef in probable_g.items():
+      children = Cuisine._CUISINE_CHILDREN.get(cuisine, set())
+      if cuisines.intersection(children):
+        continue
+
+      # The cuisine has a parent, but the parent is the not the parent of an other initial cuisines (sibling cuisine)
+      parents = Cuisine._CUISINE_PARENTS.get(cuisine, [])
+      intersection = cuisines.intersection(parents)
+      if intersection and len(parents) > 0:
+        first_parent = next(iter(parents))
+        siblings = Cuisine._CUISINE_CHILDREN.get(first_parent, None)
+        if siblings is None or not cuisines.intersection(siblings):
+          ret['probable_subclass'].append(((list(intersection), cuisine), coef))
+      else:
+        if cuisine not in cuisines_parents:
+          ret['probable_others'].append(((None, cuisine), coef))
+    if len(probable_g) > 0:
+      for cuisine, coef in improbable_g.items():
+        ret['improbable'].append((([cuisine], None), coef))
+    return dict(filter(lambda cs: len(cs[1]) > 0, ret.items()))
+
+def evaluate(taster: Cuisine, local_cuisines: Optional[List[str]], s: float):
+  n = 0
+  c = 0
+  for row in taster.test_data:
+    name = row['name']
+    cuisines = taster.expland_cuisine(row['cuisine'], local_cuisines or [])
+    if cuisines and len(name) >= taster.N + 1:
+      r = taster.guess_score(name, row['amenity'], row['takeaway'], row['brand'])
+      r = dict(filter(lambda c: c[1] > s, r.items()))
+
+      if r:
+        n += 1
+        m = False
+        for cuisine, score in r.items():
+          if cuisine in cuisines:
+            c += 1
+            # print(True, name, cuisines, r)
+            m = True
+            break
+          # else:
+          #   print(cuisines, cuisine)
+
+        if not m:
+          print(False, name, cuisines, r)
+
+        p = guess_prune(taster, None, cuisines, name, row['amenity'], row['takeaway'], row['brand'], s)
+        if p:
+          print('     ', name, cuisines, p)
+
+  return [n, c/n if n != 0 else 0]
 
 def optimize():
-  from scipy.optimize import minimize # type: ignore
+  csv_path = sys.argv[1]
+  local_cuisines = sys.argv[2].split(';')
+  cuisine = Cuisine(csv_path, local_cuisines, s=0.95, use_cache=False, train_size=-1, ngram=3)
 
-  cuisine = Cuisine(sys.argv[1], evaluation=0.9)
-
-  def f(c):
-    c2, c3, c4 = c
-    for s in [0.3, 0.4, 0.5, 0.6, 1]:
-      n, r = cuisine.evaluate(1, c2, c3, c4, s)
-      if r > 0.75:
-        return -n
-    return 0
-
-  x0 = [2.02414594, 0.1519341, 0.14086179]
-  res = minimize(f, x0, method='nelder-mead', options={'xatol': 1e-8, 'disp': True})
-  print(res)
-
-  r = cuisine.evaluate(1, *res.x, 0.5)
-  print(0.5)
-  print(r)
-
-  r = cuisine.evaluate(1, *res.x, 0.6)
-  print(0.6)
-  print(r)
-
-  r = cuisine.evaluate(1, *res.x, 0.7)
-  print(0.7)
-  print(r)
-
-  print(res.x)
-
+  for s in [0.95]:
+    r = evaluate(cuisine, local_cuisines, s)
+    print(s)
+    print(r)
 
 if __name__ == "__main__":
   optimize()

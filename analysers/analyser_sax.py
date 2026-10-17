@@ -524,7 +524,7 @@ class TestAnalyserOsmosis(TestAnalyser):
     def setUp(self):
 
         class config:
-            options = {"project": "openstreetmap"}
+            options = {"test": True, "project": "openstreetmap"}
             src = "tests/saint_barthelemy.osm.gz"
             src_state = "tests/saint_barthelemy.state.txt"
             error_file = None
@@ -548,7 +548,7 @@ class TestAnalyserOsmosis(TestAnalyser):
     def test(self):
         self.xml_res_file = os.path.join(self.dirname, "sax.test.xml")
         self.config.error_file = IssuesFileOsmose.IssuesFileOsmose(self.xml_res_file)
-        self.config.options = {"project": "openstreetmap"}
+        self.config.options = {"test": True, "project": "openstreetmap"}
         with Analyser_Sax(self.config) as analyser_obj:
             analyser_obj.analyser()
 
@@ -561,7 +561,7 @@ class TestAnalyserOsmosis(TestAnalyser):
         # Test with an older timestamp than older object in extract
         self.xml_res_file = os.path.join(self.dirname, "sax.test_resume_full.xml")
         self.config.error_file = IssuesFileOsmose.IssuesFileOsmose(self.xml_res_file)
-        self.config.options = {"project": "openstreetmap"}
+        self.config.options = {"test": True, "project": "openstreetmap"}
         with Analyser_Sax(self.config) as analyser_obj:
             analyser_obj.analyser_resume(dateutil.parser.parse("2000-01-01T01:01:01Z").replace(tzinfo=None), {'N': set(), 'W': set(), 'R': set()})
 
@@ -573,7 +573,7 @@ class TestAnalyserOsmosis(TestAnalyser):
     def test_resume(self):
         self.xml_res_file = os.path.join(self.dirname, "sax.test_resume.xml")
         self.config.error_file = IssuesFileOsmose.IssuesFileOsmose(self.xml_res_file)
-        self.config.options = {"project": "openstreetmap"}
+        self.config.options = {"test": True, "project": "openstreetmap"}
         with Analyser_Sax(self.config) as analyser_obj:
             analyser_obj.analyser_resume(dateutil.parser.parse("2012-07-18T11:04:56Z").replace(tzinfo=None), {'N': set([1]), 'W': set([24552698]), 'R': set()})
 
@@ -586,7 +586,7 @@ class TestAnalyserOsmosis(TestAnalyser):
         # Test with an younger timestamp than youngest object in extract
         self.xml_res_file = os.path.join(self.dirname, "sax.test_resume_empty.xml")
         self.config.error_file = IssuesFileOsmose.IssuesFileOsmose(self.xml_res_file)
-        self.config.options = {"project": "openstreetmap"}
+        self.config.options = {"test": True, "project": "openstreetmap"}
         with Analyser_Sax(self.config) as analyser_obj:
             analyser_obj.analyser_resume(dateutil.parser.parse("2030-01-01T01:01:01Z").replace(tzinfo=None), {'N': set([1]), 'W': set([1000,1001]), 'R': set()})
 
@@ -598,7 +598,7 @@ class TestAnalyserOsmosis(TestAnalyser):
     def test_FR(self):
         self.xml_res_file = os.path.join(self.dirname, "sax.test.FR.xml")
         self.config.error_file = IssuesFileOsmose.IssuesFileOsmose(self.xml_res_file)
-        self.config.options = {"country": "FR", "project": "openstreetmap"}
+        self.config.options = {"test": True, "country": "FR", "project": "openstreetmap"}
         with Analyser_Sax(self.config) as analyser_obj:
             analyser_obj.analyser()
 
@@ -610,7 +610,7 @@ class TestAnalyserOsmosis(TestAnalyser):
     def test_fr(self):
         self.xml_res_file = os.path.join(self.dirname, "sax.test.Lang_fr.xml")
         self.config.error_file = IssuesFileOsmose.IssuesFileOsmose(self.xml_res_file)
-        self.config.options = {"language": "fr", "project": "openstreetmap"}
+        self.config.options = {"test": True, "language": "fr", "project": "openstreetmap"}
         with Analyser_Sax(self.config) as analyser_obj:
             analyser_obj.analyser()
 
@@ -622,7 +622,7 @@ class TestAnalyserOsmosis(TestAnalyser):
     def test_fr_nl(self):
         self.xml_res_file = os.path.join(self.dirname, "sax.test.Lang_fr_nl.xml")
         self.config.error_file = IssuesFileOsmose.IssuesFileOsmose(self.xml_res_file)
-        self.config.options = {"language": ["fr", "nl"], "project": "openstreetmap"}
+        self.config.options = {"test": True, "language": ["fr", "nl"], "project": "openstreetmap"}
         with Analyser_Sax(self.config) as analyser_obj:
             analyser_obj.analyser()
 

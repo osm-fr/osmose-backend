@@ -29,7 +29,7 @@ def version(*sources):
     for source in sources:
         if isinstance(source, str) and os.path.exists(source):
             h.update(open(source, 'rb').read())
-        elif isinstance(source, int):
+        elif source is None or isinstance(source, int) or isinstance(source, float):
             h.update(str(source).encode('utf-8'))
         elif inspect.isclass(source):
             cc = inspect.getmro(source)

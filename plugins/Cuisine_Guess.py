@@ -22,12 +22,15 @@
 from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 
-from .modules import Cuisine_Guess_lib
+from .modules.Cuisine_Guess_lib import Cuisine, guess_prune
 
 
 class Cuisine_Guess(Plugin):
 
-    only_for = ["FR"]
+    only_for = ["FR", "ES"]
+    not_for = [
+        "FR-GP", "FR-GF", "FR-YT", "FR-RE", "FR-BL", "FR-MF", "FR-PM", "FR-WF", "FR-PF",
+    ]
 
     def init(self, logger):
         Plugin.init(self, logger)
@@ -39,28 +42,70 @@ class Cuisine_Guess(Plugin):
             title = T_('Suggestion of `cuisine` value'),
             detail = T_(detail))
 
-        self.taster = Cuisine_Guess_lib.Cuisine('dictionaries/Lang_fr/cuisine.csv')
+        country = self.father.config.options.get("country")
+        if country is None:
+            return None
+
+        country_csv = {
+            'ES': 'dictionaries/es/cuisine.csv',
+            'FR': 'dictionaries/fr/cuisine.csv',
+        }.get(country.split('-', 1)[0])
+        if country_csv is None:
+            return None
+
+        self.local_cuisines = self.father.config.options.get("local_cuisines")
+        if self.father.config.options.get("test"):
+            # Make learning very fast
+            self.taster = Cuisine(country_csv, self.local_cuisines, train_size=0.1, ngram=2)
+        else:
+            self.taster = Cuisine(country_csv, self.local_cuisines)
+
+    def full(self, cuisines, actions):
+        for action in actions:
+            if action[0][0]:
+                for a in action[0][0]:
+                    cuisines = self.remove(cuisines, a)
+            if action[0][1]:
+                cuisines = list(cuisines)
+                cuisines.append(action[0][1])
+        return cuisines
+
+    def replace(self, cuisines, a_s, b):
+        return set(map(lambda c: b if c in a_s else c, cuisines))
+
+    def remove(self, cuisines, a_s):
+        return filter(lambda c: c not in a_s, cuisines)
 
     def node(self, data, tags):
         if 'name' not in tags or tags.get('amenity') not in ('restaurant', 'fast_food'):
             return
 
-        cuisine_guess = self.taster.guess(tags['name'], tags['amenity'], tags.get('takeaway'))
-        if cuisine_guess:
-            tasty_cuisines = None
-            if 'cuisine' in tags:
-                max_score = max(map(lambda c: c[1], cuisine_guess.items()))
-                if max_score < 0.9:
-                    tasty_cuisines = True
-                else:
-                    cuisines = set(map(lambda s: s.strip(), tags['cuisine'].split(';')))
-                    tasty_cuisines = cuisines.intersection(set(map(lambda c: c[0], cuisine_guess.items())))
-
-            if not tasty_cuisines:
-                return {'class': 1 if 'cuisine' in tags else 2,
-                    'text': T_('Guess with probability: {0}', ', '.join(map(lambda cs: '{0} ({1}%)'.format(cs[0], round(cs[1] * 100)), cuisine_guess.items()))),
-                    'fix': [{'~': {'cuisine': cuisine[0]}} for cuisine in cuisine_guess.items()]
-                }
+        cuisines = list(map(lambda s: s.strip(), tags['cuisine'].split(';'))) if 'cuisine' in tags else set()
+        cuisine_guess = guess_prune(self.taster, self.local_cuisines, set(cuisines), tags['name'], tags['amenity'], tags.get('takeaway'), tags.get('brand'))
+        guess_number = len(cuisine_guess.get('probable_subclass', [])) + len(cuisine_guess.get('probable_others', [])) + len(cuisine_guess.get('improbable', []))
+        if guess_number > 0:
+            full_cusine = list(self.full(cuisines, cuisine_guess.get('probable_subclass', []) + cuisine_guess.get('probable_others', []) + cuisine_guess.get('improbable', []))) if guess_number <= 3 else []
+            return {'class': 1 if 'cuisine' in tags else 2,
+                'text': T_('Guess with probability: {0}', ', '.join(
+                    list(map(
+                        lambda cs: 'sub kind "{0}" -> "{1}" ({2}%)'.format(';'.join(cs[0][0]), cs[0][1], round(cs[1] * 100, 1)),
+                        cuisine_guess.get('probable_subclass', [])
+                    )) +
+                    list(map(
+                        lambda cs: '"{0}" ({1}%)'.format(cs[0][1], round(cs[1] * 100, 1)),
+                        cuisine_guess.get('probable_others', [])
+                    )) +
+                    list(map(
+                        lambda cs: 'impropable {0} ({1}%)'.format(cs[0][0][0], round(cs[1] * 100, 1)),
+                        cuisine_guess.get('improbable', [])
+                    ))
+                )),
+                'fix':
+                    ([{'~': {'cuisine': ';'.join(full_cusine) }}] if len(full_cusine) > 0 else []) +
+                    ([{'~': {'cuisine': ';'.join(self.replace(cuisines, guess[0][0], guess[0][1]))}} for guess in cuisine_guess.get('probable_subclass', [])] if guess_number >= 2 else []) +
+                    ([{'~': {'cuisine': ';'.join(list(cuisines) + [guess[0][1]])}} for guess in cuisine_guess.get('probable_others', [])] if guess_number >= 2 else []) +
+                    ([{'~': {'cuisine': ';'.join(self.remove(cuisines, guess[0][0]))}} for guess in cuisine_guess.get('improbable', [])] if guess_number >= 2 else [])
+            }
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
@@ -71,10 +116,16 @@ class Cuisine_Guess(Plugin):
 
 ###########################################################################
 from plugins.Plugin import TestPluginCommon
+from plugins.Plugin import with_options # noqa
 
 class Test(TestPluginCommon):
     def test(self):
         a = Cuisine_Guess(None)
+        class _config:
+            options = {'test': True, 'country': 'FR', 'language': None, 'local_cuisines': ['french']}
+        class father:
+            config = _config()
+        a.father = father()
         a.init(None)
         assert a.node(None, {"amenity": "restaurant", "name": "Fujiyama"})
-        assert not a.node(None, {"amenity": "restaurant", "name": "lkgverjverkj"})
+        assert not a.node(None, {"amenity": "restaurant", "name": "wwwwwwwwwwwww"})
