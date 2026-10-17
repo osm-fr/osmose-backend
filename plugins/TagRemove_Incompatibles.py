@@ -82,6 +82,7 @@ these should be mapped as two separate objects.'''),
                 ['toll_gantry', 'amenity', 'weighbridge'],
                 ['service', 'leisure', 'slipway'],
                 ['corridor', 'aeroway', 'jet_bridge'],
+                ['footway', 'aeroway', 'jet_bridge'],
                 ['crossing', 'railway', 'tram_crossing'],
             ],
             'natural': [
@@ -151,6 +152,14 @@ class Test(TestPluginCommon):
             self.check_err(a.node(None, t), t)
             self.check_err(a.way(None, t, None), t)
             self.check_err(a.relation(None, t, None), t)
+
+        # A jet bridge is commonly mapped as an indoor footway passage (#2521)
+        t = {"aeroway": "jet_bridge", "highway": "footway"}
+        assert not a.node(None, t), t
+        assert not a.way(None, t, None), t
+        # the exception only applies to jet_bridge
+        t = {"aeroway": "runway", "highway": "footway"}
+        self.check_err(a.node(None, t), t)
 
         for t in [{"aerialway": "yes"},
                   {"highway": "residential", "railway": "tram"},
