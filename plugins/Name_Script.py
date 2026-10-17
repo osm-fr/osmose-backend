@@ -279,7 +279,7 @@ class Test(TestPluginCommon):
 
         self.check_err(a.node(None, {u"name": u"test ь"}))
         # A symbol in a non-name tag does not hide errors on the other tags
-        self.check_err(a.node(None, {u"description": u"\U0001F3E1", u"name": u"test ь"}), expected={"class": 50701})
+        self.check_err(a.node(None, {"description": u"\U0001F3E1", "name": "test ь"}), expected={"class": 50701})
         self.check_err(a.node(None, {u"name": u"\u1F1EE\u1F1F6\u1F3E0"}))
         assert not a.node(None, {u"name": u"test кодувань"})
         assert not a.node(None, {u"name": u"кодувань"})
