@@ -140,10 +140,13 @@ appropriate.'''),
                 err.append({"class": 50703, "subclass": 0 + stablehash64(key), "text": T_("\"{0}\" unexpected symbol char ({1}, 0x{2:04x}) in key at position {3}", key, unicodedata.name(m.group(0), ''), ord(m.group(0)), m.start() + 1)})
                 break
 
-            m = self.other_symbol.search(value)
-            if m:
-                err.append({"class": 50703, "subclass": 1 + stablehash64(key), "text": T_("\"{0}\"=\"{1}\" unexpected symbol char ({2}, 0x{3:04x}) in value at position {4}", key, value, unicodedata.name(m.group(0), ''), ord(m.group(0)), m.start() + 1)})
-                break
+            # Symbols are only unexpected in name values, not in other free text
+            # like description or inscription (#2821)
+            if key.split(':')[0] in self.names:
+                m = self.other_symbol.search(value)
+                if m:
+                    err.append({"class": 50703, "subclass": 1 + stablehash64(key), "text": T_("\"{0}\"=\"{1}\" unexpected symbol char ({2}, 0x{3:04x}) in value at position {4}", key, value, unicodedata.name(m.group(0), ''), ord(m.group(0)), m.start() + 1)})
+                    break
 
             err_size = len(err)
             # https://en.wikipedia.org/wiki/Bi-directional_text#Table_of_possible_BiDi-types
@@ -237,6 +240,14 @@ class Test(TestPluginCommon):
         self.check_err(a.node(None, {"name:uk": u"Sacré-Cœur"}))
         self.check_err(a.node(None, {"inscription": "Special bell character \a"}))
 
+        # Symbols in the value of a non-name tag are allowed
+        assert not a.node(None, {"description": "Holiday home \U0001F3E1"})
+        assert not a.node(None, {"inscription": "Built \U0001F3E1 in 1900"})
+        self.check_err(a.node(None, {"name": "Cafe \U0001F3E1"}))
+        self.check_err(a.node(None, {"name:fr": "Cafe \U0001F3E1"}))
+        # A symbol in a key is still reported, whatever the tag
+        self.check_err(a.node(None, {"description\u2600": "test"}))
+
     def test_NL(self):
         a = Name_Script(None)
         class _config:
@@ -267,6 +278,8 @@ class Test(TestPluginCommon):
         assert not a.node(None, {u"name": u"To Embonas ►"})
 
         self.check_err(a.node(None, {u"name": u"test ь"}))
+        # A symbol in a non-name tag does not hide errors on the other tags
+        self.check_err(a.node(None, {"description": "\U0001F3E1", "name": "test ь"}), expected={"class": 50701})
         self.check_err(a.node(None, {u"name": u"\u1F1EE\u1F1F6\u1F3E0"}))
         assert not a.node(None, {u"name": u"test кодувань"})
         assert not a.node(None, {u"name": u"кодувань"})
