@@ -241,12 +241,12 @@ class Test(TestPluginCommon):
         self.check_err(a.node(None, {"inscription": "Special bell character \a"}))
 
         # Symbols in the value of a non-name tag are allowed
-        assert not a.node(None, {"description": u"Holiday home \U0001F3E1"})
-        assert not a.node(None, {"inscription": u"Built \U0001F3E1 in 1900"})
-        self.check_err(a.node(None, {"name": u"Cafe \U0001F3E1"}))
-        self.check_err(a.node(None, {"name:fr": u"Cafe \U0001F3E1"}))
+        assert not a.node(None, {"description": "Holiday home \U0001F3E1"})
+        assert not a.node(None, {"inscription": "Built \U0001F3E1 in 1900"})
+        self.check_err(a.node(None, {"name": "Cafe \U0001F3E1"}))
+        self.check_err(a.node(None, {"name:fr": "Cafe \U0001F3E1"}))
         # A symbol in a key is still reported, whatever the tag
-        self.check_err(a.node(None, {u"description\u2600": u"test"}))
+        self.check_err(a.node(None, {"description\u2600": "test"}))
 
     def test_NL(self):
         a = Name_Script(None)
