@@ -65,4 +65,4 @@ class Analyser_Merge_Road_FR(Analyser_Merge_Network):
                 mapping = Mapping(
                     static1 = {'highway': 'road'},
                     static2 = {'source': self.source},
-                    text = lambda tags, fields: {'en': ', '.join(filter(lambda x: x and x != 'None', set([fields['nature'], fields['nom_collaboratif_gauche'], fields['nom_collaboratif_droite'], fields['alias_gauche'], fields['alias_droit']]) ))} )))
+                    text = lambda tags, fields: {'en': ', '.join(filter(lambda x: x and x != 'None', {fields['nature'], fields['nom_collaboratif_gauche'], fields['nom_collaboratif_droite'], fields['alias_gauche'], fields['alias_droit']} ))} )))

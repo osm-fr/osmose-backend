@@ -43,7 +43,7 @@ However, this should probably still conform to the typical format used for value
 
         import re
         self.Values_open = re.compile("^[a-z0-9_]+( *; *[a-z0-9_]+)*$")
-        self.check_list_open = set((
+        self.check_list_open = {
             'abutters', 'admin_level', 'aerialway', 'aeroway', 'amenity',
             'barrier', 'bench', 'bicycle_parking', 'bin', 'border_type', 'boundary', 'bridge', 'building', 'bus_bay',
             'cemetery', 'club', 'construction', 'covered', 'craft', 'crossing_ref', 'cuisine', 'cutting', 'cycleway',
@@ -65,7 +65,7 @@ However, this should probably still conform to the typical format used for value
             'tactile_paving', 'toll', 'tourism', 'traffic_calming', 'trail_visibility', 'training', 'traffic_signals', 'tunnel',
             'usage', 'utility',
             'wall', 'water', 'waterway', 'wetland', 'wheelchair', 'wood'
-        ))
+        }
         self.check_list_open_node = self.check_list_open
         self.check_list_open_way = self.check_list_open
         self.check_list_open_relation = self.check_list_open.copy()

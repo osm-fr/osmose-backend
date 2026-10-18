@@ -573,7 +573,7 @@ class TestAnalyserOsmosis(TestAnalyser):
         self.config.error_file = IssuesFileOsmose.IssuesFileOsmose(self.xml_res_file)
         self.config.options = {"test": True, "project": "openstreetmap"}
         with Analyser_Sax(self.config) as analyser_obj:
-            analyser_obj.analyser_resume(dateutil.parser.parse("2012-07-18T11:04:56Z").replace(tzinfo=None), {'N': set([1]), 'W': set([24552698]), 'R': set()})
+            analyser_obj.analyser_resume(dateutil.parser.parse("2012-07-18T11:04:56Z").replace(tzinfo=None), {'N': {1}, 'W': {24552698}, 'R': set()})
 
         self.compare_results("tests/results/sax.test_resume.xml")
 
@@ -586,7 +586,7 @@ class TestAnalyserOsmosis(TestAnalyser):
         self.config.error_file = IssuesFileOsmose.IssuesFileOsmose(self.xml_res_file)
         self.config.options = {"test": True, "project": "openstreetmap"}
         with Analyser_Sax(self.config) as analyser_obj:
-            analyser_obj.analyser_resume(dateutil.parser.parse("2030-01-01T01:01:01Z").replace(tzinfo=None), {'N': set([1]), 'W': set([1000,1001]), 'R': set()})
+            analyser_obj.analyser_resume(dateutil.parser.parse("2030-01-01T01:01:01Z").replace(tzinfo=None), {'N': {1}, 'W': {1000,1001}, 'R': set()})
 
         self.compare_results("tests/results/sax.test_resume_empty.xml")
 

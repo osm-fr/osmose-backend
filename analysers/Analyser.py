@@ -45,7 +45,7 @@ class Analyser:
     @classmethod
     def def_class_(cls, config, back_in_stack = 2, **kwargs):
         # Check keys
-        diff_keys = set(kwargs.keys()) - set(['item', 'id', 'level', 'tags', 'title', 'detail', 'fix', 'trap', 'example', 'source', 'resource'])
+        diff_keys = set(kwargs.keys()) - {'item', 'id', 'level', 'tags', 'title', 'detail', 'fix', 'trap', 'example', 'source', 'resource'}
         if len(diff_keys) > 0:
             raise Exception('Unknown key ' + ', '.join(diff_keys))
 
@@ -438,7 +438,7 @@ class TestAnalyser(unittest.TestCase):
                               ' '.join(map(lambda elem: 'w' + elem.attrib.get('id', ''), e.findall('way'))) + ' ' +
                               ' '.join(map(lambda elem: 'n' + elem.attrib.get('id', ''), e.findall('node'))),
                     root_analyser.findall('error')))
-            non_unique = set([x for x in err_semihash if err_semihash.count(x) > 1])
+            non_unique = {x for x in err_semihash if err_semihash.count(x) > 1}
             assert len(non_unique) == 0, "Multiple errors having the same (sub)class and elements\n- " + '\n- '.join(non_unique)
 
 ###########################################################################

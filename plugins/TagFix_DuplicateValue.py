@@ -46,7 +46,7 @@ Ensure the interpretation of the tag does not change when you delete one item.''
             resource = 'https://en.wikipedia.org/wiki/Levenshtein_distance',
             **doc)
 
-        self.WhitelistSimilarEqual = set(( # Keys that can have similar and even equal values
+        self.WhitelistSimilarEqual = { # Keys that can have similar and even equal values
             'CLC:id', 'GNS:id', 'tmc', 'tiger:cfcc', 'statscan:rbuid', 'nysgissam:nysaddresspointid',
             'ref',
             'source:date',
@@ -58,8 +58,8 @@ Ensure the interpretation of the tag does not change when you delete one item.''
             'voltage',
             'addr:flats', 'addr:housenumber', 'addr:unit', 'addr:floor', 'addr:block', 'addr:door',
             'note', 'description', 'inscription', # Text; not ;-separated values
-        ))
-        self.WhitelistSimilar = set(( # Keys that can have similar, but not equal values
+        }
+        self.WhitelistSimilar = { # Keys that can have similar, but not equal values
             'source:geometry:ref', # Belgium, Flanders
             'gnis:id', 'gnis:feature_id', # USA
             'network:guid',
@@ -85,8 +85,8 @@ Ensure the interpretation of the tag does not change when you delete one item.''
             'historic:period',
             'charge',
             'social_facility:for',
-        ))
-        self.WhitelistSimilarEqualRegex = set(( # Regexes for keys that can have similar and even equal values
+        }
+        self.WhitelistSimilarEqualRegex = { # Regexes for keys that can have similar and even equal values
             re.compile('seamark:.+:colour'),
             re.compile('.+_ref'), re.compile('ref:.+'),
             re.compile('destination:.+'),
@@ -97,8 +97,8 @@ Ensure the interpretation of the tag does not change when you delete one item.''
             re.compile('turn:lanes.*'),
             re.compile('.+:conditional'), # More thorough check in ConditionalRestrictions plugin
             re.compile('socket:.+'),
-        ))
-        self.WhitelistSimilarRegex = set(( # Regexes for keys that can have similar, but not equal values
+        }
+        self.WhitelistSimilarRegex = { # Regexes for keys that can have similar, but not equal values
             re.compile('.+_name'),
             re.compile('.+:date'),
             re.compile('.+:colour'),
@@ -107,7 +107,7 @@ Ensure the interpretation of the tag does not change when you delete one item.''
             re.compile('(.+:)?wikidata'),
             re.compile('railway:signal:.+'),
             re.compile('contact:.+'),
-        ))
+        }
 
     # http://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance#Python
     def levenshtein(self, s1, s2):

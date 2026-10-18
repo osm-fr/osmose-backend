@@ -50,7 +50,7 @@ the separator '_' or ':'. See
         self.KeyPart1 = re.compile("^[a-zA-Z_0-9]+$")
         self.KeyPart1Less = re.compile("^[-.a-zA-Z_0-9]+$")
         self.KeyPart2 = re.compile("^[-_:a-zA-Z_0-9<>°]+$")
-        self.exceptions = set((
+        self.exceptions = {
             "ISO3166-1", "iso3166-1", "ISO3166-2", "iso3166-2",
             "USGS-LULC",
             "aims-id",
@@ -64,13 +64,13 @@ the separator '_' or ':'. See
             "cityracks.housenum", "cityracks.installed", "cityracks.large", "cityracks.rackid", "cityracks.small", "cityracks.street", # NYC amenity=bicycle_parking
             "strassen-nrw", # DE import
             "hazmat",
-        ))
+        }
 
-        self.exceptions_whole = set((
+        self.exceptions_whole = {
             "railway:memor2+", "railway:tbl1+",
             "ref:refuges.info", "ref:clochers.org",
             "ref:temples.ru", "ref:sobory.ru",
-        ))
+        }
     def node(self, data, tags):
         err = []
         keys = tags.keys()
