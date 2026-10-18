@@ -58,7 +58,7 @@ def load_dico(fichier, dico):
     # charge les définitions des suffixes (SFX)
     affixes = dict()
     try:
-        with open(fichier+'.aff', mode='r') as affix:
+        with open(fichier+'.aff') as affix:
             for aff in affix:
                 af = aff.split()
                 if len(af) == 4 and af[0] in ['SFX']:  # header
@@ -74,7 +74,7 @@ def load_dico(fichier, dico):
         pass
 
     # charge le contenu du dictionaire en appliquant préfixes/suffixes
-    with open(fichier+'.dic', mode='r') as dicco:
+    with open(fichier+'.dic') as dicco:
         for mot in dicco:
             mot = mot.replace('\n', '')
             load_word(mot, dico, affixes)
@@ -150,7 +150,7 @@ if __name__ == "__main__":
         reaccentue.py fichier.csv nom_colonne""")
     else:
         if bool(re.search('.csv$', sys.argv[1])):
-            with open(sys.argv[1], 'r') as in_file:
+            with open(sys.argv[1]) as in_file:
                 csv_in = csv.DictReader(in_file)
                 assert csv_in.fieldnames is not None
                 csv_out = csv.DictWriter(sys.stdout,

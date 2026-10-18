@@ -26,6 +26,6 @@ class Test(TestPluginCommon):
       # Existing blacklisted subclasses should be present as comments in the source file
       if "subclass_blacklist" in file_props:
         code_source = inspect.getsourcefile(n)
-        code = open(code_source, "r").read()
+        code = open(code_source).read()
         for blacklist_id in file_props["subclass_blacklist"]:
           assert str(blacklist_id) in code, "item_map.py: blacklist " + str(blacklist_id) + " doesn't exist anymore in " + file_id
