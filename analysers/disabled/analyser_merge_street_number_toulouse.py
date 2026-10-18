@@ -25,11 +25,11 @@ from .analyser_merge_street_number import _Analyser_Merge_Street_Number
 class Analyser_Merge_Street_Number_Toulouse(_Analyser_Merge_Street_Number):
     def __init__(self, config, logger = None):
         _Analyser_Merge_Street_Number.__init__(self, config, 1, "Toulouse", logger,
-            u"http://data.grandtoulouse.fr/les-donnees/-/opendata/card/12673-n-de-rue",
-            u"GrandToulouse-N° de rue",
+            "http://data.grandtoulouse.fr/les-donnees/-/opendata/card/12673-n-de-rue",
+            "GrandToulouse-N° de rue",
             CSV(Source(attribution = "ToulouseMetropole", millesime = "2012-10-04",
                     file = "address_france_toulouse.csv.bz2", bz2 = True),
-                separator = u";"),
+                separator = ";"),
             Load("X_WGS84", "Y_WGS84",
                 xFunction = Load.float_comma,
                 yFunction = Load.float_comma),

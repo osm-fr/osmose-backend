@@ -33,11 +33,11 @@ class Name_UpperCaseNumber(Plugin):
 '''Number written in capital letters: "N°" in place of "n°".'''))
 
         import re
-        self.ReNUpperCase  = re.compile(u"^(|.* )N(°[0-9]+)(| .*)$")
+        self.ReNUpperCase  = re.compile("^(|.* )N(°[0-9]+)(| .*)$")
 
     def node(self, data, tags):
         if "name" in tags:
-            name = tags[u"name"]
+            name = tags["name"]
             r = self.ReNUpperCase.match(name)
             if r:
                 return {"class": 905, "fix": {"name": "{0}n{1}{2}".format(r.group(1), r.group(2), r.group(3))}}
@@ -55,17 +55,17 @@ class Test(TestPluginCommon):
     def test(self):
         a = Name_UpperCaseNumber(None)
         a.init(None)
-        for n in [u"N°189",
-                  u"ue ure u N°18989 i ui, u",
-                  u"N°18989 i ui, u",
+        for n in ["N°189",
+                  "ue ure u N°18989 i ui, ",
+                  "N°18989 i ui, ",
                  ]:
             self.check_err(a.node(None, {"name": n}), n)
             self.check_err(a.way(None, {"name": n}, None), n)
             self.check_err(a.relation(None, {"name": n}, None), n)
 
-        for n in [u"n°189",
-                  u"ue ure u n°18989 i ui, u",
-                  u"n°18989 i ui, u",
+        for n in ["n°189",
+                  "ue ure u n°18989 i ui, ",
+                  "n°18989 i ui, ",
                  ]:
             assert not a.node(None, {"name": n}), n
             assert not a.way(None, {"name": n}, None), n

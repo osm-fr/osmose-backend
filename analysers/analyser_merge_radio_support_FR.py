@@ -45,7 +45,7 @@ class _Analyser_Merge_Radio_Support_FR(Analyser_Merge_Point):
             "Données sur les installations radioélectriques de plus de 5 watts",
             CSV(SourceDataGouv(attribution = "data.gouv.fr:ANFR",
                     dataset = "551d4ff3c751df55da0cd89f", resource = "b1d8a2a0-a68f-45a4-9b06-94b13ecb22ec", zip = "SUP_SUPPORT.txt", encoding = "ISO-8859-15"),
-                separator = ";", quote = u'$'),
+                separator = ";", quote = '$'),
             Load_XY(
 ("CASE \"COR_CD_EW_LON\" WHEN 'W' THEN -1*(to_number(\"COR_NB_DG_LON\", '99') + to_number(\"COR_NB_MN_LON\", '99') / 60 + to_number(\"COR_NB_SC_LON\", '99') / 3600) WHEN 'E' THEN to_number(\"COR_NB_DG_LON\", '99') + to_number(\"COR_NB_MN_LON\", '99') / 60 + to_number(\"COR_NB_SC_LON\", '99') / 3600 END",),
 ("CASE \"COR_CD_NS_LAT\" WHEN 'S' THEN -1*(to_number(\"COR_NB_DG_LAT\", '99') + to_number(\"COR_NB_MN_LAT\", '99') / 60 + to_number(\"COR_NB_SC_LAT\", '99') / 3600) WHEN 'N' THEN to_number(\"COR_NB_DG_LAT\", '99') + to_number(\"COR_NB_MN_LAT\", '99') / 60 + to_number(\"COR_NB_SC_LAT\", '99') / 3600 END",),
@@ -162,33 +162,33 @@ class _Analyser_Merge_Radio_Support_FR(Analyser_Merge_Point):
 
 class Analyser_Merge_Tour_Mat_Pylone(_Analyser_Merge_Radio_Support_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_Radio_Support_FR.__init__(self, config, logger, 0, [u'11', u'12', u'21', u'22', u'23', u'24', u'25', u'26', u'42', u'48'], "Tour, mât et pylône",
+        _Analyser_Merge_Radio_Support_FR.__init__(self, config, logger, 0, ['11', '12', '21', '22', '23', '24', '25', '26', '42', '48'], "Tour, mât et pylône",
                                                   [{"man_made": "tower","tower:type": "communication"},{"man_made": "mast","tower:type": "communication"},{"man_made": "communications_tower"}],
                                                   {"man_made": "mast","tower:type": "communication"})
 
 class Analyser_Merge_Tour_Hertzienne(_Analyser_Merge_Radio_Support_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_Radio_Support_FR.__init__(self, config, logger, 1, u'33', "Tour hertzienne",
+        _Analyser_Merge_Radio_Support_FR.__init__(self, config, logger, 1, '33', "Tour hertzienne",
                                                   [{"man_made": "tower","tower:type": "communication"},{"man_made": "mast","tower:type": "communication"},{"man_made": "communications_tower"}],
                                                   {"man_made": "communications_tower"})
 
 class Analyser_Merge_Tour_Controle(_Analyser_Merge_Radio_Support_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_Radio_Support_FR.__init__(self, config, logger, 2, u'44', "Tour de contrôle",
+        _Analyser_Merge_Radio_Support_FR.__init__(self, config, logger, 2, '44', "Tour de contrôle",
                                                   {"man_made": "tower", "service": "aircraft_control"}, {"man_made": "tower", "service": "aircraft_control"})
 
 class Analyser_Merge_Chateau_Eau(_Analyser_Merge_Radio_Support_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_Radio_Support_FR.__init__(self, config, logger, 3, u'4', "Château d'eau ou réservoir", {"man_made": "water_tower"}, {"man_made": "water_tower"})
+        _Analyser_Merge_Radio_Support_FR.__init__(self, config, logger, 3, '4', "Château d'eau ou réservoir", {"man_made": "water_tower"}, {"man_made": "water_tower"})
 
 class Analyser_Merge_Silo(_Analyser_Merge_Radio_Support_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_Radio_Support_FR.__init__(self, config, logger, 4, u'31', "Silo", {"man_made": "silo"}, {"man_made": "silo"})
+        _Analyser_Merge_Radio_Support_FR.__init__(self, config, logger, 4, '31', "Silo", {"man_made": "silo"}, {"man_made": "silo"})
 
 class Analyser_Merge_Phare(_Analyser_Merge_Radio_Support_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_Radio_Support_FR.__init__(self, config, logger, 5, u'41', "Phare", {"man_made": "lighthouse"}, {"man_made": "lighthouse"})
+        _Analyser_Merge_Radio_Support_FR.__init__(self, config, logger, 5, '41', "Phare", {"man_made": "lighthouse"}, {"man_made": "lighthouse"})
 
 class Analyser_Merge_Eolienne(_Analyser_Merge_Radio_Support_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_Radio_Support_FR.__init__(self, config, logger, 6, u'52', "Éolienne", {"power": "generator","generator:source": "wind"}, {"power": "generator","generator:source": "wind"})
+        _Analyser_Merge_Radio_Support_FR.__init__(self, config, logger, 6, '52', "Éolienne", {"power": "generator","generator:source": "wind"}, {"power": "generator","generator:source": "wind"})

@@ -140,10 +140,10 @@ class Test(TestPluginCommon):
         self.p = TagFix_Note_Lang_fr(None)
         self.p.init(None)
 
-    note_gen_err = [u"fix me", u"a corriger", u"Du lundi au vendredi", u"9h-12h/14h-17h", u"20091211", u"travaux", u"Salle des Fêtes", u"gendarmerie", u"See http://gpvlyonduchere", u"demolished"]
-    note_gen_no_err = [u"http://wiki.openstreetmap.org fix me",
-                       u"CLC import fix me",
-                       u"juste une note",
+    note_gen_err = ["fix me", "a corriger", "Du lundi au vendredi", "9h-12h/14h-17h", "20091211", "travaux", "Salle des Fêtes", "gendarmerie", "See http://gpvlyonduchere", "demolished"]
+    note_gen_no_err = ["http://wiki.openstreetmap.org fix me",
+                       "CLC import fix me",
+                       "juste une note",
                       ]
 
     def test_node(self):

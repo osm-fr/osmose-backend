@@ -53,11 +53,11 @@ def dl(url, local, logger=OsmoseLog.logger(), min_file_size=10*1024):
     # Retry on 404, workaround Geofabrik update in progress
     answer = downloader.request_get(url, headers=headers, session=downloader.requests_retry_session(status_forcelist=downloader.DEFAULT_RETRY_ON + (404, )))
     if answer.status_code == 304:
-        logger.log(u"not newer")
+        logger.log("not newer")
         return False
     if not answer.ok:
-        logger.log(u"got error %d" % answer.status_code)
-        logger.log(u"  URL=%s" % url)
+        logger.log("got error %d" % answer.status_code)
+        logger.log("  URL=%s" % url)
         answer.raise_for_status()
 
     url_ts = answer.headers.get('Last-Modified')
@@ -74,18 +74,18 @@ def dl(url, local, logger=OsmoseLog.logger(), min_file_size=10*1024):
             outfile.write(data)
 
     if not answer.headers.get('Content-Encoding') and file_size != os.path.getsize(file_dl):
-        logger.log(u"error: Download file (%d) not of the expected size (%d) for %s" % (os.path.getsize(file_dl), file_size, url))
+        logger.log("error: Download file (%d) not of the expected size (%d) for %s" % (os.path.getsize(file_dl), file_size, url))
         os.remove(file_dl)
         return False
 
     # uncompress
     if unzip:
-        logger.log(u"bunzip2")
+        logger.log("bunzip2")
         subprocess.check_output(['bunzip2', '-f', file_dl])
 
     # convert pbf to osm
     if convert_pbf:
-        logger.log(u"osmconvert")
+        logger.log("osmconvert")
         subprocess.check_output("{} {} > {}".format(config.bin_osmconvert, file_dl, local), shell=True)
         os.remove(file_dl)
 

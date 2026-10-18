@@ -27,7 +27,7 @@ class P_Name_PoorlyWrittenWayType(Plugin):
 
     def generator(self, p):
         (p1, p2) = p.split("|")
-        r = u"^(("
+        r = "^(("
         start = 0
         if self.toponymie:
             r += p1[0]  # keep first leter in uppercase
@@ -51,7 +51,7 @@ class P_Name_PoorlyWrittenWayType(Plugin):
 '''Write the name without any abbreviations and make sure the first letter is upper case.'''))
 
     def way(self, data, tags, nds):
-        if u"name" not in tags or u"highway" not in tags:
+        if "name" not in tags or "highway" not in tags:
             return
         name = tags["name"]
         for test in self.ReTests:

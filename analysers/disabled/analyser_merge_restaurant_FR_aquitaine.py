@@ -29,14 +29,14 @@ class Analyser_Merge_Restaurant_FR_aquitaine(Analyser_Merge):
             title = T_('Restaurant not integrated'))
 
         self.init(
-            u"http://catalogue.datalocale.fr/dataset/liste-restaurants-aquitaine",
-            u"Liste des restaurants en Aquitaine",
-            JSON(Source(attribution = u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com", millesime = "06/2016",
-                    fileUrl = u"http://wcf.tourinsoft.com/Syndication/aquitaine/e150e425-fbb6-4e32-916b-5bfc47171c3c/Objects?$format=json"),
+            "http://catalogue.datalocale.fr/dataset/liste-restaurants-aquitaine",
+            "Liste des restaurants en Aquitaine",
+            JSON(Source(attribution = "Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com", millesime = "06/2016",
+                    fileUrl = "http://wcf.tourinsoft.com/Syndication/aquitaine/e150e425-fbb6-4e32-916b-5bfc47171c3c/Objects?$format=json"),
                 extractor = lambda json: json['d']),
             Load("LON", "LAT",
                 select = {
-                    'TYPRES': [u"Restaurant", u"Hôtel restaurant", u"Ferme auberge"],
+                    'TYPRES': ["Restaurant", "Hôtel restaurant", "Ferme auberge"],
                     'CATRES': list(self.amenity_type.keys())},
                 xFunction = Load.degree,
                 yFunction = Load.degree),
@@ -51,59 +51,59 @@ class Analyser_Merge_Restaurant_FR_aquitaine(Analyser_Merge):
                         "amenity": lambda fields: self.amenity_type[fields["CATRES"]],
                         "name": "NOMOFFRE",
                         "ref:FR:CRTA": "SyndicObjectID",
-                        "tourism": lambda fields: "hotel" if fields["TYPRES"] == u"Hôtel restaurant" else None,
+                        "tourism": lambda fields: "hotel" if fields["TYPRES"] == "Hôtel restaurant" else None,
                         "cuisine": lambda fields: self.cuisine(fields),
-                        "diet:kosher": lambda fields: "yes" if fields["SPECIALITES"] and u"Cuisine casher" in fields["SPECIALITES"] else None,
-                        "diet:vegetarian ": lambda fields: "yes" if fields["SPECIALITES"] and u"Cuisine végétarienne" in fields["SPECIALITES"] else None,
-                        "organic": lambda fields: "only" if fields["SPECIALITES"] and u"Cuisine bio" in fields["SPECIALITES"] else None,
+                        "diet:kosher": lambda fields: "yes" if fields["SPECIALITES"] and "Cuisine casher" in fields["SPECIALITES"] else None,
+                        "diet:vegetarian ": lambda fields: "yes" if fields["SPECIALITES"] and "Cuisine végétarienne" in fields["SPECIALITES"] else None,
+                        "organic": lambda fields: "only" if fields["SPECIALITES"] and "Cuisine bio" in fields["SPECIALITES"] else None,
                         "website": lambda fields: None if not fields["URL"] else fields["URL"] if fields["URL"].startswith('http') else 'http://' + fields["URL"]},
                     text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x, [fields["TYPRES"], fields["CATRES"], fields["SPECIALITES"], fields["NOMOFFRE"], fields["AD1"], fields["AD1SUITE"], fields["AD2"], fields["AD3"], fields["CP"], fields["COMMUNE"]]))} )))
 
 
     amenity_type = {
-        u"Bistrot / bar à vin": "bar",
-        u"Brasserie": "restaurant",
-        u"Cafétéria": "restaurant",
-        u"Cidrerie": "pub",
-        u"Crêperie": "restaurant",
-        u"Grill": "restaurant",
-        u"Pizzeria": "restaurant",
-        u"Restaurant à thème": "restaurant",
-        u"Restaurant gastronomique": "restaurant",
-        u"Restaurant traditionnel": "restaurant",
-        u"Restauration rapide": "fast_food",
-        u"Rôtisserie": "restaurant",
-        u"Salon de thé": "cafe",
+        "Bistrot / bar à vin": "bar",
+        "Brasserie": "restaurant",
+        "Cafétéria": "restaurant",
+        "Cidrerie": "pub",
+        "Crêperie": "restaurant",
+        "Grill": "restaurant",
+        "Pizzeria": "restaurant",
+        "Restaurant à thème": "restaurant",
+        "Restaurant gastronomique": "restaurant",
+        "Restaurant traditionnel": "restaurant",
+        "Restauration rapide": "fast_food",
+        "Rôtisserie": "restaurant",
+        "Salon de thé": "cafe",
     }
 
     cuisine_categorie = {
-        u"Crêperie": "crepe",
-        u"Grill": "steak_house",
-        u"Pizzeria": "pizza",
-        u"Restaurant gastronomique": "fine_dining",
+        "Crêperie": "crepe",
+        "Grill": "steak_house",
+        "Pizzeria": "pizza",
+        "Restaurant gastronomique": "fine_dining",
     }
 
     cuisine_specialite = {
-        u"Cuisine africaine": "african",
-        u"Cuisine asiatique": "asian",
-#        u"Cuisine des Iles": "",
-#        u"Cuisine diététique": "",
-        u"Cuisine européenne": "european",
-        u"Cuisine gastronomique": "fine_dining",
-        u"Cuisine indienne": "indian",
-        u"Cuisine méditerranéenne": "mediterranean",
-        u"Cuisine nord-américaine": "american",
-        u"Cuisine sud-américaine": "latin_american",
-#        u"Cuisine traditionnelle": "regional",
-        u"Glaces": "ice_cream",
-#        u"Nouvelle cuisine française": "",
-        u"Poisson / fruits de mer": "seafood",
-        u"Régionale française": "regional",
-        u"Salades": "salad",
-        u"Sandwichs": "sandwich",
-        u"Tapas": "tapas",
-        u"Tartes": "pie",
-#        u"Viandes": "",
+        "Cuisine africaine": "african",
+        "Cuisine asiatique": "asian",
+#        "Cuisine des Iles": "",
+#        "Cuisine diététique": "",
+        "Cuisine européenne": "european",
+        "Cuisine gastronomique": "fine_dining",
+        "Cuisine indienne": "indian",
+        "Cuisine méditerranéenne": "mediterranean",
+        "Cuisine nord-américaine": "american",
+        "Cuisine sud-américaine": "latin_american",
+#        "Cuisine traditionnelle": "regional",
+        "Glaces": "ice_cream",
+#        "Nouvelle cuisine française": "",
+        "Poisson / fruits de mer": "seafood",
+        "Régionale française": "regional",
+        "Salades": "salad",
+        "Sandwichs": "sandwich",
+        "Tapas": "tapas",
+        "Tartes": "pie",
+#        "Viandes": "",
     }
 
     def cuisine(self, fields):
@@ -113,8 +113,8 @@ class Analyser_Merge_Restaurant_FR_aquitaine(Analyser_Merge):
                 return self.cuisine_categorie[categorie]
             if fields["SPECIALITES"] in self.cuisine_specialite:
                 return self.cuisine_specialite[fields["SPECIALITES"]]
-            if fields["SPECIALITES"] and (u"Régionale française" in fields["SPECIALITES"] or u"Cuisine traditionnelle" in fields["SPECIALITES"]):
+            if fields["SPECIALITES"] and ("Régionale française" in fields["SPECIALITES"] or "Cuisine traditionnelle" in fields["SPECIALITES"]):
                 return "regional"
-            if fields["SPECIALITES"] and u"Sandwichs" in fields["SPECIALITES"]:
+            if fields["SPECIALITES"] and "Sandwichs" in fields["SPECIALITES"]:
                 return "sandwich"
         return None

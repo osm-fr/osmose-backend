@@ -32,7 +32,7 @@ class TagFix_Tree(Plugin):
         allowed_leaf_type = ("broadleaved", "needleleaved", "leafless")
         allowed_leaf_cycle = ("evergreen", "deciduous")
 
-        data = urlread(u"https://wiki.openstreetmap.org/w/index.php?title=Tag:natural%3Dtree/List_of_Species&action=raw", 1)
+        data = urlread("https://wiki.openstreetmap.org/w/index.php?title=Tag:natural%3Dtree/List_of_Species&action=raw", 1)
         data = read_wiki_table(data)
         species_map = {}
         for row in data: # data: list of [species, genus, species:wikidata, leaf_cycle, leaf_type]

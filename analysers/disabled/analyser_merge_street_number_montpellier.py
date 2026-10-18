@@ -25,10 +25,10 @@ from .analyser_merge_street_number import _Analyser_Merge_Street_Number
 class Analyser_Merge_Street_Number_Montpellier(_Analyser_Merge_Street_Number):
     def __init__(self, config, logger = None):
         _Analyser_Merge_Street_Number.__init__(self, config, 5, "Montpellier", logger,
-            u"http://opendata.montpelliernumerique.fr/Point-adresse",
-            u"Ville de Montpellier - Point adresse",
+            "http://opendata.montpelliernumerique.fr/Point-adresse",
+            "Ville de Montpellier - Point adresse",
             # Convert shp with QGis, save as CSV with layer "GEOMETRY=AS_XY".
-            CSV(Source(attribution = u"Ville de Montpellier", millesime = "05/2016",
+            CSV(Source(attribution = "Ville de Montpellier", millesime = "05/2016",
                     file = "address_france_montpellier.csv.bz2", bz2 = True),
                 srid = 2154),
             Load("X", "Y",

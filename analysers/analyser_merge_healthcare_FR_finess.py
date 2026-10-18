@@ -110,8 +110,8 @@ class Source_Finess(SourceDataGouv):
         self.encoding = 'UTF-8'
         f = super().open()
 
-        csvreader = csv.reader(f, delimiter=u';')
-        structureet = [u'nofinesset,nofinessej,rs,rslongue,complrs,compldistrib,numvoie,typvoie,voie,compvoie,lieuditbp,commune,departement,libdepartement,ligneacheminement,telephone,telecopie,categetab,libcategetab,categagretab,libcategagretab,siret,codeape,codemft,libmft,codesph,libsph,dateouv,dateautor,datemaj,numuai,coordxet,coordyet,sourcecoordet,datemajcoord'.split(',')]
+        csvreader = csv.reader(f, delimiter=';')
+        structureet = ['nofinesset,nofinessej,rs,rslongue,complrs,compldistrib,numvoie,typvoie,voie,compvoie,lieuditbp,commune,departement,libdepartement,ligneacheminement,telephone,telecopie,categetab,libcategetab,categagretab,libcategagretab,siret,codeape,codemft,libmft,codesph,libsph,dateouv,dateautor,datemaj,numuai,coordxet,coordyet,sourcecoordet,datemajcoord'.split(',')]
         geolocalisation = {}
         for row in csvreader:
             if row[0] == 'structureet':

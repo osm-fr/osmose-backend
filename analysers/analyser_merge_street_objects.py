@@ -49,7 +49,7 @@ class SubAnalyser_Merge_Street_Objects(SubAnalyser_Merge_Dynamic):
 
         self.init(
             "https://www.mapillary.com",
-            u"Street Objects from Street-level imagery",
+            "Street Objects from Street-level imagery",
             CSV(Source(attribution = "Mapillary Street Objects", fileUrl = f"http://proxy.osmose.openstreetmap.fr/mapillary/mapillary_objects-{config.osmosis_manager.db_schema}.csv.bz2", bz2 = True)),
             Load_XY("lon", "lat",
                 select = {"value": object}),

@@ -38,77 +38,77 @@ IGN (French geographic name conventions)'''),
             resource = 'https://web.archive.org/web/2019/http://education.ign.fr/sites/all/files/charte_toponymie_ign.pdf')
 
         # article 4.9 Majuscules et minuscules
-        special  = [u""]
+        special  = [""]
 
-        special += [u"j", u"d", u"l", u"n", u"h"]
+        special += ["j", "d", "l", "n", "h"]
 
-        special += [u"della"] # way 43563373
-        special += [u"on"]    # Newark on Tren way/23791990
-        special += [u"dit"]   # way/32519405
-        special += [u"dite"]   # way/32519405
-        special += [u"qui"]   # way/22790488
-        special += [u"von"]   # way/8481714
-        special += [u"van"]   # way/4254712
-        special += [u"dal"]   # way/41271222
+        special += ["della"] # way 43563373
+        special += ["on"]    # Newark on Tren way/23791990
+        special += ["dit"]   # way/32519405
+        special += ["dite"]   # way/32519405
+        special += ["qui"]   # way/22790488
+        special += ["von"]   # way/8481714
+        special += ["van"]   # way/4254712
+        special += ["dal"]   # way/41271222
 
-        special += [u"mon",u"ma",u"mes",u"ton",u"ta",u"tes",u"son",u"sa",u"ses",u"votre",u"vos",u"leur",u"leurs"]
+        special += ["mon","ma","mes","ton","ta","tes","son","sa","ses","votre","vos","leur","leurs"]
 
-        special += [u"bis", u"ter"]
+        special += ["bis", "ter"]
 
-        special += [u"le", u"la", u"les", u"l", u"un", u"une"]
+        special += ["le", "la", "les", "l", "un", "une"]
 
-        special += [u"a", u"al", u"als", u"an", u"ar", u"d", u"das", u"de",
-                    u"dem", u"den", u"der", u"die", u"e", u"ech", u"el",
-                    u"éla", u"els", u"en", u"er", u"era", u"ero", u"et",
-                    u"eul", u"eun", u"eur", u"gli", u"het", u"i", u"las",
-                    u"lé", u"lo", u"los", u"lou", u"lous", u"s", u"t",
-                    u"u", u"ul", u"ur"]
+        special += ["a", "al", "als", "an", "ar", "d", "das", "de",
+                    "dem", "den", "der", "die", "e", "ech", "el",
+                    "éla", "els", "en", "er", "era", "ero", "et",
+                    "eul", "eun", "eur", "gli", "het", "i", "las",
+                    "lé", "lo", "los", "lou", "lous", "s", "t",
+                    "u", "ul", "ur"]
 
-        special += [u"au", u"aux", u"du", u"des", u"ès"]
+        special += ["au", "aux", "du", "des", "ès"]
 
-        special += [u"â", u"agli", u"ai", u"al", u"als", u"am", u"as", u"beim",
-                    u"dei", u"del", u"dels", u"det", u"dets", u"em", u"im",
-                    u"um", u"vom", u"zum", u"zur"]
+        special += ["â", "agli", "ai", "al", "als", "am", "as", "beim",
+                    "dei", "del", "dels", "det", "dets", "em", "im",
+                    "um", "vom", "zum", "zur"]
 
-        special += [u"à", u"à-bas", u"à-haut", u"au-deçà", u"au-delà", u"au-dessous",
-                    u"au-dessus", u"auprès", u"bien", u"chez", u"ci-devant", u"contre",
-                    u"d'", u"dans", u"de", u"deçà", u"de-ci", u"delà", u"de-là",
-                    u"derrière", u"dessous", u"dessus", u"devant", u"en", u"entre",
-                    u"et", u"face (à)", u"lès", u"lez", u"loin", u"(de)", u"mal",
-                    u"malgré", u"mi", u"non", u"ou", u"où", u"outre", u"outre-mer",
-                    u"outre-tombe", u"outre-Rhin", u"par", u"par-delà", u"par-dessous",
-                    u"par-dessus", u"peu", u"près", u"sans", u"sauf", u"sous", u"sur",
-                    u"sus", u"tard", u"tout", u"très", u"vers", u"vis-à-vis"]
+        special += ["à", "à-bas", "à-haut", "au-deçà", "au-delà", "au-dessous",
+                    "au-dessus", "auprès", "bien", "chez", "ci-devant", "contre",
+                    "d'", "dans", "de", "deçà", "de-ci", "delà", "de-là",
+                    "derrière", "dessous", "dessus", "devant", "en", "entre",
+                    "et", "face (à)", "lès", "lez", "loin", "(de)", "mal",
+                    "malgré", "mi", "non", "ou", "où", "outre", "outre-mer",
+                    "outre-tombe", "outre-Rhin", "par", "par-delà", "par-dessous",
+                    "par-dessus", "peu", "près", "sans", "sauf", "sous", "sur",
+                    "sus", "tard", "tout", "très", "vers", "vis-à-vis"]
 
-        special += [u"a", u"auf", u"bei", u"cal", u"can", u"d'al laez", u"dalaé",
-                    u"darios", u"darré", u"debas", u"débas", u"debat", u"débat",
-                    u"delai", u"detras", u"di", u"durch", u"hinter", u"in", u"nieder",
-                    u"oben", u"ober", u"op", u"over", u"soubre", u"soubré", u"tras",
-                    u"tré", u"ueber", u"unter", u"vor", u"vorder", u"zu", u"zwischen",
-                    u"dell", u"delle", u"alla", u"da", u"to", u"ins", u"dera", u"deth",
-                    u"deths", u"y", u"alten"]
+        special += ["a", "auf", "bei", "cal", "can", "d'al laez", "dalaé",
+                    "darios", "darré", "debas", "débas", "debat", "débat",
+                    "delai", "detras", "di", "durch", "hinter", "in", "nieder",
+                    "oben", "ober", "op", "over", "soubre", "soubré", "tras",
+                    "tré", "ueber", "unter", "vor", "vorder", "zu", "zwischen",
+                    "dell", "delle", "alla", "da", "to", "ins", "dera", "deth",
+                    "deths", "y", "alten"]
 
-        special += [u"dou", u"es", u"und"]
+        special += ["dou", "es", "und"]
 
-        special += [u"deu", u"dous"] # parlé Gascon (F. Rodrigo)
+        special += ["deu", "dous"] # parlé Gascon (F. Rodrigo)
 
-        special += [u"rural", u"exploitation"] # Chemin rural / Chemin d'exploitation
+        special += ["rural", "exploitation"] # Chemin rural / Chemin d'exploitation
 
-        special += [u"do"]
+        special += ["do"]
 
         self.special = set(special)
 
-        self.minus = u"abcdefghijklmnopqrstuvwxyzàäâéèëêïîöôüûÿ"
+        self.minus = "abcdefghijklmnopqrstuvwxyzàäâéèëêïîöôüûÿ"
 
         # Les apostrophes sont replacées par des caractères à usage privé d'Unicode
-        apost_subst = {u"'": u"\ue000", u"’": u"\ue001", u"&apos;": u"\ue002"}
-        special_with_apost = [u"c'h", u"C'h", u"prud'homme", u"Prud'homme"]
+        apost_subst = {"'": "\ue000", "’": "\ue001", "&apos;": "\ue002"}
+        special_with_apost = ["c'h", "C'h", "prud'homme", "Prud'homme"]
 
         self.special_subst = dict()
         for x in special_with_apost:
             for k, v in apost_subst.items():
-                before = x.replace(u"'", k)
-                after  = x.replace(u"'", v)
+                before = x.replace("'", k)
+                after  = x.replace("'", v)
                 self.special_subst[before] = after
 
     def apply_special_subst(self, name):
@@ -122,18 +122,18 @@ IGN (French geographic name conventions)'''),
         return name
 
     def _split(self, name):
-        for x in [u" ", u"’", u"\xa0", u"°", u"'", u"&amp;", u"&apos;", u"&quot;", u"/", u")", u"-", u"\"", u";", u".", u":", u"+", u"?", u"!", u",", u"|", u"*", u"Â°", u"_", u"="]:
+        for x in [" ", "’", "\xa0", "°", "'", "&amp;", "&apos;", "&quot;", "/", ")", "-", "\"", ";", ".", ":", "+", "?", "!", ",", "|", "*", "Â°", "_", "="]:
             name = name.replace(x, "\xffff{0}\xffff".format(x))
-        return name.split(u"\xffff")
+        return name.split("\xffff")
 
     def node(self, data, tags):
-        if u"name" not in tags:
+        if "name" not in tags:
             return
-        if (u"highway" not in tags) and (u"waterway" not in tags) and (u"place" not in tags):
+        if ("highway" not in tags) and ("waterway" not in tags) and ("place" not in tags):
             return
         words = []
 
-        name = tags[u"name"]
+        name = tags["name"]
         name_subst = self.apply_special_subst(name)
         split = self._split(name_subst)
         for i in range(0, len(split), 2):
@@ -151,7 +151,7 @@ IGN (French geographic name conventions)'''),
                 words.append(word)
                 splitfix[i] = split[i].capitalize()
         if words:
-            return {"class": 906, "subclass": stablehash64(','.join(words)), "text": T_("Missing capital letter for: {0}", u", ".join(sorted(set(words)))),
+            return {"class": 906, "subclass": stablehash64(','.join(words)), "text": T_("Missing capital letter for: {0}", ", ".join(sorted(set(words)))),
                      "fix": {"name": "".join(splitfix)} }
         return
 

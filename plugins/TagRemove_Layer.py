@@ -47,27 +47,27 @@ class TagRemove_Layer(Plugin):
             title = T_('Long Waterway/water above ground and no bridge'))
 
     def way(self, data, tags, nds):
-        if tags.get(u"layer") and tags.get(u"layer") != "0":
-            layer = tags.get(u"layer")
-            if tags.get(u"landuse"):
+        if tags.get("layer") and tags.get("layer") != "0":
+            layer = tags.get("layer")
+            if tags.get("landuse"):
                 return {"class": 41101, "subclass": 0}
-            elif tags.get(u"natural") and layer[0] == '-' and tags.get(u"natural") != "water":
+            elif tags.get("natural") and layer[0] == '-' and tags.get("natural") != "water":
                 return {"class": 41102, "subclass": 0}
-            elif tags.get(u"highway") and tags.get(u"highway") != "steps" and (not tags.get(u"indoor") or tags.get(u"indoor") == "no"):
-                if layer[0] == "-" and (not tags.get(u"tunnel") or tags.get(u"tunnel") == "no"):
+            elif tags.get("highway") and tags.get("highway") != "steps" and (not tags.get("indoor") or tags.get("indoor") == "no"):
+                if layer[0] == "-" and (not tags.get("tunnel") or tags.get("tunnel") == "no"):
                     return {"class": 41104 if len(nds) > 3 else 41103, "subclass": 0}
-                elif layer[0] != "-" and (not tags.get(u"bridge") or tags.get(u"bridge") == "no") and tags.get(u"man_made") != "pier" and tags.get("location") != "roof":
+                elif layer[0] != "-" and (not tags.get("bridge") or tags.get("bridge") == "no") and tags.get("man_made") != "pier" and tags.get("location") != "roof":
                     if len(nds) > 3:
                         return {"class": 41106, "subclass": 0, "fix": {"-": ["layer"]}}
                     else:
                         return {"class": 41105, "subclass": 0, "fix": {"+": {"bridge": "yes"}}}
-            elif tags.get(u"waterway") or ((tags.get(u"natural") and tags.get(u"natural") == "water")):
-                if layer[0] == "-" and (not tags.get(u"tunnel") or tags.get(u"tunnel") == "no") and (not tags.get(u"location") or tags.get(u"location") != "underground"):
+            elif tags.get("waterway") or ((tags.get("natural") and tags.get("natural") == "water")):
+                if layer[0] == "-" and (not tags.get("tunnel") or tags.get("tunnel") == "no") and (not tags.get("location") or tags.get("location") != "underground"):
                     if len(nds) > 3:
                         return {"class": 41108, "subclass": 0, "fix": {"-": ["layer"]}}
                     else:
                         return {"class": 41107, "subclass": 0}
-                elif layer[0] != "-" and (not tags.get(u"bridge") or tags.get(u"bridge") == "no"):
+                elif layer[0] != "-" and (not tags.get("bridge") or tags.get("bridge") == "no"):
                     return {"class": 41100 if len(nds) > 3 else 41109, "subclass": 0}
 
 

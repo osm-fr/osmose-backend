@@ -28,7 +28,7 @@ class Analyser_Merge_Street_Number_Arles(_Analyser_Merge_Street_Number):
             "http://metadonnees.agglo-accm.fr/geosource/srv/fre/catalog.search#/metadata/1e251473-4dc0-4f03-bb89-aa54269c8e3f",
             "Adresses postales",
             SHP(Source(attribution = "Arles Crau Camargue Montagnette", millesime = "08/2020",
-                    fileUrl = u"http://webcarto.agglo-accm.fr/ressources/donnees_ouvertes/adresse.adr_accm_adresse.zip"),
+                    fileUrl = "http://webcarto.agglo-accm.fr/ressources/donnees_ouvertes/adresse.adr_accm_adresse.zip"),
                 zip = "adr_accm_adresse.shp"),
             LoadGeomCentroid(),
             Conflate(

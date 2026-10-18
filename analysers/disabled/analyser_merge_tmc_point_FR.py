@@ -33,10 +33,10 @@ class _Analyser_Merge_TMC_Point_FR(Analyser_Merge):
 '''TMC data may be wrong or poorly located.'''))
 
         self.init(
-            u"http://diffusion-numerique.info-routiere.gouv.fr/tables-alert-c-a4.html",
+            "http://diffusion-numerique.info-routiere.gouv.fr/tables-alert-c-a4.html",
             "Alert-C-point",
-            CSV(Source(fileUrl = u"http://diffusion-numerique.info-routiere.gouv.fr/IMG/zip/cd_alert_c_v12.1.zip", zip = "Data/Mff/POINTS.DAT"),
-                separator = u";"),
+            CSV(Source(fileUrl = "http://diffusion-numerique.info-routiere.gouv.fr/IMG/zip/cd_alert_c_v12.1.zip", zip = "Data/Mff/POINTS.DAT"),
+                separator = ";"),
             Load("XCOORD", "YCOORD",
                 xFunction = lambda x: float(x)/100000,
                 yFunction = lambda y: float(y)/100000,
@@ -52,7 +52,7 @@ class Analyser_Merge_TMC_Point_Bridge_Fr(_Analyser_Merge_TMC_Point_FR):
     def __init__(self, config, logger = None):
         _Analyser_Merge_TMC_Point_FR.__init__(self, config, logger,
             2,
-            T_(u"Bridge missing (TMC)"),
+            T_("Bridge missing (TMC)"),
             {"highway": ["motorway", "motorway_link", "trunk", "trunk_link", "primary", "primary_link", "secondary", "secondary_link", "tertiary", "tertiary_link"], "bridge": None},
             ["ways"],
             "P", 3, 1,
@@ -62,7 +62,7 @@ class Analyser_Merge_TMC_Point_Rest_Area_Fr(_Analyser_Merge_TMC_Point_FR):
     def __init__(self, config, logger = None):
         _Analyser_Merge_TMC_Point_FR.__init__(self, config, logger,
             1,
-            T_(u"Rest area missing"),
+            T_("Rest area missing"),
             {"highway": "rest_area"},
             ["nodes", "ways"],
             "P", 3, 4,
@@ -72,7 +72,7 @@ class Analyser_Merge_TMC_Point_Roundabout_Fr(_Analyser_Merge_TMC_Point_FR):
     def __init__(self, config, logger = None):
         _Analyser_Merge_TMC_Point_FR.__init__(self, config, logger,
             2,
-            T_(u"Roundabout missing (TMC)"),
+            T_("Roundabout missing (TMC)"),
             {"highway": ["motorway", "motorway_link", "trunk", "trunk_link", "primary", "primary_link", "secondary", "secondary_link", "tertiary", "tertiary_link"], "junction": "roundabout"},
             ["ways"],
             "P", 1, 8,
@@ -82,7 +82,7 @@ class Analyser_Merge_TMC_Point_Services_Fr(_Analyser_Merge_TMC_Point_FR):
     def __init__(self, config, logger = None):
         _Analyser_Merge_TMC_Point_FR.__init__(self, config, logger,
             2,
-            T_(u"Services area missing (TMC)"),
+            T_("Services area missing (TMC)"),
             {"highway": "services"},
             ["nodes", "ways"],
             "P", 3, 3,
@@ -92,7 +92,7 @@ class Analyser_Merge_TMC_Point_Toll_Booth_Fr(_Analyser_Merge_TMC_Point_FR):
     def __init__(self, config, logger = None):
         _Analyser_Merge_TMC_Point_FR.__init__(self, config, logger,
             1,
-            T_(u"Toll missing (TMC)"),
+            T_("Toll missing (TMC)"),
             {"barrier": "toll_booth"},
             ["nodes", "ways"],
             "P", 3, 16,
@@ -102,7 +102,7 @@ class Analyser_Merge_TMC_Point_Traffic_Signals_Fr(_Analyser_Merge_TMC_Point_FR):
     def __init__(self, config, logger = None):
         _Analyser_Merge_TMC_Point_FR.__init__(self, config, logger,
             2,
-            T_(u"Traffic signals missing (TMC)"),
+            T_("Traffic signals missing (TMC)"),
             {"highway": "traffic_signals"},
             ["nodes"],
             "P", 1, 10,
@@ -112,7 +112,7 @@ class Analyser_Merge_TMC_Point_Tunnel_Fr(_Analyser_Merge_TMC_Point_FR):
     def __init__(self, config, logger = None):
         _Analyser_Merge_TMC_Point_FR.__init__(self, config, logger,
             1,
-            T_(u"Tunnel missing (TMC)"),
+            T_("Tunnel missing (TMC)"),
             {"highway": ["motorway", "motorway_link", "trunk", "trunk_link", "primary", "primary_link", "secondary", "secondary_link", "tertiary", "tertiary_link"], "tunnel": None},
             ["ways"],
             "P", 3, 5,

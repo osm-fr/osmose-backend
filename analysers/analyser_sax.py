@@ -48,7 +48,7 @@ class Analyser_Sax(Analyser):
 
     def __exit__(self, exc_type, exc_value, traceback):
         # close database connections
-        self._log(u"Closing reader and parser")
+        self._log("Closing reader and parser")
         del self.parser
         del self._reader
         Analyser.__exit__(self, exc_type, exc_value, traceback)
@@ -170,7 +170,7 @@ class Analyser_Sax(Analyser):
     def NodeCreate(self, data):
         # Initialisation
         err  = []
-        tags = data[u"tag"]
+        tags = data["tag"]
 
         if tags == {}:
             return
@@ -227,8 +227,8 @@ class Analyser_Sax(Analyser):
     def WayCreate(self, data):
         # Initialisation
         err  = []
-        tags = data[u"tag"]
-        nds  = data[u"nd"]
+        tags = data["tag"]
+        nds  = data["nd"]
 
         # Run jobs
         for meth in self.pluginsWayMethodes:
@@ -253,7 +253,7 @@ class Analyser_Sax(Analyser):
                     data = tmp_data
             node = self.NodeGet(nds[len(nds)//2])
             if not node:
-                node = {u"lat":0, u"lon":0}
+                node = {"lat":0, "lon":0}
             data = self.ExtendData(data)
             for e in err:
                 try:
@@ -288,23 +288,23 @@ class Analyser_Sax(Analyser):
 
     def locateRelation(self, data, recur_control = []):
         node = None
-        for memb in data[u"member"]:
-            if memb[u"type"] == u"node":
-                node = self.NodeGet(memb[u"ref"])
-            elif memb[u"type"] == "way":
-                way = self.WayGet(memb[u"ref"])
+        for memb in data["member"]:
+            if memb["type"] == "node":
+                node = self.NodeGet(memb["ref"])
+            elif memb["type"] == "way":
+                way = self.WayGet(memb["ref"])
                 if way:
-                    node = self.NodeGet(way[u"nd"][0])
+                    node = self.NodeGet(way["nd"][0])
             if node:
                 break
         if not node:
-            for memb in data[u"member"]:
-                if memb[u"type"] == u"relation":
-                    ref = memb[u"ref"]
+            for memb in data["member"]:
+                if memb["type"] == "relation":
+                    ref = memb["ref"]
                     if ref == data["id"] or ref in recur_control:
                         # don't reread the same relation
                         continue
-                    rel = self.RelationGet(memb[u"ref"])
+                    rel = self.RelationGet(memb["ref"])
                     if rel:
                         node = self.locateRelation(rel, recur_control=recur_control+[data["id"]])
                 if node:
@@ -314,8 +314,8 @@ class Analyser_Sax(Analyser):
     def RelationCreate(self, data):
         # Initialisation
         err  = []
-        tags = data[u"tag"]
-        members = data[u"member"]
+        tags = data["tag"]
+        members = data["member"]
 
         # Run jobs
         for meth in self.pluginsRelationMethodes:
@@ -331,12 +331,12 @@ class Analyser_Sax(Analyser):
                     err += res
 
         # Write the issues
-        if err and data[u"member"]:
+        if err and data["member"]:
             if not "uid" in data and not "user" in data:
                 data = self.RelationGet(data["id"]) or data
             node = self.locateRelation(data)
             if not node:
-                node = {u"lat":0, u"lon":0}
+                node = {"lat":0, "lon":0}
             data = self.ExtendData(data)
             for e in err:
                 try:
@@ -398,10 +398,10 @@ class Analyser_Sax(Analyser):
             return getattr(module, plugin)
 
     def _load_all_plugins(self):
-        self._log(u"Loading plugins")
+        self._log("Loading plugins")
 
         available_plugins = []
-        for plugin in sorted(self.ToolsListDir(u"plugins")):
+        for plugin in sorted(self.ToolsListDir("plugins")):
             if not plugin.endswith(".py") or plugin in ("__init__.py", "Plugin.py"):
                 continue
             pluginName = plugin[:-3]
@@ -428,21 +428,21 @@ class Analyser_Sax(Analyser):
         for pluginClazz in available_plugin_classes:
             if "only_for" in dir(pluginClazz):
                 if not any(map(lambda of: any(map(lambda co: co.startswith(of), conf_limit)), pluginClazz.only_for)):
-                    self._sublog(u"skip "+pluginClazz.__name__)
+                    self._sublog("skip "+pluginClazz.__name__)
                     continue
 
             if "not_for" in dir(pluginClazz):
                 if any(map(lambda of: any(map(lambda co: co.startswith(of), conf_limit)), pluginClazz.not_for)):
-                    self._sublog(u"skip "+pluginClazz.__name__)
+                    self._sublog("skip "+pluginClazz.__name__)
                     continue
 
             # Plugin Initialisation
             pluginInstance = pluginClazz(self)
             if pluginInstance.init(self.logger.sub().sub()) is False:
-                self._sublog(u"self-disabled "+pluginClazz.__name__)
+                self._sublog("self-disabled "+pluginClazz.__name__)
                 continue
             else:
-                self._sublog(u"init "+pluginClazz.__name__+" ("+", ".join(pluginInstance.availableMethodes())+")")
+                self._sublog("init "+pluginClazz.__name__+" ("+", ".join(pluginInstance.availableMethodes())+")")
 
                 pluginAvailableMethodes = pluginInstance.availableMethodes()
                 self.plugins[pluginClazz.__name__] = pluginInstance
@@ -485,9 +485,9 @@ class Analyser_Sax(Analyser):
     ################################################################################
 
     def _run_analyse(self):
-        self._log(u"Analysing file "+self.config.src)
+        self._log("Analysing file "+self.config.src)
         self.parser.CopyTo(self)
-        self._log(u"Analyse finished")
+        self._log("Analyse finished")
 
     ################################################################################
 

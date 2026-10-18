@@ -43,13 +43,13 @@ class Analyser_Merge_Geodesie(Analyser_Merge_Point):
             **doc)
 
         self.init(
-            u"http://geodesie.ign.fr",
-            u"Fiches géodésiques",
+            "http://geodesie.ign.fr",
+            "Fiches géodésiques",
             CSV(Source(attribution = "©IGN {0} dans le cadre de la cartographie réglementaire", millesime = "2010",
                     file = "geodesie.csv.bz2", bz2 = True),
                 header = False),
             Load_XY("lon", "lat",
-                where = lambda res: not (u'Point constaté détruit' in res[u'description'] or u'Point non retrouvé' in res[u'description']), # No more unique ref
+                where = lambda res: not ('Point constaté détruit' in res['description'] or 'Point non retrouvé' in res['description']), # No more unique ref
                 create = """
                     id VARCHAR(254) PRIMARY KEY,
                     lat VARCHAR(254),
@@ -67,7 +67,7 @@ class Analyser_Merge_Geodesie(Analyser_Merge_Point):
                     static1 = {
                         "man_made": "survey_point"},
                     static2 = {
-                        "note": u"Ne pas déplacer ce point, cf. - Do not move this node, see - http://wiki.openstreetmap.org/wiki/WikiProject_France/Repères_Géodésiques#Permanence_des_rep.C3.A8res",
+                        "note": "Ne pas déplacer ce point, cf. - Do not move this node, see - http://wiki.openstreetmap.org/wiki/WikiProject_France/Repères_Géodésiques#Permanence_des_rep.C3.A8res",
                         "source": self.source},
                     mapping1 = {
                         "ref": "ref",
@@ -85,8 +85,8 @@ class Analyser_Merge_Geodesie_Site(Analyser_Merge_Point):
             **doc)
 
         self.init(
-            u"http://geodesie.ign.fr",
-            u"Fiches géodésiques-site",
+            "http://geodesie.ign.fr",
+            "Fiches géodésiques-site",
             CSV(Source(attribution = "©IGN {0} dans le cadre de la cartographie réglementaire", millesime = "2010",
                     file = "geodesie_site.csv.bz2", bz2 = True),
                 header = False),

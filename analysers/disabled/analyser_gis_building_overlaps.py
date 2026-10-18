@@ -55,15 +55,15 @@ class Analyser_Gis_Building_Overlaps(Analyser):
     sql4 = "DROP TABLE %s_building;"%(self.config.db_schema)
 
     ## gis querries
-    self.logger.log(u"create building table")
+    self.logger.log("create building table")
     giscurs.execute(sql1)
-    self.logger.log(u"create building index")
+    self.logger.log("create building index")
     giscurs.execute(sql2)
-    self.logger.log(u"analyse overlap")
+    self.logger.log("analyse overlap")
     giscurs.execute(sql3)
 
     ## format results to outxml
-    self.logger.log(u"generate xml")
+    self.logger.log("generate xml")
     while True:
         many = giscurs.fetchmany(1000)
         if not many:
@@ -82,5 +82,5 @@ class Analyser_Gis_Building_Overlaps(Analyser):
     outxml.endElement("analyser")
     outxml._out.close()
 
-    #self.logger.log(u"delete building table/index")
+    #self.logger.log("delete building table/index")
     #giscurs.execute(sql4)

@@ -34,10 +34,10 @@ class Name_Spaces(Plugin):
             return
 
         err = []
-        name = tags[u"name"]
-        if u"  " in name:
+        name = tags["name"]
+        if "  " in name:
             err.append({"class": 903, "subclass": 0, "text": T_("Name contains successive spaces")})
-        if name.endswith(u" "):
+        if name.endswith(" "):
             err.append({"class": 903, "subclass": 1, "text": T_("Name ends with a space")})
         if name.startswith(" "):
             err.append({"class": 903, "subclass": 2, "text": T_("Name begins with a space")})
@@ -62,18 +62,18 @@ class Test(TestPluginCommon):
     def test(self):
         a = Name_Spaces(None)
         a.init(None)
-        for name in [u"ertaue u",
-                     u"",
-                     u"auieaue",
-                     u"éeuguiqe",
+        for name in ["ertaue u",
+                     "",
+                     "auieaue",
+                     "éeuguiqe",
                     ]:
             assert not a.node(None, {"name": name}), name
 
-        for name in [u"    uertaue u   ",
-                     u"   ",
-                     u" auieaue",
-                     u"éeuguiqe ",
-                     u"a  b",
+        for name in ["    uertaue u   ",
+                     "   ",
+                     " auieaue",
+                     "éeuguiqe ",
+                     "a  b",
                     ]:
             assert not a.node(None, {"highway": name}), name
             self.check_err(a.node(None, {"name": name}), name)

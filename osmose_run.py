@@ -77,7 +77,7 @@ def check(conf, logger, options):
             needed_space = options.minimum_free_space*1024*1024*1024
 
             if free_space < needed_space:
-                err_msg = u"directory '%s' has %.2f GB free instead of %.2f GB " % (i, free_space / (1024.*1024*1024), options.minimum_free_space)
+                err_msg = "directory '%s' has %.2f GB free instead of %.2f GB " % (i, free_space / (1024.*1024*1024), options.minimum_free_space)
                 logger.err(err_msg)
                 logger.send_alert_email(options.alert_emails, err_msg)
                 return 0x20
@@ -168,7 +168,7 @@ def execc(conf, logger, analysers, options, osmosis_manager):
                     logger.log("Update with diff fails. Fallback to download.")
 
             if not newer:
-                logger.log(logger.log_av_r+u"downloading "+conf.download["url"]+logger.log_ap)
+                logger.log(logger.log_av_r+"downloading "+conf.download["url"]+logger.log_ap)
                 newer = download.dl(conf.download["url"], conf.download["dst"], logger.sub(),
                                     min_file_size=8*1024)
 
@@ -311,7 +311,7 @@ def execc(conf, logger, analysers, options, osmosis_manager):
                                         logger.sub().sub().sub().err('got an HTTP timeout status')
                                     else:
                                         dt = r.text.strip()
-                                        logger.sub().sub().sub().err(u"UPDATE ERROR %s/%s : %s\n" % (conf.country, analyser_name, dt))
+                                        logger.sub().sub().sub().err("UPDATE ERROR %s/%s : %s\n" % (conf.country, analyser_name, dt))
                                         if dt == "FAIL: Already up to date":
                                             update_finished = True
                                         if nb_iter >= 3 and not was_on_timeout:
@@ -360,7 +360,7 @@ def execc(conf, logger, analysers, options, osmosis_manager):
 
 
 def clean(conf, logger, options, osmosis_manager):
-    logger.log(logger.log_av_r + u"cleaning : " + logger.log_ap)
+    logger.log(logger.log_av_r + "cleaning : " + logger.log_ap)
 
     if options.change:
         pass
@@ -396,7 +396,7 @@ def run(conf, logger, analysers, options):
                 osmosis_manager = modules.OsmOsisManager.OsmOsisManager(conf, conf.db_host, conf.db_user, conf.db_password, conf.db_base, conf.db_schema or conf.country, conf.db_persistent, logger)
             except:
                 traceback.print_exc()
-                logger.err(u"error in database initialisation")
+                logger.err("error in database initialisation")
                 return 0x10
 
         return execc(conf, logger, analysers, options, osmosis_manager)
@@ -517,7 +517,7 @@ def main(options):
     if os.getenv('SENTRY_DSN'):
         sentry_sdk.set_tag('country', None)
 
-    logger.log(logger.log_av_green+u"end of analyses"+logger.log_ap)
+    logger.log(logger.log_av_green+"end of analyses"+logger.log_ap)
     return err_code
 
 

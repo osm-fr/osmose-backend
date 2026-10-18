@@ -30,8 +30,8 @@ dir_osmose = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 dir_work = "/data/work/%s" % (username)
 
 # frontend which will get results
-url_frontend_update = os.environ.get("URL_FRONTEND_UPDATE", u"https://osmose.openstreetmap.fr/control/send-update")
-url_frontend_opendata_update = u"https://opendata.osmose.openstreetmap.fr/control/send-update"
+url_frontend_update = os.environ.get("URL_FRONTEND_UPDATE", "https://osmose.openstreetmap.fr/control/send-update")
+url_frontend_opendata_update = "https://opendata.osmose.openstreetmap.fr/control/send-update"
 
 # where osmosis is located
 bin_osmosis = dir_osmose + "/osmosis/osmosis-0.48.3-36-gada1b6f5-SNAPSHOT/bin/osmosis"

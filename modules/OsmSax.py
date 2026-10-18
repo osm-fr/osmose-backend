@@ -120,55 +120,55 @@ class OsmSaxReader(OsmReader, handler.ContentHandler):
 
     def startElement(self, name, attrs):
         attrs = attrs._attrs
-        if name == u"changeset":
+        if name == "changeset":
             self._tags = {}
-        elif name == u"node":
-            attrs[u"id"] = int(attrs[u"id"])
-            attrs[u"lat"] = float(attrs[u"lat"])
-            attrs[u"lon"] = float(attrs[u"lon"])
-            if u"version" in attrs:
-                attrs[u"version"] = int(attrs[u"version"])
-            if u"user" in attrs:
-                attrs[u"user"] = attrs[u"user"]
+        elif name == "node":
+            attrs["id"] = int(attrs["id"])
+            attrs["lat"] = float(attrs["lat"])
+            attrs["lon"] = float(attrs["lon"])
+            if "version" in attrs:
+                attrs["version"] = int(attrs["version"])
+            if "user" in attrs:
+                attrs["user"] = attrs["user"]
             self._data = attrs
             self._tags = {}
-        elif name == u"way":
+        elif name == "way":
             if not self._debug_in_way:
                 self._debug_in_way = True
                 self.log("starting ways")
             attrs["id"] = int(attrs["id"])
-            if u"version" in attrs:
-                attrs[u"version"] = int(attrs[u"version"])
-            if u"user" in attrs:
-                attrs[u"user"] = attrs[u"user"]
+            if "version" in attrs:
+                attrs["version"] = int(attrs["version"])
+            if "user" in attrs:
+                attrs["user"] = attrs["user"]
             self._data = attrs
             self._tags = {}
             self._nodes = []
-        elif name == u"relation":
+        elif name == "relation":
             if not self._debug_in_relation:
                 self._debug_in_relation = True
                 self.log("starting relations")
             attrs["id"] = int(attrs["id"])
-            if u"version" in attrs:
-                attrs[u"version"] = int(attrs[u"version"])
-            if u"user" in attrs:
-                attrs[u"user"] = attrs[u"user"]
+            if "version" in attrs:
+                attrs["version"] = int(attrs["version"])
+            if "user" in attrs:
+                attrs["user"] = attrs["user"]
             self._data = attrs
             self._members = []
             self._tags = {}
-        elif name == u"nd":
+        elif name == "nd":
             self._nodes.append(int(attrs["ref"]))
-        elif name == u"tag":
+        elif name == "tag":
             self._tags[attrs["k"]] = attrs["v"]
-        elif name == u"member":
+        elif name == "member":
             attrs["type"] = attrs["type"]
             attrs["ref"] = int(attrs["ref"])
             attrs["role"] = attrs["role"]
             self._members.append(attrs)
 
     def endElement(self, name):
-        if name == u"node":
-            self._data[u"tag"] = self._tags
+        if name == "node":
+            self._data["tag"] = self._tags
             try:
                 if self.since_timestamp is None or self._data['timestamp'] is None or self._data['timestamp'] > self.since_timestamp:
                     self._output.NodeCreate(self._data)
@@ -177,9 +177,9 @@ class OsmSaxReader(OsmReader, handler.ContentHandler):
             except:
                 print(self._data)
                 raise
-        elif name == u"way":
-            self._data[u"tag"] = self._tags
-            self._data[u"nd"]  = self._nodes
+        elif name == "way":
+            self._data["tag"] = self._tags
+            self._data["nd"]  = self._nodes
             try:
                 if self.since_timestamp is None or self._data['timestamp'] is None or self._data['timestamp'] > self.since_timestamp:
                     self._output.WayCreate(self._data)
@@ -188,9 +188,9 @@ class OsmSaxReader(OsmReader, handler.ContentHandler):
             except:
                 print(self._data)
                 raise
-        elif name == u"relation":
-            self._data[u"tag"]    = self._tags
-            self._data[u"member"] = self._members
+        elif name == "relation":
+            self._data["tag"]    = self._tags
+            self._data["member"] = self._members
             try:
                 if self.since_timestamp is None or self._data['timestamp'] is None or self._data['timestamp'] > self.since_timestamp:
                     self._output.RelationCreate(self._data)
@@ -233,65 +233,65 @@ class OscSaxReader(OsmReader, handler.ContentHandler):
 
     def startElement(self, name, attrs):
         attrs = attrs._attrs
-        if name == u"create":
+        if name == "create":
             self._action = name
-        elif name == u"modify":
+        elif name == "modify":
             self._action = name
-        elif name == u"delete":
+        elif name == "delete":
             self._action = name
-        elif name == u"node":
-            attrs[u"id"] = int(attrs[u"id"])
-            attrs[u"lat"] = float(attrs[u"lat"])
-            attrs[u"lon"] = float(attrs[u"lon"])
-            attrs[u"version"] = int(attrs[u"version"])
+        elif name == "node":
+            attrs["id"] = int(attrs["id"])
+            attrs["lat"] = float(attrs["lat"])
+            attrs["lon"] = float(attrs["lon"])
+            attrs["version"] = int(attrs["version"])
             self._data = attrs
             self._tags = {}
-        elif name == u"way":
+        elif name == "way":
             attrs["id"] = int(attrs["id"])
-            attrs[u"version"] = int(attrs[u"version"])
+            attrs["version"] = int(attrs["version"])
             self._data = attrs
             self._tags = {}
             self._nodes = []
-        elif name == u"relation":
+        elif name == "relation":
             attrs["id"] = int(attrs["id"])
-            attrs[u"version"] = int(attrs[u"version"])
+            attrs["version"] = int(attrs["version"])
             self._data = attrs
             self._members = []
             self._tags = {}
-        elif name == u"nd":
+        elif name == "nd":
             self._nodes.append(int(attrs["ref"]))
-        elif name == u"tag":
+        elif name == "tag":
             self._tags[attrs["k"]] = attrs["v"]
-        elif name == u"member":
+        elif name == "member":
             attrs["ref"] = int(attrs["ref"])
             self._members.append(attrs)
 
     def endElement(self, name):
-        if name == u"node":
-            self._data[u"tag"] = self._tags
-            if self._action == u"create":
+        if name == "node":
+            self._data["tag"] = self._tags
+            if self._action == "create":
                 self._output.NodeCreate(self._data)
-            elif self._action == u"modify":
+            elif self._action == "modify":
                 self._output.NodeUpdate(self._data)
-            elif self._action == u"delete":
+            elif self._action == "delete":
                 self._output.NodeDelete(self._data)
-        elif name == u"way":
-            self._data[u"tag"] = self._tags
-            self._data[u"nd"]  = self._nodes
-            if self._action == u"create":
+        elif name == "way":
+            self._data["tag"] = self._tags
+            self._data["nd"]  = self._nodes
+            if self._action == "create":
                 self._output.WayCreate(self._data)
-            elif self._action == u"modify":
+            elif self._action == "modify":
                 self._output.WayUpdate(self._data)
-            elif self._action == u"delete":
+            elif self._action == "delete":
                 self._output.WayDelete(self._data)
-        elif name == u"relation":
-            self._data[u"tag"]    = self._tags
-            self._data[u"member"] = self._members
-            if self._action == u"create":
+        elif name == "relation":
+            self._data["tag"]    = self._tags
+            self._data["member"] = self._members
+            if self._action == "create":
                 self._output.RelationCreate(self._data)
-            elif self._action == u"modify":
+            elif self._action == "modify":
                 self._output.RelationUpdate(self._data)
-            elif self._action == u"delete":
+            elif self._action == "delete":
 
 
                 self._output.RelationDelete(self._data)
@@ -301,26 +301,26 @@ class OscSaxReader(OsmReader, handler.ContentHandler):
 
 def _formatData(data):
     data = dict(data)
-    if u"tag" in data:
-        data.pop(u"tag")
-    if u"nd" in data:
-        data.pop(u"nd")
-    if u"member" in data:
-        data.pop(u"member")
-    if u"visible" in data:
-        data[u"visible"] = str(data[u"visible"]).lower()
-    if u"id" in data:
-        data[u"id"] = str(data[u"id"])
-    if u"lat" in data:
-        data[u"lat"] = str(data[u"lat"])
-    if u"lon" in data:
-        data[u"lon"] = str(data[u"lon"])
-    if u"changeset" in data:
-        data[u"changeset"] = str(data[u"changeset"])
-    if u"version" in data:
-        data[u"version"] = str(data[u"version"])
-    if u"uid" in data:
-        data[u"uid"] = str(data[u"uid"])
+    if "tag" in data:
+        data.pop("tag")
+    if "nd" in data:
+        data.pop("nd")
+    if "member" in data:
+        data.pop("member")
+    if "visible" in data:
+        data["visible"] = str(data["visible"]).lower()
+    if "id" in data:
+        data["id"] = str(data["id"])
+    if "lat" in data:
+        data["lat"] = str(data["lat"])
+    if "lon" in data:
+        data["lon"] = str(data["lon"])
+    if "changeset" in data:
+        data["changeset"] = str(data["changeset"])
+    if "version" in data:
+        data["version"] = str(data["version"])
+    if "uid" in data:
+        data["uid"] = str(data["uid"])
     return data
 
 class OsmSaxWriter(XMLGenerator):
@@ -332,26 +332,26 @@ class OsmSaxWriter(XMLGenerator):
             XMLGenerator.__init__(self, out, enc)
 
     def startElement(self, name, attrs):
-        self._write(u'<' + name)
+        self._write('<' + name)
         for (name, value) in attrs.items():
-            self._write(u' %s=%s' % (name, quoteattr(value)))
-        self._write(u'>\n')
+            self._write(' %s=%s' % (name, quoteattr(value)))
+        self._write('>\n')
 
     def endElement(self, name):
-        self._write(u'</%s>\n' % name)
+        self._write('</%s>\n' % name)
 
     def Element(self, name, attrs):
-        self._write(u'<' + name)
+        self._write('<' + name)
         for (name, value) in attrs.items():
-            self._write(u' %s=%s' % (name, quoteattr(value)))
-        self._write(u' />\n')
+            self._write(' %s=%s' % (name, quoteattr(value)))
+        self._write(' />\n')
 
     def NodeCreate(self, data):
         if not data:
             return
-        if data[u"tag"]:
+        if data["tag"]:
             self.startElement("node", _formatData(data))
-            for (k, v) in data[u"tag"].items():
+            for (k, v) in data["tag"].items():
                 self.Element("tag", {"k":k, "v":v})
             self.endElement("node")
         else:
@@ -361,9 +361,9 @@ class OsmSaxWriter(XMLGenerator):
         if not data:
             return
         self.startElement("way", _formatData(data))
-        for (k, v) in data[u"tag"].items():
+        for (k, v) in data["tag"].items():
             self.Element("tag", {"k":k, "v":v})
-        for n in data[u"nd"]:
+        for n in data["nd"]:
             self.Element("nd", {"ref":str(n)})
         self.endElement("way")
 
@@ -371,10 +371,10 @@ class OsmSaxWriter(XMLGenerator):
         if not data:
             return
         self.startElement("relation", _formatData(data))
-        for (k, v) in data[u"tag"].items():
+        for (k, v) in data["tag"].items():
             self.Element("tag", {"k":k, "v":v})
-        for m in data[u"member"]:
-            m[u"ref"] = str(m[u"ref"])
+        for m in data["member"]:
+            m["ref"] = str(m["ref"])
             self.Element("member", m)
         self.endElement("relation")
 

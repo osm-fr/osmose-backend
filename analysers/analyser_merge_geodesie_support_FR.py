@@ -31,14 +31,14 @@ class Analyser_Geodesie_Support_FR(Analyser_Merge_Dynamic):
         Analyser_Merge_Dynamic.__init__(self, config, logger)
 
         with open("merge_data/geodesie_support_FR.mapping.csv") as mappingfile:
-            spamreader = csv.reader(mappingfile,  delimiter=u';')
+            spamreader = csv.reader(mappingfile,  delimiter=';')
             for row in spamreader:
                 item, classs, level, topic = row[0:4]
                 tags = list(map(lambda t: t.split('=') if t else None, row[4:7]))
                 osmTags = dict(filter(lambda t: t, tags[0:2]))
                 if len(osmTags) > 0:
                     defaultTags = dict(filter(lambda t: t, tags[2:3]))
-                    slug = u''.join(filter(lambda x: x.isalpha(), topic.split('|')[0])).capitalize().encode('ascii', 'ignore').decode('utf8')
+                    slug = ''.join(filter(lambda x: x.isalpha(), topic.split('|')[0])).capitalize().encode('ascii', 'ignore').decode('utf8')
                     self.classFactory(SubAnalyser_Geodesie_Support_FR, slug, item, classs, level, topic, osmTags, defaultTags)
 
 
@@ -49,9 +49,9 @@ class SubAnalyser_Geodesie_Support_FR(SubAnalyser_Merge_Dynamic):
             title = T_('Geodesic support not integrated {0}', topic.replace('^', '').replace('|', ', ')))
 
         self.init(
-            u"http://geodesie.ign.fr",
-            u"Fiches géodésiques",
-            CSV(Source(attribution = u"©IGN 2010 dans le cadre de la cartographie réglementaire",
+            "http://geodesie.ign.fr",
+            "Fiches géodésiques",
+            CSV(Source(attribution = "©IGN 2010 dans le cadre de la cartographie réglementaire",
                     file = "geodesie.csv.bz2", bz2 = True),
                 header = False),
             Load_XY("lon", "lat",
@@ -62,7 +62,7 @@ class SubAnalyser_Geodesie_Support_FR(SubAnalyser_Merge_Dynamic):
                     description VARCHAR(4096),
                     ele VARCHAR(254),
                     ref VARCHAR(254)""",
-                where = lambda res: not 'ruine' in res['description'].lower() and not 'ancien' in res['description'].lower() and not u'détruit' in res['description'].lower() and re.search(topic, res['description'], re.IGNORECASE)),
+                where = lambda res: not 'ruine' in res['description'].lower() and not 'ancien' in res['description'].lower() and not 'détruit' in res['description'].lower() and re.search(topic, res['description'], re.IGNORECASE)),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],

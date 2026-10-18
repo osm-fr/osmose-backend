@@ -114,7 +114,7 @@ class Test(TestPluginCommon):
                  ]:
             assert not a.node(None, {k: '1'}), ("key='{0}'".format(k))
 
-        for k in ["a-b", "a''b", u"é", u"û", "a=b", u"a:é", "a:a:'",
+        for k in ["a-b", "a''b", "é", "û", "a=b", "a:é", "a:a:'",
                   "railway:memor2++", "railway:memor2+87",
                  ]:
             self.check_err(a.node(None, {k: '1'}), ("key='{0}'".format(k)))

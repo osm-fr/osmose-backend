@@ -27,18 +27,18 @@ class logger:
         self._out     = out
         self._showall = showall
 
-        self.log_av_r     = u'\033[0;31m'  # red
-        self.log_av_b     = u'\033[0;34m'  # blue
-        self.log_av_green = u'\033[0;32m'  # green
-        self.log_ap       = u'\033[0m'     # reset color
+        self.log_av_r     = '\033[0;31m'  # red
+        self.log_av_b     = '\033[0;34m'  # blue
+        self.log_av_green = '\033[0;32m'  # green
+        self.log_ap       = '\033[0m'     # reset color
 
 
     def _log(self, txt, level):
-        pre  = u""
+        pre  = ""
         pre += time.strftime("%Y-%m-%d %H:%M:%S ")
-        pre += u"  "*level
-        suf  = u""
-        print(u'{0}{1}{2}'.format(pre, txt, suf), file=self._out)
+        pre += "  "*level
+        suf  = ""
+        print('{0}{1}{2}'.format(pre, txt, suf), file=self._out)
         self._out.flush()
 
     def log(self, txt):
@@ -46,13 +46,13 @@ class logger:
 
 
     def _err(self, txt, level):
-        self._log(u'{0}{1}{2}{3}'.format(self.log_av_r, u'error: ', txt, self.log_ap), level)
+        self._log('{0}{1}{2}{3}'.format(self.log_av_r, 'error: ', txt, self.log_ap), level)
 
     def err(self, txt):
         self._err(txt, 0)
 
     def _warn(self, txt, level):
-        self._log(u'{0}{1}{2}{3}'.format(self.log_av_r, u'warning: ', txt, self.log_ap), level)
+        self._log('{0}{1}{2}{3}'.format(self.log_av_r, 'warning: ', txt, self.log_ap), level)
 
     def warn(self, txt):
         self._warn(txt, 0)
@@ -73,7 +73,7 @@ class logger:
             if cerr == '':
                 continue
             if self._showall:
-                self._out.write(u'{0}   {1}\n'.format(time.strftime("%Y-%m-%d %H:%M:%S"), cerr))
+                self._out.write('{0}   {1}\n'.format(time.strftime("%Y-%m-%d %H:%M:%S"), cerr))
                 self._out.flush()
         proc.wait()
         if proc.returncode not in valid_return_code:
@@ -92,7 +92,7 @@ class logger:
             if cerr == '':
                 continue
             if self._showall:
-                self._out.write(u'{0}   {1}\n'.format(time.strftime("%Y-%m-%d %H:%M:%S "), cerr))
+                self._out.write('{0}   {1}\n'.format(time.strftime("%Y-%m-%d %H:%M:%S "), cerr))
                 self._out.flush()
         proc.wait()
         if proc.returncode not in valid_return_code:

@@ -23,7 +23,7 @@ from modules.OsmoseTranslation import T_
 from .Analyser_Osmosis import Analyser_Osmosis
 from modules import languages
 
-sql01_fr = u"""
+sql01_fr = """
 -- http://www-lium.univ-lemans.fr/~carlier/recherche/soundex.html
 --
 

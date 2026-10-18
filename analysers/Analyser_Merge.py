@@ -55,7 +55,7 @@ except ImportError:
     Transformer = None # type: ignore
 
 
-GENERATE_DELETE_TAG = u"DELETE TAG aechohve0Eire4ooyeyaey1gieme0xoo"
+GENERATE_DELETE_TAG = "DELETE TAG aechohve0Eire4ooyeyaey1gieme0xoo"
 
 # Checking existence of schema before CREATE SCHEMA is necessary on databases,
 # like france_local_db, where user osmose doesn't have the rights to create a
@@ -760,7 +760,7 @@ class JSON(Parser):
         self.json = self.json or map(flattenjson, self.extractor(json.loads(self.source.open().read())))
         for row in self.json:
             osmosis.giscurs.execute("insert into \"{0}\" (\"{1}\") values ({2})".format(
-                table, '", "'.join(row.keys()), (u'%s, ' * len(row.keys()))[:-2]),
+                table, '", "'.join(row.keys()), ('%s, ' * len(row.keys()))[:-2]),
                 list(map(removequotesjson, row.values())))
 
 class GeoJSON(Parser):
@@ -785,8 +785,8 @@ class GeoJSON(Parser):
         for feature in self.json['features']:
             columns = columns.union(list(flattenjson(feature['properties']).keys()))
         columns = list(columns)
-        columns.append(u"geom_x")
-        columns.append(u"geom_y")
+        columns.append("geom_x")
+        columns.append("geom_y")
         return columns
 
     def import_(self, table, osmosis):
@@ -795,8 +795,8 @@ class GeoJSON(Parser):
                 row['properties'] = flattenjson(row['properties'])
                 columns = list(row['properties'].keys())
                 values = list(map(removequotesjson, map(lambda column: row['properties'][column], columns)))
-                columns.append(u"geom_x")
-                columns.append(u"geom_y")
+                columns.append("geom_x")
+                columns.append("geom_y")
                 if row['geometry']['type'] in ('Point', 'MultiPoint', 'LineString', 'MultiLineString'):
                     if row['geometry']['type'] == 'Point':
                         values.append(row['geometry']['coordinates'][0])
@@ -809,8 +809,8 @@ class GeoJSON(Parser):
                         npt = len(row['geometry']['coordinates'][0])//2
                         values.append(row['geometry']['coordinates'][0][npt][0])
                         values.append(row['geometry']['coordinates'][0][npt][1])
-                    osmosis.giscurs.execute(u"insert into \"{0}\" (\"{1}\") values ({2})".format(
-                        table, u'", "'.join(columns), (u'%s, ' * len(columns))[:-2]),
+                    osmosis.giscurs.execute("insert into \"{0}\" (\"{1}\") values ({2})".format(
+                        table, '", "'.join(columns), ('%s, ' * len(columns))[:-2]),
                         values)
 
 class GDAL(Parser):
@@ -1095,7 +1095,7 @@ class Load:
                         "ref": tags[1].get(conflate.osmRef) if conflate.osmRef != "NULL" else None,
                         "tags": tags[1],
                         "tags1": tags[0],
-                        "fields": dict(zip(dict(res).keys(), map(lambda s: (s is None and None) or u'{0}'.format(s), dict(res).values()))),
+                        "fields": dict(zip(dict(res).keys(), map(lambda s: (s is None and None) or '{0}'.format(s), dict(res).values()))),
                     })
             if isinstance(self.geom, tuple):
                 self.geom = self.geom[0]
@@ -1144,9 +1144,9 @@ class Load:
     @staticmethod
     def degree(val):
         """Convert coordinate in degree, minute, second to decimal degrees."""
-        if val is not None and u'°' in val:
+        if val is not None and '°' in val:
             # 01°13'23,8 -> 1,334388
-            return reduce(lambda sum, i: sum * 60 + i, map(lambda i: float(i.replace(u',', u'.')), filter(lambda i: i != '', val.replace(u'°', u"'").split(u"'"))), 0) / 3600
+            return reduce(lambda sum, i: sum * 60 + i, map(lambda i: float(i.replace(',', '.')), filter(lambda i: i != '', val.replace('°', "'").split("'"))), 0) / 3600
         else:
             return val
 
@@ -1341,7 +1341,7 @@ class Mapping:
             elif colomn and res[colomn]:
                 tags[tag] = res[colomn]
 
-        return dict(map(lambda kv: [kv[0], kv[1] is not None and u'{0}'.format(kv[1]) or None], tags.items()))
+        return dict(map(lambda kv: [kv[0], kv[1] is not None and '{0}'.format(kv[1]) or None], tags.items()))
 
     def tagFactory(self, res):
         tags = self.tagFactoryGroup(res, self.static1, self.mapping1)
@@ -1460,7 +1460,7 @@ verification of this data.'''))
         self.load.parser = self.parser
         table = self.load.run(self, self.conflate, self.config.db_user, self.__class__.__name__.lower()[15:], self.analyser_version())
         if not table:
-            self.logger.log(u"Empty bbox, abort")
+            self.logger.log("Empty bbox, abort")
             return None
 
         # Extract OSM objects
@@ -1471,7 +1471,7 @@ verification of this data.'''))
             typeGeom = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL', 'P': 'NULL'}
             typeShape = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL', 'P': 'NULL'}
 
-        self.logger.log(u"Retrieve OSM item")
+        self.logger.log("Retrieve OSM item")
         where = Select.where_tags(self.conflate.select.tags)
         self.run("CREATE TEMP TABLE osm_item AS " +
             ("UNION ALL".join(
@@ -1758,7 +1758,7 @@ open data and OSM.'''))
             column = list(filter(lambda a: a != self.conflate.osmRef and not a in self.conflate.select.tags[0], column))
             column = [self.conflate.osmRef] + list(self.conflate.select.tags[0].keys()) + column
         buffer = io.StringIO()
-        writer = csv.writer(buffer, lineterminator=u'\n')
+        writer = csv.writer(buffer, lineterminator='\n')
         writer.writerow(head + (column or []))
 
         self.giscurs.execute("SELECT * FROM dump")

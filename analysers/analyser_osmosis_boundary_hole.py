@@ -23,7 +23,7 @@ from modules.OsmoseTranslation import T_
 from modules.Stablehash import stablehash64
 from .Analyser_Osmosis import Analyser_Osmosis
 
-sql10 = u"""
+sql10 = """
 SELECT
     ST_AsText(ST_Centroid(geom))
 FROM (

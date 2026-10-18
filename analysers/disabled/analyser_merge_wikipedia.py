@@ -326,7 +326,7 @@ class _Analyser_Merge_Wikipedia(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.possible_merge   = {"item":"8101", "class": classs, "level": 3, "tag": ["merge", "wikipedia"], "desc":desc }
         self.init(
-            u"http://toolserver.org/~kolossos/wp-world/pg-dumps/wp-world/",
+            "http://toolserver.org/~kolossos/wp-world/pg-dumps/wp-world/",
             "Wikipedia-World",
             CSV(Source(file = "wikipedia_point_fr.csv.bz2", bz2 = True),
                 csv = False, separator = None, null = None),
@@ -362,7 +362,7 @@ class _Analyser_Merge_Wikipedia_Airport(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, lang, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             103,
-            T_(u"Wikipedia, aerodrome integration suggestion"),
+            T_("Wikipedia, aerodrome integration suggestion"),
             "airport", country, lang,
             None,
             {"aeroway": ["aerodrome"]},
@@ -374,7 +374,7 @@ class _Analyser_Merge_Wikipedia_City(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, lang, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             113,
-            T_(u"Wikipedia, city integration suggestion"),
+            T_("Wikipedia, city integration suggestion"),
             "city", country, lang,
             None,
             {"type": "boundary", "boundary": "administrative", "admin_level": "8"},
@@ -386,7 +386,7 @@ class _Analyser_Merge_Wikipedia_Edu(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, lang, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             123,
-            T_(u"Wikipedia, school integration suggestion"),
+            T_("Wikipedia, school integration suggestion"),
             "edu", country, lang,
             None,
             {"amenity": ["school", "university", "college"]},
@@ -398,7 +398,7 @@ class _Analyser_Merge_Wikipedia_Forest(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, lang, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             133,
-            T_(u"Wikipedia, forest integration suggestion"),
+            T_("Wikipedia, forest integration suggestion"),
             "forest", country, lang,
             None,
             {"landuse": ["forest"]},
@@ -410,7 +410,7 @@ class _Analyser_Merge_Wikipedia_Glacier(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, lang, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             143,
-            T_(u"Wikipedia, glacier integration suggestion"),
+            T_("Wikipedia, glacier integration suggestion"),
             "glacier", country, lang,
             None,
             {"natural": ["glacier"]},
@@ -422,7 +422,7 @@ class _Analyser_Merge_Wikipedia_Isle(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, lang, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             153,
-            T_(u"Wikipedia, island integration suggestion"),
+            T_("Wikipedia, island integration suggestion"),
             "isle", country, lang,
             None,
             {"place": ["island"]},
@@ -434,7 +434,7 @@ class _Analyser_Merge_Wikipedia_Mountain(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, lang, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             163,
-            T_(u"Wikipedia, peak integration suggestion"),
+            T_("Wikipedia, peak integration suggestion"),
             "mountain", country, lang,
             None,
             {"natural": ["peak"]},
@@ -446,7 +446,7 @@ class _Analyser_Merge_Wikipedia_Pass(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, lang, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             173,
-            T_(u"Wikipedia, mountain pass integration suggestion"),
+            T_("Wikipedia, mountain pass integration suggestion"),
             "pass", country, lang,
             None,
             {"mountain_pass": None},
@@ -458,7 +458,7 @@ class _Analyser_Merge_Wikipedia_RailwayStation(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, lang, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             183,
-            T_(u"Wikipedia, railway station integration suggestion"),
+            T_("Wikipedia, railway station integration suggestion"),
             "railwaystation", country, lang,
             None,
             {"railway": ["station"]},
@@ -470,7 +470,7 @@ class _Analyser_Merge_Wikipedia_Waterbody(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, lang, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             193,
-            T_(u"Wikipedia, water area integration suggestion"),
+            T_("Wikipedia, water area integration suggestion"),
             "waterbody", country, lang,
             None,
             {"natural": ["water"]},
@@ -484,9 +484,9 @@ class _Analyser_Merge_Wikipedia_fr_Chateau(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             203,
-            T_(u"Wikipedia, castle integration suggestion"),
+            T_("Wikipedia, castle integration suggestion"),
             None, country, "fr",
-            u"Château ",
+            "Château ",
             {"historic": "castle"},
             ["nodes", "ways"],
             200,
@@ -496,9 +496,9 @@ class _Analyser_Merge_Wikipedia_fr_Eglise(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             213,
-            T_(u"Wikipedia, church integration suggestion"),
+            T_("Wikipedia, church integration suggestion"),
             None, country, "fr",
-            u"Église ",
+            "Église ",
             {"amenity": "place_of_worship"},
             ["nodes", "ways"],
             200,

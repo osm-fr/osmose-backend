@@ -29,10 +29,10 @@ class Analyser_Merge_Bicycle_Parking_FR_CAPP(Analyser_Merge):
             title = T_('CAPP bicycle parking not integrated'))
 
         self.init(
-            u"http://opendata.agglo-pau.fr/index.php/fiche?idQ=20",
-            u"Supports vélos sur la CAPP",
-            CSV(Source(attribution = u"Communauté d'Agglomération Pau-Pyrénées", millesime = "01/2013",
-                    fileUrl = u"http://opendata.agglo-pau.fr/sc/call.php?f=1&idf=20", zip = "Sta_Velo_Agglo_WGS84.csv")),
+            "http://opendata.agglo-pau.fr/index.php/fiche?idQ=20",
+            "Supports vélos sur la CAPP",
+            CSV(Source(attribution = "Communauté d'Agglomération Pau-Pyrénées", millesime = "01/2013",
+                    fileUrl = "http://opendata.agglo-pau.fr/sc/call.php?f=1&idf=20", zip = "Sta_Velo_Agglo_WGS84.csv")),
             Load("X", "Y",
                 xFunction = Load.float_comma,
                 yFunction = Load.float_comma),

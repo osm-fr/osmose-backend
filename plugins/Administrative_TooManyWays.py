@@ -42,16 +42,16 @@ Then ensure the roles `forward` and `backward`.'''))
 
     def relation(self, data, tags, members):
 
-        if tags.get(u"boundary", u"") != u"administrative":
+        if tags.get("boundary", "") != "administrative":
             return
-        w = [m[u"ref"] for m in members if m[u"type"] == u"way"]
+        w = [m["ref"] for m in members if m["type"] == "way"]
         if len(w) != len(set(w)):
             return {"class": 504}
 
-        #if tags.get(u"admin_level", u"") != u"8":
+        #if tags.get("admin_level", "") != "8":
         #    return
         #n_limit = 15
-        #n = len(data[u"member"])
+        #n = len(data["member"])
         #if n >= n_limit:
         #    return {"class": 503, "subclass": 0, "text": T_("More than {0} ways in admin_level=8 relation ({1})", str(n_limit), str(n))}
 

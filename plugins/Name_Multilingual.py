@@ -316,40 +316,40 @@ class Test(TestPluginCommon):
         self.p.father = father()
         self.p.init(None)
 
-        assert not self.p.node(None, {"foo": u"bar"})
+        assert not self.p.node(None, {"foo": "bar"})
 
-        e = self.p.node(None, {"name": u"a - b", "name:fr": u"fr", "name:nl": u"nl"})
+        e = self.p.node(None, {"name": "a - b", "name:fr": "fr", "name:nl": "nl"})
         assert 4 == len(e[0]["fix"])
         self.check_err(e)
 
-        e = self.p.node(None, {"name": u"fr - nl"})
+        e = self.p.node(None, {"name": "fr - nl"})
         self.check_err(e)
 
-        e = self.p.node(None, {"name:fr": u"fr", "name:nl": u"nl"})
+        e = self.p.node(None, {"name:fr": "fr", "name:nl": "nl"})
         self.check_err(e)
 
-        assert not self.p.way(None, {"name": u"fr - nl", "name:fr": u"fr", "name:nl": u"nl"}, None)
-        assert not self.p.way(None, {"name": u"nl - fr", "name:fr": u"fr", "name:nl": u"nl"}, None)
-        assert not self.p.way(None, {"name": u"foo", "name:fr": u"foo", "name:nl": u"foo"}, None)
+        assert not self.p.way(None, {"name": "fr - nl", "name:fr": "fr", "name:nl": "nl"}, None)
+        assert not self.p.way(None, {"name": "nl - fr", "name:fr": "fr", "name:nl": "nl"}, None)
+        assert not self.p.way(None, {"name": "foo", "name:fr": "foo", "name:nl": "foo"}, None)
 
-        e = self.p.node(None, {"name": u"fr", "name:nl": u"nl"})
+        e = self.p.node(None, {"name": "fr", "name:nl": "nl"})
         assert 5 == len(e[0]["fix"])
         self.check_err(e)
 
-        e = self.p.node(None, {"name:fr": u"fr", "name": u"nl"})
+        e = self.p.node(None, {"name:fr": "fr", "name": "nl"})
         assert 5 == len(e[0]["fix"])
         self.check_err(e)
 
-        e = self.p.node(None, {"name": u"Kruidtuin", "name:nl": u"Kruidtuin", "name:fr": u"Botanique"})
+        e = self.p.node(None, {"name": "Kruidtuin", "name:nl": "Kruidtuin", "name:fr": "Botanique"})
         assert 2 == len(e[0]["fix"])
 
-        e = self.p.split_be(u"(œ)")
+        e = self.p.split_be("(œ)")
         assert 1 == len(e)
 
-        e = self.p.split_be(u"(í)")
+        e = self.p.split_be("(í)")
         assert 1 == len(e)
 
-        e = self.p.split_be(u"(œ) - (í)")
+        e = self.p.split_be("(œ) - (í)")
         assert 1 == len(e)
 
     def test_ma(self):
@@ -362,39 +362,39 @@ class Test(TestPluginCommon):
         self.p.father = father()
         self.p.init(None)
 
-        e = self.p.node(None, {"name": u"Troch", "name:fr": u"Kasbat Troch", "name:ar": u"قصبة الطرش"})
+        e = self.p.node(None, {"name": "Troch", "name:fr": "Kasbat Troch", "name:ar": "قصبة الطرش"})
         self.check_err(e)
 
-        e = self.p.node(None, {"name": u"Kasbat Troch قصبة الطرش"})
+        e = self.p.node(None, {"name": "Kasbat Troch قصبة الطرش"})
         self.check_err(e)
 
-        e = self.p.node(None, {"name:fr": u"Kasbat Troch", "name:ar": u"قصبة الطرش"})
+        e = self.p.node(None, {"name:fr": "Kasbat Troch", "name:ar": "قصبة الطرش"})
         self.check_err(e)
 
-        assert not self.p.way(None, {"name": u"Kasbat Troch قصبة الطرش", "name:fr": u"Kasbat Troch", "name:ar": u"قصبة الطرش"}, None)
-        assert not self.p.way(None, {"name": u"Kasbat Troch"}, None)
+        assert not self.p.way(None, {"name": "Kasbat Troch قصبة الطرش", "name:fr": "Kasbat Troch", "name:ar": "قصبة الطرش"}, None)
+        assert not self.p.way(None, {"name": "Kasbat Troch"}, None)
 
-        e = self.p.node(None, {"name": u"Derb Al Bire", "name:ar": u"درب البير"})
+        e = self.p.node(None, {"name": "Derb Al Bire", "name:ar": "درب البير"})
         self.check_err(e)
 
-        r = self.p.split_ma(u"Tizi n'Tichka ⵜⵉⵣⵉ ⵏ ⵜⵉⵛⴽⴰ تيزي ن تيشكا")
-        assert u"Tizi n'Tichka" == r[0]["name:fr"]
-        assert u"ⵜⵉⵣⵉ ⵏ ⵜⵉⵛⴽⴰ" == r[0]["name:zgh"]
-        assert u"تيزي ن تيشكا" == r[0]["name:ar"]
+        r = self.p.split_ma("Tizi n'Tichka ⵜⵉⵣⵉ ⵏ ⵜⵉⵛⴽⴰ تيزي ن تيشكا")
+        assert "Tizi n'Tichka" == r[0]["name:fr"]
+        assert "ⵜⵉⵣⵉ ⵏ ⵜⵉⵛⴽⴰ" == r[0]["name:zgh"]
+        assert "تيزي ن تيشكا" == r[0]["name:ar"]
 
-        r = self.p.split_ma(u"Bab Atlas ⴱⴰⴱ ⴰⵟⵍⴰⵙ")
-        assert u"Bab Atlas" == r[0]["name:fr"]
-        assert u"ⴱⴰⴱ ⴰⵟⵍⴰⵙ" == r[0]["name:zgh"]
+        r = self.p.split_ma("Bab Atlas ⴱⴰⴱ ⴰⵟⵍⴰⵙ")
+        assert "Bab Atlas" == r[0]["name:fr"]
+        assert "ⴱⴰⴱ ⴰⵟⵍⴰⵙ" == r[0]["name:zgh"]
         assert r[0].get("name:ar") is None
 
-        r = self.p.split_ma(u"Avenue Mohammed V 2 (Beau Gosse) شارع محمد الخامس 2")
-        assert u"Avenue Mohammed V 2 (Beau Gosse)" == r[0]["name:fr"]
-        assert u"شارع محمد الخامس 2" == r[0]["name:ar"]
+        r = self.p.split_ma("Avenue Mohammed V 2 (Beau Gosse) شارع محمد الخامس 2")
+        assert "Avenue Mohammed V 2 (Beau Gosse)" == r[0]["name:fr"]
+        assert "شارع محمد الخامس 2" == r[0]["name:ar"]
 
-        assert not self.p.node(None, {"name": u"Bab Atlas ⴱⴰⴱ ⴰⵟⵍⴰⵙ", "name:fr": u"Bab Atlas", "name:zgh": u"ⴱⴰⴱ ⴰⵟⵍⴰⵙ"})
-        assert self.p.node(None, {"name": u"Bab Atlas ⴱⴰⴱ ⴰⵟⵍⴰⵙ", "name:fr": u"Bab PAS Atlas", "name:zgh": u"ⴱⴰⴱ ⴰⵟⵍⴰⵙ"})
+        assert not self.p.node(None, {"name": "Bab Atlas ⴱⴰⴱ ⴰⵟⵍⴰⵙ", "name:fr": "Bab Atlas", "name:zgh": "ⴱⴰⴱ ⴰⵟⵍⴰⵙ"})
+        assert self.p.node(None, {"name": "Bab Atlas ⴱⴰⴱ ⴰⵟⵍⴰⵙ", "name:fr": "Bab PAS Atlas", "name:zgh": "ⴱⴰⴱ ⴰⵟⵍⴰⵙ"})
 
-        assert not self.p.node(None, {"name": u"Agdal ⴰⴳⴷⴰⵍ أگدال", "name:ar": u"أگدال", "name:zgh": u"ⴰⴳⴷⴰⵍ", "name:fr": u"Agdal "})
+        assert not self.p.node(None, {"name": "Agdal ⴰⴳⴷⴰⵍ أگدال", "name:ar": "أگدال", "name:zgh": "ⴰⴳⴷⴰⵍ", "name:fr": "Agdal "})
 
     def test_dj(self):
         TestPluginCommon.setUp(self)
@@ -406,11 +406,11 @@ class Test(TestPluginCommon):
         self.p.father = father()
         self.p.init(None)
 
-        e = self.p.node(None, {"name": u"Avenue 17 / جادة 17", "name:fr": u"Avenue", "name:ar": u"جادة"})
+        e = self.p.node(None, {"name": "Avenue 17 / جادة 17", "name:fr": "Avenue", "name:ar": "جادة"})
         self.check_err(e)
 
-        assert not self.p.way(None, {"name": u"Avenue جادة", "name:fr": u"Avenue", "name:ar": u"جادة"}, None)
-        assert not self.p.way(None, {"name": u"Avenue 17 / جادة 17", "name:fr": u"Avenue 17", "name:ar": u"جادة 17"}, None)
+        assert not self.p.way(None, {"name": "Avenue جادة", "name:fr": "Avenue", "name:ar": "جادة"}, None)
+        assert not self.p.way(None, {"name": "Avenue 17 / جادة 17", "name:fr": "Avenue 17", "name:ar": "جادة 17"}, None)
 
     def test_eu(self):
         TestPluginCommon.setUp(self)

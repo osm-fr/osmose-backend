@@ -62,7 +62,7 @@ The previous outer way may have been deleted, check the history.'''))
                 elif member['role'] == 'inner':
                     inner += 1
             else:
-                err_members.append(u"{0} - {1}".format(member['type'], member['role']))
+                err_members.append("{0} - {1}".format(member['type'], member['role']))
 
         err = []
         if len(err_roles) > 0:
@@ -85,7 +85,7 @@ class Test(TestPluginCommon):
         a = Structural_Multipolygon(None)
         a.init(None)
         for m in [[{"type": "way", "role": "xxx"}],
-                  [{"type": "node", "role": u"éù"}],
+                  [{"type": "node", "role": "éù"}],
                   [{"type": "way", "role": "inner"}],
                   [{"type": "way", "role": "outer"}],
                   [{"type": "node", "role": "outer"}],

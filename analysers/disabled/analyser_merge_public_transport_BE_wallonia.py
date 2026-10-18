@@ -25,15 +25,15 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select,
 class Analyser_Merge_Public_Transport_BE_Wallonia(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.missing_official = {"item":"8040", "class": 71, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"Wallonia stop not integrated") }
-        self.possible_merge   = {"item":"8041", "class": 73, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"Wallonia stop, integration suggestion") }
+        self.missing_official = {"item":"8040", "class": 71, "level": 3, "tag": ["merge", "public transport"], "desc": T_("Wallonia stop not integrated") }
+        self.possible_merge   = {"item":"8041", "class": 73, "level": 3, "tag": ["merge", "public transport"], "desc": T_("Wallonia stop, integration suggestion") }
         self.init(
             Source(
-                url = u"http://opendata.awt.be/dataset/tec",
-                name = u"Données TEC",
+                url = "http://opendata.awt.be/dataset/tec",
+                name = "Données TEC",
                 file = "public_transport_BE_wallonia.csv.bz2", bz2 = True,
                 encoding = "ISO-8859-15",
-                csv = CSV(separator = u"|", header = False),
+                csv = CSV(separator = "|", header = False),
                 srid = 31370),
             Load("X coordinate", "Y coordinate",
                 create = """
@@ -65,7 +65,7 @@ class Analyser_Merge_Public_Transport_BE_Wallonia(Analyser_Merge):
                         "bus": "yes",
                         "operator": "TEC"},
                     static2 = {
-                        "source": u"tec-wl.be - 07-2014"},
+                        "source": "tec-wl.be - 07-2014"},
                     mapping1 = {
                         "ref": lambda res: res["Stop identifier"][0:7],
                         "name": lambda res: res["Description (Dutch)"].strip() if res["Description (Dutch)"] == res["Description (French)"] else "%s - %s" % (res["Description (French)"].strip(), res["Description (Dutch)"].strip()),
@@ -73,4 +73,4 @@ class Analyser_Merge_Public_Transport_BE_Wallonia(Analyser_Merge):
                         "name:nl": lambda res: res["Description (Dutch)"].strip() if res["Description (Dutch)"] != res["Description (French)"] else None,
                         "uic_ref": "UIC",
                         "whellchair": lambda res: {"0": "no", "1": "yes"}[res["Accessible"]]},
-                    text = lambda tags, fields: {"en": u"Wallonia stop of %s, %s, %s" % (fields["Description (French)"].strip(), fields["Streetname (French)"].strip(), fields["Municipality (French)"].strip())} )))
+                    text = lambda tags, fields: {"en": "Wallonia stop of %s, %s, %s" % (fields["Description (French)"].strip(), fields["Streetname (French)"].strip(), fields["Municipality (French)"].strip())} )))

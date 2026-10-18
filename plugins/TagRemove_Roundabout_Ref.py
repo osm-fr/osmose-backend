@@ -35,8 +35,8 @@ The tag `name=*` must be present if this is the name of the roundabout
 and not a road connected, same thing for `ref=*`.'''))
 
     def way(self, data, tags, nds):
-        if tags.get("junction") == "roundabout" and u"ref" in tags:
-            return {"class": 102, "subclass": 1, "text": T_("Should not contain tag ref={0}", tags[u"ref"]), "fix": {"-": ["ref"]}}
+        if tags.get("junction") == "roundabout" and "ref" in tags:
+            return {"class": 102, "subclass": 1, "text": T_("Should not contain tag ref={0}", tags["ref"]), "fix": {"-": ["ref"]}}
 
 
 ###########################################################################

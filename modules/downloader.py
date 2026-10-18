@@ -185,9 +185,9 @@ class Test(unittest.TestCase):
           else:
             raise
 
-        self.url = u"https://osmose.openstreetmap.fr/en/"
-        self.url_404 = u"https://osmose.openstreetmap.fr/static/404-osmose-downloader-test-sdkhfqksf"
-        self.url_fr = u"https://osmose.openstreetmap.fr/fr/"  # url not only in ascii
+        self.url = "https://osmose.openstreetmap.fr/en/"
+        self.url_404 = "https://osmose.openstreetmap.fr/static/404-osmose-downloader-test-sdkhfqksf"
+        self.url_fr = "https://osmose.openstreetmap.fr/fr/"  # url not only in ascii
 
     def check_content(self, content):
         self.assertIn("<html",  content)

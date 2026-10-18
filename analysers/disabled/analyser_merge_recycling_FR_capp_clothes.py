@@ -29,10 +29,10 @@ class Analyser_Merge_Recycling_FR_capp_clothes(Analyser_Merge):
             title = T_('CAPP clothes recycling not integrated'))
 
         self.init(
-            u"http://opendata.agglo-pau.fr/index.php/fiche?idQ=7",
-            u"Point d'apport volontaire du textile : Relais 64 sur la CAPP",
-            CSV(Source(attribution = u"Communauté d'Agglomération Pau-Pyrénées", millesime = "01/2013",
-                    fileUrl = u"http://opendata.agglo-pau.fr/sc/call.php?f=1&idf=7", zip = "Dod_Bat_WGS84.csv", encoding = "ISO-8859-15")),
+            "http://opendata.agglo-pau.fr/index.php/fiche?idQ=7",
+            "Point d'apport volontaire du textile : Relais 64 sur la CAPP",
+            CSV(Source(attribution = "Communauté d'Agglomération Pau-Pyrénées", millesime = "01/2013",
+                    fileUrl = "http://opendata.agglo-pau.fr/sc/call.php?f=1&idf=7", zip = "Dod_Bat_WGS84.csv", encoding = "ISO-8859-15")),
             Load("X", "Y",
                 xFunction = Load.float_comma,
                 yFunction = Load.float_comma,

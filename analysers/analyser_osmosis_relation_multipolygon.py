@@ -184,10 +184,10 @@ members.'''))
 
         self.callback10 = lambda res: {"class":1, "data":[self.relation_full, self.way_full, self.way_full, self.positionAsText]}
         self.callback20 = lambda res: {"class":2, "subclass":stablehash64(res[11]), "data":[self.relation_full, self.way_full, self.positionAsText],
-            "text": {"en": u", ".join(map(lambda k: "{0}=({1},{2})".format(*k), filter(lambda k: k[1], (("landuse",res[3],res[4]), ("natural",res[5],res[6]), ("waterway",res[7],res[8]), ("building",res[9],res[10])))))}
+            "text": {"en": ", ".join(map(lambda k: "{0}=({1},{2})".format(*k), filter(lambda k: k[1], (("landuse",res[3],res[4]), ("natural",res[5],res[6]), ("waterway",res[7],res[8]), ("building",res[9],res[10])))))}
         }
         self.callback30 = lambda res: {"class":3, "subclass":1, "data":[self.relation_full, self.positionAsText],
-            "text": {"en": u", ".join(map(lambda k: "{0}=({1})".format(*k), filter(lambda k: k[1], (("landuse",res[2]), ("natural",res[3]), ("waterway",res[4]), ("building",res[5])))))}
+            "text": {"en": ", ".join(map(lambda k: "{0}=({1})".format(*k), filter(lambda k: k[1], (("landuse",res[2]), ("natural",res[3]), ("waterway",res[4]), ("building",res[5])))))}
         }
 
     def analyser_osmosis_common(self):

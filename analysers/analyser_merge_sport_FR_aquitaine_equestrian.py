@@ -29,10 +29,10 @@ class Analyser_Merge_Sport_FR_Aquitaine_Equestrian(Analyser_Merge_Point):
             title = T_('Aquitaine equestrian spot not integrated'))
 
         self.init(
-            u"http://catalogue.datalocale.fr/dataset/liste-des-activites-de-pratique-equestre-en-aquitaine",
-            u"Liste des activités de pratique équestre en aquitaine",
-            JSON(Source(attribution = u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com", millesime = "08/2018",
-                    fileUrl = u"http://wcf.tourinsoft.com/Syndication/aquitaine/3db03dc1-a2aa-415f-b219-53f70d387b53/Objects?$format=json"),
+            "http://catalogue.datalocale.fr/dataset/liste-des-activites-de-pratique-equestre-en-aquitaine",
+            "Liste des activités de pratique équestre en aquitaine",
+            JSON(Source(attribution = "Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com", millesime = "08/2018",
+                    fileUrl = "http://wcf.tourinsoft.com/Syndication/aquitaine/3db03dc1-a2aa-415f-b219-53f70d387b53/Objects?$format=json"),
                 extractor = lambda json: json['d']),
             Load_XY("LON", "LAT",
                 xFunction = Load_XY.degree,

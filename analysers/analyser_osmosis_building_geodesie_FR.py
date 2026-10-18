@@ -22,7 +22,7 @@
 from modules.OsmoseTranslation import T_
 from .Analyser_Osmosis import Analyser_Osmosis
 
-sql10 = u"""
+sql10 = """
 CREATE TEMP TABLE survery_building AS
 SELECT DISTINCT ON (nodes.geom)
     nodes.id,

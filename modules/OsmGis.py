@@ -41,14 +41,14 @@ class OsmGis:
         if not r1: return None
 
         data = {}
-        data[u"id"]      = NodeId
-        data[u"lat"]     = r1[0]
-        data[u"lon"]     = r1[1]
-        data[u"tag"]     = {}
+        data["id"]      = NodeId
+        data["lat"]     = r1[0]
+        data["lon"]     = r1[1]
+        data["tag"]     = {}
         for i in range(len(r1[2])//2):
-            data[u"tag"][r1[2][2*i].decode("utf8")] = r1[2][2*i+1].decode("utf8")
+            data["tag"][r1[2][2*i].decode("utf8")] = r1[2][2*i+1].decode("utf8")
 
-        if self._user_patch and "user" in data[u"tag"]:
+        if self._user_patch and "user" in data["tag"]:
             data["user"] = data["tag"].pop("user")
 
         return data
@@ -63,13 +63,13 @@ class OsmGis:
         if not r1: return None
 
         data = {}
-        data[u"id"]      = WayId
-        data[u"nd"]      = r1[0]
-        data[u"tag"]     = {}
+        data["id"]      = WayId
+        data["nd"]      = r1[0]
+        data["tag"]     = {}
         for i in range(len(r1[1])//2):
-            data[u"tag"][r1[1][2*i].decode("utf8")] = r1[1][2*i+1].decode("utf8")
+            data["tag"][r1[1][2*i].decode("utf8")] = r1[1][2*i+1].decode("utf8")
 
-        if self._user_patch and "user" in data[u"tag"]:
+        if self._user_patch and "user" in data["tag"]:
             data["user"] = data["tag"].pop("user")
 
         return data
@@ -84,15 +84,15 @@ class OsmGis:
         if not r1: return None
 
         data = {}
-        data[u"id"]      = RelationId
-        data[u"member"]  = []
+        data["id"]      = RelationId
+        data["member"]  = []
         for i in range(len(r1[0])//2):
-            data[u"member"].append({u"type":{"n":u"node","w":u"way","r":u"relation"}[r1[0][2*i][0]],u"ref":int(r1[0][2*i][1:]),u"role":r1[0][2*i+1].decode("utf8")})
-        data[u"tag"]     = {}
+            data["member"].append({"type":{"n":"node","w":"way","r":"relation"}[r1[0][2*i][0]],"ref":int(r1[0][2*i][1:]),"role":r1[0][2*i+1].decode("utf8")})
+        data["tag"]     = {}
         for i in range(len(r1[1])//2):
-            data[u"tag"][r1[1][2*i].decode("utf8")] = r1[1][2*i+1].decode("utf8")
+            data["tag"][r1[1][2*i].decode("utf8")] = r1[1][2*i+1].decode("utf8")
 
-        if self._user_patch and "user" in data[u"tag"]:
+        if self._user_patch and "user" in data["tag"]:
             data["user"] = data["tag"].pop("user")
 
         return data

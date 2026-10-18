@@ -65,12 +65,12 @@ class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge_Point):
         return string
 
     replacement = {
-        u'Coll.': u'Collège',
-        u'Pl.': u'Place',
-        u'Eglise': u'Église',
-        u'Rte ': u'Route ',
-        u'Bld ': u'Boulevard ',
-        u'St ': u'Saint ',
-        u'Av. ': u'Avenue ',
-        u'Hôp.': u'Hôpital',
+        'Coll.': 'Collège',
+        'Pl.': 'Place',
+        'Eglise': 'Église',
+        'Rte ': 'Route ',
+        'Bld ': 'Boulevard ',
+        'St ': 'Saint ',
+        'Av. ': 'Avenue ',
+        'Hôp.': 'Hôpital',
     }

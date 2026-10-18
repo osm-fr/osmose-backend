@@ -90,20 +90,20 @@ class Test(TestPluginCommon):
             config = _config()
         a.father = father()
         a.init(None)
-        for t in [{u"name": u"COL TRÈS HAUTTT"},
-                  {u"name": u"EHPAD MAGEUSCULE"},
-                  {u"name": u"ICI PARIS XL"}, # in NSI, but not for FR
-                  {u"name": u"AÇǱÞΣSSὩΙST"},
-                  {u"name": u"IKEA PARIS"},
+        for t in [{"name": "COL TRÈS HAUTTT"},
+                  {"name": "EHPAD MAGEUSCULE"},
+                  {"name": "ICI PARIS XL"}, # in NSI, but not for FR
+                  {"name": "AÇǱÞΣSSὩΙST"},
+                  {"name": "IKEA PARIS"},
                  ]:
             self.check_err(a.node(None, t), t)
             self.check_err(a.way(None, t, None), t)
 
-        for t in [{u"name": u"Col des Champs XIIVVVIM"},
-                  {u"name": u"EHPAD La Madelon"},
-                  {u"name": u"IKEA"}, # in NSI
-                  {u"name": u"IKEA Paris"},
-                  {u"name": u"ƻאᎯᚦ京"},
+        for t in [{"name": "Col des Champs XIIVVVIM"},
+                  {"name": "EHPAD La Madelon"},
+                  {"name": "IKEA"}, # in NSI
+                  {"name": "IKEA Paris"},
+                  {"name": "ƻאᎯᚦ京"},
                  ]:
             assert not a.node(None, t), t
 
@@ -115,12 +115,12 @@ class Test(TestPluginCommon):
             config = _config()
         a.father = father()
         a.init(None)
-        for t in [{"name": u"ΠΛΑΤΕΙΑ ΕΛΕΥΘΕΡΙΑΣ"},
+        for t in [{"name": "ΠΛΑΤΕΙΑ ΕΛΕΥΘΕΡΙΑΣ"},
                   {"name": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"},
                  ]:
             self.check_err(a.node(None, t), t)
             self.check_err(a.way(None, t, None), t)
 
-        for t in [{"name": u"ΠΛΑΤΕΙΑ ΕΛΕΥΘΕΡΙΑΣ", "public_transport": "stop_position"},
+        for t in [{"name": "ΠΛΑΤΕΙΑ ΕΛΕΥΘΕΡΙΑΣ", "public_transport": "stop_position"},
                  ]:
             assert not a.node(None, t), t

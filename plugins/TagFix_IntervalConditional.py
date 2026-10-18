@@ -38,15 +38,15 @@ class TagFix_IntervalConditional(Plugin):
 
         # Check validity of interval tag
         if parsedData['defaultInterval'] == 'invalid':
-            return { 'class': 32502, 'subclass': 1, 'text': T_(u'Invalid interval tag format') }
+            return { 'class': 32502, 'subclass': 1, 'text': T_('Invalid interval tag format') }
 
         # Check validity of interval:conditional tag
         if parsedData['otherIntervals'] == 'invalid':
-            return { 'class': 32502, 'subclass': 2, 'text': T_(u'Conditional interval tag is not valid') }
+            return { 'class': 32502, 'subclass': 2, 'text': T_('Conditional interval tag is not valid') }
 
         # Check combination of opening_hours, interval and interval:conditional
         if 'opening_hours' in tags and type(parsedData['opens']) is dict and parsedData['allComputedIntervals'] == 'invalid':
-            return { 'class': 32502, 'subclass': 3, 'text': T_(u'Conditional interval does not fit into opening hours') }
+            return { 'class': 32502, 'subclass': 3, 'text': T_('Conditional interval does not fit into opening hours') }
 
 
     def relation(self, data, tags, members):

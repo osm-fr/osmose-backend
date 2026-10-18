@@ -2159,7 +2159,7 @@ china_province("macau", 1867188, "CN-92", proj=32649, language=["zh", "pt"], dri
 #########################################################################
 
 ogf = default_simple("ogf", None, {"project": "opengeofiction"},
-        download_url=u"https://opengeofiction.net/backup/ogf_latest.osm.pbf")
+        download_url="https://opengeofiction.net/backup/ogf_latest.osm.pbf")
 del ogf.analyser["osmosis_soundex"]
 
 ###########################################################################

@@ -33,11 +33,11 @@ class Analyser_Merge_Restaurant_FR_cg71(Analyser_Merge):
         final_name = re.compile("/.*$")
 
         self.init(
-            u"https://www.data.gouv.fr/fr/datasets/restaurants-od71",
-            u"Les restaurants en Saône-et-Loire - CG71",
-            CSV(Source(attribution = u"Département de Saône-et-Loire", millesime = "03/2013",
-                    fileUrl = u"https://www.data.gouv.fr/s/resources/restaurants-od71/20180207-141445/CG71Restaurants.csv", encoding = "ISO-8859-15"),
-                separator = u";"),
+            "https://www.data.gouv.fr/fr/datasets/restaurants-od71",
+            "Les restaurants en Saône-et-Loire - CG71",
+            CSV(Source(attribution = "Département de Saône-et-Loire", millesime = "03/2013",
+                    fileUrl = "https://www.data.gouv.fr/s/resources/restaurants-od71/20180207-141445/CG71Restaurants.csv", encoding = "ISO-8859-15"),
+                separator = ";"),
             Load("LONGITUDE", "LATITUDE",
                 xFunction = Load.float_comma,
                 yFunction = Load.float_comma),
@@ -52,27 +52,27 @@ class Analyser_Merge_Restaurant_FR_cg71(Analyser_Merge):
                     mapping1 = {
                         "amenity": lambda fields: self.amenity_type.get(fields["CATEGORIE"]) or "restaurant",
                         "name": lambda fields: final_name.sub('', start_restaurant.sub('', fields["NOM"])),
-                        "tourism": lambda fields: "hotel" if fields["TYPE_RESTAURATION"] == u"Hotel-restaurant" else None,
+                        "tourism": lambda fields: "hotel" if fields["TYPE_RESTAURATION"] == "Hotel-restaurant" else None,
                         "cuisine": lambda fields: self.cuisine(fields),
                         "website": "SITE_WEB",
                         "stars": lambda fields: len(fields["note_Guide_Rouge_Michelin"]) if fields["note_Guide_Rouge_Michelin"] else None},
                     text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x, [fields["NOM"], fields["TYPE_RESTAURATION"], fields["CATEGORIE"], fields["ADRESSE1"], fields["ADRESSE2"], fields["ADRESSE3"], fields["VILLE"]]))} )))
 
     amenity_type = {
-        u"Cafétéria": "restaurant",
-        u"Crêperie": "restaurant",
-        u"Bistrot": "bar",
-        u"Grill": "restaurant",
-        u"Restauration rapide": "fast_food",
-        u"Restauration à thème": "restaurant",
-        u"Brasserie": "restaurant",
-        u"Cuisine traditionnelle": "restaurant",
+        "Cafétéria": "restaurant",
+        "Crêperie": "restaurant",
+        "Bistrot": "bar",
+        "Grill": "restaurant",
+        "Restauration rapide": "fast_food",
+        "Restauration à thème": "restaurant",
+        "Brasserie": "restaurant",
+        "Cuisine traditionnelle": "restaurant",
     }
 
     cuisine_categorie = {
-        u"Crêperie": "crepe",
-        u"Grill": "steak_house",
-        u"Pizzeria": "pizza",
+        "Crêperie": "crepe",
+        "Grill": "steak_house",
+        "Pizzeria": "pizza",
     }
 
     def cuisine(self, fields):

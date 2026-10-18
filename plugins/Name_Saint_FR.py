@@ -42,13 +42,13 @@ thing ("Saint-*" in French).'''),
 Name should be the "Saint-Esprit".'''))
 
         import re
-        self.Saint = re.compile(u".*((Sainte?) +).+")
+        self.Saint = re.compile(".*((Sainte?) +).+")
 
     def node(self, data, tags):
         if tags.get("name") not in (None, "Saint Algue"):
             r = self.Saint.match(tags["name"])
             if r:
-                return {"class": 3033, "subclass": 1, "text": T_(u"Missing hyphen after \"Saint(e)\""),
+                return {"class": 3033, "subclass": 1, "text": T_("Missing hyphen after \"Saint(e)\""),
                          "fix": {"name": tags["name"].replace(r.group(1), "{0}-".format(r.group(2)))}}
 
     def way(self, data, tags, nds):

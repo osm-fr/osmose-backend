@@ -55,7 +55,7 @@ class Plugin:
         Called each time a node is found on data source.
 
         @param node: dict with details.
-            example: node[u"id"], node[u"lat"], node[u"lon"], node[u"version"]
+            example: node["id"], node["lat"], node["lon"], node["version"]
         @param tags: dict with all tags and values.
         @return: error list.
         """
@@ -66,7 +66,7 @@ class Plugin:
         Called each time a way is found on data source.
 
         @param way: dict with details.
-            example: node[u"id"], node[u"lat"], node[u"lon"], node[u"version"]
+            example: node["id"], node["lat"], node["lon"], node["version"]
         @param tags: dict with all tags and values.
         @param nodes: list of all nodes id.
         @return: error list.
@@ -78,7 +78,7 @@ class Plugin:
         Called each time a relation is found on data source.
 
         @param relation: dict with details.
-            example: node[u"id"], node[u"lat"], node[u"lon"], node[u"version"]
+            example: node["id"], node["lat"], node["lon"], node["version"]
         @param tags: dict with all tags and values.
         @param members:  list of all relation members.
         @return: error list.
@@ -106,24 +106,24 @@ class Plugin:
 
 
     def ToolsStripAccents(self, mot):
-        mot = mot.replace(u"à", u"a").replace(u"â", u"a")
-        mot = mot.replace(u"é", u"e").replace(u"è", u"e").replace(u"ë", u"e").replace(u"ê", u"e")
-        mot = mot.replace(u"î", u"i").replace(u"ï", u"i")
-        mot = mot.replace(u"ô", u"o").replace(u"ö", u"o")
-        mot = mot.replace(u"û", u"u").replace(u"ü", u"u").replace(u"ù", u"u")
-        mot = mot.replace(u"ÿ", u"y")
-        mot = mot.replace(u"ç", u"c")
-        mot = mot.replace(U"À", U"A").replace(u"Â", u"A")
-        mot = mot.replace(U"É", U"E").replace(U"È", U"E").replace(U"Ë", U"E").replace(U"Ê", U"E")
-        mot = mot.replace(U"Î", U"I").replace(U"Ï", U"I")
-        mot = mot.replace(U"Ô", U"O").replace(U"Ö", U"O")
-        mot = mot.replace(U"Û", U"U").replace(U"Ü", U"U").replace(u"Ù", u"U")
-        mot = mot.replace(U"Ÿ", U"Y")
-        mot = mot.replace(U"Ç", U"C")
-        mot = mot.replace(U"œ", U"oe")
-        mot = mot.replace(U"æ", U"ae")
-        mot = mot.replace(U"Œ", U"OE")
-        mot = mot.replace(U"Æ", U"AE")
+        mot = mot.replace("à", "a").replace("â", "a")
+        mot = mot.replace("é", "e").replace("è", "e").replace("ë", "e").replace("ê", "e")
+        mot = mot.replace("î", "i").replace("ï", "i")
+        mot = mot.replace("ô", "o").replace("ö", "o")
+        mot = mot.replace("û", "u").replace("ü", "u").replace("ù", "u")
+        mot = mot.replace("ÿ", "y")
+        mot = mot.replace("ç", "c")
+        mot = mot.replace("À", "A").replace("Â", "A")
+        mot = mot.replace("É", "E").replace("È", "E").replace("Ë", "E").replace("Ê", "E")
+        mot = mot.replace("Î", "I").replace("Ï", "I")
+        mot = mot.replace("Ô", "O").replace("Ö", "O")
+        mot = mot.replace("Û", "U").replace("Ü", "U").replace("Ù", "U")
+        mot = mot.replace("Ÿ", "Y")
+        mot = mot.replace("Ç", "C")
+        mot = mot.replace("œ", "oe")
+        mot = mot.replace("æ", "ae")
+        mot = mot.replace("Œ", "OE")
+        mot = mot.replace("Æ", "AE")
         return mot
 
 
@@ -239,17 +239,17 @@ class Test(TestPluginCommon):
         self.assertEqual(a.way(None, None, None), None)
         self.assertEqual(a.relation(None, None, None), None)
         self.assertEqual(a.end(None), None)
-        for n in [(u"bpoue", u"bpoue"),
-                  (u"bpoué", u"bpoue"),
-                  (u"bpoùé", u"bpoue"),
-                  (u"bpôùé", u"bpoue"),
+        for n in [("bpoue", "bpoue"),
+                  ("bpoué", "bpoue"),
+                  ("bpoùé", "bpoue"),
+                  ("bpôùé", "bpoue"),
                  ]:
             self.assertEqual(a.ToolsStripAccents(n[0]), n[1], n)
 
-        for n in [(u"1", u"beppu"),
-                  (u"1", u"lhnsune"),
-                  (u"1", u"uae"),
-                  (u"1", u"bue"),
+        for n in [("1", "beppu"),
+                  ("1", "lhnsune"),
+                  ("1", "uae"),
+                  ("1", "bue"),
                  ]:
             self.assertNotEqual(stablehash(n[0]), stablehash(n[1]))
 
