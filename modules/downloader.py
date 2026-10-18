@@ -139,7 +139,7 @@ def urlopen(url, delay, mode='r', post: Optional[Dict[str, str]] = None):
     return open(path(url, delay, post), mode)
 
 def urlread(url: str, delay: int, post: Optional[Dict[str, str]] = None):
-    return open(path(url, delay, post), 'r', encoding="utf-8").read()
+    return open(path(url, delay, post), encoding="utf-8").read()
 
 def set_millesime(url: str, millesime: Optional[datetime]) -> None:
     with open(get_cache_path(url) + ".millesime", "w", encoding="utf-8") as millesime_file:
@@ -155,7 +155,7 @@ def get_millesime(url: str, delay: int, post: Optional[Dict[str, str]] = None) -
         # Synchronize Millesime file expiration with main cache file
         statbuf = os.stat(cache_path)
         if (time.time() - delay*24*60*60) < statbuf.st_mtime:
-            with open(millesime_path, "r", encoding="utf-8") as millesime:
+            with open(millesime_path, encoding="utf-8") as millesime:
                 raw_millesime = millesime.read()
                 if raw_millesime != "0":
                     return datetime.fromtimestamp(int(raw_millesime))
@@ -258,7 +258,7 @@ class Test(unittest.TestCase):
         assert dst
         self.assertIsInstance(dst, str)
         self.check_content(dst)
-        exp_content = open(update_cache(self.url, 100), "r", encoding="utf-8").read()
+        exp_content = open(update_cache(self.url, 100), encoding="utf-8").read()
         self.assertEqual(dst, exp_content, "urlread doesn't give expected result")
 
     def test_urlread_fr(self):
@@ -266,5 +266,5 @@ class Test(unittest.TestCase):
         assert dst
         self.assertIsInstance(dst, str)
         self.check_content(dst)
-        exp_content = open(update_cache(self.url_fr, 100), "r", encoding="utf-8").read()
+        exp_content = open(update_cache(self.url_fr, 100), encoding="utf-8").read()
         self.assertEqual(dst, exp_content, "urlread doesn't give expected result")

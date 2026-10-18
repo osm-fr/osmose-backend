@@ -24,7 +24,7 @@ def analyse_log(filename):
 
   tasks = collections.OrderedDict()
 
-  f = open(filename, "r")
+  f = open(filename)
   for line in f:
     if not re_timestamp.match(line):
       continue

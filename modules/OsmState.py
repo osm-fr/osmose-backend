@@ -34,7 +34,7 @@ class OsmState:
     self._logger = logger
     self._timestamp = None
 
-    with open(state_file, 'r') as f:
+    with open(state_file) as f:
       state_lines = f.readlines()
       for line in state_lines:
         logger.log("state: {0}".format(line))

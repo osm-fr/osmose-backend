@@ -34,7 +34,7 @@ class lockfile:
         #return
         self.fn = filename
         try:
-            olddata = open(self.fn, "r").read()
+            olddata = open(self.fn).read()
         except:
             olddata = ""
         try:
