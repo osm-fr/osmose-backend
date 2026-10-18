@@ -1,6 +1,4 @@
 #!/usr/bin/env python
-#-*- coding: utf-8 -*-
-
 ###########################################################################
 ##                                                                       ##
 ## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
@@ -33,15 +31,15 @@ class Analyser_Gis_Building_Overlaps(Analyser):
     Analyser_Osmosis.__init__(self, config, logger)
 
   def analyser(self):
-    
+
     apiconn = OsmGis.OsmGis(self.config.db_string, self.config.db_schema)
 
     ## result file
-    
+
     outxml = OsmSax.OsmSaxWriter(open(self.config.dst, "w"), "UTF-8")
     outxml.startDocument()
     outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-    
+
     outxml.startElement("class", {"id":"1", "item":"0"})
     outxml.Element("classtext", {"lang":"en", "title":"Building intersection"})
     outxml.endElement("class")
@@ -49,13 +47,13 @@ class Analyser_Gis_Building_Overlaps(Analyser):
     ## gis connection
     gisconn = psycopg2.connect(self.config.db_string)
     giscurs = gisconn.cursor()
-    
+
     ## sql querries
     sql1 = "CREATE TEMP TABLE %s_building AS SELECT osm_id, way FROM %s_polygon WHERE st_isvalid(way)='t' AND st_issimple(way)='t' AND building='yes';"%(self.config.db_schema,self.config.dbp)
     sql2 = "CREATE INDEX %s_building_idx ON %s_building USING gist(way);"%(self.config.db_schema,self.config.dbp)
     sql3 = "SELECT b1.osm_id AS id1, b2.osm_id AS id2, astext(st_transform(st_pointonsurface(ST_Intersection(b1.way, b2.way)), 4020)) FROM %s_building AS b1, %s_building AS b2 WHERE b1.osm_id>b2.osm_id AND st_intersects(b1.way, b2.way)='t' AND st_area(ST_Intersection(b1.way, b2.way))<>0;"%(self.config.db_schema,self.config.dbp)
     sql4 = "DROP TABLE %s_building;"%(self.config.db_schema)
-    
+
     ## gis querries
     self.logger.log(u"create building table")
     giscurs.execute(sql1)
@@ -63,7 +61,7 @@ class Analyser_Gis_Building_Overlaps(Analyser):
     giscurs.execute(sql2)
     self.logger.log(u"analyse overlap")
     giscurs.execute(sql3)
-        
+
     ## format results to outxml
     self.logger.log(u"generate xml")
     while True:
@@ -84,5 +82,5 @@ class Analyser_Gis_Building_Overlaps(Analyser):
     outxml.endElement("analyser")
     outxml._out.close()
 
-    #self.logger.log(u"delete building table/index")    
+    #self.logger.log(u"delete building table/index")
     #giscurs.execute(sql4)

@@ -1,6 +1,4 @@
 #!/usr/bin/env python3
-#-*- coding: utf-8 -*-
-
 import sys
 import os
 import re
@@ -988,8 +986,7 @@ class Test(TestPluginMapcss):
 
         """ + build_tests(tests).replace("\n", "\n        ") + "\n"
 
-    mapcss = ("""#-*- coding: utf-8 -*-
-import modules.mapcss_lib as mapcss
+    mapcss = ("""import modules.mapcss_lib as mapcss
 import regex as re # noqa
 
 from plugins.Plugin import with_options # noqa
@@ -1064,7 +1061,6 @@ def mapcss2osmose(mapcss, output_path = None):
     if original_class_name in item_map:
         item_map[original_class_name]['class'] = class_map
         f = open("mapcss/item_map.py", "w")
-        f.write("#-*- coding: utf-8 -*-\n")
         f.write("item_map = \\\n")
         pprint(item_map, f)
         f.close()

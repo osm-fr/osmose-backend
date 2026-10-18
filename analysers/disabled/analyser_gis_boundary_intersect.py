@@ -1,6 +1,4 @@
 #!/usr/bin/env python
-#-*- coding: utf-8 -*-
-
 ###########################################################################
 ##                                                                       ##
 ## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
@@ -31,17 +29,17 @@ class Analyser_Gis_Boundary_Intersect(Analyser):
 
   def __init__(self, config, logger = None):
     Analyser_Osmosis.__init__(self, config, logger)
-  
+
   def analyser(self):
-    
+
     apiconn = OsmGis.OsmGis(self.config.db_string, self.config.db_schema)
 
     ## result file
-    
+
     outxml = OsmSax.OsmSaxWriter(open(self.config.dst, "w"), "UTF-8")
     outxml.startDocument()
     outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-    
+
     outxml.startElement("class", {"id":"1", "item":"1060"})
     outxml.Element("classtext", {"lang":"fr", "title":"Croisement de frontières", "menu":"boundary intersect"})
     outxml.Element("classtext", {"lang":"en", "title":"Boundary intersection", "menu":"boundary intersect"})
@@ -65,9 +63,9 @@ class Analyser_Gis_Boundary_Intersect(Analyser):
     gisconn = psycopg2.connect(self.config.db_string)
     giscurs = gisconn.cursor()
     giscurs.execute(sql)
-    
+
     ## format results to outxml
-    
+
     while True:
         many = giscurs.fetchmany(1000)
         if not many:

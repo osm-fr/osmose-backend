@@ -1,6 +1,4 @@
 #! /usr/bin/env python
-#-*- coding: utf-8 -*-
-
 ###########################################################################
 ##                                                                       ##
 ## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
@@ -172,5 +170,5 @@ class Analyser_Admin_Level(Analyser_Sax):
 
     def _close_plugins(self):
         pass
- 
+
     ################################################################################

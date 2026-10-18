@@ -1,6 +1,4 @@
 #!/usr/bin/env python
-#-*- coding: utf-8 -*-
-
 ###########################################################################
 ##                                                                       ##
 ## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
@@ -34,11 +32,11 @@ class Analyser_Duplicate_Node(Analyser):
 
   def analyser(self):
 
-    ## result file    
+    ## result file
     outxml = OsmSax.OsmSaxWriter(open(self.config.dst, "w"), "UTF-8")
     outxml.startDocument()
     outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-    
+
     outxml.startElement("class", {"id":"1", "item":"0"})
     outxml.Element("classtext", {"lang":"fr", "title":"TEST : Plusieurs nœuds à la même position", "menu": "test : plusieurs nœuds"})
     outxml.endElement("class")

@@ -1,5 +1,3 @@
-#-*- coding: utf-8 -*-
-
 from .generated.MapCSSListener import MapCSSListener
 from .generated.MapCSSParser import MapCSSParser
 from typing import Dict, List, Optional

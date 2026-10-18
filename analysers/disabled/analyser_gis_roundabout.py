@@ -1,6 +1,4 @@
 #!/usr/bin/env python
-#-*- coding: utf-8 -*-
-
 ###########################################################################
 ##                                                                       ##
 ## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
@@ -37,18 +35,18 @@ class Analyser_Gis_Roundabout(Analyser):
     apiconn = OsmGis.OsmGis(self.config.db_string, self.config.db_schema)
 
     ## result file
-    
+
     outxml = OsmSax.OsmSaxWriter(open(self.config.dst, "w"), "UTF-8")
     outxml.startDocument()
     outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-    
+
     outxml.startElement("class", {"id":"1", "item":"1050"})
     outxml.Element("classtext", {"lang":"fr", "title":"Rond-point à l'envers", "menu":"rond-point à l'envers"})
     outxml.Element("classtext", {"lang":"en", "title":"Reverse roundabout", "menu":"reverse roundabout"})
     outxml.endElement("class")
-    
+
     ## sql querry
-    
+
     sql = """
     select osm_id, astext(st_transform(st_centroid(way),4020)) as center from %s_line
     where junction = 'roundabout'

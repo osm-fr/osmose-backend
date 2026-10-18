@@ -1,6 +1,4 @@
 #!/usr/bin/env python
-#-*- coding: utf-8 -*-
-
 ###########################################################################
 ##                                                                       ##
 ## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
@@ -35,11 +33,11 @@ class Analyser_Gis_Polygon(Analyser):
   def analyser(self):
 
     ## result file
-    
+
     outxml = OsmSax.OsmSaxWriter(open(self.config.dst, "w"), "UTF-8")
     outxml.startDocument()
     outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-    
+
     outxml.startElement("class", {"id":"1", "item":"1040"})
     outxml.Element("classtext", {"lang":"fr", "title":"Polygone non valide (analyse gis)", "menu":"polygone non valide"})
     outxml.Element("classtext", {"lang":"en", "title":"Invalid polygon (gis analysis)", "menu":"invalid polygon"})
@@ -97,5 +95,5 @@ class Analyser_Gis_Polygon(Analyser):
     outxml._out.close()
 
     ## update front-end
-    #self.logger.log("update front-end")    
+    #self.logger.log("update front-end")
     #urllib.urlretrieve(self.config.updt, "/dev/null")

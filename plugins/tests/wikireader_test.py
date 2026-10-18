@@ -1,4 +1,3 @@
-#-*- coding: utf-8 -*-
 from plugins.Plugin import TestPluginCommon
 from plugins.modules.wikiReader import read_wiki_table, read_wiki_templates, wikitag2text
 
