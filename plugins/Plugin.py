@@ -25,7 +25,7 @@ from inspect import getframeinfo, stack
 from typing import Dict, List, Union
 
 
-class Plugin(object):
+class Plugin:
 
     def __init__(self, father):
         self.father = father

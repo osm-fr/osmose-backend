@@ -7,7 +7,7 @@
 import operator
 
 
-class IntervalTree(object):
+class IntervalTree:
     __slots__ = ('intervals', 'left', 'right', 'center')
 
     def __init__(self, intervals, depth=16, minbucket=64, _extent=None, maxbucket=512):
@@ -121,7 +121,7 @@ class IntervalTree(object):
         for key,value in state.items():
             setattr(self, key, value)
 
-class Interval(object):
+class Interval:
     __slots__ = ('start', 'stop')
     def __init__(self, start, stop):
         self.start = start
