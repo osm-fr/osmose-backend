@@ -30,9 +30,9 @@ def identifier(name):
 class DictRowUnicode63(psycopg2.extras.DictRow):
     def __getitem__(self, x):
         if isinstance(x, str):
-            return super(DictRowUnicode63, self).__getitem__(identifier(x))
+            return super().__getitem__(identifier(x))
         else:
-            return super(DictRowUnicode63, self).__getitem__(x)
+            return super().__getitem__(x)
 
 class DictCursorUnicode63(psycopg2.extras.DictCursor):
     def __init__(self, *args, **kwargs):
