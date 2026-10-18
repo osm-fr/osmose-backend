@@ -26,12 +26,12 @@ import csv
 
 class Website(Plugin):
 
-    URL_TAGS = set(("brand:website",
+    URL_TAGS = {"brand:website",
                     "contact:website", "contact:webcam",
                     "heritage:website",
                     "opening_hours:url", "operator:website",
                     "url",
-                    "website", "website:menu", "website:mobile", "website:stock"))
+                    "website", "website:menu", "website:mobile", "website:stock"}
 
     def init(self, logger):
         Plugin.init(self, logger)

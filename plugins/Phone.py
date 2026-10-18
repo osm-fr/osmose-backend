@@ -25,7 +25,7 @@ import re
 
 class Phone(Plugin):
 
-    PHONE_TAGS = set(("contact:fax", "contact:phone", "fax", "phone"))
+    PHONE_TAGS = {"contact:fax", "contact:phone", "fax", "phone"}
 
     def init(self, logger):
         Plugin.init(self, logger)

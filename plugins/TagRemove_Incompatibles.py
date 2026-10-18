@@ -35,11 +35,11 @@ these should be mapped as two separate objects.'''),
 '''Sometimes the object needs both tags.'''))
 
         self.CONFLICT = {}
-        self.CONFLICT[0] = set(['aerialway', 'aeroway', 'amenity', 'highway', 'railway', 'waterway', 'landuse'])
-        self.CONFLICT[1] = set(['aerialway', 'aeroway', 'amenity', 'highway', 'leisure', 'railway', 'natural'])
-        self.CONFLICT[2] = set(['aerialway', 'aeroway', 'amenity', 'highway', 'leisure', 'railway', 'waterway', 'place'])
-        self.CONFLICT[3] = set(['building', 'place'])
-        self.CONFLICT[4] = set(['information', 'place'])
+        self.CONFLICT[0] = {'aerialway', 'aeroway', 'amenity', 'highway', 'railway', 'waterway', 'landuse'}
+        self.CONFLICT[1] = {'aerialway', 'aeroway', 'amenity', 'highway', 'leisure', 'railway', 'natural'}
+        self.CONFLICT[2] = {'aerialway', 'aeroway', 'amenity', 'highway', 'leisure', 'railway', 'waterway', 'place'}
+        self.CONFLICT[3] = {'building', 'place'}
+        self.CONFLICT[4] = {'information', 'place'}
         self.WHITE_LIST = {
             'landuse': [
                 ['school', 'amenity', 'school'], # deprecated

@@ -232,7 +232,7 @@ class Cuisine:
   @staticmethod
   def make_row(name: str, amenity: str, takeaway: Optional[str], brand: Optional[str]) -> Dict[str, Optional[str]]:
     if amenity:
-      amenity = ';'.join(sorted(set(map(lambda s: s.strip(), amenity.split(';'))).intersection(set(['fast_food', 'restaurant']))))
+      amenity = ';'.join(sorted(set(map(lambda s: s.strip(), amenity.split(';'))).intersection({'fast_food', 'restaurant'})))
     else:
       amenity = 'unknown'
 

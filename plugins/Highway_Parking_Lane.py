@@ -197,7 +197,7 @@ Any parking details should be tagged on that object instead.'''),
 
         # Unknown [side] of parking:[side]
         # Allows 'condition' and 'lane' to avoid duplicate warnings with TagFix_Deprecated
-        sides = list(set([i for i in sides if i not in ("left", "right", "both", "condition", "lane")]))
+        sides = list({i for i in sides if i not in ("left", "right", "both", "condition", "lane")})
         if len(sides) > 0:
             err.append({"class": 31621, "subclass": stablehash64(';'.join(sides)), "text": {"en": f"parking:[{'|'.join(sides)}]" if len(sides) > 1 else f"parking:{sides[0]}"}})
 

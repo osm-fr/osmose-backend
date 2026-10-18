@@ -66,7 +66,7 @@ class TagFix_MultipleValue(Plugin):
 '''Check the accuracy of the values, if necessary, delete the obsolete
 values.'''))
 
-        self.SimpleValuedTag = set((
+        self.SimpleValuedTag = {
             'addr:street', 'admin_level', 'amenity', 'attraction',
             'bicycle', 'building',
             'cycleway',
@@ -85,7 +85,7 @@ values.'''))
             'smoothness', 'surface',
             'tracktype', 'trail_visibility', 'type',
             'waterway', 'width', 'wikipedia', 'wires', 'wood',
-       ))
+       }
 
 
     def node(self, data, tags):
