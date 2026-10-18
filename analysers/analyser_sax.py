@@ -502,7 +502,7 @@ import dateutil
 
 class TestAnalyserOsmosis(TestAnalyser):
 
-    class MockupReader(object):
+    class MockupReader:
         def NodeGet(self, id):
             return { "id": id, "lat": 0, "lon": 0, "tag": {} }
 

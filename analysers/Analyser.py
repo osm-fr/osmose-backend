@@ -22,7 +22,7 @@ from inspect import getframeinfo, stack
 from modules import SourceVersion
 
 
-class Analyser(object):
+class Analyser:
 
     def __init__(self, config, logger = None):
         self.config = config

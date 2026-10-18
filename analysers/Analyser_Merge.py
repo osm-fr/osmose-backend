@@ -994,7 +994,7 @@ class Parquet(Parser):
     def close(self):
         self.parquet = None
 
-class Load(object):
+class Load:
     def __init__(self, geom = ("NULL",), table_name = None, create = None,
             select = {}, unique = None, where = lambda res: True, map = lambda i: i, geomFunction = lambda i: i, validationGeomSQL = "1=1"):
         """
