@@ -33,7 +33,7 @@ class str_value_(str):
         if string.__class__ == str_value_:
             return string
         else: # Keep None string value
-            s = super(str_value_, cls).__new__(cls, string)
+            s = super().__new__(cls, string)
             s.none = string is None
             return s
 
@@ -51,7 +51,7 @@ class str_value_(str):
         elif o.__class__ == int:
             return str_value(self.to_n() + o)
         else:
-            return str_value(super(str_value_, self).__add__(o))
+            return str_value(super().__add__(o))
 
     def __rsub__(self, o):
         if self.none:
@@ -124,7 +124,7 @@ class str_value_(str):
             try:
                 return self.to_n() == o
             except RuleAbort: pass # Couldn't convert to numeric
-        return super(str_value_, self).__eq__(o)
+        return super().__eq__(o)
 
     def __ne__(self, o):
         if self.none:
@@ -133,7 +133,7 @@ class str_value_(str):
             try:
                 return self.to_n() != o
             except RuleAbort: pass # Couldn't convert to numeric
-        return super(str_value_, self).__ne__(o)
+        return super().__ne__(o)
 
     def __gt__(self, o):
         if self.none:
