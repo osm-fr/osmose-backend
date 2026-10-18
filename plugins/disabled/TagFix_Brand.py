@@ -26,7 +26,7 @@ import unicodedata
 class TagFix_Brand(Plugin):
 
     def normalize(self, s):
-        return ''.join((c for c in unicodedata.normalize('NFD', s) if unicodedata.category(c) != 'Mn')).lower()
+        return ''.join(c for c in unicodedata.normalize('NFD', s) if unicodedata.category(c) != 'Mn').lower()
 
     def init(self, logger):
         Plugin.init(self, logger)

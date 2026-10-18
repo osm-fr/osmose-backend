@@ -29,7 +29,7 @@ class TagFix_Tree_Lang_fr(Plugin):
     only_for = ["fr"]
 
     def strip_accents(self, s):
-        return ''.join((c for c in unicodedata.normalize('NFD', s) if unicodedata.category(c) != 'Mn'))
+        return ''.join(c for c in unicodedata.normalize('NFD', s) if unicodedata.category(c) != 'Mn')
 
     def normalize(self, string):
         return self.strip_accents(string.strip().lower()).replace(' commun', '')

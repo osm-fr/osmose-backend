@@ -66,5 +66,5 @@ class Analyser_Merge_Power_Substation_FR(Analyser_Merge_Point):
                         "ref:FR:RTE": "Code poste",
                         "ref:FR:RTE_nom": "Nom poste"},
                     mapping2 = {
-                        "voltage": lambda fields: str((int(float(fields["Tension (kV)"].replace("kV", "")) * 1000))) if fields["Tension (kV)"] not in ("HORS TENSION", "<45kV", "COURANT CONTINU") else None},
+                        "voltage": lambda fields: str(int(float(fields["Tension (kV)"].replace("kV", "")) * 1000)) if fields["Tension (kV)"] not in ("HORS TENSION", "<45kV", "COURANT CONTINU") else None},
                     text = lambda tags, fields: T_("Power substation of {0}", fields["Nom poste"]))))
