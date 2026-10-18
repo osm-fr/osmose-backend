@@ -1,4 +1,3 @@
-#-*- coding: utf-8 -*-
 import modules.mapcss_lib as mapcss
 import regex as re # noqa
 

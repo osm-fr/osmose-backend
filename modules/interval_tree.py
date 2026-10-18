@@ -1,4 +1,3 @@
-#-*- coding: utf-8 -*-
 # Original code from http://code.google.com/p/bpbio/source/browse/trunk/interval_tree/
 # Copyright bpederse, 2011, MIT License
 #

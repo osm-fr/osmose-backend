@@ -1,6 +1,4 @@
 #!/usr/bin/env python
-#-*- coding: utf-8 -*-
-
 ###########################################################################
 ##                                                                       ##
 ## Copyrights Théo Peltier Rodrigo 2022

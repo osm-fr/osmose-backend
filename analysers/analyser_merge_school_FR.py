@@ -1,6 +1,4 @@
 #!/usr/bin/env python
-#-*- coding: utf-8 -*-
-
 ###########################################################################
 ##                                                                       ##
 ## Copyrights Frédéric Rodrigo 2012-2020, Noémie Lehuby 2025-2026        ##

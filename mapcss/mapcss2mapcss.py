@@ -1,6 +1,4 @@
 #!/usr/bin/env python3
-#-*- coding: utf-8 -*-
-
 import sys
 from antlr4 import FileStream, CommonTokenStream, ParseTreeWalker
 from .generated.MapCSSLexer import MapCSSLexer

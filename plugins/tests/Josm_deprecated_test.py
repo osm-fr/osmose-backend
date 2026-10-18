@@ -1,4 +1,3 @@
-#-*- coding: utf-8 -*-
 from plugins.Plugin import TestPluginCommon
 from plugins.Josm_deprecated import Josm_deprecated
 

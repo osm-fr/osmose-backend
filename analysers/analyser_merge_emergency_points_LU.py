@@ -1,6 +1,4 @@
 #!/usr/bin/env python
-#-*- coding: utf-8 -*-
-
 ###########################################################################
 ##                                                                       ##
 ## Copyrights David Morais Ferreira 2020                                 ##

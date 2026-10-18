@@ -1,4 +1,3 @@
-#-*- coding: utf-8 -*-
 item_map = \
 {'Charge': {'class': {None: 30916, 'Invalid value of charge': 30916},
             'prefix': 'Josm_',

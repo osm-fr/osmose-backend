@@ -1,5 +1,5 @@
 #! /usr/bin/python
-# -*- coding: UTF-8
+
 confusables_fix = {
     "̔": {"Inherited": "̔", "Arabic": "ٝ"},
     "́": {"Arabic": "ؘ", "Syriac": "݇"},

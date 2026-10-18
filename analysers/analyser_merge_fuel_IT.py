@@ -1,6 +1,4 @@
 #!/usr/bin/env python
-#-*- coding: utf-8 -*-
-
 ###########################################################################
 ##                                                                       ##
 ## Copyrights Francesco Ansanelli 2020                                   ##

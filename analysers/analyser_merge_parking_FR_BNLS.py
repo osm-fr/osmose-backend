@@ -1,6 +1,4 @@
 #!/usr/bin/env python
-#-*- coding: utf-8 -*-
-
 ###########################################################################
 ##                                                                       ##
 ## Copyrights Vincent Bergeot (thanks Frédéric Rodrigo) 2020             ##

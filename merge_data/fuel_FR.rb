@@ -1,5 +1,4 @@
 #!/usr/bin/ruby -w
-# encoding: UTF-8
 
 require 'rexml/document'
 include REXML
