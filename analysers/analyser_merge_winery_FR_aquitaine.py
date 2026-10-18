@@ -29,10 +29,10 @@ class Analyser_Merge_Winery_FR_aquitaine(Analyser_Merge_Point):
             title = T_('Winery not integrated'))
 
         self.init(
-            u"http://catalogue.datalocale.fr/dataset/liste-sites-viticoles-aquitaine",
-            u"Liste des sites viticoles en Aquitaine",
-            JSON(Source(attribution = u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com", millesime = "06/2016",
-                    fileUrl = u"http://wcf.tourinsoft.com/Syndication/aquitaine/7da797c5-e2d9-4bc6-aff5-11f4059b7fc7//Objects?$format=json"),
+            "http://catalogue.datalocale.fr/dataset/liste-sites-viticoles-aquitaine",
+            "Liste des sites viticoles en Aquitaine",
+            JSON(Source(attribution = "Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com", millesime = "06/2016",
+                    fileUrl = "http://wcf.tourinsoft.com/Syndication/aquitaine/7da797c5-e2d9-4bc6-aff5-11f4059b7fc7//Objects?$format=json"),
                 extractor = lambda json: json['d']),
             Load_XY("LON", "LAT",
                 select = {"TYPEPRODUITS": {"like": "%Vins%"}},

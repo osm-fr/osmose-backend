@@ -51,7 +51,7 @@ import unittest
 class Test(unittest.TestCase):
     def test_stablehash(self):
         h1 = stablehash( "toto")
-        h2 = stablehash(u"toto")
-        h3 = stablehash(u"é")
+        h2 = stablehash("toto")
+        h3 = stablehash("é")
         self.assertEqual(h1, h2)
         self.assertNotEqual(h1, h3)

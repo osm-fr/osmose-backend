@@ -29,14 +29,14 @@ class Analyser_Merge_Bicycle_Parking_FR_Bordeaux(Analyser_Merge):
             title = T_('Bordeaux bicycle parking not integrated'))
 
         self.init(
-            u"http://opendata.bordeaux.fr/content/mobiliers-urbains-stationnement-2roues",
-            u"Mobiliers urbains : Stationnement deux-roues",
-            CSV(Source(attribution = u"Ville de Bordeaux", millesime = "01/2019",
-                    fileUrl = u"http://opendatabdx.cloudapp.net/DataBrowser/DownloadCsv?container=databordeaux&entitySet=sigstavelo&filter=NOFILTER")),
+            "http://opendata.bordeaux.fr/content/mobiliers-urbains-stationnement-2roues",
+            "Mobiliers urbains : Stationnement deux-roues",
+            CSV(Source(attribution = "Ville de Bordeaux", millesime = "01/2019",
+                    fileUrl = "http://opendatabdx.cloudapp.net/DataBrowser/DownloadCsv?container=databordeaux&entitySet=sigstavelo&filter=NOFILTER")),
             Load("x_long", "y_lat",
                 select = {
-                    "realisation": u"Réalisé",
-                    "nature": [u"Arceau vélo", u"Rack", u"Potelet"]}),
+                    "realisation": "Réalisé",
+                    "nature": ["Arceau vélo", "Rack", "Potelet"]}),
             Conflate(
                 select = Select(
                     types = ["nodes"],

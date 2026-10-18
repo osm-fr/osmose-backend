@@ -182,13 +182,13 @@ class TestAnalyser(unittest.TestCase):
         return out
 
     @staticmethod
-    def compare_list(a, b, ctx=u""):
+    def compare_list(a, b, ctx=""):
         for k in range(min(len(a), len(b))):
             if a[k] != b[k]:
                 if hasattr(a[k], 'items') and hasattr(b[k], 'items'):
-                    return TestAnalyser.compare_dict(a[k], b[k], u"{0}.{1}".format(ctx, k))
+                    return TestAnalyser.compare_dict(a[k], b[k], "{0}.{1}".format(ctx, k))
                 elif isinstance(a[k], list) and isinstance(b[k], list):
-                    return TestAnalyser.compare_list(a[k], b[k], u"{0}.{1}".format(ctx, k))
+                    return TestAnalyser.compare_list(a[k], b[k], "{0}.{1}".format(ctx, k))
                 else:
                     return "key '{0}' is different: '{1}' != '{2}' [{3}]".format(k, a[k], b[k], ctx)
         if len(a) != len(b):
@@ -197,7 +197,7 @@ class TestAnalyser(unittest.TestCase):
 
 
     @staticmethod
-    def compare_dict(a, b, ctx=u""):
+    def compare_dict(a, b, ctx=""):
         for k in a.keys():
             if k not in b:
                 return "key '{0}' is missing from b [{1}]".format(k, ctx)
@@ -207,9 +207,9 @@ class TestAnalyser(unittest.TestCase):
                 return "key '{0}' is missing from a [{1}]".format(k, ctx)
             if a[k] != b[k]:
                 if hasattr(a[k], 'items') and hasattr(b[k], 'items'):
-                    return TestAnalyser.compare_dict(a[k], b[k], u"{0}.{1}".format(ctx, k))
+                    return TestAnalyser.compare_dict(a[k], b[k], "{0}.{1}".format(ctx, k))
                 elif isinstance(a[k], list) and isinstance(b[k], list):
-                    return TestAnalyser.compare_list(a[k], b[k], u"{0}.{1}".format(ctx, k))
+                    return TestAnalyser.compare_list(a[k], b[k], "{0}.{1}".format(ctx, k))
                 else:
                     return "key '{0}' is different: '{1}' != '{2}' [{3}]".format(k, a[k], b[k], ctx)
 
@@ -446,84 +446,84 @@ class TestAnalyser(unittest.TestCase):
 class Test(unittest.TestCase):
     def test_compare_dict(self):
         a = TestAnalyser
-        self.assertEqual(a.compare_dict({1:1, 2:2}, {1:1, 2:2}), u"")
-        self.assertEqual(a.compare_dict({1:1, 2:2}, {2:2, 1:1}), u"")
-        self.assertEqual(a.compare_dict({1:1, 2:2}, {1:0, 2:2}), u"key '1' is different: '1' != '0' []")
-        self.assertEqual(a.compare_dict({1:1, 2:2}, {1:1, 3:3}), u"key '2' is missing from b []")
-        self.assertEqual(a.compare_dict({1:1,    }, {1:1, 2:2}), u"key '2' is missing from a []")
-        self.assertEqual(a.compare_dict({1:1, 2:2}, {1:1,    }), u"key '2' is missing from b []")
+        self.assertEqual(a.compare_dict({1:1, 2:2}, {1:1, 2:2}), "")
+        self.assertEqual(a.compare_dict({1:1, 2:2}, {2:2, 1:1}), "")
+        self.assertEqual(a.compare_dict({1:1, 2:2}, {1:0, 2:2}), "key '1' is different: '1' != '0' []")
+        self.assertEqual(a.compare_dict({1:1, 2:2}, {1:1, 3:3}), "key '2' is missing from b []")
+        self.assertEqual(a.compare_dict({1:1,    }, {1:1, 2:2}), "key '2' is missing from a []")
+        self.assertEqual(a.compare_dict({1:1, 2:2}, {1:1,    }), "key '2' is missing from b []")
 
-        self.assertEqual(a.compare_dict({1:[3,4], 2:2}, {1:[3,4], 2:2}), u"")
-        self.assertEqual(a.compare_dict({1:[3,4], 2:2}, {1:[3,5], 2:2}), u"key '1' is different: '4' != '5' [.1]")
-        self.assertEqual(a.compare_dict({1:[3  ], 2:2}, {1:[3,4], 2:2}), u"length are different: 1 != 2 [.1]")
-        self.assertEqual(a.compare_dict({1:[3,4], 2:2}, {1:[3  ], 2:2}), u"length are different: 2 != 1 [.1]")
+        self.assertEqual(a.compare_dict({1:[3,4], 2:2}, {1:[3,4], 2:2}), "")
+        self.assertEqual(a.compare_dict({1:[3,4], 2:2}, {1:[3,5], 2:2}), "key '1' is different: '4' != '5' [.1]")
+        self.assertEqual(a.compare_dict({1:[3  ], 2:2}, {1:[3,4], 2:2}), "length are different: 1 != 2 [.1]")
+        self.assertEqual(a.compare_dict({1:[3,4], 2:2}, {1:[3  ], 2:2}), "length are different: 2 != 1 [.1]")
 
-        self.assertEqual(a.compare_dict({1:{3:4}, 2:2}, {1:{3:4}, 2:2}), u"")
-        self.assertEqual(a.compare_dict({1:{3:4}, 2:2}, {1:{3:5}, 2:2}), u"key '3' is different: '4' != '5' [.1]")
-        self.assertEqual(a.compare_dict({1:{3:4}, 2:2}, {1:{4:5}, 2:2}), u"key '3' is missing from b [.1]")
-        self.assertEqual(a.compare_dict({1:{   }, 2:2}, {1:{3:4}, 2:2}), u"key '3' is missing from a [.1]")
-        self.assertEqual(a.compare_dict({1:{3:4}, 2:2}, {1:{   }, 2:2}), u"key '3' is missing from b [.1]")
+        self.assertEqual(a.compare_dict({1:{3:4}, 2:2}, {1:{3:4}, 2:2}), "")
+        self.assertEqual(a.compare_dict({1:{3:4}, 2:2}, {1:{3:5}, 2:2}), "key '3' is different: '4' != '5' [.1]")
+        self.assertEqual(a.compare_dict({1:{3:4}, 2:2}, {1:{4:5}, 2:2}), "key '3' is missing from b [.1]")
+        self.assertEqual(a.compare_dict({1:{   }, 2:2}, {1:{3:4}, 2:2}), "key '3' is missing from a [.1]")
+        self.assertEqual(a.compare_dict({1:{3:4}, 2:2}, {1:{   }, 2:2}), "key '3' is missing from b [.1]")
 
     def test_coordinates(self):
         a = TestAnalyser
-        self.assertEqual(a.compare_dict({"@lat":43.9533100018163, "@lon":10}, {"@lat":43.9533100018163, "@lon":10}), u"")
+        self.assertEqual(a.compare_dict({"@lat":43.9533100018163, "@lon":10}, {"@lat":43.9533100018163, "@lon":10}), "")
 
         t0 = a.shorten_coordinates({"@lat": 43.9533100018163, "@lon": 10})
         t1 = a.shorten_coordinates({"@lat": 43.9533100018163, "@lon": 10})
-        self.assertEqual(a.compare_dict(t0, t1), u"")
+        self.assertEqual(a.compare_dict(t0, t1), "")
 
         t0 = a.shorten_coordinates({"@lat": 43.9533100018163,  "@lon": 10})
         t1 = a.shorten_coordinates({"@lat": 43.95331000181634, "@lon": 10})
-        self.assertEqual(a.compare_dict(t0, t1), u"")
+        self.assertEqual(a.compare_dict(t0, t1), "")
 
         t0 = a.shorten_coordinates({"@lat": 43.9533100018163,   "@lon": 10})
         t1 = a.shorten_coordinates({"@lat": 43.953310001816334, "@lon": 10})
-        self.assertEqual(a.compare_dict(t0, t1), u"")
+        self.assertEqual(a.compare_dict(t0, t1), "")
 
         t0 = a.shorten_coordinates({1: {"@lat": 43.9533100018163,  "@lon": 10}})
         t1 = a.shorten_coordinates({1: {"@lat": 43.95331000181634, "@lon": 10}})
-        self.assertEqual(a.compare_dict(t0, t1), u"")
+        self.assertEqual(a.compare_dict(t0, t1), "")
 
         t0 = a.shorten_coordinates({1: [{"@lat": 43.9533100018163,  "@lon": 10},]})
         t1 = a.shorten_coordinates({1: [{"@lat": 43.95331000181634, "@lon": 10},]})
-        self.assertEqual(a.compare_dict(t0, t1), u"")
+        self.assertEqual(a.compare_dict(t0, t1), "")
 
         t0 = a.shorten_coordinates({"@lat": "43.9533100018163",   "@lon": 10})
         t1 = a.shorten_coordinates({"@lat": "43.953310001816334", "@lon": 10})
-        self.assertEqual(a.compare_dict(t0, t1), u"")
+        self.assertEqual(a.compare_dict(t0, t1), "")
 
         t0 = a.shorten_coordinates({"@lat": 43.953310001816,   "@lon": 10})
         t1 = a.shorten_coordinates({"@lat": 43.95331000181634, "@lon": 10})
-        self.assertEqual(a.compare_dict(t0, t1), u"key '@lat' is different: '43.953310001816' != '43.9533100018163' []")
+        self.assertEqual(a.compare_dict(t0, t1), "key '@lat' is different: '43.953310001816' != '43.9533100018163' []")
 
         t0 = a.shorten_coordinates({"@lat": 43.95331000181634, "@lon": 43.953310001816})
         t1 = a.shorten_coordinates({"@lat": 43.95331000181634, "@lon": 43.95331000181634})
-        self.assertEqual(a.compare_dict(t0, t1), u"key '@lon' is different: '43.953310001816' != '43.9533100018163' []")
+        self.assertEqual(a.compare_dict(t0, t1), "key '@lon' is different: '43.953310001816' != '43.9533100018163' []")
 
         t0 = a.shorten_coordinates({"@lat": 43.95331000181634, "@lon": 45.95331000181634})
         t1 = a.shorten_coordinates({"@lat": 43.95331000181634, "@lon": 43.95331000181634})
-        self.assertEqual(a.compare_dict(t0, t1), u"key '@lon' is different: '45.9533100018163' != '43.9533100018163' []")
+        self.assertEqual(a.compare_dict(t0, t1), "key '@lon' is different: '45.9533100018163' != '43.9533100018163' []")
 
         t0 = a.shorten_coordinates({1: {"@lat": 43.953310001816,   "@lon": 10}})
         t1 = a.shorten_coordinates({1: {"@lat": 43.95331000181634, "@lon": 10}})
-        self.assertEqual(a.compare_dict(t0, t1), u"key '@lat' is different: '43.953310001816' != '43.9533100018163' [.1]")
+        self.assertEqual(a.compare_dict(t0, t1), "key '@lat' is different: '43.953310001816' != '43.9533100018163' [.1]")
 
         t0 = a.shorten_coordinates({1: [{"@lat": 43.953310001816,   "@lon": 10},]})
         t1 = a.shorten_coordinates({1: [{"@lat": 43.95331000181634, "@lon": 10},]})
-        self.assertEqual(a.compare_dict(t0, t1), u"key '@lat' is different: '43.953310001816' != '43.9533100018163' [.1.0]")
+        self.assertEqual(a.compare_dict(t0, t1), "key '@lat' is different: '43.953310001816' != '43.9533100018163' [.1.0]")
 
         t0 = a.shorten_coordinates({1: [{"@lat": "43.953310001816",   "@lon": 10},]})
         t1 = a.shorten_coordinates({1: [{"@lat": "43.95331000181634", "@lon": 10},]})
-        self.assertEqual(a.compare_dict(t0, t1), u"key '@lat' is different: '43.953310001816' != '43.9533100018163' [.1.0]")
+        self.assertEqual(a.compare_dict(t0, t1), "key '@lat' is different: '43.953310001816' != '43.9533100018163' [.1.0]")
 
         # only @lat/@lon should be modified
         t0 = a.shorten_coordinates({"other": 43.9533100018163, "@lon": 10})
         t1 = a.shorten_coordinates({"other": 43.9533100018163, "@lon": 10})
-        self.assertEqual(a.compare_dict(t0, t1), u"")
+        self.assertEqual(a.compare_dict(t0, t1), "")
 
         t0 = a.shorten_coordinates({"other": 43.9533100018163,  "@lon": 10})
         t1 = a.shorten_coordinates({"other": 43.95331000181634, "@lon": 10})
-        self.assertEqual(a.compare_dict(t0, t1), u"key 'other' is different: '43.9533100018163' != '43.95331000181634' []")
+        self.assertEqual(a.compare_dict(t0, t1), "key 'other' is different: '43.9533100018163' != '43.95331000181634' []")
 
     def test_merge_doc(self):
         self.assertEqual(Analyser.merge_doc({'en': 'a'}, {'en': 'b'}), {'en': 'a\n\nb'})

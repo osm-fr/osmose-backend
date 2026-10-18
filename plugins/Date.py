@@ -39,7 +39,7 @@ class Date(Plugin):
             "mhs:inscription_date", # Heritage
         ]
         self.default_date = datetime.datetime(9999, 12, 1)
-        self.Aprox = re.compile(u"^(?:early|mid|late|before|after|spring|summer|autumn|winter) [^ ]+")
+        self.Aprox = re.compile("^(?:early|mid|late|before|after|spring|summer|autumn|winter) [^ ]+")
 
     def convert2date(self, string):
         try:

@@ -93,5 +93,5 @@ class Analyser_Merge_College_FR(Analyser_Merge_Point):
                         "ref:UAI": "code UAI",
                         "operator:type": lambda res: "private" if res["statut"] in ["privé hors contrat", "privé reconnu par l’Etat", "privé sous contrat", "privé"] else None,
                         "short_name": "sigle"},
-                    mapping2 = {"name": lambda res: res["nom"].replace(u"Ecole", u"École")},
-                    text = lambda tags, fields: {"en": " - ".join(filter(lambda i: i is not None, [fields["sigle"], fields["nom"].replace(u"Ecole", u"École")]))} )))
+                    mapping2 = {"name": lambda res: res["nom"].replace("Ecole", "École")},
+                    text = lambda tags, fields: {"en": " - ".join(filter(lambda i: i is not None, [fields["sigle"], fields["nom"].replace("Ecole", "École")]))} )))

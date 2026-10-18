@@ -25,12 +25,12 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select,
 class Analyser_Merge_Bicycle_Rental_FR_CAPP(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.missing_official = {"item":"8160", "class": 11, "level": 3, "tag": ["merge", "public equipment", "bicycle"], "desc": T_(u"CAPP bicycle rental not integrated") }
+        self.missing_official = {"item":"8160", "class": 11, "level": 3, "tag": ["merge", "public equipment", "bicycle"], "desc": T_("CAPP bicycle rental not integrated") }
         self.init(
-            u"http://opendata.agglo-pau.fr/index.php/fiche?idQ=14",
-            u"Stations Idécycle du réseau Idelis sur la CAPP",
-            CSV(Source(attribution = u"Communauté d'Agglomération Pau-Pyrénées", millesime = "01/2013",
-                    fileUrl = u"http://opendata.agglo-pau.fr/sc/call.php?f=1&idf=14", zip = "Idecycl_WGS84.csv",
+            "http://opendata.agglo-pau.fr/index.php/fiche?idQ=14",
+            "Stations Idécycle du réseau Idelis sur la CAPP",
+            CSV(Source(attribution = "Communauté d'Agglomération Pau-Pyrénées", millesime = "01/2013",
+                    fileUrl = "http://opendata.agglo-pau.fr/sc/call.php?f=1&idf=14", zip = "Idecycl_WGS84.csv",
                 filter = lambda t: t.replace("\0", ""))),
             Load("X", "Y",
                 xFunction = Load.float_comma,

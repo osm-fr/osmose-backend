@@ -22,7 +22,7 @@
 from modules.OsmoseTranslation import T_
 from .Analyser_Osmosis import Analyser_Osmosis
 
-sql10 = u"""
+sql10 = """
 SELECT
     ways.id,
     ST_AsText(way_locate(ways.linestring)) AS geom

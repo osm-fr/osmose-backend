@@ -140,7 +140,7 @@ class OsmOsisManager:
     for extension in ["hstore"] + self.conf.db_extension_check:
       giscurs.execute("SELECT installed_version FROM pg_available_extensions WHERE name = %s", [extension])
       if giscurs.rowcount != 1 or giscurs.fetchone()[0] is None:
-        self.logger.err(u"missing extension: "+extension)
+        self.logger.err("missing extension: "+extension)
         return False
 
     giscurs.close()

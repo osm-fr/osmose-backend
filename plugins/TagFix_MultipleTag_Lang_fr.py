@@ -31,13 +31,13 @@ class TagFix_MultipleTag_Lang_fr(Plugin):
             title = T_('Watch multiple tags'))
 
         import re
-        self.Eglise = re.compile(u"(.glise|chapelle|basilique|cath.drale) de .*", re.IGNORECASE)
-        self.EgliseNot1 = re.compile(u"(.glise|chapelle|basilique|cath.drale) de la .*", re.IGNORECASE)
-        self.EgliseNot2 = re.compile(u"(.glise|chapelle|basilique|cath.drale) de l'.*", re.IGNORECASE)
-        self.MonumentAuxMorts = re.compile(u"monument aux morts.*", re.IGNORECASE)
-        self.SalleDesFetes = re.compile(u".*salle des f.tes.*", re.IGNORECASE)
-        self.MaisonDeQuartier = re.compile(u".*maison de quartier.*", re.IGNORECASE)
-        self.Marche = re.compile(u"marché( .+)?", re.IGNORECASE)
+        self.Eglise = re.compile("(.glise|chapelle|basilique|cath.drale) de .*", re.IGNORECASE)
+        self.EgliseNot1 = re.compile("(.glise|chapelle|basilique|cath.drale) de la .*", re.IGNORECASE)
+        self.EgliseNot2 = re.compile("(.glise|chapelle|basilique|cath.drale) de l'.*", re.IGNORECASE)
+        self.MonumentAuxMorts = re.compile("monument aux morts.*", re.IGNORECASE)
+        self.SalleDesFetes = re.compile(".*salle des f.tes.*", re.IGNORECASE)
+        self.MaisonDeQuartier = re.compile(".*maison de quartier.*", re.IGNORECASE)
+        self.Marche = re.compile("marché( .+)?", re.IGNORECASE)
 
     def node(self, data, tags):
         err = []
@@ -56,13 +56,13 @@ class TagFix_MultipleTag_Lang_fr(Plugin):
         if "historic" in tags:
             if tags["historic"] == "monument":
                 if self.MonumentAuxMorts.match(tags["name"]):
-                    err.append({"class": 3032, "subclass": 2, "text": T_(u"A war memorial is not a historic=monument"),
+                    err.append({"class": 3032, "subclass": 2, "text": T_("A war memorial is not a historic=monument"),
                                 "fix": {"historic": "memorial"} })
 
         if ((not "highway" in tags and not "public_transport" in tags and "leisure" not in tags and ("type" not in tags or tags["type"] != "associatedStreet")) and
             (self.SalleDesFetes.match(tags["name"]) or self.MaisonDeQuartier.match(tags["name"])) and
             not ("amenity" in tags and tags["amenity"] == "community_centre")):
-            err.append({"class": 3032, "subclass": 3, "text": T_(u"Put a tag for a village hall or a community centre"),
+            err.append({"class": 3032, "subclass": 3, "text": T_("Put a tag for a village hall or a community centre"),
                         "fix": {"+": {"amenity": "community_centre"}} })
 
         return err
@@ -85,26 +85,26 @@ class Test(TestPluginCommon):
             config = _config()
         a.father = father()
         a.init(None)
-        for t in [{"amenity": "place_of_worship", "name": u"Église de Paris"},
-                  {"amenity": "place_of_worship", "name": u"Cathédrale de Notre-Dame"},
-                  {"name": u"Marché des Capucines"},
-                  {"historic": "monument", "name": u"Monument aux morts du quartier"},
-                  {"name": u"Salle des fêtes"},
-                  {"name": u"Maison de quartier"},
+        for t in [{"amenity": "place_of_worship", "name": "Église de Paris"},
+                  {"amenity": "place_of_worship", "name": "Cathédrale de Notre-Dame"},
+                  {"name": "Marché des Capucines"},
+                  {"historic": "monument", "name": "Monument aux morts du quartier"},
+                  {"name": "Salle des fêtes"},
+                  {"name": "Maison de quartier"},
                  ]:
             self.check_err(a.node(None, t), t)
             self.check_err(a.way(None, t, None), t)
             self.check_err(a.relation(None, t, None), t)
 
-        for t in [{"amenity": "place_of_worship", "name": u"Église de l'endroit"},
-                  {"shop": "yes", "name": u"Marché des Capucines"},
+        for t in [{"amenity": "place_of_worship", "name": "Église de l'endroit"},
+                  {"shop": "yes", "name": "Marché des Capucines"},
                   {"amenity":"place_of_worship"},
-                  {"historic": "yes", "name": u"Monument aux morts du quartier"},
-                  {"historic": "monument", "name": u"Monument typique du quartier"},
-                  {"highway": "primary", "name": u"Salle des fêtes"},
-                  {"highway": "residential", "name": u"Maison de quartier"},
-                  {"amenity": "community_centre", "name": u"Salle des fêtes"},
-                  {"amenity": "community_centre", "name": u"Maison de quartier"},
+                  {"historic": "yes", "name": "Monument aux morts du quartier"},
+                  {"historic": "monument", "name": "Monument typique du quartier"},
+                  {"highway": "primary", "name": "Salle des fêtes"},
+                  {"highway": "residential", "name": "Maison de quartier"},
+                  {"amenity": "community_centre", "name": "Salle des fêtes"},
+                  {"amenity": "community_centre", "name": "Maison de quartier"},
                   {"type": "associatedStreet", "name": "Rue de la Salle des Fêtes"},
                   {"leisure": "park", "name": "Rue de la Salle des Fêtes"},
                  ]:

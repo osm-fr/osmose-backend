@@ -32,11 +32,11 @@ class _Analyser_Merge_Public_Transport_FR_Ratp(Analyser_Merge):
             title = T_('{0} stop, integration suggestion', place))
 
         self.init(
-            u"http://data.ratp.fr/fr/les-donnees/fiche-de-jeu-de-donnees/dataset/positions-geographiques-des-stations-du-reseau-ratp.html",
-            u"Positions géographiques des stations du réseau RATP",
-            CSV(Source(attribution = u"RATP", millesime = "07/2012",
+            "http://data.ratp.fr/fr/les-donnees/fiche-de-jeu-de-donnees/dataset/positions-geographiques-des-stations-du-reseau-ratp.html",
+            "Positions géographiques des stations du réseau RATP",
+            CSV(Source(attribution = "RATP", millesime = "07/2012",
                     file = "ratp_arret_graphique.csv.bz2", bz2 = True),
-                separator = u"#"),
+                separator = "#"),
             Load("lon", "lat",
                 create = """
                     id VARCHAR(254),

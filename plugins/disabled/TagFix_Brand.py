@@ -288,6 +288,6 @@ yamaha
 if __name__ == "__main__":
     a = TagFix_Brand(None)
     a.init(None)
-    for d in [u"Citroën"]:
+    for d in ["Citroën"]:
         if not a.node(None, {"name":d}):
             print("fail: {0}".format(d))

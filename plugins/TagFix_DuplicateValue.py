@@ -190,8 +190,8 @@ class Test(TestPluginCommon):
                   {"oneway":"yes;yes;yes;yes;-1;-1;no;no"},
                   {"passenger":"national;national"},
                   {"opening_hours": "Mo 14:00-19:00; Tu-Fr 10:00-14:00,15:00-19:00; Mo 14:00-19:00"},
-                  {"source":u"cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2013;cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2013"},
-                  {"source":u"cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2010;cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2013"},
+                  {"source":"cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2013;cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2013"},
+                  {"source":"cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2010;cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2013"},
                   {"source":"GSImaps/ort;GSImaps/std"},
                  ]:
             self.check_err(a.node(None, t), t)

@@ -39,7 +39,7 @@ class Geocode_Addok_CSV(Source):
         return open(downloader.update_cache('geocoded://' + self.source.fileUrl, 60, fetch=self.fetch))
 
     def fetch(self, url, tmp_file, date_string=None):
-        service = u'https://api-adresse.data.gouv.fr/search/csv/'
+        service = 'https://api-adresse.data.gouv.fr/search/csv/'
         outfile = open(tmp_file, 'w', encoding='utf-8')
 
         content = self.source.open().readlines()

@@ -31,7 +31,7 @@ class P_Name_MisspelledWordByRegex(Plugin):
 '''Often a lack of accent on a capital letter (e.g. Ecole for École)'''))
 
     def node(self, data, tags):
-        if u"name" not in tags:
+        if "name" not in tags:
             return
         name = tags["name"]
         for test in self.ReTests:

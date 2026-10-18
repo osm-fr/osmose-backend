@@ -29,7 +29,7 @@ class Name_MisspelledWordByRegex_Lang_es(P_Name_MisspelledWordByRegex):
 
         import re
         self.ReTests = {}
-        self.ReTests[(100, u"Circunvalación\\2")] = [re.compile(r"^Circunvalación(| .*)$"),
+        self.ReTests[(100, "Circunvalación\\2")] = [re.compile(r"^Circunvalación(| .*)$"),
                                                   re.compile(r"^([Cc][Ii][Rr][Cc][Uu][Nn]?[Vv][Aa][Ll][Aa][Cc][Ii].[Nn])(| .*)$")]
         self.ReTests = self.ReTests.items()
 
@@ -41,7 +41,7 @@ class Test(TestPluginCommon):
     def test(self):
         a = Name_MisspelledWordByRegex_Lang_es(None)
         a.init(None)
-        for (d, f) in [(u"Circunvalacion", u"Circunvalación"),
+        for (d, f) in [("Circunvalacion", "Circunvalación"),
                       ]:
             self.check_err(a.node(None, {"name": d}), ("name='{0}'".format(d)))
             self.assertEqual(a.node(None, {"name": d})["fix"]["name"], f)

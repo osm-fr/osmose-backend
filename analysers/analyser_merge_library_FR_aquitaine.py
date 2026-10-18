@@ -29,13 +29,13 @@ class Analyser_Merge_Library_FR_aquitaine(Analyser_Merge_Point):
             title = T_('Library not integrated'))
 
         self.init(
-            u"http://catalogue.datalocale.fr/dataset/liste-bibliotheques-mediatheques-aquitaine",
-            u"Liste des bibliothèques et médiathèques en Aquitaine",
-            JSON(Source(attribution = u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com", millesime = "06/2016",
-                    fileUrl = u"http://wcf.tourinsoft.com/Syndication/aquitaine/057734af-e3fa-448f-8180-0df67d1ad141/Objects?$format=json"),
+            "http://catalogue.datalocale.fr/dataset/liste-bibliotheques-mediatheques-aquitaine",
+            "Liste des bibliothèques et médiathèques en Aquitaine",
+            JSON(Source(attribution = "Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com", millesime = "06/2016",
+                    fileUrl = "http://wcf.tourinsoft.com/Syndication/aquitaine/057734af-e3fa-448f-8180-0df67d1ad141/Objects?$format=json"),
                 extractor = lambda json: json['d']),
             Load_XY("LON", "LAT",
-                where = lambda row: u"Bibliothèque" in row["NOMOFFRE"] or u"Médiathèque" in row["NOMOFFRE"],
+                where = lambda row: "Bibliothèque" in row["NOMOFFRE"] or "Médiathèque" in row["NOMOFFRE"],
                 xFunction = Load_XY.degree,
                 yFunction = Load_XY.degree),
             Conflate(

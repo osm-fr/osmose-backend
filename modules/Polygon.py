@@ -31,7 +31,7 @@ class Polygon:
         if isinstance(polygon_id, int):
             polygon_id = (polygon_id, )
 
-        polygon_url = u"http://polygons.openstreetmap.fr/"
+        polygon_url = "http://polygons.openstreetmap.fr/"
         for id in polygon_id:
             url = polygon_url + "index.py?id="+str(id)
             downloader.urlread(url, cache_delay)

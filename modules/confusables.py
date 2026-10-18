@@ -31,25 +31,25 @@ import unittest
 class Test(unittest.TestCase):
 
     def test_Latin(self):
-        for (c, exp) in [ (u'!', u'ǃ'),
-                          (u'॰', None),
-                          (u'ﺓ', u'ö'),
-                          (u'_', None),
-                          (u'ƅ', u'ƅ'),
-                          (u'𝐷', None),
-                          (u'2', None),
-                          (u'𝟱', u'Ƽ'),
+        for (c, exp) in [ ('!', 'ǃ'),
+                          ('॰', None),
+                          ('ﺓ', 'ö'),
+                          ('_', None),
+                          ('ƅ', 'ƅ'),
+                          ('𝐷', None),
+                          ('2', None),
+                          ('𝟱', 'Ƽ'),
                         ]:
             self.assertEqual(unconfuse(c, "Latin"), exp)
 
     def test_Cyrillic(self):
-        for (c, exp) in [ (u'!', None),
-                          (u'॰', None),
-                          (u'ﺓ', None),
-                          (u'_', None),
-                          (u'ƅ', u'ь'),
-                          (u'2', u'Ꙅ'),
-                          (u'𝟱', None),
+        for (c, exp) in [ ('!', None),
+                          ('॰', None),
+                          ('ﺓ', None),
+                          ('_', None),
+                          ('ƅ', 'ь'),
+                          ('2', 'Ꙅ'),
+                          ('𝟱', None),
                         ]:
             self.assertEqual(unconfuse(c, "Cyrillic"), exp)
 

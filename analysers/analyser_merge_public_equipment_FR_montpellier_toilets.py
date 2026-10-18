@@ -29,12 +29,12 @@ class Analyser_Merge_Public_Equipment_FR_Montpellier_Toilets(Analyser_Merge_Poin
             title = T_('{0} toilets not integrated', 'Montpellier'))
 
         self.init(
-            u"http://data.montpellier3m.fr/dataset/toilettes-publiques-de-montpellier",
-            u"Toilettes publiques",
-            GeoJSON(Source(attribution = u"Montpellier Mediterranée Métropole", millesime = "05/2019",
-                    fileUrl = u"http://data.montpellier3m.fr/sites/default/files/ressources/MMM_MTP_WC_Publics.json")),
+            "http://data.montpellier3m.fr/dataset/toilettes-publiques-de-montpellier",
+            "Toilettes publiques",
+            GeoJSON(Source(attribution = "Montpellier Mediterranée Métropole", millesime = "05/2019",
+                    fileUrl = "http://data.montpellier3m.fr/sites/default/files/ressources/MMM_MTP_WC_Publics.json")),
             Load_XY("geom_x", "geom_y",
-                select = {u'enservice': u'En Service'}),
+                select = {'enservice': 'En Service'}),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -48,4 +48,4 @@ class Analyser_Merge_Public_Equipment_FR_Montpellier_Toilets(Analyser_Merge_Poin
                     mapping1 = {
                         "name": lambda res: res['nom'] if res['nom'] else None,
                         "operator": lambda res: res['gestion'] if res['gestion'] else None,
-                        "wheelchair": lambda res: "yes" if res['pmr'] == u'PMR' else "no" if res['pmr'] == u'non PMR' else None } )))
+                        "wheelchair": lambda res: "yes" if res['pmr'] == 'PMR' else "no" if res['pmr'] == 'non PMR' else None } )))

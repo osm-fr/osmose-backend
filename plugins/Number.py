@@ -83,7 +83,7 @@ be used if the value is valid.''')
         self.tag_number.extend(list(map(lambda t: (t, None), self.tag_number_integer)))
 
         self.MaxspeedExtraValue = ["none", "default", "signals", "national", "no", "unposted", "walk", "urban", "variable"]
-        self.MaxspeedClassValue = re.compile(u'^[A-Z]*:')
+        self.MaxspeedClassValue = re.compile('^[A-Z]*:')
         self.MaxheightExtraValue = ["default", "below_default", "no_indications", "no_sign", "none", "unsigned"]
         self.MaxweightExtraValue = ["unsigned"]
 

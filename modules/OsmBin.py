@@ -241,7 +241,7 @@ class OsmBin:
     def NodeGet(self, NodeId):
         data = {}
         data["id"] = NodeId
-        self._fNode_crd.seek(8*data[u"id"])
+        self._fNode_crd.seek(8*data["id"])
         read = self._fNode_crd.read(8)
         if len(read) != 8:
             return None
@@ -251,9 +251,9 @@ class OsmBin:
         return data
 
     def NodeCreate(self, data):
-        LatBytes4 = _CoordToBytes4(data[u"lat"])
-        LonBytes4 = _CoordToBytes4(data[u"lon"])
-        self._fNode_crd.seek(8*data[u"id"])
+        LatBytes4 = _CoordToBytes4(data["lat"])
+        LonBytes4 = _CoordToBytes4(data["lon"])
+        self._fNode_crd.seek(8*data["id"])
         self._fNode_crd.write(LatBytes4+LonBytes4)
 
     NodeUpdate = NodeCreate
@@ -261,7 +261,7 @@ class OsmBin:
     def NodeDelete(self, data):
         LatBytes4 = _IntToBytes4(0)
         LonBytes4 = _IntToBytes4(0)
-        self._fNode_crd.seek(8*data[u"id"])
+        self._fNode_crd.seek(8*data["id"])
         self._fNode_crd.write(LatBytes4+LonBytes4)
 
     #######################################################################
@@ -290,12 +290,12 @@ class OsmBin:
             AdrWay = self._fWay_data_size
             self._fWay_data_size += 2 + self.node_id_size*nbn
         # File way.idx
-        self._fWay_idx.seek(5*data[u"id"])
+        self._fWay_idx.seek(5*data["id"])
         self._fWay_idx.write(_IntToBytes5(AdrWay))
         # File way.dat
         self._fWay_data.seek(AdrWay)
-        c = _IntToBytes2(len(data[u"nd"]))
-        for NodeId in data[u"nd"]:
+        c = _IntToBytes2(len(data["nd"]))
+        for NodeId in data["nd"]:
             c += _IntToBytes5(NodeId)
         self._fWay_data.write(c)
 
@@ -303,7 +303,7 @@ class OsmBin:
 
     def WayDelete(self, data):
         # Seek to position in file containing address to node list
-        self._fWay_idx.seek(5*data[u"id"])
+        self._fWay_idx.seek(5*data["id"])
         AdrWay = _Bytes5ToInt(self._fWay_idx.read(5))
         if not AdrWay:
             return
@@ -313,10 +313,10 @@ class OsmBin:
         try:
             self._free[nbn].append(AdrWay)
         except KeyError:
-            print("Cannot access free[%d] for way id=%d, idx=%d" % (nbn, data[u"id"], AdrWay))
+            print("Cannot access free[%d] for way id=%d, idx=%d" % (nbn, data["id"], AdrWay))
             raise
         # Save deletion
-        self._fWay_idx.seek(5*data[u"id"])
+        self._fWay_idx.seek(5*data["id"])
         self._fWay_idx.write(_IntToBytes5(0))
 
     #######################################################################
@@ -373,7 +373,7 @@ class OsmBin:
                     if not RaiseOnLoop:
                         continue
                     raise RelationLoopError('member loop '+str(RecurControl+[RelationId, m["ref"]]))
-                if RemoveSubarea and m["role"] in [u"subarea", u"region"]:
+                if RemoveSubarea and m["role"] in ["subarea", "region"]:
                     continue
                 dta += self.RelationFullRecur(m["ref"], WayNodes = WayNodes, RaiseOnLoop = RaiseOnLoop, RecurControl = RecurControl+[RelationId])
         return dta
@@ -556,13 +556,13 @@ class Test(unittest.TestCase):
         self.check_relation(self.a.RelationGet, 529891,
                             expected={"member": [{'type': 'node', 'ref': 670634766,  'role': ''},
                                                  {'type': 'node', 'ref': 670634768,  'role': ''}],
-                                      "tag": {"name": u"Saint-Barthélemy III",
-                                              "note": u"la Barriere des Quatre Vents",
-                                              "ref": u"9712303",
-                                              "site": u"geodesic",
-                                              "source": u"©IGN 2010 dans le cadre de la cartographie réglementaire",
-                                              "type": u"site",
-                                              "url": u"http://ancien-geodesie.ign.fr/fiche_geodesie_OM.asp?num_site=9712303&X=519509&Y=1980304"}
+                                      "tag": {"name": "Saint-Barthélemy III",
+                                              "note": "la Barriere des Quatre Vents",
+                                              "ref": "9712303",
+                                              "site": "geodesic",
+                                              "source": "©IGN 2010 dans le cadre de la cartographie réglementaire",
+                                              "type": "site",
+                                              "url": "http://ancien-geodesie.ign.fr/fiche_geodesie_OM.asp?num_site=9712303&X=519509&Y=1980304"}
                             })
         self.check_relation(self.a.RelationGet, 2324452,
                             expected={"member": [{'type': 'node', 'ref': 279149652,  'role': 'admin_centre'},
@@ -572,14 +572,14 @@ class Test(unittest.TestCase):
                                                  {'type': 'way',  'ref': 53656098,  'role': 'outer'},
                                                  {'type': 'way',  'ref': 174027473,  'role': 'outer'},
                                                  {'type': 'way',  'ref': 174023902,  'role': 'outer'}],
-                                      "tag": {"admin_level": u"8",
-                                              "boundary": u"administrative",
-                                              "local_name": u"Statia",
-                                              "name": u"Sint Eustatius",
-                                              "name:el": u"Άγιος Ευστάθιος",
-                                              "name:fr": u"Saint-Eustache",
-                                              "name:nl": u"Sint Eustatius",
-                                              "type": u"boundary"}
+                                      "tag": {"admin_level": "8",
+                                              "boundary": "administrative",
+                                              "local_name": "Statia",
+                                              "name": "Sint Eustatius",
+                                              "name:el": "Άγιος Ευστάθιος",
+                                              "name:fr": "Saint-Eustache",
+                                              "name:nl": "Sint Eustatius",
+                                              "type": "boundary"}
                             })
 
         self.check_relation(self.a.RelationGet, 2707693)
@@ -657,7 +657,7 @@ class Test(unittest.TestCase):
                             expected={"member": [{'type': 'node', 'ref': 78,  'role': ''},
                                                  {'type': 'node', 'ref': 79,  'role': ''},
                                                  {'type': 'way',  'ref': 780, 'role': 'outer'}],
-                                      "tag": {"name": u"Saint-Barthélemy III"},
+                                      "tag": {"name": "Saint-Barthélemy III"},
                             })
         self.check_relation(self.a.RelationGet, 7801,
                             expected={"member": [{'type': 'relation', 'ref': 7802,  'role': ''}],

@@ -32,10 +32,10 @@ class Analyser_merge_defibrillators_FR_aedmap(Analyser_Merge_Point):
             title = T_("Defibrillator not integrated"))
 
         self.init(
-            u"https://www.data.gouv.fr/fr/datasets/defibrillateurs-publics/",
-            u"Défibrillateurs publics",
-            CSV(Source(attribution = u"AEDMAP France",
-                    fileUrl = u"https://files.pavie.info/depot/remote/aedmap_merge.csv")),
+            "https://www.data.gouv.fr/fr/datasets/defibrillateurs-publics/",
+            "Défibrillateurs publics",
+            CSV(Source(attribution = "AEDMAP France",
+                    fileUrl = "https://files.pavie.info/depot/remote/aedmap_merge.csv")),
             Load_XY("Longitude", "Latitude",
                  xFunction = Load_XY.float_comma,
                  yFunction = Load_XY.float_comma),

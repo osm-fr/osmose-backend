@@ -36,8 +36,8 @@ class TagFix_Tree_Lang_fr(Plugin):
 
     def liste_des_arbres_fruitiers(self):
         reline = re.compile(r"\[\[([^:]*)$")
-        data = urlread(u"https://fr.wikipedia.org/wiki/Liste_des_arbres_fruitiers?action=raw", 1)
-        #data = open(u"Liste_des_arbres_fruitiers?action=raw").read()
+        data = urlread("https://fr.wikipedia.org/wiki/Liste_des_arbres_fruitiers?action=raw", 1)
+        #data = open("Liste_des_arbres_fruitiers?action=raw").read()
         data = data.split("]]")
         for line in data:
             for res in reline.findall(line):
@@ -46,8 +46,8 @@ class TagFix_Tree_Lang_fr(Plugin):
 
     def liste_des_essences_europennes(self):
         reline = re.compile(r"^\* \[\[([^]]*)\]\][^[]*\[\[([^]]*)\]\][^[]*(?:\[\[([^]]*)\]\][^[]*)?(?:\[\[([^]]*)\]\][^[]*)?")
-        data = urlread(u"https://fr.wikipedia.org/wiki/Liste_des_essences_forestières_européennes?action=raw", 1)
-        #data = open(u"Liste_des_essences_forestières_européennes?action=raw").read()
+        data = urlread("https://fr.wikipedia.org/wiki/Liste_des_essences_forestières_européennes?action=raw", 1)
+        #data = open("Liste_des_essences_forestières_européennes?action=raw").read()
         data = data.split("\n")
         for line in data:
             for res in reline.findall(line):
@@ -55,7 +55,7 @@ class TagFix_Tree_Lang_fr(Plugin):
                     self.Tree[self.normalize(n)] = {'genus':res[1], 'species':'|'.join(res[2:3]), 'species:fr':res[0]}
 
     def check(self, tag, value, subclass):
-        name = self.normalize(u''.join(value))
+        name = self.normalize(''.join(value))
         if name in self.Tree:
             return {"class": 3120, "subclass": subclass, "text": T_("Bad tag {0}=\"{1}\"", tag, value),
                     "fix": {"-": [tag], "+": self.Tree[name]}}
@@ -115,20 +115,20 @@ class Test(TestPluginCommon):
     def test(self):
         a = TagFix_Tree_Lang_fr(None)
         a.init(None)
-        for d in [u"Arbre de miel", u"Le Gros Chêne", u"Les Cinq Jumeaux"]:
+        for d in ["Arbre de miel", "Le Gros Chêne", "Les Cinq Jumeaux"]:
             assert not a.node(None, {"natural":"tree", "name":d}), ("name='{0}'".format(d))
 
-        for d in [u"Arbre", u"chablis ouvert 25cmd", u"Pin Sylvestre", u"Frêne commun", u"Chêne vert", u"abricotier"]:
+        for d in ["Arbre", "chablis ouvert 25cmd", "Pin Sylvestre", "Frêne commun", "Chêne vert", "abricotier"]:
             self.check_err(a.node(None, {"natural":"tree", "name":d}), ("name='{0}'".format(d)))
             self.check_err(a.way(None, {"natural":"tree", "name":d}, None), ("name='{0}'".format(d)))
             self.check_err(a.relation(None, {"natural":"tree", "name":d}, None), ("name='{0}'".format(d)))
             assert not a.node(None, {"natural":"other", "name":d}), ("name='{0}'".format(d))
 
-        for d in [u"anything", u"Pin Sylvestre", u"Frêne commun", u"Chêne vert"]:
+        for d in ["anything", "Pin Sylvestre", "Frêne commun", "Chêne vert"]:
             self.check_err(a.node(None, {"natural":"tree", "denotation":d}), ("denotation='{0}'".format(d)))
 
-        for d in [u"landmark", u"agricultural"]:
+        for d in ["landmark", "agricultural"]:
             assert not a.node(None, {"natural":"tree", "denotation":d}), ("denotation='{0}'".format(d))
 
-        for d in [u"broad_leafed", u"conifer"]:
+        for d in ["broad_leafed", "conifer"]:
             assert not a.node(None, {"natural":"tree", "type":d}), ("type='{0}'".format(d))

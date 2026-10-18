@@ -25,7 +25,7 @@ import re
 
 class Phone(Plugin):
 
-    PHONE_TAGS = set((u"contact:fax", u"contact:phone", u"fax", u"phone"))
+    PHONE_TAGS = set(("contact:fax", "contact:phone", "fax", "phone"))
 
     def init(self, logger):
         Plugin.init(self, logger)
@@ -119,7 +119,7 @@ class Phone(Plugin):
             if tag not in tags:
                 continue
             phone = tags[tag]
-            if u';' in phone:
+            if ';' in phone:
                 continue  # Ignore multiple phone numbers
 
             if self.suffix_separators is not None:
@@ -233,15 +233,15 @@ class Test(TestPluginCommon):
         p.init(None)
 
         for (bad, good) in (
-            (u"+330102030405", u"+33 102030405"),
-            (u"0033 102030405", u"+33 102030405"),
-            (u"12 / 13", u"12; 13"),
+            ("+330102030405", "+33 102030405"),
+            ("0033 102030405", "+33 102030405"),
+            ("12 / 13", "12; 13"),
             # Preserve formatting
-            (u"+33 0102030405", u"+33 102030405"),
-            (u"+33  01 02 03 04 05", u"+33 1 02 03 04 05"),
-            (u"+33  3631", u"3631"),
-            (u"0102030405", u"+33 102030405"),
-            (u"01 02 03 04 05", u"+33 1 02 03 04 05"),
+            ("+33 0102030405", "+33 102030405"),
+            ("+33  01 02 03 04 05", "+33 1 02 03 04 05"),
+            ("+33  3631", "3631"),
+            ("0102030405", "+33 102030405"),
+            ("01 02 03 04 05", "+33 1 02 03 04 05"),
         ):
             # Check the bad number's error and fix
             err = p.node(None, {"phone": bad})
@@ -252,7 +252,7 @@ class Test(TestPluginCommon):
             assert not p.node(None, {"phone": good}), ("phone='{0}'".format(good))
 
         # Verify we got no error for other correct numbers
-        for good in (u"3631", u"118987", u"1;2"):
+        for good in ("3631", "118987", "1;2"):
             assert not p.node(None, {"phone": good}), ("phone='{0}'".format(good))
 
         assert len(p.node(None, {"phone": "09.72.42.42.42", "fax": "09.72.42.42.42"})) == 2
@@ -267,9 +267,9 @@ class Test(TestPluginCommon):
         p.init(None)
 
         for (bad, good) in (
-            (u"43 43 43", u"+687 43 43 43"),
-            (u"434343", u"+687 434343"),
-            (u"00687297969", u"+687297969"),
+            ("43 43 43", "+687 43 43 43"),
+            ("434343", "+687 434343"),
+            ("00687297969", "+687297969"),
         ):
             # Check the bad number's error and fix
             err = p.node(None, {"phone": bad})
@@ -280,7 +280,7 @@ class Test(TestPluginCommon):
             assert not p.node(None, {"phone": good}), ("phone='{0}'".format(good))
 
         # Verify we got error for other correct numbers
-        for bad in (u"3631"):
+        for bad in ("3631"):
             assert p.node(None, {"phone": bad}), ("phone='{0}'".format(bad))
 
     def test_CA(self):
@@ -293,7 +293,7 @@ class Test(TestPluginCommon):
         p.init(None)
 
         for (bad, good) in (
-            (u"800-555-0000", u"+1 800-555-0000"),
+            ("800-555-0000", "+1 800-555-0000"),
         ):
             # Check the bad number's error and fix
             err = p.node(None, {"phone": bad})
@@ -304,7 +304,7 @@ class Test(TestPluginCommon):
             assert not p.node(None, {"phone": good}), ("phone='{0}'".format(good))
 
         # Verify we got error for other correct numbers
-        for bad in (u"3631", u"(123) 123-4567", "+1 123 1234567"):
+        for bad in ("3631", "(123) 123-4567", "+1 123 1234567"):
             assert p.node(None, {"phone": bad}), ("phone='{0}'".format(bad))
 
     def test_ES(self):
@@ -317,10 +317,10 @@ class Test(TestPluginCommon):
         p.init(None)
 
         for (bad, good) in (
-            (u"923 555 000", u"+34 923 555 000"),
-            (u"923 55 50 00", u"+34 923 55 50 00"),
-            (u"923555000", u"+34 923555000"),
-            (u"0034923555000", u"+34923555000"),
+            ("923 555 000", "+34 923 555 000"),
+            ("923 55 50 00", "+34 923 55 50 00"),
+            ("923555000", "+34 923555000"),
+            ("0034923555000", "+34923555000"),
         ):
             # Check the bad number's error and fix
             err = p.node(None, {"phone": bad})
@@ -340,13 +340,13 @@ class Test(TestPluginCommon):
         p.init(None)
 
         for (bad, good) in (
-            (u"0212345", u"+39 0212345"),
-            (u"02 12345", u"+39 02 12345"),
-            (u"0171 1234567", u"+39 0171 1234567"),
-            (u"01711234567", u"+39 01711234567"),
-            (u"003901711234567", u"+3901711234567"),
-            (u"333 123456", u"+39 333 123456"),
-            (u"333 123 4567", u"+39 333 123 4567"),
+            ("0212345", "+39 0212345"),
+            ("02 12345", "+39 02 12345"),
+            ("0171 1234567", "+39 0171 1234567"),
+            ("01711234567", "+39 01711234567"),
+            ("003901711234567", "+3901711234567"),
+            ("333 123456", "+39 333 123456"),
+            ("333 123 4567", "+39 333 123 4567"),
         ):
             # Check the bad number's error and fix
             err = p.node(None, {"phone": bad})
@@ -357,7 +357,7 @@ class Test(TestPluginCommon):
             assert not p.node(None, {"phone": good}), ("phone='{0}'".format(good))
 
         # Verify we got no error for other correct numbers
-        for good in (u"800 123", u"112", u"1515"):
+        for good in ("800 123", "112", "1515"):
             assert not p.node(None, {"phone": good}), ("phone='{0}'".format(good))
 
     def test_BE(self):

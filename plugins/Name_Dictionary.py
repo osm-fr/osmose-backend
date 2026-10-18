@@ -44,18 +44,18 @@ class P_Name_Dictionary(Plugin):
         self.init_dictionaries()
 
         # Inconsistencies: words and dict and bad dict
-        #self.LogInformation(u"Mot(s) à corriger et à accepter")
+        #self.LogInformation("Mot(s) à corriger et à accepter")
         #for k in self.DictCorrectionsK:
         #    if k in self.DictKnownWords:
         #        self.DictKnownWords.remove(k)
-        #        self.LogInformation(u"  " + k)
+        #        self.LogInformation("  " + k)
 
         # Inconsistencies:
-        #self.LogInformation(u"Correction(s) absentes du dictionnaire")
+        #self.LogInformation("Correction(s) absentes du dictionnaire")
         #for k in self.DictCorrectionsK:
         #    for v in self.DictCorrections[k].split("|"):
         #        if v not in self.DictKnownWords:
-        #            self.LogInformation(u"  " + k + " => " + self.DictCorrections[k])
+        #            self.LogInformation("  " + k + " => " + self.DictCorrections[k])
         #            self.DictCorrectionsK.remove(k)
         #            self.DictCorrections.pop(k)
         #            break
@@ -82,31 +82,31 @@ class P_Name_Dictionary(Plugin):
     def laod_numbering(self):
         # 1a 1b 1c
         for i in range(1,2000):
-            self.DictKnownWords.append(u"{0}a".format(i))
-            self.DictKnownWords.append(u"{0}b".format(i))
-            self.DictKnownWords.append(u"{0}c".format(i))
+            self.DictKnownWords.append("{0}a".format(i))
+            self.DictKnownWords.append("{0}b".format(i))
+            self.DictKnownWords.append("{0}c".format(i))
 
         # Capitals
         for i in range(65,91):
-            self.DictKnownWords.append(u"{0}".format(chr(i)))
+            self.DictKnownWords.append("{0}".format(chr(i)))
 
         # Numbers 1..10000
         for i in range(0,10000):
-            self.DictKnownWords.append(u"{0}".format(i))
+            self.DictKnownWords.append("{0}".format(i))
 
         # Numbers 01..09
         for i in range(0,10):
-            self.DictKnownWords.append(u"0{0}".format(i))
+            self.DictKnownWords.append("0{0}".format(i))
 
     def load_latin_language(self):
         # Apostrophes
         self.apostrophe = re.compile(r'\b[djl](?:\'|â€™|&quot;)(?=\w)', re.I)
 
-        for c in (u"à", u"é", u"è", u"ë", u"ê", u"î", u"ï", u"ô", u"ö", u"û", u"ü", u"ÿ", u"ç", u"À", u"É", u"É", u"È", u"Ë", u"Ê", u"Î", u"Ï", u"Ô", u"Ö", u"Û", u"Ü", u"Ÿ", u"Ç", u"œ", u"æ", u"Œ", u"Æ"):
+        for c in ("à", "é", "è", "ë", "ê", "î", "ï", "ô", "ö", "û", "ü", "ÿ", "ç", "À", "É", "É", "È", "Ë", "Ê", "Î", "Ï", "Ô", "Ö", "Û", "Ü", "Ÿ", "Ç", "œ", "æ", "Œ", "Æ"):
             ustr = "".join(([chr(i) for i in c.encode('utf-8')]))
             self.DictEncoding[ustr] = c
 
-        self.DictEncoding[u"`"] = u"'"
+        self.DictEncoding["`"] = "'"
 
 
     def init_dictionaries(self):
@@ -116,7 +116,7 @@ class P_Name_Dictionary(Plugin):
     def _get_err(self, tag, name):
         initialName = name
 
-        for x in [u"&amp;", u"&apos;", u"&quot;", u"/", u")", u"-", u"\"", u";", u".", u":", u"+", u"?", u"!", u",", u"|", u"*", u"Â°", u"_", u"="]:
+        for x in ["&amp;", "&apos;", "&quot;", "/", ")", "-", "\"", ";", ".", ":", "+", "?", "!", ",", "|", "*", "Â°", "_", "="]:
             name = name.replace(x, " ")
         if self.apostrophe:
             name = self.apostrophe.sub(' ', name)
@@ -150,7 +150,7 @@ class P_Name_Dictionary(Plugin):
 
     def node(self, data, tags):
         err = []
-        for name in [u"name", u"name_1", u"name_2", u"alt_name", u"loc_name", u"old_name", u"official_name", u"short_name", u"addr:street:name"]:
+        for name in ["name", "name_1", "name_2", "alt_name", "loc_name", "old_name", "official_name", "short_name", "addr:street:name"]:
             if name in tags:
                 e = self._get_err(name, tags[name])
                 if e is not None:

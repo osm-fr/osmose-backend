@@ -30,29 +30,29 @@ class Name_MisspelledWordByRegex_Lang_fr(P_Name_MisspelledWordByRegex):
 
         import re
         self.ReTests = {}
-        self.ReTests[( 0, u"École\\2")]      = [re.compile(r"^École(| .*)$"),
+        self.ReTests[( 0, "École\\2")]      = [re.compile(r"^École(| .*)$"),
                                                re.compile(r"^([EÉée][Cc][Oo][Ll][Ee])(| .*)$")]
-        self.ReTests[( 1, u"Église\\2")]     = [re.compile(r"^Église(| .*)$"),
+        self.ReTests[( 1, "Église\\2")]     = [re.compile(r"^Église(| .*)$"),
                                                re.compile(r"^([EÉée][Gg][l][Ii][Ss][Ee])(| .*)$")]
-        self.ReTests[( 2, u"La\\2")]         = [re.compile(r"^La(| .*)$"),
+        self.ReTests[( 2, "La\\2")]         = [re.compile(r"^La(| .*)$"),
                                                re.compile(r"^([Ll][Aa])( .*)$")]
-        self.ReTests[( 3, u"Étang\\2")]      = [re.compile(r"^Étang(| .*)$"),
+        self.ReTests[( 3, "Étang\\2")]      = [re.compile(r"^Étang(| .*)$"),
                                                re.compile(r"^([EÉée][Tt][Tt]?[AaEe][Nn][GgTt]?)(| .*)$")]
-        self.ReTests[( 4, u"Saint\\2")]      = [re.compile(r"^Saint(| .*)$"),
+        self.ReTests[( 4, "Saint\\2")]      = [re.compile(r"^Saint(| .*)$"),
                                                re.compile(r"^([Ss](?:[Aa][Ii][Nn])?[Tt]\.?)( .*)$")]
-        self.ReTests[( 5, u"Hôtel\\2")]      = [re.compile(r"^Hôtel(| .*)$"),
+        self.ReTests[( 5, "Hôtel\\2")]      = [re.compile(r"^Hôtel(| .*)$"),
                                                re.compile(r"^([Hh][OoÔô][Tt][Ee][Ll])(| .*)$")]
-        self.ReTests[( 6, u"Château\\2")]    = [re.compile(r"^Château(| .*)$"),
+        self.ReTests[( 6, "Château\\2")]    = [re.compile(r"^Château(| .*)$"),
                                                re.compile(r"^([Cc][Hh][ÂâAa][Tt][Ee][Aa][Uu])(| .*)$")]
-        self.ReTests[( 7, u"McDonald's\\2")] = [re.compile(r"^McDonald's(| .*)$"),
+        self.ReTests[( 7, "McDonald's\\2")] = [re.compile(r"^McDonald's(| .*)$"),
                                                re.compile(r"^([Mm][Aa]?[Cc] ?[Dd][Oo](?:[Nn][Aa][Ll][Dd]'?[Ss]?)?)(| .+)$")]
-        self.ReTests[( 8, u"Sainte\\2")]     = [re.compile(r"^Sainte(| .*)$"),
+        self.ReTests[( 8, "Sainte\\2")]     = [re.compile(r"^Sainte(| .*)$"),
                                                re.compile(r"^([Ss](?:[Aa][Ii][Nn])?[Tt][Ee]\.?)( .*)$")]
-        self.ReTests[( 9, u"Le\\2")]         = [re.compile(r"^Le(| .*)$"),
+        self.ReTests[( 9, "Le\\2")]         = [re.compile(r"^Le(| .*)$"),
                                                re.compile(r"^([Ll][Ee])( .*)$")]
-        self.ReTests[(10, u"Les\\2")]        = [re.compile(r"^Les(| .*)$"),
+        self.ReTests[(10, "Les\\2")]        = [re.compile(r"^Les(| .*)$"),
                                                re.compile(r"^([Ll][Ee][Ss])( .*)$")]
-        self.ReTests[(11, u"\\1\\2'\\4")]    = [re.compile(r"[LlDd]'(|[^ ].*)$"),
+        self.ReTests[(11, "\\1\\2'\\4")]    = [re.compile(r"[LlDd]'(|[^ ].*)$"),
                                                re.compile(r"(^|.* )([LlDd])( +' +| +'|' +)(|.*)$")]
         self.ReTests = self.ReTests.items()
 
@@ -64,18 +64,18 @@ class Test(TestPluginCommon):
     def test(self):
         a = Name_MisspelledWordByRegex_Lang_fr(None)
         a.init(None)
-        for (d, f) in [(u"eglise ", u"Église "),
-                       (u"St. Michel", u"Saint Michel"),
-                       (u"Ecole", u"École"),
-                       (u"Mac Donald", u"McDonald's"),
-                       (u"Ste Amal et Fils Sarl", u"Sainte Amal et Fils Sarl"),
-                       (u"SAiNte anne", u"Sainte anne"),
-                       (u"les lesles", u"Les lesles"),
-                       (u"de l' été", u"de l'été"),
-                       (u"de l' ", u"de l'"),
-                       (u"de l 'été", u"de l'été"),
-                       (u"de l '", u"de l'"),
-                       (u"l ' été", u"l'été"),
+        for (d, f) in [("eglise ", "Église "),
+                       ("St. Michel", "Saint Michel"),
+                       ("Ecole", "École"),
+                       ("Mac Donald", "McDonald's"),
+                       ("Ste Amal et Fils Sarl", "Sainte Amal et Fils Sarl"),
+                       ("SAiNte anne", "Sainte anne"),
+                       ("les lesles", "Les lesles"),
+                       ("de l' été", "de l'été"),
+                       ("de l' ", "de l'"),
+                       ("de l 'été", "de l'été"),
+                       ("de l '", "de l'"),
+                       ("l ' été", "l'été"),
                       ]:
             self.check_err(a.node(None, {"name": d}), ("name='{0}'".format(d)))
             self.assertEqual(a.node(None, {"name": d})["fix"]["name"], f)

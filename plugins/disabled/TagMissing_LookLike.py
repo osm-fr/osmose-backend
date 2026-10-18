@@ -83,7 +83,7 @@ class TagMissing_LookLike(Plugin):
         self.errors[2070] = self.def_class(item = 2070, level = 2, tags = ['tag', 'fix:chair'],
             title = T_('Missing tag by cooccurrence'))
 
-        bdd = update_cache(u"http://taginfo.openstreetmap.org/download/taginfo-db.db.bz2", 30, bz2_decompress=True)
+        bdd = update_cache("http://taginfo.openstreetmap.org/download/taginfo-db.db.bz2", 30, bz2_decompress=True)
 
         if not os.path.exists(bdd):
             self.info = {}
@@ -116,7 +116,7 @@ class TagMissing_LookLike(Plugin):
                 for mwm in self.info[type][tag]:
                     if mwm[0] not in tags:
                         arg = (mwm[0], round(mwm[3],2))
-                        ret.append((2070, int((1-mwm[3])*100), {"fr": u"Le tag \"%s\" semble manquant (proba=%s)" % arg, "en": u"Tag \"%s\" may be missing (proba=%s)" % arg}))
+                        ret.append((2070, int((1-mwm[3])*100), {"fr": "Le tag \"%s\" semble manquant (proba=%s)" % arg, "en": "Tag \"%s\" may be missing (proba=%s)" % arg}))
         return ret
 
     def node(self, data, tags):
@@ -136,9 +136,9 @@ class Test(TestPluginCommon):
     def test(self):
         a = TagMissing_LookLike(None)
         a.init(None)
-        self.check_err(a.node(None, {u"ref:INSEE":"33"}))
-        self.check_err(a.node(None, {u"ref:INSEE":"33", u"population":100}))
-        self.check_err(a.node(None, {u"ref:INSEE":"33", u"population":100, u"place":"Ici"}))
-        assert not a.node(None, {u"ref:INSEE":"33", u"population":100, u"place":"Ici", u"name": u"Toto"})
-        self.check_err(a.node(None, {u"place":"La-Haut-sur-la-Montagne"}))
-        assert not a.node(None, {u"place":"La-Haut-sur-la-Montagne", u"name":"Toto"})
+        self.check_err(a.node(None, {"ref:INSEE":"33"}))
+        self.check_err(a.node(None, {"ref:INSEE":"33", "population":100}))
+        self.check_err(a.node(None, {"ref:INSEE":"33", "population":100, "place":"Ici"}))
+        assert not a.node(None, {"ref:INSEE":"33", "population":100, "place":"Ici", "name": "Toto"})
+        self.check_err(a.node(None, {"place":"La-Haut-sur-la-Montagne"}))
+        assert not a.node(None, {"place":"La-Haut-sur-la-Montagne", "name":"Toto"})

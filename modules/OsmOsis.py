@@ -77,12 +77,12 @@ class OsmOsis:
         r1 = self._PgCurs.fetchone()
         if not r1: return None
         return {
-            u"id": r1[0],
-            u"lat": float(r1[1]),
-            u"lon": float(r1[2]),
-            u"version": r1[3],
-            u"user": r1[4] or "",
-            u"tag": r1[5],
+            "id": r1[0],
+            "lat": float(r1[1]),
+            "lon": float(r1[2]),
+            "version": r1[3],
+            "user": r1[4] or "",
+            "tag": r1[5],
         }
 
 
@@ -91,11 +91,11 @@ class OsmOsis:
         r1 = self._PgCurs.fetchone()
         if not r1: return None
         return {
-            u"id": r1[0],
-            u"version": r1[1],
-            u"user": r1[2] or "",
-            u"tag": r1[3],
-            u"nd": r1[4] if dump_sub_elements else [],
+            "id": r1[0],
+            "version": r1[1],
+            "user": r1[2] or "",
+            "tag": r1[3],
+            "nd": r1[4] if dump_sub_elements else [],
         }
 
 
@@ -104,17 +104,17 @@ class OsmOsis:
         r1 = self._PgCurs.fetchone()
         if not r1: return None
         data = {
-            u"id": r1[0],
-            u"version": r1[1],
-            u"user": r1[2] or "",
-            u"tag": r1[3],
-            u"member": [],
+            "id": r1[0],
+            "version": r1[1],
+            "user": r1[2] or "",
+            "tag": r1[3],
+            "member": [],
         }
 
         if dump_sub_elements:
             self._PgCurs.execute("SELECT member_id, member_type, member_role FROM relation_members WHERE relation_id = %d ORDER BY sequence_id;" % RelationId)
             for r1 in self._PgCurs.fetchall():
-                data[u"member"].append({u"ref":r1[0], u"type":{"N":"node","W":"way","R":"relation"}[r1[1]], u"role":r1[2]})
+                data["member"].append({"ref":r1[0], "type":{"N":"node","W":"way","R":"relation"}[r1[1]], "role":r1[2]})
 
         return data
 

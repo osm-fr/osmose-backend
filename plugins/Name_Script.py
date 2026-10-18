@@ -114,7 +114,7 @@ appropriate.'''),
             else:
                 self.lang[l] = regex.compile(r"[\p{{Common}}{0}]".format(s), flags=regex.V1)
 
-        self.names = [u"name", u"name_1", u"name_2", u"alt_name", u"loc_name", u"old_name", u"official_name", u"short_name"]
+        self.names = ["name", "name_1", "name_2", "alt_name", "loc_name", "old_name", "official_name", "short_name"]
 
         self.whitelist_names = set()
         if country:
@@ -148,7 +148,7 @@ appropriate.'''),
 
             err_size = len(err)
             # https://en.wikipedia.org/wiki/Bi-directional_text#Table_of_possible_BiDi-types
-            for c in u"\u200E\u200F\u061C\u202A\u202D\u202B\u202E\u202C\u2066\u2067\u2068\u2069":
+            for c in "\u200E\u200F\u061C\u202A\u202D\u202B\u202E\u202C\u2066\u2067\u2068\u2069":
                 m = key.find(c)
                 if m > 0:
                     err.append({"class": 50702, "subclass": 2 + stablehash64(key), "text": T_("\"{0}\" unexpected non printable char ({1}, 0x{2:04x}) in key at position {3}", key, unicodedata.name(c, ''), ord(c), m + 1)})
@@ -164,10 +164,10 @@ appropriate.'''),
 
             if self.default:
                 if key in self.names and not any(map(lambda whitelist: whitelist in value, self.whitelist_names)):
-                    s = self.non_letter.sub(u" ", value)
-                    s = self.alone_char.sub(u"", s)
-                    s = self.roman_number.sub(u"", s)
-                    s = self.default.sub(u"", s)
+                    s = self.non_letter.sub(" ", value)
+                    s = self.alone_char.sub("", s)
+                    s = self.roman_number.sub("", s)
+                    s = self.default.sub("", s)
                     if len(s) > 0 and not (len(value) == 2 and len(s) == 1) and len(s) <= len(value) / 10 + 1:
                         if len(s) == 1:
                             c = s[0]
@@ -187,10 +187,10 @@ appropriate.'''),
 
             l = key.split(':')
             if len(l) > 1 and l[0] in self.names and l[1] in self.lang:
-                s = self.non_letter.sub(u" ", value)
-                s = self.alone_char.sub(u"\\1", s)
-                s = self.roman_number.sub(u"\\1", s)
-                s = self.lang[l[1]].sub(u"", s)
+                s = self.non_letter.sub(" ", value)
+                s = self.alone_char.sub("\\1", s)
+                s = self.roman_number.sub("\\1", s)
+                s = self.lang[l[1]].sub("", s)
                 if len(s) > 0:
                     if len(s) == 1:
                         c = s[0]
@@ -230,12 +230,12 @@ class Test(TestPluginCommon):
         a.father = father()
         a.init(None)
 
-        assert not a.node(None, {"name": u"test ь"})
-        assert not a.node(None, {"name": u"Sacré-Cœur"})
+        assert not a.node(None, {"name": "test ь"})
+        assert not a.node(None, {"name": "Sacré-Cœur"})
 
         assert not a.node(None, {"inscription": "Statue build in celebration of\nOsmose and OSM"})
 
-        self.check_err(a.node(None, {"name:uk": u"Sacré-Cœur"}))
+        self.check_err(a.node(None, {"name:uk": "Sacré-Cœur"}))
         self.check_err(a.node(None, {"inscription": "Special bell character \a"}))
 
         # Symbols in the value of a non-name tag are allowed
@@ -255,11 +255,11 @@ class Test(TestPluginCommon):
         a.father = father()
         a.init(None)
 
-        assert not a.node(None, {u"name": u"Søstrene Grene"}) # in NSI
-        assert not a.node(None, {u"name": u"Søstrene Grene Netherlands"}) # Partial name matches with NSI, assume local office
-        assert not a.node(None, {u"name": u"İşbank"}) # in NSI
+        assert not a.node(None, {"name": "Søstrene Grene"}) # in NSI
+        assert not a.node(None, {"name": "Søstrene Grene Netherlands"}) # Partial name matches with NSI, assume local office
+        assert not a.node(None, {"name": "İşbank"}) # in NSI
 
-        self.check_err(a.node(None, {u"name": u"Abcdefghijklmnø"}))
+        self.check_err(a.node(None, {"name": "Abcdefghijklmnø"}))
 
     def test_fr(self):
         a = Name_Script(None)
@@ -270,38 +270,38 @@ class Test(TestPluginCommon):
         a.father = father()
         a.init(None)
 
-        assert not a.node(None, {u"seamark:light:information": u"R. 340° -095° , W.-111° , G.-160°"})
-        assert not a.node(None, {u"source": u"©IGN 2010"})
-        assert not a.node(None, {u"name": u"Karditsa → Larisa"})
-        assert not a.node(None, {u"name": u"To Embonas ►"})
+        assert not a.node(None, {"seamark:light:information": "R. 340° -095° , W.-111° , G.-160°"})
+        assert not a.node(None, {"source": "©IGN 2010"})
+        assert not a.node(None, {"name": "Karditsa → Larisa"})
+        assert not a.node(None, {"name": "To Embonas ►"})
 
-        self.check_err(a.node(None, {u"name": u"test ь"}))
+        self.check_err(a.node(None, {"name": "test ь"}))
         # A symbol in a non-name tag does not hide errors on the other tags
         self.check_err(a.node(None, {"description": "\U0001F3E1", "name": "test ь"}), expected={"class": 50701})
-        self.check_err(a.node(None, {u"name": u"\u1F1EE\u1F1F6\u1F3E0"}))
-        assert not a.node(None, {u"name": u"test кодувань"})
-        assert not a.node(None, {u"name": u"кодувань"})
-        assert not a.node(None, {u"name": u"Sophie II"})
-        assert not a.node(None, {u"name": u"Sacré-Cœur"})
-        assert not a.node(None, {u"name": u"дA"})
+        self.check_err(a.node(None, {"name": "\u1F1EE\u1F1F6\u1F3E0"}))
+        assert not a.node(None, {"name": "test кодувань"})
+        assert not a.node(None, {"name": "кодувань"})
+        assert not a.node(None, {"name": "Sophie II"})
+        assert not a.node(None, {"name": "Sacré-Cœur"})
+        assert not a.node(None, {"name": "дA"})
 
-        assert not a.node(None, {u"name:uk": u"кодувань"})
-        assert not a.node(None, {u"name:tg": u"Париж"})
-        self.check_err(a.node(None, {u"name:uk": u"Sacré-Cœur"}))
-        assert not a.node(None, {u"name:uk": u"кодувань A"})
-        assert not a.node(None, {u"name:uk": u"кодувань A33"})
-        assert not a.node(None, {u"name:uk": u"B2"})
-        assert not a.node(None, {u"name:el": u"Διαδρομος 15R/33L"})
-        self.check_err(a.node(None, {u"name:el": u"ροMμος"}))
-        assert not a.node(None, {u"name:fa": u"شیب دِراز"})
-        assert not a.node(None, {u"name:th": u"P T L"})
-        self.check_err(a.node(None, {u"name:ru": u"Кари́бские Нидерла́нды"}))
-        assert not a.node(None, {u"name:ar": u"مسكّن عدي"})
-        assert not a.node(None, {u"name:ko": u"유스페이스2 B동"})
+        assert not a.node(None, {"name:uk": "кодувань"})
+        assert not a.node(None, {"name:tg": "Париж"})
+        self.check_err(a.node(None, {"name:uk": "Sacré-Cœur"}))
+        assert not a.node(None, {"name:uk": "кодувань A"})
+        assert not a.node(None, {"name:uk": "кодувань A33"})
+        assert not a.node(None, {"name:uk": "B2"})
+        assert not a.node(None, {"name:el": "Διαδρομος 15R/33L"})
+        self.check_err(a.node(None, {"name:el": "ροMμος"}))
+        assert not a.node(None, {"name:fa": "شیب دِراز"})
+        assert not a.node(None, {"name:th": "P T L"})
+        self.check_err(a.node(None, {"name:ru": "Кари́бские Нидерла́нды"}))
+        assert not a.node(None, {"name:ar": "مسكّن عدي"})
+        assert not a.node(None, {"name:ko": "유스페이스2 B동"})
 
-        self.check_err(a.node(None, {u"name:el": u"Aιαδρομος"})) # A (Latin) to Α (Greek)
+        self.check_err(a.node(None, {"name:el": "Aιαδρομος"})) # A (Latin) to Α (Greek)
 
-        assert a.node(None, {u"name": u"ä"})
+        assert a.node(None, {"name": "ä"})
 
     def test_fr_LU(self):
         a = Name_Script(None)
@@ -312,7 +312,7 @@ class Test(TestPluginCommon):
         a.father = father()
         a.init(None)
 
-        assert not a.node(None, {u"name": u"ä"})
+        assert not a.node(None, {"name": "ä"})
 
     def test_fr_nl(self):
         a = Name_Script(None)
@@ -323,11 +323,11 @@ class Test(TestPluginCommon):
         a.father = father()
         a.init(None)
 
-        self.check_err(a.node(None, {u"name": u"test ь"}))
-        assert not a.node(None, {u"name": u"test кодувань"})
+        self.check_err(a.node(None, {"name": "test ь"}))
+        assert not a.node(None, {"name": "test кодувань"})
 
-        assert not a.node(None, {u"name:uk": u"кодувань"})
-        self.check_err(a.node(None, {u"name:uk": u"Sacré-Cœur"}))
+        assert not a.node(None, {"name:uk": "кодувань"})
+        self.check_err(a.node(None, {"name:uk": "Sacré-Cœur"}))
 
     def test_zh(self):
         a = Name_Script(None)
@@ -338,11 +338,11 @@ class Test(TestPluginCommon):
         a.father = father()
         a.init(None)
 
-        assert not a.node(None, {u"name": u"test ь"})
-        assert not a.node(None, {u"name": u"test кодувань"})
+        assert not a.node(None, {"name": "test ь"})
+        assert not a.node(None, {"name": "test кодувань"})
 
-        assert not a.node(None, {u"name:uk": u"кодувань"})
-        self.check_err(a.node(None, {u"name:uk": u"Sacré-Cœur"}))
+        assert not a.node(None, {"name:uk": "кодувань"})
+        self.check_err(a.node(None, {"name:uk": "Sacré-Cœur"}))
 
     def test_uk(self):
         a = Name_Script(None)
@@ -353,8 +353,8 @@ class Test(TestPluginCommon):
         a.father = father()
         a.init(None)
 
-        assert not a.node(None, {u"name": u"Бу́рти"})
-        assert not a.node(None, {u"name": u"Шкарпи́"})
+        assert not a.node(None, {"name": "Бу́рти"})
+        assert not a.node(None, {"name": "Шкарпи́"})
 
     def test_BG(self):
         a = Name_Script(None)
@@ -365,7 +365,7 @@ class Test(TestPluginCommon):
         a.father = father()
         a.init(None)
 
-        assert not a.node(None, {u"name": u"TT190/XXVI/"}) # Bulgarian survey point
+        assert not a.node(None, {"name": "TT190/XXVI/"}) # Bulgarian survey point
 
     def test_non_printable(self):
         a = Name_Script(None)
@@ -376,9 +376,9 @@ class Test(TestPluginCommon):
         a.father = father()
         a.init(None)
 
-        self.check_err(a.node(None, {u"name\u0001": u"test"}))
-        self.check_err(a.node(None, {u"name": u"test \u0000"}))
-        self.check_err(a.node(None, {u"name": u"test \u202B"}))
+        self.check_err(a.node(None, {"name\u0001": "test"}))
+        self.check_err(a.node(None, {"name": "test \u0000"}))
+        self.check_err(a.node(None, {"name": "test \u202B"}))
 
     def test_non_my(self):
         a = Name_Script(None)
@@ -389,4 +389,4 @@ class Test(TestPluginCommon):
         a.father = father()
         a.init(None)
 
-        assert not a.node(None, {u"name:my": u"кодувань"})
+        assert not a.node(None, {"name:my": "кодувань"})

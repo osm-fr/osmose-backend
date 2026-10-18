@@ -80,9 +80,9 @@ class Wiki(Plugin):
 if __name__ == "__main__":
     a = Wiki(None)
     a.init(None)
-    for d in [u"fsdkfjdklsfkleqnhkflerklg", u"sport"]:
+    for d in ["fsdkfjdklsfkleqnhkflerklg", "sport"]:
         if a.node(None, {d:"a"}):
             print("fail: {0}".format(d))
-    for d in [u"building"]:
+    for d in ["building"]:
         if not a.node(None, {d:"a"}):
             print("nofail: {0}".format(d))

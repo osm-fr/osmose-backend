@@ -32,7 +32,7 @@ class Name_Punctuation(Plugin):
         if 'name' not in tags:
             return
 
-        for q in [u"?", u"¿", u"؟", u"՞", u";", u"？", u"፧", u"꘏"]:
+        for q in ["?", "¿", "؟", "՞", ";", "？", "፧", "꘏"]:
             if q in tags["name"]:
                 return [{"class": 50705, "subclass": 0, "text": T_("Unexpected character: `{0}`", q)}]
 
@@ -52,5 +52,5 @@ class Test(TestPluginCommon):
         self.p = Name_Punctuation(None)
         self.p.init(None)
 
-        assert not self.p.node(None, {"foo": u"bar"})
-        assert self.p.node(None, {"name": u"here ?"})
+        assert not self.p.node(None, {"foo": "bar"})
+        assert self.p.node(None, {"name": "here ?"})

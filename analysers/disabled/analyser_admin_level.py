@@ -30,18 +30,18 @@ class DataHandler:
         self.rels = {}
 
     def WayCreate(self, data):
-        if data[u"tag"].get(u"boundary", None) != u"administrative":
+        if data["tag"].get("boundary", None) != "administrative":
             return
-        if not "admin_level" in data[u"tag"]:
+        if not "admin_level" in data["tag"]:
             return
-        self.ways[data["id"]] = data[u"tag"]["admin_level"]
+        self.ways[data["id"]] = data["tag"]["admin_level"]
 
     def RelationCreate(self, data):
-        if data[u"tag"].get(u"boundary", None) != u"administrative":
+        if data["tag"].get("boundary", None) != "administrative":
             return
-        if not "admin_level" in data[u"tag"]:
+        if not "admin_level" in data["tag"]:
             return
-        self.rels[data["id"]] = data[u"tag"]["admin_level"]
+        self.rels[data["id"]] = data["tag"]["admin_level"]
 
 ###########################################################################
 
@@ -56,12 +56,12 @@ class Analyser_Admin_Level(Analyser_Sax):
         self._Err = {}
         self._Err[1] = { "item": 6050,
                          "level": 3,
-                         "desc": { "en": u"Wrong administrative level", "fr": u"Mauvais niveau administratif", "es": u"Nivel administrativo incorrecto"},
+                         "desc": { "en": "Wrong administrative level", "fr": "Mauvais niveau administratif", "es": "Nivel administrativo incorrecto"},
                          "tag": ["boundary", "fix:chair"]
                        }
         self._Err[2] = { "item": 6050,
                          "level": 3,
-                         "desc": { "en": u"admin_level unreadable", "fr": u"admin_level illisible", "es": u"admin_level ilegible"},
+                         "desc": { "en": "admin_level unreadable", "fr": "admin_level illisible", "es": "admin_level ilegible"},
                          "tag": ["boundary", "value", "fix:chair"]
                        }
 
@@ -114,19 +114,19 @@ class Analyser_Admin_Level(Analyser_Sax):
                 if not nta:
                     continue
                 # add error to output file
-                self.error_file.error(2, None, {"fr": u"admin_level illisible", "en": u"admin_level unreadable", "es": u"admin_level ilegible"}, None, None, None, {
+                self.error_file.error(2, None, {"fr": "admin_level illisible", "en": "admin_level unreadable", "es": "admin_level ilegible"}, None, None, None, {
                     "position": [nta],
                     "relation": [rta]
                 })
                 continue
 
-            for m in rta[u"member"]:
-                if m[u"type"] == u"way":
-                    if m[u"ref"] in way_to_level:
-                        way_to_level[m[u"ref"]] = min(way_to_level[m[u"ref"]], level)
-                if m[u"type"] == u"relation":
-                    if m[u"ref"] in rel_to_level:
-                        rel_to_level[m[u"ref"]] = min(rel_to_level[m[u"ref"]], level)
+            for m in rta["member"]:
+                if m["type"] == "way":
+                    if m["ref"] in way_to_level:
+                        way_to_level[m["ref"]] = min(way_to_level[m["ref"]], level)
+                if m["type"] == "relation":
+                    if m["ref"] in rel_to_level:
+                        rel_to_level[m["ref"]] = min(rel_to_level[m["ref"]], level)
 
         ##
         self.logger.log("check admin level - ways")
@@ -144,7 +144,7 @@ class Analyser_Admin_Level(Analyser_Sax):
                 if not n:
                     continue
 
-                self.error_file.error(2, None, {"fr": u"admin_level illisible", "en": u"admin_level unreadable", "es": u"admin_level ilegible"}, None, None, None, {
+                self.error_file.error(2, None, {"fr": "admin_level illisible", "en": "admin_level unreadable", "es": "admin_level ilegible"}, None, None, None, {
                     "position": [n],
                     "way": [wta]
                 })
@@ -160,7 +160,7 @@ class Analyser_Admin_Level(Analyser_Sax):
                 if not n:
                     continue
 
-                self.error_file.error(1, None, {"fr": u"admin_level devrait être %d"%way_to_level[wid], "en": u"admin_level should be %d"%way_to_level[wid], "es": u"admin_level debería ser %d" %way_to_level[wid]}, None, None, None, {
+                self.error_file.error(1, None, {"fr": "admin_level devrait être %d"%way_to_level[wid], "en": "admin_level should be %d"%way_to_level[wid], "es": "admin_level debería ser %d" %way_to_level[wid]}, None, None, None, {
                     "position": [n],
                     "way": [wta]
                 })

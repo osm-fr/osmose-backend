@@ -86,7 +86,7 @@ the article. Same for accented letters. Letter must be readable.'''),
         import re
         self.wiki_regexp = re.compile(r'(https?://)?([^\.]+)\.wikipedia.+/wiki/(.+)')
         self.lang_regexp = re.compile(r'[-a-z]+:.*')
-        self.lang_restriction_regexp = re.compile(u"^[a-z]{2}$")
+        self.lang_restriction_regexp = re.compile("^[a-z]{2}$")
 
         self.Country = self.father.config.options.get("country")
         self.Language = self.father.config.options.get("language")
@@ -102,7 +102,7 @@ the article. Same for accented letters. Letter must be readable.'''),
         err = []
         if wikipediaTag in tags:
             m = self.wiki_regexp.match(tags[wikipediaTag])
-            if (tags[wikipediaTag].startswith(u"http://") or tags[wikipediaTag].startswith(u"https://")) and not m:
+            if (tags[wikipediaTag].startswith("http://") or tags[wikipediaTag].startswith("https://")) and not m:
                 # tag 'wikipedia' starts with 'http://' but it's not a wikipedia url
                 return [{"class": 30310, "subclass": 0}]
             elif m:
@@ -134,7 +134,7 @@ the article. Same for accented letters. Letter must be readable.'''),
                 if interwiki is False:
                     try:
                         lang, title = tags[wikipediaTag].split(':')
-                        json_str = urlread(u"https://"+lang+u".wikipedia.org/w/api.php?action=query&prop=langlinks&titles="+title+u"&redirects=&lllimit=500&format=json", 30)
+                        json_str = urlread("https://"+lang+".wikipedia.org/w/api.php?action=query&prop=langlinks&titles="+title+"&redirects=&lllimit=500&format=json", 30)
                         interwiki = json.loads(json_str)
                         interwiki = dict(map(lambda x: [x["lang"], x["*"]], list(interwiki["query"]["pages"].values())[0]["langlinks"]))
                     except:
@@ -221,7 +221,7 @@ class Test(TestPluginCommon):
         self.analyser.father = father()
         self.analyser.init(None)
 
-        self.check_err(self.analyser.node(None, {u"wikipedia:fr": u"Pèlerinage_de_Saint-Jacques-de-Compostelle", u"wikipedia:en": u"Way_of_St._James", u"wikipedia": u"de:Jakobsweg"}))
+        self.check_err(self.analyser.node(None, {"wikipedia:fr": "Pèlerinage_de_Saint-Jacques-de-Compostelle", "wikipedia:en": "Way_of_St._James", "wikipedia": "de:Jakobsweg"}))
 
     def test_fr(self):
         self.analyser = TagFix_Wikipedia(None)
@@ -243,59 +243,59 @@ class Test(TestPluginCommon):
         # add check on synonyme
 
         # Don't use URL directly
-        err += self.check( { "wikipedia": u"http://www.google.fr"},
+        err += self.check( { "wikipedia": "http://www.google.fr"},
                            has_error="Not a Wikipedia URL")
 
-        self.check_err(self.analyser.node(None, {"wikipedia": u"http://www.openstreetmap.fr"}))
-        self.check_err(self.analyser.way(None, {"wikipedia": u"http://www.openstreetmap.fr"}, None))
-        self.check_err(self.analyser.relation(None, {"wikipedia": u"http://www.openstreetmap.fr"}, None))
+        self.check_err(self.analyser.node(None, {"wikipedia": "http://www.openstreetmap.fr"}))
+        self.check_err(self.analyser.way(None, {"wikipedia": "http://www.openstreetmap.fr"}, None))
+        self.check_err(self.analyser.relation(None, {"wikipedia": "http://www.openstreetmap.fr"}, None))
 
-        err += self.check( { "wikipedia": u"http://fr.wikipedia.org/wiki/Tour_Eiffel"},
+        err += self.check( { "wikipedia": "http://fr.wikipedia.org/wiki/Tour_Eiffel"},
                            has_error="Wikipedia URL instead of article title",
-                           fix={ "wikipedia": u"fr:Tour Eiffel"})
+                           fix={ "wikipedia": "fr:Tour Eiffel"})
 
-        err += self.check( { "wikipedia": u"https://fr.wikipedia.org/wiki/Tour_Eiffel"},
+        err += self.check( { "wikipedia": "https://fr.wikipedia.org/wiki/Tour_Eiffel"},
                            has_error="Wikipedia URL instead of article title",
-                           fix={ "wikipedia": u"fr:Tour Eiffel"})
+                           fix={ "wikipedia": "fr:Tour Eiffel"})
 
         err += self.check( { "wikipedia": "fr.wikipedia.org/wiki/Tour_Eiffel"},
                            has_error="Wikipedia URL instead of article title",
-                           fix={ "wikipedia": u"fr:Tour Eiffel"})
+                           fix={ "wikipedia": "fr:Tour Eiffel"})
 
         # Tag 'wikipedia:lang' can be used only in complement of 'wikipedia=lang:xxxx'
-        err += self.check( {"wikipedia:fr": u"Tour Eiffel"},
-                           has_error=u"Missing primary Wikipedia tag",
-                           fix={'+': {'wikipedia': u'fr:Tour Eiffel'}, '-': ['wikipedia:fr']})
+        err += self.check( {"wikipedia:fr": "Tour Eiffel"},
+                           has_error="Missing primary Wikipedia tag",
+                           fix={'+': {'wikipedia': 'fr:Tour Eiffel'}, '-': ['wikipedia:fr']})
 
-        err += self.check( {"wikipedia:fr": u"fr:Tour Eiffel"},
-                           has_error=u"Missing primary Wikipedia tag",
-                           fix={'+': {'wikipedia': u'fr:Tour Eiffel'}, '-': ['wikipedia:fr']})
+        err += self.check( {"wikipedia:fr": "fr:Tour Eiffel"},
+                           has_error="Missing primary Wikipedia tag",
+                           fix={'+': {'wikipedia': 'fr:Tour Eiffel'}, '-': ['wikipedia:fr']})
 
-        err += self.check( { "wikipedia:fr": u"http://fr.wikipedia.org/wiki/Tour_Eiffel"},
-                           has_error=u"Missing primary Wikipedia tag",
-                           fix={'+': {'wikipedia': u'fr:Tour Eiffel'}, '-': ['wikipedia:fr']})
+        err += self.check( { "wikipedia:fr": "http://fr.wikipedia.org/wiki/Tour_Eiffel"},
+                           has_error="Missing primary Wikipedia tag",
+                           fix={'+': {'wikipedia': 'fr:Tour Eiffel'}, '-': ['wikipedia:fr']})
 
         err += self.check( { "wikipedia:fr": "fr.wikipedia.org/wiki/Tour_Eiffel"},
-                           has_error=u"Missing primary Wikipedia tag",
-                           fix={'+': {'wikipedia': u'fr:Tour Eiffel'}, '-': ['wikipedia:fr']})
+                           has_error="Missing primary Wikipedia tag",
+                           fix={'+': {'wikipedia': 'fr:Tour Eiffel'}, '-': ['wikipedia:fr']})
 
         err += self.check( { "wikipedia:fr": "fr.wikipedia.org/wiki/Tour_Eiffel", "wikipedia:en": "hey"},
-                           has_error=u"Missing primary Wikipedia tag",
-                           fix=[{'+': {'wikipedia': u'en:hey'}, '-': ['wikipedia:en']},
-                                {'+': {'wikipedia': u'fr:Tour Eiffel'}, '-': ['wikipedia:fr']}])
+                           has_error="Missing primary Wikipedia tag",
+                           fix=[{'+': {'wikipedia': 'en:hey'}, '-': ['wikipedia:en']},
+                                {'+': {'wikipedia': 'fr:Tour Eiffel'}, '-': ['wikipedia:fr']}])
 
         # Missing lang in value
         err += self.check( { "wikipedia": "Tour Eiffel"},
-                           has_error=u"Missing Wikipedia language before article title")
+                           has_error="Missing Wikipedia language before article title")
 
         # Human readeable
         err += self.check( { "wikipedia": "fr:Tour_Eiffel"},
-                           has_error=u"Use human Wikipedia page title",
-                           fix={ "wikipedia": u"fr:Tour Eiffel"})
+                           has_error="Use human Wikipedia page title",
+                           fix={ "wikipedia": "fr:Tour Eiffel"})
 
-        err += self.check( { "wikipedia": u"fr:Château_de_Gruyères_(Ardennes)"},
-                           has_error=u"Use human Wikipedia page title",
-                           fix={ "wikipedia": u"fr:Château de Gruyères (Ardennes)"})
+        err += self.check( { "wikipedia": "fr:Château_de_Gruyères_(Ardennes)"},
+                           has_error="Use human Wikipedia page title",
+                           fix={ "wikipedia": "fr:Château de Gruyères (Ardennes)"})
 
         err += self.check( { "name": "Rue Jules Verne",
                              "wikipedia:name": "fr:Jules Verne"},
@@ -308,35 +308,35 @@ class Test(TestPluginCommon):
 
         # Don't use URL directly
         err += self.check( { "name": "Rue Jules Verne",
-                             "wikipedia:name": u"http://www.google.fr"},
+                             "wikipedia:name": "http://www.google.fr"},
                            has_error="Not a Wikipedia URL")
 
         err += self.check( { "name": "Rue Jules Verne",
-                             "wikipedia:name": u"http://fr.wikipedia.org/wiki/Jules_Verne"},
+                             "wikipedia:name": "http://fr.wikipedia.org/wiki/Jules_Verne"},
                            has_error="Wikipedia URL instead of article title",
-                           fix={ "wikipedia:name": u"fr:Jules Verne"})
+                           fix={ "wikipedia:name": "fr:Jules Verne"})
 
         err += self.check( { "name": "Rue Jules Verne",
                              "wikipedia:name": "fr.wikipedia.org/wiki/Jules_Verne"},
                            has_error="Wikipedia URL instead of article title",
-                           fix={ "wikipedia:name": u"fr:Jules Verne"})
+                           fix={ "wikipedia:name": "fr:Jules Verne"})
 
         # Tag 'wikipedia:lang' can be used only in complement of 'wikipedia=lang:xxxx'
         err += self.check( { "name": "Rue Jules Verne",
-                             "wikipedia:name:fr": u"Jules Verne"},
-                           has_error=u"Missing primary Wikipedia tag",
-                           fix={'+': {'wikipedia:name': u'fr:Jules Verne'}, '-': ['wikipedia:name:fr']})
+                             "wikipedia:name:fr": "Jules Verne"},
+                           has_error="Missing primary Wikipedia tag",
+                           fix={'+': {'wikipedia:name': 'fr:Jules Verne'}, '-': ['wikipedia:name:fr']})
 
         # Missing lang in value
         err += self.check( { "name": "Rue Jules Verne",
                              "wikipedia:name": "Jules Verne"},
-                           has_error=u"Missing Wikipedia language before article title")
+                           has_error="Missing Wikipedia language before article title")
 
         # Human readable
         err += self.check( { "name": "Rue Jules Verne",
                              "wikipedia:name": "fr:Jules_Verne"},
-                           has_error=u"Use human Wikipedia page title",
-                           fix={ "wikipedia:name": u"fr:Jules Verne"})
+                           has_error="Use human Wikipedia page title",
+                           fix={ "wikipedia:name": "fr:Jules Verne"})
 
         err += self.check( { "name": "Gare SNCF",
                              "operator": "Sncf",
@@ -344,10 +344,10 @@ class Test(TestPluginCommon):
                            has_error=False)
 
         err += self.check( { "wikipedia:toto": "quelque chose"},
-                           has_error=u"Invalid wikipedia suffix 'toto'")
+                           has_error="Invalid wikipedia suffix 'toto'")
 
         err += self.check( { "wikipedia:fr": "quelque chose", "wikipedia": "fr:autre chose"},
-                           has_error=u"Duplicate wikipedia tag as suffix and prefix")
+                           has_error="Duplicate wikipedia tag as suffix and prefix")
 
         # Same wikipedia topic on other language
         err += self.check( {"wikipedia": "fr:Tour Eiffel",
@@ -387,5 +387,5 @@ class Test(TestPluginCommon):
         self.analyser.father = father()
         self.analyser.init(None)
 
-        assert not self.analyser.node(None, {"wikipedia": u"uk:Нова Воля", "wikipedia:ru": u"Новая Воля"})
-        assert self.analyser.node(None, {"wikipedia": u"uk:Подільськ", "wikipedia:pl": u"Podolsk (Ukraina)"})
+        assert not self.analyser.node(None, {"wikipedia": "uk:Нова Воля", "wikipedia:ru": "Новая Воля"})
+        assert self.analyser.node(None, {"wikipedia": "uk:Подільськ", "wikipedia:pl": "Podolsk (Ukraina)"})

@@ -49,8 +49,8 @@ class SubAnalyser_Merge_Street_Objects2(SubAnalyser_Merge_Dynamic):
 
         self.init(
             "https://www.mapillary.com",
-            u"Street Objects from Street-level imagery",
-            CSV(Source_Mapillary(attribution = u"Mapillary Street Objects", country = config.options['country'], polygon_id = config.polygon_id, logger = logger, mapping = mapping, source = source, layer = layer)),
+            "Street Objects from Street-level imagery",
+            CSV(Source_Mapillary(attribution = "Mapillary Street Objects", country = config.options['country'], polygon_id = config.polygon_id, logger = logger, mapping = mapping, source = source, layer = layer)),
             Load("X", "Y",
                 select = {"value": object}),
             Conflate(

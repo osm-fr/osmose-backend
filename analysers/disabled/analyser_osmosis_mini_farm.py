@@ -39,7 +39,7 @@ class Analyser_Osmosis_Mini_Farm(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         if "proj" in self.config.options:
-            self.classs_change[1] = {"item":"3100", "level": 2, "tag": ["tag", "landuse", "fix:imagery"], "desc": T_(u"Small farm : consider farmyard or building instead") }
+            self.classs_change[1] = {"item":"3100", "level": 2, "tag": ["tag", "landuse", "fix:imagery"], "desc": T_("Small farm : consider farmyard or building instead") }
             self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "fix":[
                 {"-":["landuse"], "+":{"building":"yes"}},
                 {"-":["landuse"], "+":{"building":"farm_auxiliary"}},

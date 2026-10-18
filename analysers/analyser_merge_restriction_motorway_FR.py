@@ -29,9 +29,9 @@ class Analyser_Merge_Restriction_Motorway_FR_Maxweight(Analyser_Merge_Point):
             title = T_('maxweight Restriction not integrated'))
 
         self.init(
-            u"http://professionnels.ign.fr/route500",
-            u"ROUTE 500®",
-            CSV(Source(attribution = u"IGN", millesime = "06/2017",
+            "http://professionnels.ign.fr/route500",
+            "ROUTE 500®",
+            CSV(Source(attribution = "IGN", millesime = "06/2017",
                     file = "restriction_motorway_FR.csv.bz2", bz2 = True)),
             Load_XY("X", "Y",
                 where = lambda row: row["REST_POIDS"] != "0"),
@@ -56,9 +56,9 @@ class Analyser_Merge_Restriction_Motorway_FR_Maxheight(Analyser_Merge_Point):
             title = T_('maxheight Restriction not integrated'))
 
         self.init(
-            u"http://professionnels.ign.fr/route500",
-            u"ROUTE 500®",
-            CSV(Source(attribution = u"IGN", millesime = "06/2017",
+            "http://professionnels.ign.fr/route500",
+            "ROUTE 500®",
+            CSV(Source(attribution = "IGN", millesime = "06/2017",
                     file = "restriction_motorway_FR.csv.bz2", bz2 = True)),
             Load_XY("X", "Y",
                 where = lambda row: row["REST_HAUT"] != "0"),

@@ -32,30 +32,30 @@ class Source_FR(Plugin):
         self.IGN = re.compile(r'.*(\wign)|(ign\w).*')
 
     def check(self, tags):
-        if u"AAAA" in tags[u"source"]:
-            return {"class": 706, "subclass": 0, "text": T_(u"Source tag contains AAAA")}
-        if u"Cartographes Associés" in tags[u"source"]:
-            return {"class": 706, "subclass": 1, "text": {"en":u"Cartographes Associés"}}
-        source = tags[u"source"].lower()
-        if u"geoportail" in source or u"géoportail" in source:
-            return {"class": 706, "subclass": 3, "text": {"en":u"Géoportail"}}
-        if u"camptocamp" in source:
-            return {"class": 706, "subclass": 5, "text": {"en":u"CampToCamp"}}
+        if "AAAA" in tags["source"]:
+            return {"class": 706, "subclass": 0, "text": T_("Source tag contains AAAA")}
+        if "Cartographes Associés" in tags["source"]:
+            return {"class": 706, "subclass": 1, "text": {"en":"Cartographes Associés"}}
+        source = tags["source"].lower()
+        if "geoportail" in source or "géoportail" in source:
+            return {"class": 706, "subclass": 3, "text": {"en":"Géoportail"}}
+        if "camptocamp" in source:
+            return {"class": 706, "subclass": 5, "text": {"en":"CampToCamp"}}
 
     def node(self, data, tags):
-        if u"source" not in tags:
+        if "source" not in tags:
             return
         return self.check(tags)
 
     def way(self, data, tags, nds):
-        if u"source" not in tags:
-            if tags.get(u"boundary", None) == u"administrative":
+        if "source" not in tags:
+            if tags.get("boundary", None) == "administrative":
                 return {"class": 707, "subclass": 0}
             return
         return self.check(tags)
 
     def relation(self, data, tags, members):
-        if u"source" not in tags:
+        if "source" not in tags:
             return
         return self.check(tags)
 
@@ -67,30 +67,30 @@ class Test(TestPluginCommon):
     def test(self):
         a = Source_FR(None)
         a.init(None)
-        for d in [{u"highway":u"residential"},
-                  {u"source":u"ignoville"},
-                  {u"source":u"BDOrtho IGN"},
-                  {u"source":u"road sign"},
+        for d in [{"highway":"residential"},
+                  {"source":"ignoville"},
+                  {"source":"BDOrtho IGN"},
+                  {"source":"road sign"},
                  ]:
             assert not a.node(None, d), d
             assert not a.way(None, d, None), d
             assert not a.relation(None, d, None), d
 
-        for d in [{u"boundary":u"administrative"},
+        for d in [{"boundary":"administrative"},
                  ]:
             assert not a.node(None, d), d
             assert not a.relation(None, d, None), d
 
 
-        for d in [{u"source": u"  AAAA   "},
-                  {u"source": u"Cartographes Associés"},
-                  {u"source": u"geoportail"},
-                  {u"source": u"camptocamp"},
+        for d in [{"source": "  AAAA   "},
+                  {"source": "Cartographes Associés"},
+                  {"source": "geoportail"},
+                  {"source": "camptocamp"},
                  ]:
             self.check_err(a.node(None, d), d)
             self.check_err(a.way(None, d, None), d)
             self.check_err(a.relation(None, d, None), d)
 
-        for d in [{u"boundary":u"administrative"},
+        for d in [{"boundary":"administrative"},
                  ]:
             self.check_err(a.way(None, d, None), d)

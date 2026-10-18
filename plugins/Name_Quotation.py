@@ -31,12 +31,12 @@ class Name_Quotation(Plugin):
 
         self.quotes = [
             # https://en.wikipedia.org/wiki/Quotation_mark#Unicode_code_point_table
-            u"«»", u"‹›", u"“”‟„", u"〝〞〟",
+            "«»", "‹›", "“”‟„", "〝〞〟",
             # https://en.wikipedia.org/wiki/Bracket#Encoding_in_digital_media
-            u"()", u"[]", u"{}", u"«»", u"‹›", u"⌈⌉", u"⌊⌋", u"⌜⌝", u"⌞⌟", u"⁽⁾", u"₍₎", u"⸢⸣", u"⸤⸥", u"﴾﴿", u"⸜⸝", u"᚛᚜", u"༼༡༽", u"〔〕", u"〖〗", u"〘〙", u"〚〛", u"〝〞", u"〈〉", u"｢｣", u"〈〉", u"《》", u"「」", u"『』", u"【】", u"（）", u"［］", u"＜＞", u"｛｝", u"｟｠",
+            "()", "[]", "{}", "«»", "‹›", "⌈⌉", "⌊⌋", "⌜⌝", "⌞⌟", "⁽⁾", "₍₎", "⸢⸣", "⸤⸥", "﴾﴿", "⸜⸝", "᚛᚜", "༼༡༽", "〔〕", "〖〗", "〘〙", "〚〛", "〝〞", "〈〉", "｢｣", "〈〉", "《》", "「」", "『』", "【】", "（）", "［］", "＜＞", "｛｝", "｟｠",
         ]
 
-        self.quotes_j = u"".join(self.quotes)
+        self.quotes_j = "".join(self.quotes)
 
     def node(self, data, tags):
         if 'name' not in tags:

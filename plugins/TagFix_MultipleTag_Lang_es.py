@@ -31,7 +31,7 @@ class TagFix_MultipleTag_Lang_es(Plugin):
             title = T_('Watch multiple tags'))
 
         import re
-        self.Panaderia = re.compile(u"panader.a (.*)", re.IGNORECASE)
+        self.Panaderia = re.compile("panader.a (.*)", re.IGNORECASE)
 
     def node(self, data, tags):
         err = []
@@ -64,10 +64,10 @@ class Test(TestPluginCommon):
             config = _config()
         a.father = father()
         a.init(None)
-        for t in [{"name": u"Panadería Doña Neli"},
+        for t in [{"name": "Panadería Doña Neli"},
                  ]:
             self.check_err(a.node(None, t), t)
 
-        for t in [{"name": u"Panadería Doña Neli", "shop": "b"},
+        for t in [{"name": "Panadería Doña Neli", "shop": "b"},
                  ]:
             assert not a.way(None, t, None), t

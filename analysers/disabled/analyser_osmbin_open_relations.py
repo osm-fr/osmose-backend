@@ -42,10 +42,10 @@ def get_ways(relid, bin):
 def ways_bounds(ways):
     nodes = []
     for w in ways:
-        if not w[u"nd"]:
+        if not w["nd"]:
             continue
-        nodes.append(w[u"nd"][0])
-        nodes.append(w[u"nd"][-1])
+        nodes.append(w["nd"][0])
+        nodes.append(w["nd"][-1])
     err = []
     for n in set(nodes):
         if (nodes.count(n) % 2) == 1:
@@ -91,7 +91,7 @@ reported at each end of open part.'''))
 
     def RelationCreate(self, data):
 
-        if data[u"tag"].get(u"type", None) != u"boundary" and data[u"tag"].get(u"type", None) != u"multipolygon":
+        if data["tag"].get("type", None) != "boundary" and data["tag"].get("type", None) != "multipolygon":
             return
 
         try:

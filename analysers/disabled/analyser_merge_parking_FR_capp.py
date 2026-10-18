@@ -29,10 +29,10 @@ class Analyser_Merge_Parking_FR_capp(Analyser_Merge):
             title = T_('{0} parking not integrated', 'CAPP'))
 
         self.init(
-            u"http://opendata.agglo-pau.fr/index.php/fiche?idQ=18",
-            u"Parkings sur la CAPP",
-            CSV(Source(attribution = u"Communauté d'Agglomération Pau-Pyrénées", millesime = "01/2013",
-                    fileUrl = u"http://opendata.agglo-pau.fr/sc/call.php?f=1&idf=18", zip = "Parking_WGS84.csv", encoding = "ISO-8859-15")),
+            "http://opendata.agglo-pau.fr/index.php/fiche?idQ=18",
+            "Parkings sur la CAPP",
+            CSV(Source(attribution = "Communauté d'Agglomération Pau-Pyrénées", millesime = "01/2013",
+                    fileUrl = "http://opendata.agglo-pau.fr/sc/call.php?f=1&idf=18", zip = "Parking_WGS84.csv", encoding = "ISO-8859-15")),
             Load("X", "Y",
                 xFunction = Load.float_comma,
                 yFunction = Load.float_comma),
@@ -61,10 +61,10 @@ class Analyser_Merge_Parking_FR_capp_disabled(Analyser_Merge):
             title = T_('{0} parking for disabled not integrated', 'CAPP'))
 
         self.init(
-            u"http://opendata.agglo-pau.fr/index.php/fiche?idQ=21",
-            u"Stationnements règlementaires sur la commune de Pau - Stationnement Handi",
-            CSV(Source(attribution = u"Communauté d'Agglomération Pau-Pyrénées", millesime = "01/2013",
-                    fileUrl = u"http://opendata.agglo-pau.fr/sc/call.php?f=1&idf=21", zip = "Sta_Regl_Wgs84.csv", encoding = "ISO-8859-15")),
+            "http://opendata.agglo-pau.fr/index.php/fiche?idQ=21",
+            "Stationnements règlementaires sur la commune de Pau - Stationnement Handi",
+            CSV(Source(attribution = "Communauté d'Agglomération Pau-Pyrénées", millesime = "01/2013",
+                    fileUrl = "http://opendata.agglo-pau.fr/sc/call.php?f=1&idf=21", zip = "Sta_Regl_Wgs84.csv", encoding = "ISO-8859-15")),
             Load("X", "Y",
                 select = {"Types": "Stationnement Handi"},
                 xFunction = Load.float_comma,

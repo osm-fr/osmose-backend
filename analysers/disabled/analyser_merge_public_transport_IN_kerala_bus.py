@@ -29,10 +29,10 @@ class Analyser_Merge_Public_Transport_IN_Kerala_Bus_Stops(Analyser_Merge_Point):
             title = T_('{0} stop not integrated', 'Kerala'))
 
         self.init(
-            u"https://opensdi.kerala.gov.in/",
-            u"Kerala Bus Stops",
-            GeoJSON(Source(attribution = u"Kerala State Electronics Development Corporation Limited", millesime = "09/2021",
-                    fileUrl = u"https://opensdi.kerala.gov.in/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typename=geonode%3AKerala_Bus_Stops&outputFormat=json&srs=EPSG%3A32643&srsName=EPSG%3A4326"),
+            "https://opensdi.kerala.gov.in/",
+            "Kerala Bus Stops",
+            GeoJSON(Source(attribution = "Kerala State Electronics Development Corporation Limited", millesime = "09/2021",
+                    fileUrl = "https://opensdi.kerala.gov.in/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typename=geonode%3AKerala_Bus_Stops&outputFormat=json&srs=EPSG%3A32643&srsName=EPSG%3A4326"),
                 extractor = lambda geojson: geojson),
             Load_XY("geom_x", "geom_y"),
             Conflate(

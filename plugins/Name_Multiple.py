@@ -64,18 +64,18 @@ The tag `name` should have the value `name:right / name:left` or `name:left / na
 
             self.allowSlash = any(map(lambda c: self.father.config.options.get("country").startswith(c), ['CH', 'DJ', 'DK']))
 
-        self.streetSubNumberRe = re.compile(u".*[0-9๐๑๒๓๔๕๖๗๘๙]/[0-9๐๑๒๓๔๕๖๗๘๙].*")
+        self.streetSubNumberRe = re.compile(".*[0-9๐๑๒๓๔๕๖๗๘๙]/[0-9๐๑๒๓๔๕๖๗๘๙].*")
 
     def way(self, data, tags, nds):
-        if u"name" not in tags:
+        if "name" not in tags:
             return
-        if u"aeroway" in tags:
+        if "aeroway" in tags:
             return
 
         if ';' in tags["name"]:
             return {"class": 705, "subclass": 0, "text": {"en": "name={0}".format(tags["name"])}}
 
-        if self.HighwayOnly and u"highway" not in tags:
+        if self.HighwayOnly and "highway" not in tags:
             return
         if self.NoExtra:
             return
@@ -121,10 +121,10 @@ class Test(TestPluginCommon):
             assert not p.way(None, {"amenity": "aueuie + ueuaeuie"}, None)
             assert not p.way(None, {"name": "aueuie + ueuaeuie", "aeroway": "yes"}, None)
             assert not p.way(None, {"name": "Profil+"}, None)
-            assert not p.way(None, {"name": u"บ้านแพะแม่คือ ซอย 5/10"}, None)
-            assert not p.way(None, {"name": u"บ้านแพะแม่คือ ซอย 5/๓๔๕"}, None)
+            assert not p.way(None, {"name": "บ้านแพะแม่คือ ซอย 5/10"}, None)
+            assert not p.way(None, {"name": "บ้านแพะแม่คือ ซอย 5/๓๔๕"}, None)
             assert not p.way(None, {"name": "streetA/streetB", "public_transport": "platform"}, None)
-            assert not p.way(None, {"name": u"Gas station no. 21/2356"}, None)
+            assert not p.way(None, {"name": "Gas station no. 21/2356"}, None)
             assert not p.way(None, {"name": "Foobar P+R"}, None)
             assert not p.way(None, {"name": "StreetA / StreetB", "name:left": "StreetA", "name:right": "StreetB"}, None)
             assert not p.way(None, {"name": "StreetB/StreetA", "name:left": "StreetA", "name:right": "StreetB"}, None)
@@ -132,18 +132,18 @@ class Test(TestPluginCommon):
 
         with with_options(p, {'country': 'US-TX'}):
             p.init(None)
-            assert not p.way(None, {"name": u"County Route 7/2"}, None)
-            assert not p.way(None, {"name": u"16 5/10 Road"}, None)
+            assert not p.way(None, {"name": "County Route 7/2"}, None)
+            assert not p.way(None, {"name": "16 5/10 Road"}, None)
 
         with with_options(p, {'country': 'BY'}):
             p.init(None)
-            assert not p.way(None, {"name": u"д/с №68"}, None)
-            assert p.way(None, {"name": u"д/с №68", "highway": "terciary"}, None)
+            assert not p.way(None, {"name": "д/с №68"}, None)
+            assert p.way(None, {"name": "д/с №68", "highway": "terciary"}, None)
 
         with with_options(p, {'country': 'CH'}):
             p.init(None)
-            assert not p.way(None, {"name": u"Waffenplatz-/Bederstrasse"}, None)
+            assert not p.way(None, {"name": "Waffenplatz-/Bederstrasse"}, None)
 
         with with_options(p, {'country': 'DJ'}):
             p.init(None)
-            assert not p.way(None, {"name": u"Avenue 17 / جادة 17"}, None)
+            assert not p.way(None, {"name": "Avenue 17 / جادة 17"}, None)

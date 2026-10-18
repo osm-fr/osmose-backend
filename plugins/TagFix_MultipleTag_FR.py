@@ -45,12 +45,12 @@ written in a form actually used.'''),
             title = T_('FANTOIR object type not match OSM feature'))
 
         self.school = {
-            u"elementaire": u"élémentaire",
-            u"maternelle": u"maternelle",
-            u"primaire": u"primaire",
-            u"college": u"collège",
-            u"lycee": u"lycée",
-            u"secondaire": u"secondaire",
+            "elementaire": "élémentaire",
+            "maternelle": "maternelle",
+            "primaire": "primaire",
+            "college": "collège",
+            "lycee": "lycée",
+            "secondaire": "secondaire",
         }
         country = self.father.config.options.get("country")
         if country and country.startswith("NC"):
@@ -64,24 +64,24 @@ written in a form actually used.'''),
         err = []
 
         if "school:FR" in tags and "amenity" not in tags:
-            err.append({"class": 30321, "subclass": 5, "text": T_(u"Needs tag amenity=nursery|kindergarten|school besides on school:FR")})
+            err.append({"class": 30321, "subclass": 5, "text": T_("Needs tag amenity=nursery|kindergarten|school besides on school:FR")})
         if "name" in tags and tags.get("amenity") == "school" and "school:FR" not in tags:
             canonicalSchool = self.ToolsStripAccents(tags['name']).lower()
             matches = list(filter(lambda kv: kv[0] in canonicalSchool, self.school.keys()))
             if len(matches) == 1:
-                err.append({"class": 30321, "subclass": 6, "text": T_(u"Add school:FR tag"), "fix": {"+": {"school:FR": self.school[matches[0]]}} })
+                err.append({"class": 30321, "subclass": 6, "text": T_("Add school:FR tag"), "fix": {"+": {"school:FR": self.school[matches[0]]}} })
             elif len(matches) > 1:
-                err.append({"class": 30321, "subclass": 6, "text": T_(u"Add school:FR tag") })
+                err.append({"class": 30321, "subclass": 6, "text": T_("Add school:FR tag") })
 
         if not "addr:housenumber" in tags and "ref:FR:FANTOIR" in tags and len(tags["ref:FR:FANTOIR"]) == 10:
             fantoir_key = tags["ref:FR:FANTOIR"][5]
             if fantoir_key.isdigit():
                 if is_node and "highway" not in tags:
-                    err.append({"class": 206013, "subclass": 1, "text": T_(u"FANTOIR numeric type is for ways")})
+                    err.append({"class": 206013, "subclass": 1, "text": T_("FANTOIR numeric type is for ways")})
             #elif fantoir_key == "A":
             elif fantoir_key >= "B" and fantoir_key <= "W":
                 if tags.get("place") not in ("locality", "hamlet", "isolated_dwelling", "neighbourhood", "islet") and tags.get("railway") != "station" and tags.get("leisure") not in ("park", "garden"):
-                    err.append({"class": 206013, "subclass": 1, "text": T_(u"FANTOIR B to W type is for locality, hamlet, isolated_dwelling, islet or neighbourhood")})
+                    err.append({"class": 206013, "subclass": 1, "text": T_("FANTOIR B to W type is for locality, hamlet, isolated_dwelling, islet or neighbourhood")})
 
         return err
 
@@ -93,14 +93,14 @@ written in a form actually used.'''),
 
         if "highway" in tags:
             if tags["highway"] == "living_street" and tags.get("zone:maxspeed") not in (None, "FR:20"):
-                err.append({"class": 30324, "subclass": 0, "text": T_(u"A living_street in France is a Zone 20")})
+                err.append({"class": 30324, "subclass": 0, "text": T_("A living_street in France is a Zone 20")})
             elif tags.get("zone:maxspeed") == "FR:20" and tags["highway"] != "living_street":
-                err.append({"class": 30324, "subclass": 1, "text": T_(u"A Zone 20 in France is a living_street")})
+                err.append({"class": 30324, "subclass": 1, "text": T_("A Zone 20 in France is a living_street")})
             elif "zone:maxspeed" in tags and "maxspeed" in tags:
                 if tags["zone:maxspeed"] == "FR:20" and tags["maxspeed"] != "20":
-                    err.append({"class": 30324, "subclass": 3, "text": T_(u"A Zone 20 is limited to 20 km/h")})
+                    err.append({"class": 30324, "subclass": 3, "text": T_("A Zone 20 is limited to 20 km/h")})
                 elif tags["zone:maxspeed"] == "FR:30" and tags["maxspeed"] != "30":
-                    err.append({"class": 30324, "subclass": 4, "text": T_(u"A zone 30 is limited to 30 km/h")})
+                    err.append({"class": 30324, "subclass": 4, "text": T_("A zone 30 is limited to 30 km/h")})
 
         if (tags.get("highway") in ("motorway", "trunk", "primary", "secondary", "tertiary", "unclassified", "residential", "living_street", "path", "track", "service", "footway", "pedestrian", "cycleway", "road", "bridleway") and
             "ref" in tags and not self.Ref.match(tags["ref"])):
@@ -124,9 +124,9 @@ class Test(TestPluginCommon):
             config = _config()
         a.father = father()
         a.init(None)
-        for t in [{"amenity":"school", "name":u"École maternelle Clos Montesquieu"},
-                  {"amenity":"school", "name":u"École élémentaire"},
-                  {"name":u"Chemin Rural dit de la Borne Trouée"},
+        for t in [{"amenity":"school", "name":"École maternelle Clos Montesquieu"},
+                  {"amenity":"school", "name":"École élémentaire"},
+                  {"name":"Chemin Rural dit de la Borne Trouée"},
                   {"highway":"living_street", "zone:maxspeed": "30"},
                   {"highway":"primary", "zone:maxspeed": "FR:20"},
                   {"highway":"primary", "zone:maxspeed": "FR:30", "maxspeed": "70"},
@@ -137,7 +137,7 @@ class Test(TestPluginCommon):
             self.check_err(a.way(None, t, None), t)
             self.check_err(a.relation(None, t, None), t)
 
-        for t in [{"highway":"trunk", "ref": u"D\u20073"},
+        for t in [{"highway":"trunk", "ref": "D\u20073"},
                   {"highway":"primary", "zone:maxspeed": "FR:50"},
                   {"highway":"primary", "zone:maxspeed": "FR:30", "maxspeed": "30"},
                   {"highway":"living_street"},
@@ -160,21 +160,21 @@ class Test(TestPluginCommon):
             config = _config()
         a.father = father()
         a.init(None)
-        for t in [{"amenity":"school", "name":u"École maternelle Clos Montesquieu"},
-                  {"amenity":"school", "name":u"École élémentaire"},
-                  {"name":u"Chemin Rural dit de la Borne Trouée"},
+        for t in [{"amenity":"school", "name":"École maternelle Clos Montesquieu"},
+                  {"amenity":"school", "name":"École élémentaire"},
+                  {"name":"Chemin Rural dit de la Borne Trouée"},
                   {"highway":"living_street", "zone:maxspeed": "30"},
                   {"highway":"primary", "zone:maxspeed": "FR:20"},
                   {"highway":"primary", "zone:maxspeed": "FR:30", "maxspeed": "70"},
                   {"highway":"living_street", "zone:maxspeed": "FR:20", "maxspeed": "30"},
                   {"highway":"trunk", "ref": "3"},
                   {"ref:FR:FANTOIR":"90123D123D", "highway": "residential"},
-                  {"highway":"trunk", "ref": u"D\u20073"},
-                  {"school:FR":"maternelle", "ref": u"1989898"},
+                  {"highway":"trunk", "ref": "D\u20073"},
+                  {"school:FR":"maternelle", "ref": "1989898"},
                  ]:
             self.check_err(a.way(None, t, None), t)
 
-        for t in [{"highway":"trunk", "ref": u"RPN 73"},
+        for t in [{"highway":"trunk", "ref": "RPN 73"},
                   {"highway":"primary", "zone:maxspeed": "FR:50"},
                   {"highway":"primary", "zone:maxspeed": "FR:30", "maxspeed": "30"},
                   {"highway":"living_street"},

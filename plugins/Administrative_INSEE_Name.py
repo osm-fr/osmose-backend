@@ -77,13 +77,13 @@ information from local authorities / ground usage.'''))
 
         name_insee = self.communeNameIndexedByInsee[code_insee]
         if name_osm != name_insee and (not name_alt_osm or name_alt_osm != name_insee):
-            simpleName = self.ToolsStripAccents(name_osm.lower().replace(u"-", u" ").replace(u" ", u"")).strip()
-            simpleInseeName = self.ToolsStripAccents(name_insee.lower().replace(u"-", u" ").replace(u" ", u"")).strip()
-            msg = u"OSM=" + name_osm + u" => COG=" + name_insee
+            simpleName = self.ToolsStripAccents(name_osm.lower().replace("-", " ").replace(" ", "")).strip()
+            simpleInseeName = self.ToolsStripAccents(name_insee.lower().replace("-", " ").replace(" ", "")).strip()
+            msg = "OSM=" + name_osm + " => COG=" + name_insee
             fix = {"name": name_insee}
             if simpleName == simpleInseeName:
-                if ((u"œ" in name_insee) or (u"æ" in name_insee) or
-                     (u"Œ" in name_insee) or (u"Æ" in name_insee)):
+                if (("œ" in name_insee) or ("æ" in name_insee) or
+                     ("Œ" in name_insee) or ("Æ" in name_insee)):
                     return # No correction on ligation (ML talk-fr 03/2009)
                 else:
                     return {"class": 802, "subclass": 1, "text": {"en": msg}, "fix": {"~":fix}}
@@ -91,23 +91,23 @@ information from local authorities / ground usage.'''))
                 return {"class": 802, "subclass": 2, "text": {"en": msg}, "fix": fix}
 
     def node(self, data, tags):
-        if u"place" in tags:
-            if u"name" not in tags:
+        if "place" in tags:
+            if "name" not in tags:
                 # Le nom est obligatoire en complément du tag place.
-                return {"class": 800, "subclass": 0, "text": T_("Node with place={0} without name", tags[u"place"])}
+                return {"class": 800, "subclass": 0, "text": T_("Node with place={0} without name", tags["place"])}
 
     def relation(self, relation, tags, members):
-        if tags.get(u"boundary") == u"administrative" and tags.get(u"admin_level") == u"8":
+        if tags.get("boundary") == "administrative" and tags.get("admin_level") == "8":
             # Seul le niveau 8 contient des INSEE qui nous interresse
             # Le niveau 7 contient d'autre code INSEE (sur 3 chiffres)
 
-            if u"name" not in tags:
+            if "name" not in tags:
                 # Le nom est obligatoire en complément du tag place.
                 return {"class": 800, "subclass": 0}
 
-            if u"ref:INSEE" in tags:
+            if "ref:INSEE" in tags:
                 # Si en plus on a un ref:Insee, on verifie la coohérance des noms
-                return self._check_insee_name(tags[u"ref:INSEE"], tags[u"name"], tags[u"alt_name"] if u"alt_name" in tags else None)
+                return self._check_insee_name(tags["ref:INSEE"], tags["name"], tags["alt_name"] if "alt_name" in tags else None)
 
 ###########################################################################
 from plugins.Plugin import TestPluginCommon
@@ -126,28 +126,28 @@ class Test(TestPluginCommon):
 
         for t in [{"highway": "primary"},
                   {"place": "yes", "name": "Ici"},
-                  {"place": "yes", "name": u"Béréziat", "ref:INSEE": "01040"},
-                  {"place": "yes", "name": "Ici", "alt_name": u"Béréziat", "ref:INSEE": "01040"},
-                  {"place": "yes", "name": u"Bonnœil", "ref:INSEE": "14087"},
-                  {"place": "yes", "name": u"Bonnoeil", "ref:INSEE": "14087"},
-                  {"name": u"Bat", "ref:INSEE": "01040"},
+                  {"place": "yes", "name": "Béréziat", "ref:INSEE": "01040"},
+                  {"place": "yes", "name": "Ici", "alt_name": "Béréziat", "ref:INSEE": "01040"},
+                  {"place": "yes", "name": "Bonnœil", "ref:INSEE": "14087"},
+                  {"place": "yes", "name": "Bonnoeil", "ref:INSEE": "14087"},
+                  {"name": "Bat", "ref:INSEE": "01040"},
                  ]:
             assert not a.node(None, t), t
 
         bt = {"boundary": "administrative", "admin_level": "8"}
         for t in [bt,
                   dict(bt, **{"name": "Ici", "ref:INSEE": "90"}),
-                  dict(bt, **{"name": u"Bat", "ref:INSEE": "01040"}),
-                  dict(bt, **{"name": u"Beréziat", "ref:INSEE": "01040"}),
-                  dict(bt, **{"name": u"Béréziàt", "ref:INSEE": "01040"}),
+                  dict(bt, **{"name": "Bat", "ref:INSEE": "01040"}),
+                  dict(bt, **{"name": "Beréziat", "ref:INSEE": "01040"}),
+                  dict(bt, **{"name": "Béréziàt", "ref:INSEE": "01040"}),
                  ]:
             self.check_err(a.relation(None, t, None), t)
 
         for t in [{"highway": "primary"},
                   dict(bt, **{"name": "Ici"}),
-                  dict(bt, **{"name": u"Béréziat", "ref:INSEE": "01040"}),
-                  dict(bt, **{"name": "Ici", "alt_name": u"Béréziat", "ref:INSEE": "01040"}),
-                  dict(bt, **{"name": u"Bonnœil", "ref:INSEE": "14087"}),
-                  dict(bt, **{"name": u"Bonnoeil", "ref:INSEE": "14087"}),
+                  dict(bt, **{"name": "Béréziat", "ref:INSEE": "01040"}),
+                  dict(bt, **{"name": "Ici", "alt_name": "Béréziat", "ref:INSEE": "01040"}),
+                  dict(bt, **{"name": "Bonnœil", "ref:INSEE": "14087"}),
+                  dict(bt, **{"name": "Bonnoeil", "ref:INSEE": "14087"}),
                  ]:
             assert not a.relation(None, t, None), t

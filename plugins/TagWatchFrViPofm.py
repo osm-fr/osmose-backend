@@ -29,10 +29,10 @@ from plugins.modules.wikiReader import read_wiki_table, wikitag2text
 class TagWatchFrViPofm(Plugin):
 
     def quoted(self, string):
-        return len(string) >= 2 and string[0] == u"`" and string[-1] == u"`"
+        return len(string) >= 2 and string[0] == "`" and string[-1] == "`"
 
     def quoted2re(self, string):
-        return re.compile(u"^"+string[1:-1]+u"$")
+        return re.compile("^"+string[1:-1]+"$")
 
     def init(self, logger):
         Plugin.init(self, logger)
@@ -52,7 +52,7 @@ class TagWatchFrViPofm(Plugin):
         self._update_kr_vr = defaultdict(dict)
 
         # Obtain the info from https://wiki.openstreetmap.org/wiki/Dubious_tags
-        data = urlread(u"https://wiki.openstreetmap.org/w/index.php?title=Dubious_tags&action=raw", 1)
+        data = urlread("https://wiki.openstreetmap.org/w/index.php?title=Dubious_tags&action=raw", 1)
         data = read_wiki_table(data, skip_headers = False)[1:] # Headers in the middle of the table, not supported yet in read_wiki_table
 
         for row in data:
@@ -161,7 +161,7 @@ class Test(TestPluginCommon):
         self.check_err(a.node(None, {"administrative": "boundary"})) # No only_for
         assert not a.node(None, {"School:FR": "plop"})   # only_for FR
         assert not a.node(None, {"amenity": "Pharmacie"}) # only for fr
-        assert not a.node(None, {"amenity": u"Collège"}) # only_for fr
+        assert not a.node(None, {"amenity": "Collège"}) # only_for fr
 
 
     def test_only_for_FR(self):
@@ -176,7 +176,7 @@ class Test(TestPluginCommon):
         self.check_err(a.node(None, {"administrative": "boundary"})) # No only_for
         self.check_err(a.node(None, {"School:FR": "plop"})) # only_for FR
         assert not a.node(None, {"amenity": "Pharmacie"})    # only for fr
-        assert not a.node(None, {"amenity": u"Collège"})    # only_for fr
+        assert not a.node(None, {"amenity": "Collège"})    # only_for fr
 
     def test_only_for_fr(self):
         a = TagWatchFrViPofm(None)
@@ -190,4 +190,4 @@ class Test(TestPluginCommon):
         self.check_err(a.node(None, {"administrative": "boundary"})) # No only_for
         assert not a.node(None, {"School:FR": "plop"})        # only_for FR
         self.check_err(a.node(None, {"amenity": "Pharmacie"})) # only for fr
-        self.check_err(a.node(None, {"amenity": u"Collège"})) # only_for fr
+        self.check_err(a.node(None, {"amenity": "Collège"})) # only_for fr

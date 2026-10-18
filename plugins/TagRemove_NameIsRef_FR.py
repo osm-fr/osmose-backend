@@ -36,10 +36,10 @@ class TagRemove_NameIsRef_FR(Plugin):
             fix = T_(
 '''Transfer the value from the tag `name=*` to the tag `ref=*`.'''))
 
-        #self.ReRefRoute = re.compile(u"^[NDCEAM] ?[0-9]+(| ?[a-z]| ?bis)$")
-        self.ReRefRoute1 = re.compile(u"(?:^|.*[^RV] +)([RV]?([NDCEAM] ?[0-9]+[^ ]*)).*")
-        self.ReRefRoute2 = re.compile(u".*[nN][o°] ?[0-9]+[^ ]*")
-        self.MultipleSpace = re.compile(u" +")
+        #self.ReRefRoute = re.compile("^[NDCEAM] ?[0-9]+(| ?[a-z]| ?bis)$")
+        self.ReRefRoute1 = re.compile("(?:^|.*[^RV] +)([RV]?([NDCEAM] ?[0-9]+[^ ]*)).*")
+        self.ReRefRoute2 = re.compile(".*[nN][o°] ?[0-9]+[^ ]*")
+        self.MultipleSpace = re.compile(" +")
 
     def way(self, data, tags, nds):
         if "name" not in tags or "highway" not in tags or "ref" in tags:
@@ -71,13 +71,13 @@ class Test(TestPluginCommon):
     def test(self):
         a = TagRemove_NameIsRef_FR(None)
         a.init(None)
-        name = [(u"Route des Poules N10 vers le poulailler", True, u"Route des Poules vers le poulailler", u"N10"),
-                (u"Chemin de la C6 au moulin", False, None, None),
-                (u"Ancienne RN 7", True, u"Ancienne", u"N 7"),
-                (u"la D21E1", True, "la", u"D21E1"),
-                (u"ancienne N10", True, None, None),
-                (u"RN 7", True, None, u"N 7"),
-                (u"N° 7", True, None, None),
+        name = [("Route des Poules N10 vers le poulailler", True, "Route des Poules vers le poulailler", "N10"),
+                ("Chemin de la C6 au moulin", False, None, None),
+                ("Ancienne RN 7", True, "Ancienne", "N 7"),
+                ("la D21E1", True, "la", "D21E1"),
+                ("ancienne N10", True, None, None),
+                ("RN 7", True, None, "N 7"),
+                ("N° 7", True, None, None),
                ]
         for (n, gen_err, f, r) in name:
             rdp = a.way(None, {"name": n, "highway": "H"}, None)

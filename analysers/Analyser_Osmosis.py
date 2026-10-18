@@ -298,7 +298,7 @@ ANALYZE {0}.buildings;
     def analyser(self):
         self.init_analyser()
         if self.classs != {} or self.classs_change != {}:
-            self.logger.log(u"run osmosis all analyser {0}".format(self.__class__.__name__))
+            self.logger.log("run osmosis all analyser {0}".format(self.__class__.__name__))
             self.error_file.analyser(self.timestamp(), self.analyser_version())
             if hasattr(self, 'requires_tables_common'):
                 self.requires_tables_build(self.requires_tables_common)
@@ -323,7 +323,7 @@ ANALYZE {0}.buildings;
     def analyser_change(self):
         self.init_analyser()
         if self.classs != {}:
-            self.logger.log(u"run osmosis base analyser {0}".format(self.__class__.__name__))
+            self.logger.log("run osmosis base analyser {0}".format(self.__class__.__name__))
             self.error_file.analyser(self.timestamp(), self.analyser_version())
             if hasattr(self, 'requires_tables_common'):
                 self.requires_tables_build(self.requires_tables_common)
@@ -333,7 +333,7 @@ ANALYZE {0}.buildings;
             finally:
                 self.error_file.analyser_end()
         if self.classs_change != {}:
-            self.logger.log(u"run osmosis change analyser {0}".format(self.__class__.__name__))
+            self.logger.log("run osmosis change analyser {0}".format(self.__class__.__name__))
             self.error_file.analyser(self.timestamp(), self.analyser_version(), change=True)
             try:
                 if hasattr(self, 'requires_tables_diff'):
@@ -370,7 +370,7 @@ ANALYZE {0}.buildings;
         for table in tables:
             self.giscurs.execute("SELECT 1 FROM pg_tables WHERE schemaname = '{0}' AND tablename = '{1}'".format(self.config.db_schema.split(',')[0], table))
             if not self.giscurs.fetchone():
-                self.logger.log(u"requires table {0}".format(table))
+                self.logger.log("requires table {0}".format(table))
                 if table == 'highways':
                     self.giscurs.execute(self.sql_create_highways.format(self.config.db_schema.split(',')[0], self.config.options.get("proj")))
                 elif table == 'touched_highways':
@@ -416,7 +416,7 @@ ANALYZE {0}.buildings;
 
     def requires_tables_clean(self, tables):
         for table in tables:
-            self.logger.log(u"requires table clean {0}".format(table))
+            self.logger.log("requires table clean {0}".format(table))
             self.giscurs.execute('DROP TABLE IF EXISTS {0}.{1} CASCADE'.format(self.config.db_schema.split(',')[0], table))
             self.giscurs.execute('COMMIT')
             self.giscurs.execute('BEGIN')
@@ -437,7 +437,7 @@ ANALYZE {0}.buildings;
 
     def init_analyser(self):
         if len(set(self.classs.keys()) & set(self.classs_change.keys())) > 0:
-            self.logger.log(u"Warning: duplicate class in {0}".format(self.__class__.__name__))
+            self.logger.log("Warning: duplicate class in {0}".format(self.__class__.__name__))
 
         self.giscurs.execute("SET LOCAL statement_timeout = '12h';")
         self.giscurs.execute("SET search_path TO {0},public;".format(self.config.db_schema_path or self.config.db_schema))

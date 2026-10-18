@@ -34,7 +34,7 @@ class TagFix_Wikidata(Plugin):
         self.black_list = self.black_list()
 
     def black_list(self):
-        wikidata_query_for_chain_store = u"https://query.wikidata.org/sparql?query=SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20WHERE%20{%0A%20{%20%3Fitem(wdt%3AP31%2Fwdt%3AP279*)wd%3AQ507619%20}%20UNION%20{%20%3Fitem(wdt%3AP31%2Fwdt%3AP279*)%20wd%3AQ1631129%20}%0A%20SERVICE%20wikibase%3Alabel%20{%20bd%3AserviceParam%20wikibase%3Alanguage%20%22[AUTO_LANGUAGE]%2Cen%22.%20}%0A}&format=json"
+        wikidata_query_for_chain_store = "https://query.wikidata.org/sparql?query=SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20WHERE%20{%0A%20{%20%3Fitem(wdt%3AP31%2Fwdt%3AP279*)wd%3AQ507619%20}%20UNION%20{%20%3Fitem(wdt%3AP31%2Fwdt%3AP279*)%20wd%3AQ1631129%20}%0A%20SERVICE%20wikibase%3Alabel%20{%20bd%3AserviceParam%20wikibase%3Alanguage%20%22[AUTO_LANGUAGE]%2Cen%22.%20}%0A}&format=json"
 
         json_str = urlread(wikidata_query_for_chain_store, 30)
         results = json.loads(json_str)
@@ -47,10 +47,10 @@ class TagFix_Wikidata(Plugin):
             if "wikipedia" in tags:
                 return {"class": 30318, "subclass": 0,
                     "text": T_("Please also check the wikipedia tag."),
-                    "fix": {'+': {u'brand:wikidata': tags["wikidata"]}, '-': [u'wikidata']} }
+                    "fix": {'+': {'brand:wikidata': tags["wikidata"]}, '-': ['wikidata']} }
             else:
                 return {"class": 30318, "subclass": 1,
-                    "fix": {'+': {u'brand:wikidata': tags["wikidata"]}, '-': [u'wikidata']} }
+                    "fix": {'+': {'brand:wikidata': tags["wikidata"]}, '-': ['wikidata']} }
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
