@@ -301,7 +301,6 @@ class Cuisine:
     # Train the model
     self.pipeline.fit(X, y)
     self.print_feature_importance()
-    print(self.classification_report(s, keep_cuisines))
     if train_size is not None:
       print(self.classification_report(s, keep_cuisines))
 
