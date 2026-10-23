@@ -63,8 +63,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2026-09-28 18:06+0000\n"
-"Last-Translator: Frédéric Rodrigo <fred.rodrigo@gmail.com>\n"
+"PO-Revision-Date: 2026-10-23 19:37+0000\n"
+"Last-Translator: Stefal <stefal@users.noreply.hosted.weblate.org>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/osmose/backend/"
 "fr/>\n"
 "Language: fr\n"
@@ -73,7 +73,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % "
 "1000000 == 0 ? 1 : 2;\n"
-"X-Generator: Weblate 2026.10.dev0\n"
+"X-Generator: Weblate 2026.11.dev0\n"
 
 #: ../analysers/analyser_merge_college_FR.py:31
 msgid "College not integrated"
@@ -3357,10 +3357,10 @@ msgid ""
 "brings together information published by the various local authorities and\n"
 "networks in France."
 msgstr ""
-"Une borne de recharge électrique se trouve sûrement ici et n'est pas encore "
-"cartographiée. La liste des bornes vient d'une base publiée par Etalab. "
-"Cette base agrège les informations fournies par plusieurs collectivités et "
-"réseaux en France."
+"Une station de recharge électrique se trouve sûrement ici et n'est pas "
+"encore cartographiée. La liste des stations vient d'une base publiée par "
+"Etalab. Cette base agrège les informations fournies par plusieurs "
+"collectivités et réseaux en France."
 
 #: ../analysers/analyser_merge_charging_station_FR.py:50
 msgid ""
@@ -3377,11 +3377,11 @@ msgstr ""
 
 #: ../analysers/analyser_merge_charging_station_FR.py:58
 msgid "Car charging station not integrated"
-msgstr "Borne de recharge électrique non intégrée"
+msgstr "Station de recharge électrique non intégrée"
 
 #: ../analysers/analyser_merge_charging_station_FR.py:60
 msgid "Car charging station, integration suggestion"
-msgstr "Borne de recharge électrique, proposition d'intégration"
+msgstr "Station de recharge électrique, proposition d'intégration"
 
 #: ../analysers/analyser_osmosis_boundary_intersect.py:98
 msgid "Borders crossing each other."
